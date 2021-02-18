@@ -25,11 +25,11 @@
     "preact": "^10.4"
   },
   "scripts": {
-    "build-js": "npx babel src --out-dir lib --source-maps --ignore '**/test'",
-    "build-types": "npx tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
+    "build-js": "babel src --out-dir lib --source-maps --ignore '**/test'",
+    "build-types": "tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
     "build": "yarn build-js && yarn build-types",
     "typecheck": "tsc --build src/tsconfig.json",
-    "lint": "npx eslint ."
+    "lint": "eslint ."
   },
   "files": [
     "lib",
