@@ -4,17 +4,32 @@
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
   "repository": "hypothesis/client",
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.1.6",
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "classnames": "^2.2.6",
+    "eslint": "^7.3.1",
+    "eslint-config-hypothesis": "^2.4.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "preact": "^10.4",
+    "prop-types": "^15.7.2",
+    "typescript": "^4.1.5"
   },
   "peerDependencies": {
-    "preact": "^10.4.0"
+    "preact": "^10.4"
   },
   "scripts": {
-    "build": "npx babel src --out-dir lib --source-maps --ignore '**/test'"
+    "build-js": "npx babel src --out-dir lib --source-maps --ignore '**/test'",
+    "build-types": "npx tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
+    "build": "yarn build-js && yarn build-types",
+    "typecheck": "tsc --build src/tsconfig.json",
+    "lint": "npx eslint ."
   },
   "files": [
     "lib",
