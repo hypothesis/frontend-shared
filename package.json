@@ -18,6 +18,7 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^4.0.4",
     "preact": "^10.4",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "typescript": "^4.1.5"
   },
@@ -29,7 +30,14 @@
     "build-types": "tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
     "build": "yarn build-js && yarn build-types",
     "typecheck": "tsc --build src/tsconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "checkformatting": "prettier --check '**/*.{js,scss}'",
+    "format": "prettier --list-different --write '**/*.{js,scss}'"
+
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true
   },
   "files": [
     "lib",
