@@ -10,17 +10,39 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
+    "babel-plugin-mockable-imports": "^1.5.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "chai": "^4.1.2",
     "classnames": "^2.2.6",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-preact-pure": "^3.0.0",
     "eslint": "^7.3.1",
     "eslint-config-hypothesis": "^2.4.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^4.0.4",
+    "gulp": "^4.0.0",
+    "karma": "^6.0.1",
+    "karma-browserify": "^8.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.0",
+    "karma-mocha-reporter": "^2.0.4",
+    "karma-sinon": "^1.0.5",
+    "mocha": "8.2.1",
     "preact": "^10.4.0",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
-    "typescript": "^4.1.5"
+    "puppeteer": "^7.1.0",
+    "sinon": "^9.0.0",
+    "stringify": "^5.1.0",
+    "typescript": "^4.1.5",
+    "watchify": "^3.7.0"
+  },
+  "peerDependencies": {
+    "preact": "^10.4"
   },
   "peerDependencies": {
     "preact": "^10.4.0"
@@ -32,7 +54,8 @@
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
     "checkformatting": "prettier --check '**/*.{js,scss}'",
-    "format": "prettier --list-different --write '**/*.{js,scss}'"
+    "format": "prettier --list-different --write '**/*.{js,scss}'",
+    "test": "gulp test"
 
   },
   "prettier": {
