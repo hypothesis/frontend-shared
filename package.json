@@ -17,13 +17,13 @@
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^4.0.4",
-    "preact": "^10.4",
+    "preact": "^10.4.0",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "typescript": "^4.1.5"
   },
   "peerDependencies": {
-    "preact": "^10.4"
+    "preact": "^10.4.0"
   },
   "scripts": {
     "build-js": "babel src --out-dir lib --source-maps --ignore '**/test'",
