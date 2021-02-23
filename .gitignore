@@ -1,3 +1,6 @@
 node_modules/
 lib/
 
+# Use Yarn rather than npm to manage the lockfile.
+package-lock.json
+
