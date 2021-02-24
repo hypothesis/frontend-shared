@@ -1,0 +1,24 @@
+name: Publish frontend-shared package
+on:
+  release:
+    types:
+      - published
+jobs:
+  build-and-publish-package:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - name: Install
+      run: yarn install --frozen-lockfile
+    - name: Build lib files
+      run: yarn build
+    - name: Publish package
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
