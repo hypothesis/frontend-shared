@@ -40,3 +40,8 @@ gulp.task(
   'test',
   gulp.series('build-css', done => runKarma({ singleRun: true }, done))
 );
+
+gulp.task(
+  'test-watch',
+  gulp.series('build-css', done => runKarma({ singleRun: false }, done))
+);
