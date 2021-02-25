@@ -36,13 +36,11 @@
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "puppeteer": "^7.1.0",
+    "sass": "^1.32.8",
     "sinon": "^9.0.0",
     "stringify": "^5.1.0",
     "typescript": "^4.1.5",
     "watchify": "^3.7.0"
-  },
-  "peerDependencies": {
-    "preact": "^10.4"
   },
   "peerDependencies": {
     "preact": "^10.4.0"
@@ -56,7 +54,6 @@
     "checkformatting": "prettier --check '**/*.{js,scss}'",
     "format": "prettier --list-different --write '**/*.{js,scss}'",
     "test": "gulp test"
-
   },
   "prettier": {
     "arrowParens": "avoid",

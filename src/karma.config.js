@@ -29,6 +29,13 @@ module.exports = function (config) {
 
         type: 'js',
       })),
+
+      // CSS bundle relied upon by accessibility tests (eg. for color-contrast
+      // checks).
+      {
+        pattern: '../build/styles.css',
+        watched: false,
+      },
     ],
 
     // list of files to exclude
