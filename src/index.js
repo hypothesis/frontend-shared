@@ -6,3 +6,6 @@ export { useElementShouldClose } from './hooks/use-element-should-close';
 
 // Utilities
 export { normalizeKeyName } from './browser-compatibility-utils';
+
+// Scripts
+export { run } from './scripts/gulp/run';

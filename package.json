@@ -4,7 +4,10 @@
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
   "repository": "hypothesis/client",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-babel": "^8.0.0",
+    "gulp-sourcemaps": "^3.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.6",
     "@babel/core": "^7.1.6",
@@ -42,21 +45,15 @@
     "watchify": "^3.7.0"
   },
   "peerDependencies": {
-    "preact": "^10.4"
-  },
-  "peerDependencies": {
     "preact": "^10.4.0"
   },
   "scripts": {
-    "build-js": "babel src --out-dir lib --source-maps --ignore '**/test'",
-    "build-types": "tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
-    "build": "yarn build-js && yarn build-types",
+    "build": "gulp build-js",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
     "checkformatting": "prettier --check '**/*.{js,scss}'",
     "format": "prettier --list-different --write '**/*.{js,scss}'",
     "test": "gulp test"
-
   },
   "prettier": {
     "arrowParens": "avoid",
