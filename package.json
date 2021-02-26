@@ -54,7 +54,8 @@
     "lint": "eslint .",
     "checkformatting": "prettier --check '**/*.{js,scss}'",
     "format": "prettier --list-different --write '**/*.{js,scss}'",
-    "test": "gulp test"
+    "test": "gulp test",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "prettier": {
     "arrowParens": "avoid",
