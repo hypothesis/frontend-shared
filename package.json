@@ -48,7 +48,7 @@
     "preact": "^10.4.0"
   },
   "scripts": {
-    "build-js": "babel src --out-dir lib --source-maps --ignore '**/test'",
+    "build-js": "babel src --out-dir lib --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
     "build-types": "tsc --allowJs --declaration --emitDeclarationOnly --outDir lib src/index.js",
     "build": "yarn build-js && yarn build-types",
     "typecheck": "tsc --build src/tsconfig.json",
