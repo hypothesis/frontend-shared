@@ -2,9 +2,42 @@
 
 'use strict';
 
+const commander = require('commander');
 const fs = require('fs');
 const gulp = require('gulp');
 const sass = require('sass');
+
+function parseCommandLine() {
+  commander
+    .option(
+      '--grep <pattern>',
+      'Run only tests where filename matches a regex pattern'
+    )
+    .option('--watch', 'Continuously run tests (default: false)', false)
+    .option('--browser <browser>', 'Run tests in browser of choice.')
+    .option(
+      '--no-browser',
+      "Don't launch default browser. Instead, navigate to http://localhost:9876/ to run the tests."
+    )
+    .parse(process.argv);
+
+  const { grep, watch, browser } = commander.opts();
+  const karmaOptions = {
+    grep: grep,
+    singleRun: !watch,
+  };
+
+  // browser option can be either false | undefined | string
+  if (browser === false) {
+    karmaOptions.browsers = null;
+  } else if (browser) {
+    karmaOptions.browsers = [browser];
+  }
+
+  return karmaOptions;
+}
+
+const karmaOptions = parseCommandLine();
 
 /**
  * Task to build a CSS bundle.
@@ -24,24 +57,18 @@ gulp.task('build-css', done => {
   done();
 });
 
-function runKarma({ singleRun }, done) {
+function runKarma(done) {
   const karma = require('karma');
   new karma.Server(
     {
       configFile: `${__dirname}/src/karma.config.js`,
-      singleRun,
+      ...karmaOptions,
     },
     done
   ).start();
 }
 
-// Unit and integration testing tasks.
 gulp.task(
   'test',
-  gulp.series('build-css', done => runKarma({ singleRun: true }, done))
-);
-
-gulp.task(
-  'test-watch',
-  gulp.series('build-css', done => runKarma({ singleRun: false }, done))
+  gulp.series('build-css', done => runKarma(done))
 );
