@@ -35,4 +35,5 @@ import { SvgIcon } from '@hypothesis/frontend-shared';
 
 ### Additional documentation
 
-[Development guide](docs/developing.md)
+- [Development guide](docs/developing.md)
+- [Release guide](docs/releases.md)
