@@ -33,6 +33,10 @@ Mixins can be imported directly
 import { SvgIcon } from '@hypothesis/frontend-shared';
 ```
 
+### Additional documentation
+
+[Development guide](docs/developing.md)
+
 ### License
 
 The Hypothesis client is released under the [2-Clause BSD License][bsd2c],
