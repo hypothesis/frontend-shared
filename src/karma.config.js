@@ -71,6 +71,14 @@ module.exports = function (config) {
             // See https://github.com/hypothesis/client/issues/2929
             presets: require('../.babelrc.cjs').presets,
             extensions: ['.js'],
+            plugins: [
+              [
+                'babel-plugin-istanbul',
+                {
+                  exclude: ['**/test/**/*.js', 'lib/'],
+                },
+              ],
+            ],
           },
         ],
       ],
@@ -84,9 +92,14 @@ module.exports = function (config) {
       output: 'minimal',
     },
 
+    coverageIstanbulReporter: {
+      dir: `${__dirname}/../coverage`,
+      reports: ['json', 'html'],
+    },
+
     // Use https://www.npmjs.com/package/karma-mocha-reporter
     // for more helpful rendering of test failures
-    reporters: ['progress', 'mocha'],
+    reporters: ['progress', 'mocha', 'coverage-istanbul'],
 
     // web server port
     port: 9876,
