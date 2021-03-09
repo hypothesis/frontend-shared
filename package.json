@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
-  "repository": "hypothesis/client",
+  "repository": "hypothesis/frontend-shared",
   "devDependencies": {
     "@babel/cli": "^7.1.6",
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "axe-core": "^4.0.0",
+    "auto-changelog": "^2.2.1",
     "babel-plugin-mockable-imports": "^1.5.1",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
@@ -56,7 +57,8 @@
     "checkformatting": "prettier --check '**/*.{js,scss}'",
     "format": "prettier --list-different --write '**/*.{js,scss,md}'",
     "test": "gulp test",
-    "push": "yarn build && yalc push"
+    "push": "yarn build && yalc push",
+    "changelog": "gulp changelog"
   },
   "prettier": {
     "arrowParens": "avoid",

@@ -38,6 +38,29 @@ function parseCommandLine() {
 }
 
 const karmaOptions = parseCommandLine();
+const { run } = require('./scripts/gulp/run');
+
+/**
+ * Task to output a draft changelog to be appended to CHANGELOG.md at the
+ * top of the file.
+ *
+ * See docs/releases.md
+ */
+
+gulp.task('changelog', async () => {
+  const tag = await run('git', ['describe', '--abbrev=0', '--tags']);
+  const changelog = await run('yarn', [
+    'auto-changelog',
+    `--starting-version`,
+    tag.trim(),
+    '--stdout',
+    '--template',
+    'changelog-template.hbs',
+  ]);
+  // Copy and paste the result to CHANGELOG.md, then edit as needed.
+  // eslint-disable-next-line no-console
+  console.log(changelog.toString());
+});
 
 /**
  * Task to build a CSS bundle.
