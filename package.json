@@ -4,7 +4,6 @@
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
   "repository": "hypothesis/client",
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.1.6",
     "@babel/core": "^7.1.6",
@@ -16,6 +15,7 @@
     "browserify": "^17.0.0",
     "chai": "^4.1.2",
     "classnames": "^2.2.6",
+    "commander": "^7.1.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-preact-pure": "^3.0.0",
     "eslint": "^7.3.1",

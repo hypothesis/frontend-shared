@@ -1,4 +1,6 @@
-/* global process */
+/* eslint-env node */
+
+const glob = require('glob');
 
 let chromeFlags = [];
 
@@ -6,6 +8,16 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
   let testFiles = ['**/test/*-test.js'];
+
+  if (config.grep) {
+    const allFiles = testFiles
+      .map(pattern => glob.sync(pattern, { cwd: __dirname }))
+      .flat();
+    testFiles = allFiles.filter(path => path.match(config.grep));
+
+    // eslint-disable-next-line no-console
+    console.log(`Running tests matching pattern "${config.grep}": `, testFiles);
+  }
 
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
