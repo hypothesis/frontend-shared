@@ -1,6 +1,6 @@
 {
   "name": "@hypothesis/frontend-shared",
-  "version": "1.0.0",
+  "version": "1.10.0",
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
   "repository": "hypothesis/frontend-shared",
@@ -9,8 +9,8 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "axe-core": "^4.0.0",
     "auto-changelog": "^2.2.1",
+    "axe-core": "^4.0.0",
     "babel-plugin-mockable-imports": "^1.5.1",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
