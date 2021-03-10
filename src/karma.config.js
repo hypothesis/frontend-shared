@@ -72,6 +72,7 @@ module.exports = function (config) {
             presets: require('../.babelrc.cjs').presets,
             extensions: ['.js'],
             plugins: [
+              'mockable-imports',
               [
                 'babel-plugin-istanbul',
                 {
