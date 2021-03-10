@@ -4,8 +4,9 @@ A package of resources for Hypothesis front-end applications.
 
 #### Requirements
 
+Dependencies **required** for importing modules from `@hypothesis/frontend-shared`:
+
 - preact
-- browserify
 
 ### Usage
 
