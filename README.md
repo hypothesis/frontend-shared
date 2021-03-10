@@ -17,13 +17,13 @@ $ npm install @hypothesis/frontend-shared --save
 
 To import default styling of frontend-shared components, include this line in the main project's SASS.
 
-```sass
+```scss
 @use '@hypothesis/frontend-shared/styles';
 ```
 
 Mixins can be imported directly
 
-```sass
+```scss
 @use "@hypothesis/frontend-shared/styles/mixins" as mixins;
 ```
 
