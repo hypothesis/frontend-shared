@@ -1,0 +1,14 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 100%
+        threshold: 0%
+    patch:
+      default:
+        # basic
+        target: 100%
+        threshold: 0%
+        # advanced
+        if_ci_failed: error
+        only_pulls: false
