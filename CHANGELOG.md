@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v1.10.0] - 2021-03-09
 
 ### Added
+
 - Add `yarn push` to be able to link to the client for development [#8](https://github.com/hypothesis/frontend-shared/pull/8)
 - Add commands for testing / lint / typecheck / format [#1](https://github.com/hypothesis/frontend-shared/pull/1)
 - Move `useElementShouldClose` and `normalizeKeyName` into frontend-shared package [#22ede8c](https://github.com/hypothesis/frontend-shared/commit/22ede8ccab173a7da8b2bc5218ad583bd630f8d1)
@@ -18,4 +19,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v1.0.0] 2021-01-06
 
 ### Added
+
 - Initial commit for frontend-shared

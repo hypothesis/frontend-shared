@@ -56,7 +56,7 @@
     "build": "yarn build-js && yarn build-types",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
-    "checkformatting": "prettier --check '**/*.{js,scss}'",
+    "checkformatting": "prettier --check '**/*.{js,scss,md}'",
     "format": "prettier --list-different --write '**/*.{js,scss,md}'",
     "test": "gulp test",
     "push": "yarn build && yalc push",
