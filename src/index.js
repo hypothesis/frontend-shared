@@ -1,4 +1,5 @@
 // Components
+export { IconButton, LabeledButton, LinkButton } from './components/buttons';
 export { SvgIcon, registerIcons } from './components/SvgIcon';
 
 // Hooks
