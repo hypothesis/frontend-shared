@@ -124,6 +124,24 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
         attributeName: 'disabled',
         attributeValue: '',
       },
+      {
+        propName: 'expanded',
+        propValue: undefined,
+        attributeName: 'aria-expanded',
+        attributeValue: null,
+      },
+      {
+        propName: 'pressed',
+        propValue: undefined,
+        attributeName: 'aria-pressed',
+        attributeValue: null,
+      },
+      {
+        propName: 'disabled',
+        propValue: undefined,
+        attributeName: 'disabled',
+        attributeValue: null,
+      },
     ].forEach(testCase => {
       it('sets attributes on the button element', () => {
         const wrapper = createComponentFn({
@@ -134,7 +152,8 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
 
         assert.equal(
           element.getAttribute(testCase.attributeName),
-          testCase.attributeValue
+          testCase.attributeValue,
+          testCase.attributeName
         );
       });
     });
