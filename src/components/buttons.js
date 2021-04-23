@@ -4,6 +4,7 @@ import { SvgIcon } from './SvgIcon';
 
 /**
  * @typedef ButtonProps
+ * @prop {import('preact').Ref<HTMLButtonElement>} [buttonRef]
  * @prop {import("preact").ComponentChildren} [children]
  * @prop {string} [className]
  * @prop {string} [icon] - Name of `SvgIcon` to render in the button
@@ -37,6 +38,7 @@ import { SvgIcon } from './SvgIcon';
  * @param {ButtonProps} props
  */
 function ButtonBase({
+  buttonRef,
   className,
   icon,
   iconPosition = 'left',
@@ -52,6 +54,7 @@ function ButtonBase({
 
   return (
     <button
+      ref={buttonRef}
       className={classnames(
         className,
         `${className}--${size}`,
