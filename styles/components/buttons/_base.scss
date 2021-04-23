@@ -15,6 +15,7 @@
   &:hover:not([disabled]) {
     color: map.get($colormap, 'hover-foreground');
     background-color: map.get($colormap, 'hover-background');
+    cursor: pointer;
   }
   transition: color 0.2s ease-out, background-color 0.2s ease-out,
     opacity 0.2s ease-out;
