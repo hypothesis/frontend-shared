@@ -14,7 +14,7 @@ import { SvgIcon } from './SvgIcon';
  *   expanded (set `aria-expanded`)
  * @prop {boolean} [pressed] - Is this button currently "active?" (set
  *   `aria-pressed`)
- * @prop {() => any} [onClick]
+ * @prop {(event: Event) => void} [onClick]
  * @prop {'small'|'medium'|'large'} [size='medium'] - Relative button size:
  *   affects padding
  * @prop {Object} [style] - Optional inline styles
