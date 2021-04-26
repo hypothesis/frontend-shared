@@ -1,48 +1,73 @@
 # Release process
 
-The release process in broken up into 3 steps.
+## 1. Version and tag
 
-1. Increment the version and add a new tag
-2. Modify the changelog
-3. Merge the release branch and create a "github release"
+We use [Semantic Versioning](https://semver.org/#semantic-versioning-200).
 
-## 1. Increment the version and add a new tag
+1. Create a new working branch
+2. Run
 
-To update the version in package.json and create a tag run:
+   ```shell
+   $ yarn version
+   ```
 
-```shell
-$ yarn version
-```
+   This will update the `package.json` version, create a commit and add
+   an annotated version tag.
 
-The version number should be updated following [Semantic Versioning](https://semver.org/#semantic-versioning-200). The only change should be to package.json, and there should be a new tag on the commit prefixed with a "v".
+## 2. Update the changelog
 
-## 2. Modify the changelog
+We use conventions from [keepachangelog](https://keepachangelog.com/en/1.0.0/).
 
-`CHANGELOG.md` highlights changes that are relevant for consumers of the package. Our changelog follows [keepachangelog](https://keepachangelog.com/en/1.0.0/).
+1. Run
 
-### Steps to append to the changelog
+   ```shell
+   $  gulp changelog
+   ```
 
-Immediately after a version commit & tag, run the following command to create a draft list of changes relating to the new version.
+   This outputs some suggested changelog content based on `git` history
 
-```shell
-$ gulp changelog
-```
+2. Edit `CHANGELOG.md` and commit changes
 
-This command will generate a partial changelog and output it to the console. Copy the text and paste it above the previous version in `CHANGELOG.md` and be sure to leave a blank line between versions. The output is git logs between the current new version and the previous released version. It will be important to edit and trim down that list so that only the consumer-relevant changes are included.
+   Add content to `CHANGELOG.md` above the last set of changes. Edit the
+   suggested output (above) to be useful and meaningful.
 
-### Edit the output
+## 3. Squash, update tag, push
 
-1. Delete any commits that are not relevant for a consumer.
-2. Categorize the remaining important commits into various [types of changes](https://keepachangelog.com/en/1.0.0/#how).
-3. Make sure to prefix anything that might break with "BREAKING CHANGE:"
-4. Refactor the messages as needed to ensure they can be understood by a consumer.
+1. Squash into a single commit
 
-When writing the changelog, please follow the [Keep a Changelog advice](https://keepachangelog.com/en/1.0.0/#how).
+   Squash or amend the changelog edits into the same commit as the `package.json`
+   version bump. You should now have a single commit on your branch.
 
-### Save and commit
+2. Move the version tag
 
-Commit the changelog file with a simple message, then push the branch (make sure to push tags too) and merge to `main` after CI passes.
+   You've created a new commit with the combined version/changelog changes,
+   and the version tag needs to be updated to point at the hash for this combined commit:
 
-## 3. Create a new GitHub release
+   ```shell
+   $ git tag -af <tag> <commit>
+   ```
 
-Create a [new github release](https://github.com/hypothesis/frontend-shared/releases/new/). The title of the release should be identical to the tag name and the message can copied from the result of step #2. When you are done, click "Publish".
+3. Push
+
+   Push both the branch and the tag
+
+   ```shell
+   $ git push <tag> origin
+   $ git push <branch> origin
+   ```
+
+## 4. Merge and release
+
+1. Go through the PR/merge cycle for the version-update branch
+2. Create a [new GitHub release](https://github.com/hypothesis/frontend-shared/releases/new/)
+
+   - Title: use the tag name
+   - Message/Description: Paste in changelog changes
+   - Binary: nope
+
+   Publishing this will kick off a GitHub Action that will publish the package.
+
+## 5. Check your work
+
+- Check to see if the version has been updated on [npm](https://www.npmjs.com/package/@hypothesis/frontend-shared)
+- Check the contents of the package on UNPKG. The URL pattern is `https://unpkg.com/browse/@hypothesis/frontend-shared@<version>/`, e.g. https://unpkg.com/browse/@hypothesis/frontend-shared@1.11.0/
