@@ -1,4 +1,5 @@
 import { mount } from 'enzyme';
+import { createRef } from 'preact';
 
 import { IconButton, LabeledButton, LinkButton } from '../buttons.js';
 import { $imports } from '../buttons.js';
@@ -19,6 +20,20 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
         assert.isTrue(button.hasClass(`${componentName}--icon-left`));
       });
     }
+
+    it('passes along a `ref` to the button element through `buttonRef`', () => {
+      const buttonRef = createRef();
+      createComponentFn({ buttonRef: buttonRef });
+
+      assert.isTrue(buttonRef.current instanceof Node);
+    });
+
+    it('does not attach a `ref` to the button element when `buttonRef is undefined', () => {
+      const buttonRef = createRef();
+      createComponentFn({ buttonRef: undefined });
+
+      assert.notExists(buttonRef.current);
+    });
 
     it('invokes callback on click', () => {
       const onClick = sinon.stub();
