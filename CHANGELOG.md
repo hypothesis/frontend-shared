@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.12.0] - 2021-04-27
+
+### Added:
+
+- Add "cancel" icon SVG [#27](https://github.com/hypothesis/frontend-shared/pull/27)
+- Add shared base element styling [#33](https://github.com/hypothesis/frontend-shared/pull/33)
+- Add reset styles and mixins [#32](https://github.com/hypothesis/frontend-shared/pull/32)
+
+### Changed:
+
+- Add `buttonRef` prop to buttons [#28](https://github.com/hypothesis/frontend-shared/pull/28)
+
+### Fixed:
+
+- More accurately define the onClick event type [#29](https://github.com/hypothesis/frontend-shared/pull/29)
+- Simplification and type improvement in button component [#23](https://github.com/hypothesis/frontend-shared/pull/23)
+
 ## [v1.11.0] - 2021-04-15
 
 ### Added
