@@ -1,11 +1,33 @@
 /* eslint-env node */
+('use strict');
 
-'use strict';
+const fs = require('fs');
+const path = require('path');
 
 const commander = require('commander');
-const fs = require('fs');
 const gulp = require('gulp');
 const sass = require('sass');
+
+const createBundle = require('./scripts/gulp/create-bundle');
+const createStyleBundle = require('./scripts/gulp/create-style-bundle');
+const servePatternLibrary = require('./scripts/serve-pattern-library');
+
+const IS_PRODUCTION_BUILD = process.env.NODE_ENV === 'production';
+
+const SCRIPT_DIR = 'build/scripts';
+const STYLE_DIR = 'build/styles';
+
+const appBundles = [
+  {
+    // A web app to assist with testing UI components.
+    name: 'pattern-library',
+    entry: './scripts/pattern-library',
+    path: SCRIPT_DIR,
+    transforms: ['babel'],
+  },
+];
+
+const cssBundles = ['./styles/pattern-library.scss'];
 
 function parseCommandLine() {
   commander
@@ -40,6 +62,17 @@ function parseCommandLine() {
 const karmaOptions = parseCommandLine();
 const { run } = require('./scripts/gulp/run');
 
+function runKarma(done) {
+  const karma = require('karma');
+  new karma.Server(
+    {
+      configFile: `${__dirname}/src/karma.config.js`,
+      ...karmaOptions,
+    },
+    done
+  ).start();
+}
+
 /**
  * Task to output a draft changelog to be appended to CHANGELOG.md at the
  * top of the file.
@@ -67,7 +100,7 @@ gulp.task('changelog', async () => {
  *
  * nb. This is only used for unit tests that need CSS to verify accessibility requirements.
  */
-gulp.task('build-css', done => {
+gulp.task('build-test-css', done => {
   fs.mkdirSync('build', { recursive: true });
   const result = sass.renderSync({
     file: 'styles/_index.scss',
@@ -80,18 +113,48 @@ gulp.task('build-css', done => {
   done();
 });
 
-function runKarma(done) {
-  const karma = require('karma');
-  new karma.Server(
-    {
-      configFile: `${__dirname}/src/karma.config.js`,
-      ...karmaOptions,
-    },
-    done
-  ).start();
-}
-
 gulp.task(
   'test',
-  gulp.series('build-css', done => runKarma(done))
+  gulp.series('build-test-css', done => runKarma(done))
+);
+
+gulp.task('serve-pattern-library', () => {
+  servePatternLibrary();
+});
+
+// The following tasks bundle assets for the pattern library for use locally
+// during development. Bundled JS and CSS are not published with the package.
+
+// Bundle JS into local `build` folder
+gulp.task('bundle-js', () => {
+  return Promise.all(appBundles.map(config => createBundle(config)));
+});
+
+// Bundle SASS into local `build` folder
+gulp.task('bundle-css', function () {
+  fs.mkdirSync(STYLE_DIR, { recursive: true });
+  const bundles = cssBundles.map(entry =>
+    createStyleBundle({
+      input: entry,
+      output: `${STYLE_DIR}/${path.basename(entry, path.extname(entry))}.css`,
+      minify: IS_PRODUCTION_BUILD,
+    })
+  );
+  return Promise.all(bundles);
+});
+
+gulp.task(
+  'watch-css',
+  gulp.series('bundle-css', () =>
+    gulp.watch('./styles/**/*.scss', gulp.task('bundle-css'))
+  )
+);
+
+gulp.task('watch-js', () =>
+  Promise.all(appBundles.map(config => createBundle(config, { watch: true })))
+);
+
+gulp.task(
+  'watch',
+  gulp.parallel('serve-pattern-library', 'watch-css', 'watch-js')
 );
