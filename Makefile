@@ -4,7 +4,7 @@ default: help
 .PHONY: help
 help:
 	@echo "make help              Show this help message"
-	@echo "make dev               Run the pattern library application (TODO)"
+	@echo "make dev               Run the pattern library app in a development server"
 	@echo "make build             Build the package"
 	@echo "make lint              Run the code linter(s) and print any warnings"
 	@echo "make checkformatting   Check code formatting"
@@ -16,7 +16,7 @@ help:
 
 .PHONY: dev
 dev: node_modules/.uptodate
-	@echo 'TODO: run local dev server with pattern library'
+	node_modules/.bin/gulp watch
 
 .PHONY: test
 test: node_modules/.uptodate
