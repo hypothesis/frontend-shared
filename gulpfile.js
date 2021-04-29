@@ -103,7 +103,7 @@ gulp.task('changelog', async () => {
 gulp.task('build-test-css', done => {
   fs.mkdirSync('build', { recursive: true });
   const result = sass.renderSync({
-    file: 'styles/_index.scss',
+    file: 'styles/index.scss',
     outFile: 'build/styles.css',
     sourceMap: true,
   });
