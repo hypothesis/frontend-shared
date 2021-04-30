@@ -1,6 +1,8 @@
 import { SvgIcon } from '../../components/SvgIcon';
 
 import SharedButtonPatterns from './patterns/SharedButtonPatterns';
+import SharedMoleculePatterns from './patterns/SharedMoleculePatterns';
+import SharedOrganismPatterns from './patterns/SharedOrganismPatterns';
 
 import { useRoute } from '../router';
 
@@ -28,6 +30,16 @@ const routes = [
     route: /^\/?$/,
     title: 'Home',
     component: HomeRoute,
+  },
+  {
+    route: '/shared-molecules',
+    title: 'Molecules',
+    component: SharedMoleculePatterns,
+  },
+  {
+    route: '/shared-organisms',
+    title: 'Organisms',
+    component: SharedOrganismPatterns,
   },
   {
     route: '/shared-buttons',
