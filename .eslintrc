@@ -6,5 +6,8 @@
     "react/react-in-jsx-scope": "off",
     // Replaced by TypeScript's static checking.
     "react/prop-types": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021
   }
 }
