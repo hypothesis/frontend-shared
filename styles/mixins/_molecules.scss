@@ -1,0 +1,32 @@
+@use '../variables' as var;
+
+@use 'atoms';
+
+$-border-radius: var.$border-radius;
+$-color-background: var.$color-background;
+
+/**
+ * Patterns that are composites of multiple atomic utilities, but
+ * are not standalone components.
+ */
+
+/**
+ * Give an element a border, a background and a shadow. Underpinning for
+ * cards and panels.
+ *
+ * @param {boolean} [$with-hover] - Should this frame have a hover effect?
+ */
+@mixin frame($with-hover: false) {
+  @include atoms.border;
+  @include atoms.shadow;
+
+  border-radius: $-border-radius;
+  background-color: $-color-background;
+
+  @if $with-hover {
+    &:hover,
+    &.is-focused {
+      @include atoms.shadow($active: true);
+    }
+  }
+}

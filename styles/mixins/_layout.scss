@@ -1,0 +1,23 @@
+@use '../variables' as var;
+
+$-layout-space: var.$layout-space;
+
+/**
+ * Establish a vertical (margin) rhythm for this element's immediate
+ * children (i.e. put equal space between children).
+ *
+ * This mixin uses `!important` such that it can compete with specificity
+ * of reset rules that set some of our element's margins to 0. That allows
+ * these rules—which are applied to a parent element—to be able to assert
+ * margins, as it should be able to do.
+ *
+ * This mixin uses a "lobotomized owl" selector.
+ * See https://css-tricks.com/lobotomized-owls/
+ *
+ * @param $size [$layout-space]: Spacing size (padding)
+ */
+@mixin vertical-rhythm($size: $-layout-space) {
+  & > * + * {
+    margin-top: $size !important;
+  }
+}
