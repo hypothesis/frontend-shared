@@ -1,0 +1,9 @@
+@use '../mixins/molecules';
+
+/**
+ * Utility classes for molecular mixins
+ */
+
+.frame {
+  @include molecules.frame;
+}

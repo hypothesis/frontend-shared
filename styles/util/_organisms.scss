@@ -1,0 +1,9 @@
+@use '../mixins/organisms';
+
+/**
+ * Utility classes for organism mixins
+ */
+
+.card {
+  @include organisms.card;
+}
