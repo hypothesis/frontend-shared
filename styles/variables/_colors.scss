@@ -32,9 +32,16 @@ $grey-6: #3f3f3f;
 
 $grey-7: #202020;
 
+$shadow: black;
+
 $brand: #bd1c2b;
-
 $link: $brand !default;
-$link-hover: #84141e !default;
 
+// Legacy
+// TODO: This should be $link--hover
+$link-hover: #84141e !default;
 $focus-outline: #51a7e8;
+
+// Tokenizing colors to their use
+$background: $white;
+$border: $grey-3;

@@ -1,0 +1,25 @@
+@use '../mixins/atoms';
+
+.u-border {
+  @include atoms.border;
+}
+
+.u-border--left {
+  @include atoms.border(left);
+}
+
+.u-border--right {
+  @include atoms.border(right);
+}
+
+.u-border--top {
+  @include atoms.border(top);
+}
+
+.u-shadow {
+  @include atoms.shadow;
+}
+
+.u-shadow--active {
+  @include atoms.shadow($active: true);
+}

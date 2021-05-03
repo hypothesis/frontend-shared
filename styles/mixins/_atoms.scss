@@ -1,0 +1,37 @@
+@use 'sass:color';
+@use 'sass:list';
+
+@use '../variables' as var;
+
+$-color-border: var.$color-border;
+$-color-shadow: var.$color-shadow;
+
+/**
+ * Add border styles for all element sides (default) or a specific single side
+ *
+ * @param {'left'|'right'|'bottom'|'top'} [$side]
+ */
+@mixin border($side: null) {
+  $valid-sides: left, right, bottom, top;
+  $border-property: border;
+  @if list.index($valid-sides, $side) {
+    $border-property: border-#{$side};
+  }
+  #{$border-property}: 1px solid $-color-border;
+}
+
+/**
+ * Style a shadow off of the element. `$active` variant is larger, darker,
+ * intended for hovered/active elements.
+ *
+ * @param {boolean} [$active]
+ */
+@mixin shadow($active: false) {
+  @if $active {
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0px 2px 3px 0px color.scale($-color-shadow, $alpha: -85%);
+  } @else {
+    /* offset-x | offset-y | blur-radius | color */
+    box-shadow: 0px 1px 1px color.scale($-color-shadow, $alpha: -90%);
+  }
+}

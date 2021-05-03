@@ -1,0 +1,19 @@
+@use '../variables' as var;
+
+@use 'layout';
+@use 'molecules';
+
+$-layout-space: var.$layout-space;
+
+/**
+ * An element with a frame, shadow, internal vertical rhythm and padding:
+ * serves as a container for card- and panel-like patterns.
+ */
+@mixin card {
+  @include molecules.frame($with-hover: true);
+  @include layout.vertical-rhythm;
+
+  padding: $-layout-space;
+
+  // TODO: Add clean-theme affordances
+}

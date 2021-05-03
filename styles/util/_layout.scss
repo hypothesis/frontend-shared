@@ -1,0 +1,7 @@
+@use '../mixins/layout';
+
+// Apply vertical rhythm (margins between immediate-child elements) at the
+// default rhythm-unit size
+.u-vertical-rhythm {
+  @include layout.vertical-rhythm;
+}

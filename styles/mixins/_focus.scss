@@ -1,9 +1,11 @@
 @use '../variables' as var;
 
+$-color-focus-outline: var.$color-focus-outline;
+
 /**
  * Add stylized focus to interactive elements such <input> or <textarea>
  *
- * @param {boolean} $inset -
+ * @param {boolean} [$inset] -
  *   The focus style is implemented with a box-shadow and this parameter determines whether
  *   the box-shadow should be inset on the element. Set this to true when the element
  *   may be adjacent to another in order to prevent part of the outline from being obscured.
@@ -11,7 +13,7 @@
 @mixin outline($inset: false) {
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var.$color-focus-outline if($inset, inset, null);
+    box-shadow: 0 0 0 2px $-color-focus-outline if($inset, inset, null);
   }
 }
 
