@@ -9,12 +9,14 @@ body {
   font-size: 100%;
 }
 
-h1 {
+.PlaygroundApp__sidebar h1,
+.PatternPage > h1 {
   font-size: 1.75em;
   font-weight: bold;
 }
 
-h2 {
+.PlaygroundApp__sidebar h2,
+.Pattern > h2 {
   font-size: 1.25em;
   width: 100%;
   border-left: 6px solid var.$color-brand;
@@ -101,7 +103,7 @@ pre {
     font-size: 125%;
   }
 
-  h2 {
+  & > h2 {
     margin-left: -1em;
   }
 }
