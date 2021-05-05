@@ -7,3 +7,11 @@
 .frame {
   @include molecules.frame;
 }
+
+.card {
+  @include molecules.card;
+}
+
+.actions {
+  @include molecules.actions;
+}
