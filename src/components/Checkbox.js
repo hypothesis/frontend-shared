@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
-
-const noop = () => {};
-
 /**
- * @typedef CheckboxProps
- * @prop {boolean} [defaultChecked] - Should the checkbox be selected/checked
- *  by default?
- * @prop {string} name - The `name` of the checkbox. Will be used as `id` if
- *   `id` not provided
- * @prop {string} [id] - HTML ID for the checkbox element
- * @prop {string} label - Checkbox label
- * @prop {(checked: boolean) => any} [onChanged] - Callback when checkbox is
+ * @typedef CheckboxBaseProps
+ * @prop {string} name - The `name` of the checkbox.
+ * @prop {import('preact').Ref<HTMLInputElement>} [inputRef]
+ * @prop {(checked: boolean) => void} [onToggle] - Callback when checkbox is
  *   checked/unchecked
+ * @prop {never} [type] - Type is always 'checkbox'
+ * @prop {never} [children] - Children are not allowed
+ *
+ * @typedef {Omit<import('Preact').JSX.HTMLAttributes<HTMLInputElement>, 'onToggle'> & CheckboxBaseProps} CheckboxProps
+ *
+ * @typedef LabeledCheckboxProps
+ * @prop {string} label - Label text
  */
 
 /**
@@ -19,40 +18,35 @@ const noop = () => {};
  *
  * @param {CheckboxProps} props
  */
-export function Checkbox({
-  defaultChecked = false,
-  id,
-  name,
-  label,
-  onChanged,
-}) {
-  let [isChecked, setChecked] = useState(defaultChecked);
-  onChanged = onChanged ?? noop;
-  id = id ?? name;
-
-  const wasChecked = useRef(isChecked);
-  useEffect(() => {
-    if (wasChecked.current !== isChecked && typeof onChanged === 'function') {
-      wasChecked.current = isChecked;
-      onChanged(isChecked);
-    }
-  }, [isChecked, onChanged]);
-
-  function onChange(event) {
-    const isChecked = event.target.checked;
-    setChecked(isChecked);
+export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
+  /**
+   * @param {import('Preact').JSX.TargetedMouseEvent<HTMLInputElement>} event
+   * @this HTMLInputElement
+   */
+  function onPressed(event) {
+    onToggle?.(event.currentTarget.checked);
+    // onChange expects `this` context to be of type `HTMLInputElement`
+    // according to the preact type definitions, but preact doesn't implement
+    // it: https://github.com/preactjs/preact/issues/3137
+    onClick?.call(this, event);
   }
 
   return (
+    <input ref={inputRef} type="checkbox" onClick={onPressed} {...restProps} />
+  );
+}
+
+/**
+ * A labeled checkbox input
+ *
+ * @param {CheckboxProps & LabeledCheckboxProps} props
+ */
+export function LabeledCheckbox({ label, id, ...restProps }) {
+  id ??= restProps.name;
+  return (
     <>
-      <input
-        type="checkbox"
-        id={id}
-        name={name}
-        checked={isChecked}
-        onChange={e => onChange(e)}
-      />
       <label htmlFor={id}>{label}</label>
+      <Checkbox id={id} {...restProps} />
     </>
   );
 }

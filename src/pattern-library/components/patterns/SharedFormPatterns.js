@@ -1,4 +1,6 @@
-import { Checkbox } from '../../../';
+import { useState } from 'preact/hooks';
+
+import { LabeledCheckbox } from '../../../';
 
 import {
   PatternPage,
@@ -7,42 +9,28 @@ import {
   PatternExample,
 } from '../PatternPage';
 
-function gimmeSandwich(isChecked) {
-  const visibility = isChecked ? 'visible' : 'hidden';
-  const elem = /** @type HTMLElement */ (document.querySelector(
-    '#showme-sandwich'
-  ));
-  if (elem) {
-    elem.style.visibility = visibility;
-  }
-}
-
 export default function SharedFormPatterns() {
+  const [show, setShow] = useState(true);
   return (
     <PatternPage title="Forms">
       <Pattern title="Checkbox">
         <span
-          id="showme-sandwich"
           role="img"
           aria-label="seriously, just an emoji of sandwich"
-          style="font-size: 2em; visibility:hidden"
+          style={{
+            fontSize: '2em',
+            visibility: show ? 'visible' : 'hidden',
+          }}
         >
           🥪
         </span>
         <PatternExamples>
-          <PatternExample details="A simple checkbox (Check me!)">
-            <Checkbox
-              label="I want a sandwich"
-              id="sandwich"
-              name="test"
-              onChanged={isChecked => gimmeSandwich(isChecked)}
-            />
-          </PatternExample>
           <PatternExample details="A checkbox, defaulting to checked">
-            <Checkbox
+            <LabeledCheckbox
               label="I want a sandwich"
               name="test"
-              defaultChecked={true}
+              checked={show}
+              onToggle={isChecked => setShow(isChecked)}
             />
           </PatternExample>
         </PatternExamples>

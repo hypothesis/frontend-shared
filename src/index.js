@@ -1,5 +1,5 @@
 // Components
-export { Checkbox } from './components/Checkbox';
+export { LabeledCheckbox, Checkbox } from './components/Checkbox';
 export { IconButton, LabeledButton, LinkButton } from './components/buttons';
 export { Panel } from './components/Panel';
 export { SvgIcon, registerIcons } from './components/SvgIcon';
