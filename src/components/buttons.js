@@ -5,22 +5,25 @@ import { SvgIcon } from './SvgIcon';
 /**
  * @typedef ButtonProps
  * @prop {import('preact').Ref<HTMLButtonElement>} [buttonRef]
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {string} [className]
  * @prop {string} [icon] - Name of `SvgIcon` to render in the button
  * @prop {'left'|'right'} [iconPosition] - Icon positioned to left or to
  *   right of button text
- * @prop {boolean} [disabled]
  * @prop {boolean} [expanded] - Is the element associated with this button
  *   expanded (set `aria-expanded`)
  * @prop {boolean} [pressed] - Is this button currently "active?" (set
  *   `aria-pressed`)
- * @prop {(event: Event) => void} [onClick]
  * @prop {'small'|'medium'|'large'} [size='medium'] - Relative button size:
  *   affects padding
- * @prop {Object} [style] - Optional inline styles
  * @prop {string} [title] - Button title; used for `aria-label` attribute
  * @prop {'normal'|'primary'|'light'|'dark'} [variant='normal'] - For styling: element variant
+ */
+
+/**
+ * Fold in HTML button prop definitions into ButtonProps, but ignore `size` because it's inherited
+ * from HTMLElement and conflicts with the _ButtonProps.size prop above.
+ *
+ * @typedef {Omit<import('Preact').JSX.HTMLAttributes<HTMLButtonElement>, 'size'> } HTMLButtonElementProps
+ * @typedef {ButtonProps & HTMLButtonElementProps} ButtonBaseProps
  */
 
 /**
@@ -31,11 +34,11 @@ import { SvgIcon } from './SvgIcon';
  */
 
 /**
- * @typedef {ButtonProps & IconButtonBaseProps} IconButtonProps
+ * @typedef {ButtonBaseProps & IconButtonBaseProps} IconButtonProps
  */
 
 /**
- * @param {ButtonProps} props
+ * @param {ButtonBaseProps} props
  */
 function ButtonBase({
   buttonRef,
@@ -85,7 +88,7 @@ export function IconButton({ className = 'IconButton', ...restProps }) {
 /**
  * A labeled button, with or without an icon
  *
- * @param {ButtonProps} props
+ * @param {ButtonBaseProps} props
  */
 export function LabeledButton({
   children,
@@ -105,7 +108,7 @@ export function LabeledButton({
 /**
  * A button styled to appear as an HTML link (<a>)
  *
- * @param {ButtonProps} props
+ * @param {ButtonBaseProps} props
  */
 export function LinkButton(props) {
   return <ButtonBase className="LinkButton" {...props} />;
