@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.14.0] - 2021-05-07
+
+### Added:
+
+- Add HTMLAttributes to button props [#48](https://github.com/hypothesis/frontend-shared/pull/48)
+- Add `frame`, `card` patterns (for `Dialog`) [#45](https://github.com/hypothesis/frontend-shared/pull/45)
+- Add atomic and basic mixins [#52dc411](https://github.com/hypothesis/frontend-shared/commit/52dc41191bbf0dacec0668fb57747b4589edbf35)
+- Add molecule, organism pages to pattern library [#3279659](https://github.com/hypothesis/frontend-shared/commit/32796593c2973ab9ca2941c1b71a455880821eac)
+
 ## [v1.13.0] - 2021-04-28
 
 ### Added:
