@@ -74,11 +74,13 @@ pre {
   }
 }
 
-.PlaygroundApp__nav-link {
-  width: 100%;
+.PlaygroundApp__nav-list {
+  margin: 0.5em;
+}
+
+.PlaygroundApp__nav-item {
   padding: 1em;
   font-size: 16px; // TODO: variable later
-  border-left: 5px solid transparent;
   &:hover {
     background-color: var.$color-grey-3;
   }

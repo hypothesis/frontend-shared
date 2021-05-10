@@ -1,8 +1,11 @@
 import { SvgIcon } from '../../components/SvgIcon';
 
-import SharedButtonPatterns from './patterns/SharedButtonPatterns';
+// Design patterns
 import SharedMoleculePatterns from './patterns/SharedMoleculePatterns';
 import SharedOrganismPatterns from './patterns/SharedOrganismPatterns';
+
+// Components
+import SharedButtonPatterns from './patterns/SharedButtonPatterns';
 
 import { useRoute } from '../router';
 
@@ -24,13 +27,15 @@ function HomeRoute() {
   );
 }
 
+/** @type {PlaygroundRoute} */
+const homeRoute = {
+  route: /^\/?$/,
+  title: 'Home',
+  component: HomeRoute,
+};
+
 /** @type {PlaygroundRoute[]} */
-const routes = [
-  {
-    route: /^\/?$/,
-    title: 'Home',
-    component: HomeRoute,
-  },
+const patternRoutes = [
   {
     route: '/shared-molecules',
     title: 'Molecules',
@@ -41,6 +46,10 @@ const routes = [
     title: 'Organisms',
     component: SharedOrganismPatterns,
   },
+];
+
+/** @type {PlaygroundRoute[]} */
+const componentRoutes = [
   {
     route: '/shared-buttons',
     title: 'Buttons',
@@ -48,7 +57,8 @@ const routes = [
   },
 ];
 
-const demoRoutes = routes.filter(r => r.component !== HomeRoute);
+/** @type {PlaygroundRoute[]} */
+const routes = [homeRoute, ...patternRoutes, ...componentRoutes];
 
 /**
  * @typedef PlaygroundAppProps
@@ -88,16 +98,29 @@ export default function PlaygroundApp({
           </a>
         </div>
         <h2>Common Patterns</h2>
-        <ul>
-          {demoRoutes.map(c => (
-            <li key={c.route}>
+        <ul className="PlaygroundApp__nav-list">
+          {patternRoutes.map(({ route, title }) => (
+            <li className="PlaygroundApp__nav-item" key={route}>
               <a
-                className="PlaygroundApp__nav-link"
-                key={c.route}
-                href={/** @type string */ (c.route)}
-                onClick={e => navigate(e, c.route)}
+                key={route}
+                href={`${route}`}
+                onClick={e => navigate(e, route)}
               >
-                {c.title}
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <h2>Common Components</h2>
+        <ul className="PlaygroundApp__nav-list">
+          {componentRoutes.map(({ route, title }) => (
+            <li className="PlaygroundApp__nav-item" key={route}>
+              <a
+                key={route}
+                href={`${route}`}
+                onClick={e => navigate(e, route)}
+              >
+                {title}
               </a>
             </li>
           ))}
@@ -105,16 +128,15 @@ export default function PlaygroundApp({
         {extraRoutes.length > 0 && (
           <>
             <h2>Application Patterns</h2>
-            <ul>
-              {extraRoutes.map(c => (
-                <li key={c.route}>
+            <ul className="PlaygroundApp__nav-list">
+              {extraRoutes.map(({ route, title }) => (
+                <li className="PlaygroundApp__nav-item" key={route}>
                   <a
-                    className="PlaygroundApp__nav-link"
-                    key={c.route}
-                    href={/** @type string */ (c.route)}
-                    onClick={e => navigate(e, c.route)}
+                    key={route}
+                    href={`${route}`}
+                    onClick={e => navigate(e, route)}
                   >
-                    {c.title}
+                    {title}
                   </a>
                 </li>
               ))}
