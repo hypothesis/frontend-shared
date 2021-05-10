@@ -4,6 +4,26 @@
  * Utility classes for organism mixins
  */
 
-.card {
-  @include organisms.card;
+/**
+  * Usage:
+  * 1. Panel with title and no close button
+  * <div class="panel">
+  *  <header><h2 class="panel__title">Panel title</h2></header>
+  *  <div>This panel has no close button</div>
+  * </div>
+  *
+  * 2. Panel with title and close button
+  * <div className="panel--closeable">
+  *   <header>
+  *     <h2 class="panel__title">Panel title</h2>
+  *     <div class="panel__close">
+  *       <IconButton icon="cancel" title="Close" />
+  *     </div>
+  *   </header>
+  *   <div>This panel has an icon-only close button</div>
+  * </div>
+  */
+.panel,
+.panel--closeable {
+  @include organisms.panel;
 }

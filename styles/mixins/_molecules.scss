@@ -1,9 +1,11 @@
 @use '../variables' as var;
 
 @use 'atoms';
+@use 'layout';
 
 $-border-radius: var.$border-radius;
 $-color-background: var.$color-background;
+$-space: var.$layout-space;
 
 /**
  * Patterns that are composites of multiple atomic utilities, but
@@ -29,4 +31,26 @@ $-color-background: var.$color-background;
       @include atoms.shadow($active: true);
     }
   }
+}
+
+/**
+ * An element with a frame, shadow, internal vertical rhythm and padding:
+ * serves as a container for card- and panel-like patterns.
+ */
+@mixin card {
+  @include frame($with-hover: true);
+  @include layout.vertical-rhythm;
+
+  width: 100%;
+  padding: $-space;
+
+  // TODO: Add clean-theme affordances
+}
+
+/**
+ * A container that lays out a collection of actions—typically buttons—in a single row.
+ */
+@mixin actions {
+  @include layout.row(right);
+  @include layout.horizontal-rhythm($-space * 0.75);
 }

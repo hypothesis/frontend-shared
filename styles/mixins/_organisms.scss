@@ -1,19 +1,53 @@
 @use '../variables' as var;
 
+@use 'atoms';
 @use 'layout';
 @use 'molecules';
 
-$-layout-space: var.$layout-space;
+$-color-brand: var.$color-brand;
+$-space: var.$layout-space;
 
 /**
- * An element with a frame, shadow, internal vertical rhythm and padding:
- * serves as a container for card- and panel-like patterns.
+ * A panel is a card that adds an optional header and/or close button positioning.
+ * Panels using an icon-only button as a close button should use the `--closeable`
+ * modifier.
  */
-@mixin card {
-  @include molecules.frame($with-hover: true);
-  @include layout.vertical-rhythm;
+@mixin panel {
+  @include molecules.card;
 
-  padding: $-layout-space;
+  & > header,
+  &__header {
+    @include layout.row($align: center);
+    @include atoms.border(bottom);
+    @include layout.horizontal-rhythm($-space);
+    padding-bottom: $-space;
+  }
 
-  // TODO: Add clean-theme affordances
+  &__title {
+    // TODO Replace with appropriate mixin once typography layer established
+    font-size: 1.1em;
+    color: $-color-brand;
+    font-weight: 600;
+    line-height: 1;
+    flex-grow: 1;
+  }
+
+  // When there is an icon-only close button, tighten up affordances around the
+  // header as the button will have more height than the heading text. This has the
+  // effect of making the vertical space around the header look more even.
+  &--closeable > header,
+  &--closeable &__header {
+    padding-bottom: $-space * 0.25;
+    margin-top: $-space * -0.5;
+  }
+
+  &--closeable > header &__close,
+  &--closeable > &__header &__close {
+    // TODO replace font-sizing with appropriate approach when typography layer
+    // available.
+    // This also right-aligns the edge of the close icon with the right edge
+    // of the bottom border using a negative right margin.
+    font-size: 1.375em;
+    margin-right: $-space * -0.75;
+  }
 }
