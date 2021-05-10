@@ -10,11 +10,14 @@ import { SvgIcon } from './SvgIcon';
  *   right of button text
  * @prop {boolean} [expanded] - Is the element associated with this button
  *   expanded (set `aria-expanded`)
+ * @prop {never} [aria-expanded] - Use `expanded` prop instead
  * @prop {boolean} [pressed] - Is this button currently "active?" (set
  *   `aria-pressed`)
+ * @prop {never} [aria-pressed] - Use `pressed` prop instead
  * @prop {'small'|'medium'|'large'} [size='medium'] - Relative button size:
  *   affects padding
  * @prop {string} [title] - Button title; used for `aria-label` attribute
+ * @prop {never} [aria-label] - Use `title` prop instead
  * @prop {'normal'|'primary'|'light'|'dark'} [variant='normal'] - For styling: element variant
  */
 
@@ -51,9 +54,11 @@ function ButtonBase({
   pressed,
   ...restProps
 }) {
-  restProps['aria-expanded'] = expanded;
-  restProps['aria-pressed'] = pressed;
-  restProps['aria-label'] = restProps.title;
+  const ariaProps = {
+    'aria-expanded': expanded,
+    'aria-pressed': pressed,
+    'aria-label': restProps.title,
+  };
 
   return (
     <button
@@ -66,6 +71,7 @@ function ButtonBase({
           [`${className}--icon-${iconPosition}`]: icon,
         }
       )}
+      {...ariaProps}
       {...restProps}
     />
   );
