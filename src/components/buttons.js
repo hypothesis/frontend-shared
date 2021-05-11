@@ -25,7 +25,7 @@ import { SvgIcon } from './SvgIcon';
  * Fold in HTML button prop definitions into ButtonProps, but ignore `size` because it's inherited
  * from HTMLElement and conflicts with the _ButtonProps.size prop above.
  *
- * @typedef {Omit<import('Preact').JSX.HTMLAttributes<HTMLButtonElement>, 'size'> } HTMLButtonElementProps
+ * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLButtonElement>, 'size'> } HTMLButtonElementProps
  * @typedef {ButtonProps & HTMLButtonElementProps} ButtonBaseProps
  */
 
