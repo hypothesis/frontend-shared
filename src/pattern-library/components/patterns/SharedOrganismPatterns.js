@@ -44,7 +44,7 @@ export default function SharedOrganismPatterns() {
           </PatternExample>
 
           <PatternExample details="Closeable panel (using IconButton): preferred">
-            <div className="panel--closeable">
+            <div className="panel panel--closeable">
               <header>
                 <h2 className="panel__title">
                   Panel title on a closeable panel
@@ -61,7 +61,7 @@ export default function SharedOrganismPatterns() {
           </PatternExample>
 
           <PatternExample details="Panel with actions">
-            <div className="panel--closeable">
+            <div className="panel panel--closeable">
               <header>
                 <h2 className="panel__title">Panel title</h2>
                 <div className="panel__close">

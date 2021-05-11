@@ -13,7 +13,7 @@
   * </div>
   *
   * 2. Panel with title and close button
-  * <div className="panel--closeable">
+  * <div className="panel panel--closeable">
   *   <header>
   *     <h2 class="panel__title">Panel title</h2>
   *     <div class="panel__close">
@@ -23,7 +23,6 @@
   *   <div>This panel has an icon-only close button</div>
   * </div>
   */
-.panel,
-.panel--closeable {
+.panel {
   @include organisms.panel;
 }
