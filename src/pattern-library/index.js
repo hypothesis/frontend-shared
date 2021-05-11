@@ -2,7 +2,7 @@
 import { render } from 'preact';
 
 import { registerIcons } from '../';
-import iconSet from './icons';
+import iconSet from '../icons';
 
 import PlaygroundApp from './components/PlaygroundApp';
 

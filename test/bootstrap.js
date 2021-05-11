@@ -12,7 +12,7 @@ configure({ adapter: new Adapter() });
 // Make all the icons that are available for use with `SvgIcon` in the actual
 // app available in the tests. This enables validation of icon names passed to
 // `SvgIcon`.
-import testIcons from './icons';
+import testIcons from '../src/icons';
 import { registerIcons } from '../src/components/SvgIcon';
 registerIcons(testIcons);
 
