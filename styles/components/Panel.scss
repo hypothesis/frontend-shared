@@ -1,0 +1,5 @@
+@use '../mixins/organisms';
+
+.Panel {
+  @include organisms.panel;
+}
