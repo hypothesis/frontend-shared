@@ -10,28 +10,35 @@ import {
 } from '../PatternPage';
 
 export default function SharedFormPatterns() {
-  const [show, setShow] = useState(true);
+  const [wantSandwich, setWantSandwich] = useState(true);
+  const [wantWatermelon, setWantWatermelon] = useState(false);
   return (
     <PatternPage title="Forms">
       <Pattern title="Checkbox">
-        <span
-          role="img"
-          aria-label="seriously, just an emoji of sandwich"
-          style={{
-            fontSize: '2em',
-            visibility: show ? 'visible' : 'hidden',
-          }}
-        >
-          🥪
-        </span>
+        <div style="font-size: 2em">
+          {wantSandwich && '🥪'}
+          {wantWatermelon && '🍉'}
+          &nbsp;
+        </div>
         <PatternExamples>
           <PatternExample details="A checkbox, defaulting to checked">
             <LabeledCheckbox
-              label="I want a sandwich"
               name="test"
-              checked={show}
-              onToggle={isChecked => setShow(isChecked)}
-            />
+              checked={wantSandwich}
+              onToggle={isChecked => setWantSandwich(isChecked)}
+            >
+              I want a sandwich
+            </LabeledCheckbox>
+          </PatternExample>
+          <PatternExample details="A custom label positioned after the checkbox">
+            <LabeledCheckbox
+              checked={wantWatermelon}
+              name="test-alternative"
+              position="after"
+              onToggle={setWantWatermelon}
+            >
+              <code>I want a watermelon</code>
+            </LabeledCheckbox>
           </PatternExample>
         </PatternExamples>
       </Pattern>

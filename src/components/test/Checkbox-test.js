@@ -28,9 +28,34 @@ describe('Checkbox', () => {
 describe('LabeledCheckbox', () => {
   function createComponent(props = {}) {
     return mount(
-      <LabeledCheckbox name="my-checkbox" label="My Action" {...props} />
+      <LabeledCheckbox name="my-checkbox" {...props}>
+        {props.children || 'My Action'}
+      </LabeledCheckbox>
     );
   }
+
+  it('contains a label before the input element (default position)', () => {
+    const inputRef = {};
+    const wrapper = createComponent({ inputRef });
+    const labelElement = wrapper.find('label');
+    assert.equal(labelElement.text(), 'My Action');
+    assert.equal(inputRef.current.previousElementSibling.tagName, 'LABEL');
+  });
+
+  it('contains a label after the input element', () => {
+    const inputRef = {};
+    const wrapper = createComponent({ inputRef, position: 'after' });
+    const labelElement = wrapper.find('label');
+    assert.equal(labelElement.text(), 'My Action');
+    assert.equal(inputRef.current.nextElementSibling.tagName, 'LABEL');
+  });
+
+  it('contains children element in the label', () => {
+    const wrapper = createComponent({ children: <code>My Code</code> });
+    const labelElement = wrapper.find('label');
+    assert.isTrue(labelElement.find('code').exists());
+    assert.equal(labelElement.text(), 'My Code');
+  });
 
   it('does not check the checkbox by default', () => {
     const wrapper = createComponent();
