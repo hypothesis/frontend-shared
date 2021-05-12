@@ -52,7 +52,7 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
  */
 export function LabeledCheckbox({
   children,
-  position = 'before',
+  position = 'after',
   id,
   ...restProps
 }) {

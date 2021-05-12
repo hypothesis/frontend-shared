@@ -28,26 +28,29 @@ describe('Checkbox', () => {
 describe('LabeledCheckbox', () => {
   function createComponent(props = {}) {
     return mount(
-      <LabeledCheckbox name="my-checkbox" {...props}>
-        {props.children || 'My Action'}
-      </LabeledCheckbox>
+      <div>
+        {/** wrapped on a div to pass the a11y test */}
+        <LabeledCheckbox name="my-checkbox" {...props}>
+          {props.children || 'My Action'}
+        </LabeledCheckbox>
+      </div>
     );
   }
 
-  it('contains a label before the input element (default position)', () => {
+  it('contains a label after the input element (default position)', () => {
     const inputRef = {};
     const wrapper = createComponent({ inputRef });
     const labelElement = wrapper.find('label');
     assert.equal(labelElement.text(), 'My Action');
-    assert.equal(inputRef.current.previousElementSibling.tagName, 'LABEL');
+    assert.equal(inputRef.current.nextElementSibling.tagName, 'LABEL');
   });
 
-  it('contains a label after the input element', () => {
+  it('contains a label before the input element ', () => {
     const inputRef = {};
-    const wrapper = createComponent({ inputRef, position: 'after' });
+    const wrapper = createComponent({ inputRef, position: 'before' });
     const labelElement = wrapper.find('label');
     assert.equal(labelElement.text(), 'My Action');
-    assert.equal(inputRef.current.nextElementSibling.tagName, 'LABEL');
+    assert.equal(inputRef.current.previousElementSibling.tagName, 'LABEL');
   });
 
   it('contains children element in the label', () => {
@@ -65,8 +68,9 @@ describe('LabeledCheckbox', () => {
 
   it('uses the `name` as an `id` attr if no `id` provided', () => {
     const wrapper = createComponent();
-    const inputElement = wrapper.find('input').getDOMNode();
-    assert.equal(inputElement.id, wrapper.props().name);
+    const labeledCheckbox = wrapper.find('label');
+    const inputElement = wrapper.find('input');
+    assert.equal(inputElement.prop('id'), labeledCheckbox.prop('htmlFor'));
   });
 
   it('uses provided `id` attr', () => {
