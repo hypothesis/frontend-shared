@@ -44,6 +44,7 @@ import { SvgIcon } from './SvgIcon';
  * @param {ButtonBaseProps} props
  */
 function ButtonBase({
+  // Custom props.
   buttonRef,
   className,
   icon,
@@ -52,6 +53,9 @@ function ButtonBase({
   variant = 'normal',
   expanded,
   pressed,
+
+  // Standard <button> props.
+  type = 'button',
   ...restProps
 }) {
   const ariaProps = {
@@ -71,6 +75,7 @@ function ButtonBase({
           [`${className}--icon-${iconPosition}`]: icon,
         }
       )}
+      type={type}
       {...ariaProps}
       {...restProps}
     />
