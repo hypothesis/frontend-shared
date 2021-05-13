@@ -9,7 +9,7 @@ describe('Checkbox', () => {
     return mount(<Checkbox name="my-checkbox" {...props} />);
   }
 
-  it('inputRef points to the input element', () => {
+  it('passes along a `ref` to the input element through `inputRef`', () => {
     const inputRef = {};
     createComponent({ inputRef });
     assert.isTrue(inputRef.current instanceof HTMLInputElement);
@@ -37,15 +37,16 @@ describe('LabeledCheckbox', () => {
     );
   }
 
-  it('contains a label after the input element (default position)', () => {
+  it('places the `label` element after the `input` element', () => {
     const inputRef = {};
+    // The default `position` prop is 'before'
     const wrapper = createComponent({ inputRef });
     const labelElement = wrapper.find('label');
     assert.equal(labelElement.text(), 'My Action');
     assert.equal(inputRef.current.nextElementSibling.tagName, 'LABEL');
   });
 
-  it('contains a label before the input element ', () => {
+  it('places the `label` element before the `input` element', () => {
     const inputRef = {};
     const wrapper = createComponent({ inputRef, position: 'before' });
     const labelElement = wrapper.find('label');
@@ -53,7 +54,7 @@ describe('LabeledCheckbox', () => {
     assert.equal(inputRef.current.previousElementSibling.tagName, 'LABEL');
   });
 
-  it('contains children element in the label', () => {
+  it('renders children in a `label` element', () => {
     const wrapper = createComponent({ children: <code>My Code</code> });
     const labelElement = wrapper.find('label');
     assert.isTrue(labelElement.find('code').exists());
