@@ -52,9 +52,10 @@ We use conventions from [keepachangelog](https://keepachangelog.com/en/1.0.0/).
    Push both the branch and the tag
 
    ```shell
-   $ git push <tag> origin
-   $ git push <branch> origin
+   $ git push origin <tag> <branch>
    ```
+
+   Where `<branch>` can be `HEAD` assuming you have the release branch checked out locally.
 
 ## 4. Merge and release
 
