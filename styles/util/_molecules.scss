@@ -4,14 +4,14 @@
  * Utility classes for molecular mixins
  */
 
-.frame {
+.hyp-frame {
   @include molecules.frame;
 }
 
-.card {
+.hyp-card {
   @include molecules.card;
 }
 
-.actions {
+.hyp-actions {
   @include molecules.actions;
 }

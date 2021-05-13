@@ -2,22 +2,22 @@
 
 // Apply vertical rhythm (top/bottom margins between immediate-child elements)
 // at the default rhythm-unit size
-.u-vertical-rhythm {
+.hyp-u-vertical-rhythm {
   @include layout.vertical-rhythm;
 }
 
 // Apply horizontal rhythm (left/right margins between immediate-child elements)
 // at the default horizontal-rhythm size
-.u-horizontal-rhythm {
+.hyp-u-horizontal-rhythm {
   @include layout.horizontal-rhythm;
 }
 
 // Establish a row flex container
-.u-layout-row {
+.hyp-u-layout-row {
   @include layout.row;
 }
 
 // Establish a column flex container
-.u-layout-column {
+.hyp-u-layout-column {
   @include layout.column;
 }

@@ -17,7 +17,7 @@ export default function SharedMoleculePatterns() {
         </p>
         <PatternExamples>
           <PatternExample details="basic frame">
-            <div className="frame">This is in a frame.</div>
+            <div className="hyp-frame">This is in a frame.</div>
           </PatternExample>
         </PatternExamples>
       </Pattern>
@@ -29,22 +29,22 @@ export default function SharedMoleculePatterns() {
         </p>
         <PatternExamples>
           <PatternExample details="basic card">
-            <div className="card">This is in a card.</div>
+            <div className="hyp-card">This is in a card.</div>
           </PatternExample>
           <PatternExample details="a card with multiple child elements, showing default vertical rhythm">
-            <div className="card">
-              <div className="u-border">Child content in a card.</div>
-              <div className="u-border">Child content in a card.</div>
-              <div className="u-border">Child content in a card.</div>
+            <div className="hyp-card">
+              <div className="hyp-u-border">Child content in a card.</div>
+              <div className="hyp-u-border">Child content in a card.</div>
+              <div className="hyp-u-border">Child content in a card.</div>
             </div>
           </PatternExample>
           <PatternExample details="A card with some actions">
-            <div className="card">
+            <div className="hyp-card">
               <div>
                 This is some text in a card that also contains some available
                 actions.
               </div>
-              <div className="actions">
+              <div className="hyp-actions">
                 <IconButton title="User" icon="profile" />
                 <IconButton title="Edit" icon="edit" />
                 <IconButton title="Delete" icon="trash" />
@@ -61,14 +61,14 @@ export default function SharedMoleculePatterns() {
         </p>
         <PatternExamples>
           <PatternExample details="A set of LabeledButtons">
-            <div className="actions">
+            <div className="hyp-actions">
               <LabeledButton icon="profile">User</LabeledButton>
               <LabeledButton icon="edit">Edit</LabeledButton>
               <LabeledButton icon="trash">Delete</LabeledButton>
             </div>
           </PatternExample>
           <PatternExample details="A set of IconButtons">
-            <div className="actions">
+            <div className="hyp-actions">
               <IconButton title="User" icon="profile" />
               <IconButton title="Edit" icon="edit" />
               <IconButton title="Delete" icon="trash" />

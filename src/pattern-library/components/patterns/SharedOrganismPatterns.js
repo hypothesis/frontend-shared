@@ -21,7 +21,7 @@ export default function SharedOrganismPatterns() {
             details="Panel with no header"
             style={{ maxWidth: '400px' }}
           >
-            <div className="panel">
+            <div className="hyp-panel">
               This is in a panel that has no header. A header is not required,
               but you are encouraged to use <code>card</code> in that case. Note
               that a <code>panel</code> will currently fill all available space.
@@ -30,9 +30,9 @@ export default function SharedOrganismPatterns() {
             </div>
           </PatternExample>
           <PatternExample details="Panel with title but no close button">
-            <div className="panel">
+            <div className="hyp-panel">
               <header>
-                <h2 className="panel__title">
+                <h2 className="hyp-panel__title">
                   This is a panel title in a panel header
                 </h2>
               </header>
@@ -44,12 +44,12 @@ export default function SharedOrganismPatterns() {
           </PatternExample>
 
           <PatternExample details="Closeable panel (using IconButton): preferred">
-            <div className="panel panel--closeable">
+            <div className="hyp-panel hyp-panel--closeable">
               <header>
-                <h2 className="panel__title">
+                <h2 className="hyp-panel__title">
                   Panel title on a closeable panel
                 </h2>
-                <div className="panel__close">
+                <div className="hyp-panel__close">
                   <IconButton icon="cancel" title="Close" />
                 </div>
               </header>
@@ -61,10 +61,10 @@ export default function SharedOrganismPatterns() {
           </PatternExample>
 
           <PatternExample details="Panel with actions">
-            <div className="panel panel--closeable">
+            <div className="hyp-panel hyp-panel--closeable">
               <header>
-                <h2 className="panel__title">Panel title</h2>
-                <div className="panel__close">
+                <h2 className="hyp-panel__title">Panel title</h2>
+                <div className="hyp-panel__close">
                   <IconButton icon="cancel" title="Close" />
                 </div>
               </header>
@@ -72,7 +72,7 @@ export default function SharedOrganismPatterns() {
                 This is panel content in a panel that also has some available
                 actions.
               </div>
-              <div className="actions">
+              <div className="hyp-actions">
                 <LabeledButton title="Cancel">Cancel</LabeledButton>
                 <LabeledButton title="Try again" variant="primary">
                   Try again
