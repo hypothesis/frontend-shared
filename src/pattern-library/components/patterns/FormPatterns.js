@@ -35,7 +35,7 @@ export default function FormPatterns() {
               checked={wantWatermelon}
               name="test-alternative"
               position="before"
-              onToggle={setWantWatermelon}
+              onToggle={isChecked => setWantWatermelon(isChecked)}
             >
               <code>I want a watermelon</code>
             </LabeledCheckbox>
