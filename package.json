@@ -22,7 +22,7 @@
     "enzyme": "^3.8.0",
     "enzyme-adapter-preact-pure": "^3.0.0",
     "eslint": "^7.3.1",
-    "eslint-config-hypothesis": "^2.4.0",
+    "eslint-config-hypothesis": "^2.5.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-react": "^7.12.4",

@@ -6,6 +6,7 @@ import SharedOrganismPatterns from './patterns/SharedOrganismPatterns';
 
 // Components
 import SharedButtonPatterns from './patterns/SharedButtonPatterns';
+import SharedFormPatterns from './patterns/SharedFormPatterns';
 import SharedPanelPatterns from './patterns/SharedPanelPatterns';
 
 import { useRoute } from '../router';
@@ -55,6 +56,11 @@ const componentRoutes = [
     route: '/shared-buttons',
     title: 'Buttons',
     component: SharedButtonPatterns,
+  },
+  {
+    route: '/shared-forms',
+    title: 'Forms',
+    component: SharedFormPatterns,
   },
   {
     route: '/shared-panel',
