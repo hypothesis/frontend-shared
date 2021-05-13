@@ -73,9 +73,10 @@ Directories whose modules provide styles should contain an entry-point module (`
 We use [BEM (Block Element Modifier)](http://getbem.com/) methodology for class naming.
 
 - `base` modules should use element selectors (no class names).
-- Component class names should use PascalCase, e.g. `.HelpPanel`
-- Atomic-level utility classes should be prefixed with `.u-`, e.g. `.u-border--left`. These are classes that may be used additively to adjust styling on a single element.
-- Composite (molecule, organism) class names do not require prefixes, but should be lower-case, e.g. `.frame`.
+- Component class names should use PascalCase, e.g. `.HelpPanel`. All other classnames require a .`hyp-` prefix.
+- All utility and pattern classnames should be prefixed with `.hyp-`.
+- Atomic-level utility classes should be prefixed with `.hyp-u-`, e.g. `.hyp-u-border--left`. These are classes that may be used additively to adjust styling on a single element.
+- Composite (molecule, organism) class names do not require `u`-prefixes, but should be lower-case, e.g. `.hyp-frame`.
 
 ### Variables
 

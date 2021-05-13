@@ -7,22 +7,22 @@
 /**
   * Usage:
   * 1. Panel with title and no close button
-  * <div class="panel">
-  *  <header><h2 class="panel__title">Panel title</h2></header>
+  * <div class="hyp-panel">
+  *  <header><h2 class="hyp-panel__title">Panel title</h2></header>
   *  <div>This panel has no close button</div>
   * </div>
   *
   * 2. Panel with title and close button
-  * <div className="panel panel--closeable">
+  * <div className="hyp-panel hyp-panel--closeable">
   *   <header>
-  *     <h2 class="panel__title">Panel title</h2>
-  *     <div class="panel__close">
+  *     <h2 class="hyp-panel__title">Panel title</h2>
+  *     <div class="hyp-panel__close">
   *       <IconButton icon="cancel" title="Close" />
   *     </div>
   *   </header>
   *   <div>This panel has an icon-only close button</div>
   * </div>
   */
-.panel {
+.hyp-panel {
   @include organisms.panel;
 }

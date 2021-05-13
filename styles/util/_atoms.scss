@@ -1,25 +1,25 @@
 @use '../mixins/atoms';
 
-.u-border {
+.hyp-u-border {
   @include atoms.border;
 }
 
-.u-border--left {
+.hyp-u-border--left {
   @include atoms.border(left);
 }
 
-.u-border--right {
+.hyp-u-border--right {
   @include atoms.border(right);
 }
 
-.u-border--top {
+.hyp-u-border--top {
   @include atoms.border(top);
 }
 
-.u-shadow {
+.hyp-u-shadow {
   @include atoms.shadow;
 }
 
-.u-shadow--active {
+.hyp-u-shadow--active {
   @include atoms.shadow($active: true);
 }
