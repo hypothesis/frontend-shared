@@ -114,6 +114,16 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
       );
     });
 
+    it('sets `type` to "button" by default', () => {
+      const wrapper = createComponentFn();
+      assert.equal(wrapper.getDOMNode().type, 'button');
+    });
+
+    it('allows overriding type', () => {
+      const wrapper = createComponentFn({ type: 'submit' });
+      assert.equal(wrapper.getDOMNode().type, 'submit');
+    });
+
     [
       {
         propName: 'expanded',
