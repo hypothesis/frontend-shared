@@ -1,4 +1,7 @@
 $brand: #bd1c2b;
+$brand--dark: #84141e;
+
+$selection: #59a7e8;
 
 // Grayscale
 $white: white;
@@ -14,15 +17,12 @@ $grey-8: #3f3f3f;
 $grey-9: #202020;
 $black: black;
 
-$shadow: $black;
-
-$link: $brand !default;
-
-// Legacy
-// TODO: This should be $link--hover
-$link-hover: #84141e !default;
-$focus-outline: #51a7e8;
-
 // Tokenizing colors to their use
 $background: $white;
 $border: $grey-3;
+$focus-outline: $selection;
+
+$link: $brand;
+$link--hover: $brand--dark;
+
+$shadow: $black;

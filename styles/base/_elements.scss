@@ -3,7 +3,7 @@
 
 $-border-radius: var.$border-radius;
 $-color-link: var.$color-link;
-$-color-link-hover: var.$color-link-hover;
+$-color-link--hover: var.$color-link--hover;
 
 // basic standard styling for elements
 // TODO: Evaluate if dependencies on variables can be reduced or eliminated
@@ -24,7 +24,7 @@ a:focus {
 
 a:hover {
   text-decoration: none;
-  color: $-color-link-hover;
+  color: $-color-link--hover;
 }
 
 p {

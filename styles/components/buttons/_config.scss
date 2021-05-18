@@ -13,7 +13,7 @@ $color-g7: var.$color-grey-7 !default;
 $color-g8: var.$color-grey-8 !default;
 $color-g9: var.$color-grey-9 !default;
 $color-brand: var.$color-brand !default;
-$color-link-hover: var.$color-link-hover !default;
+$color-link--hover: var.$color-link--hover !default;
 
 // Colors for labeled buttons
 $LabeledButton-colors: (
@@ -82,7 +82,7 @@ $IconButton-colors--dark: $IconButton-colors;
 $LinkButton-colors: (
   'foreground': $color-g7,
   'background': transparent,
-  'hover-foreground': $color-link-hover,
+  'hover-foreground': $color-link--hover,
   'hover-background': transparent,
   'active-foreground': $color-g9,
   'disabled-foreground': $color-g7,
@@ -103,7 +103,7 @@ $LinkButton-colors--primary: (
 $LinkButton-colors--dark: (
   'foreground': $color-g9,
   'background': transparent,
-  'hover-foreground': $color-link-hover,
+  'hover-foreground': $color-link--hover,
   'hover-background': transparent,
   'active-foreground': $color-g9,
   'disabled-foreground': $color-g7,
