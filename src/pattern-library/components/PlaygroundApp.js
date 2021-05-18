@@ -1,6 +1,7 @@
 import { SvgIcon } from '../../components/SvgIcon';
 
 // Design patterns
+import SharedColorPatterns from './patterns/SharedColorPatterns';
 import SharedMoleculePatterns from './patterns/SharedMoleculePatterns';
 import SharedOrganismPatterns from './patterns/SharedOrganismPatterns';
 
@@ -38,6 +39,11 @@ const homeRoute = {
 
 /** @type {PlaygroundRoute[]} */
 const patternRoutes = [
+  {
+    route: '/shared-colors',
+    title: 'Colors',
+    component: SharedColorPatterns,
+  },
   {
     route: '/shared-molecules',
     title: 'Molecules',
@@ -109,7 +115,7 @@ export default function PlaygroundApp({
             <SvgIcon name="logo" />
           </a>
         </div>
-        <h2>Common Patterns</h2>
+        <h2>Foundations</h2>
         <ul className="PlaygroundApp__nav-list">
           {patternRoutes.map(({ route, title }) => (
             <li className="PlaygroundApp__nav-item" key={route}>
