@@ -1,0 +1,45 @@
+@use 'sass:map';
+
+@use '../variables/colors' as colors;
+
+// This mapping is necessary due to limitations in SASS interpolation
+$all-colors: (
+  'grey-0': colors.$grey-0,
+  'grey-1': colors.$grey-1,
+  'grey-2': colors.$grey-2,
+  'grey-3': colors.$grey-3,
+  'grey-4': colors.$grey-4,
+  'grey-5': colors.$grey-5,
+  'grey-6': colors.$grey-6,
+  'grey-7': colors.$grey-7,
+  'grey-8': colors.$grey-8,
+  'grey-9': colors.$grey-9,
+  'brand': colors.$brand,
+  'selection': colors.$selection,
+);
+
+// Generate a foreground-color utility class for each color
+// and an override foreground-color class for same, e.g.
+// `.hyp-u-color--grey-0` and `.hyp-!-u-color--grey-0`
+@each $color-name, $color-value in $all-colors {
+  .hyp-u-color--#{$color-name} {
+    color: $color-value;
+  }
+
+  .hyp-\!-u-color--#{$color-name} {
+    color: $color-value !important;
+  }
+}
+
+// Generate a background-color utility class for each color
+// and an override class for same, e.g.
+// `.hyp-u-bg-color--grey-0` and `.hyp-!-u-bg-color--grey-0`
+@each $color-name, $color-value in $all-colors {
+  .hyp-u-bg-color--#{$color-name} {
+    background-color: $color-value;
+  }
+
+  .hyp-\!-u-bg-color--#{$color-name} {
+    background-color: $color-value !important;
+  }
+}
