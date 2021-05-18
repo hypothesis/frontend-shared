@@ -12,6 +12,11 @@
   @include molecules.card;
 }
 
-.hyp-actions {
+.hyp-actions,
+.hyp-actions--row {
   @include molecules.actions;
+}
+
+.hyp-actions--column {
+  @include molecules.actions($direction: column);
 }

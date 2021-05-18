@@ -48,9 +48,17 @@ $-space: var.$layout-space;
 }
 
 /**
- * A container that lays out a collection of actions—typically buttons—in a single row.
+ * A container that lays out a collection of actions—typically buttons. Default
+ * to a row layout, but also available as `column`.
+ *
+ * @param {'row'|'column'} [$direction]
  */
-@mixin actions {
-  @include layout.row(right);
-  @include layout.horizontal-rhythm($-space * 0.75);
+@mixin actions($direction: row) {
+  @if $direction == row {
+    @include layout.row(right);
+    @include layout.horizontal-rhythm($-space * 0.75);
+  } @else {
+    @include layout.column;
+    @include layout.vertical-rhythm($-space * 0.5);
+  }
 }

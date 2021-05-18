@@ -57,7 +57,8 @@ export default function SharedMoleculePatterns() {
       <Pattern title="Actions">
         <p>
           The <code>actions</code> pattern presents a collection of actions
-          (typically buttons) spaced out in a row, aligned right.
+          (typically buttons). By default, these are laid out in a row, aligned
+          right, but can also be laid out in a column.
         </p>
         <PatternExamples>
           <PatternExample details="A set of LabeledButtons">
@@ -72,6 +73,22 @@ export default function SharedMoleculePatterns() {
               <IconButton title="User" icon="profile" />
               <IconButton title="Edit" icon="edit" />
               <IconButton title="Delete" icon="trash" />
+            </div>
+          </PatternExample>
+          <PatternExample details="Columnar layout">
+            <div className="hyp-actions--column">
+              <LabeledButton>User</LabeledButton>
+              <LabeledButton>Edit</LabeledButton>
+              <LabeledButton>Delete</LabeledButton>
+            </div>
+          </PatternExample>
+          <PatternExample details="Columnar layout: buttons stretching to fill space">
+            <div style="width:300px">
+              <div className="hyp-actions--column">
+                <LabeledButton variant="primary">Do this</LabeledButton>
+                <LabeledButton variant="primary">No, this!</LabeledButton>
+                <LabeledButton variant="primary">Maybe this?</LabeledButton>
+              </div>
             </div>
           </PatternExample>
         </PatternExamples>
