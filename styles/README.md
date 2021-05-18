@@ -18,7 +18,8 @@ The public SASS interface for the `frontend-shared` package is:
 
   `@use '@hypothesis/frontend-shared/styles/mixins/<mixin-module>';`
 
-  Individual reusable mixins, e.g. `focus`
+  - At this time, the only publicly-available mixins are `focus` and `buttons` (for button customizations only—use only if you know what you're doing). Do not use other mixins.
+  - Mixins may not be available publicly in the future.
 
 _Note_: `pattern-library.scss` is also used internally by this project to build a CSS bundle for serving the pattern library using `make dev`.
 
