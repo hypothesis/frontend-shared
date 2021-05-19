@@ -1,6 +1,7 @@
 @use '../variables' as var;
 
 $-space: var.$layout-space;
+$-color-overlay: var.$color-overlay;
 
 /**
  * Abstract mixin for establishing basic flex container. External users should
@@ -81,4 +82,28 @@ $-space: var.$layout-space;
   & > * + * {
     margin-left: $size !important;
   }
+}
+
+/**
+ * Position an element vertically and horizontally within the viewport
+ */
+@mixin fixed-centered {
+  z-index: 20;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**
+ * Semi-opaque overlay, full-viewport
+ */
+@mixin overlay {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $-color-overlay;
 }
