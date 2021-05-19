@@ -17,6 +17,7 @@ body {
 
 .PlaygroundApp__sidebar h2,
 .Pattern > h2 {
+  margin: 0.5em 0;
   font-size: 1.25em;
   width: 100%;
   border-left: 6px solid var.$color-brand;
@@ -74,14 +75,15 @@ pre {
   }
 }
 
-.PlaygroundApp__nav-list {
-  margin: 0.5em;
-}
-
 .PlaygroundApp__nav-item {
-  padding: 1em;
+  width: 100%;
+  padding: 1em 2em;
   font-size: 16px; // TODO: variable later
   &:hover {
+    background-color: var.$color-grey-3;
+  }
+
+  &.is-active {
     background-color: var.$color-grey-3;
   }
 }
