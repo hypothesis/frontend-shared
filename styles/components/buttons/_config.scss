@@ -8,21 +8,21 @@ $color-g1: var.$color-grey-1 !default;
 $color-g2: var.$color-grey-2 !default;
 $color-g3: var.$color-grey-3 !default;
 $color-g4: var.$color-grey-4 !default;
-$color-g6: var.$color-grey-6 !default;
+$color-g5: var.$color-grey-5 !default;
 $color-g7: var.$color-grey-7 !default;
-$color-gsemi: var.$color-grey-semi !default;
-$color-gmid: var.$color-grey-mid !default;
+$color-g8: var.$color-grey-8 !default;
+$color-g9: var.$color-grey-9 !default;
 $color-brand: var.$color-brand !default;
-$color-link-hover: var.$color-link-hover !default;
+$color-link--hover: var.$color-link--hover !default;
 
 // Colors for labeled buttons
 $LabeledButton-colors: (
-  'foreground': $color-gmid,
+  'foreground': $color-g7,
   'background': $color-g1,
-  'hover-foreground': $color-g7,
+  'hover-foreground': $color-g9,
   'hover-background': $color-g2,
-  'active-foreground': $color-g7,
-  'disabled-foreground': $color-gmid,
+  'active-foreground': $color-g9,
+  'disabled-foreground': $color-g7,
 );
 
 // Variant currently unused
@@ -30,40 +30,40 @@ $LabeledButton-colors--light: $LabeledButton-colors;
 
 $LabeledButton-colors--primary: (
   'foreground': $color-g1,
-  'background': $color-gmid,
+  'background': $color-g7,
   'hover-foreground': $color-g1,
-  'hover-background': $color-g6,
+  'hover-background': $color-g8,
   'active-foreground': $color-g1,
   'disabled-foreground': $color-g4,
 );
 
 $LabeledButton-colors--dark: (
-  'foreground': $color-gmid,
+  'foreground': $color-g7,
   'background': transparent,
-  'hover-foreground': $color-g7,
+  'hover-foreground': $color-g9,
   'hover-background': $color-g3,
-  'active-foreground': $color-gmid,
+  'active-foreground': $color-g7,
   'active-background': $color-g3,
-  'disabled-foreground': $color-gmid,
+  'disabled-foreground': $color-g7,
 );
 
 // Colors for icon-only buttons
 $IconButton-colors: (
-  'foreground': $color-gmid,
+  'foreground': $color-g7,
   'background': transparent,
-  'hover-foreground': $color-g7,
+  'hover-foreground': $color-g9,
   'hover-background': transparent,
   'active-foreground': $color-brand,
-  'disabled-foreground': $color-gmid,
+  'disabled-foreground': $color-g7,
 );
 
 $IconButton-colors--light: (
-  'foreground': $color-gsemi,
+  'foreground': $color-g5,
   'background': transparent,
-  'hover-foreground': $color-g6,
+  'hover-foreground': $color-g8,
   'hover-background': transparent,
-  'active-foreground': $color-gsemi,
-  'disabled-foreground': $color-gsemi,
+  'active-foreground': $color-g5,
+  'disabled-foreground': $color-g5,
 );
 
 $IconButton-colors--primary: (
@@ -72,7 +72,7 @@ $IconButton-colors--primary: (
   'hover-foreground': $color-brand,
   'hover-background': transparent,
   'active-foreground': $color-brand,
-  'disabled-foreground': $color-gmid,
+  'disabled-foreground': $color-g7,
 );
 
 // Variant currently unused
@@ -80,12 +80,12 @@ $IconButton-colors--dark: $IconButton-colors;
 
 // Colors for buttons styled as "links"
 $LinkButton-colors: (
-  'foreground': $color-gmid,
+  'foreground': $color-g7,
   'background': transparent,
-  'hover-foreground': $color-link-hover,
+  'hover-foreground': $color-link--hover,
   'hover-background': transparent,
-  'active-foreground': $color-g7,
-  'disabled-foreground': $color-gmid,
+  'active-foreground': $color-g9,
+  'disabled-foreground': $color-g7,
 );
 
 // Variant currently unused
@@ -97,16 +97,16 @@ $LinkButton-colors--primary: (
   'hover-foreground': $color-brand,
   'hover-background': transparent,
   'active-foreground': $color-brand,
-  'disabled-foreground': $color-gmid,
+  'disabled-foreground': $color-g7,
 );
 
 $LinkButton-colors--dark: (
-  'foreground': $color-g7,
+  'foreground': $color-g9,
   'background': transparent,
-  'hover-foreground': $color-link-hover,
+  'hover-foreground': $color-link--hover,
   'hover-background': transparent,
-  'active-foreground': $color-g7,
-  'disabled-foreground': $color-gmid,
+  'active-foreground': $color-g9,
+  'disabled-foreground': $color-g7,
 );
 
 $-IconButton: (

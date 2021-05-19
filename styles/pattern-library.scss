@@ -138,7 +138,7 @@ pre {
   }
 
   code {
-    color: var.$color-grey-mid;
+    color: var.$color-grey-7;
   }
 }
 
@@ -150,6 +150,14 @@ pre {
       margin-left: 1em;
     }
   }
+}
+
+.PatternSwatch {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
 // Element styles
