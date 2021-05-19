@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.1.0] - 2021-05-19
+
+### Added:
+
+- Establish basic color patterns [#70](https://github.com/hypothesis/frontend-shared/pull/70)
+- Add colors page to pattern library [#306d501](https://github.com/hypothesis/frontend-shared/commit/306d501f3e6025b3d6c5287f11be93a63b20afdf)
+- Add `colors` utility classes with foreground, background classes [#a756276](https://github.com/hypothesis/frontend-shared/commit/a75627676f9c1fcf4a8790d8d2a44cb5c199f6be)
+- Add columnar actions pattern (`.hyp-actions--column`) and examples [#ad72271](https://github.com/hypothesis/frontend-shared/commit/ad72271b8a73765dcf453a8a8c029b4f46be7d5f)
+
+### Changed:
+
+- Remove `justify-content` rule from buttons [#f232224](https://github.com/hypothesis/frontend-shared/commit/f232224fc272be09552827e62da0b4a464a8c53a)
+- Add clarification on availability of mixins [#69](https://github.com/hypothesis/frontend-shared/pull/69)
+- Refactor greyscale colors [#237ef0a](https://github.com/hypothesis/frontend-shared/commit/237ef0ae639fbcfd986b71a1df81bbe5650e5037)
+
+### Breaking changes:
+
+- Prefix all utility and pattern classes with `.hyp-` and update docs [#66](https://github.com/hypothesis/frontend-shared/pull/66)
+
 ## [v2.0.0] - 2021-05-13
 
 ### Breaking changes:
