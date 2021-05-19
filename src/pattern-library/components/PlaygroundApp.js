@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 import { SvgIcon } from '../../components/SvgIcon';
 
 // Design patterns
@@ -97,15 +99,24 @@ export default function PlaygroundApp({
   extraRoutes = [],
 }) {
   const allRoutes = routes.concat(extraRoutes);
-  const [route, navigate] = useRoute(baseURL, allRoutes);
-  const content = route ? (
-    <route.component />
+  const [activeRoute, navigate] = useRoute(baseURL, allRoutes);
+  const content = activeRoute ? (
+    <activeRoute.component />
   ) : (
     <>
       <h1 className="heading">:(</h1>
       <p>Page not found.</p>
     </>
   );
+
+  const routeGroups = [
+    { title: 'Foundations', routes: patternRoutes },
+    { title: 'Common Components', routes: componentRoutes },
+  ];
+
+  if (extraRoutes.length) {
+    routeGroups.push({ title: 'Application Patterns', routes: extraRoutes });
+  }
 
   return (
     <main className="PlaygroundApp">
@@ -115,42 +126,16 @@ export default function PlaygroundApp({
             <SvgIcon name="logo" />
           </a>
         </div>
-        <h2>Foundations</h2>
-        <ul className="PlaygroundApp__nav-list">
-          {patternRoutes.map(({ route, title }) => (
-            <li className="PlaygroundApp__nav-item" key={route}>
-              <a
-                key={route}
-                href={`${route}`}
-                onClick={e => navigate(e, route)}
-              >
-                {title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <h2>Common Components</h2>
-        <ul className="PlaygroundApp__nav-list">
-          {componentRoutes.map(({ route, title }) => (
-            <li className="PlaygroundApp__nav-item" key={route}>
-              <a
-                key={route}
-                href={`${route}`}
-                onClick={e => navigate(e, route)}
-              >
-                {title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        {extraRoutes.length > 0 && (
-          <>
-            <h2>Application Patterns</h2>
-            <ul className="PlaygroundApp__nav-list">
-              {extraRoutes.map(({ route, title }) => (
-                <li className="PlaygroundApp__nav-item" key={route}>
+        {routeGroups.map(rGroup => (
+          <div key={rGroup.title}>
+            <h2>{rGroup.title}</h2>
+            <ul>
+              {rGroup.routes.map(({ route, title }) => (
+                <li key={title}>
                   <a
-                    key={route}
+                    className={classnames('PlaygroundApp__nav-item', {
+                      'is-active': activeRoute.route === route,
+                    })}
                     href={`${route}`}
                     onClick={e => navigate(e, route)}
                   >
@@ -159,8 +144,8 @@ export default function PlaygroundApp({
                 </li>
               ))}
             </ul>
-          </>
-        )}
+          </div>
+        ))}
       </div>
       <div className="PlaygroundApp__content">{content}</div>
     </main>
