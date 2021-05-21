@@ -17,6 +17,16 @@
   @include layout.row;
 }
 
+// Establish a row flex container with items justified and aligned center
+.hyp-u-layout-row--center {
+  @include layout.row($align: center, $justify: center);
+}
+
+// Establish a row flex container with items justified center
+.hyp-u-layout-row--justify-center {
+  @include layout.row($justify: center);
+}
+
 // Establish a column flex container
 .hyp-u-layout-column {
   @include layout.column;
