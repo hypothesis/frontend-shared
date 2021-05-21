@@ -12,30 +12,35 @@ export default function MoleculePatterns() {
     <PatternPage title="Molecules">
       <Pattern title="Frame">
         <p>
-          A <code>frame</code> has a border and a background, but no other
-          layout affordances.
+          A <code>frame</code> has a border, background, padding, and vertical
+          spacing of immediate children.
         </p>
         <PatternExamples>
           <PatternExample details="basic frame">
             <div className="hyp-frame">This is in a frame.</div>
+          </PatternExample>
+          <PatternExample details="child content in frame">
+            <div className="hyp-frame">
+              <div className="hyp-u-border">Child content in a frame.</div>
+              <div className="hyp-u-border">Child content in a frame.</div>
+              <div className="hyp-u-border">Child content in a frame.</div>
+            </div>
           </PatternExample>
         </PatternExamples>
       </Pattern>
 
       <Pattern title="Card">
         <p>
-          A <code>card</code> is a frame with internal margins and padding, and
-          a hover effect.
+          A <code>card</code> is a frame with a shadow and hover-shadow effect
+          that fills available horizontal space.
         </p>
         <PatternExamples>
           <PatternExample details="basic card">
             <div className="hyp-card">This is in a card.</div>
           </PatternExample>
-          <PatternExample details="a card with multiple child elements, showing default vertical rhythm">
-            <div className="hyp-card">
-              <div className="hyp-u-border">Child content in a card.</div>
-              <div className="hyp-u-border">Child content in a card.</div>
-              <div className="hyp-u-border">Child content in a card.</div>
+          <PatternExample details="hover shadow disabled">
+            <div className="hyp-card--no-hover">
+              This is in a card with the hover-shadow effect disabled.
             </div>
           </PatternExample>
           <PatternExample details="A card with some actions">
