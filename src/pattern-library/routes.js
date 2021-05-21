@@ -5,6 +5,7 @@ import MoleculePatterns from './components/patterns/MoleculePatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
 import ButtonPatterns from './components/patterns/ButtonPatterns';
+import DialogPatterns from './components/patterns/DialogPatterns';
 import FormPatterns from './components/patterns/FormPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 
@@ -50,6 +51,12 @@ const routes = [
     route: '/components-buttons',
     title: 'Buttons',
     component: ButtonPatterns,
+    group: 'components',
+  },
+  {
+    route: '/components-dialogs',
+    title: 'Dialogs',
+    component: DialogPatterns,
     group: 'components',
   },
   {
