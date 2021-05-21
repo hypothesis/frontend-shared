@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { SvgIcon } from '../../components/SvgIcon';
 
 import { getRoutes } from '../routes';
-
 import { useRoute } from '../router';
 
 /**

@@ -7,7 +7,7 @@ import {
   PatternExample,
 } from '../PatternPage';
 
-export default function SharedButtonPatterns() {
+export default function ButtonPatterns() {
   return (
     <PatternPage title="Buttons">
       <Pattern title="IconButton">

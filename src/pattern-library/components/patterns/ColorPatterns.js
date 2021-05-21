@@ -36,7 +36,7 @@ const backgroundExamples = [
   );
 });
 
-export default function SharedFormPatterns() {
+export default function ColorPatterns() {
   return (
     <PatternPage title="Colors">
       <Pattern title="Color swatches">

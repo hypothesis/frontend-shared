@@ -7,7 +7,7 @@ import {
 
 import { IconButton, LabeledButton } from '../../../';
 
-export default function SharedOrganismPatterns() {
+export default function OrganismPatterns() {
   return (
     <PatternPage title="Organisms">
       <Pattern title="Panel">

@@ -1,13 +1,12 @@
 import PlaygroundHome from './components/PlaygroundHome';
 
-import SharedColorPatterns from './components/patterns/SharedColorPatterns';
-import SharedMoleculePatterns from './components/patterns/SharedMoleculePatterns';
-import SharedOrganismPatterns from './components/patterns/SharedOrganismPatterns';
+import ColorPatterns from './components/patterns/ColorPatterns';
+import MoleculePatterns from './components/patterns/MoleculePatterns';
+import OrganismPatterns from './components/patterns/OrganismPatterns';
 
-import SharedDialogPatterns from './components/patterns/SharedDialogPatterns';
-import SharedButtonPatterns from './components/patterns/SharedButtonPatterns';
-import SharedFormPatterns from './components/patterns/SharedFormPatterns';
-import SharedPanelPatterns from './components/patterns/SharedPanelPatterns';
+import ButtonPatterns from './components/patterns/ButtonPatterns';
+import FormPatterns from './components/patterns/FormPatterns';
+import PanelPatterns from './components/patterns/PanelPatterns';
 
 /**
  * @typedef {'home'|'foundations'|'components'} PlaygroundRouteGroup
@@ -32,43 +31,37 @@ const routes = [
   {
     route: '/foundations-colors',
     title: 'Colors',
-    component: SharedColorPatterns,
+    component: ColorPatterns,
     group: 'foundations',
   },
   {
     route: '/foundations-molecules',
     title: 'Molecules',
-    component: SharedMoleculePatterns,
+    component: MoleculePatterns,
     group: 'foundations',
   },
   {
     route: '/foundations-organisms',
     title: 'Organisms',
-    component: SharedOrganismPatterns,
+    component: OrganismPatterns,
     group: 'foundations',
   },
   {
     route: '/components-buttons',
     title: 'Buttons',
-    component: SharedButtonPatterns,
-    group: 'components',
-  },
-  {
-    route: '/components-dialog',
-    title: 'Dialogs',
-    component: SharedDialogPatterns,
+    component: ButtonPatterns,
     group: 'components',
   },
   {
     route: '/components-forms',
     title: 'Forms',
-    component: SharedFormPatterns,
+    component: FormPatterns,
     group: 'components',
   },
   {
     route: '/components-panel',
     title: 'Panel',
-    component: SharedPanelPatterns,
+    component: PanelPatterns,
     group: 'components',
   },
 ];
