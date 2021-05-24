@@ -7,7 +7,7 @@ import {
 
 import { IconButton, LabeledButton } from '../../../';
 
-export default function SharedMoleculePatterns() {
+export default function MoleculePatterns() {
   return (
     <PatternPage title="Molecules">
       <Pattern title="Frame">

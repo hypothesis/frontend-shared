@@ -9,7 +9,7 @@ import {
   PatternExample,
 } from '../PatternPage';
 
-export default function SharedFormPatterns() {
+export default function FormPatterns() {
   const [wantSandwich, setWantSandwich] = useState(true);
   const [wantWatermelon, setWantWatermelon] = useState(false);
   return (

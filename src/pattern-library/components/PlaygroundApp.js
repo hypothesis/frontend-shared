@@ -2,83 +2,12 @@ import classnames from 'classnames';
 
 import { SvgIcon } from '../../components/SvgIcon';
 
-// Design patterns
-import SharedColorPatterns from './patterns/SharedColorPatterns';
-import SharedMoleculePatterns from './patterns/SharedMoleculePatterns';
-import SharedOrganismPatterns from './patterns/SharedOrganismPatterns';
-
-// Components
-import SharedButtonPatterns from './patterns/SharedButtonPatterns';
-import SharedFormPatterns from './patterns/SharedFormPatterns';
-import SharedPanelPatterns from './patterns/SharedPanelPatterns';
-
+import { getRoutes } from '../routes';
 import { useRoute } from '../router';
 
 /**
- * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
- *   that should be rendered for the indicated route
- * @prop {RegExp|string} route - Pattern or string path relative to
- *   `baseURL`, e.g. '/my-patterns'
- * @prop {string} title
- * @prop {import("preact").FunctionComponent<{}>} component
+ * @typedef {import("../routes").PlaygroundRoute} PlaygroundRoute
  */
-
-function HomeRoute() {
-  return (
-    <>
-      <h1 className="heading">UI component playground</h1>
-      <p>Select a component to view examples.</p>
-    </>
-  );
-}
-
-/** @type {PlaygroundRoute} */
-const homeRoute = {
-  route: /^\/?$/,
-  title: 'Home',
-  component: HomeRoute,
-};
-
-/** @type {PlaygroundRoute[]} */
-const patternRoutes = [
-  {
-    route: '/shared-colors',
-    title: 'Colors',
-    component: SharedColorPatterns,
-  },
-  {
-    route: '/shared-molecules',
-    title: 'Molecules',
-    component: SharedMoleculePatterns,
-  },
-  {
-    route: '/shared-organisms',
-    title: 'Organisms',
-    component: SharedOrganismPatterns,
-  },
-];
-
-/** @type {PlaygroundRoute[]} */
-const componentRoutes = [
-  {
-    route: '/shared-buttons',
-    title: 'Buttons',
-    component: SharedButtonPatterns,
-  },
-  {
-    route: '/shared-forms',
-    title: 'Forms',
-    component: SharedFormPatterns,
-  },
-  {
-    route: '/shared-panel',
-    title: 'Panel',
-    component: SharedPanelPatterns,
-  },
-];
-
-/** @type {PlaygroundRoute[]} */
-const routes = [homeRoute, ...patternRoutes, ...componentRoutes];
 
 /**
  * @typedef PlaygroundAppProps
@@ -98,6 +27,7 @@ export default function PlaygroundApp({
   baseURL = '/ui-playground',
   extraRoutes = [],
 }) {
+  const routes = getRoutes();
   const allRoutes = routes.concat(extraRoutes);
   const [activeRoute, navigate] = useRoute(baseURL, allRoutes);
   const content = activeRoute ? (
@@ -110,8 +40,8 @@ export default function PlaygroundApp({
   );
 
   const routeGroups = [
-    { title: 'Foundations', routes: patternRoutes },
-    { title: 'Common Components', routes: componentRoutes },
+    { title: 'Foundations', routes: getRoutes('foundations') },
+    { title: 'Common Components', routes: getRoutes('components') },
   ];
 
   if (extraRoutes.length) {
