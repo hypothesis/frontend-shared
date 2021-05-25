@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $brand: #bd1c2b;
 $brand--dark: #84141e;
 
@@ -25,4 +27,6 @@ $focus-outline: $selection;
 $link: $brand;
 $link--hover: $brand--dark;
 
-$shadow: $black;
+$overlay: color.scale($black, $alpha: -50%);
+$shadow: color.scale($black, $alpha: -90%);
+$shadow--dark: color.scale($black, $alpha: -85%);

@@ -1,6 +1,7 @@
 import PlaygroundHome from './components/PlaygroundHome';
 
 import ColorPatterns from './components/patterns/ColorPatterns';
+import LayoutPatterns from './components/patterns/LayoutPatterns';
 import MoleculePatterns from './components/patterns/MoleculePatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
@@ -32,6 +33,12 @@ const routes = [
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorPatterns,
+    group: 'foundations',
+  },
+  {
+    route: '/foundations-layout',
+    title: 'Layout',
+    component: LayoutPatterns,
     group: 'foundations',
   },
   {

@@ -21,3 +21,13 @@
 .hyp-u-layout-column {
   @include layout.column;
 }
+
+// Position the element centered vertically and horizontally in the entire viewport
+.hyp-u-fixed-centered {
+  @include layout.fixed-centered;
+}
+
+// A full-viewport-width and -height semi-opaque backdrop overlay
+.hyp-u-overlay {
+  @include layout.overlay;
+}
