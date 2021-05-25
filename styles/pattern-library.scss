@@ -1,9 +1,9 @@
 @use 'base';
-@use 'util';
 @use 'variables' as var;
 
-// Include component styles
-@use 'index';
+@use 'index'; // component styles
+@use 'patterns';
+@use 'util';
 
 body {
   font-size: 100%;

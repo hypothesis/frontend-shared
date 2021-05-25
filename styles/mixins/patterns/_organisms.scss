@@ -1,7 +1,8 @@
-@use '../variables' as var;
+@use '../../variables' as var;
 
-@use 'atoms';
-@use 'layout';
+@use '../atoms';
+@use '../layout';
+
 @use 'molecules';
 
 $-color-brand: var.$color-brand;

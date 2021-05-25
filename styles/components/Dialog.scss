@@ -1,4 +1,4 @@
-@use '../mixins/organisms';
+@use '../mixins/patterns/organisms';
 
 .Dialog {
   @include organisms.panel;
