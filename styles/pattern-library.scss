@@ -179,3 +179,40 @@ body {
     }
   }
 }
+
+// TODO This is prototype styling for a potential new component in the
+// pattern library.
+.Example {
+  margin: 1.5em 0;
+
+  p {
+    margin: 0 0 1em 0;
+  }
+
+  & > p {
+    margin: 0 0 0.5em;
+    font-size: 18px;
+  }
+
+  &__content {
+    margin-top: 2em;
+    display: flex;
+  }
+
+  &__usage {
+    padding-right: 1em;
+    flex-basis: 0;
+    flex-grow: 2;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  &__demo {
+    flex-basis: 0;
+    flex-grow: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var.$color-grey-1;
+  }
+}

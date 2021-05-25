@@ -1,0 +1,9 @@
+@use '../mixins/focus';
+
+.hyp-u-focus-outline {
+  @include focus.outline;
+}
+
+.hyp-u-focus-outline--inset {
+  @include focus.outline($inset: true);
+}

@@ -50,4 +50,8 @@ $-space: var.$layout-space;
     font-size: 1.375em;
     margin-right: $-space * -0.75;
   }
+
+  &__actions {
+    @include molecules.actions;
+  }
 }

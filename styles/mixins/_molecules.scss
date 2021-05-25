@@ -13,36 +13,33 @@ $-space: var.$layout-space;
  */
 
 /**
- * Give an element a border, a background and a shadow. Underpinning for
- * cards and panels.
- *
- * @param {boolean} [$with-hover] - Should this frame have a hover effect?
+ * Give an element a border, background color and internal vertical spacing
  */
 @mixin frame($with-hover: false) {
   @include atoms.border;
-  @include atoms.shadow;
+  @include layout.vertical-rhythm;
 
+  padding: $-space;
   border-radius: $-border-radius;
   background-color: $-color-background;
+}
 
+/**
+ * A frame with a shadow and (optional) shadow hover effect. Fills available
+ * horizontal space.
+ *
+ * @param {boolean} [$with-hover] - Should this frame have a hover effect?
+ */
+@mixin card($with-hover: true) {
+  @include frame;
+  @include atoms.shadow;
   @if $with-hover {
     &:hover,
     &.is-focused {
       @include atoms.shadow($active: true);
     }
   }
-}
-
-/**
- * An element with a frame, shadow, internal vertical rhythm and padding:
- * serves as a container for card- and panel-like patterns.
- */
-@mixin card {
-  @include frame($with-hover: true);
-  @include layout.vertical-rhythm;
-
   width: 100%;
-  padding: $-space;
 
   // TODO: Add clean-theme affordances
 }

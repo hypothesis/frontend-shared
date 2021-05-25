@@ -12,6 +12,10 @@
   @include molecules.card;
 }
 
+.hyp-card--no-hover {
+  @include molecules.card($with-hover: false);
+}
+
 .hyp-actions,
 .hyp-actions--row {
   @include molecules.actions;
