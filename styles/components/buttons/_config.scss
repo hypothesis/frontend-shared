@@ -4,6 +4,7 @@
 // Map variables to local tokens
 $touch-target-size: var.$touch-target-size !default;
 
+$color-g0: var.$color-grey-0 !default;
 $color-g1: var.$color-grey-1 !default;
 $color-g2: var.$color-grey-2 !default;
 $color-g3: var.$color-grey-3 !default;
@@ -75,8 +76,15 @@ $IconButton-colors--primary: (
   'disabled-foreground': $color-g7,
 );
 
-// Variant currently unused
-$IconButton-colors--dark: $IconButton-colors;
+$IconButton-colors--dark: (
+  'foreground': $color-g7,
+  'background': $color-g2,
+  'hover-foreground': $color-g9,
+  'hover-background': $color-g3,
+  'active-foreground': $color-g9,
+  'active-background': $color-g3,
+  'disabled-foreground': $color-g5,
+);
 
 // Colors for buttons styled as "links"
 $LinkButton-colors: (
