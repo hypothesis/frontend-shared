@@ -45,26 +45,11 @@ export default function ColorPatterns() {
 
       <Pattern title="Overriding background colors: example">
         <PatternExamples>
-          <PatternExample details="Background utility class without override: panel specificity wins">
+          <PatternExample details="Background-color utility class">
             <div className="hyp-panel hyp-u-bg-color--grey-2">
               <p>
                 This is a <code>panel</code> with an applied utility class
                 <code>.hyp-u-bg-color--grey-2</code>.
-              </p>
-              <p>
-                It is superseded by a background-color rule from the{' '}
-                <code>panel</code> (it is &quot;ignored&quot;).
-              </p>
-            </div>
-          </PatternExample>
-          <PatternExample details="Background utility class with override: background class wins">
-            <div className="hyp-panel hyp-!-u-bg-color--grey-2">
-              <p>
-                This is a <code>panel</code> with an applied utility class
-                <code>.hyp-!-u-bg-color--grey-2</code>.
-              </p>
-              <p>
-                It contains an <code>!important</code> rule.
               </p>
             </div>
           </PatternExample>

@@ -57,15 +57,29 @@ Mixins in `mixins` and utility styles in `util` loosely apply [Atomic Design](ht
 
 The directory that a SASS module lives in dictates what it should provide (styles, mixins, variables, etc.) and what kind of dependencies it is allowed:
 
-| Directory    | Description                                     | Provides  | Dependencies          |
-| ------------ | ----------------------------------------------- | --------- | --------------------- |
-| `base`       | Global reset styles: element styles, typography | styles    | mixins, variables[^1] |
-| `components` | Styles for shared components                    | styles    | any                   |
-| `mixins`     | Mixins                                          | mixins    | mixins[^2], variables |
-| `util`       | Utility styles                                  | styles    | mixins                |
-| `variables`  | Variables                                       | variables | none                  |
+| Directory    | Description                  | Provides  | Dependencies          |
+| ------------ | ---------------------------- | --------- | --------------------- |
+| `base`       | Reset and element styles     | styles    | mixins, variables[^1] |
+| `components` | Styles for shared components | styles    | any                   |
+| `mixins`     | Mixins                       | mixins    | mixins[^2], variables |
+| `patterns`   | Pattern styles               | styles    | mixins                |
+| `util`       | Utility styles               | styles    | mixins                |
+| `variables`  | Variables                    | variables | none                  |
 
-Directories whose modules provide styles should contain an entry-point module (`index.scss`) for the convenience of consumers.
+## CSS Output and Ordering
+
+The current SASS entry point for the package only generates styles from `components`.
+
+Other CSS output is currently private to the package, and used (only) by the pattern library.
+
+The intended ordering of CSS output—to assure proper cascade/ordering—is:
+
+1. `base`
+2. `components`
+3. `patterns`
+4. `utils`
+
+Note `utils` in last position, to assure these classes override other rules.
 
 ## Conventions
 
@@ -103,5 +117,5 @@ We use [BEM (Block Element Modifier)](http://getbem.com/) methodology for class 
   Modules that output styles may `@use` modules in the order needed for correct cascade, however.
 
 [^1]: Variable dependencies: sparingly. Ideally, not.
-[^2]: Atomic mixin modules build on each other, and as such, `molecules` may depend on `atoms`, etc. Non-atomic mixin modules should not depend on other mixins.
+[^2]: Mixin modules in top-level `mixins` directory should not depend on other `mixins`.
 [^3]: Members prefixed with `-` are considered "private" by SASS

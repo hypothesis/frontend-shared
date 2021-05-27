@@ -25,10 +25,6 @@ $all-colors: (
   .hyp-u-color--#{$color-name} {
     color: $color-value;
   }
-
-  .hyp-\!-u-color--#{$color-name} {
-    color: $color-value !important;
-  }
 }
 
 // Generate a background-color utility class for each color
@@ -37,9 +33,5 @@ $all-colors: (
 @each $color-name, $color-value in $all-colors {
   .hyp-u-bg-color--#{$color-name} {
     background-color: $color-value;
-  }
-
-  .hyp-\!-u-bg-color--#{$color-name} {
-    background-color: $color-value !important;
   }
 }
