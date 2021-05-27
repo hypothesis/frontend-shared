@@ -81,6 +81,48 @@ export default function ButtonPatterns() {
           </PatternExample>
         </PatternExamples>
 
+        <h3>Dark variant</h3>
+        <p>
+          This variant is for use on darker (light grey vs. white) backgrounds.
+          Note that this button, unlike other <code>IconButton</code>s, has a
+          background color. This is to allow for a use case in which the dark{' '}
+          <code>IconButton</code> is initially fixed on a grey background but
+          floats on top of content when scrolled.
+        </p>
+
+        <PatternExamples>
+          <PatternExample
+            details="Basic usage"
+            style={{ backgroundColor: '#ececec' }}
+          >
+            <IconButton icon="cancel" title="Close" variant="dark" />
+          </PatternExample>
+          <PatternExample
+            details="Note that the button has a background color"
+            style={{ backgroundColor: '#ffffff' }}
+          >
+            <IconButton icon="cancel" title="Close" variant="dark" />
+          </PatternExample>
+          <PatternExample
+            details="Pressed"
+            style={{ backgroundColor: '#ececec' }}
+          >
+            <IconButton icon="cancel" title="Close" variant="dark" pressed />
+          </PatternExample>
+          <PatternExample
+            details="Expanded"
+            style={{ backgroundColor: '#ececec' }}
+          >
+            <IconButton icon="cancel" title="Close" variant="dark" expanded />
+          </PatternExample>
+          <PatternExample
+            details="Disabled"
+            style={{ backgroundColor: '#ececec' }}
+          >
+            <IconButton icon="cancel" title="Close" variant="dark" disabled />
+          </PatternExample>
+        </PatternExamples>
+
         <h3>Light variant</h3>
         <p>
           This variant should only be used for non-critical icons on white
