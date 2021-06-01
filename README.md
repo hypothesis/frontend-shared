@@ -2,18 +2,19 @@
 
 A package of resources for Hypothesis front-end applications.
 
-#### Requirements
+## Requirements
 
-- preact
-- browserify
+Your project must have Preact installed as a dependency.
 
-### Usage
+`npm install --save preact`
+
+## Usage
 
 ```
 $ npm install @hypothesis/frontend-shared --save
 ```
 
-#### In SASS modules
+### In SASS modules
 
 To import default styling of frontend-shared components, include this line in the main project's SASS.
 
@@ -27,13 +28,13 @@ Mixins can be imported directly
 @use "@hypothesis/frontend-shared/styles/mixins" as mixins;
 ```
 
-#### In JS
+### In JS
 
 ```js
 import { SvgIcon } from '@hypothesis/frontend-shared';
 ```
 
-### Additional documentation
+## Additional documentation
 
 - [Development guide](docs/developing.md)
 - [Release guide](docs/releases.md)
