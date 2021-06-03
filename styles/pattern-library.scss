@@ -197,6 +197,11 @@ body {
   &__content {
     margin-top: 2em;
     display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 48rem) {
+      flex-direction: row;
+    }
   }
 
   &__usage {
