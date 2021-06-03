@@ -2,6 +2,7 @@
 
 @use '../atoms';
 @use '../layout';
+@use '../themes';
 
 $-border-radius: var.$border-radius;
 $-color-background: var.$color-background;
@@ -14,11 +15,17 @@ $-color-background: var.$color-background;
 /**
  * Give an element a border, background color and internal vertical spacing
  */
-@mixin frame($with-hover: false) {
+
+@mixin frame {
   @include layout.block;
   @include atoms.border;
   border-radius: $-border-radius;
   background-color: $-color-background;
+
+  @include themes.theme('clean') {
+    // A frame should not have any borders in the clean theme.
+    border: none;
+  }
 }
 
 /**
@@ -36,9 +43,13 @@ $-color-background: var.$color-background;
       @include atoms.shadow($active: true);
     }
   }
+
   width: 100%;
 
-  // TODO: Add clean-theme affordances
+  @include themes.theme('clean') {
+    // A card should have no shadows at all in the clean theme.
+    box-shadow: none;
+  }
 }
 
 /**

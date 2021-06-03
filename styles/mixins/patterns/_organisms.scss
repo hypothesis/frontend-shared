@@ -2,6 +2,7 @@
 
 @use '../atoms';
 @use '../layout';
+@use '../themes';
 
 @use 'molecules';
 
@@ -14,6 +15,12 @@ $-color-brand: var.$color-brand;
  */
 @mixin panel {
   @include molecules.card;
+
+  @include themes.theme('clean') {
+    // Cards won't have borders in the clean theme, but in the case of panels,
+    // we want some borders for delineation
+    @include atoms.border;
+  }
 
   & > header,
   &__header {

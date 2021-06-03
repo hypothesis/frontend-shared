@@ -36,6 +36,17 @@ export default function SharedPanelPatterns() {
               This panel has an optional icon in the header.
             </Panel>
           </PatternExample>
+          <PatternExample details="A panel in the clean theme">
+            <div className="theme-clean" style="width:100%">
+              <Panel
+                icon="edit"
+                title="Panel with clean-theme styling"
+                onClose={() => alert('close clicked')}
+              >
+                This panel has an optional icon in the header.
+              </Panel>
+            </div>
+          </PatternExample>
         </PatternExamples>
       </Pattern>
     </PatternPage>
