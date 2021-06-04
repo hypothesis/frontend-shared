@@ -1,0 +1,10 @@
+@use '../mixins/layout';
+@use '../mixins/patterns/molecules';
+
+.Modal__overlay {
+  @include layout.overlay;
+}
+
+.Modal {
+  @include molecules.modal;
+}
