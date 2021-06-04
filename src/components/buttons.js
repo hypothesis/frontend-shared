@@ -87,7 +87,7 @@ function ButtonBase({
  *
  * @param {IconButtonProps} props
  */
-export function IconButton({ className = 'IconButton', ...restProps }) {
+export function IconButton({ className = 'Hyp-IconButton', ...restProps }) {
   const { icon } = restProps;
   return (
     <ButtonBase className={className} {...restProps}>
@@ -103,7 +103,7 @@ export function IconButton({ className = 'IconButton', ...restProps }) {
  */
 export function LabeledButton({
   children,
-  className = 'LabeledButton',
+  className = 'Hyp-LabeledButton',
   ...restProps
 }) {
   const { icon, iconPosition = 'left' } = restProps;
@@ -122,5 +122,5 @@ export function LabeledButton({
  * @param {ButtonBaseProps} props
  */
 export function LinkButton(props) {
-  return <ButtonBase className="LinkButton" {...props} />;
+  return <ButtonBase className="Hyp-LinkButton" {...props} />;
 }

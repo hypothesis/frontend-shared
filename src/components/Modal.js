@@ -34,8 +34,8 @@ export function Modal({ children, onCancel, ...restProps }) {
 
   return (
     <>
-      <div className="Modal__overlay" />
-      <div className="Modal" ref={modalContainerRef}>
+      <div className="Hyp-Modal__overlay" />
+      <div className="Hyp-Modal" ref={modalContainerRef}>
         <Dialog onCancel={onCancel} {...restProps}>
           {children}
         </Dialog>

@@ -20,7 +20,7 @@ describe('Dialog', () => {
         <span>content</span>
       </Dialog>
     );
-    assert.isTrue(wrapper.find('.Dialog').hasClass('foo'));
+    assert.isTrue(wrapper.find('.Hyp-Dialog').hasClass('foo'));
   });
 
   it('renders buttons', () => {
