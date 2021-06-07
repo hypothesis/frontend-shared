@@ -59,3 +59,32 @@ $-space: var.$layout-space;
     @include layout.vertical-rhythm($-space * 0.5);
   }
 }
+
+// A responsive sized and positioned container for modal content
+@mixin modal {
+  // The modal container is positioned horizontally- and vertically-centered
+  @include layout.fixed-centered;
+
+  // This sizing applies to smaller viewports
+  width: 90vw;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  // For viewports with more horizontal room, adjust width.
+  // Set a reasonable min-width on the modal so it doesn't look too dinky,
+  // and a max-width so it doesn't stretch too wide.
+  @media screen and (min-width: 48rem) {
+    width: auto;
+    min-width: 28rem;
+    max-width: 44rem; // default for older browsers
+    max-width: min(44rem, 90vw);
+  }
+
+  // For viewports with more vertical room, adjust vertical positioning to
+  // near the top of the viewport.
+  @media screen and (min-height: 32rem) {
+    top: 10vh;
+    transform: translate(-50%, 0);
+    max-height: 80vh; // 10vh space top and bottom
+  }
+}

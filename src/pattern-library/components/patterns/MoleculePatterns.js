@@ -1,3 +1,5 @@
+import { useState } from 'preact/hooks';
+
 import {
   PatternExample,
   PatternExamples,
@@ -8,6 +10,7 @@ import {
 import { IconButton, LabeledButton } from '../../../';
 
 export default function MoleculePatterns() {
+  const [showModalExample, setShowModalExample] = useState(false);
   return (
     <PatternPage title="Molecules">
       <Pattern title="Frame">
@@ -93,6 +96,56 @@ export default function MoleculePatterns() {
                 <LabeledButton variant="primary">Do this</LabeledButton>
                 <LabeledButton variant="primary">No, this!</LabeledButton>
                 <LabeledButton variant="primary">Maybe this?</LabeledButton>
+              </div>
+            </div>
+          </PatternExample>
+        </PatternExamples>
+      </Pattern>
+
+      <Pattern title="Modal container">
+        <p>
+          The <code>modal</code> pattern positions and sizes a modal container
+          appropriately based on viewport size.
+        </p>
+        <PatternExamples>
+          <PatternExample details="Responsive Modal container positioning and sizing">
+            <div>
+              <LabeledButton
+                variant="primary"
+                onClick={() => setShowModalExample(true)}
+              >
+                Show example
+              </LabeledButton>
+              <div
+                className="hyp-u-overlay"
+                style={{ visibility: showModalExample ? 'visible' : 'hidden' }}
+              >
+                <div className="hyp-modal">
+                  <div className="hyp-card">
+                    <div>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut congue bibendum ipsum, ut euismod eros. Morbi sit
+                        amet sollicitudin diam. Cras tristique dui at nulla
+                        gravida, non sodales velit tincidunt. Pellentesque
+                        pharetra elit ac risus porta, vel vestibulum odio
+                        consectetur. Aliquam convallis augue ex, vitae aliquet
+                        enim varius id. Integer porttitor erat non nisi posuere,
+                        a tempus felis ultrices. In hac habitasse platea
+                        dictumst. Donec ut justo at odio pharetra laoreet ac
+                        consectetur elit.
+                      </p>
+                    </div>
+                    <div className="hyp-actions">
+                      <LabeledButton
+                        variant="primary"
+                        onClick={() => setShowModalExample(false)}
+                      >
+                        Hide example
+                      </LabeledButton>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </PatternExample>

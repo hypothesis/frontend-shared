@@ -24,3 +24,7 @@
 .hyp-actions--column {
   @include molecules.actions($direction: column);
 }
+
+.hyp-modal {
+  @include molecules.modal;
+}
