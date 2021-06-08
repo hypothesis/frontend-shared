@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.0.0] - 2021-06-08
+
+`Dialog`, `Modal` and `ConfirmModal` components added.
+
+All CSS classes generated are now prefixed with `.hyp-` (utilities and
+patterns: private to package) or `.Hyp-` (component CSS classes, public).
+
+Adds styling for a `dark` variant of `IconButton`.
+
+### Added:
+
+- Add prefixes to all component class names to prevent collisions [#90](https://github.com/hypothesis/frontend-shared/pull/90)
+- `Modal`, `ConfirmModal` components and design patterns [#88](https://github.com/hypothesis/frontend-shared/pull/88)
+- Add styling for `dark` variant of `IconButton` [#79](https://github.com/hypothesis/frontend-shared/pull/79)
+- Add Dialog Component [#75](https://github.com/hypothesis/frontend-shared/pull/75)
+- Add `overlay` and `fixed-centered` layout patterns [#73](https://github.com/hypothesis/frontend-shared/pull/73)
+
+### Changed:
+
+- Re-order (intended) CSS output and make SASS source directories reflect this [#78](https://github.com/hypothesis/frontend-shared/pull/78)
+- Simplify routing and pattern component names [#76](https://github.com/hypothesis/frontend-shared/pull/76)
+
 ## [v2.1.0] - 2021-05-19
 
 ### Added:
