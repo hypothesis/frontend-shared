@@ -9,6 +9,7 @@ import mockImportedComponents from '../../../test/util/mock-imported-components'
 
 // Add common tests for a button component for stuff provided by `ButtonBase`
 function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
+  const className = `Hyp-${componentName}`;
   describe(`${componentName} common support`, () => {
     if (withIcon) {
       it('renders the indicated icon', () => {
@@ -17,7 +18,7 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
         const icon = wrapper.find('SvgIcon');
         assert.equal(icon.prop('name'), 'fakeIcon');
         // Icon is positioned "left" even if it is the only element in the <button>
-        assert.isTrue(button.hasClass(`${componentName}--icon-left`));
+        assert.isTrue(button.hasClass(`${className}--icon-left`));
       });
     }
 
@@ -53,7 +54,7 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
     it('uses a default className', () => {
       const wrapper = createComponentFn();
 
-      assert.isTrue(wrapper.find('button').hasClass(componentName));
+      assert.isTrue(wrapper.find('button').hasClass(className));
     });
 
     ['primary', 'light', 'dark'].forEach(variant => {
@@ -61,7 +62,7 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
         const wrapper = createComponentFn({ variant });
 
         assert.isTrue(
-          wrapper.find('button').hasClass(`${componentName}--${variant}`)
+          wrapper.find('button').hasClass(`${className}--${variant}`)
         );
       });
     });
@@ -69,27 +70,21 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
     it('sets a `normal` variant modifier class by default', () => {
       const wrapper = createComponentFn();
 
-      assert.isTrue(
-        wrapper.find('button').hasClass(`${componentName}--normal`)
-      );
+      assert.isTrue(wrapper.find('button').hasClass(`${className}--normal`));
     });
 
     ['small', 'medium', 'large'].forEach(size => {
       it('renders a valid size', () => {
         const wrapper = createComponentFn({ size });
 
-        assert.isTrue(
-          wrapper.find('button').hasClass(`${componentName}--${size}`)
-        );
+        assert.isTrue(wrapper.find('button').hasClass(`${className}--${size}`));
       });
     });
 
     it('sets a `medium` size modifier class by default', () => {
       const wrapper = createComponentFn();
 
-      assert.isTrue(
-        wrapper.find('button').hasClass(`${componentName}--medium`)
-      );
+      assert.isTrue(wrapper.find('button').hasClass(`${className}--medium`));
     });
 
     it('overrides className when provided', () => {
@@ -102,7 +97,7 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
       assert.isTrue(
         wrapper.find('button').hasClass('CustomClassName--primary')
       );
-      assert.isFalse(wrapper.find('button').hasClass(componentName));
+      assert.isFalse(wrapper.find('button').hasClass(className));
     });
 
     it('adds inline styles when provided', () => {
@@ -245,7 +240,7 @@ describe('buttons', () => {
       const icon = wrapper.find('SvgIcon');
       const button = wrapper.find('button');
       assert.equal(icon.prop('name'), 'fakeIcon');
-      assert.isTrue(button.hasClass('LabeledButton--icon-right'));
+      assert.isTrue(button.hasClass('Hyp-LabeledButton--icon-right'));
     });
 
     it('does not render an icon if none indicated', () => {

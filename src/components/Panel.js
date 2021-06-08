@@ -22,17 +22,19 @@ export function Panel({ children, icon, onClose, title }) {
   const withCloseButton = !!onClose;
   return (
     <div
-      className={classnames('Panel', { 'Panel--closeable': withCloseButton })}
+      className={classnames('Hyp-Panel', {
+        'Hyp-Panel--closeable': withCloseButton,
+      })}
     >
       <header>
         {icon && (
-          <div className="Panel__header-icon">
+          <div className="Hyp-Panel__header-icon">
             <SvgIcon name={icon} title={title} />
           </div>
         )}
-        <h2 className="Panel__title">{title}</h2>
+        <h2 className="Hyp-Panel__title">{title}</h2>
         {withCloseButton && (
-          <div className="Panel__close">
+          <div className="Hyp-Panel__close">
             <IconButton icon="cancel" title="Close" onClick={onClose} />
           </div>
         )}

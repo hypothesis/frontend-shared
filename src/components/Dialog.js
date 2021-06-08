@@ -102,8 +102,8 @@ export function Dialog({
     <div
       aria-labelledby={dialogTitleId}
       className={classnames(
-        'Dialog',
-        { 'Dialog--closeable': !!onCancel },
+        'Hyp-Dialog',
+        { 'Hyp-Dialog--closeable': !!onCancel },
         contentClass
       )}
       ref={rootEl}
@@ -112,21 +112,21 @@ export function Dialog({
     >
       <header>
         {icon && (
-          <div className="Dialog__header-icon">
+          <div className="Hyp-Dialog__header-icon">
             <SvgIcon name={icon} title={title} data-testid="header-icon" />
           </div>
         )}
-        <h2 className="Dialog__title" id={dialogTitleId}>
+        <h2 className="Hyp-Dialog__title" id={dialogTitleId}>
           {title}
         </h2>
         {onCancel && (
-          <div className="Dialog__close">
+          <div className="Hyp-Dialog__close">
             <IconButton icon="cancel" title="Close" onClick={onCancel} />
           </div>
         )}
       </header>
       <div>{children}</div>
-      <div className="Dialog__actions">
+      <div className="Hyp-Dialog__actions">
         {onCancel && (
           <LabeledButton data-testid="cancel-button" onClick={onCancel}>
             {cancelLabel}
