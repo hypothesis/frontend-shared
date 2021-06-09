@@ -1,8 +1,40 @@
 @forward 'colors' as color-*;
-@forward 'layout' as layout-*;
+
+@use 'sass:list';
 
 $border-radius: 2px;
 
 // Minimum recommended size for tap targets on mobile.
 // This value originated from Apple's Human Interface Guidelines.
 $touch-target-size: 44px;
+
+/**
+ * Return a length value for use in spacing between (margin) or around
+ * (padding) elements.
+ *
+ * @param {number} [$space-unit] - The relative size of the space desired,
+ *   from 0 (no space) to 9 (lots of space). Default 5.
+ */
+@function space($space-unit: 5) {
+  $-default: 1rem;
+  $-spaces-0: /* 0 */ 0;
+  $-spaces: (
+    // NB: SASS lists are 1-indexed
+    /* 1 */ 0.125rem,
+    /* 2 */ 0.25rem,
+    /* 3 */ 0.5rem,
+    /* 4 */ 0.75rem,
+    /* 5 */ $-default,
+    /* 6 */ 1.5rem,
+    /* 7 */ 2rem,
+    /* 8 */ 4rem,
+    /* 9 */ 8rem
+  );
+  @if $space-unit == 0 {
+    // The non-space space
+    @return $-spaces-0;
+  } @else {
+    // This will throw an error if index is out of bounds
+    @return list.nth($-spaces, $space-unit);
+  }
+}

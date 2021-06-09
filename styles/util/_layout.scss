@@ -1,17 +1,5 @@
 @use '../mixins/layout';
 
-// Apply vertical rhythm (top/bottom margins between immediate-child elements)
-// at the default rhythm-unit size
-.hyp-u-vertical-rhythm {
-  @include layout.vertical-rhythm;
-}
-
-// Apply horizontal rhythm (left/right margins between immediate-child elements)
-// at the default horizontal-rhythm size
-.hyp-u-horizontal-rhythm {
-  @include layout.horizontal-rhythm;
-}
-
 // Establish a row flex container
 .hyp-u-layout-row {
   @include layout.row;
@@ -32,6 +20,10 @@
   @include layout.column;
 }
 
+.hyp-u-stretch {
+  flex-grow: 1;
+}
+
 // Position the element centered vertically and horizontally in the entire viewport
 .hyp-u-fixed-centered {
   @include layout.fixed-centered;
@@ -40,4 +32,28 @@
 // A full-viewport-width and -height semi-opaque backdrop overlay
 .hyp-u-overlay {
   @include layout.overlay;
+}
+
+// Apply default horizontal spacing
+.hyp-u-horizontal-spacing {
+  @include layout.horizontal-spacing;
+}
+
+// Apply default vertical spacing
+.hyp-u-vertical-spacing {
+  @include layout.vertical-spacing;
+}
+
+// Generate horizontal-spacing utility classes, 0-9
+@for $space-unit from 0 through 9 {
+  .hyp-u-horizontal-spacing--#{$space-unit} {
+    @include layout.horizontal-spacing($size: $space-unit);
+  }
+}
+
+// Generate vertical-spacing utility classes, 0-9
+@for $space-unit from 0 through 9 {
+  .hyp-u-vertical-spacing--#{$space-unit} {
+    @include layout.vertical-spacing($size: $space-unit);
+  }
 }

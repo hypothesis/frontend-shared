@@ -1,6 +1,5 @@
 @use '../variables' as var;
 
-$-space: var.$layout-space;
 $-color-overlay: var.$color-overlay;
 
 /**
@@ -48,39 +47,24 @@ $-color-overlay: var.$color-overlay;
 }
 
 /**
- * Establish a vertical (margin) rhythm for this element's immediate
- * children (i.e. put equal space between children).
+ * Put `$size` of vertical space between all immediate children.
  *
- * This mixin uses `!important` such that it can compete with specificity
- * of reset rules that set some of our element's margins to 0. That allows
- * these rules—which are applied to a parent element—to be able to assert
- * margins, as it should be able to do.
- *
- * This mixin uses a "lobotomized owl" selector.
- * See https://css-tricks.com/lobotomized-owls/
- *
- * @param $size [$-space]: Spacing size (padding)
+ * @param {length} [$size] - Relative size of spacing, 0 - 9. Default 5
  */
-@mixin vertical-rhythm($size: $-space) {
-  & > * + * {
-    margin-top: $size !important;
+@mixin vertical-spacing($size: 5) {
+  & > :not(:first-child) {
+    margin-top: var.space($size);
   }
 }
 
 /**
- * Establish a horizontal (margin) rhythm for this element's immediate
- * children (i.e. put equal space between children).
+ * Put `$size` of horizontal space between all immediate children.
  *
- * This mixin uses `!important` such that it can compete with specificity
- * of reset rules that set some of our element's margins to 0. That allows
- * these rules—which are applied to a parent element—to be able to assert
- * margins, as it should be able to do.
- *
- * @param $size [$-space * 0.5] - Size of horizontal margin between child elements
+ * @param {length} [$size] - Relative size of spacing, 0 - 9. Default 3
  */
-@mixin horizontal-rhythm($size: $-space * 0.5) {
-  & > * + * {
-    margin-left: $size !important;
+@mixin horizontal-spacing($size: 3) {
+  & > :not(:first-child) {
+    margin-left: var.space($size);
   }
 }
 
@@ -106,4 +90,10 @@ $-color-overlay: var.$color-overlay;
   bottom: 0;
   right: 0;
   background-color: $-color-overlay;
+}
+
+// A content block, with default padding and vertical spacing between elements
+@mixin block {
+  padding: var.space(); // TODO: padding and mixins
+  @include vertical-spacing;
 }

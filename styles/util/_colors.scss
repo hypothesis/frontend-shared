@@ -4,6 +4,7 @@
 
 // This mapping is necessary due to limitations in SASS interpolation
 $all-colors: (
+  'white': white,
   'grey-0': colors.$grey-0,
   'grey-1': colors.$grey-1,
   'grey-2': colors.$grey-2,
