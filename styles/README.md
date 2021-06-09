@@ -57,14 +57,14 @@ Mixins in `mixins` and utility styles in `util` loosely apply [Atomic Design](ht
 
 The directory that a SASS module lives in dictates what it should provide (styles, mixins, variables, etc.) and what kind of dependencies it is allowed:
 
-| Directory    | Description                                                 | Provides  | Dependencies          |
-| ------------ | ----------------------------------------------------------- | --------- | --------------------- |
-| `base`       | Reset and element styles. Used only by the pattern library. | styles    | mixins, variables[^1] |
-| `components` | Styles for shared components                                | styles    | any                   |
-| `mixins`     | Mixins                                                      | mixins    | mixins[^2], variables |
-| `patterns`   | Pattern styles                                              | styles    | mixins                |
-| `util`       | Utility styles                                              | styles    | mixins                |
-| `variables`  | Variables                                                   | variables | none                  |
+| Directory    | Description                                                   | Provides             | Dependencies          |
+| ------------ | ------------------------------------------------------------- | -------------------- | --------------------- |
+| `base`       | Reset and element styles. Used only by the pattern library.   | styles               | mixins, variables[^1] |
+| `components` | Styles for shared components                                  | styles               | any                   |
+| `mixins`     | Mixins                                                        | mixins               | mixins[^2], variables |
+| `patterns`   | Pattern styles                                                | styles               | mixins                |
+| `util`       | Utility styles                                                | styles               | mixins                |
+| `variables`  | Variables and functions that return values based on variables | variables, functions | none                  |
 
 ## CSS Output and Ordering
 

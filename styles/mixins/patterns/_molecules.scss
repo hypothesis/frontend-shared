@@ -5,7 +5,6 @@
 
 $-border-radius: var.$border-radius;
 $-color-background: var.$color-background;
-$-space: var.$layout-space;
 
 /**
  * Patterns that are composites of multiple atomic utilities, but
@@ -16,10 +15,8 @@ $-space: var.$layout-space;
  * Give an element a border, background color and internal vertical spacing
  */
 @mixin frame($with-hover: false) {
+  @include layout.block;
   @include atoms.border;
-  @include layout.vertical-rhythm;
-
-  padding: $-space;
   border-radius: $-border-radius;
   background-color: $-color-background;
 }
@@ -53,10 +50,10 @@ $-space: var.$layout-space;
 @mixin actions($direction: row) {
   @if $direction == row {
     @include layout.row(right);
-    @include layout.horizontal-rhythm($-space * 0.75);
+    @include layout.horizontal-spacing($size: 4);
   } @else {
     @include layout.column;
-    @include layout.vertical-rhythm($-space * 0.5);
+    @include layout.vertical-spacing($size: 3);
   }
 }
 

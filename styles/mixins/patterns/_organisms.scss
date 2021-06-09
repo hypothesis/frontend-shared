@@ -6,7 +6,6 @@
 @use 'molecules';
 
 $-color-brand: var.$color-brand;
-$-space: var.$layout-space;
 
 /**
  * A panel is a card that adds an optional header and/or close button positioning.
@@ -19,9 +18,9 @@ $-space: var.$layout-space;
   & > header,
   &__header {
     @include layout.row($align: center);
+    @include layout.horizontal-spacing;
     @include atoms.border(bottom);
-    @include layout.horizontal-rhythm($-space);
-    padding-bottom: $-space;
+    padding-bottom: var.space();
   }
 
   &__title {
@@ -38,8 +37,8 @@ $-space: var.$layout-space;
   // effect of making the vertical space around the header look more even.
   &--closeable > header,
   &--closeable &__header {
-    padding-bottom: $-space * 0.25;
-    margin-top: $-space * -0.5;
+    padding-bottom: var.space(2);
+    margin-top: -1 * var.space(3);
   }
 
   &--closeable > header &__close,
@@ -49,7 +48,7 @@ $-space: var.$layout-space;
     // This also right-aligns the edge of the close icon with the right edge
     // of the bottom border using a negative right margin.
     font-size: 1.375em;
-    margin-right: $-space * -0.75;
+    margin-right: -1 * var.space(4);
   }
 
   &__actions {
