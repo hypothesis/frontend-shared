@@ -5,6 +5,7 @@ export default {
   'arrow-right': require('../images/icons/arrow-right.svg'),
   cancel: require('../images/icons/cancel.svg'),
   check: require('../images/icons/check.svg'),
+  checkbox: require('../images/icons/checkbox.svg'),
   collapsed: require('../images/icons/collapsed.svg'),
   edit: require('../images/icons/edit.svg'),
   logo: require('../images/icons/logo.svg'),
