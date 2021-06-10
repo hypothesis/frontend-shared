@@ -28,37 +28,17 @@ describe('Checkbox', () => {
 describe('LabeledCheckbox', () => {
   function createComponent(props = {}) {
     return mount(
-      <div>
-        {/** wrapped on a div to pass the a11y test */}
-        <LabeledCheckbox name="my-checkbox" {...props}>
-          {props.children || 'My Action'}
-        </LabeledCheckbox>
-      </div>
+      <LabeledCheckbox name="my-checkbox" {...props}>
+        {props.children || 'My Action'}
+      </LabeledCheckbox>
     );
   }
 
-  it('places the `label` element after the `input` element', () => {
-    const inputRef = {};
-    // The default `position` prop is 'before'
-    const wrapper = createComponent({ inputRef });
-    const labelElement = wrapper.find('label');
-    assert.equal(labelElement.text(), 'My Action');
-    assert.equal(inputRef.current.nextElementSibling.tagName, 'LABEL');
-  });
-
-  it('places the `label` element before the `input` element', () => {
-    const inputRef = {};
-    const wrapper = createComponent({ inputRef, position: 'before' });
-    const labelElement = wrapper.find('label');
-    assert.equal(labelElement.text(), 'My Action');
-    assert.equal(inputRef.current.previousElementSibling.tagName, 'LABEL');
-  });
-
-  it('renders children in a `label` element', () => {
+  it('renders children in a `span` element', () => {
     const wrapper = createComponent({ children: <code>My Code</code> });
-    const labelElement = wrapper.find('label');
-    assert.isTrue(labelElement.find('code').exists());
-    assert.equal(labelElement.text(), 'My Code');
+    const labelText = wrapper.find('span[data-testid="label-text"]');
+    assert.isTrue(labelText.find('code').exists());
+    assert.equal(labelText.text(), 'My Code');
   });
 
   it('does not check the checkbox by default', () => {
