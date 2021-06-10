@@ -9,5 +9,8 @@ export { SvgIcon, registerIcons } from './components/SvgIcon';
 // Hooks
 export { useElementShouldClose } from './hooks/use-element-should-close';
 
+// Shared icons
+export { default as icons } from './icons';
+
 // Utilities
 export { normalizeKeyName } from './browser-compatibility-utils';
