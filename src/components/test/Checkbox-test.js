@@ -54,6 +54,12 @@ describe('LabeledCheckbox', () => {
     assert.equal(inputElement.prop('id'), labeledCheckbox.prop('htmlFor'));
   });
 
+  it('renders a checkbox SvgIcon for styling the checkbox visually', () => {
+    const wrapper = createComponent();
+    const icon = wrapper.find('SvgIcon');
+    assert.equal(icon.props().name, 'hyp-checkbox');
+  });
+
   it('uses provided `id` attr', () => {
     const wrapper = createComponent({ id: 'much-needed-pretzel-snack' });
     const inputElement = wrapper.find('input').getDOMNode();
