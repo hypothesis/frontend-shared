@@ -1,3 +1,11 @@
+import { registerIcons, SvgIcon } from './SvgIcon';
+
+// Register the checkbox icon for use
+registerIcons({
+  /** @ts-ignore - TS doesn't understand require here */
+  'hyp-checkbox': require('../../images/icons/checkbox.svg'),
+});
+
 /**
  * @typedef CheckboxBaseProps
  * @prop {string} name - The `name` of the checkbox.
@@ -17,13 +25,15 @@
 /**
  * @typedef LabeledCheckboxBaseProps
  * @prop {import('preact').ComponentChildren} children - Label text or elements
- * @prop {'before'|'after'} [position] - Position the label before or after the checkbox. Defaults to 'before'.
  *
  * @typedef {Omit<CheckboxProps, 'children'> & LabeledCheckboxBaseProps} LabeledCheckboxProps
  */
 
 /**
- * A checkbox input
+ * A checkbox input.
+ *
+ * A checkbox component is a combination of an <input> element and a sibling
+ * <svg> element that is used for the visual appearance of the checkbox.
  *
  * @param {CheckboxProps} props
  */
@@ -41,7 +51,16 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
   }
 
   return (
-    <input ref={inputRef} type="checkbox" onClick={onPressed} {...restProps} />
+    <>
+      <input
+        className="Hyp-Checkbox"
+        ref={inputRef}
+        type="checkbox"
+        onClick={onPressed}
+        {...restProps}
+      />
+      <SvgIcon className="hyp-svg-checkbox" name="hyp-checkbox" />
+    </>
   );
 }
 
@@ -50,18 +69,12 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
  *
  * @param {LabeledCheckboxProps} props
  */
-export function LabeledCheckbox({
-  children,
-  position = 'after',
-  id,
-  ...restProps
-}) {
+export function LabeledCheckbox({ children, id, ...restProps }) {
   id ??= restProps.name;
   return (
-    <>
-      {position === 'before' && <label htmlFor={id}>{children}</label>}
+    <label htmlFor={id} className="Hyp-LabeledCheckbox">
       <Checkbox id={id} {...restProps} />
-      {position === 'after' && <label htmlFor={id}>{children}</label>}
-    </>
+      <span data-testid="label-text">{children}</span>
+    </label>
   );
 }

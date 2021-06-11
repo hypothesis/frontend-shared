@@ -21,7 +21,10 @@ export default function FormPatterns() {
           &nbsp;
         </div>
         <PatternExamples>
-          <PatternExample details="A checkbox, defaulting to checked">
+          <PatternExample
+            details="A checkbox, defaulting to checked"
+            style={{ width: '300px' }}
+          >
             <LabeledCheckbox
               name="test"
               checked={wantSandwich}
@@ -30,14 +33,13 @@ export default function FormPatterns() {
               I want a sandwich
             </LabeledCheckbox>
           </PatternExample>
-          <PatternExample details="A custom label positioned before the checkbox">
+          <PatternExample details="A checkbox, unchecked">
             <LabeledCheckbox
               checked={wantWatermelon}
               name="test-alternative"
-              position="before"
               onToggle={isChecked => setWantWatermelon(isChecked)}
             >
-              <code>I want a watermelon</code>
+              I want a watermelon
             </LabeledCheckbox>
           </PatternExample>
         </PatternExamples>

@@ -2,6 +2,11 @@
 
 $-color-focus-outline: var.$color-focus-outline;
 
+@mixin outline-rule($inset: false) {
+  outline: none;
+  box-shadow: 0 0 0 2px $-color-focus-outline if($inset, inset, null);
+}
+
 /**
  * Add stylized focus to interactive elements such <input> or <textarea>
  *
@@ -12,8 +17,7 @@ $-color-focus-outline: var.$color-focus-outline;
  */
 @mixin outline($inset: false) {
   &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px $-color-focus-outline if($inset, inset, null);
+    @include outline-rule;
   }
 }
 
