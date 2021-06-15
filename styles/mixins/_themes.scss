@@ -1,0 +1,43 @@
+/**
+ * This mixin allows other mixins to declare rules that should only apply
+ * when a particular theme is active.
+ *
+ * The only known theme at present is the "clean" theme and it only applies
+ * to the client (Sidebar, Notebook) application.
+ *
+ * The client application provides relatively minimalistic support for a
+ * "clean" theme by applying a `theme-clean` class to the application container
+ * element.
+ *
+ * For example, let's say that the clean-theme variant of a pattern called
+ * `banana` should not have any borders applied. Its mixin can be written:
+ *
+ * @mixin banana {
+ *  border: 1px solid pink;
+ *  @include theme('clean') {
+ *    border: none;
+ *  }
+ * }
+ *
+ * .hyp-banana {
+ *   @include banana;
+ * }
+ *
+ * This would result in CSS:
+ *
+ * .hyp-banana {
+ *   border: 1px solid pink;
+ * }
+ *
+ * .theme-clean .hyp-banana {
+ *   border: none;
+ * }
+ *
+ * Note: As implemented here, theming increases specificity. Rules defined in
+ * theming cannot be overridden with utility classes as currently structured.
+ */
+@mixin theme($theme-name) {
+  .theme-#{$theme-name} & {
+    @content;
+  }
+}

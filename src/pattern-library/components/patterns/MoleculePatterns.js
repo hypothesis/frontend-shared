@@ -29,6 +29,14 @@ export default function MoleculePatterns() {
               <div className="hyp-u-border">Child content in a frame.</div>
             </div>
           </PatternExample>
+          <PatternExample details="content in a frame: clean theme">
+            <div className="theme-clean">
+              <div className="hyp-frame">
+                Content within a frame in the clean theme. The frame itself has
+                no borders when in the clean theme.
+              </div>
+            </div>
+          </PatternExample>
         </PatternExamples>
       </Pattern>
 
@@ -56,6 +64,21 @@ export default function MoleculePatterns() {
                 <IconButton title="User" icon="profile" />
                 <IconButton title="Edit" icon="edit" />
                 <IconButton title="Delete" icon="trash" />
+              </div>
+            </div>
+          </PatternExample>
+          <PatternExample details="Clean theme">
+            <div className="theme-clean">
+              <div className="hyp-card">
+                <div>
+                  This is some text in a card in the clean theme. There are no
+                  borders or box-shadows.
+                </div>
+                <div className="hyp-actions">
+                  <IconButton title="User" icon="profile" />
+                  <IconButton title="Edit" icon="edit" />
+                  <IconButton title="Delete" icon="trash" />
+                </div>
               </div>
             </div>
           </PatternExample>
