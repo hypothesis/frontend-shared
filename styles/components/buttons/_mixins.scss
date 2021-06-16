@@ -94,6 +94,10 @@
         &--large {
           min-width: c.$touch-target-size;
           min-height: c.$touch-target-size;
+          // The forced min-size means that we need to explicitly horizontally
+          // center or the icon could appear off-center.
+          // (vertical centering is already applied via an `align-items` rule)
+          justify-content: center;
         }
       }
     }
