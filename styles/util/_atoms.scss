@@ -16,6 +16,10 @@
   @include atoms.border(top);
 }
 
+.hyp-u-border--bottom {
+  @include atoms.border(bottom);
+}
+
 .hyp-u-shadow {
   @include atoms.shadow;
 }
