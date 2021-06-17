@@ -14,18 +14,12 @@ Your project must have Preact installed as a dependency.
 $ npm install @hypothesis/frontend-shared --save
 ```
 
-### In SASS modules
+### SASS
 
-To import default styling of frontend-shared components, include this line in the main project's SASS.
+To add styles for all shared components to your project's SASS:
 
 ```scss
 @use '@hypothesis/frontend-shared/styles';
-```
-
-Mixins can be imported directly
-
-```scss
-@use "@hypothesis/frontend-shared/styles/mixins" as mixins;
 ```
 
 ### In JS
