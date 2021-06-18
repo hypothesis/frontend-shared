@@ -3,6 +3,36 @@
 $-color-overlay: var.$color-overlay;
 
 /**
+ * Apply a margin to all sides (default) or designated `$side` in specified
+ * `$size` (default: spacing-unit 5)
+ *
+ * @param {number} [$size] - spacing-unit 0-9, default 5
+ * @param {'left'|'right'|'top'|'bottom'} [$side]
+ */
+@mixin margin($size: 5, $side: null) {
+  @if ($side) {
+    margin-#{$side}: var.space($size);
+  } @else {
+    margin: var.space($size);
+  }
+}
+
+/**
+ * Apply padding to all sides (default) or designated `$side` in specified
+ * `$size` (default: spacing-unit 3)
+ *
+ * @param {number} [$size] - spacing-unit 0-9, default 3
+ * @param {'left'|'right'|'top'|'bottom'} [$side]
+ */
+@mixin padding($size: 3, $side: null) {
+  @if ($side) {
+    padding-#{$side}: var.space($size);
+  } @else {
+    padding: var.space($size);
+  }
+}
+
+/**
  * Abstract mixin for establishing basic flex container. External users should
  * use `row` or `column` as needed. Default values here reflect default CSS
  * values for flex rules.

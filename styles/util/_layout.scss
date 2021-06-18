@@ -1,38 +1,9 @@
 @use '../mixins/layout';
 
-// Establish a row flex container
-.hyp-u-layout-row {
-  @include layout.row;
-}
+/* Spacing classes */
 
-// Establish a row flex container with items justified and aligned center
-.hyp-u-layout-row--center {
-  @include layout.row($align: center, $justify: center);
-}
-
-// Establish a row flex container with items justified center
-.hyp-u-layout-row--justify-center {
-  @include layout.row($justify: center);
-}
-
-// Establish a column flex container
-.hyp-u-layout-column {
-  @include layout.column;
-}
-
-.hyp-u-stretch {
-  flex-grow: 1;
-}
-
-// Position the element centered vertically and horizontally in the entire viewport
-.hyp-u-fixed-centered {
-  @include layout.fixed-centered;
-}
-
-// A full-viewport-width and -height semi-opaque backdrop overlay
-.hyp-u-overlay {
-  @include layout.overlay;
-}
+// These classes are applied to a parent element to establish horizontal
+// or vertical spacing between immediate-child elements.
 
 // Apply default horizontal spacing
 .hyp-u-horizontal-spacing {
@@ -56,4 +27,150 @@
   .hyp-u-vertical-spacing--#{$space-unit} {
     @include layout.vertical-spacing($size: $space-unit);
   }
+}
+
+/* Margin and padding classes */
+
+// These classes are applied to individual elements to override margin or padding
+
+// Default-sized margin classes
+.hyp-u-margin {
+  @include layout.margin;
+}
+
+.hyp-u-margin--left {
+  @include layout.margin($side: 'left');
+}
+
+.hyp-u-margin--right {
+  @include layout.margin($side: 'right');
+}
+
+.hyp-u-margin--top {
+  @include layout.margin($side: 'top');
+}
+
+.hyp-u-margin--bottom {
+  @include layout.margin($side: 'bottom');
+}
+
+// Generate margin utility classes for spacing units 0-9
+@for $space-unit from 0 through 9 {
+  .hyp-u-margin--#{$space-unit} {
+    @include layout.margin($size: $space-unit);
+  }
+
+  .hyp-u-margin--left--#{$space-unit} {
+    @include layout.margin($size: $space-unit, $side: 'left');
+  }
+
+  .hyp-u-margin--right--#{$space-unit} {
+    @include layout.margin($size: $space-unit, $side: 'right');
+  }
+
+  .hyp-u-margin--top--#{$space-unit} {
+    @include layout.margin($size: $space-unit, $side: 'top');
+  }
+
+  .hyp-u-margin--bottom--#{$space-unit} {
+    @include layout.margin($size: $space-unit, $side: 'bottom');
+  }
+}
+
+// Default padding-size classes
+.hyp-u-padding {
+  @include layout.padding;
+}
+
+.hyp-u-padding--left {
+  @include layout.padding($side: 'left');
+}
+
+.hyp-u-padding--right {
+  @include layout.padding($side: 'right');
+}
+
+.hyp-u-padding--top {
+  @include layout.padding($side: 'top');
+}
+
+.hyp-u-padding--bottom {
+  @include layout.padding($side: 'bottom');
+}
+
+// Generate padding utility classes for spacing units 0-9
+@for $space-unit from 0 through 9 {
+  .hyp-u-padding--#{$space-unit} {
+    @include layout.padding($size: $space-unit);
+  }
+
+  .hyp-u-padding--left--#{$space-unit} {
+    @include layout.padding($size: $space-unit, $side: 'left');
+  }
+
+  .hyp-u-padding--right--#{$space-unit} {
+    @include layout.padding($size: $space-unit, $side: 'right');
+  }
+
+  .hyp-u-padding--top--#{$space-unit} {
+    @include layout.padding($size: $space-unit, $side: 'top');
+  }
+
+  .hyp-u-padding--bottom--#{$space-unit} {
+    @include layout.padding($size: $space-unit, $side: 'bottom');
+  }
+}
+
+/* Flex-layout classes */
+
+// Establish a row flex container
+.hyp-u-layout-row {
+  @include layout.row;
+}
+
+// Establish a row flex container with items justified and aligned center
+// (centered on both flex axes)
+.hyp-u-layout-row--center {
+  @include layout.row($align: center, $justify: center);
+}
+
+// Establish a row flex container that aligns its children along the baseline
+.hyp-u-layout-row--align-baseline {
+  @include layout.row($align: baseline);
+}
+
+// Establish a row flex container with items aligned center
+.hyp-u-layout-row--align-center {
+  @include layout.row($align: center);
+}
+
+// Establish a row flex container with items justified center
+.hyp-u-layout-row--justify-center {
+  @include layout.row($justify: center);
+}
+
+// Establish a row flex container with items justified right
+.hyp-u-layout-row--justify-right {
+  @include layout.row($justify: right);
+}
+
+// Establish a column flex container
+.hyp-u-layout-column {
+  @include layout.column;
+}
+
+.hyp-u-stretch {
+  flex-grow: 1;
+}
+
+/* Positioning and overlay classes */
+
+// Position the element centered vertically and horizontally in the entire viewport
+.hyp-u-fixed-centered {
+  @include layout.fixed-centered;
+}
+
+// A full-viewport-width and -height semi-opaque backdrop overlay
+.hyp-u-overlay {
+  @include layout.overlay;
 }
