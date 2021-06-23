@@ -25,6 +25,9 @@ const backgroundExamples = [
   'grey-7',
   'grey-8',
   'grey-9',
+  'success',
+  'notice',
+  'error',
 ].map(colorName => {
   return (
     <PatternExample details={`${colorName}`} key={`bg-${colorName}`}>

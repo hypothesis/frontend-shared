@@ -2,6 +2,9 @@
 
 $brand: #bd1c2b;
 $brand--dark: #84141e;
+$success: #00a36d;
+$notice: #fbc168;
+$error: #d93c3f;
 
 $selection: #59a7e8;
 
@@ -18,6 +21,10 @@ $grey-7: #595959;
 $grey-8: #3f3f3f;
 $grey-9: #202020;
 $black: black;
+
+// Typography: TODO refactor when adding typography patterns
+$text: $grey-9;
+$text--light: $grey-6;
 
 // Tokenizing colors to their use
 $background: $white;

@@ -17,6 +17,9 @@ $all-colors: (
   'grey-9': colors.$grey-9,
   'brand': colors.$brand,
   'selection': colors.$selection,
+  'error': colors.$error,
+  'notice': colors.$notice,
+  'success': colors.$success,
 );
 
 // Generate a foreground-color utility class for each color
