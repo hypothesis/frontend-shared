@@ -39,7 +39,7 @@ export function Panel({ children, icon, onClose, title }) {
           </div>
         )}
       </header>
-      <div>{children}</div>
+      <div className="Hyp-Panel__content">{children}</div>
     </div>
   );
 }
