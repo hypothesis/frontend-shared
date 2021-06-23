@@ -58,6 +58,10 @@ $-color-brand: var.$color-brand;
     margin-right: -1 * var.space(4);
   }
 
+  &__content {
+    @include layout.vertical-spacing;
+  }
+
   &__actions {
     @include molecules.actions;
   }

@@ -17,7 +17,7 @@ $-color-focus-outline: var.$color-focus-outline;
  */
 @mixin outline($inset: false) {
   &:focus {
-    @include outline-rule;
+    @include outline-rule($inset);
   }
 }
 

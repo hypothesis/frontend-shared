@@ -121,9 +121,3 @@ $-color-overlay: var.$color-overlay;
   right: 0;
   background-color: $-color-overlay;
 }
-
-// A content block, with default padding and vertical spacing between elements
-@mixin block {
-  padding: var.space(); // TODO: padding and mixins
-  @include vertical-spacing;
-}

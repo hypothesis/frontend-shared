@@ -16,8 +16,14 @@ $-color-background: var.$color-background;
  * Give an element a border, background color and internal vertical spacing
  */
 
+// A content block, with default padding and vertical spacing between elements
+@mixin block {
+  @include layout.padding(5);
+  @include layout.vertical-spacing;
+}
+
 @mixin frame {
-  @include layout.block;
+  @include block;
   @include atoms.border;
   border-radius: $-border-radius;
   background-color: $-color-background;

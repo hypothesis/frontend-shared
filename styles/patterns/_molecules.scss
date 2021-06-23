@@ -4,6 +4,10 @@
  * Utility classes for molecular mixins
  */
 
+.hyp-block {
+  @include molecules.block;
+}
+
 .hyp-frame {
   @include molecules.frame;
 }
