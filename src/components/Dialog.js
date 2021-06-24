@@ -1,8 +1,14 @@
 import classnames from 'classnames';
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 
-import { IconButton, LabeledButton } from '../';
-import { SvgIcon } from './SvgIcon';
+import { IconButton, LabeledButton } from './buttons';
+import { registerIcons, SvgIcon } from './SvgIcon';
+
+// Register the checkbox icon for use
+registerIcons({
+  /** @ts-ignore - TS doesn't understand require here */
+  'hyp-cancel': require('../../images/icons/cancel.svg'),
+});
 
 let idCounter = 0;
 
@@ -121,7 +127,7 @@ export function Dialog({
         </h2>
         {onCancel && (
           <div className="Hyp-Dialog__close">
-            <IconButton icon="cancel" title="Close" onClick={onCancel} />
+            <IconButton icon="hyp-cancel" title="Close" onClick={onCancel} />
           </div>
         )}
       </header>
