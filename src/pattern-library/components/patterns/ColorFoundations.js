@@ -39,7 +39,7 @@ const backgroundExamples = [
   );
 });
 
-export default function ColorPatterns() {
+export default function ColorFoundations() {
   return (
     <PatternPage title="Colors">
       <Pattern title="Color swatches">

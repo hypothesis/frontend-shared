@@ -1,17 +1,18 @@
 import PlaygroundHome from './components/PlaygroundHome';
 
-import ColorPatterns from './components/patterns/ColorPatterns';
-import LayoutPatterns from './components/patterns/LayoutPatterns';
+import ColorFoundations from './components/patterns/ColorFoundations';
+import LayoutFoundations from './components/patterns/LayoutFoundations';
+
 import MoleculePatterns from './components/patterns/MoleculePatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
-import ButtonPatterns from './components/patterns/ButtonPatterns';
-import DialogPatterns from './components/patterns/DialogPatterns';
-import FormPatterns from './components/patterns/FormPatterns';
-import PanelPatterns from './components/patterns/PanelPatterns';
+import ButtonComponents from './components/patterns/ButtonComponents';
+import DialogComponents from './components/patterns/DialogComponents';
+import FormComponents from './components/patterns/FormComponents';
+import PanelComponents from './components/patterns/PanelComponents';
 
 /**
- * @typedef {'home'|'foundations'|'components'} PlaygroundRouteGroup
+ * @typedef {'home'|'foundations'|'patterns'|'components'} PlaygroundRouteGroup
  *
  * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
  *   that should be rendered for the indicated route
@@ -33,49 +34,49 @@ const routes = [
   {
     route: '/foundations-colors',
     title: 'Colors',
-    component: ColorPatterns,
+    component: ColorFoundations,
     group: 'foundations',
   },
   {
     route: '/foundations-layout',
     title: 'Layout',
-    component: LayoutPatterns,
+    component: LayoutFoundations,
     group: 'foundations',
   },
   {
-    route: '/foundations-molecules',
+    route: '/patterns-molecules',
     title: 'Molecules',
     component: MoleculePatterns,
-    group: 'foundations',
+    group: 'patterns',
   },
   {
-    route: '/foundations-organisms',
+    route: '/patterns-organisms',
     title: 'Organisms',
     component: OrganismPatterns,
-    group: 'foundations',
+    group: 'patterns',
   },
   {
     route: '/components-buttons',
     title: 'Buttons',
-    component: ButtonPatterns,
+    component: ButtonComponents,
     group: 'components',
   },
   {
     route: '/components-dialogs',
     title: 'Dialogs',
-    component: DialogPatterns,
+    component: DialogComponents,
     group: 'components',
   },
   {
     route: '/components-forms',
     title: 'Forms',
-    component: FormPatterns,
+    component: FormComponents,
     group: 'components',
   },
   {
     route: '/components-panel',
     title: 'Panel',
-    component: PanelPatterns,
+    component: PanelComponents,
     group: 'components',
   },
 ];

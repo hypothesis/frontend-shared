@@ -7,7 +7,7 @@ import {
   PatternExample,
 } from '../PatternPage';
 
-export default function SharedPanelPatterns() {
+export default function PanelComponents() {
   return (
     <PatternPage title="Panel">
       <Pattern title="Panel">
