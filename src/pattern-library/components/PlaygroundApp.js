@@ -41,6 +41,7 @@ export default function PlaygroundApp({
 
   const routeGroups = [
     { title: 'Foundations', routes: getRoutes('foundations') },
+    { title: 'Patterns', routes: getRoutes('patterns') },
     { title: 'Common Components', routes: getRoutes('components') },
   ];
 

@@ -61,7 +61,7 @@ const showDialog = ({ DialogComponent, container, setOpen, props }) => {
   );
 };
 
-export default function DialogPatterns() {
+export default function DialogComponents() {
   // Extra buttons to use in Dialog, Modal examples
   const buttons = [
     <LabeledButton key="maybe" onClick={() => alert('You chose maybe')}>

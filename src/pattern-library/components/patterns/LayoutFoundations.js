@@ -61,7 +61,7 @@ function SpacingDemo({ direction, size, defaultSize = false }) {
   );
 }
 
-export default function LayoutPatterns() {
+export default function LayoutFoundations() {
   const [showExample1, setShowExample1] = useState(false);
   const [showExample2, setShowExample2] = useState(false);
   const [showExample3, setShowExample3] = useState(false);
