@@ -131,7 +131,7 @@ export function Dialog({
           </div>
         )}
       </header>
-      <div>{children}</div>
+      {children}
       <div className="Hyp-Dialog__actions">
         {onCancel && (
           <LabeledButton data-testid="cancel-button" onClick={onCancel}>
