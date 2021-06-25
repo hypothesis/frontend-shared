@@ -1,6 +1,7 @@
 @use '../../variables' as var;
 
 @use '../atoms';
+@use '../focus';
 @use '../layout';
 @use '../themes';
 
@@ -14,6 +15,8 @@ $-color-brand: var.$color-brand;
  * modifier.
  */
 @mixin panel {
+  // Prevents focus ring when panel element is focused in Safari
+  @include focus.outline-on-keyboard-focus;
   @include molecules.card;
 
   @include themes.theme('clean') {

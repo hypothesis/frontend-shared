@@ -74,7 +74,32 @@ $-color-background: var.$color-background;
   }
 }
 
-// A responsive sized and positioned container for modal content
+/**
+ * A modal container, with responsive positioning and sizing.
+ *
+ * A modal should contain one immediate-child element; in most cases, an
+ * element that applies the dialog[1] pattern. Content within the dialog
+ * (grandchild elements of modal) can be managed with `overflow` rules so as not
+ * to exceed the size constraints of the modal within the viewport.
+ *
+ * Example structure follows:
+ *
+ * <modal>
+ *   <dialog>
+ *     <div /> <!-- dialog can contain any arbitrary content -->
+ *     <div style="overflow: auto">
+ *       This content will scroll vertically if it is too tall for the
+ *       available space in the modal.
+ *     </div>
+ *     <div />
+ *     ...
+ *   </dialog>
+ * </modal>
+ *
+ * [1]: The modal's immediate child need not specifically apply the dialog
+ *      pattern, but any element that needs to manage overflow within the modal
+ *      must be a grandchild of the modal container element.
+ */
 @mixin modal {
   // The modal container is positioned horizontally- and vertically-centered
   @include layout.fixed-centered;
@@ -98,7 +123,29 @@ $-color-background: var.$color-background;
   // near the top of the viewport.
   @media screen and (min-height: 32rem) {
     top: 10vh;
+    // Provide at least 10vh of space between bottom of modal and bottom of
+    // viewport, or else the modal will look vertically mis-aligned
+    // 100vh - 10vh top - 10vh bottom = 80vh
+    max-height: 80vh;
     transform: translate(-50%, 0);
-    max-height: 80vh; // 10vh space top and bottom
+  }
+
+  // Apply rules to the immediate child (likely a dialog) to allow for overflow
+  // management in modal's grandchild elements.
+  & > * {
+    // A flex layout allows item children to overflow without defining an
+    // absolute container height.
+    // See https://www.codementor.io/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-bkaunxewg
+    @include layout.column;
+
+    // These height rules are duplicative of the height rules on the modal,
+    // but need to be applied to this element to be able to constrain
+    // overflow in children. Height rules must be on an overflow-constrained
+    // element's immediate parent.
+    max-height: 90vh;
+
+    @media screen and (min-height: 32rem) {
+      max-height: 80vh;
+    }
   }
 }

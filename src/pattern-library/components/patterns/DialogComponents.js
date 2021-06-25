@@ -36,14 +36,8 @@ const showDialog = ({ DialogComponent, container, setOpen, props }) => {
     return null;
   }
 
-  return render(
-    <DialogComponent
-      icon="edit"
-      initialFocus={initialFocusRef}
-      title="Basic dialog with icon"
-      onCancel={() => close()}
-      {...props}
-    >
+  if (!props.children) {
+    props.children = (
       <div>
         <p>This is an example of a dialog.</p>
         <p>
@@ -56,7 +50,17 @@ const showDialog = ({ DialogComponent, container, setOpen, props }) => {
           type="text"
         />
       </div>
-    </DialogComponent>,
+    );
+  }
+
+  return render(
+    <DialogComponent
+      icon="edit"
+      initialFocus={initialFocusRef}
+      title="Basic dialog with icon"
+      onCancel={() => close()}
+      {...props}
+    />,
     container
   );
 };
@@ -79,6 +83,7 @@ export default function DialogComponents() {
   // Dialog/Modal state for each of the examples
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [, setModalIsOpen] = useState(false);
+  const [, setLongModalIsOpen] = useState(false);
   const [, setConfirmModalIsOpen] = useState(false);
 
   const openDialog = () => {
@@ -103,6 +108,101 @@ export default function DialogComponents() {
       setOpen: setModalIsOpen,
       props: {
         buttons,
+      },
+    });
+  };
+
+  const openLongModal = () => {
+    const children = (
+      <div style={{ overflow: 'auto' }}>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sapien
+          cursus, fringilla diam posuere, varius urna. Phasellus dictum sodales
+          dui, sed scelerisque mauris auctor et. Integer suscipit justo in erat
+          tristique, nec feugiat augue ultrices. Sed accumsan pretium commodo.
+          Orci varius natoque penatibus et magnis dis parturient montes,
+          nascetur ridiculus mus. Ut lobortis tortor metus, sed rutrum risus
+          ultricies non. Maecenas ultricies rutrum diam non feugiat. Nam ut ex
+          ac enim efficitur semper. Integer sed rhoncus eros. Nulla pharetra
+          vulputate faucibus. Vestibulum vestibulum orci non maximus aliquet.
+          Donec id dui ac ipsum pellentesque gravida sit amet non sem.
+          Suspendisse malesuada turpis id erat porta, nec luctus odio mollis.
+          Sed a arcu sed sem venenatis porta. In dictum sapien ut congue
+          facilisis. Curabitur consequat vestibulum ultricies. Vivamus rhoncus
+          vitae sapien id volutpat. Fusce ac nisi dolor. Suspendisse ut
+          venenatis ex. Quisque elementum libero quam, non consectetur lorem
+          faucibus a. Sed eu orci vitae nibh sodales sodales ut at neque. Ut
+          lobortis arcu eu lorem porttitor scelerisque. Aenean euismod est ac
+          enim fermentum, sit amet tristique dui consequat. Phasellus vitae
+          sapien dolor. Nulla iaculis nibh at magna convallis finibus ut vitae
+          ipsum. Maecenas ultricies ultrices diam laoreet lacinia. Nunc commodo
+          eu lorem a bibendum. Sed eu magna rutrum, consectetur orci sit amet,
+          venenatis ex. Aliquam sodales nec odio ac ultricies. In sit amet
+          congue ipsum. Class aptent taciti sociosqu ad litora torquent per
+          conubia nostra, per inceptos himenaeos. Phasellus accumsan justo nec
+          maximus sollicitudin. Aenean eu urna egestas justo dignissim venenatis
+          quis quis massa. Pellentesque convallis posuere elit, eu interdum diam
+          placerat et. Aenean cursus vehicula nibh, in scelerisque nunc feugiat
+          eu. Praesent eleifend ipsum eget urna dictum semper. Nullam dapibus
+          nisl sit amet ultricies lobortis. Vestibulum a velit neque.
+          Suspendisse tincidunt aliquet lorem et consectetur. Phasellus at
+          libero fringilla nulla egestas aliquam. Nullam ut magna risus. Etiam
+          consequat neque sapien, vel ultrices justo vehicula sit amet. Donec
+          semper facilisis odio vel faucibus. Integer eget sagittis justo.
+          Integer sed tincidunt neque. In vulputate fermentum lacus, eget
+          sollicitudin nisi vestibulum vel. Etiam porttitor varius justo, id
+          efficitur tellus congue a. Cras condimentum congue lectus sit amet
+          commodo. Etiam lacus ex, efficitur volutpat enim id, malesuada posuere
+          metus. Mauris convallis convallis arcu, sit amet placerat felis
+          sodales ut. Duis semper a risus ac consequat. Nulla id nibh sem.
+          Aliquam et nulla nec lectus viverra lobortis. Vivamus eros enim,
+          lobortis nec efficitur nec, rhoncus at tortor. Aliquam aliquet
+          bibendum ipsum eu feugiat. Duis iaculis bibendum ligula non ultricies.
+          Curabitur cursus nulla in nisl tincidunt, eget eleifend tellus
+          ultricies. Pellentesque eget mauris nec magna ultrices fringilla id
+          sit amet nulla. Ut nec velit sed augue eleifend pharetra. Aliquam a
+          posuere massa. Nunc vitae tortor ut est cursus vestibulum. In hac
+          habitasse platea dictumst. Nulla eget orci eleifend, elementum turpis
+          vitae, consectetur magna. In in nulla in tellus vestibulum pharetra.
+          Curabitur at rhoncus enim, tempus congue est. Nullam consectetur
+          lobortis nunc, vel feugiat lorem semper a. Ut tellus nulla, tempus id
+          posuere vel, luctus et sem. Nulla nec rhoncus mi. Aenean sit amet
+          mollis nibh. Nam ullamcorper tellus quis arcu aliquam, dignissim
+          ultricies justo efficitur. Cras non ipsum tempor, elementum dui id,
+          pellentesque turpis. Praesent commodo dolor in elit aliquet, sit amet
+          pellentesque sem molestie. In pharetra nisl nec orci pellentesque, ut
+          posuere quam faucibus. Class aptent taciti sociosqu ad litora torquent
+          per conubia nostra, per inceptos himenaeos. Maecenas mollis purus non
+          erat tempor euismod. Vestibulum non leo eget magna vestibulum mattis.
+          Aenean vitae tortor vel mauris pretium tempor. Sed viverra eros
+          tristique, dapibus tellus a, feugiat ipsum. Pellentesque non tellus
+          scelerisque, molestie massa vitae, fermentum ex. Quisque molestie
+          interdum nibh a luctus. Sed aliquet risus ac varius suscipit. Proin
+          eget leo vel lacus finibus posuere vel non nisl. In tristique ligula
+          leo, sed molestie sem sodales nec. Phasellus sed consectetur lectus.
+          In pretium hendrerit eros, a sagittis est faucibus ac. Etiam faucibus
+          felis et eros commodo fringilla. Duis volutpat lobortis suscipit.
+          Maecenas facilisis metus in lorem aliquet efficitur. Duis scelerisque
+          eros scelerisque, rhoncus massa eget, tempor ipsum. Donec id feugiat
+          purus, non condimentum turpis. Sed consequat lorem a odio pharetra
+          pretium. Proin sed turpis ac sapien convallis iaculis a sit amet est.
+          Proin lorem risus, rhoncus non metus at, fringilla commodo erat. Sed
+          quis elit vitae leo ullamcorper interdum non nec ipsum. Etiam
+          ullamcorper lorem ac velit condimentum, eget porttitor odio mollis.
+          Maecenas semper, urna eu cursus placerat, enim neque aliquam orci, ut
+          elementum justo ex id justo. Nunc malesuada egestas dui at vestibulum.
+        </p>
+      </div>
+    );
+    setLongModalIsOpen(true);
+    showDialog({
+      DialogComponent: Modal,
+      container: /** @type {HTMLElement} */ (document.getElementById('modal2')),
+      setOpen: setLongModalIsOpen,
+      props: {
+        title: 'Long Modal',
+        buttons,
+        children,
       },
     });
   };
@@ -182,6 +282,34 @@ export default function DialogComponents() {
                 <div id="modal1" />
                 <LabeledButton variant="primary" onClick={openModal}>
                   Open modal
+                </LabeledButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Pattern>
+
+      <Pattern title="Modal with long content">
+        <div className="Example">
+          <p>
+            Modals that may contain a lot of content may need to handle overflow
+            (i.e. make their content scrollable) so that the modal height
+            doesn&apos;t exceed available viewport space.
+          </p>
+          <div className="Example__content">
+            <div className="Example__usage">
+              <p>
+                To make something in a modal scroll-able, apply{' '}
+                <code>overflow: auto</code> to the element you wish to contain.
+                This element needs to be an immediate-child element of the{' '}
+                <code>Modal</code>.
+              </p>
+            </div>
+            <div className="Example__demo hyp-frame">
+              <div>
+                <div id="modal2" />
+                <LabeledButton variant="primary" onClick={openLongModal}>
+                  Open long modal
                 </LabeledButton>
               </div>
             </div>
