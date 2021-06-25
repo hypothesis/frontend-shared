@@ -2,9 +2,9 @@
 
 $-color-focus-outline: var.$color-focus-outline;
 
-@mixin outline-rule($inset: false) {
+@mixin outline-rule($inset: false, $color: $-color-focus-outline) {
   outline: none;
-  box-shadow: 0 0 0 2px $-color-focus-outline if($inset, inset, null);
+  box-shadow: 0 0 0 2px $color if($inset, inset, null);
 }
 
 /**

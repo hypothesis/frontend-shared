@@ -1,6 +1,8 @@
 import { useState } from 'preact/hooks';
 
-import { LabeledCheckbox } from '../../../';
+import { IconButton } from '../../../components/buttons';
+import { LabeledCheckbox } from '../../../components/Checkbox';
+import { TextInput, TextInputWithButton } from '../../../components/TextInput';
 
 import {
   PatternPage,
@@ -41,6 +43,49 @@ export default function FormComponents() {
             >
               I want a watermelon
             </LabeledCheckbox>
+          </PatternExample>
+        </PatternExamples>
+      </Pattern>
+
+      <Pattern title="TextInput">
+        <p>
+          <code>TextInput</code> is a basic wrapper around an{' '}
+          <code>input type=&quot;text&quot;</code> field.
+        </p>
+        <PatternExamples>
+          <PatternExample details="basic text input field">
+            <TextInput name="my-input" />
+          </PatternExample>
+
+          <PatternExample details="text input field in an error state">
+            <TextInput name="my-input" error />
+          </PatternExample>
+        </PatternExamples>
+      </Pattern>
+
+      <Pattern title="TextInputWithButton">
+        <p>
+          This component wraps the <code>text-input-with-button</code> pattern:
+          a text input on the left with an associated icon-only button on the
+          right.
+        </p>
+        <p>
+          Current usage favors the <code>dark</code> variant of{' '}
+          <code>IconButton</code>.
+        </p>
+        <PatternExamples>
+          <PatternExample details="basic text input field">
+            <TextInputWithButton>
+              <TextInput name="my-input" />
+              <IconButton icon="arrow-right" variant="dark" title="go" />
+            </TextInputWithButton>
+          </PatternExample>
+
+          <PatternExample details="text input field in an error state">
+            <TextInputWithButton>
+              <TextInput name="my-input" error />
+              <IconButton icon="arrow-right" variant="dark" title="go" />
+            </TextInputWithButton>
           </PatternExample>
         </PatternExamples>
       </Pattern>

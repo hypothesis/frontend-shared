@@ -3,6 +3,7 @@ import PlaygroundHome from './components/PlaygroundHome';
 import ColorFoundations from './components/patterns/ColorFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
 
+import FormPatterns from './components/patterns/FormPatterns';
 import MoleculePatterns from './components/patterns/MoleculePatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
@@ -42,6 +43,12 @@ const routes = [
     title: 'Layout',
     component: LayoutFoundations,
     group: 'foundations',
+  },
+  {
+    route: '/patterns-forms',
+    title: 'Forms',
+    component: FormPatterns,
+    group: 'patterns',
   },
   {
     route: '/patterns-molecules',

@@ -1,0 +1,9 @@
+@use '../mixins/patterns/forms';
+
+.Hyp-TextInput {
+  @include forms.text-input;
+}
+
+.Hyp-TextInputWithButton {
+  @include forms.text-input-with-button;
+}

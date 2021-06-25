@@ -1,0 +1,90 @@
+@use '../../variables' as var;
+
+@use '../atoms';
+@use '../focus';
+@use '../layout';
+
+$-border-radius: var.$border-radius;
+
+$-color-grey-0: var.$color-grey-0;
+$-color-white: var.$color-white;
+
+$-color-error: var.$color-error;
+
+$-color-text: var.$color-text;
+$-color-text--light: var.$color-text--light;
+$-color-text--disabled: var.$color-text--disabled;
+
+/**
+ * General styling for a text-like input
+ */
+@mixin input {
+  @include focus.outline($inset: true);
+  @include atoms.border;
+  @include layout.padding;
+
+  background-color: $-color-grey-0;
+  color: $-color-text;
+  border-radius: $-border-radius;
+}
+
+/**
+ * Styling for <input type="text" />. Includes a state class for errors.
+ */
+@mixin text-input {
+  @include input;
+
+  &.is-error {
+    // Apply an error-colored inset outline.
+    // Remove any outlines or borders to make sure the input element doesn't
+    // change dimensions when applying the inset outline
+    outline: none;
+    border: none;
+    @include focus.outline-rule($inset: true, $color: $-color-error);
+  }
+
+  &::placeholder {
+    color: $-color-text--light;
+  }
+
+  &:focus {
+    background-color: $-color-white;
+
+    &::placeholder {
+      // Note that this won't meet WCAG contrast requirements, so should only
+      // be used when the placeholder is in effect "disabled" by focus
+      color: $-color-text--disabled;
+    }
+  }
+}
+
+/**
+ * A pattern for pairing a text input (left) with an icon-only button (right).
+ *
+ * Removes border radiuses where the two elements touch, and adds a border
+ * to the button to align with the `input`.
+ *
+ * Sample usage:
+ *  <div.hyp-text-input-with-button />
+ *   <input.hyp-text-input />
+ *   <button.hyp-IconButton />
+ *  </div>
+ */
+@mixin text-input-with-button {
+  @include layout.row;
+  // Make the paired input and button fill the available space
+  width: 100%;
+  input {
+    @include text-input;
+    flex-grow: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  button {
+    @include atoms.border;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+  }
+}
