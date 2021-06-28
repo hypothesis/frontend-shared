@@ -23,20 +23,32 @@ describe('TextInput', () => {
 
     assert.isTrue(wrapper.find('input').hasClass('is-error'));
   });
+
+  it('applies extra classes', () => {
+    createComponent({ classes: 'foo bar' });
+
+    assert.exists('div.Hyp-TextInput.foo.bar');
+  });
 });
 
 describe('TextInputWithButton', () => {
-  const createComponent = () =>
+  const createComponent = (props = {}) =>
     mount(
-      <TextInputWithButton>
+      <TextInputWithButton {...props}>
         <TextInput />
         <button />
       </TextInputWithButton>
     );
 
   it('wraps children in a container element with appropriate className', () => {
-    const wrapper = createComponent();
+    createComponent();
 
-    assert.isTrue(wrapper.find('div').hasClass('Hyp-TextInputWithButton'));
+    assert.exists('div.Hyp-TextInputWithButton');
+  });
+
+  it('applies extra classes', () => {
+    createComponent({ classes: 'foo bar' });
+
+    assert.exists('div.Hyp-TextInputWithButton.foo.bar');
   });
 });
