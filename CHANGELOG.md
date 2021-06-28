@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.3.0] - 2021-06-28
+
+Updates `Modal` to allow overflow/scrolling of content. Adds numerous simple
+components for laying out and styling content.
+
+### Added
+
+- Wrap `Frame`, `Card` and `Actions` patterns with components [#122](https://github.com/hypothesis/frontend-shared/pull/122)
+- Text input patterns and simple components [#114](https://github.com/hypothesis/frontend-shared/pull/114)
+- Allow for overflow constraints on content within Modals [#112](https://github.com/hypothesis/frontend-shared/pull/112)
+- Add additional utility mixins and classes [#110](https://github.com/hypothesis/frontend-shared/pull/110)
+
+### Changed
+
+- Refine structure and naming of Pattern-library components and sections [#113](https://github.com/hypothesis/frontend-shared/pull/113)
+- Adjust utils and patterns based on real-world use [#111](https://github.com/hypothesis/frontend-shared/pull/111)
+
+### Fixed
+
+- Ensure the `Panel` component registers its icons [#117](https://github.com/hypothesis/frontend-shared/pull/117)
+- Fix `IconButton` horizontal icon alignment on narrow screens [#109](https://github.com/hypothesis/frontend-shared/pull/109)
+
 ## [v3.2.0] - 2021-06-15
 
 Adds theming support.
