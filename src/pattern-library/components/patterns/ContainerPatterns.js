@@ -12,7 +12,7 @@ import { IconButton, LabeledButton } from '../../../';
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
-    <PatternPage title="Content">
+    <PatternPage title="Containers">
       <Pattern title="Frame">
         <p>
           A <code>frame</code> has a border, background, padding, and vertical

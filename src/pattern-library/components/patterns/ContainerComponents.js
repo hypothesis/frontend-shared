@@ -10,7 +10,7 @@ import {
 
 export default function ContainerComponents() {
   return (
-    <PatternPage title="Content">
+    <PatternPage title="Containers">
       <Pattern title="Frame">
         <p>
           The <code>Frame</code> component pattern provides a framed layout with
