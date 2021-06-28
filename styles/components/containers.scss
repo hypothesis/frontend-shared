@@ -1,0 +1,18 @@
+@use '../mixins/patterns/containers';
+
+.Hyp-Frame {
+  @include containers.frame;
+}
+
+.Hyp-Card {
+  @include containers.card;
+}
+
+.Hyp-Actions,
+.Hyp-Actions--row {
+  @include containers.actions;
+}
+
+.Hyp-Actions--column {
+  @include containers.actions($direction: column);
+}

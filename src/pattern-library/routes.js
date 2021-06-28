@@ -8,6 +8,7 @@ import ContainerPatterns from './components/patterns/ContainerPatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
+import ContainerComponents from './components/patterns/ContainerComponents';
 import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
 import PanelComponents from './components/patterns/PanelComponents';
@@ -66,6 +67,12 @@ const routes = [
     route: '/components-buttons',
     title: 'Buttons',
     component: ButtonComponents,
+    group: 'components',
+  },
+  {
+    route: '/components-containers',
+    title: 'Containers',
+    component: ContainerComponents,
     group: 'components',
   },
   {
