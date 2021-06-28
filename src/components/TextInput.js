@@ -4,6 +4,7 @@ import classnames from 'classnames';
  * @typedef {import('preact').ComponentChildren} Children
  *
  * @typedef TextInputBaseProps
+ * @prop {string} [classes] - Additional CSS classes to apply
  * @prop {boolean} [error] - There is an error associated with this input. Will
  *   set some error styling.
  */
@@ -18,6 +19,7 @@ import classnames from 'classnames';
 /**
  * @typedef TextInputWithButtonProps
  * @prop {Children} children
+ * @prop {string} [classes] - Additional CSS classes to apply
  */
 
 /**
@@ -25,10 +27,10 @@ import classnames from 'classnames';
  *
  * @param {TextInputProps} props
  */
-export function TextInput({ error, ...restProps }) {
+export function TextInput({ classes = '', error, ...restProps }) {
   return (
     <input
-      className={classnames('Hyp-TextInput', { 'is-error': error })}
+      className={classnames('Hyp-TextInput', { 'is-error': error }, classes)}
       {...restProps}
       type="text"
     />
@@ -48,6 +50,10 @@ export function TextInput({ error, ...restProps }) {
  *
  * @param {TextInputWithButtonProps} props
  */
-export function TextInputWithButton({ children }) {
-  return <div className="Hyp-TextInputWithButton">{children}</div>;
+export function TextInputWithButton({ children, classes = '' }) {
+  return (
+    <div className={classnames('Hyp-TextInputWithButton', classes)}>
+      {children}
+    </div>
+  );
 }

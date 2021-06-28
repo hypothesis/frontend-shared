@@ -1,0 +1,34 @@
+@use '../mixins/patterns/containers';
+
+/**
+ * Utility classes for molecular mixins
+ */
+
+.hyp-block {
+  @include containers.block;
+}
+
+.hyp-frame {
+  @include containers.frame;
+}
+
+.hyp-card {
+  @include containers.card;
+}
+
+.hyp-card--no-hover {
+  @include containers.card($with-hover: false);
+}
+
+.hyp-actions,
+.hyp-actions--row {
+  @include containers.actions;
+}
+
+.hyp-actions--column {
+  @include containers.actions($direction: column);
+}
+
+.hyp-modal {
+  @include containers.modal;
+}

@@ -5,7 +5,7 @@
 @use '../layout';
 @use '../themes';
 
-@use 'molecules';
+@use 'containers';
 
 $-color-brand: var.$color-brand;
 
@@ -17,7 +17,7 @@ $-color-brand: var.$color-brand;
 @mixin panel {
   // Prevents focus ring when panel element is focused in Safari
   @include focus.outline-on-keyboard-focus;
-  @include molecules.card;
+  @include containers.card;
 
   @include themes.theme('clean') {
     // Cards won't have borders in the clean theme, but in the case of panels,
@@ -66,6 +66,6 @@ $-color-brand: var.$color-brand;
   }
 
   &__actions {
-    @include molecules.actions;
+    @include containers.actions;
   }
 }
