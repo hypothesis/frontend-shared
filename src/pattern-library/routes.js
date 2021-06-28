@@ -4,7 +4,7 @@ import ColorFoundations from './components/patterns/ColorFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
-import MoleculePatterns from './components/patterns/MoleculePatterns';
+import ContainerPatterns from './components/patterns/ContainerPatterns';
 import OrganismPatterns from './components/patterns/OrganismPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
@@ -45,15 +45,15 @@ const routes = [
     group: 'foundations',
   },
   {
-    route: '/patterns-forms',
-    title: 'Forms',
-    component: FormPatterns,
+    route: '/patterns-containers',
+    title: 'Containers',
+    component: ContainerPatterns,
     group: 'patterns',
   },
   {
-    route: '/patterns-molecules',
-    title: 'Molecules',
-    component: MoleculePatterns,
+    route: '/patterns-forms',
+    title: 'Forms',
+    component: FormPatterns,
     group: 'patterns',
   },
   {

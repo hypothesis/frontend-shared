@@ -9,10 +9,10 @@ import {
 
 import { IconButton, LabeledButton } from '../../../';
 
-export default function MoleculePatterns() {
+export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
-    <PatternPage title="Molecules">
+    <PatternPage title="Content">
       <Pattern title="Frame">
         <p>
           A <code>frame</code> has a border, background, padding, and vertical
