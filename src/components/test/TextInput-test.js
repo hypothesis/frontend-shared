@@ -1,4 +1,5 @@
 import { mount } from 'enzyme';
+import { createRef } from 'preact';
 
 import { TextInput, TextInputWithButton } from '../TextInput';
 
@@ -22,6 +23,13 @@ describe('TextInput', () => {
     const wrapper = createComponent({ error: true });
 
     assert.isTrue(wrapper.find('input').hasClass('is-error'));
+  });
+
+  it('passes along a `ref` to the input element through `inputRef`', () => {
+    const inputRef = createRef();
+    createComponent({ inputRef: inputRef });
+
+    assert.isTrue(inputRef.current instanceof Node);
   });
 
   it('applies extra classes', () => {

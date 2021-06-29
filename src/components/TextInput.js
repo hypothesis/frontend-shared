@@ -7,11 +7,13 @@ import classnames from 'classnames';
  * @prop {string} [classes] - Additional CSS classes to apply
  * @prop {boolean} [error] - There is an error associated with this input. Will
  *   set some error styling.
+ * @prop {import('preact').Ref<HTMLInputElement>} [inputRef] - Optional ref for
+ *   the rendered `input` element.
  */
 
 /**
  * `TextInput` sets the `type` attribute on the `input`, but any other valid
- * attribute should be forwarded.
+ * `input` attribute should be forwarded.
  * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLInputElement>, 'type'>} HTMLInputElementProps
  * @typedef {TextInputBaseProps & HTMLInputElementProps} TextInputProps
  */
@@ -27,11 +29,12 @@ import classnames from 'classnames';
  *
  * @param {TextInputProps} props
  */
-export function TextInput({ classes = '', error, ...restProps }) {
+export function TextInput({ classes = '', error, inputRef, ...restProps }) {
   return (
     <input
       className={classnames('Hyp-TextInput', { 'is-error': error }, classes)}
       {...restProps}
+      ref={inputRef}
       type="text"
     />
   );
