@@ -5,7 +5,7 @@ import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
-import OrganismPatterns from './components/patterns/OrganismPatterns';
+import PanelPatterns from './components/patterns/PanelPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
@@ -58,9 +58,9 @@ const routes = [
     group: 'patterns',
   },
   {
-    route: '/patterns-organisms',
-    title: 'Organisms',
-    component: OrganismPatterns,
+    route: '/patterns-panels',
+    title: 'Panels',
+    component: PanelPatterns,
     group: 'patterns',
   },
   {

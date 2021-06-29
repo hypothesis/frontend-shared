@@ -45,14 +45,6 @@ Note that all SASS modules in this project's package can be imported, by deeper 
 
 Isolate your customizations within a single module in the consuming application SASS (avoid adding dependencies to this repository's SASS in multiple places for ease of maintenance later). See the `client` for how buttons are customized in SASS. It is the hope that customization will become a rarer exception as these patterns get more established.
 
-### Q: How much do I need to know about Atomic Design to get my job done here?
-
-Mixins in `mixins` and utility styles in `util` loosely apply [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) concepts. Use Atomic Design concepts as long as they're useful, but don't feel compelled to force everything into the model if it doesn't fit. And the level of rigor that Atomic Design is applied to the structure here will evolve over time.
-
-- `atoms` are basic units of design: borders, shadows, etc.
-- `molecules` are small constructs composed of `atoms`
-- `organisms` are constructs composed of `molecules`
-
 ## Directories
 
 The directory that a SASS module lives in dictates what it should provide (styles, mixins, variables, etc.) and what kind of dependencies it is allowed:
