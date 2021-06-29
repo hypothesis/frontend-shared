@@ -9,7 +9,11 @@ import { IconButton, LabeledButton } from '../../../';
 
 export default function OrganismPatterns() {
   return (
-    <PatternPage title="Organisms">
+    <PatternPage title="Panels">
+      <p>
+        The <code>panel</code> pattern is used by several components:{' '}
+        <code>Panel</code>, <code>Dialog</code>, <code>Modal</code>, e.g.
+      </p>
       <Pattern title="Panel">
         <p>
           A panel is a card with a header and affordances for a close button.

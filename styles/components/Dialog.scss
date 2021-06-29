@@ -1,5 +1,5 @@
-@use '../mixins/patterns/organisms';
+@use '../mixins/patterns/panels';
 
 .Hyp-Dialog {
-  @include organisms.panel;
+  @include panels.panel;
 }

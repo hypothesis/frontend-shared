@@ -1,4 +1,4 @@
-@use '../mixins/patterns/organisms';
+@use '../mixins/patterns/panels';
 
 /**
  * Utility classes for organism mixins
@@ -24,5 +24,5 @@
   * </div>
   */
 .hyp-panel {
-  @include organisms.panel;
+  @include panels.panel;
 }
