@@ -5,6 +5,7 @@ export { Frame, Card, Actions } from './components/containers';
 export { Dialog } from './components/Dialog';
 export { Modal, ConfirmModal } from './components/Modal';
 export { Panel } from './components/Panel';
+export { Spinner } from './components/Spinner';
 export { SvgIcon, registerIcons } from './components/SvgIcon';
 export { TextInput, TextInputWithButton } from './components/TextInput';
 
