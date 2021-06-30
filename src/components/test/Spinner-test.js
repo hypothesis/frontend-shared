@@ -9,12 +9,17 @@ describe('Spinner', () => {
 
   it('renders', () => {
     createSpinner();
-    assert.exists('span.Hyp-Spinner');
+    assert.exists('span.Hyp-Spinner--medium');
   });
 
   it('applies additional classes', () => {
     createSpinner({ classes: 'foo bar' });
-    assert.exists('span.Hyp-Spinner.foo.bar');
+    assert.exists('span.Hyp-Spinner--medium.foo.bar');
+  });
+
+  it('sets indicated size', () => {
+    createSpinner({ size: 'xlarge' });
+    assert.exists('span.Hyp-Spinner--large.foo.bar');
   });
 
   it(

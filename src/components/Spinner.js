@@ -11,6 +11,8 @@ registerIcons({
 /**
  * @typedef SpinnerProps
  * @prop {string} [classes] - Additional CSS classes to apply
+ * @prop {'small'|'medium'|'large'} [size='medium'] - Relative size of spinner
+ *   to surrounding content
  */
 
 /**
@@ -18,8 +20,7 @@ registerIcons({
  *
  * @param {SpinnerProps} props
  */
-export function Spinner({ classes = '' }) {
-  return (
-    <SvgIcon name="spinner" className={classnames('Hyp-Spinner', classes)} />
-  );
+export function Spinner({ classes = '', size = 'medium' }) {
+  const baseClass = `Hyp-Spinner--${size}`;
+  return <SvgIcon name="spinner" className={classnames(baseClass, classes)} />;
 }

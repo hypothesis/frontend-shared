@@ -15,6 +15,12 @@ export default function SpinnerComponents() {
           <PatternExample details="basic loading spinner">
             <Spinner />
           </PatternExample>
+          <PatternExample details="loading spinner, large">
+            <Spinner size="large" />
+          </PatternExample>
+          <PatternExample details="loading spinner, small">
+            <Spinner size="small" />
+          </PatternExample>
         </PatternExamples>
       </Pattern>
     </PatternPage>

@@ -17,17 +17,18 @@ export default function SpinnerPatterns() {
       <Pattern title="Spinner">
         <p>
           The spinner is <code>em-sized</code>; it renders at <code>1em</code>{' '}
-          square. To adjust size, adjust the local font size.
+          square, by default. Other relative sizes are available as follows. For
+          manual sizing control, adjust the font-size of a parent element.
         </p>
         <PatternExamples>
           <PatternExample details="basic spinner">
             <SvgIcon name="spinner" className="hyp-spinner" />
           </PatternExample>
-          <PatternExample
-            details="spinner with local font-size at 3rem"
-            style={{ fontSize: '3rem' }}
-          >
-            <SvgIcon name="spinner" className="hyp-spinner" />
+          <PatternExample details="spinner, large size">
+            <SvgIcon name="spinner" className="hyp-spinner--large" />
+          </PatternExample>
+          <PatternExample details="spinner, small size">
+            <SvgIcon name="spinner" className="hyp-spinner--small" />
           </PatternExample>
         </PatternExamples>
       </Pattern>

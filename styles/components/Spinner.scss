@@ -1,5 +1,14 @@
 @use '../mixins/patterns/spinners';
 
-.Hyp-Spinner {
-  @include spinners.spinner;
+.Hyp-Spinner--small {
+  @include spinners.spinner($size: 1em);
+}
+
+.Hyp-Spinner,
+.Hyp-Spinner--medium {
+  @include spinners.spinner($size: 2em);
+}
+
+.Hyp-Spinner--large {
+  @include spinners.spinner($size: 3em);
 }
