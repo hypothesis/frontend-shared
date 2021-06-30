@@ -8,6 +8,7 @@ export { Panel } from './components/Panel';
 export { Spinner } from './components/Spinner';
 export { SvgIcon, registerIcons } from './components/SvgIcon';
 export { TextInput, TextInputWithButton } from './components/TextInput';
+export { Thumbnail } from './components/Thumbnail';
 
 // Hooks
 export { useElementShouldClose } from './hooks/use-element-should-close';
