@@ -10,5 +10,6 @@ export default {
   edit: require('../images/icons/edit.svg'),
   logo: require('../images/icons/logo.svg'),
   profile: require('../images/icons/profile.svg'),
+  spinner: require('../images/icons/spinner.svg'),
   trash: require('../images/icons/trash.svg'),
 };
