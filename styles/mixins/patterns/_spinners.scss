@@ -2,7 +2,7 @@
 
 // Style an SVG as a loading spinner
 @mixin spinner($size: 2em) {
-  color: var.$color-grey-6;
+  color: var.$color-grey-5;
   // Assure that the spinner SVG is sized proportinally to local font-size
   width: $size;
   height: $size;

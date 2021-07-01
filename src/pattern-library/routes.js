@@ -7,6 +7,7 @@ import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
+import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
@@ -14,6 +15,7 @@ import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
 import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
+import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
 /**
  * @typedef {'home'|'foundations'|'patterns'|'components'} PlaygroundRouteGroup
@@ -72,6 +74,12 @@ const routes = [
     group: 'patterns',
   },
   {
+    route: '/patterns-thumbnails',
+    title: 'Thumbnails',
+    component: ThumbnailPatterns,
+    group: 'patterns',
+  },
+  {
     route: '/components-buttons',
     title: 'Buttons',
     component: ButtonComponents,
@@ -105,6 +113,12 @@ const routes = [
     route: '/components-spinner',
     title: 'Spinner',
     component: SpinnerComponents,
+    group: 'components',
+  },
+  {
+    route: '/components-thumbnail',
+    title: 'Thumbnail',
+    component: ThumbnailComponents,
     group: 'components',
   },
 ];
