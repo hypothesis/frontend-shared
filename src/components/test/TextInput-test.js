@@ -33,9 +33,9 @@ describe('TextInput', () => {
   });
 
   it('applies extra classes', () => {
-    createComponent({ classes: 'foo bar' });
+    const wrapper = createComponent({ classes: 'foo bar' });
 
-    assert.exists('div.Hyp-TextInput.foo.bar');
+    assert.isTrue(wrapper.find('.Hyp-TextInput.foo.bar').exists());
   });
 });
 
@@ -49,14 +49,14 @@ describe('TextInputWithButton', () => {
     );
 
   it('wraps children in a container element with appropriate className', () => {
-    createComponent();
+    const wrapper = createComponent();
 
-    assert.exists('div.Hyp-TextInputWithButton');
+    assert.isTrue(wrapper.find('.Hyp-TextInputWithButton').exists());
   });
 
   it('applies extra classes', () => {
-    createComponent({ classes: 'foo bar' });
+    const wrapper = createComponent({ classes: 'foo bar' });
 
-    assert.exists('div.Hyp-TextInputWithButton.foo.bar');
+    assert.isTrue(wrapper.find('.Hyp-TextInputWithButton.foo.bar').exists());
   });
 });
