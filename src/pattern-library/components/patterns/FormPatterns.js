@@ -5,11 +5,37 @@ import {
   Pattern,
 } from '../PatternPage';
 
-import { IconButton } from '../../../components/buttons';
+import { IconButton, SvgIcon } from '../../../';
 
 export default function FormPatterns() {
   return (
     <PatternPage title="Forms">
+      <Pattern title="Checkboxes">
+        <p>
+          A checkbox, styled accessibly with an SVG image. The SVG image is an
+          adjacent sibling to the checkbox <code>input</code>.
+        </p>
+        <PatternExamples>
+          <PatternExample details="checkbox">
+            <input className="hyp-checkbox" type="checkbox" />
+            <SvgIcon name="checkbox" />
+          </PatternExample>
+
+          <PatternExample details="checkbox, checked">
+            <input className="hyp-checkbox" type="checkbox" checked />
+            <SvgIcon name="checkbox" />
+          </PatternExample>
+
+          <PatternExample details="checkbox with label">
+            <label className="hyp-label">
+              <input className="hyp-checkbox" type="checkbox" />
+              <SvgIcon name="checkbox" />
+              <span>Click me, please</span>
+            </label>
+          </PatternExample>
+        </PatternExamples>
+      </Pattern>
+
       <Pattern title="Text inputs">
         <p>
           A pattern for <code>input type=&quot;text&quot;</code>
