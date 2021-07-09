@@ -14,6 +14,7 @@ import {
 export default function FormComponents() {
   const [wantSandwich, setWantSandwich] = useState(true);
   const [wantWatermelon, setWantWatermelon] = useState(false);
+  const [textInputIsError, setTextInputIsError] = useState(true);
   return (
     <PatternPage title="Forms">
       <Pattern title="Checkbox">
@@ -81,10 +82,15 @@ export default function FormComponents() {
             </TextInputWithButton>
           </PatternExample>
 
-          <PatternExample details="text input field in an error state">
+          <PatternExample details="text input field in an error state; click button to toggle error state">
             <TextInputWithButton>
-              <TextInput name="my-input" isError />
-              <IconButton icon="arrow-right" variant="dark" title="go" />
+              <TextInput name="my-input" isError={textInputIsError} />
+              <IconButton
+                icon="arrow-right"
+                variant="dark"
+                title="go"
+                onClick={() => setTextInputIsError(!textInputIsError)}
+              />
             </TextInputWithButton>
           </PatternExample>
         </PatternExamples>

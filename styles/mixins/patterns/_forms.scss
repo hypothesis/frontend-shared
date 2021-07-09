@@ -36,10 +36,7 @@ $-color-text--disabled: var.$color-text--disabled;
 
   &.is-error {
     // Apply an error-colored inset outline.
-    // Remove any outlines or borders to make sure the input element doesn't
-    // change dimensions when applying the inset outline
     outline: none;
-    border: none;
     @include focus.outline-rule($inset: true, $color: $-color-error);
   }
 
