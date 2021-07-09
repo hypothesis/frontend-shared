@@ -58,7 +58,7 @@ export default function FormComponents() {
           </PatternExample>
 
           <PatternExample details="text input field in an error state">
-            <TextInput name="my-input" error />
+            <TextInput name="my-input" isError />
           </PatternExample>
         </PatternExamples>
       </Pattern>
@@ -83,7 +83,7 @@ export default function FormComponents() {
 
           <PatternExample details="text input field in an error state">
             <TextInputWithButton>
-              <TextInput name="my-input" error />
+              <TextInput name="my-input" isError />
               <IconButton icon="arrow-right" variant="dark" title="go" />
             </TextInputWithButton>
           </PatternExample>

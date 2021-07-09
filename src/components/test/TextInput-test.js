@@ -20,7 +20,7 @@ describe('TextInput', () => {
   });
 
   it('applies an error class when in error', () => {
-    const wrapper = createComponent({ error: true });
+    const wrapper = createComponent({ isError: true });
 
     assert.isTrue(wrapper.find('input').hasClass('is-error'));
   });
