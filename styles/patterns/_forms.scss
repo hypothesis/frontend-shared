@@ -7,3 +7,11 @@
 .hyp-text-input-with-button {
   @include forms.text-input-with-button;
 }
+
+.hyp-label {
+  @include forms.label;
+}
+
+.hyp-checkbox {
+  @include forms.checkbox;
+}
