@@ -17,9 +17,9 @@ describe('Frame', () => {
   });
 
   it('applies extra classes', () => {
-    createComponent({ classes: 'foo bar' });
+    const wrapper = createComponent({ classes: 'foo bar' });
 
-    assert.exists('div.Hyp-Frame.foo.bar');
+    assert.isTrue(wrapper.find('div.Hyp-Frame.foo.bar').exists());
   });
 });
 
@@ -38,9 +38,9 @@ describe('Card', () => {
   });
 
   it('applies extra classes', () => {
-    createComponent({ classes: 'foo bar' });
+    const wrapper = createComponent({ classes: 'foo bar' });
 
-    assert.exists('div.Hyp-Card.foo.bar');
+    assert.isTrue(wrapper.find('div.Hyp-Card.foo.bar').exists());
   });
 });
 
@@ -59,14 +59,14 @@ describe('Actions', () => {
   });
 
   it('applies extra classes', () => {
-    createComponent({ classes: 'foo bar' });
+    const wrapper = createComponent({ classes: 'foo bar' });
 
-    assert.exists('div.Hyp-Actions--row.foo.bar');
+    assert.isTrue(wrapper.find('div.Hyp-Actions--row.foo.bar').exists());
   });
 
   it('applies columnar layout if `direction` is `column`', () => {
-    createComponent({ direction: 'column' });
+    const wrapper = createComponent({ direction: 'column' });
 
-    assert.exists('div.Hyp-Actions--column');
+    assert.isTrue(wrapper.find('div.Hyp-Actions--column').exists());
   });
 });

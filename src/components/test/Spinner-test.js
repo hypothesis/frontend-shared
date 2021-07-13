@@ -8,18 +8,18 @@ describe('Spinner', () => {
   const createSpinner = (props = {}) => mount(<Spinner {...props} />);
 
   it('renders', () => {
-    createSpinner();
-    assert.exists('span.Hyp-Spinner--medium');
+    const wrapper = createSpinner();
+    assert.isTrue(wrapper.find('SvgIcon.Hyp-Spinner--medium').exists());
   });
 
   it('applies additional classes', () => {
-    createSpinner({ classes: 'foo bar' });
-    assert.exists('span.Hyp-Spinner--medium.foo.bar');
+    const wrapper = createSpinner({ classes: 'foo bar' });
+    assert.isTrue(wrapper.find('SvgIcon.Hyp-Spinner--medium.foo.bar').exists());
   });
 
   it('sets indicated size', () => {
-    createSpinner({ size: 'xlarge' });
-    assert.exists('span.Hyp-Spinner--large.foo.bar');
+    const wrapper = createSpinner({ size: 'large' });
+    assert.isTrue(wrapper.find('SvgIcon.Hyp-Spinner--large').exists());
   });
 
   it(
