@@ -7,7 +7,7 @@ import classnames from 'classnames';
  * @prop {string} [classes] - Additional CSS classes to apply
  * @prop {import('preact').Ref<HTMLInputElement>} [inputRef] - Optional ref for
  *   the rendered `input` element.
- * @prop {boolean} [isError] - There is an error associated with this input. Will
+ * @prop {boolean} [hasError] - There is an error associated with this input. Will
  *   set some error styling.
  */
 
@@ -32,12 +32,16 @@ import classnames from 'classnames';
 export function TextInput({
   classes = '',
   inputRef,
-  isError = false,
+  hasError = false,
   ...restProps
 }) {
   return (
     <input
-      className={classnames('Hyp-TextInput', { 'is-error': isError }, classes)}
+      className={classnames(
+        'Hyp-TextInput',
+        { 'has-error': hasError },
+        classes
+      )}
       {...restProps}
       ref={inputRef}
       type="text"

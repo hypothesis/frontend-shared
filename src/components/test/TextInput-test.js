@@ -10,7 +10,7 @@ describe('TextInput', () => {
     const wrapper = createComponent();
 
     assert.isTrue(wrapper.find('input').hasClass('Hyp-TextInput'));
-    assert.isFalse(wrapper.find('input').hasClass('is-error'));
+    assert.isFalse(wrapper.find('input').hasClass('has-error'));
   });
 
   it('ignores `type` property and sets `type` to `text`', () => {
@@ -20,9 +20,9 @@ describe('TextInput', () => {
   });
 
   it('applies an error class when in error', () => {
-    const wrapper = createComponent({ isError: true });
+    const wrapper = createComponent({ hasError: true });
 
-    assert.isTrue(wrapper.find('input').hasClass('is-error'));
+    assert.isTrue(wrapper.find('input').hasClass('has-error'));
   });
 
   it('passes along a `ref` to the input element through `inputRef`', () => {

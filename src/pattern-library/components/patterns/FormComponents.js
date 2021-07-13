@@ -14,7 +14,7 @@ import {
 export default function FormComponents() {
   const [wantSandwich, setWantSandwich] = useState(true);
   const [wantWatermelon, setWantWatermelon] = useState(false);
-  const [textInputIsError, setTextInputIsError] = useState(true);
+  const [textInputHasError, setTextInputHasError] = useState(true);
   return (
     <PatternPage title="Forms">
       <Pattern title="Checkbox">
@@ -59,7 +59,7 @@ export default function FormComponents() {
           </PatternExample>
 
           <PatternExample details="text input field in an error state">
-            <TextInput name="my-input" isError />
+            <TextInput name="my-input" hasError />
           </PatternExample>
         </PatternExamples>
       </Pattern>
@@ -84,12 +84,12 @@ export default function FormComponents() {
 
           <PatternExample details="text input field in an error state; click button to toggle error state">
             <TextInputWithButton>
-              <TextInput name="my-input" isError={textInputIsError} />
+              <TextInput name="my-input" hasError={textInputHasError} />
               <IconButton
                 icon="arrow-right"
                 variant="dark"
                 title="go"
-                onClick={() => setTextInputIsError(!textInputIsError)}
+                onClick={() => setTextInputHasError(!textInputHasError)}
               />
             </TextInputWithButton>
           </PatternExample>

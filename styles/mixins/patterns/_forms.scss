@@ -34,6 +34,7 @@ $-color-text--disabled: var.$color-text--disabled;
 @mixin text-input {
   @include input;
 
+  &.has-error,
   &.is-error {
     // Apply an error-colored inset outline.
     outline: none;
