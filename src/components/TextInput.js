@@ -5,10 +5,10 @@ import classnames from 'classnames';
  *
  * @typedef TextInputBaseProps
  * @prop {string} [classes] - Additional CSS classes to apply
- * @prop {boolean} [error] - There is an error associated with this input. Will
- *   set some error styling.
  * @prop {import('preact').Ref<HTMLInputElement>} [inputRef] - Optional ref for
  *   the rendered `input` element.
+ * @prop {boolean} [hasError] - There is an error associated with this input. Will
+ *   set some error styling.
  */
 
 /**
@@ -29,10 +29,19 @@ import classnames from 'classnames';
  *
  * @param {TextInputProps} props
  */
-export function TextInput({ classes = '', error, inputRef, ...restProps }) {
+export function TextInput({
+  classes = '',
+  inputRef,
+  hasError = false,
+  ...restProps
+}) {
   return (
     <input
-      className={classnames('Hyp-TextInput', { 'is-error': error }, classes)}
+      className={classnames(
+        'Hyp-TextInput',
+        { 'has-error': hasError },
+        classes
+      )}
       {...restProps}
       ref={inputRef}
       type="text"

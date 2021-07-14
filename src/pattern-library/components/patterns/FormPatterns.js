@@ -50,7 +50,7 @@ export default function FormPatterns() {
           </PatternExample>
           <PatternExample details="text input in an error state">
             <input
-              className="hyp-text-input is-error"
+              className="hyp-text-input has-error"
               type="text"
               placeholder="http://www.example.com"
             />
@@ -81,7 +81,7 @@ export default function FormPatterns() {
               <input
                 type="text"
                 placeholder="http://www.example.com"
-                className="is-error"
+                className="has-error"
               />
               <IconButton icon="arrow-right" title="go" variant="dark" />
             </div>
