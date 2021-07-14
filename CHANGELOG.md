@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.5.0] - 2021-07-14
+
+Renames a prop and adjusts error state for `TextInput`.
+
+### Breaking Changes
+
+- Change `error` prop to `hasError` on `TextInput` [#140](https://github.com/hypothesis/frontend-shared/pull/140)
+
+### Changed
+
+- Update structure of checkbox styling to match other patterns [#142](https://github.com/hypothesis/frontend-shared/pull/142)
+- Remediate broken tests using `assert.exists` [#141](https://github.com/hypothesis/frontend-shared/pull/141)
+
 ## [v3.4.0] - 2021-07-01
 
 Provides `Spinner` and `Thumbnail` components.
