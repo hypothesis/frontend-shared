@@ -39,9 +39,13 @@ $-color-focus-outline: var.$color-focus-outline;
  */
 @mixin outline-on-keyboard-focus($inset: false) {
   @include outline($inset);
-  // Selector for browsers using JS polyfill, which adds the "focus-visible"
-  // class to a keyboard-focused element.
-  &:focus:not(.focus-visible) {
+
+  // For browsers using the https://github.com/WICG/focus-visible polyfill,
+  // add a selector for the classname assigned by that polyfill to indicate
+  // :focus-visible equivalence for browsers that don't natively support it.
+  // The `.js-focus-visible` class indicates the presence of the polyfill,
+  // and is assigned to a container element.
+  .js-focus-visible &:focus:not(.focus-visible) {
     @include outline--hide;
   }
 
