@@ -1,6 +1,14 @@
 import { createRef, render } from 'preact';
 import { useState } from 'preact/hooks';
-import { ConfirmModal, Dialog, LabeledButton, Modal } from '../../../';
+import {
+  ConfirmModal,
+  Dialog,
+  LabeledButton,
+  Modal,
+  TextInputWithButton,
+  TextInput,
+  IconButton,
+} from '../../../';
 
 import Library from '../Library';
 
@@ -72,6 +80,8 @@ export default function DialogComponents() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   // Basic Modal example
   const [, setModalIsOpen] = useState(false);
+  // Modal with manual focus control
+  const [, setFocusModalIsOpen] = useState(false);
   // Modal with overflowing content example
   const [, setLongModalIsOpen] = useState(false);
   // ConfirmModal example
@@ -115,6 +125,37 @@ export default function DialogComponents() {
         buttons,
       },
     });
+  };
+
+  const openFocusModal = () => {
+    const inputRef = createRef();
+    const children = (
+      <>
+        <div>
+          The input here is manually focused after the <code>Modal</code> is
+          opened.
+        </div>
+        <TextInputWithButton>
+          <TextInput inputRef={inputRef} />
+          <IconButton icon="edit" title="go" variant="dark" />
+        </TextInputWithButton>
+      </>
+    );
+    setFocusModalIsOpen(true);
+    showDialog({
+      DialogComponent: Modal,
+      container: /** @type {HTMLElement} */ (document.getElementById(
+        'modalFocus'
+      )),
+      setOpen: setFocusModalIsOpen,
+      props: {
+        buttons,
+        children,
+        initialFocus: null,
+      },
+    });
+    // This is possible because the Dialog has not grabbed focus
+    inputRef.current.focus();
   };
 
   const openLongModal = () => {
@@ -279,6 +320,30 @@ export default function DialogComponents() {
             <div>
               <div id="modal1" />
               <LabeledButton variant="primary" onClick={openModal}>
+                Open modal
+              </LabeledButton>
+            </div>
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Manual focus control">
+          <p>
+            In some cases, you might need more manual control of focus routing.
+            This might arise if you have nested components within a{' '}
+            <code>Modal</code> or <code>Dialog</code>, or there is complex logic
+            about focus. Setting the <code>initialFocus</code> prop to{' '}
+            <code>null</code> will opt out of automatic focus handling.
+          </p>
+          <p>
+            In this example, automatic focus is disabled. When the{' '}
+            <code>Modal</code> is opened, a contained <code>TextInput</code>{' '}
+            component is manually set to focused.
+          </p>
+
+          <Library.Demo>
+            <div>
+              <div id="modalFocus" />
+              <LabeledButton variant="primary" onClick={openFocusModal}>
                 Open modal
               </LabeledButton>
             </div>
