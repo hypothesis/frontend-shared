@@ -118,18 +118,16 @@ describe('Dialog', () => {
       );
     });
 
-    it('focuses the dialog if `initialFocus` ref is `null`', () => {
-      const wrapper = mount(
-        <Dialog initialFocus={{ current: null }} title="My dialog">
+    it('does not set focus if `initialFocus` is set to `null`', () => {
+      const focusedBefore = document.activeElement;
+      mount(
+        <Dialog initialFocus={null} title="My dialog">
           <div>Test</div>
         </Dialog>,
         { attachTo: container }
       );
 
-      assert.equal(
-        document.activeElement,
-        wrapper.find('[role="dialog"]').getDOMNode()
-      );
+      assert.equal(document.activeElement, focusedBefore);
     });
 
     it('focuses the dialog if `initialFocus` element is disabled', () => {
