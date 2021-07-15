@@ -1,66 +1,70 @@
-import { Frame, Card, Actions } from '../../../components/containers';
-import { LabeledButton } from '../../../components/buttons';
+import { Frame, Card, Actions } from '../../..';
+import { LabeledButton } from '../../..';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 export default function ContainerComponents() {
   return (
-    <PatternPage title="Containers">
-      <Pattern title="Frame">
-        <p>
-          The <code>Frame</code> component pattern provides a framed layout with
-          padding and vertical spacing of children.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Laying out content in a Frame">
+    <Library.Page title="Containers">
+      <Library.Pattern title="Frame">
+        <Library.Example title="Laying out content in a Frame">
+          <p>
+            The <code>Frame</code> component renders content inside of a{' '}
+            <code>frame</code> design pattern.
+          </p>
+          <Library.Demo withSource>
             <Frame>
               <div>This content is inside of a frame.</div>
               <div>This content is inside of a frame.</div>
             </Frame>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Card">
+      <Library.Pattern title="Card">
         <p>
           The <code>Card</code> component pattern provides a card-like layout
-          that builds on <code>Frame</code>.
+          using the <code>card</code> pattern.
         </p>
-        <PatternExamples>
-          <PatternExample details="Laying out content in a Card">
+        <Library.Example title="Laying out content in a Card">
+          <Library.Demo withSource>
             <Card>
               <div>This content is inside of a card.</div>
               <div>This content is inside of a card.</div>
             </Card>
-          </PatternExample>
-
-          <PatternExample details="Example of overriding background color">
+          </Library.Demo>
+        </Library.Example>
+        <Library.Example title="Overriding styles">
+          <p>
+            This example shows overriding the background color of a{' '}
+            <code>Card</code> using a utility class.
+          </p>
+          <Library.Demo withSource>
             <Card classes="hyp-u-bg-color--grey-3">
               <div>This content is inside of a card.</div>
               <div>This content is inside of a card.</div>
             </Card>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Actions">
+      <Library.Pattern title="Actions">
         <p>
           The <code>Actions</code> component pattern lays out actions (buttons).
         </p>
-        <PatternExamples>
-          <PatternExample details="Laying out buttons with Actions">
+
+        <Library.Example title="Laying out buttons with Actions">
+          <Library.Demo withSource>
             <Actions>
               <LabeledButton>Cancel</LabeledButton>
               <LabeledButton>Maybe</LabeledButton>
               <LabeledButton variant="primary">OK</LabeledButton>
             </Actions>
-          </PatternExample>
-          <PatternExample details="Laying out buttons vertically with Actions">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Laying out buttons vertically with Actions">
+          <Library.Demo withSource>
             <Actions direction="column">
               <LabeledButton>This is one option</LabeledButton>
               <LabeledButton>This is another option</LabeledButton>
@@ -68,9 +72,9 @@ export default function ContainerComponents() {
                 This is the best option
               </LabeledButton>
             </Actions>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }

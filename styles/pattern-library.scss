@@ -1,5 +1,8 @@
 @use 'base';
 @use 'variables' as var;
+@use './mixins/layout';
+@use './mixins/atoms';
+@use './mixins/patterns/containers';
 
 @use 'index'; // component styles
 @use 'patterns';
@@ -29,7 +32,6 @@ h3 {
   font-size: 1.125em;
   font-weight: normal;
   font-style: italic;
-  margin: 1em 0;
 }
 
 h4 {
@@ -215,5 +217,83 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var.$color-grey-1;
+  }
+}
+
+$-library-vertical-spacing: 7;
+.LibraryPage {
+  // Make sure the content width is not too terribly wide: it gets hard to read
+  max-width: 75rem;
+  @include layout.vertical-spacing($size: $-library-vertical-spacing);
+  // A little breathing room at the bottom of the page, as we don't have
+  // a footer.
+  // TODO: Consolidate padding after removal in future of `PlaygroundApp` styling
+  @include layout.padding($side: top, $size: 5);
+  @include layout.padding($side: bottom, $size: 7);
+
+  &__heading {
+    font-size: 1.75em;
+    font-weight: bold;
+  }
+}
+
+.LibraryPattern {
+  @include layout.vertical-spacing($size: $-library-vertical-spacing);
+  @include atoms.border(top);
+  // The following balances out spacing above and below border
+  @include layout.padding($size: $-library-vertical-spacing, $side: top);
+
+  &__heading {
+    font-size: 1.25rem;
+    width: 100%;
+    border-left: 6px solid var.$color-brand;
+    font-weight: bold;
+    padding-left: 0.5rem;
+  }
+}
+
+.LibraryExample {
+  // Narrower screen/default shows single column
+  @include layout.vertical-spacing($size: $-library-vertical-spacing);
+
+  // Wider screen shows description and demo side-by-side
+  @media screen and (min-width: 60em) {
+    @include layout.row;
+    // Turn off vertical-spacing, as content is side-by-side
+    @include layout.vertical-spacing($size: 0);
+    @include layout.horizontal-spacing($size: 6);
+
+    .LibraryExample__content {
+      width: 50%;
+      @include layout.vertical-spacing($size: $-library-vertical-spacing);
+    }
+  }
+}
+
+.LibraryDemo {
+  &__tabs {
+    @include layout.row;
+    @include layout.horizontal-spacing;
+    // Pull the buttons down into the top of the `container` element below,
+    // so that they look like tabs
+    margin-bottom: -1px;
+  }
+
+  &__container {
+    @include containers.frame;
+    @include layout.row($align: center, $justify: center);
+    // Make the demo take up at least a minimal amount of vertical space
+    min-height: 8rem;
+    background-color: var.$color-grey-1;
+  }
+
+  &__source,
+  &__demo {
+    @include containers.frame;
+    width: 100%;
+  }
+
+  &__demo-content {
+    @include layout.row($align: center, $justify: center);
   }
 }
