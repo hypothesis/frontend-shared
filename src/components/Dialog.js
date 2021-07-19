@@ -38,8 +38,10 @@ function useUniqueId(prefix) {
  * @prop {Children} children
  * @prop {string} [contentClass] - CSS class to apply to the dialog's content
  * @prop {string} [icon] - Name of optional icon to render in header
- * @prop {import("preact/hooks").Ref<HTMLElement>} [initialFocus] -
- *   Child element to focus when the dialog is rendered.
+ * @prop {import("preact/hooks").Ref<HTMLElement>|null} [initialFocus] -
+ *   Child element to focus when the dialog is rendered. If not provided,
+ *   the Dialog's container will be automatically focused on opening. Set to
+ *   `null` to opt out of automatic focus control.
  * @prop {() => void} [onCancel] -
  *   A callback to invoke when the user cancels the dialog. If provided, a
  *   "Cancel" button will be displayed.
@@ -77,15 +79,20 @@ export function Dialog({
   const rootEl = useRef(/** @type {HTMLDivElement | null} */ (null));
 
   useEffect(() => {
-    const focusEl = /** @type {InputElement|undefined} */ (initialFocus?.current);
-    if (focusEl && !focusEl.disabled) {
-      focusEl.focus();
-    } else {
-      // Modern accessibility guidance is to focus the dialog itself rather than
-      // trying to be smart about focusing a particular control within the
-      // dialog. See resources above.
-      rootEl.current.focus();
+    // Setting `initialFocus` to `null` opts out of focus handling
+    if (initialFocus !== null) {
+      const focusEl = /** @type {InputElement|null} */ (initialFocus?.current);
+      if (focusEl && !focusEl.disabled) {
+        focusEl.focus();
+      } else {
+        // The `initialFocus` prop has not been set, so use automatic focus handling.
+        // Modern accessibility guidance is to focus the dialog itself rather than
+        // trying to be smart about focusing a particular control within the
+        // dialog.
+        rootEl.current.focus();
+      }
     }
+
     // We only want to run this effect once when the dialog is mounted.
     //
     // eslint-disable-next-line react-hooks/exhaustive-deps
