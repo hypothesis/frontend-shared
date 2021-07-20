@@ -12,6 +12,11 @@ describe('Spinner', () => {
     assert.isTrue(wrapper.find('SvgIcon.Hyp-Spinner--medium').exists());
   });
 
+  it('uses the registered `hyp-spinner` icon', () => {
+    const wrapper = createSpinner();
+    assert.equal(wrapper.find('SvgIcon').props().name, 'hyp-spinner');
+  });
+
   it('applies additional classes', () => {
     const wrapper = createSpinner({ classes: 'foo bar' });
     assert.isTrue(wrapper.find('SvgIcon.Hyp-Spinner--medium.foo.bar').exists());
