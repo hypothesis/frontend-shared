@@ -78,7 +78,7 @@ export default function FormComponents() {
           <PatternExample details="basic text input field">
             <TextInputWithButton>
               <TextInput name="my-input" />
-              <IconButton icon="arrow-right" variant="dark" title="go" />
+              <IconButton icon="hyp-arrow-right" variant="dark" title="go" />
             </TextInputWithButton>
           </PatternExample>
 
@@ -86,7 +86,7 @@ export default function FormComponents() {
             <TextInputWithButton>
               <TextInput name="my-input" hasError={textInputHasError} />
               <IconButton
-                icon="arrow-right"
+                icon="hyp-arrow-right"
                 variant="dark"
                 title="go"
                 onClick={() => setTextInputHasError(!textInputHasError)}

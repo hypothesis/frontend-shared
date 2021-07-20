@@ -29,7 +29,7 @@ export default function PanelComponents() {
           </PatternExample>
           <PatternExample details="A panel can also have an icon in the header">
             <Panel
-              icon="edit"
+              icon="hyp-edit"
               title="Panel with optional heading icon"
               onClose={() => alert('close clicked')}
             >
@@ -39,7 +39,7 @@ export default function PanelComponents() {
           <PatternExample details="A panel in the clean theme">
             <div className="theme-clean" style="width:100%">
               <Panel
-                icon="edit"
+                icon="hyp-edit"
                 title="Panel with clean-theme styling"
                 onClose={() => alert('close clicked')}
               >

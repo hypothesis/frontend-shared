@@ -61,9 +61,9 @@ export default function ContainerPatterns() {
                 actions.
               </div>
               <div className="hyp-actions">
-                <IconButton title="User" icon="profile" />
-                <IconButton title="Edit" icon="edit" />
-                <IconButton title="Delete" icon="trash" />
+                <IconButton title="User" icon="hyp-profile" />
+                <IconButton title="Edit" icon="hyp-edit" />
+                <IconButton title="Delete" icon="hyp-trash" />
               </div>
             </div>
           </PatternExample>
@@ -75,9 +75,9 @@ export default function ContainerPatterns() {
                   borders or box-shadows.
                 </div>
                 <div className="hyp-actions">
-                  <IconButton title="User" icon="profile" />
-                  <IconButton title="Edit" icon="edit" />
-                  <IconButton title="Delete" icon="trash" />
+                  <IconButton title="User" icon="hyp-profile" />
+                  <IconButton title="Edit" icon="hyp-edit" />
+                  <IconButton title="Delete" icon="hyp-trash" />
                 </div>
               </div>
             </div>
@@ -94,16 +94,16 @@ export default function ContainerPatterns() {
         <PatternExamples>
           <PatternExample details="A set of LabeledButtons">
             <div className="hyp-actions">
-              <LabeledButton icon="profile">User</LabeledButton>
-              <LabeledButton icon="edit">Edit</LabeledButton>
-              <LabeledButton icon="trash">Delete</LabeledButton>
+              <LabeledButton icon="hyp-profile">User</LabeledButton>
+              <LabeledButton icon="hyp-edit">Edit</LabeledButton>
+              <LabeledButton icon="hyp-trash">Delete</LabeledButton>
             </div>
           </PatternExample>
           <PatternExample details="A set of IconButtons">
             <div className="hyp-actions">
-              <IconButton title="User" icon="profile" />
-              <IconButton title="Edit" icon="edit" />
-              <IconButton title="Delete" icon="trash" />
+              <IconButton title="User" icon="hyp-profile" />
+              <IconButton title="Edit" icon="hyp-edit" />
+              <IconButton title="Delete" icon="hyp-trash" />
             </div>
           </PatternExample>
           <PatternExample details="Columnar layout">

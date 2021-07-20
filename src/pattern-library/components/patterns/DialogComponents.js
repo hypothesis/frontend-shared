@@ -63,7 +63,7 @@ const showDialog = ({ DialogComponent, container, setOpen, props }) => {
 
   return render(
     <DialogComponent
-      icon="edit"
+      icon="hyp-edit"
       initialFocus={initialFocusRef}
       title="Basic dialog with icon"
       onCancel={() => close()}
@@ -137,7 +137,7 @@ export default function DialogComponents() {
         </div>
         <TextInputWithButton>
           <TextInput inputRef={inputRef} />
-          <IconButton icon="edit" title="go" variant="dark" />
+          <IconButton icon="hyp-edit" title="go" variant="dark" />
         </TextInputWithButton>
       </>
     );

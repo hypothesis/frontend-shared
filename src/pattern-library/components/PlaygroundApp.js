@@ -54,7 +54,7 @@ export default function PlaygroundApp({
       <div className="PlaygroundApp__sidebar">
         <div className="PlaygroundApp__sidebar-home">
           <a href={baseURL} onClick={e => navigate(e, '/')}>
-            <SvgIcon name="logo" />
+            <SvgIcon name="hyp-logo" />
           </a>
         </div>
         {routeGroups.map(rGroup => (

@@ -22,40 +22,40 @@ export default function ButtonComponents() {
         </p>
         <PatternExamples>
           <PatternExample details="Sizes: medium is default">
-            <IconButton icon="edit" title="Edit" size="small" />
-            <IconButton icon="edit" title="Edit" size="medium" />
-            <IconButton icon="edit" title="Edit" size="large" />
+            <IconButton icon="hyp-edit" title="Edit" size="small" />
+            <IconButton icon="hyp-edit" title="Edit" size="medium" />
+            <IconButton icon="hyp-edit" title="Edit" size="large" />
           </PatternExample>
         </PatternExamples>
 
         <h3>Default variant</h3>
         <PatternExamples>
           <PatternExample details="Default state">
-            <IconButton icon="trash" title="Delete annotation" />
+            <IconButton icon="hyp-trash" title="Delete annotation" />
           </PatternExample>
 
           <PatternExample details="Pressed">
-            <IconButton icon="trash" title="Delete annotation" pressed />
+            <IconButton icon="hyp-trash" title="Delete annotation" pressed />
           </PatternExample>
 
           <PatternExample details="Expanded">
-            <IconButton icon="trash" title="Delete annotation" expanded />
+            <IconButton icon="hyp-trash" title="Delete annotation" expanded />
           </PatternExample>
 
           <PatternExample details="Disabled">
-            <IconButton icon="trash" title="Delete annotation" disabled />
+            <IconButton icon="hyp-trash" title="Delete annotation" disabled />
           </PatternExample>
         </PatternExamples>
 
         <h3>Primary variant</h3>
         <PatternExamples>
           <PatternExample details="Basic usage">
-            <IconButton icon="edit" title="Edit" variant="primary" />
+            <IconButton icon="hyp-edit" title="Edit" variant="primary" />
           </PatternExample>
 
           <PatternExample details="Pressed">
             <IconButton
-              icon="trash"
+              icon="hyp-trash"
               title="Delete annotation"
               pressed
               variant="primary"
@@ -64,7 +64,7 @@ export default function ButtonComponents() {
 
           <PatternExample details="Expanded">
             <IconButton
-              icon="trash"
+              icon="hyp-trash"
               title="Delete annotation"
               expanded
               variant="primary"
@@ -73,7 +73,7 @@ export default function ButtonComponents() {
 
           <PatternExample details="Disabled">
             <IconButton
-              icon="trash"
+              icon="hyp-trash"
               title="Delete annotation"
               disabled
               variant="primary"
@@ -95,31 +95,46 @@ export default function ButtonComponents() {
             details="Basic usage"
             style={{ backgroundColor: '#ececec' }}
           >
-            <IconButton icon="cancel" title="Close" variant="dark" />
+            <IconButton icon="hyp-cancel" title="Close" variant="dark" />
           </PatternExample>
           <PatternExample
             details="Note that the button has a background color"
             style={{ backgroundColor: '#ffffff' }}
           >
-            <IconButton icon="cancel" title="Close" variant="dark" />
+            <IconButton icon="hyp-cancel" title="Close" variant="dark" />
           </PatternExample>
           <PatternExample
             details="Pressed"
             style={{ backgroundColor: '#ececec' }}
           >
-            <IconButton icon="cancel" title="Close" variant="dark" pressed />
+            <IconButton
+              icon="hyp-cancel"
+              title="Close"
+              variant="dark"
+              pressed
+            />
           </PatternExample>
           <PatternExample
             details="Expanded"
             style={{ backgroundColor: '#ececec' }}
           >
-            <IconButton icon="cancel" title="Close" variant="dark" expanded />
+            <IconButton
+              icon="hyp-cancel"
+              title="Close"
+              variant="dark"
+              expanded
+            />
           </PatternExample>
           <PatternExample
             details="Disabled"
             style={{ backgroundColor: '#ececec' }}
           >
-            <IconButton icon="cancel" title="Close" variant="dark" disabled />
+            <IconButton
+              icon="hyp-cancel"
+              title="Close"
+              variant="dark"
+              disabled
+            />
           </PatternExample>
         </PatternExamples>
 
@@ -133,7 +148,7 @@ export default function ButtonComponents() {
             details="Basic usage"
             style={{ backgroundColor: 'white' }}
           >
-            <IconButton icon="collapsed" title="Edit" variant="light" />
+            <IconButton icon="hyp-collapsed" title="Edit" variant="light" />
           </PatternExample>
 
           <PatternExample
@@ -141,7 +156,7 @@ export default function ButtonComponents() {
             style={{ backgroundColor: 'white' }}
           >
             <IconButton
-              icon="collapsed"
+              icon="hyp-collapsed"
               title="Delete annotation"
               pressed
               variant="light"
@@ -153,7 +168,7 @@ export default function ButtonComponents() {
             style={{ backgroundColor: 'white' }}
           >
             <IconButton
-              icon="collapsed"
+              icon="hyp-collapsed"
               title="Delete annotation"
               expanded
               variant="light"
@@ -165,7 +180,7 @@ export default function ButtonComponents() {
             style={{ backgroundColor: 'white' }}
           >
             <IconButton
-              icon="collapsed"
+              icon="hyp-collapsed"
               title="Delete annotation"
               disabled
               variant="light"
@@ -191,23 +206,23 @@ export default function ButtonComponents() {
           </PatternExample>
 
           <PatternExample details="Label and icon">
-            <LabeledButton icon="profile" size="small">
+            <LabeledButton icon="hyp-profile" size="small">
               Edit User
             </LabeledButton>
-            <LabeledButton icon="profile">Edit User</LabeledButton>
-            <LabeledButton icon="profile" size="large">
+            <LabeledButton icon="hyp-profile">Edit User</LabeledButton>
+            <LabeledButton icon="hyp-profile" size="large">
               Edit User
             </LabeledButton>
           </PatternExample>
 
           <PatternExample details="Label and icon: icon on right">
-            <LabeledButton icon="profile" size="small" iconPosition="right">
+            <LabeledButton icon="hyp-profile" size="small" iconPosition="right">
               Edit User
             </LabeledButton>
-            <LabeledButton icon="profile" iconPosition="right">
+            <LabeledButton icon="hyp-profile" iconPosition="right">
               Edit User
             </LabeledButton>
-            <LabeledButton icon="profile" size="large" iconPosition="right">
+            <LabeledButton icon="hyp-profile" size="large" iconPosition="right">
               Edit User
             </LabeledButton>
           </PatternExample>
@@ -218,26 +233,26 @@ export default function ButtonComponents() {
         <PatternExamples>
           <PatternExample details="Default state">
             <LabeledButton>Edit</LabeledButton>
-            <LabeledButton icon="edit">Edit</LabeledButton>
+            <LabeledButton icon="hyp-edit">Edit</LabeledButton>
           </PatternExample>
 
           <PatternExample details="Pressed">
             <LabeledButton pressed>Edit</LabeledButton>
-            <LabeledButton icon="edit" pressed>
+            <LabeledButton icon="hyp-edit" pressed>
               Edit
             </LabeledButton>
           </PatternExample>
 
           <PatternExample details="Expanded">
             <LabeledButton expanded>Edit</LabeledButton>
-            <LabeledButton icon="edit" expanded>
+            <LabeledButton icon="hyp-edit" expanded>
               Edit
             </LabeledButton>
           </PatternExample>
 
           <PatternExample details="Disabled">
             <LabeledButton disabled>Edit</LabeledButton>
-            <LabeledButton icon="edit" disabled>
+            <LabeledButton icon="hyp-edit" disabled>
               Edit
             </LabeledButton>
           </PatternExample>
@@ -248,7 +263,7 @@ export default function ButtonComponents() {
         <PatternExamples>
           <PatternExample details="Default state">
             <LabeledButton variant="primary">Edit user</LabeledButton>
-            <LabeledButton icon="profile" variant="primary">
+            <LabeledButton icon="hyp-profile" variant="primary">
               Edit user
             </LabeledButton>
           </PatternExample>
@@ -257,7 +272,7 @@ export default function ButtonComponents() {
             <LabeledButton pressed variant="primary">
               Edit user
             </LabeledButton>
-            <LabeledButton icon="profile" pressed variant="primary">
+            <LabeledButton icon="hyp-profile" pressed variant="primary">
               Edit user
             </LabeledButton>
           </PatternExample>
@@ -266,7 +281,7 @@ export default function ButtonComponents() {
             <LabeledButton expanded variant="primary">
               Edit user
             </LabeledButton>
-            <LabeledButton icon="profile" expanded variant="primary">
+            <LabeledButton icon="hyp-profile" expanded variant="primary">
               Edit user
             </LabeledButton>
           </PatternExample>
@@ -275,7 +290,7 @@ export default function ButtonComponents() {
             <LabeledButton disabled variant="primary">
               Edit user
             </LabeledButton>
-            <LabeledButton icon="profile" disabled variant="primary">
+            <LabeledButton icon="hyp-profile" disabled variant="primary">
               Edit user
             </LabeledButton>
           </PatternExample>
@@ -290,7 +305,7 @@ export default function ButtonComponents() {
             style={{ backgroundColor: '#ececec' }}
           >
             <LabeledButton variant="dark">Buy ice cream</LabeledButton>
-            <LabeledButton icon="trash" variant="dark">
+            <LabeledButton icon="hyp-trash" variant="dark">
               Buy ice cream
             </LabeledButton>
           </PatternExample>
@@ -302,7 +317,7 @@ export default function ButtonComponents() {
             <LabeledButton pressed variant="dark">
               Buy ice cream
             </LabeledButton>
-            <LabeledButton icon="trash" pressed variant="dark">
+            <LabeledButton icon="hyp-trash" pressed variant="dark">
               Buy ice cream
             </LabeledButton>
           </PatternExample>
@@ -314,7 +329,7 @@ export default function ButtonComponents() {
             <LabeledButton expanded variant="dark">
               Buy ice cream
             </LabeledButton>
-            <LabeledButton expanded icon="edit" variant="dark">
+            <LabeledButton expanded icon="hyp-edit" variant="dark">
               Buy ice cream
             </LabeledButton>
           </PatternExample>
@@ -326,7 +341,7 @@ export default function ButtonComponents() {
             <LabeledButton disabled variant="dark">
               Buy ice cream
             </LabeledButton>
-            <LabeledButton disabled icon="edit" variant="dark">
+            <LabeledButton disabled icon="hyp-edit" variant="dark">
               Buy ice cream
             </LabeledButton>
           </PatternExample>

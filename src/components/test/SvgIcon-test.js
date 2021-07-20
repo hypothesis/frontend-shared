@@ -15,8 +15,8 @@ describe('SvgIcon', () => {
 
     registerIcons(
       {
-        'arrow-left': require('../../../images/icons/arrow-left.svg'),
-        'arrow-right': require('../../../images/icons/arrow-right.svg'),
+        'hyp-arrow-left': require('../../../images/icons/arrow-left.svg'),
+        'hyp-arrow-right': require('../../../images/icons/arrow-right.svg'),
       },
       { reset: true }
     );
@@ -28,7 +28,7 @@ describe('SvgIcon', () => {
 
   it("sets the element's content to the content of the SVG", () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" />, container);
+    render(<SvgIcon name="hyp-arrow-left" />, container);
     assert.ok(container.querySelector('svg'));
   });
 
@@ -41,29 +41,38 @@ describe('SvgIcon', () => {
 
   it('does not set the class of the SVG by default', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" />, container);
+    render(<SvgIcon name="hyp-arrow-left" />, container);
     const svg = container.querySelector('svg');
     assert.equal(svg.getAttribute('class'), '');
   });
 
   it('sets the class of the SVG if provided', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" className="thing__icon" />, container);
+    render(
+      <SvgIcon name="hyp-arrow-left" className="thing__icon" />,
+      container
+    );
     const svg = container.querySelector('svg');
     assert.equal(svg.getAttribute('class'), 'thing__icon');
   });
 
   it('retains the CSS class if the icon changes', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" className="thing__icon" />, container);
-    render(<SvgIcon name="arrow-right" className="thing__icon" />, container);
+    render(
+      <SvgIcon name="hyp-arrow-left" className="thing__icon" />,
+      container
+    );
+    render(
+      <SvgIcon name="hyp-arrow-right" className="thing__icon" />,
+      container
+    );
     const svg = container.querySelector('svg');
     assert.equal(svg.getAttribute('class'), 'thing__icon');
   });
 
   it('sets a default class on the wrapper element', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" />, container);
+    render(<SvgIcon name="hyp-arrow-left" />, container);
     const wrapper = container.querySelector('span');
     assert.isTrue(wrapper.classList.contains('Hyp-SvgIcon'));
     assert.isFalse(wrapper.classList.contains('Hyp-SvgIcon--inline'));
@@ -71,7 +80,7 @@ describe('SvgIcon', () => {
 
   it('appends an inline class to wrapper if `inline` prop is `true`', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" inline={true} />, container);
+    render(<SvgIcon name="hyp-arrow-left" inline={true} />, container);
     const wrapper = container.querySelector('span');
     assert.isTrue(wrapper.classList.contains('Hyp-SvgIcon'));
     assert.isTrue(wrapper.classList.contains('Hyp-SvgIcon--inline'));
@@ -79,14 +88,14 @@ describe('SvgIcon', () => {
 
   it('sets a title to the containing `span` element if `title` is present', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" title="Open menu" />, container);
+    render(<SvgIcon name="hyp-arrow-left" title="Open menu" />, container);
     const wrapper = container.querySelector('span');
     assert.equal(wrapper.getAttribute('title'), 'Open menu');
   });
 
   it('sets does not set a title on the containing `span` element if `title` not present', () => {
     const container = document.createElement('div');
-    render(<SvgIcon name="arrow-left" />, container);
+    render(<SvgIcon name="hyp-arrow-left" />, container);
     const wrapper = container.querySelector('span');
     assert.notOk(wrapper.getAttribute('title'));
   });

@@ -44,7 +44,7 @@ describe('Dialog', () => {
   });
 
   it('renders an icon', () => {
-    const wrapper = mount(<Dialog title="Test dialog" icon="edit" />);
+    const wrapper = mount(<Dialog title="Test dialog" icon="hyp-edit" />);
     const icon = wrapper.find('SvgIcon[data-testid="header-icon"]');
     assert.isTrue(icon.exists());
   });

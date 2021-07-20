@@ -18,18 +18,18 @@ export default function FormPatterns() {
         <PatternExamples>
           <PatternExample details="checkbox">
             <input className="hyp-checkbox" type="checkbox" />
-            <SvgIcon name="checkbox" />
+            <SvgIcon name="hyp-checkbox" />
           </PatternExample>
 
           <PatternExample details="checkbox, checked">
             <input className="hyp-checkbox" type="checkbox" checked />
-            <SvgIcon name="checkbox" />
+            <SvgIcon name="hyp-checkbox" />
           </PatternExample>
 
           <PatternExample details="checkbox with label">
             <label className="hyp-label">
               <input className="hyp-checkbox" type="checkbox" />
-              <SvgIcon name="checkbox" />
+              <SvgIcon name="hyp-checkbox" />
               <span>Click me, please</span>
             </label>
           </PatternExample>
@@ -69,7 +69,7 @@ export default function FormPatterns() {
           >
             <div className="hyp-text-input-with-button">
               <input type="text" placeholder="http://www.example.com" />
-              <IconButton icon="arrow-right" title="go" variant="dark" />
+              <IconButton icon="hyp-arrow-right" title="go" variant="dark" />
             </div>
           </PatternExample>
 
@@ -83,7 +83,7 @@ export default function FormPatterns() {
                 placeholder="http://www.example.com"
                 className="has-error"
               />
-              <IconButton icon="arrow-right" title="go" variant="dark" />
+              <IconButton icon="hyp-arrow-right" title="go" variant="dark" />
             </div>
           </PatternExample>
         </PatternExamples>
