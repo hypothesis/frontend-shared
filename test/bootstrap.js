@@ -9,11 +9,13 @@ import { Adapter } from 'enzyme-adapter-preact-pure';
 
 configure({ adapter: new Adapter() });
 
-// Make all the icons that are available for use with `SvgIcon` in the actual
-// app available in the tests. This enables validation of icon names passed to
-// `SvgIcon`.
-import testIcons from '../src/icons';
+// Register a single (fake) icon, `hyp-test` for test-use convenience
+// No other icons are registered; components are responsible for registering
+// their own needed icons
 import { registerIcons } from '../src/components/SvgIcon';
+const testIcons = {
+  'hyp-test': require('../images/icons/logo.svg'),
+};
 registerIcons(testIcons);
 
 // Ensure that uncaught exceptions between tests result in the tests failing.
