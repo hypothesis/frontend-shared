@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64">
+  <g stroke-width="6" stroke="currentColor" stroke-linecap="round">
+    <line y1="16" y2="28" transform="translate(32,32) rotate(180)">
+      <animate attributeName="stroke-opacity" dur="750ms" values="0;1;.8;.65;.45;.3;.15;0" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(225)">
+      <animate attributeName="stroke-opacity" dur="750ms" values=".15;0;1;.8;.65;.45;.3;.15" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(270)">
+      <animate attributeName="stroke-opacity" dur="750ms" values=".3;.15;0;1;.8;.65;.45;.3" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(315)">
+      <animate attributeName="stroke-opacity" dur="750ms" values=".45;.3;.15;0;1;.85;.65;.45" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(0)">
+      <animate attributeName="stroke-opacity" dur="750ms" values=".65;.45;.3;.15;0;1;.8;.65;" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(45)">
+      <animate attributeName="stroke-opacity" dur="750ms" values=".8;.65;.45;.3;.15;0;1;.8" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(90)">
+      <animate attributeName="stroke-opacity" dur="750ms" values="1;.85;.6;.45;.3;.15;0;1;" repeatCount="indefinite"></animate>
+    </line>
+    <line y1="16" y2="28" transform="translate(32,32) rotate(135)">
+      <animate attributeName="stroke-opacity" dur="750ms" values="0;1;.8;.65;.45;.3;.15;0" repeatCount="indefinite"></animate>
+    </line>
+  </g>
+</svg>

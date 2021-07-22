@@ -22,13 +22,13 @@ export default function SpinnerPatterns() {
         </p>
         <PatternExamples>
           <PatternExample details="basic spinner">
-            <SvgIcon name="spinner" className="hyp-spinner" />
+            <SvgIcon name="hyp-spinner" className="hyp-spinner" />
           </PatternExample>
           <PatternExample details="spinner, large size">
-            <SvgIcon name="spinner" className="hyp-spinner--large" />
+            <SvgIcon name="hyp-spinner" className="hyp-spinner--large" />
           </PatternExample>
           <PatternExample details="spinner, small size">
-            <SvgIcon name="spinner" className="hyp-spinner--small" />
+            <SvgIcon name="hyp-spinner" className="hyp-spinner--small" />
           </PatternExample>
         </PatternExamples>
       </Pattern>
