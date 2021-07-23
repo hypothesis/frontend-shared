@@ -1,28 +1,31 @@
-import { Spinner } from '../../..';
+import Library from '../Library';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import { Spinner } from '../../..';
 
 export default function SpinnerComponents() {
   return (
-    <PatternPage title="Spinner">
-      <Pattern title="Spinner">
-        <PatternExamples>
-          <PatternExample details="basic loading spinner">
+    <Library.Page title="Spinner">
+      <p>
+        The <code>Spinner</code> component is based on the <code>spinner</code>{' '}
+        pattern and renders an animated SVG.
+      </p>
+      <Library.Pattern title="Spinner">
+        <Library.Example title="Basic usage">
+          <Library.Demo withSource>
             <Spinner />
-          </PatternExample>
-          <PatternExample details="loading spinner, large">
-            <Spinner size="large" />
-          </PatternExample>
-          <PatternExample details="loading spinner, small">
+          </Library.Demo>
+        </Library.Example>
+        <Library.Example title="Small size">
+          <Library.Demo withSource>
             <Spinner size="small" />
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+        <Library.Example title="Large size">
+          <Library.Demo withSource>
+            <Spinner size="large" />
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
