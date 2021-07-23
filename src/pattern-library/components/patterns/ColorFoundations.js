@@ -1,20 +1,16 @@
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 // TODO:
 // - color descriptions and guidance
 // - hex and other metadata about colors
-// - more sophisticated "swatches"
 // - foreground color examples
 // - more examples of overriding with `!` classes
 // - valid contrast combinations
 
-const backgroundExamples = [
-  'brand',
+const brand = ['brand'];
+
+const greys = [
+  'white',
   'grey-0',
   'grey-1',
   'grey-2',
@@ -25,39 +21,56 @@ const backgroundExamples = [
   'grey-7',
   'grey-8',
   'grey-9',
-  'success',
-  'notice',
-  'error',
-].map(colorName => {
+];
+
+const states = ['success', 'notice', 'error'];
+
+function ColorSwatch({ colorName }) {
   return (
-    <PatternExample details={`${colorName}`} key={`bg-${colorName}`}>
+    <div>
       <div
-        key={colorName}
-        className={`PatternSwatch hyp-u-bg-color--${colorName}`}
+        className={`hyp-u-bg-color--${colorName}`}
+        style="width:16rem;height:2rem;margin-right:1em"
       />
-    </PatternExample>
+      <p>
+        <i>{colorName}</i>
+      </p>
+    </div>
   );
-});
+}
+
+const brandExamples = brand.map(colorName => (
+  <ColorSwatch key={colorName} colorName={colorName} />
+));
+
+const greyExamples = greys.map(colorName => (
+  <ColorSwatch key={colorName} colorName={colorName} />
+));
+
+const stateExamples = states.map(colorName => (
+  <ColorSwatch key={colorName} colorName={colorName} />
+));
 
 export default function ColorFoundations() {
   return (
-    <PatternPage title="Colors">
-      <Pattern title="Color swatches">
-        <PatternExamples>{backgroundExamples}</PatternExamples>
-      </Pattern>
+    <Library.Page title="Colors">
+      <Library.Pattern title="Brand red">
+        <div className="hyp-u-layout-row" style="flex-wrap:wrap">
+          {brandExamples}
+        </div>
+      </Library.Pattern>
 
-      <Pattern title="Overriding background colors: example">
-        <PatternExamples>
-          <PatternExample details="Background-color utility class">
-            <div className="hyp-panel hyp-u-bg-color--grey-2">
-              <p>
-                This is a <code>panel</code> with an applied utility class
-                <code>.hyp-u-bg-color--grey-2</code>.
-              </p>
-            </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+      <Library.Pattern title="Greys">
+        <div className="hyp-u-layout-row" style="flex-wrap:wrap">
+          {greyExamples}
+        </div>
+      </Library.Pattern>
+
+      <Library.Pattern title="State indicators">
+        <div className="hyp-u-layout-row" style="flex-wrap:wrap">
+          {stateExamples}
+        </div>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
