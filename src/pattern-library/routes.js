@@ -5,6 +5,7 @@ import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
+import LayoutPatterns from './components/patterns/LayoutPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
@@ -59,6 +60,12 @@ const routes = [
     route: '/patterns-forms',
     title: 'Forms',
     component: FormPatterns,
+    group: 'patterns',
+  },
+  {
+    route: '/patterns-layout',
+    title: 'Layout',
+    component: LayoutPatterns,
     group: 'patterns',
   },
   {
