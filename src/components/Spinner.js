@@ -22,5 +22,7 @@ registerIcons({
  */
 export function Spinner({ classes = '', size = 'medium' }) {
   const baseClass = `Hyp-Spinner--${size}`;
-  return <SvgIcon name="spinner" className={classnames(baseClass, classes)} />;
+  return (
+    <SvgIcon name="hyp-spinner" className={classnames(baseClass, classes)} />
+  );
 }

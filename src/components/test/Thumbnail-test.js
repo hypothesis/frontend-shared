@@ -28,7 +28,7 @@ describe('Thumbnail', () => {
   context('when in loading state', () => {
     it('renders a loading spinner', () => {
       const wrapper = createComponent({ isLoading: true });
-      assert.isTrue(wrapper.find('SvgIcon[name="spinner"]').exists());
+      assert.isTrue(wrapper.find('Spinner').exists());
     });
 
     it('does not render content', () => {
