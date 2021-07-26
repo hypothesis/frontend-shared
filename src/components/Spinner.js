@@ -5,7 +5,7 @@ import { registerIcons, SvgIcon } from './SvgIcon';
 // Register the spinner icon for use
 registerIcons({
   /** @ts-ignore - TS doesn't understand require here */
-  'hyp-spinner': require('../../images/icons/spinner.svg'),
+  'hyp-spinner': require('../../images/icons/spinner--spokes.svg'),
 });
 
 /**

@@ -1,9 +1,20 @@
 @use '../../variables' as var;
 
-// Style an SVG as a loading spinner
-@mixin spinner($size: 2em) {
-  color: var.$color-grey-5;
+/**
+ * Style an SVG as a loading spinner
+ *
+ * @param {'small'|'medium'|'large'} [$size='medium'] - Relative size of
+ *   spinner image
+ */
+@mixin spinner($size: 'medium') {
+  $-size: 2em;
+  @if ($size == 'large') {
+    $-size: 4em;
+  } @else if ($size == 'small') {
+    $-size: 1em;
+  }
+  color: var.$color-grey-6;
   // Assure that the spinner SVG is sized proportinally to local font-size
-  width: $size;
-  height: $size;
+  width: $-size;
+  height: $-size;
 }
