@@ -21,7 +21,6 @@ describe('useElementShouldClose', () => {
   ];
 
   // Create a fake component to mount in tests that uses the hook
-  // eslint-disable-next-line react/prop-types
   function FakeComponent({ isOpen = true }) {
     const myRef = useRef();
     useElementShouldClose(myRef, isOpen, handleClose);
