@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import { useLayoutEffect, useRef } from 'preact/hooks';
-import propTypes from 'prop-types';
 
 /**
  * Object mapping icon names to SVG markup.
@@ -75,13 +74,6 @@ export function SvgIcon({ name, className = '', inline = false, title = '' }) {
     />
   );
 }
-
-SvgIcon.propTypes = {
-  name: propTypes.string.isRequired,
-  className: propTypes.string,
-  inline: propTypes.bool,
-  title: propTypes.string,
-};
 
 /**
  * Register icons for use with the `SvgIcon` component.

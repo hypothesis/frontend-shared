@@ -45,7 +45,6 @@
     "postcss": "^8.2.13",
     "preact": "^10.4.0",
     "prettier": "^2.2.1",
-    "prop-types": "^15.7.2",
     "puppeteer": "^7.1.0",
     "sass": "^1.32.11",
     "sinon": "^9.0.0",
