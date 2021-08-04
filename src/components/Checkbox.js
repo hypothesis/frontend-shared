@@ -1,10 +1,10 @@
-import { registerIcons, SvgIcon } from './SvgIcon';
+import { registerIcon, SvgIcon } from './SvgIcon';
 
-// Register the checkbox icon for use
-registerIcons({
-  /** @ts-ignore - TS doesn't understand require here */
-  'hyp-checkbox': require('../../images/icons/checkbox.svg'),
-});
+const checkboxIcon = registerIcon(
+  'checkbox',
+  // @ts-ignore - TS doesn't understand require
+  require('../../images/icons/checkbox.svg')
+);
 
 /**
  * @typedef CheckboxBaseProps
@@ -59,7 +59,7 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
         onClick={onPressed}
         {...restProps}
       />
-      <SvgIcon className="hyp-svg-checkbox" name="hyp-checkbox" />
+      <SvgIcon className="hyp-svg-checkbox" name={checkboxIcon} />
     </>
   );
 }

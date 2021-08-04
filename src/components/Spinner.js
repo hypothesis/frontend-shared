@@ -1,12 +1,12 @@
 import classnames from 'classnames';
 
-import { registerIcons, SvgIcon } from './SvgIcon';
+import { registerIcon, SvgIcon } from './SvgIcon';
 
-// Register the spinner icon for use
-registerIcons({
+const spinnerIcon = registerIcon(
+  'spinner',
   /** @ts-ignore - TS doesn't understand require here */
-  'hyp-spinner': require('../../images/icons/spinner--spokes.svg'),
-});
+  require('../../images/icons/spinner--spokes.svg')
+);
 
 /**
  * @typedef SpinnerProps
@@ -23,6 +23,6 @@ registerIcons({
 export function Spinner({ classes = '', size = 'medium' }) {
   const baseClass = `Hyp-Spinner--${size}`;
   return (
-    <SvgIcon name="hyp-spinner" className={classnames(baseClass, classes)} />
+    <SvgIcon name={spinnerIcon} className={classnames(baseClass, classes)} />
   );
 }
