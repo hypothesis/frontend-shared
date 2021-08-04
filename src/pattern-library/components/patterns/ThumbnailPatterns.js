@@ -1,19 +1,15 @@
-import {
-  PatternExample,
-  PatternExamples,
-  PatternPage,
-  Pattern,
-} from '../PatternPage';
+import Library from '../Library';
 
 import { SvgIcon } from '../../..';
 
 export default function ThumbnailPatterns() {
   return (
-    <PatternPage title="Thumbnails">
+    <Library.Page title="Thumbnails">
       <p>
-        The thumbnail pattern is for displaying thumbnail or other images in a
-        frame of constrained size. It provides a variant for displaying a
-        placeholder (when there is no image to render) or a loading state.
+        The <code>thumbnail</code> pattern is for displaying thumbnail or other
+        images in a frame of constrained size. It provides a variant for
+        displaying a placeholder (when there is no image to render) or a loading
+        state.
       </p>
       <p>
         The thumbnail will fill the available space in the parent (100%), but
@@ -21,13 +17,13 @@ export default function ThumbnailPatterns() {
         ratio. It will retain its dimensions even when empty or in loading
         state.
       </p>
-      <Pattern title="Thumbnail">
+      <Library.Pattern title="Thumbnail">
         <p>
           These examples show a thumbnail that is contained within a parent
           container sized to 250x175px.
         </p>
-        <PatternExamples>
-          <PatternExample details="thumbnail with content">
+        <Library.Example title="Thumbnail with content">
+          <Library.Demo withSource>
             <div style="height: 250px; width: 175px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
@@ -35,9 +31,11 @@ export default function ThumbnailPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample details="thumbnail with placeholder">
+        <Library.Example title="Thumbnail with placeholder">
+          <Library.Demo withSource>
             <div style="height: 250px; width: 175px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
@@ -45,9 +43,11 @@ export default function ThumbnailPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample details="thumbnail in loading state">
+        <Library.Example title="thumbnail in loading state">
+          <Library.Demo withSource>
             <div style="height: 250px; width: 175px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
@@ -55,16 +55,17 @@ export default function ThumbnailPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-      <Pattern title="Thumbnail in smaller dimensions">
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Thumbnail in smaller dimensions">
         <p>
           These examples show all three states of a thumnbail in a smaller
           space: 150x100px.
         </p>
-        <PatternExamples>
-          <PatternExample details="all three states shown">
+        <Library.Example title="All three states shown">
+          <Library.Demo withSource>
             <div style="width: 100px; height: 150px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
@@ -84,20 +85,21 @@ export default function ThumbnailPatterns() {
             <div style="width: 100px; height: 150px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
-                  <SvgIcon name="hyp-spinner" className="hyp-spinner" />
+                  <SvgIcon name="hyp-spinner" className="hyp-spinner--small" />
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-      <Pattern title="Thumbnails: aspect ratio">
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Thumbnails: aspect ratio">
         <p>
           An image in a thumnbail is constrained to the available space, and
           retains aspect ratio.
         </p>
-        <PatternExamples>
-          <PatternExample details="thumbnail showing retention of image aspect ratio">
+        <Library.Example title="Thumbnail showing retention of image aspect ratio">
+          <Library.Demo withSource>
             <div style="width: 175px; height: 250px">
               <div className="hyp-thumbnail">
                 <div className="hyp-thumbnail__content">
@@ -105,9 +107,9 @@ export default function ThumbnailPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
