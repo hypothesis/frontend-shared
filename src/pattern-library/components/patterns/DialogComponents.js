@@ -160,7 +160,7 @@ export default function DialogComponents() {
 
   const openLongModal = () => {
     const children = (
-      <div style={{ overflow: 'auto' }}>
+      <div className="hyp-scrollbox">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sapien
           cursus, fringilla diam posuere, varius urna. Phasellus dictum sodales

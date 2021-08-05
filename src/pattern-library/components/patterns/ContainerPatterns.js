@@ -217,6 +217,39 @@ export default function ContainerPatterns() {
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
+
+      <Library.Pattern title="Scrollbox">
+        <p>
+          <code>Scrollbox</code> is a CSS-only pattern that provides scroll-hint
+          affordances for overflowing content (shadows). It sets its own{' '}
+          <code>overflow: auto</code> scrolling context, but authors need to
+          define bounding dimensions.
+        </p>
+        <Library.Example title="List in a scrollbox">
+          <p>
+            This example shows an overflowing <code>ul</code> in a{' '}
+            <code>scrollbox</code>.
+          </p>
+          <Library.Demo withSource>
+            <div className="hyp-scrollbox" style="height: 150px; width:250px">
+              <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                <li>Alpha</li>
+                <li>Bravo</li>
+                <li>Charlie</li>
+                <li>Delta</li>
+                <li>Echo</li>
+                <li>Foxtrot</li>
+                <li>Golf</li>
+                <li>Hotel</li>
+                <li>India</li>
+                <li>Juliet</li>
+                <li>Kilo</li>
+                <li>Lima</li>
+              </ul>
+            </div>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
     </Library.Page>
   );
 }
