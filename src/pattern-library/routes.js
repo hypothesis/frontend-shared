@@ -1,4 +1,4 @@
-import PlaygroundHome from './components/PlaygroundHome';
+import LibraryHome from './components/LibraryHome';
 
 import ColorFoundations from './components/patterns/ColorFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
@@ -34,7 +34,7 @@ const routes = [
   {
     route: /^\/?$/,
     title: 'Home',
-    component: PlaygroundHome,
+    component: LibraryHome,
     group: 'home',
   },
   {
