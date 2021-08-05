@@ -1,58 +1,61 @@
 # Development guide
 
-This guide explains how to make changes to the `frontend-shared` package and use them with your local copy of the [Hypothesis client](https://github.com/hypothesis/client).
+## Development workflow
 
-## Client setup
-
-Follow these steps to set up `frontend-shared` in the client repository.
-
-#### 1. Install yalc
-
-Install the `yalc` tool globally if you have not already done so.
+Run a local webserver that will rebuild on changes to JS or SASS source.
 
 ```shell
-yarn global add yalc
+$ make dev
 ```
 
-_Note_: [yalc](https://www.npmjs.com/package/yalc) is the tool that we use for locally making changes to a shared package and testing the changes in another project.
+You can view the pattern library at http://localhost:4001/ui-playground
 
-#### 2. Build & publish
+## Testing locally with other projects
 
-Build the package and then publish to your local yalc repository.
+This section explains how to test other applications (e.g. [`client`](https://github.com/hypothesis/client), `lms`) with
+a local build of this project's package.
+
+### Configure
+
+1. Install [`yalc`](https://www.npmjs.com/package/yalc)
+2. Build and publish locally to `yalc`
+
+   ```shell
+   $ cd frontend-shared
+   $ yarn build
+   $ yalc publish
+   ```
+
+3. Link to this local package from the target application
+
+   ```shell
+   $ cd <application project directory>
+   $ yalc link @hypothesis/frontend-shared
+   ```
+
+### Develop
+
+To push changes from `frontend-shared` to `yalc` installations:
 
 ```shell
-# from the frontend-shared dir
-$ yarn build
-$ yalc publish
-```
-
-#### 3. Link package
-
-In the `client` repository, link to the package published with yalc.
-
-```shell
-# from the client dir
-$ yalc link @hypothesis/frontend-shared
-```
-
-This will install the built local version of your `frontend-shared` repository in the `client`
-without a using symlink.
-
-_Note_: Currently, there is no support for automatically rebuilding so any changes made to the `frontend-shared` files will need to be rebuilt and re-pushed as follows:
-
-```shell
-# from the frontend-shared dir
+$ cd frontend-shared
 $ yarn build
 $ yalc push
 ```
 
-_Note_: `yalc push` will automatically "push" the updated files to all copies of `frontend-shared` that have been linked via `yalc link @hypothesis/frontend-shared`.
+### Clean up
 
-### Removing the link
-
-If you wish to revert back to the current installed version of `frontend-shared`, simply run:
+To remove `yalc` linking from an application and restore the project-defined
+published package version files to `node_modules`:
 
 ```shell
-# from the client dir
+$ cd <application project directory>
 $ yarn --check-files
+```
+
+If needed, you can clear out any remaining vestiges of `.yalc` metadata from
+the project:
+
+```shell
+$ yalc remove @hypothesis/frontend-shared
 ```
