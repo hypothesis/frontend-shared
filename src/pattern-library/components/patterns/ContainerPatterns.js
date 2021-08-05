@@ -1,64 +1,87 @@
 import { useState } from 'preact/hooks';
 
-import {
-  PatternExample,
-  PatternExamples,
-  PatternPage,
-  Pattern,
-} from '../PatternPage';
+import Library from '../Library';
 
 import { IconButton, LabeledButton } from '../../../';
 
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
-    <PatternPage title="Containers">
-      <Pattern title="Frame">
-        <p>
-          A <code>frame</code> has a border, background, padding, and vertical
-          spacing of immediate children.
-        </p>
-        <PatternExamples>
-          <PatternExample details="basic frame">
-            <div className="hyp-frame">This is in a frame.</div>
-          </PatternExample>
-          <PatternExample details="child content in frame">
+    <Library.Page title="Containers">
+      <Library.Pattern title="Frame">
+        <Library.Example title="Basic frame">
+          <p>
+            A <code>frame</code> provides a border, background, padding and
+            vertical spacing of immediate children.
+          </p>
+          <Library.Demo withSource>
             <div className="hyp-frame">
-              <div className="hyp-u-border">Child content in a frame.</div>
-              <div className="hyp-u-border">Child content in a frame.</div>
-              <div className="hyp-u-border">Child content in a frame.</div>
-            </div>
-          </PatternExample>
-          <PatternExample details="content in a frame: clean theme">
-            <div className="theme-clean">
-              <div className="hyp-frame">
-                Content within a frame in the clean theme. The frame itself has
-                no borders when in the clean theme.
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </div>
+              <div>
+                Sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua.
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
 
-      <Pattern title="Card">
-        <p>
-          A <code>card</code> is a frame with a shadow and hover-shadow effect
-          that fills available horizontal space.
-        </p>
-        <PatternExamples>
-          <PatternExample details="basic card">
-            <div className="hyp-card">This is in a card.</div>
-          </PatternExample>
-          <PatternExample details="hover shadow disabled">
-            <div className="hyp-card--no-hover">
-              This is in a card with the hover-shadow effect disabled.
+        <Library.Example title="Using frames with the 'clean' theme">
+          <p>Clean-theme styling removes borders from frames.</p>
+          <Library.Demo withSource>
+            <div className="theme-clean">
+              <div className="hyp-frame">
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+                <div>
+                  Sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua.
+                </div>
+              </div>
             </div>
-          </PatternExample>
-          <PatternExample details="A card with some actions">
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Card">
+        <Library.Example title="Basic card">
+          <p>
+            A <code>card</code> is a frame with a shadow and hover-shadow effect
+            that fills available horizontal space. It extends <code>frame</code>
+            .
+          </p>
+          <Library.Demo withSource>
             <div className="hyp-card">
               <div>
-                This is some text in a card that also contains some available
-                actions.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+              <div>
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Card with no hover">
+          <p>A card&apos;s hover can be disabled by using a modifying class.</p>
+          <Library.Demo withSource>
+            <div className="hyp-card--no-hover">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Card example with actions">
+          <p>This example shows a card with some available actions.</p>
+          <Library.Demo withSource>
+            <div className="hyp-card">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </div>
               <div className="hyp-actions">
                 <IconButton title="User" icon="profile" />
@@ -66,13 +89,17 @@ export default function ContainerPatterns() {
                 <IconButton title="Delete" icon="trash" />
               </div>
             </div>
-          </PatternExample>
-          <PatternExample details="Clean theme">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Using cards with the 'clean' theme">
+          <p>Clean-theme styling removes hover shadows and borders.</p>
+          <Library.Demo withSource>
             <div className="theme-clean">
               <div className="hyp-card">
                 <div>
-                  This is some text in a card in the clean theme. There are no
-                  borders or box-shadows.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
                 <div className="hyp-actions">
                   <IconButton title="User" icon="profile" />
@@ -81,39 +108,54 @@ export default function ContainerPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Actions">
+      <Library.Pattern title="Actions">
         <p>
-          The <code>actions</code> pattern presents a collection of actions
-          (typically buttons). By default, these are laid out in a row, aligned
-          right, but can also be laid out in a column.
+          The <code>actions</code> pattern lays out a set of items, typically
+          buttons, in a row (default) or column, with spacing.{' '}
         </p>
-        <PatternExamples>
-          <PatternExample details="A set of LabeledButtons">
+        <Library.Example title="Horizontal (default) layout">
+          <p>
+            These examples show <code>Actions</code> used in its default layout
+            (horizontal) with <code>LabeledButton</code> and{' '}
+            <code>IconButton</code> components.
+          </p>
+          <Library.Demo withSource>
             <div className="hyp-actions">
               <LabeledButton icon="profile">User</LabeledButton>
               <LabeledButton icon="edit">Edit</LabeledButton>
               <LabeledButton icon="trash">Delete</LabeledButton>
             </div>
-          </PatternExample>
-          <PatternExample details="A set of IconButtons">
+          </Library.Demo>
+
+          <Library.Demo withSource>
             <div className="hyp-actions">
               <IconButton title="User" icon="profile" />
               <IconButton title="Edit" icon="edit" />
               <IconButton title="Delete" icon="trash" />
             </div>
-          </PatternExample>
-          <PatternExample details="Columnar layout">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Columnar layout">
+          <Library.Demo withSource>
             <div className="hyp-actions--column">
               <LabeledButton>User</LabeledButton>
               <LabeledButton>Edit</LabeledButton>
               <LabeledButton>Delete</LabeledButton>
             </div>
-          </PatternExample>
-          <PatternExample details="Columnar layout: buttons stretching to fill space">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Columnar layout, filling space">
+          <p>
+            This example shows buttons stretching to fill available space in{' '}
+            <code>actions</code>.
+          </p>
+          <Library.Demo withSource>
             <div style="width:300px">
               <div className="hyp-actions--column">
                 <LabeledButton variant="primary">Do this</LabeledButton>
@@ -121,17 +163,18 @@ export default function ContainerPatterns() {
                 <LabeledButton variant="primary">Maybe this?</LabeledButton>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Modal container">
-        <p>
-          The <code>modal</code> pattern positions and sizes a modal container
-          appropriately based on viewport size.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Responsive Modal container positioning and sizing">
+      <Library.Pattern title="Modal">
+        <Library.Example title="Responsive modal container">
+          <p>
+            This pattern makes use of the <code>overlay</code> pattern. It
+            responsively positions and sizes a container in the viewport to hold
+            modal content.
+          </p>
+          <Library.Demo withSource>
             <div>
               <LabeledButton
                 variant="primary"
@@ -171,9 +214,9 @@ export default function ContainerPatterns() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
