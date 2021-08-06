@@ -227,6 +227,11 @@ $-library-vertical-spacing: 7;
     font-size: 1.75em;
     font-weight: bold;
   }
+
+  &__subheading {
+    font-size: 1.5em;
+    font-style: italic;
+  }
 }
 
 .LibraryPattern {
