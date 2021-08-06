@@ -1,93 +1,103 @@
-import {
-  PatternExample,
-  PatternExamples,
-  PatternPage,
-  Pattern,
-} from '../PatternPage';
+import Library from '../Library';
 
 import { IconButton, SvgIcon } from '../../../';
 
 export default function FormPatterns() {
   return (
-    <PatternPage title="Forms">
-      <Pattern title="Checkboxes">
+    <Library.Page title="Forms">
+      <Library.Pattern title="Checkbox">
         <p>
           A checkbox, styled accessibly with an SVG image. The SVG image is an
           adjacent sibling to the checkbox <code>input</code>.
         </p>
-        <PatternExamples>
-          <PatternExample details="checkbox">
-            <input className="hyp-checkbox" type="checkbox" />
-            <SvgIcon name="checkbox" />
-          </PatternExample>
+        <Library.Example title="Checkbox">
+          <p>
+            This example shows an <code>input type=&quot;checkbox&quot;</code>{' '}
+            element with the <code>checkbox</code> pattern applied, both
+            unchecked and checked.
+          </p>
+          <Library.Demo withSource>
+            <div className="hyp-u-layout-row hyp-u-horizontal-spacing">
+              <div>
+                <input className="hyp-checkbox" type="checkbox" />
+                <SvgIcon name="checkbox" />
+              </div>
 
-          <PatternExample details="checkbox, checked">
-            <input className="hyp-checkbox" type="checkbox" checked />
-            <SvgIcon name="checkbox" />
-          </PatternExample>
+              <div>
+                <input className="hyp-checkbox" type="checkbox" checked />
+                <SvgIcon name="checkbox" />
+              </div>
+            </div>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample details="checkbox with label">
+        <Library.Example title="Checkbox with label">
+          <Library.Demo withSource>
             <label className="hyp-label">
               <input className="hyp-checkbox" type="checkbox" />
               <SvgIcon name="checkbox" />
               <span>Click me, please</span>
             </label>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Text inputs">
+      <Library.Pattern title="Text inputs">
         <p>
           A pattern for <code>input type=&quot;text&quot;</code>
         </p>
-        <PatternExamples>
-          <PatternExample details="basic text input">
+        <Library.Example title="Basic text input">
+          <Library.Demo withSource>
             <input
               className="hyp-text-input"
               type="text"
               placeholder="http://www.example.com"
             />
-          </PatternExample>
-          <PatternExample details="text input in an error state">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Text input in an error state">
+          <Library.Demo withSource>
             <input
               className="hyp-text-input has-error"
               type="text"
               placeholder="http://www.example.com"
             />
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-      <Pattern title="Text input with button">
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Text input with button">
         <p>
           A pattern that pairs a text input field with an icon-only button. Use
           a dark-variant button to match the standard pattern here.
         </p>
-        <PatternExamples>
-          <PatternExample
-            style={{ width: '300px' }}
-            details="text input with a dark-variant IconButton"
-          >
-            <div className="hyp-text-input-with-button">
-              <input type="text" placeholder="http://www.example.com" />
-              <IconButton icon="arrow-right" title="go" variant="dark" />
+        <Library.Example title="Text input with a dark-variant IconButton">
+          <Library.Demo withSource>
+            <div style={{ width: '300px' }}>
+              <div className="hyp-text-input-with-button">
+                <input type="text" placeholder="http://www.example.com" />
+                <IconButton icon="arrow-right" title="go" variant="dark" />
+              </div>
             </div>
-          </PatternExample>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample
-            style={{ width: '300px' }}
-            details="text input and button in an error state"
-          >
-            <div className="hyp-text-input-with-button">
-              <input
-                type="text"
-                placeholder="http://www.example.com"
-                className="has-error"
-              />
-              <IconButton icon="arrow-right" title="go" variant="dark" />
+        <Library.Example title="Text input and button in an error state">
+          <Library.Demo withSource>
+            <div style={{ width: '300px' }}>
+              <div className="hyp-text-input-with-button">
+                <input
+                  type="text"
+                  placeholder="http://www.example.com"
+                  className="has-error"
+                />
+                <IconButton icon="arrow-right" title="go" variant="dark" />
+              </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
