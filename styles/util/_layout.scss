@@ -170,6 +170,11 @@
   @include layout.fixed-centered;
 }
 
+// Position the element centered vertically and horizontally in the entire viewport
+.hyp-u-absolute-centered {
+  @include layout.absolute-centered;
+}
+
 // A full-viewport-width and -height semi-opaque backdrop overlay
 .hyp-u-overlay {
   @include layout.overlay;

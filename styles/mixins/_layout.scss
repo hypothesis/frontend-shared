@@ -110,6 +110,16 @@ $-color-overlay: var.$color-overlay;
 }
 
 /**
+ * Position an element, absolutely, vertically and horizontally
+ */
+@mixin absolute-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**
  * Semi-opaque overlay, full-viewport
  */
 @mixin overlay {
