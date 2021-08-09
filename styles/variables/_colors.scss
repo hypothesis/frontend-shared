@@ -25,6 +25,7 @@ $black: black;
 // Typography: TODO refactor when adding typography patterns
 $text: $grey-9;
 $text--light: $grey-6;
+$text--inverted: $grey-1;
 // This does not provide enough contrast on white to meet WCAG AA standards,
 // and should only be used for disabled interfaces.
 $text--disabled: $grey-4;

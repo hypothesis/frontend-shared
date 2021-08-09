@@ -1,0 +1,75 @@
+@use '../../variables' as var;
+
+@use '../atoms';
+@use '../focus';
+@use '../layout';
+
+$-color-background--light: var.$color-white;
+$-color-background--dark: var.$color-grey-7;
+$-color-header-background: var.$color-grey-1;
+$-min-row-height: var.$touch-target-size;
+
+@mixin table {
+  @include focus.outline-on-keyboard-focus;
+
+  // Keep separate borders (this is browser default) to allow control over
+  // the borders of the sticky-positioned top header row: this is needed to
+  // prevent gaps at the top of the <thead> row that scrolling content could peek
+  // through, and to assert control over the sticky-<th> borders as positioning
+  // changes.
+  border-collapse: separate;
+  border-spacing: 0;
+  // Allow th styles to define overall column widths for table
+  table-layout: fixed;
+  width: 100%;
+  color: var.$color-text;
+
+  th,
+  td {
+    @include layout.padding;
+  }
+
+  td {
+    @include atoms.border(top);
+  }
+
+  thead {
+    // Prevent extra vertical height with <th> elements
+    // FIXME: Review after typography patterns introduced
+    line-height: 1;
+
+    th {
+      @include atoms.border(bottom);
+      height: $-min-row-height;
+      position: sticky;
+      top: 0;
+
+      // Ensure the header is displayed above content in the table when it is
+      // scrolled, including any content which establishes a new stacking context.
+      z-index: 1;
+
+      background-color: $-color-header-background;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    // Make table content look interact-able
+    cursor: pointer;
+
+    // No border on top of first row's <td> elements, to eliminate a
+    // double border with the <th>s
+    & tr:first-child td {
+      border-top: none;
+    }
+
+    & tr {
+      height: $-min-row-height;
+
+      &.is-selected {
+        background-color: $-color-background--dark;
+        color: var.$color-white;
+      }
+    }
+  }
+}
