@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { toChildArray } from 'preact';
 import { useState } from 'preact/hooks';
 
@@ -69,11 +70,24 @@ function Pattern({ children, title }) {
 }
 
 /**
+ * @typedef LibraryExampleProps
+ * @prop {import("preact").ComponentChildren} [children]
+ * @prop {string} [title]
+ * @prop {'split'|'wide'} [variant='split'] - Layout variant. Applies
+ *   appropriate className.
+ *   - Split (default) lays out in a row. Non-demo example content is rendered
+ *     left, with demos right. Demos in this variant stack vertically.
+ *   - Wide lays out in a full-width column. Non-example is rendered first,
+ *     then a row to contain demos. Demos in this variant render next to each
+ *     other in a single row.
+ */
+
+/**
  * Render example content and optional Demo(s) for a pattern.
  *
- * @param {LibraryBaseProps} props
+ * @param {LibraryExampleProps} props
  */
-function Example({ children, title }) {
+function Example({ children, title, variant = 'split' }) {
   const kids = toChildArray(children);
 
   // Extract Demo components out of any children
@@ -84,15 +98,25 @@ function Example({ children, title }) {
   const notDemos = kids.filter(kid => !demos.includes(kid));
 
   return (
-    <div className="LibraryExample">
+    <div className={classnames('LibraryExample', `LibraryExample--${variant}`)}>
       <div className="LibraryExample__content">
         {title && <h3 className="LibraryExample__heading">{title}</h3>}
         {notDemos}
       </div>
-      <div className="LibraryExample__content">{demos}</div>
+      <div className="LibraryExample__demos">{demos}</div>
     </div>
   );
 }
+
+/**
+ * @typedef DemoProps
+ * @prop {import("preact").ComponentChildren} [children]
+ * @prop {boolean} [withSource=false] - Should the demo also render the source?
+ *   When true, a "Source" tab will be rendered, which will display the JSX
+ *   source of the Demo's children
+ * @prop {object} [style] - Inline styles to apply to the demo container
+ * @prop {string} [title]
+ */
 
 /**
  * Render a "Demo", with optional source. This will render the children as
@@ -100,14 +124,9 @@ function Example({ children, title }) {
  * of the children will be provided in a separate "Source" tab from the
  * rendered Demo content.
  *
- * @typedef DemoProps
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {boolean} [withSource=false] - Should the demo also render the source?
- *   When true, a "Source" tab will be rendered, which will display the JSX
- *   source of the Demo's children
- * @prop {object} [style] - Inline styles to apply to the demo container
+ * @param {DemoProps} props
  */
-function Demo({ children, withSource = false, style = {} }) {
+function Demo({ children, withSource = false, style = {}, title }) {
   const [visibleTab, setVisibleTab] = useState('demo');
   const source = toChildArray(children).map((child, idx) => {
     return (
@@ -120,6 +139,7 @@ function Demo({ children, withSource = false, style = {} }) {
   });
   return (
     <div className="LibraryDemo">
+      {title && <h4 className="LibraryDemo__header">{title}</h4>}
       <div className="LibraryDemo__tabs">
         <LabeledButton
           onClick={() => setVisibleTab('demo')}
