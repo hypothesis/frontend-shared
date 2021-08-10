@@ -253,11 +253,8 @@ export default function ContainerPatterns() {
           <Library.Demo withSource>
             <div style="height:250px;width:250px">
               <div className="hyp-scrollbox--with-header">
-                <div
-                  className="hyp-u-layout-row--center hyp-u-border--bottom hyp-u-bg-color--grey-1"
-                  style="position:sticky;top:0;min-height:44px;"
-                >
-                  <div>
+                <div className="hyp-sticky-header">
+                  <div className="hyp-sticky-header__heading">
                     <strong>NATO Phonetic Alphabet</strong>
                   </div>
                 </div>

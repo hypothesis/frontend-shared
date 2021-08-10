@@ -47,3 +47,20 @@ export function Actions({ children, direction = 'row', classes = '' }) {
   const baseClass = `Hyp-Actions--${direction}`;
   return <div className={classnames(baseClass, classes)}>{children}</div>;
 }
+
+/**
+ *
+ * @typedef ScrollboxBaseProps
+ * @prop {boolean} [withHeader=false] - Provide layout affordances for a sticky
+ *   header in the scrollable content
+ */
+
+/**
+ * Render a scrollable container to contain content that might overflow.
+ *
+ * @param {ScrollboxBaseProps & ContainerProps} props
+ */
+export function Scrollbox({ children, classes = '', withHeader = false }) {
+  const baseClass = withHeader ? 'Hyp-Scrollbox--with-header' : 'Hyp-Scrollbox';
+  return <div className={classnames(baseClass, classes)}>{children}</div>;
+}

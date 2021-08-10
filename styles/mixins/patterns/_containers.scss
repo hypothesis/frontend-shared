@@ -235,3 +235,26 @@ $-header-height: var.$touch-target-size;
 @mixin scrollbox--with-header {
   @include scrollbox($shadow-top-position: $-header-height);
 }
+
+/**
+ * A sticky container that is sized one-touch-unit high. This is currently
+ * expanded upon by table styling, but not used in other patterns (yet).
+ */
+@mixin sticky-header {
+  position: sticky;
+  top: 0;
+  height: $-header-height;
+
+  @include layout.padding;
+  @include atoms.border(bottom);
+
+  background-color: var.$color-grey-1;
+  font-weight: bold;
+
+  width: 100%;
+
+  &__heading {
+    @include layout.row($align: center, $justify: center);
+    height: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 // Components
 export { IconButton, LabeledButton, LinkButton } from './components/buttons';
 export { LabeledCheckbox, Checkbox } from './components/Checkbox';
-export { Frame, Card, Actions } from './components/containers';
+export { Frame, Card, Actions, Scrollbox } from './components/containers';
 export { Dialog } from './components/Dialog';
 export { Modal, ConfirmModal } from './components/Modal';
 export { Panel } from './components/Panel';

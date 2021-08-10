@@ -1,7 +1,9 @@
-import { Frame, Card, Actions } from '../../..';
+import { Frame, Card, Actions, Scrollbox } from '../../..';
 import { LabeledButton } from '../../..';
 
 import Library from '../Library';
+
+import { SampleListElements } from './samples';
 
 export default function ContainerComponents() {
   return (
@@ -72,6 +74,44 @@ export default function ContainerComponents() {
                 This is the best option
               </LabeledButton>
             </Actions>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Scrollbox">
+        <p>
+          The <code>Scrollbox</code> component is a container for (potentially-)
+          overflowing content. It provides a scroll context and is styled with
+          the <code>scrollbox</code> pattern.
+        </p>
+        <Library.Example variant="wide">
+          <p>
+            A <code>Scrollbox</code> will fill its available space. Constraints
+            to that space need to be applied to a parent element. Here a parent
+            element is set to a width and height.
+          </p>
+          <Library.Demo title="Basic scrollbox" withSource>
+            <div style="height:250px;max-height:250px;width:200px">
+              <Scrollbox>
+                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                  <SampleListElements />
+                </ul>
+              </Scrollbox>
+            </div>
+          </Library.Demo>
+          <Library.Demo title="Scrollbox with header" withSource>
+            <div style="height:250px;max-height:250px;width:200px">
+              <Scrollbox withHeader>
+                <div className="hyp-sticky-header">
+                  <div className="hyp-sticky-header__heading">
+                    NATO Alphabet
+                  </div>
+                </div>
+                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                  <SampleListElements />
+                </ul>
+              </Scrollbox>
+            </div>
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>

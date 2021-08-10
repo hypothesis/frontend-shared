@@ -40,3 +40,7 @@
 .hyp-scrollbox--with-header {
   @include containers.scrollbox--with-header;
 }
+
+.hyp-sticky-header {
+  @include containers.sticky-header;
+}
