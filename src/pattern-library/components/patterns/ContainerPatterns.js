@@ -4,6 +4,39 @@ import Library from '../Library';
 
 import { IconButton, LabeledButton } from '../../../';
 
+function ListElements() {
+  return (
+    <>
+      <li>Alpha</li>
+      <li>Bravo</li>
+      <li>Charlie</li>
+      <li>Delta</li>
+      <li>Echo</li>
+      <li>Foxtrot</li>
+      <li>Golf</li>
+      <li>Hotel</li>
+      <li>India</li>
+      <li>Juliett</li>
+      <li>Kilo</li>
+      <li>Lima</li>
+      <li>Mike</li>
+      <li>November</li>
+      <li>Oscar</li>
+      <li>Papa</li>
+      <li>Quebec</li>
+      <li>Romeo</li>
+      <li>Sierra</li>
+      <li>Tango</li>
+      <li>Uniform</li>
+      <li>Victor</li>
+      <li>Whiskey</li>
+      <li>XRay</li>
+      <li>Yankee</li>
+      <li>Zulu</li>
+    </>
+  );
+}
+
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
@@ -231,21 +264,38 @@ export default function ContainerPatterns() {
             <code>scrollbox</code>.
           </p>
           <Library.Demo withSource>
-            <div className="hyp-scrollbox" style="height: 150px; width:250px">
-              <ul className="hyp-u-padding hyp-u-vertical-spacing">
-                <li>Alpha</li>
-                <li>Bravo</li>
-                <li>Charlie</li>
-                <li>Delta</li>
-                <li>Echo</li>
-                <li>Foxtrot</li>
-                <li>Golf</li>
-                <li>Hotel</li>
-                <li>India</li>
-                <li>Juliet</li>
-                <li>Kilo</li>
-                <li>Lima</li>
-              </ul>
+            <div style="height:250px;width:250px">
+              <div className="hyp-scrollbox">
+                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                  <ListElements />
+                </ul>
+              </div>
+            </div>
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Scrollbox with header offset">
+          <p>
+            The <code>scrollbox--with-header</code> pattern offsets the top
+            scroll-hinting shadow to accommodate one header-like element with a
+            touch-target height (currently 44px).
+          </p>
+
+          <Library.Demo withSource>
+            <div style="height:250px;width:250px">
+              <div className="hyp-scrollbox--with-header">
+                <div
+                  className="hyp-u-layout-row--center hyp-u-border--bottom hyp-u-bg-color--grey-1"
+                  style="position:sticky;top:0;min-height:44px;"
+                >
+                  <div>
+                    <strong>NATO Phonetic Alphabet</strong>
+                  </div>
+                </div>
+                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                  <ListElements />
+                </ul>
+              </div>
             </div>
           </Library.Demo>
         </Library.Example>

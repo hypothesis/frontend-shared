@@ -7,6 +7,7 @@ import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
+import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
@@ -71,6 +72,12 @@ const routes = [
     route: '/patterns-spinners',
     title: 'Spinners',
     component: SpinnerPatterns,
+    group: 'patterns',
+  },
+  {
+    route: '/patterns-tables',
+    title: 'Tables',
+    component: TablePatterns,
     group: 'patterns',
   },
   {

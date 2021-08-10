@@ -36,3 +36,7 @@
 .hyp-scrollbox {
   @include containers.scrollbox;
 }
+
+.hyp-scrollbox--with-header {
+  @include containers.scrollbox--with-header;
+}

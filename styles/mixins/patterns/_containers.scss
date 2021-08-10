@@ -6,6 +6,7 @@
 
 $-border-radius: var.$border-radius;
 $-color-background: var.$color-background;
+$-header-height: var.$touch-target-size;
 
 /**
  * Patterns that are composites of multiple atomic utilities, but
@@ -182,32 +183,55 @@ $-color-background: var.$color-background;
  *   - Only the bottom scroll-hint shadow appears if content overflows
  *   - The bottom scroll-hint shadow is always present, even if content is
  *     fully scrolled
+ *
+ * @param {CSSLength} [$shadow-top-position=0] - Top scroll-indicating shadow
+ *   (y) position. Default 0: at top edge of scrollbox. Use case: move
+ *   shadow down to accommodate a sticky header of a known height, such that the
+ *   shadow appears below the header(s).
+ * @param {CSSLength} [$shadow-bottom-position=100%] - Bottom scroll-indicating
+ *   shadow position relative to scrollbox. Default 100%: flush to bottom.
  */
-@mixin scrollbox {
+@mixin scrollbox($shadow-top-position: 0, $shadow-bottom-position: 100%) {
   overflow: auto;
   @include atoms.border;
+  position: relative;
+  height: 100%;
+  width: 100%;
 
   background:
-    // Shadow covers
-    linear-gradient($-color-background 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(rgba(255, 255, 255, 0), $-color-background 70%) 0 100%,
-    // Shadows
+    // Top Shadow cover
+    linear-gradient($-color-background 30%, rgba(255, 255, 255, 0)) 0
+      $shadow-top-position,
+    // Bottom shadow cover
+    linear-gradient(rgba(255, 255, 255, 0), $-color-background 70%) 0
+      $shadow-bottom-position,
+    // Top shadow
     linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.1),
         rgba(0, 0, 0, 0.05) 5px,
         rgba(255, 255, 255, 0) 70%
-      ),
+      )
+      0 $shadow-top-position,
+    // Bottom shadow
     linear-gradient(
         to top,
         rgba(0, 0, 0, 0.1),
         rgba(0, 0, 0, 0.05) 5px,
         rgba(255, 255, 255, 0) 70%
       )
-      0 100%;
+      0 $shadow-bottom-position;
   background-repeat: no-repeat;
   background-color: $-color-background;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
 
   background-attachment: local, local, scroll, scroll;
+}
+
+/**
+ * A scrollbox with the top shadow repositioned down by touch-target-size
+ * to accommodate, e.g., a sticky header at the top of the scrollable content.
+ */
+@mixin scrollbox--with-header {
+  @include scrollbox($shadow-top-position: $-header-height);
 }

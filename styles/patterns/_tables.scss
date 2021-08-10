@@ -1,0 +1,5 @@
+@use '../mixins/patterns/tables';
+
+.hyp-table {
+  @include tables.table;
+}
