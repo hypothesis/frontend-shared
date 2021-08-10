@@ -4,38 +4,7 @@ import Library from '../Library';
 
 import { IconButton, LabeledButton } from '../../../';
 
-function ListElements() {
-  return (
-    <>
-      <li>Alpha</li>
-      <li>Bravo</li>
-      <li>Charlie</li>
-      <li>Delta</li>
-      <li>Echo</li>
-      <li>Foxtrot</li>
-      <li>Golf</li>
-      <li>Hotel</li>
-      <li>India</li>
-      <li>Juliett</li>
-      <li>Kilo</li>
-      <li>Lima</li>
-      <li>Mike</li>
-      <li>November</li>
-      <li>Oscar</li>
-      <li>Papa</li>
-      <li>Quebec</li>
-      <li>Romeo</li>
-      <li>Sierra</li>
-      <li>Tango</li>
-      <li>Uniform</li>
-      <li>Victor</li>
-      <li>Whiskey</li>
-      <li>XRay</li>
-      <li>Yankee</li>
-      <li>Zulu</li>
-    </>
-  );
-}
+import { SampleListElements } from './samples';
 
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
@@ -267,7 +236,7 @@ export default function ContainerPatterns() {
             <div style="height:250px;width:250px">
               <div className="hyp-scrollbox">
                 <ul className="hyp-u-padding hyp-u-vertical-spacing">
-                  <ListElements />
+                  <SampleListElements />
                 </ul>
               </div>
             </div>
@@ -293,7 +262,7 @@ export default function ContainerPatterns() {
                   </div>
                 </div>
                 <ul className="hyp-u-padding hyp-u-vertical-spacing">
-                  <ListElements />
+                  <SampleListElements />
                 </ul>
               </div>
             </div>
