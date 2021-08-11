@@ -39,7 +39,7 @@ export function SampleListElements() {
   );
 }
 
-export function SampleTBody() {
+export function SampleTableBody() {
   return (
     <tbody>
       <tr>

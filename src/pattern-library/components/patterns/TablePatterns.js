@@ -1,6 +1,6 @@
 import Library from '../Library';
 
-import { SampleTBody } from './samples';
+import { SampleTableBody } from './samples';
 
 export default function TablePatterns() {
   return (
@@ -28,7 +28,7 @@ export default function TablePatterns() {
                   <th scope="col">Column B</th>
                 </tr>
               </thead>
-              <SampleTBody />
+              <SampleTableBody />
             </table>
           </Library.Demo>
         </Library.Example>
@@ -50,7 +50,7 @@ export default function TablePatterns() {
                   </th>
                 </tr>
               </thead>
-              <SampleTBody />
+              <SampleTableBody />
             </table>
           </Library.Demo>
         </Library.Example>
@@ -72,7 +72,7 @@ export default function TablePatterns() {
                     <th scope="col">Column B</th>
                   </tr>
                 </thead>
-                <SampleTBody />
+                <SampleTableBody />
               </table>
             </div>
           </Library.Demo>
