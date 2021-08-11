@@ -16,3 +16,11 @@
 .Hyp-Actions--column {
   @include containers.actions($direction: column);
 }
+
+.Hyp-Scrollbox {
+  @include containers.scrollbox;
+}
+
+.Hyp-Scrollbox--with-header {
+  @include containers.scrollbox--with-header;
+}

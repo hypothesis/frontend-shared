@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 
-import { Frame, Card, Actions } from '../containers';
+import { Frame, Card, Actions, Scrollbox } from '../containers';
 
 describe('Frame', () => {
   const createComponent = (props = {}) =>
@@ -68,5 +68,32 @@ describe('Actions', () => {
     const wrapper = createComponent({ direction: 'column' });
 
     assert.isTrue(wrapper.find('div.Hyp-Actions--column').exists());
+  });
+});
+
+describe('Scrollbox', () => {
+  const createComponent = (props = {}) =>
+    mount(
+      <Scrollbox {...props}>
+        <div>This is content inside of a Scrollbox</div>
+      </Scrollbox>
+    );
+
+  it('renders children inside of a div with appropriate classnames', () => {
+    const wrapper = createComponent();
+
+    assert.isTrue(wrapper.find('.Hyp-Scrollbox').exists());
+  });
+
+  it('applies extra classes', () => {
+    const wrapper = createComponent({ classes: 'foo bar' });
+
+    assert.isTrue(wrapper.find('div.Hyp-Scrollbox.foo.bar').exists());
+  });
+
+  it('applies header-affordance layout class if `withHeader`', () => {
+    const wrapper = createComponent({ withHeader: true });
+
+    assert.isTrue(wrapper.find('div.Hyp-Scrollbox--with-header').exists());
   });
 });

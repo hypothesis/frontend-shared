@@ -4,6 +4,8 @@
 @use '../focus';
 @use '../layout';
 
+@use './containers';
+
 $-color-background--light: var.$color-white;
 $-color-background--dark: var.$color-grey-7;
 $-color-header-background: var.$color-grey-1;
@@ -39,16 +41,11 @@ $-min-row-height: var.$touch-target-size;
     line-height: 1;
 
     th {
-      @include atoms.border(bottom);
-      height: $-min-row-height;
-      position: sticky;
-      top: 0;
-
+      @include containers.sticky-header;
       // Ensure the header is displayed above content in the table when it is
       // scrolled, including any content which establishes a new stacking context.
       z-index: 1;
 
-      background-color: $-color-header-background;
       text-align: left;
     }
   }
