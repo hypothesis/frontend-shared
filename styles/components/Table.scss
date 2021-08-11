@@ -1,0 +1,25 @@
+@use 'sass:math';
+@use '../variables' as var;
+
+@use '../mixins/layout';
+@use '../mixins/patterns/tables';
+
+$-row-height: var.$touch-target-size;
+
+.Hyp-Table-Scrollbox {
+  // Loading (Spinner) affordances:
+  // - Make sure there is enough vertical space for spinner
+  // - Make sure there is a relatively-positioned ancestor for spinner's
+  //   absolute positioning
+  min-height: $-row-height * 3;
+
+  &__loading {
+    @include layout.absolute-centered;
+    // Adjust vertical position to account for header, which takes up one "row"
+    margin-top: math.div($-row-height, 2);
+  }
+}
+
+.Hyp-Table {
+  @include tables.table;
+}

@@ -165,3 +165,58 @@ export function LoremIpsum() {
     </p>
   );
 }
+
+export function sampleTableContent() {
+  return {
+    tableHeaders: [
+      {
+        label: 'Name',
+      },
+      {
+        label: 'Last modified',
+      },
+    ],
+    items: [
+      {
+        displayName: 'Persnickety.pdf',
+        updated: 'Jul 28, 2021',
+      },
+      {
+        displayName: 'Albumen.pdf',
+        updated: 'Jul 20, 2021',
+      },
+      {
+        displayName: 'Yams-and-sauce.pdf',
+        updated: 'Aug 04, 2021',
+      },
+      {
+        displayName: 'Coneflowers-and-their-allies.pdf',
+        updated: 'Aug 01, 2021',
+      },
+      {
+        displayName: 'Dollars-and-sense.pdf',
+        updated: 'Aug 22, 2021',
+      },
+      {
+        displayName: 'Mendicant Friars.PDF',
+        updated: 'Jul 20, 2021',
+      },
+      {
+        displayName: 'Paleogeography.pdf',
+        updated: 'Aug 04, 2021',
+      },
+      {
+        displayName: 'Foregone conclusions.pdf',
+        updated: 'Aug 01, 2021',
+      },
+      {
+        displayName: 'Forklifts-and-bananas.pdf',
+        updated: 'Aug 01, 2021',
+      },
+      {
+        displayName: 'Coracles.pdf',
+        updated: 'Aug 05, 2021',
+      },
+    ],
+  };
+}

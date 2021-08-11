@@ -7,6 +7,7 @@ export { Modal, ConfirmModal } from './components/Modal';
 export { Panel } from './components/Panel';
 export { Spinner } from './components/Spinner';
 export { SvgIcon, registerIcons } from './components/SvgIcon';
+export { Table } from './components/Table';
 export { TextInput, TextInputWithButton } from './components/TextInput';
 export { Thumbnail } from './components/Thumbnail';
 
