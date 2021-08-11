@@ -4,12 +4,16 @@
 
 import classnames from 'classnames';
 
+import { downcastRef } from '../util/typing';
+
 /**
  * @typedef {import('preact').ComponentChildren} Children
  *
  * @typedef ContainerProps
  * @prop {Children} children
  * @prop {string} [classes] - Additional CSS classes to apply
+ * @prop {import('preact').Ref<HTMLElement>} [containerRef] - Access to the
+ *  wrapping element.
  */
 
 /**
@@ -17,8 +21,15 @@ import classnames from 'classnames';
  *
  * @param {ContainerProps} props
  */
-export function Frame({ children, classes = '' }) {
-  return <div className={classnames('Hyp-Frame', classes)}>{children}</div>;
+export function Frame({ children, classes = '', containerRef }) {
+  return (
+    <div
+      className={classnames('Hyp-Frame', classes)}
+      ref={downcastRef(containerRef)}
+    >
+      {children}
+    </div>
+  );
 }
 
 /**
@@ -26,8 +37,15 @@ export function Frame({ children, classes = '' }) {
  *
  * @param {ContainerProps} props
  */
-export function Card({ children, classes = '' }) {
-  return <div className={classnames('Hyp-Card', classes)}>{children}</div>;
+export function Card({ children, classes = '', containerRef }) {
+  return (
+    <div
+      className={classnames('Hyp-Card', classes)}
+      ref={downcastRef(containerRef)}
+    >
+      {children}
+    </div>
+  );
 }
 
 /**
@@ -43,9 +61,21 @@ export function Card({ children, classes = '' }) {
  *
  * @param {ActionBaseProps & ContainerProps} props
  */
-export function Actions({ children, direction = 'row', classes = '' }) {
+export function Actions({
+  children,
+  direction = 'row',
+  classes = '',
+  containerRef,
+}) {
   const baseClass = `Hyp-Actions--${direction}`;
-  return <div className={classnames(baseClass, classes)}>{children}</div>;
+  return (
+    <div
+      className={classnames(baseClass, classes)}
+      ref={downcastRef(containerRef)}
+    >
+      {children}
+    </div>
+  );
 }
 
 /**
@@ -60,7 +90,19 @@ export function Actions({ children, direction = 'row', classes = '' }) {
  *
  * @param {ScrollboxBaseProps & ContainerProps} props
  */
-export function Scrollbox({ children, classes = '', withHeader = false }) {
+export function Scrollbox({
+  children,
+  classes = '',
+  containerRef,
+  withHeader = false,
+}) {
   const baseClass = withHeader ? 'Hyp-Scrollbox--with-header' : 'Hyp-Scrollbox';
-  return <div className={classnames(baseClass, classes)}>{children}</div>;
+  return (
+    <div
+      className={classnames(baseClass, classes)}
+      ref={downcastRef(containerRef)}
+    >
+      {children}
+    </div>
+  );
 }
