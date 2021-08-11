@@ -1,48 +1,6 @@
 import Library from '../Library';
 
-// "Fixture" for example table contents
-function ExampleTBody() {
-  return (
-    <tbody>
-      <tr>
-        <td>Alphanumeric Balloons</td>
-        <td>Champagne Delusions</td>
-      </tr>
-      <tr>
-        <td>Elephantine Fry-ups</td>
-        <td>Gargantuan Hiccups</td>
-      </tr>
-      <tr className="is-selected">
-        <td>Illicit Jugglers</td>
-        <td>Katydid Lozenges Meringue</td>
-      </tr>
-      <tr>
-        <td>Alphanumeric Balloons</td>
-        <td>Champagne Delusions</td>
-      </tr>
-      <tr>
-        <td>Elephantine Fry-ups</td>
-        <td>Gargantuan Hiccups</td>
-      </tr>
-      <tr>
-        <td>Illicit Jugglers</td>
-        <td>Katydid Lozenges Moebius</td>
-      </tr>
-      <tr>
-        <td>Elephantine Fry-ups</td>
-        <td>Gargantuan Hiccups</td>
-      </tr>
-      <tr>
-        <td>Illicit Jugglers</td>
-        <td>Katydid Lozenges Meringue</td>
-      </tr>
-      <tr>
-        <td>Alphanumeric Balloons</td>
-        <td>Champagne Delusions</td>
-      </tr>
-    </tbody>
-  );
-}
+import { SampleTableBody } from './samples';
 
 export default function TablePatterns() {
   return (
@@ -70,7 +28,7 @@ export default function TablePatterns() {
                   <th scope="col">Column B</th>
                 </tr>
               </thead>
-              <ExampleTBody />
+              <SampleTableBody />
             </table>
           </Library.Demo>
         </Library.Example>
@@ -92,7 +50,7 @@ export default function TablePatterns() {
                   </th>
                 </tr>
               </thead>
-              <ExampleTBody />
+              <SampleTableBody />
             </table>
           </Library.Demo>
         </Library.Example>
@@ -114,7 +72,7 @@ export default function TablePatterns() {
                     <th scope="col">Column B</th>
                   </tr>
                 </thead>
-                <ExampleTBody />
+                <SampleTableBody />
               </table>
             </div>
           </Library.Demo>

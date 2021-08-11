@@ -1,4 +1,4 @@
-import { createRef, render } from 'preact';
+import { createRef } from 'preact';
 import { useState } from 'preact/hooks';
 import {
   ConfirmModal,
@@ -12,82 +12,12 @@ import {
 
 import Library from '../Library';
 
-/**
- * Render a Dialog or Modal within the `container`, and invoke
- * `setOpen` as needed to alert caller to state changes. Provides the
- * ability to open and close a Dialog demo. We don't want to render a Dialog
- * until it's opened because it will grab focus when it first mounts.
- *
- * @param {Object} options
- *   @param {import('preact').FunctionComponent} options.DialogComponent - Which Dialog
- *   or Dialog-wrapping component (function) to use;
- *   a reference to `Dialog`, `Modal`, `ConfirmModal`, e.g.
- *   @param {HTMLElement} options.container - Element to render the Dialog inside of
- *   @param {(isOpen: boolean) => void} options.setOpen - callback to call when
- *     the Dialog state changes: opened (true) or closed/removed (false)
- *   @param {Object} [options.props] - Extra prop(s) for Dialog component
- */
-const showDialog = ({ DialogComponent, container, setOpen, props }) => {
-  const initialFocusRef = createRef();
+import { LoremIpsum } from './samples';
 
-  const close = message => {
-    if (message) {
-      alert(message);
-    }
-    if (container) {
-      render(null, container);
-    }
-    setOpen(false);
-  };
+function DialogExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const focusRef = createRef();
 
-  if (!container) {
-    return null;
-  }
-
-  if (!props.children) {
-    props.children = (
-      <>
-        <p>This is an example of a dialog.</p>
-        <p>
-          This dialog contains an <code>input</code> which is focused when the
-          dialog is opened.
-        </p>
-        <input
-          className="hyp-u-focus-outline"
-          ref={initialFocusRef}
-          type="text"
-        />
-      </>
-    );
-  }
-
-  return render(
-    <DialogComponent
-      icon="edit"
-      initialFocus={initialFocusRef}
-      title="Basic dialog with icon"
-      onCancel={() => close()}
-      {...props}
-    />,
-    container
-  );
-};
-
-export default function DialogComponents() {
-  // Dialog/Modal state for each of the examples
-
-  // Basic Dialog example
-  const [dialogIsOpen, setDialogIsOpen] = useState(false);
-  // Basic Modal example
-  const [, setModalIsOpen] = useState(false);
-  // Modal with manual focus control
-  const [, setFocusModalIsOpen] = useState(false);
-  // Modal with overflowing content example
-  const [, setLongModalIsOpen] = useState(false);
-  // ConfirmModal example
-  const [, setConfirmModalIsOpen] = useState(false);
-
-  // Extra buttons to use in Dialog, Modal examples
   const buttons = [
     <LabeledButton key="maybe" onClick={() => alert('You chose maybe')}>
       Maybe
@@ -101,174 +31,144 @@ export default function DialogComponents() {
     </LabeledButton>,
   ];
 
-  const openDialog = () => {
-    setDialogIsOpen(true);
-    showDialog({
-      DialogComponent: Dialog,
-      container: /** @type {HTMLElement} */ (document.getElementById(
-        'dialog1'
-      )),
-      setOpen: setDialogIsOpen,
-      props: {
-        buttons,
-      },
-    });
-  };
-
-  const openModal = () => {
-    setModalIsOpen(true);
-    showDialog({
-      DialogComponent: Modal,
-      container: /** @type {HTMLElement} */ (document.getElementById('modal1')),
-      setOpen: setModalIsOpen,
-      props: {
-        buttons,
-      },
-    });
-  };
-
-  const openFocusModal = () => {
-    const inputRef = createRef();
-    const children = (
-      <>
-        <div>
-          The input here is manually focused after the <code>Modal</code> is
-          opened.
-        </div>
-        <TextInputWithButton>
-          <TextInput inputRef={inputRef} />
-          <IconButton icon="edit" title="go" variant="dark" />
-        </TextInputWithButton>
-      </>
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Dialog Example
+      </LabeledButton>
     );
-    setFocusModalIsOpen(true);
-    showDialog({
-      DialogComponent: Modal,
-      container: /** @type {HTMLElement} */ (document.getElementById(
-        'modalFocus'
-      )),
-      setOpen: setFocusModalIsOpen,
-      props: {
-        buttons,
-        children,
-        initialFocus: null,
-      },
-    });
-    // This is possible because the Dialog has not grabbed focus
-    inputRef.current.focus();
-  };
-
-  const openLongModal = () => {
-    const children = (
-      <div className="hyp-scrollbox">
+  } else {
+    return (
+      <Dialog
+        buttons={buttons}
+        icon="edit"
+        initialFocus={focusRef}
+        onCancel={() => setDialogOpen(false)}
+        title="This is a Dialog"
+      >
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sapien
-          cursus, fringilla diam posuere, varius urna. Phasellus dictum sodales
-          dui, sed scelerisque mauris auctor et. Integer suscipit justo in erat
-          tristique, nec feugiat augue ultrices. Sed accumsan pretium commodo.
-          Orci varius natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Ut lobortis tortor metus, sed rutrum risus
-          ultricies non. Maecenas ultricies rutrum diam non feugiat. Nam ut ex
-          ac enim efficitur semper. Integer sed rhoncus eros. Nulla pharetra
-          vulputate faucibus. Vestibulum vestibulum orci non maximus aliquet.
-          Donec id dui ac ipsum pellentesque gravida sit amet non sem.
-          Suspendisse malesuada turpis id erat porta, nec luctus odio mollis.
-          Sed a arcu sed sem venenatis porta. In dictum sapien ut congue
-          facilisis. Curabitur consequat vestibulum ultricies. Vivamus rhoncus
-          vitae sapien id volutpat. Fusce ac nisi dolor. Suspendisse ut
-          venenatis ex. Quisque elementum libero quam, non consectetur lorem
-          faucibus a. Sed eu orci vitae nibh sodales sodales ut at neque. Ut
-          lobortis arcu eu lorem porttitor scelerisque. Aenean euismod est ac
-          enim fermentum, sit amet tristique dui consequat. Phasellus vitae
-          sapien dolor. Nulla iaculis nibh at magna convallis finibus ut vitae
-          ipsum. Maecenas ultricies ultrices diam laoreet lacinia. Nunc commodo
-          eu lorem a bibendum. Sed eu magna rutrum, consectetur orci sit amet,
-          venenatis ex. Aliquam sodales nec odio ac ultricies. In sit amet
-          congue ipsum. Class aptent taciti sociosqu ad litora torquent per
-          conubia nostra, per inceptos himenaeos. Phasellus accumsan justo nec
-          maximus sollicitudin. Aenean eu urna egestas justo dignissim venenatis
-          quis quis massa. Pellentesque convallis posuere elit, eu interdum diam
-          placerat et. Aenean cursus vehicula nibh, in scelerisque nunc feugiat
-          eu. Praesent eleifend ipsum eget urna dictum semper. Nullam dapibus
-          nisl sit amet ultricies lobortis. Vestibulum a velit neque.
-          Suspendisse tincidunt aliquet lorem et consectetur. Phasellus at
-          libero fringilla nulla egestas aliquam. Nullam ut magna risus. Etiam
-          consequat neque sapien, vel ultrices justo vehicula sit amet. Donec
-          semper facilisis odio vel faucibus. Integer eget sagittis justo.
-          Integer sed tincidunt neque. In vulputate fermentum lacus, eget
-          sollicitudin nisi vestibulum vel. Etiam porttitor varius justo, id
-          efficitur tellus congue a. Cras condimentum congue lectus sit amet
-          commodo. Etiam lacus ex, efficitur volutpat enim id, malesuada posuere
-          metus. Mauris convallis convallis arcu, sit amet placerat felis
-          sodales ut. Duis semper a risus ac consequat. Nulla id nibh sem.
-          Aliquam et nulla nec lectus viverra lobortis. Vivamus eros enim,
-          lobortis nec efficitur nec, rhoncus at tortor. Aliquam aliquet
-          bibendum ipsum eu feugiat. Duis iaculis bibendum ligula non ultricies.
-          Curabitur cursus nulla in nisl tincidunt, eget eleifend tellus
-          ultricies. Pellentesque eget mauris nec magna ultrices fringilla id
-          sit amet nulla. Ut nec velit sed augue eleifend pharetra. Aliquam a
-          posuere massa. Nunc vitae tortor ut est cursus vestibulum. In hac
-          habitasse platea dictumst. Nulla eget orci eleifend, elementum turpis
-          vitae, consectetur magna. In in nulla in tellus vestibulum pharetra.
-          Curabitur at rhoncus enim, tempus congue est. Nullam consectetur
-          lobortis nunc, vel feugiat lorem semper a. Ut tellus nulla, tempus id
-          posuere vel, luctus et sem. Nulla nec rhoncus mi. Aenean sit amet
-          mollis nibh. Nam ullamcorper tellus quis arcu aliquam, dignissim
-          ultricies justo efficitur. Cras non ipsum tempor, elementum dui id,
-          pellentesque turpis. Praesent commodo dolor in elit aliquet, sit amet
-          pellentesque sem molestie. In pharetra nisl nec orci pellentesque, ut
-          posuere quam faucibus. Class aptent taciti sociosqu ad litora torquent
-          per conubia nostra, per inceptos himenaeos. Maecenas mollis purus non
-          erat tempor euismod. Vestibulum non leo eget magna vestibulum mattis.
-          Aenean vitae tortor vel mauris pretium tempor. Sed viverra eros
-          tristique, dapibus tellus a, feugiat ipsum. Pellentesque non tellus
-          scelerisque, molestie massa vitae, fermentum ex. Quisque molestie
-          interdum nibh a luctus. Sed aliquet risus ac varius suscipit. Proin
-          eget leo vel lacus finibus posuere vel non nisl. In tristique ligula
-          leo, sed molestie sem sodales nec. Phasellus sed consectetur lectus.
-          In pretium hendrerit eros, a sagittis est faucibus ac. Etiam faucibus
-          felis et eros commodo fringilla. Duis volutpat lobortis suscipit.
-          Maecenas facilisis metus in lorem aliquet efficitur. Duis scelerisque
-          eros scelerisque, rhoncus massa eget, tempor ipsum. Donec id feugiat
-          purus, non condimentum turpis. Sed consequat lorem a odio pharetra
-          pretium. Proin sed turpis ac sapien convallis iaculis a sit amet est.
-          Proin lorem risus, rhoncus non metus at, fringilla commodo erat. Sed
-          quis elit vitae leo ullamcorper interdum non nec ipsum. Etiam
-          ullamcorper lorem ac velit condimentum, eget porttitor odio mollis.
-          Maecenas semper, urna eu cursus placerat, enim neque aliquam orci, ut
-          elementum justo ex id justo. Nunc malesuada egestas dui at vestibulum.
+          This is a <code>Dialog</code>, with initial focus on a{' '}
+          <code>TextInputWithButton</code> component input.
         </p>
-      </div>
+        <TextInputWithButton>
+          <TextInput name="my-input" inputRef={focusRef} />
+          <IconButton icon="arrow-right" variant="dark" title="go" />
+        </TextInputWithButton>
+      </Dialog>
     );
-    setLongModalIsOpen(true);
-    showDialog({
-      DialogComponent: Modal,
-      container: /** @type {HTMLElement} */ (document.getElementById('modal2')),
-      setOpen: setLongModalIsOpen,
-      props: {
-        title: 'Long Modal',
-        buttons,
-        children,
-      },
-    });
-  };
+  }
+}
 
-  const openConfirmModal = () => {
-    setConfirmModalIsOpen(true);
-    showDialog({
-      DialogComponent: ConfirmModal,
-      container: /** @type {HTMLElement} */ (document.getElementById(
-        'confirm-modal1'
-      )),
-      setOpen: setConfirmModalIsOpen,
-      props: {
-        confirmAction: 'Sure thing',
-        message: 'Confirm modal content goes right here.',
-        title: 'Confirm Modal Example',
-        onConfirm: () => alert('ok'),
-      },
-    });
-  };
+function ModalExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const focusRef = createRef();
+
+  const buttons = [
+    <LabeledButton
+      key="yep"
+      onClick={() => alert('You chose Save')}
+      variant="primary"
+    >
+      Save
+    </LabeledButton>,
+  ];
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Modal Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Modal
+        buttons={buttons}
+        initialFocus={focusRef}
+        onCancel={() => setDialogOpen(false)}
+        title="Sample Modal"
+      >
+        <p>
+          This is a <code>Modal</code>, with initial focus on a{' '}
+          <code>TextInputWithButton</code> component input.
+        </p>
+        <TextInputWithButton>
+          <TextInput name="my-input" inputRef={focusRef} />
+          <IconButton icon="arrow-right" variant="dark" title="go" />
+        </TextInputWithButton>
+      </Modal>
+    );
+  }
+}
+
+function LongModalExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const buttons = [
+    <LabeledButton
+      key="yep"
+      onClick={() => alert('You chose Save')}
+      variant="primary"
+    >
+      Save
+    </LabeledButton>,
+  ];
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Long Modal
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Modal
+        buttons={buttons}
+        onCancel={() => setDialogOpen(false)}
+        title="Modal with overflowing content"
+      >
+        <div className="hyp-scrollbox">
+          <LoremIpsum />
+        </div>
+      </Modal>
+    );
+  }
+}
+
+function ConfirmModalExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show ConfirmModal Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <ConfirmModal
+        confirmAction="OK"
+        message="Are you sure you want to take out a second mortgage?"
+        onCancel={() => setDialogOpen(false)}
+        onConfirm={() => alert('ok')}
+        title="Confirm this"
+      />
+    );
+  }
+}
+
+export default function DialogComponents() {
   return (
     <Library.Page title="Dialogs">
       <Library.Pattern title="Dialog">
@@ -281,6 +181,9 @@ export default function DialogComponents() {
           a <code>Panel</code> for presenting panel-styled content that does not
           require grabbing focus.
         </p>
+        <p>
+          <code>Dialogs</code> are styled using the <code>panel</code> pattern.
+        </p>
         <Library.Example title="Setting initial focus">
           <p>
             This example shows a dismiss-able <code>Dialog</code> with an
@@ -290,18 +193,16 @@ export default function DialogComponents() {
             <code>input</code> element.
           </p>
           <p>
-            <code>Dialogs</code> are styled using the <code>panel</code>{' '}
-            pattern.
+            In some cases, you might need finer control over which element is
+            focused when the <code>Dialog</code> or <code>Modal</code> is
+            opened. This might arise if you have nested components within a{' '}
+            <code>Modal</code> or <code>Dialog</code>, or there is complex logic
+            about focus. Setting the <code>initialFocus</code> prop to{' '}
+            <code>null</code> will opt out of automatic focus handling.
           </p>
+
           <Library.Demo>
-            <div>
-              <div id="dialog1" />
-              {!dialogIsOpen && (
-                <LabeledButton variant="primary" onClick={openDialog}>
-                  Open dialog
-                </LabeledButton>
-              )}
-            </div>
+            <DialogExample />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
@@ -317,36 +218,7 @@ export default function DialogComponents() {
             or clicking anywhere outside of it.
           </p>
           <Library.Demo>
-            <div>
-              <div id="modal1" />
-              <LabeledButton variant="primary" onClick={openModal}>
-                Open modal
-              </LabeledButton>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Manual focus control">
-          <p>
-            In some cases, you might need more manual control of focus routing.
-            This might arise if you have nested components within a{' '}
-            <code>Modal</code> or <code>Dialog</code>, or there is complex logic
-            about focus. Setting the <code>initialFocus</code> prop to{' '}
-            <code>null</code> will opt out of automatic focus handling.
-          </p>
-          <p>
-            In this example, automatic focus is disabled. When the{' '}
-            <code>Modal</code> is opened, a contained <code>TextInput</code>{' '}
-            component is manually set to focused.
-          </p>
-
-          <Library.Demo>
-            <div>
-              <div id="modalFocus" />
-              <LabeledButton variant="primary" onClick={openFocusModal}>
-                Open modal
-              </LabeledButton>
-            </div>
+            <ModalExample />
           </Library.Demo>
         </Library.Example>
 
@@ -363,12 +235,7 @@ export default function DialogComponents() {
             <code>Modal</code>.
           </p>
           <Library.Demo>
-            <div>
-              <div id="modal2" />
-              <LabeledButton variant="primary" onClick={openLongModal}>
-                Open long modal
-              </LabeledButton>
-            </div>
+            <LongModalExample />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
@@ -391,12 +258,7 @@ export default function DialogComponents() {
             modal.
           </p>
           <Library.Demo>
-            <div>
-              <div id="confirm-modal1" />
-              <LabeledButton variant="primary" onClick={openConfirmModal}>
-                Open confirm modal
-              </LabeledButton>
-            </div>
+            <ConfirmModalExample />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
