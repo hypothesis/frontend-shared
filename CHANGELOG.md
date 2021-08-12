@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.7.0] - 2021-08-12
+
+Updates the visual style of `Spinner`. Adds `Scrollbox` container component.
+
+### Added
+
+- Add Scrollbox container component [#170](https://github.com/hypothesis/frontend-shared/pull/170)
+- Introduce a `table` pattern [#168](https://github.com/hypothesis/frontend-shared/pull/168)
+- Add "scrollbox" pattern [#166](https://github.com/hypothesis/frontend-shared/pull/166)
+
+### Changed
+
+- Extract some reusable sample components and refactor Dialog examples [#169](https://github.com/hypothesis/frontend-shared/pull/169)
+- Convert remaining patterns pages to newer Library components [#164](https://github.com/hypothesis/frontend-shared/pull/164)
+- Add a very simple introductory page to the pattern library [#167](https://github.com/hypothesis/frontend-shared/pull/167)
+- Update color foundations page to newer components [#160](https://github.com/hypothesis/frontend-shared/pull/160)
+- Convert container-patterns page to newer Library components [#161](https://github.com/hypothesis/frontend-shared/pull/161)
+- Update developer documentation: `yalc`, development workflow [#147](https://github.com/hypothesis/frontend-shared/pull/147)
+- Only mock local components [#156](https://github.com/hypothesis/frontend-shared/pull/156)
+- Remove remaining prop-types usage [#155](https://github.com/hypothesis/frontend-shared/pull/155)
+- Make spinner visual treatment work better in various sizes [#154](https://github.com/hypothesis/frontend-shared/pull/154)
+
+### Fixed
+
+- Fix icon naming for Spinner component [#150](https://github.com/hypothesis/frontend-shared/pull/150)
+- Do not hard-code `localhost` in web template asset paths [#165](https://github.com/hypothesis/frontend-shared/pull/165)
+
 ## [v3.6.0] - 2021-07-19
 
 Adds ability to opt out of `Dialog`, `Modal` focus handling and fixes focus
