@@ -318,5 +318,6 @@ $-library-vertical-spacing: 7;
 
   &__demo-content {
     @include layout.row($align: center, $justify: center);
+    @include layout.horizontal-spacing;
   }
 }
