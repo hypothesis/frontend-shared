@@ -1,99 +1,70 @@
 import { mount } from 'enzyme';
+import { createRef } from 'preact';
 
 import { Frame, Card, Actions, Scrollbox } from '../containers';
 
-describe('Frame', () => {
-  const createComponent = (props = {}) =>
-    mount(
-      <Frame {...props}>
-        <div>This is content inside of a frame</div>
-      </Frame>
+describe('Container components', () => {
+  const createComponent = (Component, props = {}) => {
+    return mount(
+      <Component {...props}>
+        <div>This is content inside of a container</div>
+      </Component>
     );
+  };
 
-  it('renders children inside of a div with appropriate classnames', () => {
-    const wrapper = createComponent();
+  const commonTests = (Component, className) => {
+    it('renders children inside of a div with appropriate classnames', () => {
+      const wrapper = createComponent(Component);
 
-    assert.isTrue(wrapper.find('div').first().hasClass('Hyp-Frame'));
+      assert.isTrue(wrapper.find('div').first().hasClass(className));
+    });
+
+    it('applies extra classes', () => {
+      const wrapper = createComponent(Component, { classes: 'foo bar' });
+      assert.deepEqual(
+        [
+          ...wrapper
+            .find(`div.${className}.foo.bar`)
+            .getDOMNode()
+            .classList.values(),
+        ],
+        [className, 'foo', 'bar']
+      );
+    });
+
+    it('passes along a `ref` to the input element through `containerRef`', () => {
+      const containerRef = createRef();
+      createComponent(Component, { containerRef });
+
+      assert.instanceOf(containerRef.current, Node);
+    });
+  };
+
+  describe('Frame', () => {
+    commonTests(Frame, 'Hyp-Frame');
   });
 
-  it('applies extra classes', () => {
-    const wrapper = createComponent({ classes: 'foo bar' });
-
-    assert.isTrue(wrapper.find('div.Hyp-Frame.foo.bar').exists());
-  });
-});
-
-describe('Card', () => {
-  const createComponent = (props = {}) =>
-    mount(
-      <Card {...props}>
-        <div>This is content inside of a card</div>
-      </Card>
-    );
-
-  it('renders children inside of a div with appropriate classnames', () => {
-    const wrapper = createComponent();
-
-    assert.isTrue(wrapper.find('div').first().hasClass('Hyp-Card'));
+  describe('Card', () => {
+    commonTests(Card, 'Hyp-Card');
   });
 
-  it('applies extra classes', () => {
-    const wrapper = createComponent({ classes: 'foo bar' });
+  describe('Actions', () => {
+    commonTests(Actions, 'Hyp-Actions--row');
 
-    assert.isTrue(wrapper.find('div.Hyp-Card.foo.bar').exists());
-  });
-});
+    it('applies columnar layout if `direction` is `column`', () => {
+      const wrapper = createComponent(Actions, { direction: 'column' });
 
-describe('Actions', () => {
-  const createComponent = (props = {}) =>
-    mount(
-      <Actions {...props}>
-        <div>This is content inside of Actions</div>
-      </Actions>
-    );
-
-  it('renders children inside of a div with appropriate classnames', () => {
-    const wrapper = createComponent();
-
-    assert.isTrue(wrapper.find('div').first().hasClass('Hyp-Actions--row'));
+      assert.isTrue(wrapper.find('div.Hyp-Actions--column').exists());
+    });
   });
 
-  it('applies extra classes', () => {
-    const wrapper = createComponent({ classes: 'foo bar' });
+  describe('Scrollbox', () => {
+    commonTests(Scrollbox, 'Hyp-Scrollbox');
 
-    assert.isTrue(wrapper.find('div.Hyp-Actions--row.foo.bar').exists());
-  });
+    it('applies header-affordance layout class if `withHeader`', () => {
+      const wrapper = createComponent(Scrollbox, { withHeader: true });
 
-  it('applies columnar layout if `direction` is `column`', () => {
-    const wrapper = createComponent({ direction: 'column' });
-
-    assert.isTrue(wrapper.find('div.Hyp-Actions--column').exists());
-  });
-});
-
-describe('Scrollbox', () => {
-  const createComponent = (props = {}) =>
-    mount(
-      <Scrollbox {...props}>
-        <div>This is content inside of a Scrollbox</div>
-      </Scrollbox>
-    );
-
-  it('renders children inside of a div with appropriate classnames', () => {
-    const wrapper = createComponent();
-
-    assert.isTrue(wrapper.find('.Hyp-Scrollbox').exists());
-  });
-
-  it('applies extra classes', () => {
-    const wrapper = createComponent({ classes: 'foo bar' });
-
-    assert.isTrue(wrapper.find('div.Hyp-Scrollbox.foo.bar').exists());
-  });
-
-  it('applies header-affordance layout class if `withHeader`', () => {
-    const wrapper = createComponent({ withHeader: true });
-
-    assert.isTrue(wrapper.find('div.Hyp-Scrollbox--with-header').exists());
+      assert.isTrue(wrapper.find('div.Hyp-Scrollbox--with-header').exists());
+    });
   });
 });
