@@ -3,12 +3,7 @@ import { useState } from 'preact/hooks';
 
 import { LabeledButton } from '../../../';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 function SquareBlock() {
   return (
@@ -78,8 +73,8 @@ export default function LayoutFoundations() {
     '8rem',
   ];
   return (
-    <PatternPage title="Layout">
-      <Pattern title="Spacing Units">
+    <Library.Page title="Layout">
+      <Library.Pattern title="Spacing Units">
         <p>
           Spacing units provide a way to apply predefined, consistent spacing
           dimensions between (margins) and around (padding) elements. Our
@@ -106,8 +101,9 @@ export default function LayoutFoundations() {
             </div>
           ))}
         </div>
-      </Pattern>
-      <Pattern title="Horizontal spacing">
+      </Library.Pattern>
+
+      <Library.Pattern title="Horizontal spacing">
         <p>
           Sometimes you may need to apply or adjust horizontal spacing between
           an element&apos;s immediate children.
@@ -133,8 +129,9 @@ export default function LayoutFoundations() {
             <SpacingDemo direction="horizontal" size={9} />
           </div>
         </div>
-      </Pattern>
-      <Pattern title="Vertical spacing">
+      </Library.Pattern>
+
+      <Library.Pattern title="Vertical spacing">
         <p>
           Sometimes you may need to apply or adjust vertical spacing between an
           element&apos;s immediate children.
@@ -156,14 +153,15 @@ export default function LayoutFoundations() {
           <SpacingDemo direction="vertical" size={8} />
           <SpacingDemo direction="vertical" size={9} />
         </div>
-      </Pattern>
-      <Pattern title="Fixed-Centered Positioning">
-        <p>
-          The <code>fixed-centered</code> layout pattern centers an element both
-          horizontally and vertically within the entire viewport.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Centering an element vertically and horizontally within the viewport">
+      </Library.Pattern>
+
+      <Library.Pattern title="Positioning and Overlay">
+        <Library.Example title="Centering in the viewport">
+          <p>
+            The <code>fixed-centered</code> layout pattern centers an element
+            both horizontally and vertically within the entire viewport.
+          </p>
+          <Library.Demo>
             <div>
               <LabeledButton
                 variant="primary"
@@ -193,17 +191,16 @@ export default function LayoutFoundations() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-      <Pattern title="Full-screen overlay">
-        <p>
-          The <code>overlay</code> layout pattern provides a full-viewport,
-          semi-opaque overlay that obscures UI interactions in the viewport
-          below. It is intended for use as a backdrop for modals, e.g.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Semi-opaque full-screen overlay">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Full-screen overlay">
+          <p>
+            The <code>overlay</code> layout pattern provides a full-viewport,
+            semi-opaque overlay that obscures UI interactions in the viewport
+            below. It is intended for use as a backdrop for modals, e.g.
+          </p>
+          <Library.Demo>
             <div>
               <LabeledButton
                 variant="primary"
@@ -224,17 +221,15 @@ export default function LayoutFoundations() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
 
-      <Pattern title="Example: Full-screen overlay with fixed-centered content">
-        <p>
-          This shows an example of combining the <code>overlay</code> and{' '}
-          <code>fixed-centered</code> patterns.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Overlay and fixed-centered patterns used together">
+        <Library.Example title="Full-screen overlay with fixed-centered content">
+          <p>
+            This shows an example of combining the <code>overlay</code> and{' '}
+            <code>fixed-centered</code> patterns.
+          </p>
+          <Library.Demo>
             <div>
               <LabeledButton
                 variant="primary"
@@ -266,9 +261,9 @@ export default function LayoutFoundations() {
                 </div>
               </div>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
