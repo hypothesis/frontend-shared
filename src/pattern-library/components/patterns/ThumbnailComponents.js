@@ -1,16 +1,11 @@
 import { Thumbnail } from '../../..';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 export default function ThumbnailComponents() {
   return (
-    <PatternPage title="Thumbnail">
-      <Pattern title="Thumbnail">
+    <Library.Page title="Thumbnail">
+      <Library.Pattern title="Thumbnail">
         <p>
           The <code>Thumbnail</code> component handles rendering a thumbnail or
           other image, and provides a loading state and an empty (placeholder)
@@ -23,61 +18,81 @@ export default function ThumbnailComponents() {
           250x175px. The Thumbnail will fill, but not exceed, the available
           space.
         </p>
-        <PatternExamples>
-          <PatternExample details="Empty thumbnail with default placeholder">
+
+        <Library.Example title="Empty thumbnail with default placeholder">
+          <Library.Demo withSource>
             <div style="height: 250px; width:175px">
               <Thumbnail />
             </div>
-          </PatternExample>
-          <PatternExample details="Thumbnail with image content">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Thumbnail with image content">
+          <Library.Demo withSource>
             <div style="height: 250px; width:175px">
               <Thumbnail>
                 <img src="http://placekitten.com/200/300" alt="kitty" />
               </Thumbnail>
             </div>
-          </PatternExample>
-          <PatternExample details="Empty thumbnail in loading state">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Empty thumbnail in loading state">
+          <Library.Demo withSource>
             <div style="height: 250px; width:175px">
               <Thumbnail isLoading />
             </div>
-          </PatternExample>
-          <PatternExample details="Thumbnail in loading state (ignores content)">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Thumbnail in loading state">
+          <Library.Demo withSource>
             <div style="height: 250px; width:175px">
               <Thumbnail isLoading>
                 <img src="http://placekitten.com/200/300" alt="kitty" />
               </Thumbnail>
             </div>
-          </PatternExample>
-          <PatternExample details="Empty thumbnail with custom placeholder (placeholder can be any valid JSX)">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Empty thumbnail with custom placeholder">
+          <p>Placeholder can be any JSX</p>
+          <Library.Demo withSource>
             <div style="height: 250px; width:175px">
               <Thumbnail placeholder="!" />
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="Thumbnail (smaller)">
+      <Library.Pattern title="Thumbnail (smaller)">
         <p>These examples are within a 100x150px parent.</p>
-        <PatternExamples>
-          <PatternExample details="smaller loading spinner">
+        <Library.Example title="Smaller loading spinner">
+          <Library.Demo withSource>
             <div style="width:150px; height:100px">
               <Thumbnail isLoading size="small" />
             </div>
-          </PatternExample>
-          <PatternExample details="constrained image proportions">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Constrained image proportions">
+          <Library.Demo withSource>
             <div style="width:150px; height:100px">
               <Thumbnail size="small">
                 <img src="http://placekitten.com/200/300" alt="kitty" />
               </Thumbnail>
             </div>
-          </PatternExample>
-          <PatternExample details="constrained image proportions">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Constrained image proportions: placeholder">
+          <Library.Demo withSource>
             <div style="width:150px; height:100px">
               <Thumbnail size="small" />
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
