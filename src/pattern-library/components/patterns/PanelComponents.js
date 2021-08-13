@@ -1,23 +1,20 @@
 import { Panel } from '../../../';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 export default function PanelComponents() {
   return (
-    <PatternPage title="Panel">
-      <Pattern title="Panel">
-        <PatternExamples>
-          <PatternExample details="Basic Panel usage">
+    <Library.Page title="Panel">
+      <Library.Pattern title="Panel">
+        <Library.Example title="Basic usage">
+          <Library.Demo withSource>
             <Panel title="Basic panel">
               Here is a panel with no close button and very simple content.
             </Panel>
-          </PatternExample>
-          <PatternExample details="Basic Panel with close button">
+          </Library.Demo>
+        </Library.Example>
+        <Library.Example title="With close button">
+          <Library.Demo withSource>
             <Panel
               title="Basic panel with close button"
               onClose={() => alert('close clicked')}
@@ -26,8 +23,11 @@ export default function PanelComponents() {
               Providing an <code>onClose</code> function will cause a close
               button to render.
             </Panel>
-          </PatternExample>
-          <PatternExample details="A panel can also have an icon in the header">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="With header icon">
+          <Library.Demo withSource>
             <Panel
               icon="edit"
               title="Panel with optional heading icon"
@@ -35,8 +35,11 @@ export default function PanelComponents() {
             >
               This panel has an optional icon in the header.
             </Panel>
-          </PatternExample>
-          <PatternExample details="A panel in the clean theme">
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Clean theme">
+          <Library.Demo withSource>
             <div className="theme-clean" style="width:100%">
               <Panel
                 icon="edit"
@@ -46,9 +49,9 @@ export default function PanelComponents() {
                 This panel has an optional icon in the header.
               </Panel>
             </div>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }
