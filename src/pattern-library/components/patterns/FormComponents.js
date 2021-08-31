@@ -4,39 +4,21 @@ import { IconButton } from '../../../components/buttons';
 import { LabeledCheckbox } from '../../../components/Checkbox';
 import { TextInput, TextInputWithButton } from '../../../components/TextInput';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 export default function FormComponents() {
   const [wantSandwich, setWantSandwich] = useState(true);
   const [wantWatermelon, setWantWatermelon] = useState(false);
   const [textInputHasError, setTextInputHasError] = useState(true);
   return (
-    <PatternPage title="Forms">
-      <Pattern title="Checkbox">
-        <div style="font-size: 2em">
-          {wantSandwich && '🥪'}
-          {wantWatermelon && '🍉'}
-          &nbsp;
-        </div>
-        <PatternExamples>
-          <PatternExample
-            details="A checkbox, defaulting to checked"
-            style={{ width: '300px' }}
-          >
-            <LabeledCheckbox
-              name="test"
-              checked={wantSandwich}
-              onToggle={isChecked => setWantSandwich(isChecked)}
-            >
-              I want a sandwich
-            </LabeledCheckbox>
-          </PatternExample>
-          <PatternExample details="A checkbox, unchecked">
+    <Library.Page title="Forms">
+      <Library.Pattern title="LabeledCheckbox">
+        <Library.Example title="Unchecked (default)">
+          <div style="font-size: 2em">
+            {wantWatermelon && '🍉'}
+            &nbsp;
+          </div>
+          <Library.Demo withSource>
             <LabeledCheckbox
               checked={wantWatermelon}
               name="test-alternative"
@@ -44,27 +26,42 @@ export default function FormComponents() {
             >
               I want a watermelon
             </LabeledCheckbox>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
 
-      <Pattern title="TextInput">
+        <Library.Example title="Checked">
+          <div style="font-size: 2em">{wantSandwich && '🥪'}</div>
+          <Library.Demo style={{ width: '300px' }} withSource>
+            <LabeledCheckbox
+              name="test"
+              checked={wantSandwich}
+              onToggle={isChecked => setWantSandwich(isChecked)}
+            >
+              I want a sandwich
+            </LabeledCheckbox>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="TextInput">
         <p>
-          <code>TextInput</code> is a basic wrapper around an{' '}
+          The <code>TextInput</code> component is a basic wrapper around an
           <code>input type=&quot;text&quot;</code> field.
         </p>
-        <PatternExamples>
-          <PatternExample details="basic text input field">
+        <Library.Example title="Basic usage">
+          <Library.Demo withSource>
             <TextInput name="my-input" />
-          </PatternExample>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample details="text input field in an error state">
+        <Library.Example title="Error state">
+          <Library.Demo withSource>
             <TextInput name="my-input" hasError />
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="TextInputWithButton">
+      <Library.Pattern title="TextInputWithButton">
         <p>
           This component wraps the <code>text-input-with-button</code> pattern:
           a text input on the left with an associated icon-only button on the
@@ -74,15 +71,17 @@ export default function FormComponents() {
           Current usage favors the <code>dark</code> variant of{' '}
           <code>IconButton</code>.
         </p>
-        <PatternExamples>
-          <PatternExample details="basic text input field">
+        <Library.Example title="Basic usage">
+          <Library.Demo withSource>
             <TextInputWithButton>
               <TextInput name="my-input" />
               <IconButton icon="arrow-right" variant="dark" title="go" />
             </TextInputWithButton>
-          </PatternExample>
+          </Library.Demo>
+        </Library.Example>
 
-          <PatternExample details="text input field in an error state; click button to toggle error state">
+        <Library.Example title="Error state">
+          <Library.Demo withSource>
             <TextInputWithButton>
               <TextInput name="my-input" hasError={textInputHasError} />
               <IconButton
@@ -92,9 +91,9 @@ export default function FormComponents() {
                 onClick={() => setTextInputHasError(!textInputHasError)}
               />
             </TextInputWithButton>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }

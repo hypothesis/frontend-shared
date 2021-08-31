@@ -1,196 +1,165 @@
 import { IconButton, LabeledButton, LinkButton } from '../../../';
 
-import {
-  PatternPage,
-  Pattern,
-  PatternExamples,
-  PatternExample,
-} from '../PatternPage';
+import Library from '../Library';
 
 export default function ButtonComponents() {
   return (
-    <PatternPage title="Buttons">
-      <Pattern title="IconButton">
-        <p>A button containing an icon and no other content.</p>
+    <Library.Page title="Buttons">
+      <p>
+        Button components support the following <strong>variants</strong>:
+      </p>
+      <ul>
+        <li>Default</li>
+        <li>
+          Primary: For indicating that a button represents a primary action
+        </li>
+        <li>Dark: For rendering a button on a grey background</li>
+        <li>
+          Light: This variant should only be used for non-critical buttons on
+          white backgrounds (low contrast).
+        </li>
+      </ul>
+      <p>
+        In addition, a button may be in one of four states, which are
+        represented in their variant examples, left to right:
+      </p>
+      <ul>
+        <li>Default</li>
+        <li>Pressed</li>
+        <li>Expanded</li>
+        <li>Disabled</li>
+      </ul>
 
-        <h3>Sizes</h3>
-        <p>
-          The optional <code>size</code> property affects the proportions and
-          overall size of the button by way of padding. It does not change the
-          size of the icon itself, which is sized at&nbsp;
-          <code>1em</code>. The default sizing is <code>medium</code>.
-        </p>
-        <PatternExamples>
-          <PatternExample details="Sizes: medium is default">
+      <Library.Pattern title="IconButton">
+        <p>A button containing an icon and no other content.</p>
+        <Library.Example title="Basic use and sizes">
+          <p>
+            The optional <code>size</code> property affects the proportions and
+            overall size of the button by way of padding. It does not change the
+            size of the icon itself, which is sized at&nbsp;
+            <code>1em</code>. The default sizing is <code>medium</code>.
+          </p>
+          <Library.Demo withSource>
             <IconButton icon="edit" title="Edit" size="small" />
             <IconButton icon="edit" title="Edit" size="medium" />
             <IconButton icon="edit" title="Edit" size="large" />
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
+        </Library.Example>
 
-        <h3>Default variant</h3>
-        <PatternExamples>
-          <PatternExample details="Default state">
+        <Library.Example title="Variants" variant="wide">
+          <h4>Dark variant</h4>
+          <p>
+            The <code>IconButton</code> dark variant is for use on darker (light
+            grey vs. white) backgrounds. Note that this button, unlike other{' '}
+            <code>IconButton</code>s, has a background color. This is to allow
+            for a use case in which the dark <code>IconButton</code> is
+            initially fixed on a grey background but floats on top of content
+            when scrolled.
+          </p>
+          <h4>Light variant</h4>
+          <p>
+            This variant should only be used for non-critical icons on white
+            backgrounds (low contrast).
+          </p>
+          <Library.Demo title="Default" withSource>
             <IconButton icon="trash" title="Delete annotation" />
-          </PatternExample>
-
-          <PatternExample details="Pressed">
             <IconButton icon="trash" title="Delete annotation" pressed />
-          </PatternExample>
-
-          <PatternExample details="Expanded">
             <IconButton icon="trash" title="Delete annotation" expanded />
-          </PatternExample>
-
-          <PatternExample details="Disabled">
             <IconButton icon="trash" title="Delete annotation" disabled />
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
 
-        <h3>Primary variant</h3>
-        <PatternExamples>
-          <PatternExample details="Basic usage">
-            <IconButton icon="edit" title="Edit" variant="primary" />
-          </PatternExample>
-
-          <PatternExample details="Pressed">
+          <Library.Demo title="Primary" withSource>
+            <IconButton
+              icon="trash"
+              title="Delete annotation"
+              variant="primary"
+            />
             <IconButton
               icon="trash"
               title="Delete annotation"
               pressed
               variant="primary"
             />
-          </PatternExample>
-
-          <PatternExample details="Expanded">
             <IconButton
               icon="trash"
               title="Delete annotation"
               expanded
               variant="primary"
             />
-          </PatternExample>
-
-          <PatternExample details="Disabled">
             <IconButton
               icon="trash"
               title="Delete annotation"
               disabled
               variant="primary"
             />
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
 
-        <h3>Dark variant</h3>
-        <p>
-          This variant is for use on darker (light grey vs. white) backgrounds.
-          Note that this button, unlike other <code>IconButton</code>s, has a
-          background color. This is to allow for a use case in which the dark{' '}
-          <code>IconButton</code> is initially fixed on a grey background but
-          floats on top of content when scrolled.
-        </p>
-
-        <PatternExamples>
-          <PatternExample
-            details="Basic usage"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <IconButton icon="cancel" title="Close" variant="dark" />
-          </PatternExample>
-          <PatternExample
-            details="Note that the button has a background color"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <IconButton icon="cancel" title="Close" variant="dark" />
-          </PatternExample>
-          <PatternExample
-            details="Pressed"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <IconButton icon="cancel" title="Close" variant="dark" pressed />
-          </PatternExample>
-          <PatternExample
-            details="Expanded"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <IconButton icon="cancel" title="Close" variant="dark" expanded />
-          </PatternExample>
-          <PatternExample
-            details="Disabled"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <IconButton icon="cancel" title="Close" variant="dark" disabled />
-          </PatternExample>
-        </PatternExamples>
-
-        <h3>Light variant</h3>
-        <p>
-          This variant should only be used for non-critical icons on white
-          backgrounds (low contrast).
-        </p>
-        <PatternExamples>
-          <PatternExample
-            details="Basic usage"
-            style={{ backgroundColor: 'white' }}
-          >
-            <IconButton icon="collapsed" title="Edit" variant="light" />
-          </PatternExample>
-
-          <PatternExample
-            details="Pressed"
-            style={{ backgroundColor: 'white' }}
-          >
+          <Library.Demo title="Dark" withSource>
+            <IconButton icon="trash" title="Delete annotation" variant="dark" />
             <IconButton
-              icon="collapsed"
+              icon="trash"
+              title="Delete annotation"
+              pressed
+              variant="dark"
+            />
+            <IconButton
+              icon="trash"
+              title="Delete annotation"
+              expanded
+              variant="dark"
+            />
+            <IconButton
+              icon="trash"
+              title="Delete annotation"
+              disabled
+              variant="dark"
+            />
+          </Library.Demo>
+
+          <Library.Demo title="Light" withSource>
+            <IconButton
+              icon="trash"
+              title="Delete annotation"
+              variant="light"
+            />
+            <IconButton
+              icon="trash"
               title="Delete annotation"
               pressed
               variant="light"
             />
-          </PatternExample>
-
-          <PatternExample
-            details="Expanded"
-            style={{ backgroundColor: 'white' }}
-          >
             <IconButton
-              icon="collapsed"
+              icon="trash"
               title="Delete annotation"
               expanded
               variant="light"
             />
-          </PatternExample>
-
-          <PatternExample
-            details="Disabled"
-            style={{ backgroundColor: 'white' }}
-          >
             <IconButton
-              icon="collapsed"
+              icon="trash"
               title="Delete annotation"
               disabled
               variant="light"
             />
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-      <Pattern title="LabeledButton">
+      <Library.Pattern title="LabeledButton">
         <p>A button with content and, optionally, an icon.</p>
-
-        <h3>Sizes</h3>
-        <p>
-          As with <code>IconButton</code>, sizing affects proportions and
-          overall size via padding.
-        </p>
-
-        <PatternExamples>
-          <PatternExample details="Label only">
+        <Library.Example title="Basic use and sizes">
+          <p>
+            The optional <code>size</code> property affects the proportions and
+            overall size of the button by way of padding. It does not change the
+            size of the icon itself, which is sized at&nbsp;
+            <code>1em</code>. The default sizing is <code>medium</code>.
+          </p>
+          <Library.Demo title="Label only" withSource>
             <LabeledButton size="small">Edit</LabeledButton>
             <LabeledButton>Edit</LabeledButton>
             <LabeledButton size="large">Edit</LabeledButton>
-          </PatternExample>
+          </Library.Demo>
 
-          <PatternExample details="Label and icon">
+          <Library.Demo title="Label, icon" withSource>
             <LabeledButton icon="profile" size="small">
               Edit User
             </LabeledButton>
@@ -198,9 +167,9 @@ export default function ButtonComponents() {
             <LabeledButton icon="profile" size="large">
               Edit User
             </LabeledButton>
-          </PatternExample>
+          </Library.Demo>
 
-          <PatternExample details="Label and icon: icon on right">
+          <Library.Demo title="Label, icon on right" withSource>
             <LabeledButton icon="profile" size="small" iconPosition="right">
               Edit User
             </LabeledButton>
@@ -210,216 +179,93 @@ export default function ButtonComponents() {
             <LabeledButton icon="profile" size="large" iconPosition="right">
               Edit User
             </LabeledButton>
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
+        </Library.Example>
 
-        <h3>Default variant</h3>
-
-        <PatternExamples>
-          <PatternExample details="Default state">
-            <LabeledButton>Edit</LabeledButton>
+        <Library.Example title="Variants" variant="wide">
+          <Library.Demo title="Default" withSource>
             <LabeledButton icon="edit">Edit</LabeledButton>
-          </PatternExample>
-
-          <PatternExample details="Pressed">
-            <LabeledButton pressed>Edit</LabeledButton>
             <LabeledButton icon="edit" pressed>
               Edit
             </LabeledButton>
-          </PatternExample>
-
-          <PatternExample details="Expanded">
-            <LabeledButton expanded>Edit</LabeledButton>
             <LabeledButton icon="edit" expanded>
               Edit
             </LabeledButton>
-          </PatternExample>
-
-          <PatternExample details="Disabled">
-            <LabeledButton disabled>Edit</LabeledButton>
             <LabeledButton icon="edit" disabled>
               Edit
             </LabeledButton>
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
 
-        <h3>Primary variant</h3>
+          <Library.Demo title="Primary" withSource>
+            <LabeledButton icon="edit" variant="primary">
+              Edit
+            </LabeledButton>
+            <LabeledButton icon="edit" variant="primary">
+              Edit
+            </LabeledButton>
+            <LabeledButton icon="edit" variant="primary">
+              Edit
+            </LabeledButton>
+            <LabeledButton icon="edit" variant="primary">
+              Edit
+            </LabeledButton>
+          </Library.Demo>
 
-        <PatternExamples>
-          <PatternExample details="Default state">
-            <LabeledButton variant="primary">Edit user</LabeledButton>
-            <LabeledButton icon="profile" variant="primary">
-              Edit user
+          <Library.Demo title="Dark" withSource>
+            <LabeledButton icon="edit" variant="dark">
+              Edit
             </LabeledButton>
-          </PatternExample>
+            <LabeledButton icon="edit" pressed variant="dark">
+              Edit
+            </LabeledButton>
+            <LabeledButton icon="edit" expanded variant="dark">
+              Edit
+            </LabeledButton>
+            <LabeledButton icon="edit" disabled variant="dark">
+              Edit
+            </LabeledButton>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
 
-          <PatternExample details="Pressed">
-            <LabeledButton pressed variant="primary">
-              Edit user
-            </LabeledButton>
-            <LabeledButton icon="profile" pressed variant="primary">
-              Edit user
-            </LabeledButton>
-          </PatternExample>
-
-          <PatternExample details="Expanded">
-            <LabeledButton expanded variant="primary">
-              Edit user
-            </LabeledButton>
-            <LabeledButton icon="profile" expanded variant="primary">
-              Edit user
-            </LabeledButton>
-          </PatternExample>
-
-          <PatternExample details="Disabled">
-            <LabeledButton disabled variant="primary">
-              Edit user
-            </LabeledButton>
-            <LabeledButton icon="profile" disabled variant="primary">
-              Edit user
-            </LabeledButton>
-          </PatternExample>
-        </PatternExamples>
-
-        <h3>Dark variant</h3>
-
-        <p>Intended for use on non-white, very light grey backgrounds.</p>
-        <PatternExamples>
-          <PatternExample
-            details="Default state"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LabeledButton variant="dark">Buy ice cream</LabeledButton>
-            <LabeledButton icon="trash" variant="dark">
-              Buy ice cream
-            </LabeledButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Pressed"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LabeledButton pressed variant="dark">
-              Buy ice cream
-            </LabeledButton>
-            <LabeledButton icon="trash" pressed variant="dark">
-              Buy ice cream
-            </LabeledButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Expanded"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LabeledButton expanded variant="dark">
-              Buy ice cream
-            </LabeledButton>
-            <LabeledButton expanded icon="edit" variant="dark">
-              Buy ice cream
-            </LabeledButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Disabled"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LabeledButton disabled variant="dark">
-              Buy ice cream
-            </LabeledButton>
-            <LabeledButton disabled icon="edit" variant="dark">
-              Buy ice cream
-            </LabeledButton>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-
-      <Pattern title="LinkButton">
+      <Library.Pattern title="LinkButton">
         <p>A button styled to look like a link (anchor tag).</p>
 
-        <h3>Default variant</h3>
-        <PatternExamples>
-          <PatternExample details="Basic usage">
+        <Library.Example title="Variants">
+          <Library.Demo title="Default" withSource>
             <LinkButton>Show replies (10)</LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Pressed">
             <LinkButton pressed>Show replies (10)</LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Expanded">
             <LinkButton expanded>Show replies (10)</LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Disabled">
             <LinkButton disabled>Show replies (10)</LinkButton>
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
 
-        <h3>Primary variant</h3>
-
-        <PatternExamples>
-          <PatternExample details="Basic usage">
+          <Library.Demo title="Primary" withSource>
             <LinkButton variant="primary">Show replies (10)</LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Pressed">
-            <LinkButton pressed variant="primary">
+            <LinkButton variant="primary" pressed>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Expanded">
-            <LinkButton expanded variant="primary">
+            <LinkButton variant="primary" expanded>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-
-          <PatternExample details="Disabled">
-            <LinkButton disabled variant="primary">
+            <LinkButton variant="primary" disabled>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-        </PatternExamples>
+          </Library.Demo>
 
-        <h3>Dark variant</h3>
-        <p>For use on light grey (non-white) backgrounds.</p>
-
-        <PatternExamples>
-          <PatternExample
-            details="Basic usage"
-            style={{ backgroundColor: '#ececec' }}
-          >
+          <Library.Demo title="Dark" withSource>
             <LinkButton variant="dark">Show replies (10)</LinkButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Pressed"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LinkButton pressed variant="dark">
+            <LinkButton variant="dark" pressed>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Expanded"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LinkButton expanded variant="dark">
+            <LinkButton variant="dark" expanded>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-
-          <PatternExample
-            details="Disabled"
-            style={{ backgroundColor: '#ececec' }}
-          >
-            <LinkButton disabled variant="dark">
+            <LinkButton variant="dark" disabled>
               Show replies (10)
             </LinkButton>
-          </PatternExample>
-        </PatternExamples>
-      </Pattern>
-    </PatternPage>
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+    </Library.Page>
   );
 }

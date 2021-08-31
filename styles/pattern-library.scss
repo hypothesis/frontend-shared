@@ -90,68 +90,6 @@ pre {
   }
 }
 
-.PatternPage {
-  font-size: 14px;
-
-  &__content {
-    padding: 2em 0;
-  }
-}
-
-.Pattern {
-  margin: 0 0 4em 1em;
-  p {
-    margin: 1em;
-    margin-left: 0;
-  }
-
-  & > h2 {
-    margin-left: -1em;
-  }
-}
-
-.PatternExamples {
-  border: 1px solid var.$color-grey-3;
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 1em;
-  margin-bottom: 2em;
-
-  th,
-  td {
-    padding: 0.5em;
-  }
-
-  th {
-    background-color: var.$color-grey-1;
-    border-bottom: 1px solid var.$color-grey-3;
-    text-align: left;
-  }
-
-  td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  tr:nth-child(even) {
-    background: var.$color-grey-0;
-  }
-
-  code {
-    color: var.$color-grey-7;
-  }
-}
-
-.PatternExample {
-  &__example {
-    display: flex;
-    align-items: center;
-    & > * + * {
-      margin-left: 1em;
-    }
-  }
-}
-
 // Element styles
 body {
   font-family: sans-serif;
@@ -167,48 +105,6 @@ body {
     &__sidebar {
       max-height: none;
     }
-  }
-}
-
-// TODO This is prototype styling for a potential new component in the
-// pattern library.
-.Example {
-  margin: 1.5em 0;
-
-  p {
-    margin: 0 0 1em 0;
-  }
-
-  & > p {
-    margin: 0 0 0.5em;
-    font-size: 18px;
-  }
-
-  &__content {
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-
-    @media screen and (min-width: 48rem) {
-      flex-direction: row;
-    }
-  }
-
-  &__usage {
-    padding-right: 1em;
-    flex-basis: 0;
-    flex-grow: 2;
-    font-size: 15px;
-    line-height: 1.4;
-  }
-
-  &__demo {
-    flex-basis: 0;
-    flex-grow: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var.$color-grey-1;
   }
 }
 
@@ -318,5 +214,6 @@ $-library-vertical-spacing: 7;
 
   &__demo-content {
     @include layout.row($align: center, $justify: center);
+    @include layout.horizontal-spacing;
   }
 }
