@@ -1,6 +1,5 @@
-import Library from '../Library';
-
 import { IconButton, SvgIcon } from '../../../';
+import Library from '../Library';
 
 export default function FormPatterns() {
   return (

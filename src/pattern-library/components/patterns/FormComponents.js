@@ -1,9 +1,11 @@
 import { useState } from 'preact/hooks';
 
-import { IconButton } from '../../../components/buttons';
-import { LabeledCheckbox } from '../../../components/Checkbox';
-import { TextInput, TextInputWithButton } from '../../../components/TextInput';
-
+import {
+  IconButton,
+  LabeledCheckbox,
+  TextInput,
+  TextInputWithButton,
+} from '../../..';
 import Library from '../Library';
 
 export default function FormComponents() {

@@ -1,8 +1,7 @@
 import { useState } from 'preact/hooks';
 
-import Library from '../Library';
-
 import { IconButton, LabeledButton } from '../../../';
+import Library from '../Library';
 
 import { SampleListElements } from './samples';
 

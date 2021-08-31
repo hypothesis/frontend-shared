@@ -1,6 +1,5 @@
-import Library from '../Library';
-
 import { Spinner } from '../../..';
+import Library from '../Library';
 
 export default function SpinnerComponents() {
   return (

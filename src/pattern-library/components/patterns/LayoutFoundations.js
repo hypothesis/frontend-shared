@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import { useState } from 'preact/hooks';
 
 import { LabeledButton } from '../../../';
-
 import Library from '../Library';
 
 function SquareBlock() {

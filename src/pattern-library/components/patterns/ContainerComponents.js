@@ -1,6 +1,4 @@
-import { Frame, Card, Actions, Scrollbox } from '../../..';
-import { LabeledButton } from '../../..';
-
+import { Actions, Card, Frame, Scrollbox, LabeledButton } from '../../..';
 import Library from '../Library';
 
 import { SampleListElements } from './samples';

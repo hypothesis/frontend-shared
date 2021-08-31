@@ -1,6 +1,5 @@
-import Library from '../Library';
-
 import { IconButton, LabeledButton } from '../../../';
+import Library from '../Library';
 
 export default function OrganismPatterns() {
   return (

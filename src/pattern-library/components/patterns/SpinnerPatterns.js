@@ -1,6 +1,5 @@
-import Library from '../Library';
-
 import { SvgIcon } from '../../..';
+import Library from '../Library';
 
 export default function SpinnerPatterns() {
   return (
