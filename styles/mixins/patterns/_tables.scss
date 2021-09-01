@@ -6,9 +6,18 @@
 
 @use './containers';
 
-$-color-background--light: var.$color-white;
-$-color-background--dark: var.$color-grey-7;
-$-color-header-background: var.$color-grey-1;
+// TODO: Extract these to colors if adopted
+// These two colors are adapted from https://hypothesis-pattern-library.netlify.app/helpers
+$-color-background--inverted: #595969;
+// 8-bit HEX with opacity
+$-color-background-hover: #babac444;
+
+// This background-border combination is novel.
+// TODO: Extract into pattern if adopted
+$-color-header-background: var.$color-grey-2;
+$-color-header-border: var.$color-grey-5;
+
+$-color-text--inverted: var.$color-white;
 $-min-row-height: var.$touch-target-size;
 
 @mixin table {
@@ -42,10 +51,11 @@ $-min-row-height: var.$touch-target-size;
 
     th {
       @include containers.sticky-header;
+      border-bottom: 1px solid $-color-header-border;
+      background-color: $-color-header-background;
       // Ensure the header is displayed above content in the table when it is
       // scrolled, including any content which establishes a new stacking context.
       z-index: 1;
-
       text-align: left;
     }
   }
@@ -60,13 +70,24 @@ $-min-row-height: var.$touch-target-size;
       border-top: none;
     }
 
+    & tr:nth-child(odd) {
+      // Need a low-opacity black versus a named greyscale color because
+      // this background needs to be very low opacity so as not to obscure
+      // scroll-hinting shadows
+      background-color: rgba(0, 0, 0, 0.025);
+    }
+
     & tr {
       height: $-min-row-height;
 
       &.is-selected {
-        background-color: $-color-background--dark;
-        color: var.$color-white;
+        background-color: $-color-background--inverted;
+        color: $-color-text--inverted;
       }
+    }
+
+    & tr:hover:not(.is-selected) {
+      background-color: $-color-background-hover;
     }
   }
 }

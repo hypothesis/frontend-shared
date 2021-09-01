@@ -246,10 +246,11 @@ $-header-height: var.$touch-target-size;
   height: $-header-height;
 
   @include layout.padding;
-  @include atoms.border(bottom);
-
-  background-color: var.$color-grey-1;
   font-weight: bold;
+
+  // This element needs a background of some sort so that text scrolling
+  // beneath it doesn't show through
+  background-color: var.$color-background;
 
   width: 100%;
 

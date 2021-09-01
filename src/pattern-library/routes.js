@@ -16,6 +16,7 @@ import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
 import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
+import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
 /**
@@ -120,6 +121,12 @@ const routes = [
     route: '/components-spinner',
     title: 'Spinner',
     component: SpinnerComponents,
+    group: 'components',
+  },
+  {
+    route: '/components-table',
+    title: 'Table',
+    component: TableComponents,
     group: 'components',
   },
   {
