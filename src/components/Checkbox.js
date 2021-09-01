@@ -1,5 +1,7 @@
 // @ts-ignore
 import checkboxIcon from '../../images/icons/checkbox.svg';
+import classnames from 'classnames';
+
 import { registerIcons, SvgIcon } from './SvgIcon';
 
 // Register the checkbox icon for use
@@ -9,6 +11,7 @@ registerIcons({
 
 /**
  * @typedef CheckboxBaseProps
+ * @prop {string} [classes] - Additional CSS classes to apply to the <input>
  * @prop {string} name - The `name` of the checkbox.
  * @prop {import('preact').Ref<HTMLInputElement>} [inputRef] - Access to the input
  *    element in case a parent element wants for example to focus on it.
@@ -26,6 +29,8 @@ registerIcons({
 /**
  * @typedef LabeledCheckboxBaseProps
  * @prop {import('preact').ComponentChildren} children - Label text or elements
+ * @prop {string} [containerClasses] - Optional additional classes for the container
+ *   <label> element
  *
  * @typedef {Omit<CheckboxProps, 'children'> & LabeledCheckboxBaseProps} LabeledCheckboxProps
  */
@@ -38,7 +43,13 @@ registerIcons({
  *
  * @param {CheckboxProps} props
  */
-export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
+export function Checkbox({
+  classes = '',
+  inputRef,
+  onToggle,
+  onClick,
+  ...restProps
+}) {
   /**
    * @param {import('preact').JSX.TargetedMouseEvent<HTMLInputElement>} event
    * @this HTMLInputElement
@@ -54,7 +65,7 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
   return (
     <>
       <input
-        className="Hyp-Checkbox"
+        className={classnames('Hyp-Checkbox', classes)}
         ref={inputRef}
         type="checkbox"
         onClick={onPressed}
@@ -70,10 +81,18 @@ export function Checkbox({ inputRef, onToggle, onClick, ...restProps }) {
  *
  * @param {LabeledCheckboxProps} props
  */
-export function LabeledCheckbox({ children, id, ...restProps }) {
+export function LabeledCheckbox({
+  children,
+  id,
+  containerClasses = '',
+  ...restProps
+}) {
   id ??= restProps.name;
   return (
-    <label htmlFor={id} className="Hyp-LabeledCheckbox">
+    <label
+      htmlFor={id}
+      className={classnames('Hyp-LabeledCheckbox', containerClasses)}
+    >
       <Checkbox id={id} {...restProps} />
       <span data-testid="label-text">{children}</span>
     </label>

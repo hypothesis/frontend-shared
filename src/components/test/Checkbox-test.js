@@ -23,6 +23,14 @@ describe('Checkbox', () => {
     inputRef.current.click();
     assert.calledOnce(onClick);
   });
+
+  it('applies extra classes', () => {
+    const wrapper = createComponent({ classes: 'foo bar' });
+    assert.deepEqual(
+      [...wrapper.find('input.foo.bar').getDOMNode().classList.values()],
+      ['Hyp-Checkbox', 'foo', 'bar']
+    );
+  });
 });
 
 describe('LabeledCheckbox', () => {
@@ -82,6 +90,14 @@ describe('LabeledCheckbox', () => {
     assert.calledOnce(onToggle);
     assert.calledWith(onToggle, false);
     onToggle.reset();
+  });
+
+  it('applies extra container classes', () => {
+    const wrapper = createComponent({ containerClasses: 'foo bar' });
+    assert.deepEqual(
+      [...wrapper.find('label.foo.bar').getDOMNode().classList.values()],
+      ['Hyp-LabeledCheckbox', 'foo', 'bar']
+    );
   });
 
   it(
