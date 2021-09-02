@@ -1,5 +1,4 @@
 import { Thumbnail } from '../../..';
-
 import Library from '../Library';
 
 export default function ThumbnailComponents() {

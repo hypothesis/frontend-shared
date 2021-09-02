@@ -1,16 +1,17 @@
 import { createRef } from 'preact';
 import { useState } from 'preact/hooks';
+
+import Library from '../Library';
+
 import {
   ConfirmModal,
   Dialog,
+  IconButton,
   LabeledButton,
   Modal,
-  TextInputWithButton,
   TextInput,
-  IconButton,
+  TextInputWithButton,
 } from '../../../';
-
-import Library from '../Library';
 
 import { LoremIpsum } from './samples';
 

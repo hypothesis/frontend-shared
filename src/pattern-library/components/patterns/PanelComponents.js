@@ -1,5 +1,4 @@
 import { Panel } from '../../../';
-
 import Library from '../Library';
 
 export default function PanelComponents() {
