@@ -6,9 +6,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "module": "commonjs",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationDir": "../lib",
+    "noEmit": true,
     "strict": true,
     "noImplicitAny": false,
     "target": "ES2020"

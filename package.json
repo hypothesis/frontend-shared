@@ -59,7 +59,7 @@
   },
   "scripts": {
     "build-js": "babel src --out-dir lib --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
-    "build": "yarn build-js && tsc --build src/tsconfig.json",
+    "build": "yarn build-js && tsc --build src/type-generator-tsconfig.json",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
     "checkformatting": "prettier --check '**/*.{js,scss,md}'",
