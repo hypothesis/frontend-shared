@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.8.0] - 2021-09-02
+
+Adds `Table` component. Adds `containerRef` prop to all container components.
+Removes old Pattern Library components.
+
+### Breaking Changes
+
+- Pattern Library: Remove unused `PatternPage` component module and its styles [#4856b90](https://github.com/hypothesis/frontend-shared/commit/4856b906f88e0dd3d874c71a9c735746422f2fcb) -- older `Pattern*` components are no longer available: use `Library.*` components
+
+### Added
+
+- Add `Table` component [#174](https://github.com/hypothesis/frontend-shared/pull/174)
+- Make all container components take `containerRef`; consolidate tests [#172](https://github.com/hypothesis/frontend-shared/pull/172)
+
+### Changed
+
+- Convert remaining pattern library pages to newer `Library` components [#175](https://github.com/hypothesis/frontend-shared/pull/175)
+
 ## [v3.7.0] - 2021-08-12
 
 Updates the visual style of `Spinner`. Adds `Scrollbox` container component.
