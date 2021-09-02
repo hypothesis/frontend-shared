@@ -6,7 +6,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "module": "commonjs",
-    "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "../lib",
     "strict": true,
     "noImplicitAny": false,
     "target": "ES2020"
@@ -15,6 +17,6 @@
   "exclude": [
     // Tests are not checked.
     "**/test/**/*.js",
-    "karma.config.js",
+    "karma.config.js"
   ]
 }
