@@ -1,4 +1,3 @@
-import { Fragment } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { LabeledButton, Table } from '../../../';
@@ -8,10 +7,10 @@ import Library from '../Library';
 import { sampleTableContent } from './samples';
 
 const renderCallback = file => (
-  <Fragment>
+  <>
     <td>{file.displayName}</td>
     <td>{file.updated}</td>
-  </Fragment>
+  </>
 );
 
 const { tableHeaders, items } = sampleTableContent();
