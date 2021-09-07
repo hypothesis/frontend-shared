@@ -5,6 +5,10 @@ import { SvgIcon } from './SvgIcon';
 /**
  * @typedef ButtonProps
  * @prop {import('preact').Ref<HTMLButtonElement>} [buttonRef]
+ * @prop {string} [classes] - Optional CSS class name(s) to use _in addition_
+ *   to the button component's own clases
+ * @prop {string} [className] - Optional CSS class name that will _replace_
+ *   the button component's own classes
  * @prop {string} [icon] - Name of `SvgIcon` to render in the button
  * @prop {'left'|'right'} [iconPosition] - Icon positioned to left or to
  *   right of button text
@@ -46,6 +50,7 @@ import { SvgIcon } from './SvgIcon';
 function ButtonBase({
   // Custom props.
   buttonRef,
+  classes,
   className,
   icon,
   iconPosition = 'left',
@@ -73,7 +78,8 @@ function ButtonBase({
         `${className}--${variant}`,
         {
           [`${className}--icon-${iconPosition}`]: icon,
-        }
+        },
+        classes
       )}
       type={type}
       {...ariaProps}
