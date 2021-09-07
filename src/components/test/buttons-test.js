@@ -100,6 +100,16 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
       assert.isFalse(wrapper.find('button').hasClass(className));
     });
 
+    it('applies extra classes after component classes', () => {
+      const wrapper = createComponentFn({ classes: 'foo bar' });
+
+      const wrapperClasses = wrapper
+        .find(`button.${className}.foo.bar`)
+        .getDOMNode().classList;
+      assert.equal(wrapperClasses.item(wrapperClasses.length - 1), 'bar');
+      assert.equal(wrapperClasses.item(wrapperClasses.length - 2), 'foo');
+    });
+
     it('adds inline styles when provided', () => {
       const wrapper = createComponentFn({ style: { backgroundColor: 'pink' } });
 
