@@ -9,13 +9,12 @@ import classnames from 'classnames';
  *   the rendered `input` element.
  * @prop {boolean} [hasError] - There is an error associated with this input. Will
  *   set some error styling.
+ * @prop {'email'|'search'|'text'|'url'} [type="text"] - Set the <input> type:
+ *   restricted to the "text-like" type values.
  */
 
 /**
- * `TextInput` sets the `type` attribute on the `input`, but any other valid
- * `input` attribute should be forwarded.
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLInputElement>, 'type'>} HTMLInputElementProps
- * @typedef {TextInputBaseProps & HTMLInputElementProps} TextInputProps
+ * @typedef {TextInputBaseProps & import('preact').JSX.HTMLAttributes<HTMLInputElement>} TextInputProps
  */
 
 /**
@@ -33,6 +32,7 @@ export function TextInput({
   classes = '',
   inputRef,
   hasError = false,
+  type = 'text',
   ...restProps
 }) {
   return (
@@ -44,7 +44,7 @@ export function TextInput({
       )}
       {...restProps}
       ref={inputRef}
-      type="text"
+      type={type}
     />
   );
 }
