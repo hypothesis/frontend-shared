@@ -56,6 +56,18 @@ export default function FormComponents() {
           </Library.Demo>
         </Library.Example>
 
+        <Library.Example title="As type='url'">
+          <p>
+            <code>TextInput</code> renders an <code>input</code> field of{' '}
+            <code>type=&quot;text&quot;</code> by default, but text-like `type`
+            values are also supported (<code>email</code>, <code>search</code>,{' '}
+            <code>url</code>).
+          </p>
+          <Library.Demo withSource>
+            <TextInput name="my-input" type="url" />
+          </Library.Demo>
+        </Library.Example>
+
         <Library.Example title="Error state">
           <Library.Demo withSource>
             <TextInput name="my-input" hasError />

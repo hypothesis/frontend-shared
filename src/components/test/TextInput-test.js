@@ -13,10 +13,10 @@ describe('TextInput', () => {
     assert.isFalse(wrapper.find('input').hasClass('has-error'));
   });
 
-  it('ignores `type` property and sets `type` to `text`', () => {
-    const wrapper = createComponent({ type: 'checkbox' });
+  it('sets input type based on `type` prop', () => {
+    const wrapper = createComponent({ type: 'url' });
 
-    assert.equal(wrapper.getDOMNode().getAttribute('type'), 'text');
+    assert.equal(wrapper.getDOMNode().getAttribute('type'), 'url');
   });
 
   it('applies an error class when in error', () => {
