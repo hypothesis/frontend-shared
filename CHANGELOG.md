@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.9.0] - 2021-09-09
+
+Add more options for `TextInput` `type`, and add `classes` prop support to all
+`Button` components.
+
+### Added
+
+- Add support for other "text-like" input types to TextInput [#189](https://github.com/hypothesis/frontend-shared/pull/189)
+- Add support for `classes` prop to Button components [#188](https://github.com/hypothesis/frontend-shared/pull/188)
+
 ## [v3.8.1] - 2021-09-02
 
 Change to type declaration generation configuration.
