@@ -26,11 +26,7 @@ import PlaygroundApp from './components/PlaygroundApp';
  *
  * @param {PatternLibraryAppOptions} options
  */
-export function startApp({
-  baseURL = '/ui-playground',
-  extraRoutes = [],
-  icons = {},
-} = {}) {
+export function startApp({ baseURL = '', extraRoutes = [], icons = {} } = {}) {
   const allIcons = { ...iconSet, ...icons };
   registerIcons(allIcons);
   const container = document.querySelector('#app');

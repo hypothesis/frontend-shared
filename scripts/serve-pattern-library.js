@@ -18,11 +18,7 @@ function servePatternLibrary(port = 4001) {
 
   app.use('/styles', express.static(path.join(__dirname, '../build/styles')));
 
-  app.get('/', (req, res) => {
-    res.render('index');
-  });
-
-  app.get('/ui-playground/:path?', (req, res) => {
+  app.get('/:path?', (req, res) => {
     res.render('pattern-library');
   });
 
