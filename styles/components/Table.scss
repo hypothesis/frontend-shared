@@ -18,6 +18,11 @@ $-row-height: var.$touch-target-size;
     // Adjust vertical position to account for header, which takes up one "row"
     margin-top: math.div($-row-height, 2);
   }
+
+  &__message {
+    @include layout.absolute-centered;
+    top: $-row-height * 2;
+  }
 }
 
 .Hyp-Table {

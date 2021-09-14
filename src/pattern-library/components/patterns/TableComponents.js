@@ -104,12 +104,57 @@ function ScrollboxTableExample() {
   );
 }
 
+function EmptyTableExample() {
+  const [isLoading, setIsLoading] = useState(false);
+  const items = [];
+  const [selectedFile, setSelectedFile] = useState(
+    /** @type {null|object} */ (items[items.length - 1])
+  );
+
+  const emptyItemsMessage = (
+    <p>
+      There are no files available to show.{' '}
+      <a href="https://www.example.com">Learn more.</a>
+    </p>
+  );
+
+  return (
+    <Library.Example title="Constrained Table" variant="wide">
+      <p>
+        This Table has no items (it is empty). When not in loading state, the
+        provided <code>emptyItemsMessage</code> will render centered in the
+        table.
+      </p>
+      <Library.Demo withSource>
+        <div className="hyp-u-padding--5">
+          <LabeledButton onClick={() => setIsLoading(!isLoading)}>
+            Toggle Loading
+          </LabeledButton>
+        </div>
+
+        <Table
+          accessibleLabel="File list"
+          emptyItemsMessage={emptyItemsMessage}
+          isLoading={isLoading}
+          items={items}
+          selectedItem={selectedFile}
+          onSelectItem={file => setSelectedFile(file)}
+          onUseItem={file => alert(`Selected ${file.displayName}`)}
+          renderItem={file => renderCallback(file)}
+          tableHeaders={tableHeaders}
+        />
+      </Library.Demo>
+    </Library.Example>
+  );
+}
+
 export default function TableComponents() {
   return (
     <Library.Page title="Table">
       <Library.Pattern title="Table">
         <TableExample />
         <ScrollboxTableExample />
+        <EmptyTableExample />
       </Library.Pattern>
     </Library.Page>
   );
