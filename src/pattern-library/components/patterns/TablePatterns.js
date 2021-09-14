@@ -24,8 +24,12 @@ export default function TablePatterns() {
             <table className="hyp-table">
               <thead>
                 <tr>
-                  <th scope="col">Column A</th>
-                  <th scope="col">Column B</th>
+                  <th scope="col" className="hyp-table__header">
+                    Column A
+                  </th>
+                  <th scope="col" className="hyp-table__header">
+                    Column B
+                  </th>
                 </tr>
               </thead>
               <SampleTableBody />
@@ -42,10 +46,18 @@ export default function TablePatterns() {
             <table className="hyp-table">
               <thead>
                 <tr>
-                  <th scope="col" style="width:30%">
+                  <th
+                    scope="col"
+                    className="hyp-table__header"
+                    style="width:30%"
+                  >
                     Column A
                   </th>
-                  <th scope="col" style="width:70%">
+                  <th
+                    scope="col"
+                    className="hyp-table__header"
+                    style="width:70%"
+                  >
                     Column B
                   </th>
                 </tr>
@@ -68,8 +80,12 @@ export default function TablePatterns() {
               <table className="hyp-table">
                 <thead>
                   <tr>
-                    <th scope="col">Column A</th>
-                    <th scope="col">Column B</th>
+                    <th scope="col" className="hyp-table__header">
+                      Column A
+                    </th>
+                    <th scope="col" className="hyp-table__header">
+                      Column B
+                    </th>
                   </tr>
                 </thead>
                 <SampleTableBody />

@@ -176,7 +176,7 @@ export function Table({
             {tableHeaders.map(({ classes, label }, index) => (
               <th
                 key={`${label}-${index}`}
-                className={classnames(classes)}
+                className={classnames('Hyp-Table__header', classes)}
                 scope="col"
               >
                 {label}

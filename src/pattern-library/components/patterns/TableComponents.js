@@ -13,6 +13,13 @@ const renderCallback = file => (
   </>
 );
 
+const customizedRenderCallback = file => (
+  <>
+    <td className="hyp-u-color--grey-6">{file.displayName}</td>
+    <td>{file.updated}</td>
+  </>
+);
+
 const { tableHeaders, items } = sampleTableContent();
 
 function TableExample() {
@@ -64,7 +71,13 @@ function ScrollboxTableExample() {
         scroll if it overflows. Apply height/width constraints to an appropriate
         parent elements to enable this. Height will not change when loading.
       </p>
-      <p>In this example, the last item in the table is pre-selected.</p>
+      <p>
+        In this example, the last item in the table is pre-selected. Also in
+        this example: an additional style is added to the first <code>td</code>{' '}
+        in each row to make its foreground color different (NB: the example here
+        would not meet ARIA contrast requirements). This demonstrates style
+        extension/override.
+      </p>
       <Library.Demo withSource>
         <div className="hyp-u-padding--5">
           <LabeledButton onClick={() => setIsLoading(!isLoading)}>
@@ -82,7 +95,7 @@ function ScrollboxTableExample() {
             selectedItem={selectedFile}
             onSelectItem={file => setSelectedFile(file)}
             onUseItem={file => alert(`Selected ${file.displayName}`)}
-            renderItem={file => renderCallback(file)}
+            renderItem={file => customizedRenderCallback(file)}
             tableHeaders={tableHeaders}
           />
         </div>
