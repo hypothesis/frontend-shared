@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.10.0] - 2021-09-15
+
+Adds `emptyItemsMessage` to `Table`, reduces CSS specificity of `table` pattern
+and fixes web root for the local pattern library.
+
+### Added
+
+- Add `emptyItemsMessage`, reduce CSS specificity for `Table` (`table` pattern) [#193](https://github.com/hypothesis/frontend-shared/pull/193)
+
+### Changed
+
+- Serve pattern library at web root [#192](https://github.com/hypothesis/frontend-shared/pull/192)
+
 ## [v3.9.0] - 2021-09-09
 
 Add more options for `TextInput` `type`, and add `classes` prop support to all
