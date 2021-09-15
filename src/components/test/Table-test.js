@@ -66,6 +66,19 @@ describe('Table', () => {
       const columns = wrapper.find('thead th').map(col => col.text());
       assert.deepEqual(columns, ['Name', 'Size']);
     });
+
+    it('does not show an empty items message', () => {
+      const wrapper = createComponent({
+        isLoading: true,
+        tableHeaders: [{ label: 'Name' }, { label: 'Size' }],
+        items: [],
+        emptyItemsMessage: 'There is nothing here',
+      });
+
+      assert.isFalse(
+        wrapper.find('[data-testid="empty-items-message"]').exists()
+      );
+    });
   });
 
   it('renders column headings', () => {
@@ -89,6 +102,15 @@ describe('Table', () => {
     assert.isTrue(wrapper.contains(<td>One</td>));
     assert.isTrue(wrapper.contains(<td>Two</td>));
     assert.isTrue(wrapper.contains(<td>Three</td>));
+  });
+
+  it('shows provided empty message if there are no items', () => {
+    const wrapper = createComponent({
+      items: [],
+      emptyItemsMessage: 'There is nothing here',
+    });
+
+    assert.isTrue(wrapper.find('[data-testid="empty-items-message"]').exists());
   });
 
   ['click', 'mousedown'].forEach(event => {

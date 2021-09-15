@@ -38,56 +38,54 @@ $-min-row-height: var.$touch-target-size;
   th,
   td {
     @include layout.padding;
+    // Prevent extra vertical height with <th> elements
+    // FIXME: Review after typography patterns introduced
+    line-height: 1;
   }
 
   td {
     @include atoms.border(top);
   }
 
-  thead {
-    // Prevent extra vertical height with <th> elements
-    // FIXME: Review after typography patterns introduced
-    line-height: 1;
-
-    th {
-      @include containers.sticky-header;
-      border-bottom: 1px solid $-color-header-border;
-      background-color: $-color-header-background;
-      // Ensure the header is displayed above content in the table when it is
-      // scrolled, including any content which establishes a new stacking context.
-      z-index: 1;
-      text-align: left;
-    }
+  &__header {
+    @include containers.sticky-header;
+    border-bottom: 1px solid $-color-header-border;
+    background-color: $-color-header-background;
+    // Ensure the header is displayed above content in the table when it is
+    // scrolled, including any content which establishes a new stacking context.
+    z-index: 1;
+    text-align: left;
   }
 
   tbody {
     // Make table content look interact-able
     cursor: pointer;
+  }
 
-    // No border on top of first row's <td> elements, to eliminate a
-    // double border with the <th>s
-    & tr:first-child td {
-      border-top: none;
-    }
+  tr {
+    height: $-min-row-height;
+    @include layout.padding;
+  }
 
-    & tr:nth-child(odd) {
-      // Need a low-opacity black versus a named greyscale color because
-      // this background needs to be very low opacity so as not to obscure
-      // scroll-hinting shadows
-      background-color: rgba(0, 0, 0, 0.025);
-    }
+  // No border on top of first row's <td> elements, to eliminate a
+  // double border with the <th>s
+  tr:first-child td {
+    border-top: none;
+  }
 
-    & tr {
-      height: $-min-row-height;
+  tr.is-selected td {
+    background-color: $-color-background--inverted;
+    color: $-color-text--inverted;
+  }
 
-      &.is-selected {
-        background-color: $-color-background--inverted;
-        color: $-color-text--inverted;
-      }
-    }
+  tr:hover:not(.is-selected) {
+    background-color: $-color-background-hover;
+  }
 
-    & tr:hover:not(.is-selected) {
-      background-color: $-color-background-hover;
-    }
+  tr:nth-child(odd):not(.is-selected) {
+    // Need a low-opacity black versus a named greyscale color because
+    // this background needs to be very low opacity so as not to obscure
+    // scroll-hinting shadows
+    background-color: rgba(0, 0, 0, 0.025);
   }
 }

@@ -19,6 +19,8 @@ import { Scrollbox } from './containers';
  * @prop {string} [classes] - Extra CSS classes to apply to the <table>
  * @prop {string} [containerClasses] - Extra CSS classes to apply to the outermost
  *   element, which is a <Scrollbox> div
+ * @prop {import("preact").ComponentChildren} [emptyItemsMessage] - Optional message to display if
+ *   there are no `items`. Will only display when the Table is not loading.
  * @prop {TableHeader[]} tableHeaders - The columns to display in this table
  * @prop {boolean} [isLoading] - Show an indicator that data for the table is
  *   currently being fetched
@@ -73,6 +75,7 @@ export function Table({
   accessibleLabel,
   classes,
   containerClasses,
+  emptyItemsMessage,
   isLoading = false,
   items,
   onSelectItem,
@@ -176,7 +179,7 @@ export function Table({
             {tableHeaders.map(({ classes, label }, index) => (
               <th
                 key={`${label}-${index}`}
-                className={classnames(classes)}
+                className={classnames('Hyp-Table__header', classes)}
                 scope="col"
               >
                 {label}
@@ -207,6 +210,14 @@ export function Table({
       {isLoading && (
         <div className="Hyp-Table-Scrollbox__loading">
           <Spinner size="large" />
+        </div>
+      )}
+      {!isLoading && items.length === 0 && emptyItemsMessage && (
+        <div
+          className="Hyp-Table-Scrollbox__message"
+          data-testid="empty-items-message"
+        >
+          {emptyItemsMessage}
         </div>
       )}
     </Scrollbox>
