@@ -21,6 +21,9 @@ $-row-height: var.$touch-target-size;
 
   &__message {
     @include layout.absolute-centered;
+    @include layout.row($justify: center);
+    @include layout.padding;
+    width: 100%;
     top: $-row-height * 2;
   }
 }
