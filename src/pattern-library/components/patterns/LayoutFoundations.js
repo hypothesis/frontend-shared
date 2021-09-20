@@ -16,7 +16,7 @@ function SquareBlock() {
 /**
  * Render an example of vertical or horizontal spacing between elements.
  *
- * @param {Object} options
+ * @param {object} options
  *   @param {'horizontal'|'vertical'} options.direction
  *   @param {number} options.size - Spacing unit size, 0 - 9
  *   @param {boolean} [options.defaultSize] - Is this the "default" spacing for

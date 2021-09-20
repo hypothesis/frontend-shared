@@ -9,7 +9,7 @@ import { normalizeKeyName } from '../browser-compatibility-utils';
  * @param {HTMLElement} element
  * @param {string[]} events
  * @param {EventListener} listener
- * @param {Object} options
+ * @param {object} options
  *   @param {boolean} [options.useCapture]
  * @return {() => void} Function which removes the event listeners.
  */
