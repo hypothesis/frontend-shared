@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from 'preact/hooks';
 /**
  * Object mapping icon names to SVG markup.
  *
- * @typedef {Object.<string,string>} IconMap
+ * @typedef {Record<string,string>} IconMap
  */
 
 /**
@@ -79,7 +79,7 @@ export function SvgIcon({ name, className = '', inline = false, title = '' }) {
  * Register icons for use with the `SvgIcon` component.
  *
  * @param {IconMap} icons
- * @param {Object} options
+ * @param {object} options
  *  @param {boolean} [options.reset] - If `true`, remove existing registered icons.
  */
 export function registerIcons(icons, { reset = false } = {}) {
