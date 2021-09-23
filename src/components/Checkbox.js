@@ -1,9 +1,10 @@
+// @ts-ignore
+import checkboxIcon from '../../images/icons/checkbox.svg';
 import { registerIcons, SvgIcon } from './SvgIcon';
 
 // Register the checkbox icon for use
 registerIcons({
-  /** @ts-ignore - TS doesn't understand require here */
-  'hyp-checkbox': require('../../images/icons/checkbox.svg'),
+  'hyp-checkbox': checkboxIcon,
 });
 
 /**
