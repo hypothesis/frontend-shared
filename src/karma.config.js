@@ -66,11 +66,10 @@ module.exports = function (config) {
         [
           'babelify',
           {
-            // The existence of this preset option is due to a config issue with where jsx modules
-            // are not transpiled to js.
-            // See https://github.com/hypothesis/client/issues/2929
-            presets: require('../.babelrc-cjs.js').presets,
-            extensions: ['.js'],
+            // Since we're using Browserify for bundling, we need to use the
+            // Babel configuration that targets CommonJS.
+            ...require('../.babelrc-cjs.js'),
+
             plugins: [
               'mockable-imports',
               [
