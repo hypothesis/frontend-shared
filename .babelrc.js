@@ -13,7 +13,7 @@ module.exports = {
       '@babel/preset-env',
       {
         bugfixes: true,
-        modules: false,
+        modules: false, // Produce ES module output
         targets: {
           chrome: '70',
           firefox: '70',
