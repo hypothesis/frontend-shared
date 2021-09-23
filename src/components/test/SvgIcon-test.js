@@ -1,5 +1,7 @@
 import { render } from 'preact';
 
+import arrowLeftIcon from '../../../images/icons/arrow-left.svg';
+import arrowRightIcon from '../../../images/icons/arrow-right.svg';
 import { SvgIcon, availableIcons, registerIcons } from '../SvgIcon';
 
 describe('SvgIcon', () => {
@@ -15,8 +17,8 @@ describe('SvgIcon', () => {
 
     registerIcons(
       {
-        'arrow-left': require('../../../images/icons/arrow-left.svg'),
-        'arrow-right': require('../../../images/icons/arrow-right.svg'),
+        'arrow-left': arrowLeftIcon,
+        'arrow-right': arrowRightIcon,
       },
       { reset: true }
     );

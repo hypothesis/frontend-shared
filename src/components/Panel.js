@@ -1,12 +1,13 @@
 import classnames from 'classnames';
 
+// @ts-ignore
+import cancelIcon from '../../images/icons/cancel.svg';
 import { IconButton } from './buttons';
 import { registerIcons, SvgIcon } from './SvgIcon';
 
 // Register the cancel icon for use
 registerIcons({
-  /** @ts-ignore - TS doesn't understand require here */
-  'hyp-cancel': require('../../images/icons/cancel.svg'),
+  'hyp-cancel': cancelIcon,
 });
 
 /**

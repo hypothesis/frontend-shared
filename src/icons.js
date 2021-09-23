@@ -1,15 +1,27 @@
 // @ts-nocheck
 
+import arrowLeftIcon from '../images/icons/arrow-left.svg';
+import arrowRightIcon from '../images/icons/arrow-right.svg';
+import cancelIcon from '../images/icons/cancel.svg';
+import checkIcon from '../images/icons/check.svg';
+import checkboxIcon from '../images/icons/checkbox.svg';
+import collapsedIcon from '../images/icons/collapsed.svg';
+import editIcon from '../images/icons/edit.svg';
+import logoIcon from '../images/icons/logo.svg';
+import profileIcon from '../images/icons/profile.svg';
+import spinnerIcon from '../images/icons/spinner--spokes.svg';
+import trashIcon from '../images/icons/trash.svg';
+
 export default {
-  'arrow-left': require('../images/icons/arrow-left.svg'),
-  'arrow-right': require('../images/icons/arrow-right.svg'),
-  cancel: require('../images/icons/cancel.svg'),
-  check: require('../images/icons/check.svg'),
-  checkbox: require('../images/icons/checkbox.svg'),
-  collapsed: require('../images/icons/collapsed.svg'),
-  edit: require('../images/icons/edit.svg'),
-  logo: require('../images/icons/logo.svg'),
-  profile: require('../images/icons/profile.svg'),
-  'hyp-spinner': require('../images/icons/spinner--spokes.svg'),
-  trash: require('../images/icons/trash.svg'),
+  'arrow-left': arrowLeftIcon,
+  'arrow-right': arrowRightIcon,
+  cancel: cancelIcon,
+  check: checkIcon,
+  checkbox: checkboxIcon,
+  collapsed: collapsedIcon,
+  edit: editIcon,
+  logo: logoIcon,
+  profile: profileIcon,
+  'hyp-spinner': spinnerIcon,
+  trash: trashIcon,
 };

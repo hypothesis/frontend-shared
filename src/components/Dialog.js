@@ -1,13 +1,14 @@
 import classnames from 'classnames';
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 
+// @ts-ignore
+import cancelIcon from '../../images/icons/cancel.svg';
 import { IconButton, LabeledButton } from './buttons';
 import { registerIcons, SvgIcon } from './SvgIcon';
 
 // Register the checkbox icon for use
 registerIcons({
-  /** @ts-ignore - TS doesn't understand require here */
-  'hyp-cancel': require('../../images/icons/cancel.svg'),
+  'hyp-cancel': cancelIcon,
 });
 
 let idCounter = 0;

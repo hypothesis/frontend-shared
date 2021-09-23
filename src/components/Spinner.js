@@ -1,11 +1,12 @@
 import classnames from 'classnames';
 
+// @ts-ignore
+import spinnerIcon from '../../images/icons/spinner--spokes.svg';
 import { registerIcons, SvgIcon } from './SvgIcon';
 
 // Register the spinner icon for use
 registerIcons({
-  /** @ts-ignore - TS doesn't understand require here */
-  'hyp-spinner': require('../../images/icons/spinner--spokes.svg'),
+  'hyp-spinner': spinnerIcon,
 });
 
 /**
