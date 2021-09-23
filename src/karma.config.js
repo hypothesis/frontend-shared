@@ -69,14 +69,14 @@ module.exports = function (config) {
             // The existence of this preset option is due to a config issue with where jsx modules
             // are not transpiled to js.
             // See https://github.com/hypothesis/client/issues/2929
-            presets: require('../.babelrc.cjs').presets,
+            presets: require('../.babelrc-cjs.js').presets,
             extensions: ['.js'],
             plugins: [
               'mockable-imports',
               [
                 'babel-plugin-istanbul',
                 {
-                  exclude: ['**/test/**/*.js', 'lib/'],
+                  exclude: ['**/test/**/*.js', 'lib/', 'lib-cjs/'],
                 },
               ],
             ],

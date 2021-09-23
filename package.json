@@ -58,8 +58,9 @@
     "preact": "^10.4.0"
   },
   "scripts": {
-    "build-js": "babel src --out-dir lib --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
-    "build": "yarn build-js && tsc --build src/tsconfig.json",
+    "build-esm": "babel src --out-dir lib/ --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
+    "build-cjs": "babel src --out-dir lib-cjs/ --source-maps --ignore '**/test' --ignore '**/karma.config.js' --config-file ./.babelrc-cjs.js",
+    "build": "yarn build-cjs && yarn build-esm && tsc --build src/tsconfig.json",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
     "checkformatting": "prettier --check '**/*.{js,scss,md}'",
@@ -73,11 +74,13 @@
     "singleQuote": true
   },
   "files": [
+    "lib-cjs",
     "lib",
     "styles",
     "images"
   ],
-  "main": "./lib/index.js",
+  "main": "./lib-cjs/index.js",
+  "module": "./lib/index.js",
   "browserify": {
     "transform": [
       [
