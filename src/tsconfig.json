@@ -8,7 +8,13 @@
     "module": "commonjs",
     "declaration": true,
     "emitDeclarationOnly": true,
-    "declarationDir": "../lib",
+
+    // Types are written to the CommonJS output dir because that is the version
+    // linked by the `main` field in package.json. This is what TypeScript will use
+    // in downstream projects, even if the project's bundler is using the ESM
+    // version linked by the `module` field in package.json.
+    "declarationDir": "../lib-cjs",
+
     "strict": true,
     "noImplicitAny": false,
     "target": "ES2020"
