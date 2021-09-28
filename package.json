@@ -81,6 +81,7 @@
   ],
   "main": "./lib-cjs/index.js",
   "module": "./lib/index.js",
+  "browserslist": "chrome 70, firefox 70, safari 11.1",
   "browserify": {
     "transform": [
       [

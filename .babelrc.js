@@ -14,12 +14,6 @@ module.exports = {
       {
         bugfixes: true,
         modules: false, // Produce ES module output
-        targets: {
-          chrome: '70',
-          firefox: '70',
-          safari: '11.1',
-          edge: '79',
-        },
       },
     ],
   ],
