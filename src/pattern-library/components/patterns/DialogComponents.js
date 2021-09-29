@@ -63,6 +63,58 @@ function DialogExample() {
   }
 }
 
+function DialogWithoutCancelButtonExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Dialog Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Dialog
+        icon="edit"
+        onCancel={() => setDialogOpen(false)}
+        title="Dialog: No cancel button"
+        withCancelButton={false}
+      >
+        <p>This is a Dialog that has a close button but no Cancel button.</p>
+      </Dialog>
+    );
+  }
+}
+
+function DialogWithoutCloseButtonExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Dialog Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Dialog
+        icon="edit"
+        onCancel={() => setDialogOpen(false)}
+        title="Dialog: no close button"
+        withCloseButton={false}
+      >
+        <p>This is a Dialog that has a Cancel button but no close button.</p>
+      </Dialog>
+    );
+  }
+}
+
 function ModalExample() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const focusRef = createRef();
@@ -204,6 +256,23 @@ export default function DialogComponents() {
 
           <Library.Demo>
             <DialogExample />
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Dialog with no cancel or close button">
+          <p>
+            By default, a <code>Dialog</code> will render both a close button
+            (x) and a Cancel button if an <code>onCancel</code> callback is
+            provided, but this can be overridden with the{' '}
+            <code>withCancelButton</code> and <code>withCloseButton</code>{' '}
+            boolean props for the cancel button and close button, respectively.
+          </p>
+          <Library.Demo title="Dialog with no Cancel button">
+            <DialogWithoutCancelButtonExample />
+          </Library.Demo>
+
+          <Library.Demo title="Dialog with no Close button">
+            <DialogWithoutCloseButtonExample />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
