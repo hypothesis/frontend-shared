@@ -48,6 +48,11 @@ function useUniqueId(prefix) {
  *   "Cancel" button will be displayed.
  * @prop {'dialog'|'alertdialog'} [role] - The aria role for the dialog (defaults to" dialog")
  * @prop {string} title
+ * @prop {boolean} [withCancelButton=true] - If `onCancel` is provided, render
+ *   a Cancel button as one of the Dialog's buttons (along with any other
+ *   `buttons`)
+ * @prop {boolean} [withCloseButton=true] - If `onCancel` is provided, render
+ *   a close button (X icon) in the Dialog's header
  */
 
 /**
@@ -73,6 +78,8 @@ export function Dialog({
   onCancel,
   role = 'dialog',
   title,
+  withCancelButton = true,
+  withCloseButton = true,
 }) {
   const dialogDescriptionId = useUniqueId('dialog-description');
   const dialogTitleId = useUniqueId('dialog-title');
@@ -112,12 +119,16 @@ export function Dialog({
     }
   }, [dialogDescriptionId]);
 
+  const hasCancelButton = onCancel && withCancelButton;
+  const hasCloseButton = onCancel && withCloseButton;
+  const hasButtons = buttons || hasCancelButton;
+
   return (
     <div
       aria-labelledby={dialogTitleId}
       className={classnames(
         'Hyp-Dialog',
-        { 'Hyp-Dialog--closeable': !!onCancel },
+        { 'Hyp-Dialog--closeable': hasCloseButton },
         contentClass
       )}
       ref={rootEl}
@@ -133,21 +144,28 @@ export function Dialog({
         <h2 className="Hyp-Dialog__title" id={dialogTitleId}>
           {title}
         </h2>
-        {onCancel && (
+        {onCancel && withCloseButton && (
           <div className="Hyp-Dialog__close">
-            <IconButton icon="hyp-cancel" title="Close" onClick={onCancel} />
+            <IconButton
+              data-testid="close-button"
+              icon="hyp-cancel"
+              title="Close"
+              onClick={onCancel}
+            />
           </div>
         )}
       </header>
       {children}
-      <div className="Hyp-Dialog__actions">
-        {onCancel && (
-          <LabeledButton data-testid="cancel-button" onClick={onCancel}>
-            {cancelLabel}
-          </LabeledButton>
-        )}
-        {buttons}
-      </div>
+      {hasButtons && (
+        <div className="Hyp-Dialog__actions">
+          {hasCancelButton && (
+            <LabeledButton data-testid="cancel-button" onClick={onCancel}>
+              {cancelLabel}
+            </LabeledButton>
+          )}
+          {buttons}
+        </div>
+      )}
     </div>
   );
 }
