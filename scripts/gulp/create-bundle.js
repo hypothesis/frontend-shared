@@ -171,7 +171,7 @@ module.exports = function createBundle(config, buildOpts) {
 
   (config.transforms || []).forEach(function (transform) {
     if (transform === 'babel') {
-      bundle.transform(babelify);
+      bundle.transform(babelify, { configFile: './.babelrc-cjs' });
     }
   });
 
