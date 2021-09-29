@@ -10,26 +10,33 @@ import { LabeledButton } from './buttons';
 
 /**
  * @typedef ModalBaseProps
- * @prop {() => void} onCancel - `onCancel` is required for Modals
- */
-
-/**
- * @typedef {DialogProps & ModalBaseProps} ModalProps
+ * @prop {boolean} [closeOnExternalInteraction=true] - By default, a modal
+ *   with a provided `onCancel` callback will close when a user clicks outside
+ *   the modal, or focus is moved outside of the modal. In some cases, this
+ *   may not be desireable. When this option is disabled, the modal may still
+ *   be closed by pressing ESC.
+ *
+ * @typedef {ModalBaseProps & DialogProps} ModalProps
  */
 
 /**
  * A modal dialog. Presents a dialog with an overlay background. Will close
- * if user clicks/taps outside of it.
+ * if user clicks/taps outside of it unless `closeOnExternalInteraction` is
+ * disabled.
  *
  * @param {ModalProps} props
  */
-export function Modal({ children, onCancel, ...restProps }) {
+export function Modal({
+  children,
+  onCancel,
+  closeOnExternalInteraction = true,
+  ...restProps
+}) {
   const modalContainerRef = useRef(/** @type {HTMLDivElement | null} */ (null));
 
-  useElementShouldClose(modalContainerRef, true /* isOpen */, () => {
-    if (onCancel) {
-      onCancel();
-    }
+  useElementShouldClose(modalContainerRef, true /* isOpen */, onCancel, {
+    closeOnExternalInteraction,
+    enabled: !!onCancel,
   });
 
   return (

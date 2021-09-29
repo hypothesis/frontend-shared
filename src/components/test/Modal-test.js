@@ -19,7 +19,7 @@ describe('Modal', () => {
   });
 
   describe('closing the modal', () => {
-    it('closes when `ESC` pressed', () => {
+    it('closes when `ESC` pressed if `onCancel` is provided', () => {
       const onCancel = sinon.stub();
       const container = document.createElement('div');
       document.body.appendChild(container);
@@ -36,6 +36,48 @@ describe('Modal', () => {
       event.key = 'Escape';
       document.body.dispatchEvent(event);
       assert.called(onCancel);
+      container.remove();
+    });
+
+    it('closes on external click if `onCancel` is provided', () => {
+      const onCancel = sinon.stub();
+      const container = document.createElement('div');
+      document.body.appendChild(container);
+      mount(
+        <Modal title="Test dialog" onCancel={onCancel}>
+          This is my modal
+        </Modal>,
+        {
+          attachTo: container,
+        }
+      );
+
+      const event = new Event('mousedown');
+      document.body.dispatchEvent(event);
+      assert.called(onCancel);
+      container.remove();
+    });
+
+    it('does not close on external click if `closeOnExternalInteraction` disabled', () => {
+      const onCancel = sinon.stub();
+      const container = document.createElement('div');
+      document.body.appendChild(container);
+      mount(
+        <Modal
+          title="Test dialog"
+          onCancel={onCancel}
+          closeOnExternalInteraction={false}
+        >
+          This is my modal
+        </Modal>,
+        {
+          attachTo: container,
+        }
+      );
+
+      const event = new Event('mousedown');
+      document.body.dispatchEvent(event);
+      assert.notCalled(onCancel);
       container.remove();
     });
 
