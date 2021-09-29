@@ -21,9 +21,9 @@ describe('useElementShouldClose', () => {
   ];
 
   // Create a fake component to mount in tests that uses the hook
-  function FakeComponent({ isOpen = true }) {
+  function FakeComponent({ isOpen = true, options = {} }) {
     const myRef = useRef();
-    useElementShouldClose(myRef, isOpen, handleClose);
+    useElementShouldClose(myRef, isOpen, handleClose, options);
     return (
       <div ref={myRef}>
         <button>Hi</button>
@@ -60,6 +60,38 @@ describe('useElementShouldClose', () => {
       // Cleanup of hook should have removed eventListeners, so the callback
       // is not called again
       assert.calledOnce(handleClose);
+    });
+  });
+
+  events.forEach(event => {
+    it(`should not invoke callback if disabled (${event.type})`, () => {
+      const wrapper = createComponent({ options: { enabled: false } });
+
+      act(() => {
+        document.body.dispatchEvent(event);
+      });
+      wrapper.update();
+
+      assert.notCalled(handleClose);
+    });
+  });
+
+  events.forEach(event => {
+    it(`should only respond to keypress events if \`closeOnExternalInteraction\` is false (${event.type})`, () => {
+      const wrapper = createComponent({
+        options: { closeOnExternalInteraction: false },
+      });
+
+      act(() => {
+        document.body.dispatchEvent(event);
+      });
+      wrapper.update();
+
+      if (!event.key) {
+        assert.notCalled(handleClose);
+      } else {
+        assert.calledOnce(handleClose);
+      }
     });
   });
 
