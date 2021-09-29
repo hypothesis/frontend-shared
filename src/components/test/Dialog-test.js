@@ -49,7 +49,19 @@ describe('Dialog', () => {
     assert.isTrue(icon.exists());
   });
 
-  it('closes when close button is clicked', () => {
+  it('renders cancel and close buttons by default if `onCancel` provided', () => {
+    const onCancel = sinon.stub();
+    const wrapper = mount(<Dialog title="Test dialog" onCancel={onCancel} />);
+
+    assert.isTrue(
+      wrapper.find('LabeledButton[data-testid="cancel-button"]').exists()
+    );
+    assert.isTrue(
+      wrapper.find('IconButton[data-testid="close-button"]').exists()
+    );
+  });
+
+  it('invokes `onCancel` callback when cancel button is clicked', () => {
     const onCancel = sinon.stub();
     const wrapper = mount(<Dialog title="Test dialog" onCancel={onCancel} />);
 
@@ -61,11 +73,38 @@ describe('Dialog', () => {
     assert.called(onCancel);
   });
 
+  it('invokes `onCancel` callback when close button is clicked', () => {
+    const onCancel = sinon.stub();
+    const wrapper = mount(<Dialog title="Test dialog" onCancel={onCancel} />);
+
+    wrapper.find('IconButton[data-testid="close-button"]').props().onClick();
+
+    assert.called(onCancel);
+  });
+
   it(`defaults cancel button's label to "Cancel"`, () => {
     const wrapper = mount(<Dialog onCancel={sinon.stub()} />);
     assert.equal(
       wrapper.find('LabeledButton[data-testid="cancel-button"]').text().trim(),
       'Cancel'
+    );
+  });
+
+  it('does not render a cancel button if `withCancelButton` is disabled', () => {
+    const wrapper = mount(
+      <Dialog onCancel={sinon.stub()} withCancelButton={false} />
+    );
+    assert.isFalse(
+      wrapper.find('LabeledButton[data-testid="cancel-button"]').exists()
+    );
+  });
+
+  it('does not render a close button if `withCloseButton` is disabled', () => {
+    const wrapper = mount(
+      <Dialog onCancel={sinon.stub()} withCloseButton={false} />
+    );
+    assert.isFalse(
+      wrapper.find('IconButton[data-testid="close-button"]').exists()
     );
   });
 
