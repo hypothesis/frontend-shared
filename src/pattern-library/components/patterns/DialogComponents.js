@@ -63,6 +63,58 @@ function DialogExample() {
   }
 }
 
+function DialogWithoutCancelButtonExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Dialog Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Dialog
+        icon="edit"
+        onCancel={() => setDialogOpen(false)}
+        title="Dialog: No cancel button"
+        withCancelButton={false}
+      >
+        <p>This is a Dialog that has a close button but no Cancel button.</p>
+      </Dialog>
+    );
+  }
+}
+
+function DialogWithoutCloseButtonExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Dialog Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Dialog
+        icon="edit"
+        onCancel={() => setDialogOpen(false)}
+        title="Dialog: no close button"
+        withCloseButton={false}
+      >
+        <p>This is a Dialog that has a Cancel button but no close button.</p>
+      </Dialog>
+    );
+  }
+}
+
 function ModalExample() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const focusRef = createRef();
@@ -102,6 +154,61 @@ function ModalExample() {
           <TextInput name="my-input" inputRef={focusRef} />
           <IconButton icon="arrow-right" variant="dark" title="go" />
         </TextInputWithButton>
+      </Modal>
+    );
+  }
+}
+
+function NonCloseableModalExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Non-Closeable Modal Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Modal title="Sample Modal">
+        <p>
+          This is a <code>Modal</code> with no <code>onCancel</code> callback
+          provided. It cannot be dismissed by interacting with outside elements.
+          You will have to reload the page to dismiss it (sorry).
+        </p>
+      </Modal>
+    );
+  }
+}
+
+function ModalWithoutHookExample() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  if (!dialogOpen) {
+    return (
+      <LabeledButton
+        onClick={() => setDialogOpen(!dialogOpen)}
+        variant="primary"
+      >
+        Show Modal Example
+      </LabeledButton>
+    );
+  } else {
+    return (
+      <Modal
+        title="Modal: does not close on external events"
+        onCancel={() => setDialogOpen(false)}
+        closeOnExternalInteraction={false}
+      >
+        <p>
+          This is a <code>Modal</code> with{' '}
+          <code>closeOnExternalInteraction</code> disabled. You can close it
+          with its close or cancel buttons or pressing ESC, but clicks or focus
+          events outside of the modal will not close it.
+        </p>
       </Modal>
     );
   }
@@ -206,6 +313,23 @@ export default function DialogComponents() {
             <DialogExample />
           </Library.Demo>
         </Library.Example>
+
+        <Library.Example title="Dialog with no cancel or close button">
+          <p>
+            By default, a <code>Dialog</code> will render both a close button
+            (x) and a Cancel button if an <code>onCancel</code> callback is
+            provided, but this can be overridden with the{' '}
+            <code>withCancelButton</code> and <code>withCloseButton</code>{' '}
+            boolean props for the cancel button and close button, respectively.
+          </p>
+          <Library.Demo title="Dialog with no Cancel button">
+            <DialogWithoutCancelButtonExample />
+          </Library.Demo>
+
+          <Library.Demo title="Dialog with no Close button">
+            <DialogWithoutCloseButtonExample />
+          </Library.Demo>
+        </Library.Example>
       </Library.Pattern>
 
       <Library.Pattern title="Modal">
@@ -220,6 +344,32 @@ export default function DialogComponents() {
           </p>
           <Library.Demo>
             <ModalExample />
+          </Library.Demo>
+        </Library.Example>
+
+        <Library.Example title="Controlling how to close the Modal">
+          <p>
+            By default, if an <code>onCancel</code> callback is provided to{' '}
+            <code>Modal</code>, the rendered modal will close if the ESC key is
+            pressed, or if the user clicks outside of the modal, or if focus is
+            moved to outside the modal.
+          </p>
+          <p>
+            There are cases when it might not be desirable for external
+            clicks/focus changes to close the modal. The{' '}
+            <code>closeOnExternalInteraction</code> prop can be used to control
+            this.
+          </p>
+          <p>
+            If no <code>onCancel</code> is provided, the modal will not close on
+            any interaction (unless controlled by the parent).
+          </p>
+          <Library.Demo title="Does not close on external events">
+            <ModalWithoutHookExample />
+          </Library.Demo>
+
+          <Library.Demo title="Non-closeable modal">
+            <NonCloseableModalExample />
           </Library.Demo>
         </Library.Example>
 
