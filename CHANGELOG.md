@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.11.0] - 2021-09-30
+
+- Dual-build package as ES modules and CommonJS [#200](https://github.com/hypothesis/frontend-shared/pull/200)
+
+  As a result of this change the CommonJS versions of modules within the package
+  have moved from `lib/` to `lib-cjs/`.
+
+- Add support for extra CSS classes to Checkbox components [#178](https://github.com/hypothesis/frontend-shared/pull/178)
+
 ## [v3.10.0] - 2021-09-15
 
 Adds `emptyItemsMessage` to `Table`, reduces CSS specificity of `table` pattern
