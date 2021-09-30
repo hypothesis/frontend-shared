@@ -10,11 +10,10 @@ import { LabeledButton } from './buttons';
 
 /**
  * @typedef ModalBaseProps
- * @prop {boolean} [closeOnExternalInteraction=true] - By default, a modal
- *   with a provided `onCancel` callback will close when a user clicks outside
- *   the modal, or focus is moved outside of the modal. In some cases, this
- *   may not be desireable. When this option is disabled, the modal may still
- *   be closed by pressing ESC.
+ * @prop {boolean} [closeOnExternalInteraction=false] - By default, a modal
+ *   with a provided `onCancel` callback will close when a user presses ESC.
+ *   Enabling this option will also close the modal if the user clicks outside
+ *   of the modal, or if focus is moved outside of the modal.
  *
  * @typedef {ModalBaseProps & DialogProps} ModalProps
  */
@@ -29,7 +28,7 @@ import { LabeledButton } from './buttons';
 export function Modal({
   children,
   onCancel,
-  closeOnExternalInteraction = true,
+  closeOnExternalInteraction = false,
   ...restProps
 }) {
   const modalContainerRef = useRef(/** @type {HTMLDivElement | null} */ (null));

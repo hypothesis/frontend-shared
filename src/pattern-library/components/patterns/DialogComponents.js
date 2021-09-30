@@ -184,7 +184,7 @@ function NonCloseableModalExample() {
   }
 }
 
-function ModalWithoutHookExample() {
+function ModalWithCloseExample() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   if (!dialogOpen) {
@@ -199,15 +199,15 @@ function ModalWithoutHookExample() {
   } else {
     return (
       <Modal
-        title="Modal: does not close on external events"
+        title="Modal: closes on external click or focus"
         onCancel={() => setDialogOpen(false)}
-        closeOnExternalInteraction={false}
+        closeOnExternalInteraction={true}
       >
         <p>
           This is a <code>Modal</code> with{' '}
-          <code>closeOnExternalInteraction</code> disabled. You can close it
-          with its close or cancel buttons or pressing ESC, but clicks or focus
-          events outside of the modal will not close it.
+          <code>closeOnExternalInteraction</code> enabled. You can close it with
+          its close or cancel buttons or pressing ESC, but clicks or focus
+          events outside of the modal will <b>also</b> close it.
         </p>
       </Modal>
     );
@@ -339,8 +339,7 @@ export default function DialogComponents() {
         </p>
         <Library.Example title="Basic usage">
           <p>
-            Close the modal by clicking the close (X) button, the cancel button
-            or clicking anywhere outside of it.
+            Close the modal by clicking the close (X) button or pressing ESC.
           </p>
           <Library.Demo>
             <ModalExample />
@@ -351,21 +350,20 @@ export default function DialogComponents() {
           <p>
             By default, if an <code>onCancel</code> callback is provided to{' '}
             <code>Modal</code>, the rendered modal will close if the ESC key is
-            pressed, or if the user clicks outside of the modal, or if focus is
-            moved to outside the modal.
+            pressed.
           </p>
           <p>
-            There are cases when it might not be desirable for external
-            clicks/focus changes to close the modal. The{' '}
-            <code>closeOnExternalInteraction</code> prop can be used to control
-            this.
+            {' '}
+            The <code>closeOnExternalInteraction</code> prop can be used to
+            allow the modal to close if the user clicks outside of the modal, or
+            if focus is moved to outside the modal.
           </p>
           <p>
             If no <code>onCancel</code> is provided, the modal will not close on
             any interaction (unless controlled by the parent).
           </p>
-          <Library.Demo title="Does not close on external events">
-            <ModalWithoutHookExample />
+          <Library.Demo title="Closes on external events">
+            <ModalWithCloseExample />
           </Library.Demo>
 
           <Library.Demo title="Non-closeable modal">

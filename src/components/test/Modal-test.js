@@ -39,12 +39,16 @@ describe('Modal', () => {
       container.remove();
     });
 
-    it('closes on external click if `onCancel` is provided', () => {
+    it('closes on external click if `closeOnExternalInteraction` is enabled', () => {
       const onCancel = sinon.stub();
       const container = document.createElement('div');
       document.body.appendChild(container);
       mount(
-        <Modal title="Test dialog" onCancel={onCancel}>
+        <Modal
+          title="Test dialog"
+          onCancel={onCancel}
+          closeOnExternalInteraction={true}
+        >
           This is my modal
         </Modal>,
         {
@@ -58,16 +62,12 @@ describe('Modal', () => {
       container.remove();
     });
 
-    it('does not close on external click if `closeOnExternalInteraction` disabled', () => {
+    it('does not close on external click if `closeOnExternalInteraction` is disabled (default)', () => {
       const onCancel = sinon.stub();
       const container = document.createElement('div');
       document.body.appendChild(container);
       mount(
-        <Modal
-          title="Test dialog"
-          onCancel={onCancel}
-          closeOnExternalInteraction={false}
-        >
+        <Modal title="Test dialog" onCancel={onCancel}>
           This is my modal
         </Modal>,
         {
