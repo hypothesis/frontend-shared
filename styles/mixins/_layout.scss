@@ -85,6 +85,14 @@ $-color-overlay: var.$color-overlay;
   & > :not(:first-child) {
     margin-top: var.space($size);
   }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 /**
@@ -95,6 +103,14 @@ $-color-overlay: var.$color-overlay;
 @mixin horizontal-spacing($size: 3) {
   & > :not(:first-child) {
     margin-left: var.space($size);
+  }
+
+  & > :first-child {
+    margin-left: 0;
+  }
+
+  & > :last-child {
+    margin-right: 0;
   }
 }
 
