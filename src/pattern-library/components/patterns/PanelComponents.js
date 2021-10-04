@@ -8,7 +8,9 @@ export default function PanelComponents() {
         <Library.Example title="Basic usage">
           <Library.Demo withSource>
             <Panel title="Basic panel">
-              Here is a panel with no close button and very simple content.
+              <p>
+                Here is a panel with no close button and very simple content.
+              </p>
             </Panel>
           </Library.Demo>
         </Library.Example>
@@ -18,9 +20,11 @@ export default function PanelComponents() {
               title="Basic panel with close button"
               onClose={() => alert('close clicked')}
             >
-              Here is a panel with very basic content and a close button.
-              Providing an <code>onClose</code> function will cause a close
-              button to render.
+              <p>Here is a panel with very basic content and a close button.</p>
+              <p>
+                Providing an <code>onClose</code> function will cause a close
+                button to render.
+              </p>
             </Panel>
           </Library.Demo>
         </Library.Example>
