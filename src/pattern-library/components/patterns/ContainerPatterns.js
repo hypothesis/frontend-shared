@@ -17,9 +17,7 @@ export default function ContainerPatterns() {
           </p>
           <Library.Demo withSource>
             <div className="hyp-frame">
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               <div>
                 Sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua.
@@ -55,14 +53,14 @@ export default function ContainerPatterns() {
           </p>
           <Library.Demo withSource>
             <div className="hyp-card">
-              <div>
+              <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div>
+              </p>
+              <p>
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.
-              </div>
+              </p>
             </div>
           </Library.Demo>
         </Library.Example>
@@ -71,8 +69,10 @@ export default function ContainerPatterns() {
           <p>A card&apos;s hover can be disabled by using a modifying class.</p>
           <Library.Demo withSource>
             <div className="hyp-card--no-hover">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
             </div>
           </Library.Demo>
         </Library.Example>
@@ -81,9 +81,7 @@ export default function ContainerPatterns() {
           <p>This example shows a card with some available actions.</p>
           <Library.Demo withSource>
             <div className="hyp-card">
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               <div className="hyp-actions">
                 <IconButton title="User" icon="profile" />
                 <IconButton title="Edit" icon="edit" />
