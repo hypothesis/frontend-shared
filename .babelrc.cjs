@@ -1,41 +1,35 @@
 'use strict';
 
 module.exports = {
-  "presets": [
+  presets: [
     [
-      "@babel/preset-react",
+      '@babel/preset-react',
       {
-        "runtime": "automatic",
-        "importSource": "preact"
-      }
+        runtime: 'automatic',
+        importSource: 'preact',
+      },
     ],
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
-        "bugfixes": true,
-        "targets": {
-          "chrome": "57",
-          "firefox": "53",
-          "safari": "10.1",
-          "edge": "17"
-        }
-      }
-    ]
+        bugfixes: true,
+      },
+    ],
   ],
-  "env": {
-    "development": {
-      "presets": [
+  env: {
+    development: {
+      presets: [
         [
-          "@babel/preset-react",
+          '@babel/preset-react',
           {
-            "development": true,
-            "runtime": "automatic",
+            development: true,
+            runtime: 'automatic',
             // Use `preact/compat/jsx-dev-runtime` which is an alias for `preact/jsx-runtime`.
             // See https://github.com/preactjs/preact/issues/2974.
-            "importSource": "preact/compat"
-          }
-        ]
-      ]
-    }
-  }
-}
+            importSource: 'preact/compat',
+          },
+        ],
+      ],
+    },
+  },
+};

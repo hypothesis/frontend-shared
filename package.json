@@ -57,6 +57,7 @@
   "peerDependencies": {
     "preact": "^10.4.0"
   },
+  "browserslist": "chrome 70, firefox 70, safari 11",
   "scripts": {
     "build-js": "babel src --out-dir lib --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
     "build": "yarn build-js && tsc --build src/tsconfig.json",
