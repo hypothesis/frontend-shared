@@ -41,7 +41,7 @@ export default function OrganismPatterns() {
           </p>
           <Library.Demo withSource>
             <div className="hyp-panel">
-              <header>
+              <header className="hyp-panel__header">
                 <h2 className="hyp-panel__title">
                   This is a panel title in a panel header
                 </h2>
@@ -61,7 +61,7 @@ export default function OrganismPatterns() {
           </p>
           <Library.Demo withSource>
             <div className="hyp-panel hyp-panel--closeable">
-              <header>
+              <header className="hyp-panel__header">
                 <h2 className="hyp-panel__title">
                   Panel title on a closeable panel
                 </h2>
@@ -83,7 +83,7 @@ export default function OrganismPatterns() {
           </p>
           <Library.Demo withSource>
             <div className="hyp-panel hyp-panel--closeable">
-              <header>
+              <header className="hyp-panel__header">
                 <h2 className="hyp-panel__title">Panel title</h2>
                 <div className="hyp-panel__close">
                   <IconButton icon="cancel" title="Close" />

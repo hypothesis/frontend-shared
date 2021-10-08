@@ -25,8 +25,7 @@ $-color-brand: var.$color-brand;
     @include atoms.border;
   }
 
-  & > header,
-  &__header {
+  & > &__header {
     @include layout.row($align: center);
     @include layout.horizontal-spacing;
     @include atoms.border(bottom);
@@ -45,13 +44,11 @@ $-color-brand: var.$color-brand;
   // When there is an icon-only close button, tighten up affordances around the
   // header as the button will have more height than the heading text. This has the
   // effect of making the vertical space around the header look more even.
-  &--closeable > header,
   &--closeable &__header {
     padding-bottom: var.space(2);
     margin-top: -1 * var.space(3);
   }
 
-  &--closeable > header &__close,
   &--closeable > &__header &__close {
     // TODO replace font-sizing with appropriate approach when typography layer
     // available.

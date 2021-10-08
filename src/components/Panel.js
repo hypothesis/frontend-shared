@@ -33,7 +33,7 @@ export function Panel({ children, icon, onClose, title }) {
         'Hyp-Panel--closeable': withCloseButton,
       })}
     >
-      <header>
+      <header className="Hyp-Panel__header">
         {icon && (
           <div className="Hyp-Panel__header-icon">
             <SvgIcon name={icon} title={title} />
