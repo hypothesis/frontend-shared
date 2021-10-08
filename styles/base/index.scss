@@ -1,2 +1,13 @@
 @use 'reset';
 @use 'elements';
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  cursor: pointer;
+}
