@@ -135,7 +135,7 @@ export function Dialog({
       role={role}
       tabIndex={-1}
     >
-      <header>
+      <header className="Hyp-Dialog__header">
         {icon && (
           <div className="Hyp-Dialog__header-icon">
             <SvgIcon name={icon} title={title} data-testid="header-icon" />
