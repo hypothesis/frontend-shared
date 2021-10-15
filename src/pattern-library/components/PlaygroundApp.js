@@ -34,7 +34,7 @@ export default function PlaygroundApp({
     <activeRoute.component />
   ) : (
     <>
-      <h1 className="heading">:(</h1>
+      <h1>:(</h1>
       <p>Page not found.</p>
     </>
   );
@@ -65,7 +65,7 @@ export default function PlaygroundApp({
                 <li key={title}>
                   <Link
                     classes={classnames('hyp-link PlaygroundApp__nav-item', {
-                      'is-active': activeRoute.route === route,
+                      'is-active': activeRoute?.route === route,
                     })}
                     href={`${route}`}
                     onClick={e => navigate(e, route)}
