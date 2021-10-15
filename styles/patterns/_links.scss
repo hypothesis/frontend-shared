@@ -1,0 +1,5 @@
+@use '../mixins/patterns/links';
+
+.hyp-link {
+  @include links.link;
+}
