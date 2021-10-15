@@ -60,7 +60,7 @@ export default function PlaygroundApp({
         {routeGroups.map(rGroup => (
           <div key={rGroup.title}>
             <h2 className="Library__heading2">{rGroup.title}</h2>
-            <ul>
+            <ul className="PlaygroundApp__nav">
               {rGroup.routes.map(({ route, title }) => (
                 <li key={title}>
                   <Link
