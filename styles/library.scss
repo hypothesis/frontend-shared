@@ -6,44 +6,22 @@
 @use './mixins/atoms';
 @use './mixins/patterns/containers';
 
-.PlaygroundApp__sidebar h1,
-.PatternPage > h1 {
-  font-size: 1.75em;
-  font-weight: bold;
+.Library {
+  &__heading2 {
+    border-left: 6px solid var.$color-brand;
+    padding-left: 0.5em;
+  }
+
+  &__heading3 {
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  &__heading4 {
+    font-style: italic;
+  }
 }
 
-.PlaygroundApp__sidebar h2,
-.Pattern > h2 {
-  margin: 0.5em 0;
-  font-size: 1.25em;
-  width: 100%;
-  border-left: 6px solid var.$color-brand;
-  font-weight: bold;
-  padding-left: 0.5em;
-}
-
-h3 {
-  font-size: 1.125em;
-  font-weight: normal;
-  font-style: italic;
-}
-
-h4 {
-  font-size: 1em;
-  font-weight: 500;
-  font-style: italic;
-}
-
-pre {
-  margin: 0;
-}
-
-// Utilities
-.u-center {
-  align-self: center;
-}
-
-// Component styles
 .PlaygroundApp {
   display: grid;
   grid-template-areas:
@@ -112,16 +90,6 @@ $-library-vertical-spacing: 7;
   // TODO: Consolidate padding after removal in future of `PlaygroundApp` styling
   @include layout.padding($side: top, $size: 5);
   @include layout.padding($side: bottom, $size: 7);
-
-  &__heading {
-    font-size: 1.75em;
-    font-weight: bold;
-  }
-
-  &__subheading {
-    font-size: 1.5em;
-    font-style: italic;
-  }
 }
 
 .LibraryPattern {
@@ -129,14 +97,6 @@ $-library-vertical-spacing: 7;
   @include atoms.border(top);
   // The following balances out spacing above and below border
   @include layout.padding($size: $-library-vertical-spacing, $side: top);
-
-  &__heading {
-    font-size: 1.25rem;
-    width: 100%;
-    border-left: 6px solid var.$color-brand;
-    font-weight: bold;
-    padding-left: 0.5rem;
-  }
 }
 
 .LibraryExample {
@@ -179,11 +139,6 @@ $-library-vertical-spacing: 7;
 .LibraryDemo {
   // When laid out in a row, make demos share space evenly
   flex: 1 1 0px;
-
-  &__header {
-    font-size: 1.1em;
-    margin: 0.5rem 0;
-  }
 
   &__tabs {
     @include layout.row;
