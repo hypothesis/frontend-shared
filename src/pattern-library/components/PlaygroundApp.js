@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { SvgIcon } from '../../components/SvgIcon';
+import { Link, SvgIcon } from '../../';
 
 import { getRoutes } from '../routes';
 import { useRoute } from '../router';
@@ -53,9 +53,9 @@ export default function PlaygroundApp({
     <main className="PlaygroundApp">
       <div className="PlaygroundApp__sidebar">
         <div className="PlaygroundApp__sidebar-home">
-          <a href={baseURL} onClick={e => navigate(e, '/')}>
+          <Link href={baseURL} onClick={e => navigate(e, '/')}>
             <SvgIcon name="logo" />
-          </a>
+          </Link>
         </div>
         {routeGroups.map(rGroup => (
           <div key={rGroup.title}>
@@ -63,15 +63,15 @@ export default function PlaygroundApp({
             <ul>
               {rGroup.routes.map(({ route, title }) => (
                 <li key={title}>
-                  <a
-                    className={classnames('PlaygroundApp__nav-item', {
+                  <Link
+                    classes={classnames('hyp-link PlaygroundApp__nav-item', {
                       'is-active': activeRoute.route === route,
                     })}
                     href={`${route}`}
                     onClick={e => navigate(e, route)}
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
