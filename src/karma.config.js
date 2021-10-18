@@ -1,46 +1,25 @@
 /* eslint-env node */
 
-const glob = require('glob');
-
 let chromeFlags = [];
 
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
-  let testFiles = ['**/test/*-test.js'];
-
-  if (config.grep) {
-    const allFiles = testFiles
-      .map(pattern => glob.sync(pattern, { cwd: __dirname }))
-      .flat();
-    testFiles = allFiles.filter(path => path.match(config.grep));
-
-    // eslint-disable-next-line no-console
-    console.log(`Running tests matching pattern "${config.grep}": `, testFiles);
-  }
-
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
+    frameworks: ['mocha', 'chai', 'sinon', 'source-map-support'],
 
     // list of files / patterns to load in the browser
     files: [
-      // Test setup
-      '../test/bootstrap.js',
+      // Test bundles.
+      { pattern: '../build/scripts/tests.bundle.js', type: 'module' },
 
-      // Test modules.
-      ...testFiles.map(pattern => ({
-        pattern,
-
-        // Disable watching because karma-browserify handles this.
-        watched: false,
-
-        type: 'js',
-      })),
+      // Sourcemaps for test bundles.
+      { pattern: '../build/scripts/*.js.map', included: false },
 
       // CSS bundle relied upon by accessibility tests (eg. for color-contrast
       // checks).
@@ -52,37 +31,6 @@ module.exports = function (config) {
 
     // list of files to exclude
     exclude: [],
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      '../test/bootstrap.js': ['browserify'],
-      '**/*-test.js': ['browserify'],
-    },
-
-    browserify: {
-      debug: true,
-      transform: [
-        [
-          'babelify',
-          {
-            // Since we're using Browserify for bundling, we need to use the
-            // Babel configuration that targets CommonJS.
-            ...require('../.babelrc-cjs.js'),
-
-            plugins: [
-              'mockable-imports',
-              [
-                'babel-plugin-istanbul',
-                {
-                  exclude: ['**/test/**/*.js', 'lib/', 'lib-cjs/'],
-                },
-              ],
-            ],
-          },
-        ],
-      ],
-    },
 
     mochaReporter: {
       // Display a helpful diff when comparing complex objects

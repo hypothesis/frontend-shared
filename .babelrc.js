@@ -25,9 +25,7 @@ module.exports = {
           {
             development: true,
             runtime: 'automatic',
-            // Use `preact/compat/jsx-dev-runtime` which is an alias for `preact/jsx-runtime`.
-            // See https://github.com/preactjs/preact/issues/2974.
-            importSource: 'preact/compat',
+            importSource: 'preact',
           },
         ],
       ],
