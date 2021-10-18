@@ -1,3 +1,4 @@
+import { Link } from '../..';
 import Library from './Library';
 
 export default function LibraryHome() {
@@ -30,8 +31,8 @@ export default function LibraryHome() {
 
       <p>
         <strong>Components</strong> are{' '}
-        <a href="https://preactjs.com/">Preact</a> components that are built
-        using underlying <strong>patterns</strong>.
+        <Link href="https://preactjs.com/">Preact</Link> components that are
+        built using underlying <strong>patterns</strong>.
       </p>
     </Library.Page>
   );

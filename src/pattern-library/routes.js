@@ -5,6 +5,7 @@ import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
+import LinkPatterns from './components/patterns/LinkPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
@@ -14,6 +15,7 @@ import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
 import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
+import LinkComponents from './components/patterns/LinkComponents';
 import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
@@ -64,6 +66,12 @@ const routes = [
     group: 'patterns',
   },
   {
+    route: '/patterns-links',
+    title: 'Links',
+    component: LinkPatterns,
+    group: 'patterns',
+  },
+  {
     route: '/patterns-panels',
     title: 'Panels',
     component: PanelPatterns,
@@ -109,6 +117,12 @@ const routes = [
     route: '/components-forms',
     title: 'Forms',
     component: FormComponents,
+    group: 'components',
+  },
+  {
+    route: '/components-links',
+    title: 'Links',
+    component: LinkComponents,
     group: 'components',
   },
   {

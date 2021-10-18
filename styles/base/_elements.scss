@@ -1,32 +1,6 @@
 @use '../mixins/focus';
 @use "../variables" as var;
 
-$-border-radius: var.$border-radius;
-$-color-link: var.$color-link;
-$-color-link--hover: var.$color-link--hover;
-
-// basic standard styling for elements
-// TODO: Evaluate if dependencies on variables can be reduced or eliminated
-a {
-  @include focus.outline-on-keyboard-focus;
-  // Ensure the tag has width in order for :focus styling to render correctly.
-  display: inline-block;
-  color: $-color-link;
-  text-decoration: none;
-  // Give links a radius to allow :focus styling to appear similar to that of buttons
-  border-radius: $-border-radius;
-}
-
-a:active,
-a:focus {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-  color: $-color-link--hover;
-}
-
 p {
   hyphens: auto;
 
