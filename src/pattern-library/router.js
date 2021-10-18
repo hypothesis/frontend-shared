@@ -10,7 +10,9 @@ export function useRoute(baseURL, routes) {
     route,
     routes,
   ]);
-  const title = `${routeData.title}: Hypothesis UI playground`;
+  const title = `${
+    routeData?.title ?? 'Page not found'
+  }: Hypothesis UI playground`;
 
   useEffect(() => {
     document.title = title;

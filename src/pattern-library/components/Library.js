@@ -49,7 +49,7 @@ import { jsxToString } from '../util/jsx-to-string';
 function Page({ children, title }) {
   return (
     <section className="LibraryPage">
-      <h1 className="LibraryPage__heading">{title}</h1>
+      <h1 className="Library__heading1">{title}</h1>
       {children}
     </section>
   );
@@ -63,7 +63,7 @@ function Page({ children, title }) {
 function Pattern({ children, title }) {
   return (
     <section className="LibraryPattern">
-      <h2 className="LibraryPattern__heading">{title}</h2>
+      <h2 className="Library__heading2">{title}</h2>
       {children}
     </section>
   );
@@ -100,7 +100,7 @@ function Example({ children, title, variant = 'split' }) {
   return (
     <div className={classnames('LibraryExample', `LibraryExample--${variant}`)}>
       <div className="LibraryExample__content">
-        {title && <h3 className="LibraryExample__heading">{title}</h3>}
+        {title && <h3 className="Library__heading3">{title}</h3>}
         {notDemos}
       </div>
       <div className="LibraryExample__demos">{demos}</div>
@@ -139,7 +139,7 @@ function Demo({ children, withSource = false, style = {}, title }) {
   });
   return (
     <div className="LibraryDemo">
-      {title && <h4 className="LibraryDemo__header">{title}</h4>}
+      {title && <h4 className="Library__heading4">{title}</h4>}
       <div className="LibraryDemo__tabs">
         <LabeledButton
           onClick={() => setVisibleTab('demo')}

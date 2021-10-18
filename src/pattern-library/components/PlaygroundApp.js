@@ -34,7 +34,7 @@ export default function PlaygroundApp({
     <activeRoute.component />
   ) : (
     <>
-      <h1 className="heading">:(</h1>
+      <h1>:(</h1>
       <p>Page not found.</p>
     </>
   );
@@ -59,13 +59,13 @@ export default function PlaygroundApp({
         </div>
         {routeGroups.map(rGroup => (
           <div key={rGroup.title}>
-            <h2>{rGroup.title}</h2>
-            <ul>
+            <h2 className="Library__heading2">{rGroup.title}</h2>
+            <ul className="PlaygroundApp__nav">
               {rGroup.routes.map(({ route, title }) => (
                 <li key={title}>
                   <Link
                     classes={classnames('hyp-link PlaygroundApp__nav-item', {
-                      'is-active': activeRoute.route === route,
+                      'is-active': activeRoute?.route === route,
                     })}
                     href={`${route}`}
                     onClick={e => navigate(e, route)}
