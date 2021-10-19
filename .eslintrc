@@ -9,7 +9,7 @@
   },
   "overrides": [
     {
-      "files": ["rollup*.mjs", "scripts/pattern-library.js"],
+      "files": ["*.mjs", "scripts/pattern-library.js"],
       "env": { "node": true },
       "parserOptions": { "sourceType": "module" }
     }
