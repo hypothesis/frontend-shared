@@ -2,7 +2,12 @@ import { render } from 'preact';
 
 import arrowLeftIcon from '../../../images/icons/arrow-left.svg';
 import arrowRightIcon from '../../../images/icons/arrow-right.svg';
-import { SvgIcon, availableIcons, registerIcons } from '../SvgIcon';
+import {
+  SvgIcon,
+  availableIcons,
+  registerIcons,
+  registerIcon,
+} from '../SvgIcon';
 
 describe('SvgIcon', () => {
   // Tests here use DOM APIs rather than Enzyme because SvgIcon uses
@@ -12,9 +17,13 @@ describe('SvgIcon', () => {
   // Global icon set that is registered with `SvgIcon` outside of these tests.
   let savedIconSet;
 
-  beforeEach(() => {
-    savedIconSet = availableIcons();
+  before(() => {
+    // Clone the returned Map so that we're not affected by changes to the
+    // Map it references
+    savedIconSet = new Map(availableIcons());
+  });
 
+  beforeEach(() => {
     registerIcons(
       {
         'arrow-left': arrowLeftIcon,
@@ -25,7 +34,9 @@ describe('SvgIcon', () => {
   });
 
   afterEach(() => {
-    registerIcons(savedIconSet, { reset: true });
+    for (const [name, icon] of savedIconSet) {
+      registerIcon(name, icon);
+    }
   });
 
   it("sets the element's content to the content of the SVG", () => {
@@ -38,7 +49,7 @@ describe('SvgIcon', () => {
     assert.throws(() => {
       const container = document.createElement('div');
       render(<SvgIcon name="unknown" />, container);
-    }, 'Icon name "unknown" is not registered');
+    }, 'Icon "unknown" is not registered');
   });
 
   it('does not set the class of the SVG by default', () => {

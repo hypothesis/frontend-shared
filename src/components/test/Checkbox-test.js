@@ -65,7 +65,7 @@ describe('LabeledCheckbox', () => {
   it('renders a checkbox SvgIcon for styling the checkbox visually', () => {
     const wrapper = createComponent();
     const icon = wrapper.find('SvgIcon');
-    assert.equal(icon.props().name, 'hyp-checkbox');
+    assert.equal(icon.props().name.toString(), Symbol('checkbox').toString());
   });
 
   it('uses provided `id` attr', () => {

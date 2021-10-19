@@ -1,14 +1,12 @@
 import classnames from 'classnames';
 
 // @ts-ignore
-import cancelIcon from '../../images/icons/cancel.svg';
+import cancelSVG from '../../images/icons/cancel.svg';
 import { IconButton } from './buttons';
-import { registerIcons, SvgIcon } from './SvgIcon';
+import { registerIcon, SvgIcon } from './SvgIcon';
 
 // Register the cancel icon for use
-registerIcons({
-  'hyp-cancel': cancelIcon,
-});
+const cancelIcon = registerIcon('cancel', cancelSVG);
 
 /**
  * @typedef PanelProps
@@ -42,7 +40,7 @@ export function Panel({ children, icon, onClose, title }) {
         <h2 className="Hyp-Panel__title">{title}</h2>
         {withCloseButton && (
           <div className="Hyp-Panel__close">
-            <IconButton icon="hyp-cancel" title="Close" onClick={onClose} />
+            <IconButton icon={cancelIcon} title="Close" onClick={onClose} />
           </div>
         )}
       </header>
