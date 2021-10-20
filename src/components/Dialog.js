@@ -2,14 +2,12 @@ import classnames from 'classnames';
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 
 // @ts-ignore
-import cancelIcon from '../../images/icons/cancel.svg';
+import cancelSVG from '../../images/icons/cancel.svg';
 import { IconButton, LabeledButton } from './buttons';
-import { registerIcons, SvgIcon } from './SvgIcon';
+import { registerIcon, SvgIcon } from './SvgIcon';
 
 // Register the checkbox icon for use
-registerIcons({
-  'hyp-cancel': cancelIcon,
-});
+const cancelIcon = registerIcon('cancel', cancelSVG);
 
 let idCounter = 0;
 
@@ -38,7 +36,7 @@ function useUniqueId(prefix) {
  * @prop {string} [cancelLabel] - Label for the cancel button
  * @prop {Children} children
  * @prop {string} [contentClass] - CSS class to apply to the dialog's content
- * @prop {string} [icon] - Name of optional icon to render in header
+ * @prop {string|symbol} [icon] - Name of optional icon to render in header
  * @prop {import("preact/hooks").Ref<HTMLElement>|null} [initialFocus] -
  *   Child element to focus when the dialog is rendered. If not provided,
  *   the Dialog's container will be automatically focused on opening. Set to
@@ -148,7 +146,7 @@ export function Dialog({
           <div className="Hyp-Dialog__close">
             <IconButton
               data-testid="close-button"
-              icon="hyp-cancel"
+              icon={cancelIcon}
               title="Close"
               onClick={onCancel}
             />

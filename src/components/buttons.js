@@ -9,7 +9,7 @@ import { SvgIcon } from './SvgIcon';
  *   to the button component's own clases
  * @prop {string} [className] - Optional CSS class name that will _replace_
  *   the button component's own classes
- * @prop {string} [icon] - Name of `SvgIcon` to render in the button
+ * @prop {string|symbol} [icon] - Name of `SvgIcon` to render in the button
  * @prop {'left'|'right'} [iconPosition] - Icon positioned to left or to
  *   right of button text
  * @prop {boolean} [expanded] - Is the element associated with this button
@@ -27,15 +27,16 @@ import { SvgIcon } from './SvgIcon';
 
 /**
  * Fold in HTML button prop definitions into ButtonProps, but ignore `size` because it's inherited
- * from HTMLElement and conflicts with the _ButtonProps.size prop above.
+ * from HTMLElement and conflicts with the _ButtonProps.size prop above. Ignore `icon`
+ * because it is typed to `string` only and we need to be able to accept {string|symbol}
  *
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLButtonElement>, 'size'> } HTMLButtonElementProps
+ * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLButtonElement>, 'size' | 'icon'> } HTMLButtonElementProps
  * @typedef {ButtonProps & HTMLButtonElementProps} ButtonBaseProps
  */
 
 /**
  * @typedef IconButtonBaseProps
- * @prop {string} icon - Icon is required for icon buttons
+ * @prop {string|symbol} icon - Icon is required for icon buttons
  * @prop {string} title - Title is required for icon buttons
  * @prop {never} [children] - children are not allowed (use LabeledButton instead)
  */

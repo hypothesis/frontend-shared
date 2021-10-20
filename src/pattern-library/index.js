@@ -2,13 +2,12 @@
 import { render } from 'preact';
 
 import { registerIcons } from '../';
-import iconSet from '../icons';
+import iconSet from './icons';
 
 import PlaygroundApp from './components/PlaygroundApp';
 
 /**
  * @typedef {import("./components/PlaygroundApp").PlaygroundRoute} PlaygroundRoute
- * @typedef {import("../components/SvgIcon").IconMap} IconMap
  */
 
 /**
@@ -17,7 +16,7 @@ import PlaygroundApp from './components/PlaygroundApp';
  *   library is served. Defaults to `/ui-playground`.
  * @prop {PlaygroundRoute[]} [extraRoutes] - Local-/application-specific routes
  *   to add to this pattern library in addition to the shared/common routes
- * @prop {IconMap} [icons] - Icons, additional to default pattern-library icons,
+ * @prop {Record<string, string>} [icons] - Icons, additional to default pattern-library icons,
  *   to register for use in patterns/components in the pattern library
  */
 

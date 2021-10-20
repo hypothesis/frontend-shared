@@ -14,7 +14,10 @@ describe('Spinner', () => {
 
   it('uses the registered `hyp-spinner` icon', () => {
     const wrapper = createSpinner();
-    assert.equal(wrapper.find('SvgIcon').props().name, 'hyp-spinner');
+    assert.equal(
+      wrapper.find('SvgIcon').props().name.toString(),
+      Symbol('spinner').toString()
+    );
   });
 
   it('applies additional classes', () => {

@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from 'preact/hooks';
 /**
  * Object mapping icon names to SVG markup.
  *
- * @typedef {Record<string,string>} IconMap
+ * @typedef {Map<string|symbol, string>} IconMap
  */
 
 /**
@@ -17,13 +17,13 @@ import { useLayoutEffect, useRef } from 'preact/hooks';
  *
  * @type {IconMap}
  */
-let iconRegistry = {};
+const iconRegistry = new Map();
 
 /**
  * @typedef SvgIconProps
- * @prop {string} name - The name of the icon to display.
+ * @prop {string|symbol} name - The name of the icon to display.
  *   The name must match a name that has already been registered using the
- *   `registerIcons` function.
+ *   `registerIcon` or `registerIcons` functions.
  * @prop {string} [className] - A CSS class to apply to the `<svg>` element.
  * @prop {boolean} [inline] - Apply a style allowing for inline display of icon wrapper.
  * @prop {string} [title] - Optional title attribute to apply to the SVG's containing `span`.
@@ -39,10 +39,10 @@ let iconRegistry = {};
  * @param {SvgIconProps} props
  */
 export function SvgIcon({ name, className = '', inline = false, title = '' }) {
-  if (!iconRegistry[name]) {
-    throw new Error(`Icon name "${name}" is not registered`);
+  const markup = iconRegistry.get(name);
+  if (!markup) {
+    throw new Error(`Icon "${name.toString()}" is not registered`);
   }
-  const markup = iconRegistry[name];
 
   const element = /** @type {Ref<HTMLElement>} */ (useRef());
   useLayoutEffect(() => {
@@ -76,17 +76,38 @@ export function SvgIcon({ name, className = '', inline = false, title = '' }) {
 }
 
 /**
+ * Register an icon for use with the `SvgIcon` component.
+ *
+ * Returns a symbol that can be passed as the `name` prop to `SvgIcon` in order
+ * to render this icon.
+ *
+ * @param {string|symbol} name - A name for this icon
+ * @param {string} markup - SVG markup for the icon
+ * @return {symbol}
+ */
+export function registerIcon(name, markup) {
+  const key = typeof name === 'string' ? Symbol(name) : name;
+  iconRegistry.set(key, markup);
+  return key;
+}
+
+/**
  * Register icons for use with the `SvgIcon` component.
  *
- * @param {IconMap} icons
- * @param {object} options
+ * @deprecated Prefer the `registerIcon` function instead which will return a
+ * key that does not conflict with existing icons.
+ *
+ * @param {Record<string, string>} icons
+ * @param {Object} options
  *  @param {boolean} [options.reset] - If `true`, remove existing registered icons.
  */
 export function registerIcons(icons, { reset = false } = {}) {
   if (reset) {
-    iconRegistry = {};
+    iconRegistry.clear();
   }
-  Object.assign(iconRegistry, icons);
+  for (let [key, value] of Object.entries(icons)) {
+    iconRegistry.set(key, value);
+  }
 }
 
 /**

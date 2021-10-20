@@ -2,6 +2,7 @@ import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
 import { Dialog } from '../Dialog';
+import { registerIcon } from '../SvgIcon';
 import { checkAccessibility } from '../../../test/util/accessibility';
 
 describe('Dialog', () => {
@@ -44,7 +45,8 @@ describe('Dialog', () => {
   });
 
   it('renders an icon', () => {
-    const wrapper = mount(<Dialog title="Test dialog" icon="edit" />);
+    const editIcon = registerIcon('edit', <svg>foo</svg>);
+    const wrapper = mount(<Dialog title="Test dialog" icon={editIcon} />);
     const icon = wrapper.find('SvgIcon[data-testid="header-icon"]');
     assert.isTrue(icon.exists());
   });
