@@ -26,12 +26,16 @@ a local build of this project's package.
    $ yalc publish
    ```
 
-3. Link to this local package from the target application
+3. Use this local package from the target application
 
    ```shell
    $ cd <application project directory>
-   $ yalc link @hypothesis/frontend-shared
+   $ yalc add @hypothesis/frontend-shared
+   $ yarn install
    ```
+
+   _Note_: This will make changes to `package.json`. Take care not to commit
+   these changes; clean up as described below.
 
 ### Develop
 
@@ -50,12 +54,6 @@ published package version files to `node_modules`:
 
 ```shell
 $ cd <application project directory>
-$ yarn --check-files
-```
-
-If needed, you can clear out any remaining vestiges of `.yalc` metadata from
-the project:
-
-```shell
 $ yalc remove @hypothesis/frontend-shared
+$ yarn --check-files
 ```
