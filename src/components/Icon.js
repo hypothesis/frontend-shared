@@ -58,7 +58,7 @@ export function Icon({
 
   return (
     <span
-      className={classnames('Hyp-Icon__container', containerClasses)}
+      className={containerClasses}
       dangerouslySetInnerHTML={{ __html: markup }}
       ref={element}
       {...spanProps}

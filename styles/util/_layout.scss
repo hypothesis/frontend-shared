@@ -159,6 +159,11 @@
   @include layout.column;
 }
 
+// Establish a column flex container centered on both axes
+.hyp-u-layout-column--center {
+  @include layout.column($justify: center, $align: center);
+}
+
 .hyp-u-stretch {
   flex-grow: 1;
 }
