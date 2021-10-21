@@ -1,0 +1,5 @@
+@use '../mixins/a11y';
+
+.hyp-u-screen-reader-only {
+  @include a11y.screen-reader-only;
+}

@@ -7,3 +7,15 @@
 .hyp-u-focus-outline--inset {
   @include focus.outline($inset: true);
 }
+
+.hyp-u-focus-outline--hide {
+  @include focus.outline--hide;
+}
+
+.hyp-u-outline-on-keyboard-focus {
+  @include focus.outline-on-keyboard-focus;
+}
+
+.hyp-u-outline-on-keyboard-focus--inset {
+  @include focus.outline-on-keyboard-focus($inset: true);
+}
