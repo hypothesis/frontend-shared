@@ -5,7 +5,6 @@ import arrowRightIcon from '../../images/icons/arrow-right.svg';
 import cancelIcon from '../../images/icons/cancel.svg';
 import checkIcon from '../../images/icons/check.svg';
 import checkboxIcon from '../../images/icons/checkbox.svg';
-import collapsedIcon from '../../images/icons/collapsed.svg';
 import editIcon from '../../images/icons/edit.svg';
 import logoIcon from '../../images/icons/logo.svg';
 import profileIcon from '../../images/icons/profile.svg';
@@ -18,7 +17,6 @@ export default {
   cancel: cancelIcon,
   check: checkIcon,
   checkbox: checkboxIcon,
-  collapsed: collapsedIcon,
   edit: editIcon,
   logo: logoIcon,
   profile: profileIcon,
