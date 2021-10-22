@@ -24,7 +24,7 @@ module.exports = function (config) {
       // CSS bundle relied upon by accessibility tests (eg. for color-contrast
       // checks).
       {
-        pattern: '../build/styles.css',
+        pattern: '../build/styles/index.css',
         watched: false,
       },
     ],
