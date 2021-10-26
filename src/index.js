@@ -3,6 +3,7 @@ export { IconButton, LabeledButton, LinkButton } from './components/buttons';
 export { LabeledCheckbox, Checkbox } from './components/Checkbox';
 export { Frame, Card, Actions, Scrollbox } from './components/containers';
 export { Dialog } from './components/Dialog';
+export { Icon } from './components/Icon';
 export { Link } from './components/Link';
 export { Modal, ConfirmModal } from './components/Modal';
 export { Panel } from './components/Panel';

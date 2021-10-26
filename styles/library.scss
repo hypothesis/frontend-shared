@@ -172,3 +172,15 @@ $-library-vertical-spacing: 7;
     @include layout.horizontal-spacing;
   }
 }
+
+.LibraryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: 2rem;
+}
+
+.IconTile {
+  background-color: var.$color-grey-0;
+  border: 1px solid #9c9cab;
+  border-radius: 4px;
+}

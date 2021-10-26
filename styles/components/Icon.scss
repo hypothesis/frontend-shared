@@ -1,0 +1,8 @@
+.Hyp-Icon {
+  // Use block here instead of `inline-block` to allow for precise sizing
+  // of this element, without stray space for type descenders. See
+  // https://stackoverflow.com/a/24626986/9788954
+  display: block;
+  width: 1em;
+  height: 1em;
+}

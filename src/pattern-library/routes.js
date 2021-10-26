@@ -1,6 +1,7 @@
 import LibraryHome from './components/LibraryHome';
 
 import ColorFoundations from './components/patterns/ColorFoundations';
+import IconFoundations from './components/patterns/IconFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
@@ -45,6 +46,12 @@ const routes = [
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
+    group: 'foundations',
+  },
+  {
+    route: '/foundations-icons',
+    title: 'Icons',
+    component: IconFoundations,
     group: 'foundations',
   },
   {
