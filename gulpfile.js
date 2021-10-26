@@ -1,7 +1,7 @@
 import { buildCSS, run, runTests, watchJS } from '@hypothesis/frontend-build';
 import gulp from 'gulp';
 
-import servePatternLibrary from './scripts/serve-pattern-library.js';
+import { servePatternLibrary } from './scripts/serve-pattern-library.js';
 
 /**
  * Task to output a draft changelog to be appended to CHANGELOG.md at the
@@ -41,7 +41,7 @@ gulp.task(
   )
 );
 
-gulp.task('watch-js', () => watchJS('./rollup.config.mjs'));
+gulp.task('watch-js', () => watchJS('./rollup.config.js'));
 
 gulp.task(
   'watch',
@@ -62,8 +62,8 @@ gulp.task(
   gulp.parallel('build-test-css', () =>
     runTests({
       bootstrapFile: 'test/bootstrap.js',
-      rollupConfig: 'rollup-tests.config.mjs',
-      karmaConfig: 'src/karma.config.js',
+      rollupConfig: 'rollup-tests.config.js',
+      karmaConfig: 'src/karma.config.cjs',
       testsPattern: 'src/**/*-test.js',
     })
   )

@@ -1,23 +1,18 @@
-/* eslint-env node */
-'use strict';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
-const path = require('path');
+import express from 'express';
+import log from 'fancy-log';
+import mustacheExpress from 'mustache-express';
 
-const express = require('express');
-const mustacheExpress = require('mustache-express');
-
-const log = require('fancy-log');
-
-function servePatternLibrary(port = 4001) {
+export function servePatternLibrary(port = 4001) {
+  const dirname = path.dirname(fileURLToPath(import.meta.url));
   const app = express();
   app.engine('mustache', mustacheExpress());
   app.set('view engine', 'mustache');
-  app.set('views', [path.join(__dirname, '../templates')]);
-
-  app.use('/scripts', express.static(path.join(__dirname, '../build/scripts')));
-
-  app.use('/styles', express.static(path.join(__dirname, '../build/styles')));
-
+  app.set('views', [path.join(dirname, '../templates')]);
+  app.use('/scripts', express.static(path.join(dirname, '../build/scripts')));
+  app.use('/styles', express.static(path.join(dirname, '../build/styles')));
   app.get('/:path?', (req, res) => {
     res.render('pattern-library');
   });
@@ -26,5 +21,3 @@ function servePatternLibrary(port = 4001) {
     log(`Pattern library available at http://localhost:${port}`);
   });
 }
-
-module.exports = servePatternLibrary;
