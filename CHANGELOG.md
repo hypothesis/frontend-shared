@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v3.14.0] - 2021-10-26
+
+### Added
+
+- Add all icons and add new Icon component [#221](https://github.com/hypothesis/frontend-shared/pull/221), revise icon registration API [#217](https://github.com/hypothesis/frontend-shared/pull/217)
+- Add `link` pattern and `Link` component [#211](https://github.com/hypothesis/frontend-shared/pull/211)
+- Bring accessibility- and focus-related mixins and utils into package [#220](https://github.com/hypothesis/frontend-shared/pull/220)
+
+### Changed
+
+- Convert bundling to use Rollup [#213](https://github.com/hypothesis/frontend-shared/pull/213)
+- Split pattern library SASS and remove remaining resets and element styles [#212](https://github.com/hypothesis/frontend-shared/pull/212), update CSS normalization [#209](https://github.com/hypothesis/frontend-shared/pull/209)
+- Adjust selectors and classname for headers in Panels/Dialogs [#210](https://github.com/hypothesis/frontend-shared/pull/210)
+
+### Deprecated
+
+- `registerIcons` deprecated in favor of `registerIcon` in [#217](https://github.com/hypothesis/frontend-shared/pull/217)
+
 ## [v3.13.0] - 2021-10-05
 
 - Update margins on spacing patterns [#205](https://github.com/hypothesis/frontend-shared/pull/205)
