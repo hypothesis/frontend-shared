@@ -34,7 +34,7 @@ lint: node_modules/.uptodate
 .PHONY: clean
 clean:
 	rm -f node_modules/.uptodate
-	rm -rf lib lib-cjs
+	rm -rf lib
 	rm -rf build
 
 .PHONY: format

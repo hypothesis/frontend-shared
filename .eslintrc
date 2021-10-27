@@ -7,11 +7,7 @@
     // Replaced by TypeScript's static checking.
     "react/prop-types": "off"
   },
-  "overrides": [
-    {
-      "files": ["*.mjs", "scripts/pattern-library.js"],
-      "env": { "node": true },
-      "parserOptions": { "sourceType": "module" }
-    }
-  ]
+  "parserOptions": {
+    "sourceType": "module"
+  }
 }
