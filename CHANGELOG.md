@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.0.0] - 2021-10-27
+
+### Breaking changes
+
+This package is now published exclusively as an ES module package. The CommonJS
+build has been removed. Downstream projects will need to use tools (eg. bundlers)
+that understand ES modules and any references to the CommonJS build (
+`@hypothesis/frontend-shared/lib-cjs/...`) will need to be updated to reference
+the ES module files (`@hypothesis/frontend-shared/lib/...`).
+
+See [#222](https://github.com/hypothesis/frontend-shared/pull/222).
+
 ## [v3.14.0] - 2021-10-26
 
 ### Added
