@@ -4,6 +4,7 @@
 @use 'variables' as var;
 @use './mixins/layout';
 @use './mixins/atoms';
+@use './mixins/reset';
 @use './mixins/patterns/containers';
 
 .Library {
@@ -29,25 +30,23 @@
     'content';
 
   &__content {
-    padding: 1em;
+    padding: 1rem;
   }
 
   &__sidebar {
     grid-area: 'navigation';
-    max-height: 20em;
+    max-height: 20rem;
     overflow: scroll;
     background-color: var.$color-grey-2;
   }
 
   &__sidebar-home {
     text-align: center;
-    padding: 1em;
+    padding: 1rem;
   }
 
   &__nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include reset.reset-list;
   }
 
   &__content {
@@ -57,8 +56,8 @@
 
 .PlaygroundApp__nav-item {
   width: 100%;
-  padding: 1em 2em;
-  font-size: 16px; // TODO: variable later
+  padding: 1rem 2rem;
+  font-size: 1rem;
   &:hover {
     background-color: var.$color-grey-3;
   }
@@ -160,6 +159,23 @@ $-library-vertical-spacing: 7;
   &__source,
   &__demo {
     width: 100%;
+  }
+
+  &__source {
+    @include atoms.border;
+    @include layout.padding;
+    overflow: auto;
+
+    pre {
+      @include reset.reset-box-model;
+      white-space: pre-wrap;
+      font-size: 0.875rem;
+      line-height: 1.35;
+    }
+
+    ul {
+      @include reset.reset-list;
+    }
   }
 
   &__demo-content {
