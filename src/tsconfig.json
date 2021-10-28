@@ -14,7 +14,7 @@
     "noImplicitAny": false,
     "target": "ES2020"
   },
-  "include": ["**/*.js"],
+  "include": ["**/*.js", "svg.d.ts"],
   "exclude": [
     // Tests are not checked.
     "**/test/**/*.js",
