@@ -16,7 +16,7 @@ import { SvgIcon } from './SvgIcon';
  *   expanded (set `aria-expanded`)
  * @prop {never} [aria-expanded] - Use `expanded` prop instead
  * @prop {boolean} [pressed] - Is this button currently "active?" (set
- *   `aria-pressed`)
+ *   `aria-pressed` or `aria-selected` depending on button `role`)
  * @prop {never} [aria-pressed] - Use `pressed` prop instead
  * @prop {'small'|'medium'|'large'} [size='medium'] - Relative button size:
  *   affects padding
@@ -64,11 +64,19 @@ function ButtonBase({
   type = 'button',
   ...restProps
 }) {
+  const role = restProps?.role ?? 'button';
   const ariaProps = {
-    'aria-expanded': expanded,
-    'aria-pressed': pressed,
     'aria-label': restProps.title,
   };
+
+  // aria-pressed and aria-expanded are not allowed for buttons with
+  // an aria role of `tab`. Instead, the aria-selected attribute is expected.
+  if (role === 'tab') {
+    ariaProps['aria-selected'] = pressed;
+  } else {
+    ariaProps['aria-pressed'] = pressed;
+    ariaProps['aria-expanded'] = expanded;
+  }
 
   return (
     <button

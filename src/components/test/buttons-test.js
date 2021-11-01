@@ -188,6 +188,14 @@ function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
       });
     });
   });
+
+  it('provides appropriate aria attributes for buttons with role = "tab"', () => {
+    const wrapper = createComponentFn({ role: 'tab', pressed: true });
+
+    const element = wrapper.find('button').getDOMNode();
+    assert.equal(element.getAttribute('aria-selected'), 'true');
+    assert.isNull(element.getAttribute('aria-pressed'));
+  });
 }
 
 describe('buttons', () => {
