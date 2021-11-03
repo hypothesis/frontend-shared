@@ -1,0 +1,10 @@
+@mixin reset-box-model {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@mixin reset-list {
+  @include reset-box-model;
+  list-style: none;
+}
