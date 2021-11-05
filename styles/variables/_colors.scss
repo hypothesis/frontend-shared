@@ -39,5 +39,6 @@ $link: $brand;
 $link--hover: $brand--dark;
 
 $overlay: color.scale($black, $alpha: -50%);
+$overlay--light: color.scale($white, $alpha: -50%);
 $shadow: color.scale($black, $alpha: -90%);
 $shadow--dark: color.scale($black, $alpha: -85%);

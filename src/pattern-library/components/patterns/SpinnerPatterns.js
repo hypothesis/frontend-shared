@@ -1,7 +1,12 @@
-import { SvgIcon } from '../../..';
+import { useState } from 'preact/hooks';
+
+import { Icon, LabeledButton } from '../../..';
 import Library from '../Library';
 
 export default function SpinnerPatterns() {
+  const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] = useState(
+    false
+  );
   return (
     <Library.Page title="Spinners">
       <p>
@@ -21,7 +26,7 @@ export default function SpinnerPatterns() {
             At its default size, the spinner is <code>2em</code> square.
           </p>
           <Library.Demo withSource>
-            <SvgIcon name="hyp-spinner" className="hyp-spinner" />
+            <Icon name="hyp-spinner" containerClasses="hyp-spinner" />
           </Library.Demo>
         </Library.Example>
         <Library.Example title="Small size">
@@ -29,7 +34,7 @@ export default function SpinnerPatterns() {
             Small spinners are <code>1em</code> square and can be used inline.
           </p>
           <Library.Demo withSource>
-            <SvgIcon name="hyp-spinner" className="hyp-spinner--small" />
+            <Icon name="hyp-spinner" containerClasses="hyp-spinner--small" />
           </Library.Demo>
         </Library.Example>
         <Library.Example title="Large size">
@@ -37,7 +42,7 @@ export default function SpinnerPatterns() {
             Large spinners are <code>4em</code> square.
           </p>
           <Library.Demo withSource>
-            <SvgIcon name="hyp-spinner" className="hyp-spinner--large" />
+            <Icon name="hyp-spinner" containerClasses="hyp-spinner--large" />
           </Library.Demo>
         </Library.Example>
 
@@ -46,10 +51,33 @@ export default function SpinnerPatterns() {
             The color of the spinner may be changed by use of utility classes.
           </p>
           <Library.Demo withSource>
-            <SvgIcon
+            <Icon
               name="hyp-spinner"
-              className="hyp-spinner hyp-u-color--brand"
+              containerClasses="hyp-spinner hyp-u-color--brand"
             />
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Full Screen Spinner">
+        <Library.Example>
+          <p>
+            The full-screen spinner pattern centers a large spinner in a light
+            overlay. Note that this page must be reloaded to clear the full
+            screen spinner after showing it.
+          </p>
+          <Library.Demo>
+            <LabeledButton onClick={() => setFullScreenSpinnerVisible(true)}>
+              Show Full-Screen Spinner
+            </LabeledButton>
+            {fullScreenSpinnerVisible && (
+              <div className="hyp-full-screen-spinner">
+                <Icon
+                  name="hyp-spinner"
+                  containerClasses="hyp-spinner--large hyp-full-screen-spinner__spinner"
+                />
+              </div>
+            )}
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
