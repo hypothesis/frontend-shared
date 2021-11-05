@@ -15,6 +15,5 @@
   }
   color: var.$color-grey-6;
   // Assure that the spinner SVG is sized proportinally to local font-size
-  width: $-size;
-  height: $-size;
+  font-size: $-size;
 }

@@ -2,7 +2,8 @@ import classnames from 'classnames';
 
 // @ts-ignore
 import spinnerSVG from '../../images/icons/spinner--spokes.svg';
-import { registerIcon, SvgIcon } from './SvgIcon';
+import { Icon } from './Icon';
+import { registerIcon } from './SvgIcon';
 
 // Register the spinner icon for use
 const spinnerIcon = registerIcon('spinner', spinnerSVG);
@@ -22,6 +23,9 @@ const spinnerIcon = registerIcon('spinner', spinnerSVG);
 export function Spinner({ classes = '', size = 'medium' }) {
   const baseClass = `Hyp-Spinner--${size}`;
   return (
-    <SvgIcon name={spinnerIcon} className={classnames(baseClass, classes)} />
+    <Icon
+      name={spinnerIcon}
+      containerClasses={classnames(baseClass, classes)}
+    />
   );
 }
