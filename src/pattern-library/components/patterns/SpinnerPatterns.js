@@ -1,12 +1,26 @@
-import { useState } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 
 import { Icon, LabeledButton } from '../../..';
+import { useElementShouldClose } from '../../../hooks/use-element-should-close';
 import Library from '../Library';
 
 export default function SpinnerPatterns() {
   const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] = useState(
     false
   );
+
+  const fullScreenSpinnerContainerRef = useRef(
+    /** @type {HTMLDivElement | null} */ (null)
+  );
+
+  useElementShouldClose(
+    fullScreenSpinnerContainerRef,
+    true /* isOpen */,
+    () => {
+      setFullScreenSpinnerVisible(false);
+    }
+  );
+
   return (
     <Library.Page title="Spinners">
       <p>
@@ -63,15 +77,17 @@ export default function SpinnerPatterns() {
         <Library.Example>
           <p>
             The full-screen spinner pattern centers a large spinner in a light
-            overlay. Note that this page must be reloaded to clear the full
-            screen spinner after showing it.
+            overlay. Press <code>ESC</code> to hide the spinner.
           </p>
           <Library.Demo>
             <LabeledButton onClick={() => setFullScreenSpinnerVisible(true)}>
               Show Full-Screen Spinner
             </LabeledButton>
             {fullScreenSpinnerVisible && (
-              <div className="hyp-full-screen-spinner">
+              <div
+                className="hyp-full-screen-spinner"
+                ref={fullScreenSpinnerContainerRef}
+              >
                 <Icon
                   name="hyp-spinner"
                   containerClasses="hyp-spinner--large hyp-full-screen-spinner__spinner"
