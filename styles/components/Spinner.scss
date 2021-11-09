@@ -12,3 +12,7 @@
 .Hyp-Spinner--large {
   @include spinners.spinner($size: 'large');
 }
+
+.Hyp-FullScreenSpinner {
+  @include spinners.full-screen-spinner;
+}

@@ -1,7 +1,9 @@
 @use '../../variables' as var;
 
+@use '../layout';
+
 /**
- * Style an SVG as a loading spinner
+ * Style an svg icon as a loading spinner
  *
  * @param {'small'|'medium'|'large'} [$size='medium'] - Relative size of
  *   spinner image
@@ -15,6 +17,18 @@
   }
   color: var.$color-grey-6;
   // Assure that the spinner SVG is sized proportinally to local font-size
-  width: $-size;
-  height: $-size;
+  font-size: $-size;
+}
+
+/**
+ * Style a container with an svg.&__spinner as a full-screen loading spinner,
+ * by applying an overlay to the container and fixed-centered positioning to
+ * the contained svg icon
+ */
+@mixin full-screen-spinner() {
+  @include layout.overlay($variant: 'light');
+
+  &__spinner {
+    @include layout.fixed-centered;
+  }
 }

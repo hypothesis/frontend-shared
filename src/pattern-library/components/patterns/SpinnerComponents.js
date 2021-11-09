@@ -1,7 +1,25 @@
-import { Spinner } from '../../..';
+import { useRef, useState } from 'preact/hooks';
+
+import { FullScreenSpinner, LabeledButton, Spinner } from '../../..';
+import { useElementShouldClose } from '../../../hooks/use-element-should-close';
 import Library from '../Library';
 
 export default function SpinnerComponents() {
+  const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] = useState(
+    false
+  );
+
+  const fullScreenSpinnerContainerRef = useRef(
+    /** @type {HTMLDivElement | null} */ (null)
+  );
+
+  useElementShouldClose(
+    fullScreenSpinnerContainerRef,
+    true /* isOpen */,
+    () => {
+      setFullScreenSpinnerVisible(false);
+    }
+  );
   return (
     <Library.Page title="Spinner">
       <p>
@@ -22,6 +40,25 @@ export default function SpinnerComponents() {
         <Library.Example title="Large size">
           <Library.Demo withSource>
             <Spinner size="large" />
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="Full-Screen Spinner">
+        <Library.Example>
+          <p>
+            A component that renders a full-screen spinner over an overlay.
+            Press <code>ESC</code> to hide the spinner.
+          </p>
+          <Library.Demo>
+            <LabeledButton onClick={() => setFullScreenSpinnerVisible(true)}>
+              Show Full-Screen Spinner
+            </LabeledButton>
+            {fullScreenSpinnerVisible && (
+              <div ref={fullScreenSpinnerContainerRef}>
+                <FullScreenSpinner />
+              </div>
+            )}
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>

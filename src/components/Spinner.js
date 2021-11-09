@@ -2,7 +2,8 @@ import classnames from 'classnames';
 
 // @ts-ignore
 import spinnerSVG from '../../images/icons/spinner--spokes.svg';
-import { registerIcon, SvgIcon } from './SvgIcon';
+import { Icon } from './Icon';
+import { registerIcon } from './SvgIcon';
 
 // Register the spinner icon for use
 const spinnerIcon = registerIcon('spinner', spinnerSVG);
@@ -15,6 +16,12 @@ const spinnerIcon = registerIcon('spinner', spinnerSVG);
  */
 
 /**
+ * @typedef FullScreenSpinnerProps
+ * @prop {string} [classes] - Additional CSS classes to apply
+ * @prop {string} [containerClasses] - CSS classes to apply to wrapping element.
+ */
+
+/**
  * Loading indicator.
  *
  * @param {SpinnerProps} props
@@ -22,6 +29,25 @@ const spinnerIcon = registerIcon('spinner', spinnerSVG);
 export function Spinner({ classes = '', size = 'medium' }) {
   const baseClass = `Hyp-Spinner--${size}`;
   return (
-    <SvgIcon name={spinnerIcon} className={classnames(baseClass, classes)} />
+    <Icon
+      name={spinnerIcon}
+      containerClasses={classnames(baseClass, classes)}
+    />
+  );
+}
+
+/**
+ * Full-screen loading indicator.
+ *
+ * @param {FullScreenSpinnerProps} props
+ */
+export function FullScreenSpinner({ classes = '', containerClasses = '' }) {
+  return (
+    <div className={classnames('Hyp-FullScreenSpinner', containerClasses)}>
+      <Spinner
+        classes={classnames('Hyp-FullScreenSpinner__spinner', classes)}
+        size="large"
+      />
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 @use '../variables' as var;
 
 $-color-overlay: var.$color-overlay;
+$-color-overlay--light: var.$color-overlay--light;
 
 /**
  * Apply a margin to all sides (default) or designated `$side` in specified
@@ -138,12 +139,16 @@ $-color-overlay: var.$color-overlay;
 /**
  * Semi-opaque overlay, full-viewport
  */
-@mixin overlay {
+@mixin overlay($variant: 'dark') {
+  $-background: $-color-overlay;
+  @if ($variant == 'light') {
+    $-background: $-color-overlay--light;
+  }
   z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: $-color-overlay;
+  background-color: $-background;
 }
