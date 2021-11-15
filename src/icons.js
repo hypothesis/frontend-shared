@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export { default as annotate } from '../images/icons/annotate.svg';
 export { default as annotateAlt } from '../images/icons/annotate-alt.svg';
 export { default as arrowDown } from '../images/icons/arrow-down.svg';
