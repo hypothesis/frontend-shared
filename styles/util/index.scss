@@ -3,3 +3,11 @@
 @use 'colors';
 @use 'focus';
 @use 'layout';
+
+@tailwind utilities;
+
+@layer utilities {
+  .hyp-u-border {
+    @apply border border-solid border-grey-3;
+  }
+}

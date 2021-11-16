@@ -1,9 +1,5 @@
 @use '../mixins/atoms';
 
-.hyp-u-border {
-  @include atoms.border;
-}
-
 .hyp-u-border--left {
   @include atoms.border(left);
 }
