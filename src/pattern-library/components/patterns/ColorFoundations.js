@@ -7,15 +7,20 @@ import Library from '../Library';
 // - foreground color examples
 // - valid contrast combinations
 
-const colorConfig = tailwindConfig.theme.extend.colors;
+const colorConfig = tailwindConfig.theme.extend.colors ?? {};
 
 function ColorSwatch({ colorKey }) {
+  const colorValue =
+    typeof colorConfig[colorKey] === 'string'
+      ? `: ${colorConfig[colorKey]}`
+      : '';
   return (
     <div>
       <div className={`bg-${colorKey} h-12 mr-4`} />
       <p>
         <i>
-          {colorKey}: {colorConfig[colorKey]}
+          {colorKey}
+          {colorValue}
         </i>
       </p>
     </div>
