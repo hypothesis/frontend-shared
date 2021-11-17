@@ -12,7 +12,10 @@ export default {
         'grey-7': '#595959',
         'grey-8': '#3f3f3f',
         'grey-9': '#202020',
-        brand: '#bd1c2b',
+        brand: {
+          dark: '#84141e',
+          DEFAULT: '#bd1c2b',
+        },
         success: '#00a36d',
         notice: '#fbc168',
         error: '#d93c3f',

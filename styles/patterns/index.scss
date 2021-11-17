@@ -1,7 +1,16 @@
 @use 'containers';
 @use 'forms';
-@use 'links';
 @use 'panels';
 @use 'spinners';
 @use 'tables';
 @use 'thumbnails';
+
+@use '../mixins/focus';
+
+@layer components {
+  .hyp-link {
+    @include focus.outline-on-keyboard-focus;
+    @apply inline-block text-brand no-underline rounded-sm;
+    @apply hover:no-underline hover:text-brand-dark;
+  }
+}
