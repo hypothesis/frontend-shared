@@ -3,6 +3,9 @@ import colors from 'tailwindcss/colors.js';
 export default {
   theme: {
     extend: {
+      borderColor: {
+        DEFAULT: '#dbdbdb',
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
