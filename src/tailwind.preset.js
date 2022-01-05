@@ -25,5 +25,8 @@ export default {
       notice: '#fbc168',
       error: '#d93c3f',
     },
+    spacing: {
+      'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
+    },
   },
 };
