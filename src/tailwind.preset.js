@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin.js';
+
 import colors from 'tailwindcss/colors.js';
 
 export default {
@@ -34,4 +36,13 @@ export default {
       },
     },
   },
+  plugins: [
+    plugin(({ addVariant }) => {
+      // Add a custom variant such that the `theme-clean:` modifier is available
+      // for all tailwind utility classes. e.g. `.theme-clean:bg-white` would
+      // only apply (set the element's background color to white) if a parent
+      // element had the `.theme-clean` class.
+      addVariant('theme-clean', '.theme-clean &');
+    }),
+  ],
 };
