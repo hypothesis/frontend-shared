@@ -23,13 +23,19 @@ export default {
         'grey-7': '#595959',
         'grey-8': '#3f3f3f',
         'grey-9': '#202020',
+        green: {
+          success: '#00a36d',
+        },
+        yellow: {
+          notice: '#fbc168',
+        },
+        red: {
+          error: '#d93c3f',
+        },
         brand: {
           dark: '#84141e',
           DEFAULT: '#bd1c2b',
         },
-        success: '#00a36d',
-        notice: '#fbc168',
-        error: '#d93c3f',
       },
       spacing: {
         'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
