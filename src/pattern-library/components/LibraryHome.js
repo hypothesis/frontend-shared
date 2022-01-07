@@ -9,7 +9,7 @@ export default function LibraryHome() {
         that can be used in Hypothesis front-end applications.
       </p>
 
-      <h2 className="Library__heading2">Foundations</h2>
+      <h2>Foundations</h2>
 
       <p>
         <strong>Foundations</strong> are the core design system elements—colors,
@@ -19,7 +19,7 @@ export default function LibraryHome() {
 
       <p>They exist independently of implementation.</p>
 
-      <h2 className="Library__heading2">Patterns</h2>
+      <h2>Patterns</h2>
 
       <p>
         <strong>Patterns</strong> are modular implementations of the design
@@ -27,7 +27,7 @@ export default function LibraryHome() {
         These implementations are in HTML and CSS.
       </p>
 
-      <h2 className="Library__heading2">Components</h2>
+      <h2>Components</h2>
 
       <p>
         <strong>Components</strong> are{' '}

@@ -15,13 +15,13 @@ export default function IconFoundations() {
   return (
     <Library.Page title="Icons">
       <Library.Pattern title="Hypothesis icon set">
-        <div className="LibraryGrid">
+        <div className="grid grid-cols-8 gap-6">
           {Object.keys(icons).map(iconName => (
             <Card
               key={iconName}
-              classes="hyp-u-vertical-spacing hyp-u-layout-column--center IconTile"
+              classes="flex flex-col items-center bg-grey-0 border-[#9c9cab] space-y-3 rounded-lg"
             >
-              <div style="font-size:1.5rem">
+              <div style="text-lg">
                 <Icon name={icons[iconName]} />
               </div>
               <div>{iconName}</div>

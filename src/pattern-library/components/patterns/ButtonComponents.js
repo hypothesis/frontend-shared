@@ -7,7 +7,7 @@ export default function ButtonComponents() {
       <p>
         Button components support the following <strong>variants</strong>:
       </p>
-      <ul>
+      <ul className="hyp-list">
         <li>Default</li>
         <li>
           Primary: For indicating that a button represents a primary action
@@ -22,7 +22,7 @@ export default function ButtonComponents() {
         In addition, a button may be in one of four states, which are
         represented in their variant examples, left to right:
       </p>
-      <ul>
+      <ul className="hyp-list">
         <li>Default</li>
         <li>Pressed</li>
         <li>Expanded</li>

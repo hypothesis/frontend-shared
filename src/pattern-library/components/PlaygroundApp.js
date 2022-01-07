@@ -50,23 +50,26 @@ export default function PlaygroundApp({
   }
 
   return (
-    <main className="PlaygroundApp">
-      <div className="PlaygroundApp__sidebar">
-        <div className="PlaygroundApp__sidebar-home">
+    <main className="grid grid-cols-[20rem_1fr] w-screen h-screen">
+      <div className="bg-grey-2">
+        <div className="p-4 text-center">
           <Link href={baseURL} onClick={e => navigate(e, '/')}>
             <SvgIcon name="logo" />
           </Link>
         </div>
         {routeGroups.map(rGroup => (
           <div key={rGroup.title}>
-            <h2 className="Library__heading2">{rGroup.title}</h2>
-            <ul className="PlaygroundApp__nav">
+            <h2 className="p-2">{rGroup.title}</h2>
+            <ul>
               {rGroup.routes.map(({ route, title }) => (
                 <li key={title}>
                   <Link
-                    classes={classnames('hyp-link PlaygroundApp__nav-item', {
-                      'is-active': activeRoute?.route === route,
-                    })}
+                    classes={classnames(
+                      'w-full border-x-6 border-grey-2 py-3 pl-6 hover:bg-grey-3',
+                      {
+                        'bg-grey-3': activeRoute?.route === route,
+                      }
+                    )}
                     href={`${route}`}
                     onClick={e => navigate(e, route)}
                   >
@@ -78,7 +81,7 @@ export default function PlaygroundApp({
           </div>
         ))}
       </div>
-      <div className="PlaygroundApp__content">{content}</div>
+      <div>{content}</div>
     </main>
   );
 }

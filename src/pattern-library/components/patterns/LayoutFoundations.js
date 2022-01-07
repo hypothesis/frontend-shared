@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { useState } from 'preact/hooks';
 
-import { LabeledButton } from '../../../';
+import { Actions, Card, LabeledButton } from '../../../';
 import Library from '../Library';
 
 function SquareBlock() {
@@ -174,20 +174,20 @@ export default function LayoutFoundations() {
                   showExample1 ? 'visibility:visible' : 'visibility:hidden'
                 }`}
               >
-                <div className="hyp-card">
+                <Card classes="w-[450px]">
                   <p>
                     This is a card that is centered vertically and horizontally
                     in the current viewport.
                   </p>
-                  <div className="hyp-actions">
+                  <Actions>
                     <LabeledButton
                       variant="primary"
                       onClick={() => setShowExample1(false)}
                     >
                       Hide example
                     </LabeledButton>
-                  </div>
-                </div>
+                  </Actions>
+                </Card>
               </div>
             </div>
           </Library.Demo>
@@ -243,20 +243,20 @@ export default function LayoutFoundations() {
                 }
               >
                 <div className="hyp-u-fixed-centered">
-                  <div className="hyp-card" style="width:450px">
+                  <Card classes="w-[450px]">
                     <div>
                       This is content in a fixed-centered card of 450px width
                       over a full-screen overlay.
                     </div>
-                    <div className="hyp-actions">
+                    <Actions>
                       <LabeledButton
                         variant="primary"
                         onClick={() => setShowExample3(false)}
                       >
                         Hide example
                       </LabeledButton>
-                    </div>
-                  </div>
+                    </Actions>
+                  </Card>
                 </div>
               </div>
             </div>
