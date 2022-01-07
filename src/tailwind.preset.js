@@ -1,32 +1,54 @@
+import plugin from 'tailwindcss/plugin.js';
+
 import colors from 'tailwindcss/colors.js';
 
 export default {
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      white: colors.white,
-      black: colors.black,
-      'grey-0': '#fafafa',
-      'grey-1': '#f2f2f2',
-      'grey-2': '#ececec',
-      'grey-3': '#dbdbdb',
-      'grey-4': '#a6a6a6',
-      'grey-5': '#9c9c9c',
-      'grey-6': '#737373',
-      'grey-7': '#595959',
-      'grey-8': '#3f3f3f',
-      'grey-9': '#202020',
-      brand: {
-        dark: '#84141e',
-        DEFAULT: '#bd1c2b',
+    extend: {
+      borderColor: {
+        DEFAULT: '#dbdbdb',
       },
-      success: '#00a36d',
-      notice: '#fbc168',
-      error: '#d93c3f',
-    },
-    spacing: {
-      'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        white: colors.white,
+        black: colors.black,
+        'grey-0': '#fafafa',
+        'grey-1': '#f2f2f2',
+        'grey-2': '#ececec',
+        'grey-3': '#dbdbdb',
+        'grey-4': '#a6a6a6',
+        'grey-5': '#9c9c9c',
+        'grey-6': '#737373',
+        'grey-7': '#595959',
+        'grey-8': '#3f3f3f',
+        'grey-9': '#202020',
+        green: {
+          success: '#00a36d',
+        },
+        yellow: {
+          notice: '#fbc168',
+        },
+        red: {
+          error: '#d93c3f',
+        },
+        brand: {
+          dark: '#84141e',
+          DEFAULT: '#bd1c2b',
+        },
+      },
+      spacing: {
+        'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
+      },
     },
   },
+  plugins: [
+    plugin(({ addVariant }) => {
+      // Add a custom variant such that the `theme-clean:` modifier is available
+      // for all tailwind utility classes. e.g. `.theme-clean:bg-white` would
+      // only apply (set the element's background color to white) if a parent
+      // element had the `.theme-clean` class.
+      addVariant('theme-clean', '.theme-clean &');
+    }),
+  ],
 };
