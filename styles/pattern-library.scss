@@ -4,8 +4,10 @@
  * styles and pattern styles.
  */
 @use 'base';
+@use 'tailwindcss/base' as tw_base;
 @use 'index'; // component styles
 @use 'patterns';
 @use 'util';
+@use 'tailwindcss/utilities';
 
 @use 'library';
