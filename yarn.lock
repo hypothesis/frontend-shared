@@ -1553,10 +1553,10 @@ babel-plugin-istanbul@^6.0.0:
     istanbul-lib-instrument "^5.0.4"
     test-exclude "^6.0.0"
 
-babel-plugin-mockable-imports@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-mockable-imports/-/babel-plugin-mockable-imports-1.7.1.tgz#8f68608a3bbe08bacf6a7bcc430a3c83514caceb"
-  integrity sha512-WuAB1CKwwlXC+/tzV3Ouu1R3MaibE4JQuR1LHYYVE0ofrEkBq6UiiR+S6+y9AV0PNoehcIOR4SKXIfbRh/YDVw==
+babel-plugin-mockable-imports@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-mockable-imports/-/babel-plugin-mockable-imports-2.0.0.tgz#78c01fcdd5f9ecbc7ded29165f4c3f6e3d458514"
+  integrity sha512-xYwXtDV8f3Jz0xOrs8NSbp5pdlfbaCCOotRb0zuJEs5+vJlMvzKjOymVCAMUNzDZJCruO4YQw93ppm4XTLKYBg==
 
 bach@^1.0.0:
   version "1.2.0"
