@@ -6,10 +6,10 @@ function routeFromCurrentURL(baseURL) {
 
 export function useRoute(baseURL, routes) {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
-  const routeData = useMemo(() => routes.find(r => route.match(r.route)), [
-    route,
-    routes,
-  ]);
+  const routeData = useMemo(
+    () => routes.find(r => route.match(r.route)),
+    [route, routes]
+  );
   const title = `${
     routeData?.title ?? 'Page not found'
   }: Hypothesis UI playground`;

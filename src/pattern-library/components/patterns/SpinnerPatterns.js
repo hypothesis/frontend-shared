@@ -5,9 +5,8 @@ import { useElementShouldClose } from '../../../hooks/use-element-should-close';
 import Library from '../Library';
 
 export default function SpinnerPatterns() {
-  const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] = useState(
-    false
-  );
+  const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] =
+    useState(false);
 
   const fullScreenSpinnerContainerRef = useRef(
     /** @type {HTMLDivElement | null} */ (null)
