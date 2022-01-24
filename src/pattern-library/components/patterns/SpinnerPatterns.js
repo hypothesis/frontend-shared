@@ -9,9 +9,7 @@ export default function SpinnerPatterns() {
     false
   );
 
-  const fullScreenSpinnerContainerRef = useRef(
-    /** @type {HTMLDivElement | null} */ (null)
-  );
+  const fullScreenSpinnerContainerRef = /** @type {{ current: HTMLDivElement }} */ (useRef());
 
   useElementShouldClose(
     fullScreenSpinnerContainerRef,

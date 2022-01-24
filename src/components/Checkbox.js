@@ -54,10 +54,9 @@ export function Checkbox({
    */
   function onPressed(event) {
     onToggle?.(event.currentTarget.checked);
-    // onChange expects `this` context to be of type `HTMLInputElement`
-    // according to the preact type definitions, but preact doesn't implement
-    // it: https://github.com/preactjs/preact/issues/3137
-    onClick?.call(this, event);
+    // preact event handlers expects `this` context to be of type `never`
+    // https://github.com/preactjs/preact/issues/3137
+    onClick?.call(/** @type {never} */ (this), event);
   }
 
   return (

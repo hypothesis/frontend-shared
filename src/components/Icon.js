@@ -35,7 +35,7 @@ export function Icon({
     throw new Error(`Icon "${name.toString()}" is not registered`);
   }
 
-  const element = /** @type {Ref<HTMLElement>} */ (useRef());
+  const element = /** @type {{ current: HTMLElement }} */ (useRef());
   useLayoutEffect(() => {
     const svg = element.current.querySelector('svg');
 
