@@ -82,7 +82,7 @@ export function Dialog({
   const dialogDescriptionId = useUniqueId('dialog-description');
   const dialogTitleId = useUniqueId('dialog-title');
 
-  const rootEl = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const rootEl = /** @type {{ current: HTMLDivElement }} */ (useRef());
 
   useEffect(() => {
     // Setting `initialFocus` to `null` opts out of focus handling

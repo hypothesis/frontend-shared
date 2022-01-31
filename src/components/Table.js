@@ -1,8 +1,6 @@
 import classnames from 'classnames';
 import { useEffect, useRef } from 'preact/hooks';
 
-import { downcastRef } from '../util/typing';
-
 import { Spinner } from './Spinner';
 import { Scrollbox } from './containers';
 
@@ -85,8 +83,8 @@ export function Table({
   tableHeaders,
 }) {
   const rowRefs = useRef(/** @type {(HTMLElement|null)[]} */ ([]));
-  const scrollboxRef = useRef(/** @type {HTMLElement|null} */ (null));
-  const headerRef = useRef(/** @type {HTMLElement|null} */ (null));
+  const scrollboxRef = /** @type {{ current: HTMLElement }} */ (useRef());
+  const headerRef = /** @type {{ current: HTMLTableSectionElement }} */ (useRef());
 
   /** @param {Item} item */
   const onKeyboardSelect = item => {
@@ -138,7 +136,7 @@ export function Table({
     const headingEl = headerRef.current;
     const scrollboxEl = scrollboxRef.current;
 
-    if (rowEl && headingEl && scrollboxEl) {
+    if (rowEl) {
       const headingHeight = headingEl.offsetHeight;
       // The top of the selected row, relative to the top of the Scrollbox frame
       const rowOffsetFromScrollbox = rowEl.offsetTop - scrollboxEl.scrollTop;
@@ -174,7 +172,7 @@ export function Table({
         role="grid"
         onKeyDown={onKeyDown}
       >
-        <thead ref={downcastRef(headerRef)}>
+        <thead ref={headerRef}>
           <tr>
             {tableHeaders.map(({ classes, label }, index) => (
               <th

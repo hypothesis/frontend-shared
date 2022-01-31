@@ -63,7 +63,10 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
       document.body,
       ['focus'],
       event => {
-        if (!closeableEl.current.contains(/** @type {Node} */ (event.target))) {
+        if (
+          closeableEl.current &&
+          !closeableEl.current.contains(/** @type {Node} */ (event.target))
+        ) {
           handleClose();
         }
       },
@@ -76,7 +79,10 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
       document.body,
       ['mousedown', 'click'],
       event => {
-        if (!closeableEl.current.contains(/** @type {Node} */ (event.target))) {
+        if (
+          closeableEl.current &&
+          !closeableEl.current.contains(/** @type {Node} */ (event.target))
+        ) {
           handleClose();
         }
       },
