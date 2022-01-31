@@ -2,7 +2,7 @@ import { buildCSS, run, runTests, watchJS } from '@hypothesis/frontend-build';
 import gulp from 'gulp';
 
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
-import tailwindConfig from './tailwind.config.js';
+import tailwindConfig from './tailwind.config.mjs';
 
 /**
  * Task to output a draft changelog to be appended to CHANGELOG.md at the
