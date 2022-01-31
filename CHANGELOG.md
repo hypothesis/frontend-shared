@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.5.0] - 2022-01-31
+
+Significant updates to dependencies in this package. The pattern library now styles
+itself with Tailwind.
+
+### Breaking
+
+- Projects using the pattern-library SASS entrypoint at `styles/library` _must_ enable
+  tailwind layers (`base`, `components` and `utilities`) beforehand.
+
+### Changed
+
+- Add text colors to tailwind preset [#303](https://github.com/hypothesis/frontend-shared/pull/303)
+- Enable and use Tailwind in pattern library [#293](https://github.com/hypothesis/frontend-shared/pull/293)
+- Extend tailwind preset with more goodies and support [#258](https://github.com/hypothesis/frontend-shared/pull/258)
+- Enable tailwind for local pattern-library [#257](https://github.com/hypothesis/frontend-shared/pull/257)
+- Upgrade tailwind and add touch-size minimum to preset [#245](https://github.com/hypothesis/frontend-shared/pull/245)
+- Add dependabot configuration [#244](https://github.com/hypothesis/frontend-shared/pull/244)
+- Update Foundations pages [#6bc1659](https://github.com/hypothesis/frontend-shared/commit/6bc165978044c67da57272b98398334f01647279)
+- Remove external pattern-library CSS (unused) [#6b735b0](https://github.com/hypothesis/frontend-shared/commit/6b735b0b4f41610b1025f6ba1b7d49a6e03c28b7)
+
 ## [v4.4.0] - 2021-12-02
 
 - Add tailwind dependency and provide tailwind preset [#242](https://github.com/hypothesis/frontend-shared/pull/242)
