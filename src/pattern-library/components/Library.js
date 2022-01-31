@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import { toChildArray } from 'preact';
 import { useState } from 'preact/hooks';
 
+import { Frame } from '../../components/containers';
 import { LabeledButton } from '../../components/buttons';
 
 import { jsxToString } from '../util/jsx-to-string';
@@ -48,9 +49,9 @@ import { jsxToString } from '../util/jsx-to-string';
  */
 function Page({ children, title }) {
   return (
-    <section className="LibraryPage">
-      <h1 className="Library__heading1">{title}</h1>
-      {children}
+    <section className="max-w-6xl space-y-4 p-4">
+      <h1>{title}</h1>
+      <div className="space-y-4">{children}</div>
     </section>
   );
 }
@@ -62,9 +63,9 @@ function Page({ children, title }) {
  */
 function Pattern({ children, title }) {
   return (
-    <section className="LibraryPattern">
-      <h2 className="Library__heading2">{title}</h2>
-      {children}
+    <section className="space-y-4">
+      <h2>{title}</h2>
+      <div className="space-y-4">{children}</div>
     </section>
   );
 }
@@ -98,12 +99,22 @@ function Example({ children, title, variant = 'split' }) {
   const notDemos = kids.filter(kid => !demos.includes(kid));
 
   return (
-    <div className={classnames('LibraryExample', `LibraryExample--${variant}`)}>
-      <div className="LibraryExample__content">
-        {title && <h3 className="Library__heading3">{title}</h3>}
-        {notDemos}
+    <div className="space-y-4">
+      {title && <h3>{title}</h3>}
+      <div
+        className={classnames('grid gap-4', {
+          'grid-cols-2': variant === 'split',
+        })}
+      >
+        <div className="space-y-4">{notDemos}</div>
+        <div
+          className={classnames({
+            'flex flex-row gap-16 flex-wrap': variant === 'wide',
+          })}
+        >
+          {demos}
+        </div>
       </div>
-      <div className="LibraryExample__demos">{demos}</div>
     </div>
   );
 }
@@ -132,15 +143,21 @@ function Demo({ children, withSource = false, style = {}, title }) {
     return (
       <li key={idx}>
         <code>
-          <pre>{jsxToString(child)}</pre>
+          <pre className="font-pre whitespace-pre-wrap break-words text-sm">
+            {jsxToString(child)}
+          </pre>
         </code>
       </li>
     );
   });
   return (
-    <div className="LibraryDemo">
-      {title && <h4 className="Library__heading4">{title}</h4>}
-      <div className="LibraryDemo__tabs">
+    <div>
+      {title && (
+        <div className="py-4">
+          <h4>{title}</h4>
+        </div>
+      )}
+      <div className="flex flex-row items-center gap-x-4 -mb-px">
         <LabeledButton
           onClick={() => setVisibleTab('demo')}
           pressed={visibleTab === 'demo'}
@@ -158,16 +175,18 @@ function Demo({ children, withSource = false, style = {}, title }) {
           </LabeledButton>
         )}
       </div>
-      <div className="LibraryDemo__container">
+      <div className="border-t py-4">
         {visibleTab === 'demo' && (
-          <div className="LibraryDemo__demo" style={style}>
-            <div className="LibraryDemo__demo-content">{children}</div>
+          <div className="w-full" style={style}>
+            <div className="h-full flex flex-row items-center justify-center gap-2">
+              {children}
+            </div>
           </div>
         )}
         {visibleTab === 'source' && (
-          <div className="LibraryDemo__source">
+          <Frame classes="w-full">
             <ul>{source}</ul>
-          </div>
+          </Frame>
         )}
       </div>
     </div>

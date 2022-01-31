@@ -91,7 +91,7 @@ export default function ContainerComponents() {
           <Library.Demo title="Basic scrollbox" withSource>
             <div style="height:250px;max-height:250px;width:200px">
               <Scrollbox>
-                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                <ul className="p-3 space-y-4">
                   <SampleListElements />
                 </ul>
               </Scrollbox>
@@ -105,7 +105,7 @@ export default function ContainerComponents() {
                     NATO Alphabet
                   </div>
                 </div>
-                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                <ul className="p-3 pt-0 space-y-4">
                   <SampleListElements />
                 </ul>
               </Scrollbox>

@@ -15,7 +15,7 @@ const renderCallback = file => (
 
 const customizedRenderCallback = file => (
   <>
-    <td className="hyp-u-color--grey-6">{file.displayName}</td>
+    <td className="text-grey-6">{file.displayName}</td>
     <td>{file.updated}</td>
   </>
 );
@@ -37,7 +37,7 @@ function TableExample() {
         needs. In this case, it will change vertical size during loading.
       </p>
       <Library.Demo>
-        <div className="hyp-u-padding--5">
+        <div className="p-5">
           <LabeledButton onClick={() => setIsLoading(!isLoading)}>
             Toggle Loading
           </LabeledButton>
@@ -79,13 +79,13 @@ function ScrollboxTableExample() {
         extension/override.
       </p>
       <Library.Demo withSource>
-        <div className="hyp-u-padding--5">
+        <div className="p-5">
           <LabeledButton onClick={() => setIsLoading(!isLoading)}>
             Toggle Loading
           </LabeledButton>
         </div>
         <div
-          className="hyp-u-layout-column hyp-u-padding--3"
+          className="flex flex-col p-3"
           style="max-height:300px;height:300px;"
         >
           <Table
@@ -126,7 +126,7 @@ function EmptyTableExample() {
         table.
       </p>
       <Library.Demo withSource>
-        <div className="hyp-u-padding--5">
+        <div className="p-5">
           <LabeledButton onClick={() => setIsLoading(!isLoading)}>
             Toggle Loading
           </LabeledButton>

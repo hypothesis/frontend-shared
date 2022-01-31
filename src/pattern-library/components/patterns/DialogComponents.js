@@ -1,6 +1,7 @@
 import { createRef } from 'preact';
 import { useState } from 'preact/hooks';
 
+import { Scrollbox } from '../../..';
 import Library from '../Library';
 
 import {
@@ -188,9 +189,9 @@ function LongModalExample() {
         onCancel={() => setDialogOpen(false)}
         title="Modal with overflowing content"
       >
-        <div className="hyp-scrollbox">
+        <Scrollbox classes="px-4 py-2">
           <LoremIpsum />
-        </div>
+        </Scrollbox>
       </Modal>
     );
   }
