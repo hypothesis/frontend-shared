@@ -8,7 +8,8 @@ export default function SpinnerComponents() {
   const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] =
     useState(false);
 
-  const fullScreenSpinnerContainerRef = /** @type {{ current: HTMLDivElement }} */ (useRef());
+  const fullScreenSpinnerContainerRef =
+    /** @type {{ current: HTMLDivElement }} */ (useRef());
 
   useElementShouldClose(
     fullScreenSpinnerContainerRef,
