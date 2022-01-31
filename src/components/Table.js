@@ -84,7 +84,9 @@ export function Table({
 }) {
   const rowRefs = useRef(/** @type {(HTMLElement|null)[]} */ ([]));
   const scrollboxRef = /** @type {{ current: HTMLElement }} */ (useRef());
-  const headerRef = /** @type {{ current: HTMLTableSectionElement }} */ (useRef());
+  const headerRef = /** @type {{ current: HTMLTableSectionElement }} */ (
+    useRef()
+  );
 
   /** @param {Item} item */
   const onKeyboardSelect = item => {

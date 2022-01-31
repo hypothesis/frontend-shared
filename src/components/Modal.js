@@ -24,7 +24,9 @@ import { LabeledButton } from './buttons';
  * @param {ModalProps} props
  */
 export function Modal({ children, onCancel, ...restProps }) {
-  const modalContainerRef = /** @type {{ current: HTMLDivElement }} */ (useRef());
+  const modalContainerRef = /** @type {{ current: HTMLDivElement }} */ (
+    useRef()
+  );
 
   useElementShouldClose(modalContainerRef, true /* isOpen */, () => {
     if (onCancel) {

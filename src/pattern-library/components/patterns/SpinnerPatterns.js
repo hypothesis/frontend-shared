@@ -8,7 +8,8 @@ export default function SpinnerPatterns() {
   const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] =
     useState(false);
 
-  const fullScreenSpinnerContainerRef = /** @type {{ current: HTMLDivElement }} */ (useRef());
+  const fullScreenSpinnerContainerRef =
+    /** @type {{ current: HTMLDivElement }} */ (useRef());
 
   useElementShouldClose(
     fullScreenSpinnerContainerRef,
