@@ -36,6 +36,12 @@ export default {
           dark: '#84141e',
           DEFAULT: '#bd1c2b',
         },
+        // This naming makes color-related classnames generated from this
+        // token less ambiguous. e.g. `bg-color-text` instead of `bg-text`
+        'color-text': {
+          DEFAULT: '#202020',
+          light: '#737373',
+        },
       },
       spacing: {
         'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
