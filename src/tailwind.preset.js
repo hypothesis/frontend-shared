@@ -29,7 +29,7 @@ export default {
           //0: '#f4f4f6', Proposed
           1: '#e3e3e5',
           3: '#babac4',
-          //5: '#9c9cab', Proposed
+          5: '#9c9cab',
           7: '#595969',
           //9: '#131316', Proposed
         },

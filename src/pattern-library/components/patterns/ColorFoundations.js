@@ -40,6 +40,7 @@ const slateExamples = (
   <>
     <ColorSwatch colorClass="bg-slate-1" colorName="slate-1" />
     <ColorSwatch colorClass="bg-slate-3" colorName="slate-3" />
+    <ColorSwatch colorClass="bg-slate-5" colorName="slate-5" />
     <ColorSwatch colorClass="bg-slate-7" colorName="slate-7" />
   </>
 );
