@@ -19,7 +19,7 @@ export default function IconFoundations() {
           {Object.keys(icons).map(iconName => (
             <Card
               key={iconName}
-              classes="flex flex-col items-center bg-grey-0 border-[#9c9cab] space-y-3 rounded-lg"
+              classes="flex flex-col items-center bg-grey-0 border-slate-5 space-y-3 rounded-lg"
             >
               <div style="text-lg">
                 <Icon name={icons[iconName]} />

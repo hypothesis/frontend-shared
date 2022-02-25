@@ -36,6 +36,15 @@ const greyExamples = (
   </>
 );
 
+const slateExamples = (
+  <>
+    <ColorSwatch colorClass="bg-slate-1" colorName="slate-1" />
+    <ColorSwatch colorClass="bg-slate-3" colorName="slate-3" />
+    <ColorSwatch colorClass="bg-slate-5" colorName="slate-5" />
+    <ColorSwatch colorClass="bg-slate-7" colorName="slate-7" />
+  </>
+);
+
 const stateExamples = (
   <>
     <ColorSwatch colorClass="bg-green-success" colorName="green-success" />
@@ -53,6 +62,14 @@ export default function ColorFoundations() {
 
       <Library.Pattern title="Greys">
         <div className="flex flex-row flex-wrap gap-4">{greyExamples}</div>
+      </Library.Pattern>
+
+      <Library.Pattern title="Slates">
+        <p>
+          These slightly blue greys may be used sparingly to help with
+          differentiation and clarity within interfaces.
+        </p>
+        <div className="flex flex-row flex-wrap gap-4">{slateExamples}</div>
       </Library.Pattern>
 
       <Library.Pattern title="State indicators">
