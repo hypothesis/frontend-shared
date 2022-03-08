@@ -16,6 +16,8 @@ $ npm install @hypothesis/frontend-shared --save
 
 ### SASS
 
+Your project must have `sass` and `tailwindcss` dependencies installed.
+
 To add styles for all shared components to your project's SASS:
 
 ```scss
@@ -25,7 +27,7 @@ To add styles for all shared components to your project's SASS:
 ### In JS
 
 ```js
-import { SvgIcon } from '@hypothesis/frontend-shared';
+import { Icon } from '@hypothesis/frontend-shared';
 ```
 
 ## Additional documentation
