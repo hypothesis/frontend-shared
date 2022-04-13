@@ -165,7 +165,7 @@ export function Table({
     <Scrollbox
       withHeader
       classes={classnames('Hyp-Table-Scrollbox', containerClasses)}
-      containerRef={scrollboxRef}
+      elementRef={scrollboxRef}
     >
       <table
         aria-label={accessibleLabel}

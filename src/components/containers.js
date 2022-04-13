@@ -1,31 +1,46 @@
-/**
- * Components for laying out content within a consistently-styled container
- */
-
 import classnames from 'classnames';
 
 import { downcastRef } from '../util/typing';
 
 /**
+ * Components for laying out content within a consistently-styled container
+ */
+
+/**
  * @typedef {import('preact').ComponentChildren} Children
+ * @typedef {import('preact').JSX.HTMLAttributes<HTMLDivElement>} HTMLDivAttributes
+ * @typedef {import('preact').Ref<HTMLElement>} ElementRef
+ */
+
+/**
+ * @typedef CommonPresentationalProps
+ * @prop {Children} [children]
+ * @prop {string|string[]} [classes] - Optional extra CSS classes to append to
+ *   the component's default classes
+ * @prop {ElementRef} [containerRef] - Deprecated; use
+ *   `elementRef` instead.
+ * @prop {ElementRef} [elementRef]
  *
- * @typedef ContainerProps
- * @prop {Children} children
- * @prop {string} [classes] - Additional CSS classes to apply
- * @prop {import('preact').Ref<HTMLElement>} [containerRef] - Access to the
- *  wrapping element.
+ * @typedef {HTMLDivAttributes & CommonPresentationalProps} PresentationalProps
  */
 
 /**
  * Render content inside of a "frame"
  *
- * @param {ContainerProps} props
+ * @param {PresentationalProps} props
  */
-export function Frame({ children, classes = '', containerRef }) {
+export function Frame({
+  children,
+  classes,
+  containerRef,
+  elementRef,
+  ...restProps
+}) {
   return (
     <div
       className={classnames('Hyp-Frame', classes)}
-      ref={downcastRef(containerRef)}
+      {...restProps}
+      ref={downcastRef(elementRef ?? containerRef)}
     >
       {children}
     </div>
@@ -35,43 +50,46 @@ export function Frame({ children, classes = '', containerRef }) {
 /**
  * Render content inside of a "card"
  *
- * @param {ContainerProps} props
+ * @param {PresentationalProps} props
  */
-export function Card({ children, classes = '', containerRef }) {
+export function Card({
+  children,
+  classes,
+  containerRef,
+  elementRef,
+  ...restProps
+}) {
   return (
     <div
       className={classnames('Hyp-Card', classes)}
-      ref={downcastRef(containerRef)}
+      {...restProps}
+      ref={downcastRef(elementRef ?? containerRef)}
     >
       {children}
     </div>
   );
 }
-
-/**
- *
- * @typedef ActionBaseProps
- * @prop {'row'|'column'} [direction='row'] - Lay out the actions horizontally (row)
- *   or vertically (column)
- */
 
 /**
  * Render a set of actions (typically buttons) laid out either horizontally
  * by default or vertically.
  *
- * @param {ActionBaseProps & ContainerProps} props
+ * @param {{ direction?: 'row'|'column'} & PresentationalProps} props
  */
 export function Actions({
   children,
   direction = 'row',
-  classes = '',
+  classes,
   containerRef,
+  elementRef,
+  ...restProps
 }) {
   const baseClass = `Hyp-Actions--${direction}`;
   return (
     <div
       className={classnames(baseClass, classes)}
-      ref={downcastRef(containerRef)}
+      {...restProps}
+      ref={downcastRef(elementRef ?? containerRef)}
     >
       {children}
     </div>
@@ -79,28 +97,25 @@ export function Actions({
 }
 
 /**
- *
- * @typedef ScrollboxBaseProps
- * @prop {boolean} [withHeader=false] - Provide layout affordances for a sticky
- *   header in the scrollable content
- */
-
-/**
  * Render a scrollable container to contain content that might overflow.
+ * Optionally provide styling affordances for a sticky header (`withHeader`).
  *
- * @param {ScrollboxBaseProps & ContainerProps} props
+ * @param {{withHeader?: boolean} & PresentationalProps} props
  */
 export function Scrollbox({
   children,
-  classes = '',
+  classes,
   containerRef,
+  elementRef,
   withHeader = false,
+  ...restProps
 }) {
   const baseClass = withHeader ? 'Hyp-Scrollbox--with-header' : 'Hyp-Scrollbox';
   return (
     <div
       className={classnames(baseClass, classes)}
-      ref={downcastRef(containerRef)}
+      {...restProps}
+      ref={downcastRef(elementRef ?? containerRef)}
     >
       {children}
     </div>
