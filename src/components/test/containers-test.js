@@ -32,11 +32,28 @@ describe('Container components', () => {
       );
     });
 
-    it('passes along a `ref` to the input element through `containerRef`', () => {
+    it('passes along a `ref` to the input element through `elementRef`', () => {
+      const elementRef = createRef();
+      createComponent(Component, { elementRef });
+
+      assert.instanceOf(elementRef.current, Node);
+    });
+
+    it('passes along a `ref` to the input element through deprecated `containerRef`', () => {
       const containerRef = createRef();
       createComponent(Component, { containerRef });
 
       assert.instanceOf(containerRef.current, Node);
+    });
+
+    it('forwards HTML attributes', () => {
+      const wrapper = createComponent(Component, {
+        'data-testid': 'test-identifier',
+      });
+
+      const divEl = wrapper.find('div').first().getDOMNode();
+
+      assert.equal(divEl.getAttribute('data-testid'), 'test-identifier');
     });
   };
 
