@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v4.5.2] - 2022-04-14
+
+Presentational components updated to forward HTML div attributes. `containerRef`
+property deprecated in favor of `elementRef`. A few more colors added to
+tailwind preset.
+
+### Deprecated
+
+`containerRef` prop for "container" presentational components is deprecated in
+favor of `elementRef`. Support for `containerRef` will be removed in v5.0 of
+this package.
+
+### Added
+
+- Add a few slate greys to the preset colors [#310](https://github.com/hypothesis/frontend-shared/pull/310)
+
+### Changed
+
+- Forward HTML attributes for div-based presentational components [#382](https://github.com/hypothesis/frontend-shared/pull/382)
+- Update project READMES with info about Tailwind conversion [#339](https://github.com/hypothesis/frontend-shared/pull/339)
+
+## [v4.5.1] - 2022-02-01
+
+No changes. Github publish action did not run correctly upon publish of v4.5.0.
+
 ## [v4.5.0] - 2022-01-31
 
 Significant updates to dependencies in this package. The pattern library now styles
