@@ -23,6 +23,8 @@ import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
+import IconPage from './components/patterns/Icons';
+
 export const componentGroups = {
   data: 'Data Display',
   feedback: 'Feedback',
@@ -181,7 +183,12 @@ const routes = [
     group: 'components',
   },
   { title: 'Scrollbox', group: 'data' },
-  { title: 'Icons', group: 'data' },
+  {
+    title: 'Icons',
+    group: 'data',
+    component: IconPage,
+    route: '/components-icons',
+  },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   { title: 'Spinner', group: 'feedback' },
