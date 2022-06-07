@@ -14,7 +14,6 @@
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-virtual": "^2.0.3",
-    "auto-changelog": "^2.2.1",
     "autoprefixer": "^10.3.7",
     "axe-core": "^4.0.0",
     "babel-plugin-istanbul": "^6.0.0",
@@ -66,8 +65,7 @@
     "checkformatting": "prettier --check '**/*.{js,scss,md}'",
     "format": "prettier --list-different --write '**/*.{js,scss,md}'",
     "test": "gulp test",
-    "push": "yarn build && yalc push",
-    "changelog": "gulp changelog"
+    "push": "yarn build && yalc push"
   },
   "prettier": {
     "arrowParens": "avoid",
