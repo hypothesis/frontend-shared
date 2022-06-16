@@ -4,7 +4,7 @@ import colors from 'tailwindcss/colors.js';
 
 import focusVisibleRing from './tailwind.focus-visible-ring.js';
 
-export default {
+export default /** @type {Partial<import('tailwindcss').Config>} */ ({
   theme: {
     extend: {
       borderColor: {
@@ -81,4 +81,4 @@ export default {
       addVariant('theme-clean', '.theme-clean &');
     }),
   ],
-};
+});
