@@ -2,6 +2,8 @@ import plugin from 'tailwindcss/plugin.js';
 
 import colors from 'tailwindcss/colors.js';
 
+import focusVisibleRing from './tailwind.focus-visible-ring.js';
+
 export default {
   theme: {
     extend: {
@@ -53,12 +55,24 @@ export default {
           light: '#737373',
         },
       },
+      ringColor: {
+        DEFAULT: '#59a7e8',
+      },
+      ringOpacity: {
+        // Tailwind's default ring opacity is `0.5`
+        DEFAULT: '1.0',
+      },
+      ringWidth: {
+        DEFAULT: '2px',
+      },
       spacing: {
         'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
       },
     },
   },
   plugins: [
+    // Make `.focus-visible-ring` an available utility class
+    focusVisibleRing,
     plugin(({ addVariant }) => {
       // Add a custom variant such that the `theme-clean:` modifier is available
       // for all tailwind utility classes. e.g. `.theme-clean:bg-white` would

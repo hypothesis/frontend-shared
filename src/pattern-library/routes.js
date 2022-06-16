@@ -3,6 +3,7 @@ import LibraryHome from './components/LibraryHome';
 import ColorFoundations from './components/patterns/ColorFoundations';
 import IconFoundations from './components/patterns/IconFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
+import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
@@ -58,6 +59,12 @@ const routes = [
     route: '/foundations-layout',
     title: 'Layout',
     component: LayoutFoundations,
+    group: 'foundations',
+  },
+  {
+    route: '/foundations-util',
+    title: 'Utilities',
+    component: UtilityFoundations,
     group: 'foundations',
   },
   {
