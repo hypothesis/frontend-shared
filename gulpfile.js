@@ -1,30 +1,8 @@
-import { buildCSS, run, runTests, watchJS } from '@hypothesis/frontend-build';
+import { buildCSS, runTests, watchJS } from '@hypothesis/frontend-build';
 import gulp from 'gulp';
 
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
 import tailwindConfig from './tailwind.config.js';
-
-/**
- * Task to output a draft changelog to be appended to CHANGELOG.md at the
- * top of the file.
- *
- * See docs/releases.md
- */
-
-gulp.task('changelog', async () => {
-  const tag = await run('git', ['describe', '--abbrev=0', '--tags']);
-  const changelog = await run('yarn', [
-    'auto-changelog',
-    `--starting-version`,
-    tag.trim(),
-    '--stdout',
-    '--template',
-    'changelog-template.hbs',
-  ]);
-  // Copy and paste the result to CHANGELOG.md, then edit as needed.
-  // eslint-disable-next-line no-console
-  console.log(changelog.toString());
-});
 
 gulp.task('serve-pattern-library', () => {
   servePatternLibrary();
