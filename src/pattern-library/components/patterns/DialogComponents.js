@@ -242,9 +242,7 @@ export default function DialogComponents() {
           <p>
             This example shows a dismiss-able <code>Dialog</code> with an
             explicitly-provided element (<code>ref</code>) that should take
-            initial focus: a text <code>input</code>. The highlighted outline is
-            added here by using <code>.hyp-u-focus-outline</code> on the{' '}
-            <code>input</code> element.
+            initial focus: a text <code>input</code>.
           </p>
           <p>
             In some cases, you might need finer control over which element is

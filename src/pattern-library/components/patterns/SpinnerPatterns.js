@@ -65,7 +65,7 @@ export default function SpinnerPatterns() {
           <Library.Demo withSource>
             <Icon
               name="hyp-spinner"
-              containerClasses="hyp-spinner hyp-u-color--brand"
+              containerClasses="hyp-spinner text-brand"
             />
           </Library.Demo>
         </Library.Example>
