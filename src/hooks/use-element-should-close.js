@@ -1,7 +1,5 @@
 import { useEffect } from 'preact/hooks';
 
-import { normalizeKeyName } from '../browser-compatibility-utils';
-
 /**
  * Attach listeners for one or multiple events to an element and return a
  * function that removes the listeners.
@@ -52,7 +50,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
     // Close element when user presses Escape key, regardless of focus.
     const removeKeyDownListener = listen(document.body, ['keydown'], event => {
       const keyEvent = /** @type {KeyboardEvent} */ (event);
-      if (normalizeKeyName(keyEvent.key) === 'Escape') {
+      if (keyEvent.key === 'Escape') {
         handleClose();
       }
     });

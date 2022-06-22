@@ -15,6 +15,3 @@ export { Thumbnail } from './components/Thumbnail';
 
 // Hooks
 export { useElementShouldClose } from './hooks/use-element-should-close';
-
-// Utilities
-export { normalizeKeyName } from './browser-compatibility-utils';
