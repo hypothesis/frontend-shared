@@ -16,7 +16,7 @@ export default function FormPatterns() {
             unchecked and checked.
           </p>
           <Library.Demo withSource>
-            <div className="hyp-u-layout-row hyp-u-horizontal-spacing">
+            <div className="flex space-x-3">
               <div>
                 <input className="hyp-checkbox" type="checkbox" />
                 <SvgIcon name="checkbox" />

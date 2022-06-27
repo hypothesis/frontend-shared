@@ -25,7 +25,7 @@ export default function LayoutFoundations() {
                 Show example
               </LabeledButton>
               <div
-                className="hyp-u-fixed-centered"
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={`width:450px;${
                   showExample1 ? 'visibility:visible' : 'visibility:hidden'
                 }`}
@@ -64,12 +64,12 @@ export default function LayoutFoundations() {
                 Show example
               </LabeledButton>
               <div
-                className="hyp-u-overlay"
+                className="fixed top-0 left-0 bottom-0 right-0 bg-black/50 z-5"
                 style={
                   showExample2 ? 'visibility:visible' : 'visibility:hidden'
                 }
               >
-                <div className="hyp-u-fixed-centered">
+                <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   <LabeledButton onClick={() => setShowExample2(false)}>
                     Hide example
                   </LabeledButton>
@@ -93,12 +93,12 @@ export default function LayoutFoundations() {
                 Show example
               </LabeledButton>
               <div
-                className="hyp-u-overlay"
+                className="fixed top-0 left-0 bottom-0 right-0 bg-black/50 z-5"
                 style={
                   showExample3 ? 'visibility:visible' : 'visibility:hidden'
                 }
               >
-                <div className="hyp-u-fixed-centered">
+                <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   <Card classes="w-[450px]">
                     <div>
                       This is content in a fixed-centered card of 450px width

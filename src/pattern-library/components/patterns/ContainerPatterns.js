@@ -182,7 +182,7 @@ export default function ContainerPatterns() {
                 Show example
               </LabeledButton>
               <div
-                className="hyp-u-overlay"
+                className="fixed top-0 left-0 bottom-0 right-0 bg-black/50 z-5"
                 style={{ visibility: showModalExample ? 'visible' : 'hidden' }}
               >
                 <div className="hyp-modal">
@@ -232,7 +232,7 @@ export default function ContainerPatterns() {
           <Library.Demo withSource>
             <div style="height:250px;width:250px">
               <div className="hyp-scrollbox">
-                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                <ul className="p-3 space-y-4">
                   <SampleListElements />
                 </ul>
               </div>
@@ -255,7 +255,7 @@ export default function ContainerPatterns() {
                     <strong>NATO Phonetic Alphabet</strong>
                   </div>
                 </div>
-                <ul className="hyp-u-padding hyp-u-vertical-spacing">
+                <ul className="p-3 space-y-4">
                   <SampleListElements />
                 </ul>
               </div>

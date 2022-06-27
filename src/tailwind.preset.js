@@ -68,6 +68,14 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       spacing: {
         'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
       },
+      zIndex: {
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        max: '2147483647',
+      },
     },
   },
   plugins: [

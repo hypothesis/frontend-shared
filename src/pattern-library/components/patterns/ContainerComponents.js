@@ -40,7 +40,7 @@ export default function ContainerComponents() {
             <code>Card</code> using a utility class.
           </p>
           <Library.Demo withSource>
-            <Card classes="hyp-u-bg-color--grey-3">
+            <Card classes="bg-grey-3">
               <div>This content is inside of a card.</div>
               <div>This content is inside of a card.</div>
             </Card>
