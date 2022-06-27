@@ -28,10 +28,10 @@ import ThumbnailComponents from './components/patterns/ThumbnailComponents';
  *
  * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
  *   that should be rendered for the indicated route
- * @prop {RegExp|string} route - Pattern or string path relative to
+ * @prop {RegExp|string} [route] - Pattern or string path relative to
  *   `baseURL`, e.g. '/my-patterns'
  * @prop {string} title
- * @prop {import("preact").FunctionComponent<{}>} component
+ * @prop {import("preact").FunctionComponent<{}>} [component]
  * @prop {PlaygroundRouteGroup} group
  */
 

@@ -7,7 +7,7 @@ function routeFromCurrentURL(baseURL) {
 export function useRoute(baseURL, routes) {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
   const routeData = useMemo(
-    () => routes.find(r => route.match(r.route)),
+    () => routes.find(r => r.route && route.match(r.route)),
     [route, routes]
   );
   const title = `${
