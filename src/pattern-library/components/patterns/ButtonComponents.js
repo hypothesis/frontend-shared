@@ -4,30 +4,32 @@ import Library from '../Library';
 export default function ButtonComponents() {
   return (
     <Library.Page title="Buttons">
-      <p>
-        Button components support the following <strong>variants</strong>:
-      </p>
-      <ul className="hyp-list">
-        <li>Default</li>
-        <li>
-          Primary: For indicating that a button represents a primary action
-        </li>
-        <li>Dark: For rendering a button on a grey background</li>
-        <li>
-          Light: This variant should only be used for non-critical buttons on
-          white backgrounds (low contrast).
-        </li>
-      </ul>
-      <p>
-        In addition, a button may be in one of four states, which are
-        represented in their variant examples, left to right:
-      </p>
-      <ul className="hyp-list">
-        <li>Default</li>
-        <li>Pressed</li>
-        <li>Expanded</li>
-        <li>Disabled</li>
-      </ul>
+      <Library.Pattern title="Button variants">
+        <p>
+          Button components support the following <strong>variants</strong>:
+        </p>
+        <ul className="list-disc list-inside">
+          <li>Default</li>
+          <li>
+            Primary: For indicating that a button represents a primary action
+          </li>
+          <li>Dark: For rendering a button on a grey background</li>
+          <li>
+            Light: This variant should only be used for non-critical buttons on
+            white backgrounds (low contrast).
+          </li>
+        </ul>
+        <p>
+          In addition, a button may be in one of four states, which are
+          represented in their variant examples, left to right:
+        </p>
+        <ul className="list-disc list-inside">
+          <li>Default</li>
+          <li>Pressed</li>
+          <li>Expanded</li>
+          <li>Disabled</li>
+        </ul>
+      </Library.Pattern>
 
       <Library.Pattern title="IconButton">
         <p>A button containing an icon and no other content.</p>
