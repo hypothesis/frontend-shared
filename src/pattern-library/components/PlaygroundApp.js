@@ -2,11 +2,12 @@ import classnames from 'classnames';
 
 import { Link, SvgIcon } from '../../';
 
-import { getRoutes } from '../routes';
+import { componentGroups, getRoutes } from '../routes';
 import { useRoute } from '../router';
 
 /**
  * @typedef {import("../routes").PlaygroundRoute} PlaygroundRoute
+ * @typedef {import("../routes").PlaygroundRouteGroup} PlaygroundRouteGroup
  * @typedef {import('preact').ComponentChildren} Children
  */
 
@@ -56,27 +57,28 @@ export default function PlaygroundApp({
    * A single navigation link
    *
    * @param {object} props
-   *   @param {string} props.title
-   *   @param {PlaygroundRoute['route']} props.route
+   *   @param {PlaygroundRoute} props.route
    */
-  function NavLink({ title, route }) {
+  function NavLink({ route }) {
     return (
       <li className="-ml-[2px]">
-        {route && (
+        {route.route && (
           <Link
             classes={classnames('pl-4 w-full border-l-2 hover:border-l-brand', {
               'border-l-2 border-brand font-semibold':
-                activeRoute?.route === route,
-              'border-transparent': activeRoute?.route !== route,
+                activeRoute?.route === route.route,
+              'border-transparent': activeRoute?.route !== route.route,
             })}
             href={route.toString()}
-            onClick={e => navigate(e, route)}
+            onClick={e => navigate(e, route.route)}
           >
-            {title}
+            {route.title}
           </Link>
         )}
-        {!route && (
-          <div className="pl-4 w-full text-slate-5 font-light">{title}</div>
+        {!route.route && (
+          <div className="pl-4 w-full text-slate-5 font-light">
+            {route.title}
+          </div>
         )}
       </li>
     );
@@ -92,7 +94,7 @@ export default function PlaygroundApp({
     return (
       <ul className="ml-2 space-y-2 border-l-2 border-slate-0">
         {routes.map(route => (
-          <NavLink key={route.title} title={route.title} route={route.route} />
+          <NavLink key={route.title} route={route} />
         ))}
       </ul>
     );
@@ -133,6 +135,19 @@ export default function PlaygroundApp({
           <nav id="nav" className="pt-8 pb-16 space-y-4">
             <NavHeader>Foundations</NavHeader>
             <NavList routes={getRoutes('foundations')} />
+
+            <NavHeader>Components</NavHeader>
+            {Object.keys(componentGroups).map(group => {
+              return (
+                <NavSection key={group} title={componentGroups[group]}>
+                  <NavList
+                    routes={getRoutes(
+                      /** @type PlaygroundRouteGroup */ (group)
+                    )}
+                  />
+                </NavSection>
+              );
+            })}
 
             <NavHeader>Legacy</NavHeader>
             <NavSection title="Legacy Patterns">

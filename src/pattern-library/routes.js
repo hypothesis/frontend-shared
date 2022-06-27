@@ -23,8 +23,16 @@ import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
+export const componentGroups = {
+  data: 'Data Display',
+  feedback: 'Feedback',
+  input: 'Input',
+  layout: 'Layout',
+  navigation: 'Navigation',
+};
+
 /**
- * @typedef {'home'|'foundations'|'patterns'|'components'} PlaygroundRouteGroup
+ * @typedef {keyof componentGroups|'home'|'foundations'|'patterns'|'components'} PlaygroundRouteGroup
  *
  * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
  *   that should be rendered for the indicated route
@@ -44,6 +52,14 @@ const routes = [
     group: 'home',
   },
   {
+    title: 'Getting started',
+    group: 'foundations',
+  },
+  {
+    title: 'Customizing',
+    group: 'foundations',
+  },
+  {
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
@@ -55,17 +71,18 @@ const routes = [
     component: IconFoundations,
     group: 'foundations',
   },
-  {
-    route: '/foundations-layout',
-    title: 'Layout',
-    component: LayoutFoundations,
-    group: 'foundations',
-  },
+
   {
     route: '/foundations-util',
     title: 'Utilities',
     component: UtilityFoundations,
     group: 'foundations',
+  },
+  {
+    route: '/foundations-layout',
+    title: 'Layout',
+    component: LayoutFoundations,
+    group: 'patterns',
   },
   {
     route: '/patterns-containers',
@@ -163,6 +180,19 @@ const routes = [
     component: ThumbnailComponents,
     group: 'components',
   },
+  { title: 'Scrollbox', group: 'data' },
+  { title: 'Icons', group: 'data' },
+  { title: 'Table', group: 'data' },
+  { title: 'Dialog', group: 'feedback' },
+  { title: 'Spinner', group: 'feedback' },
+  { title: 'Button', group: 'input' },
+  { title: 'Checkbox', group: 'input' },
+  { title: 'IconButton', group: 'input' },
+  { title: 'LinkButton', group: 'input' },
+  { title: 'TextField', group: 'input' },
+  { title: 'Card', group: 'layout' },
+  { title: 'Panel', group: 'layout' },
+  { title: 'Link', group: 'navigation' },
 ];
 
 /**
