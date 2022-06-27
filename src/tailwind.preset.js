@@ -4,11 +4,18 @@ import colors from 'tailwindcss/colors.js';
 
 import focusVisibleRing from './tailwind.focus-visible-ring.js';
 
+// Equivalent to spacing value 11; minimum touch-target size
+const minimumTouchDimension = '44px';
+
 export default /** @type {Partial<import('tailwindcss').Config>} */ ({
   theme: {
     extend: {
       borderColor: {
         DEFAULT: '#dbdbdb',
+      },
+      boxShadow: {
+        DEFAULT: '0 1px 1px rgba(0, 0, 0, 0.1)',
+        md: '0px 2px 3px 0px rgba(0, 0, 0, 0.15)',
       },
       colors: {
         transparent: 'transparent',
@@ -28,12 +35,15 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
           9: '#202020',
         },
         slate: {
-          //0: '#f4f4f6', Proposed
+          0: '#f4f4f6',
           1: '#e3e3e5',
           3: '#babac4',
           5: '#9c9cab',
           7: '#595969',
-          //9: '#131316', Proposed
+          9: '#131316',
+        },
+        blue: {
+          focus: '#59a7e8',
         },
         green: {
           success: '#00a36d',
@@ -53,7 +63,14 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
         'color-text': {
           DEFAULT: '#202020',
           light: '#737373',
+          inverted: '#f2f2f2',
         },
+      },
+      minHeight: {
+        'touch-minimum': minimumTouchDimension,
+      },
+      minWidth: {
+        'touch-minimum': minimumTouchDimension,
       },
       ringColor: {
         DEFAULT: '#59a7e8',
@@ -65,8 +82,11 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       ringWidth: {
         DEFAULT: '2px',
       },
+      screens: {
+        touch: { raw: '(pointer: coarse)' },
+      },
       spacing: {
-        'touch-minimum': '44px', // Equivalent to spacing 11; minimum touch-target size
+        'touch-minimum': minimumTouchDimension,
       },
       zIndex: {
         1: '1',
