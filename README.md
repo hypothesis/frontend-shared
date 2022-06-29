@@ -14,7 +14,35 @@ Your project must have Preact installed as a dependency.
 $ npm install @hypothesis/frontend-shared --save
 ```
 
-### SASS
+### Components (preact)
+
+```js
+import { LabeledButton } from '@hypothesis/frontend-shared';
+```
+
+### Icons
+
+```js
+import {
+  profile,
+  share,
+  trash,
+} from '@hypothesis/frontend-shared/lib/icons';
+
+import { registerIcons } from '@hypothesis/frontend-shared';
+
+registerIcons({ profile, shareAnnotation: share, trash});
+
+export default function MyComponent() => {
+  return (
+    <div>
+      <Icon name="profile" />
+      <Icon name="shareAnnotation" />
+    </div>
+  );
+```
+
+### Styling (CSS)
 
 Your project must have `sass` and `tailwindcss` dependencies installed.
 
@@ -22,12 +50,6 @@ To add styles for all shared components to your project's SASS:
 
 ```scss
 @use '@hypothesis/frontend-shared/styles';
-```
-
-### In JS
-
-```js
-import { Icon } from '@hypothesis/frontend-shared';
 ```
 
 ## Additional documentation

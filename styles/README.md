@@ -16,7 +16,7 @@ This package's component styling is still implemented in SASS (with mixins, vari
 
 Until then, consuming applications may continue to use the main SASS entrypoint documented above.
 
-## Deprecated SASS API
+## Deprecated SASS
 
 - `pattern-library.scss` (deprecated):
 
@@ -28,7 +28,6 @@ Until then, consuming applications may continue to use the main SASS entrypoint 
 
   `@use '@hypothesis/frontend-shared/styles/mixins/<mixin-module>';`
 
-  - At this time, the only publicly-available mixins are `focus` and `buttons` (for button customizations only—use only if you know what you're doing). Do not use other mixins.
-  - Mixins may not be available publicly in the future.
+  - Mixins are not part of the public API.
 
 _Note_: `pattern-library.scss` is also used internally by this project to build a CSS bundle for serving the pattern library using `make dev`.
