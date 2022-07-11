@@ -124,7 +124,8 @@ function Example({ children, title, variant = 'split' }) {
 
       <div className="space-y-6 px-4">{notDemos}</div>
       <div
-        className={classnames('space-y-16 px-4', {
+        className={classnames({
+          'space-y-16 px-4': variant === 'split',
           'flex flex-row gap-16 flex-wrap': variant === 'wide',
         })}
       >
