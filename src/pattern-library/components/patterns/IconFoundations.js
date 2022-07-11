@@ -15,7 +15,7 @@ export default function IconFoundations() {
   return (
     <Library.Page title="Icons">
       <Library.Pattern title="Hypothesis icon set">
-        <div className="grid grid-cols-8 gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
           {Object.keys(icons).map(iconName => (
             <Card
               key={iconName}

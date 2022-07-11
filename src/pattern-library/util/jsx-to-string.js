@@ -8,11 +8,11 @@ function escapeQuotes(str) {
 }
 
 function componentName(type) {
-  if (typeof type === 'string') {
-    return type;
-  } else {
-    return type.displayName || type.name;
-  }
+  const name = typeof type === 'string' ? type : type.displayName ?? type.name;
+  // Handle (display)name conflicts if there are two components with the same
+  // name. e.g. if there are two components named `Foo`, the second of those
+  // encountered will have a name of `Foo$1`. Strip the `$1` in this case.
+  return name.replace(/\$[0-9]+$/, '');
 }
 
 /**
@@ -66,8 +66,16 @@ export function jsxToString(vnode) {
           return value ? name : '';
         }
 
-        const valueStr =
-          typeof value === 'string' ? `"${escapeQuotes(value)}"` : `{${value}}`;
+        let valueStr;
+        if (typeof value === 'string') {
+          valueStr = `"${escapeQuotes(value)}"`;
+        } else if (typeof value === 'function' && componentName(value)) {
+          // Handle {import("preact").FunctionComponent<{}>} props
+          valueStr = `{${componentName(value)}}`;
+        } else if (value) {
+          // `toString` necessary for Symbols
+          valueStr = `{${value.toString()}}`;
+        }
         return `${name}=${valueStr}`;
       })
       .join(' ')

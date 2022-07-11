@@ -2,24 +2,6 @@
  * This stylesheet contains styles for pattern-library components.
  */
 
-@layer base {
-  h1 {
-    @apply text-2xl font-bold;
-  }
-
-  h2 {
-    @apply text-lg font-semibold;
-  }
-
-  h3 {
-    @apply font-semibold;
-  }
-
-  h4 {
-    @apply italic font-light;
-  }
-}
-
 @layer components {
   .hyp-list {
     @apply list-disc list-inside;
