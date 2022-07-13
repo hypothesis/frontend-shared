@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import { Link, SvgIcon } from '../../';
+import Library from './Library';
 
 import { componentGroups, getRoutes } from '../routes';
 import { useRoute } from '../router';
@@ -35,10 +36,9 @@ export default function PlaygroundApp({
   const content = activeRoute ? (
     <activeRoute.component />
   ) : (
-    <>
-      <h1>:(</h1>
-      <p>Page not found.</p>
-    </>
+    <Library.Page title=":( Sorry">
+      <h1 className="text-2xl">Page not found</h1>
+    </Library.Page>
   );
 
   /**
@@ -132,7 +132,7 @@ export default function PlaygroundApp({
               </Link>
             </h1>
           </div>
-          <nav id="nav" className="pt-8 pb-16 space-y-4">
+          <nav id="nav" className="pt-8 pb-16 space-y-4 mr-4">
             <NavHeader>Foundations</NavHeader>
             <NavList routes={getRoutes('foundations')} />
 
