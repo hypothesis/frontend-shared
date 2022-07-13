@@ -53,7 +53,7 @@ function Page({ children, intro, title }) {
     <section className="max-w-6xl pb-16 space-y-8 text-slate-7">
       <PageTitle title={title} />
       {intro && <PageIntro>{intro}</PageIntro>}
-      <div className="px-4 space-y-16">{children}</div>
+      <div className="px-4 space-y-16 styled-text">{children}</div>
     </section>
   );
 }
@@ -73,7 +73,11 @@ function PageTitle({ title }) {
  * Page introductory text
  */
 function PageIntro({ children }) {
-  return <div className="px-4 text-xl font-light space-y-4">{children}</div>;
+  return (
+    <div className="styled-text px-4 text-xl font-light space-y-4 leading-relaxed">
+      {children}
+    </div>
+  );
 }
 
 /**
@@ -145,7 +149,6 @@ function Example({ children, title, variant = 'split' }) {
 /**
  *
  * @param {DemoButtonProps} props
- * @returns
  */
 function DemoButton({ children, onClick, pressed }) {
   return (
@@ -221,7 +224,7 @@ function Demo({ children, withSource = false, style = {}, title }) {
           )}
         </div>
       </div>
-      <div className="bg-slate-0 p-2">
+      <div className="bg-slate-0 p-2 rounded-md unstyled-text">
         {visibleTab === 'demo' && (
           <div className="w-full bg-white p-8" style={style}>
             <div className="h-full flex flex-row items-center justify-center gap-2">

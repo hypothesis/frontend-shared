@@ -3,7 +3,19 @@
  */
 
 @layer components {
-  .hyp-list {
-    @apply list-disc list-inside;
+  // Support some basic text styling in Library components
+  .styled-text {
+    :where(code):not(:where([class~='unstyled-text'] *)) {
+      @apply p-1 bg-slate-0 rounded-sm mx-0.5;
+      font-size: 0.85em;
+    }
+
+    :where(ul):not(:where([class~='unstyled-text'] *)) {
+      @apply list-disc list-outside pl-4 space-y-2;
+    }
+
+    :where(li):not(:where([class~='unstyled-text'] *)) {
+      @apply leading-relaxed;
+    }
   }
 }
