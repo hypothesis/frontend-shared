@@ -226,14 +226,14 @@ function Demo({ children, withSource = false, style = {}, title }) {
       </div>
       <div className="bg-slate-0 p-2 rounded-md unstyled-text">
         {visibleTab === 'demo' && (
-          <div className="w-full bg-white p-8" style={style}>
+          <div className="w-full bg-white p-8 rounded-md" style={style}>
             <div className="h-full flex flex-row items-center justify-center gap-2">
               {children}
             </div>
           </div>
         )}
         {visibleTab === 'source' && (
-          <Frame classes="w-full bg-white p-4">
+          <Frame classes="w-full rounded-md bg-slate-7 text-color-text-inverted p-4">
             <ul>{source}</ul>
           </Frame>
         )}
