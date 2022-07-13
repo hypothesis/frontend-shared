@@ -23,6 +23,8 @@ import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
+import LinkPage from './components/patterns/navigation/Link';
+
 export const componentGroups = {
   data: 'Data Display',
   feedback: 'Feedback',
@@ -192,7 +194,12 @@ const routes = [
   { title: 'TextField', group: 'input' },
   { title: 'Card', group: 'layout' },
   { title: 'Panel', group: 'layout' },
-  { title: 'Link', group: 'navigation' },
+  {
+    title: 'Link',
+    group: 'navigation',
+    route: '/navigation-link',
+    component: LinkPage,
+  },
 ];
 
 /**
