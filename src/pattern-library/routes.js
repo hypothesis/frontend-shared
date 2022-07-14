@@ -62,6 +62,10 @@ const routes = [
     route: '/getting-started',
   },
   {
+    title: 'Using components',
+    group: 'foundations',
+  },
+  {
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
