@@ -7,7 +7,6 @@ import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
-import LinkPatterns from './components/patterns/LinkPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
@@ -96,12 +95,6 @@ const routes = [
     route: '/patterns-forms',
     title: 'Forms',
     component: FormPatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-links',
-    title: 'Links',
-    component: LinkPatterns,
     group: 'patterns',
   },
   {
