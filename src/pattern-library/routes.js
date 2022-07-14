@@ -22,6 +22,8 @@ import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
+import GettingStartedPage from './components/patterns/GettingStarted';
+
 import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
@@ -55,6 +57,8 @@ const routes = [
   {
     title: 'Getting started',
     group: 'foundations',
+    component: GettingStartedPage,
+    route: '/getting-started',
   },
   {
     title: 'Customizing',
