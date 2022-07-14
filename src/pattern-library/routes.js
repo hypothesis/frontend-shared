@@ -23,6 +23,7 @@ import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
 import GettingStartedPage from './components/patterns/GettingStarted';
+import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
 
 import LinkPage from './components/patterns/navigation/Link';
 
@@ -61,10 +62,6 @@ const routes = [
     route: '/getting-started',
   },
   {
-    title: 'Customizing',
-    group: 'foundations',
-  },
-  {
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
@@ -82,6 +79,12 @@ const routes = [
     title: 'Utilities',
     component: UtilityFoundations,
     group: 'foundations',
+  },
+  {
+    title: 'Customizing components',
+    group: 'foundations',
+    component: CustomizingComponentsPage,
+    route: '/customizing-components',
   },
   {
     route: '/foundations-layout',
