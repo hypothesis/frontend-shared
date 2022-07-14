@@ -52,10 +52,10 @@ describe('Link', () => {
     assert.isTrue(defaultOuter.hasClass('hover:text-brand-dark'));
 
     assert.isTrue(textOuter.hasClass('text-color-text'));
-    assert.isTrue(textOuter.hasClass('hover:text-color-text'));
+    assert.isTrue(textOuter.hasClass('hover:text-brand-dark'));
 
     assert.isTrue(lightOuter.hasClass('text-color-text-light'));
-    assert.isTrue(lightOuter.hasClass('hover:text-color-text-light'));
+    assert.isTrue(lightOuter.hasClass('hover:text-brand'));
   });
 
   it('styles link underline', () => {

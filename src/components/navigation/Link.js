@@ -36,9 +36,8 @@ export default function Link({
         {
           // color
           'text-brand hover:text-brand-dark': color === 'brand', // default
-          'text-color-text-light hover:text-color-text-light':
-            color === 'text-light',
-          'text-color-text hover:text-color-text': color === 'text',
+          'text-color-text-light hover:text-brand': color === 'text-light',
+          'text-color-text hover:text-brand-dark': color === 'text',
         },
         {
           // underline
