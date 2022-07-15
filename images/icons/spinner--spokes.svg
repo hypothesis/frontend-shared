@@ -1,4 +1,4 @@
-<svg viewBox="0 0 64 64">
+<svg viewBox="0 0 64 64" width="16" height="16">
   <g stroke-width="6" stroke="currentColor" stroke-linecap="round">
     <line y1="16" y2="28" transform="translate(32,32) rotate(180)">
       <animate attributeName="stroke-opacity" dur="750ms" values="0;1;.8;.65;.45;.3;.15;0" repeatCount="indefinite"></animate>
