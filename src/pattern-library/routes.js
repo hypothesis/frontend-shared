@@ -1,7 +1,6 @@
 import LibraryHome from './components/LibraryHome';
 
 import ColorFoundations from './components/patterns/ColorFoundations';
-import IconFoundations from './components/patterns/IconFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
 import UtilityFoundations from './components/patterns/UtilityFoundations';
 
@@ -16,6 +15,7 @@ import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
 import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
+import IconComponents from './components/patterns/IconComponents';
 import LinkComponents from './components/patterns/LinkComponents';
 import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
@@ -71,12 +71,6 @@ const routes = [
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
-    group: 'foundations',
-  },
-  {
-    route: '/foundations-icons',
-    title: 'Icons',
-    component: IconFoundations,
     group: 'foundations',
   },
 
@@ -156,6 +150,12 @@ const routes = [
     route: '/components-forms',
     title: 'Forms',
     component: FormComponents,
+    group: 'components',
+  },
+  {
+    route: '/foundations-icons',
+    title: 'Icons',
+    component: IconComponents,
     group: 'components',
   },
   {

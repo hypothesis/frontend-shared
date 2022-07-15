@@ -21,6 +21,8 @@ import { availableIcons } from './SvgIcon';
 /**
  * Component that renders icons using inline `<svg>` elements.
  *
+ * @deprecated - Use standalone icon components instead
+ *
  * @param {IconProps} props
  */
 export function Icon({
