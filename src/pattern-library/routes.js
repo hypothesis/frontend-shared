@@ -25,6 +25,8 @@ import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 import GettingStartedPage from './components/patterns/GettingStarted';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
 
+import IconsPage from './components/patterns/data/Icons';
+
 import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
@@ -187,7 +189,7 @@ const routes = [
     group: 'components',
   },
   { title: 'Scrollbox', group: 'data' },
-  { title: 'Icons', group: 'data' },
+  { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   { title: 'Spinner', group: 'feedback' },

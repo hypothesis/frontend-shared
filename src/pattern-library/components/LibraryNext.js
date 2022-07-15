@@ -10,7 +10,7 @@ import { jsxToString } from '../util/jsx-to-string';
 /**
  * Render a little label or pill next to changelog items
  *
- * @typedef {'breaking'|'added'|'deprecated'} ChangeStatus
+ * @typedef {'breaking'|'added'|'changed'|'deprecated'} ChangeStatus
  *
  * @param {object} props
  *   @param {ChangeStatus} props.status
@@ -21,12 +21,13 @@ function StatusChip({ status }) {
       className={classnames('rounded-md py-1', {
         'px-2 bg-red-error text-color-text-inverted': status === 'breaking',
         'px-2 bg-yellow-notice': status === 'deprecated',
-        'font-semibold': status !== 'breaking',
+        'font-semibold': status === 'added' || status === 'changed',
       })}
     >
       {status === 'breaking' && <span>Breaking</span>}
       {status === 'deprecated' && <span>Deprecated</span>}
       {status === 'added' && <span>Added:</span>}
+      {status === 'changed' && <span>Changed:</span>}
     </span>
   );
 }
