@@ -1,1 +1,1 @@
-export * from './components/navigation';
+export { Link, LinkUnstyled } from './components/navigation/';
