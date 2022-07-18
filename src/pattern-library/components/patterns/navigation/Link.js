@@ -49,9 +49,7 @@ export default function LinkPage() {
         <Library.Example>
           <Library.Demo title="Basic Link" withSource>
             <p>
-              Some text that includes{' '}
-              <Link href="https://www.example.com">a link to somewhere</Link> in
-              its content.
+              <Link href="https://www.example.com">Click me</Link>
             </p>
           </Library.Demo>
         </Library.Example>
@@ -62,43 +60,38 @@ export default function LinkPage() {
           <code>color</code> applies to link text and hovered link text.
         </p>
         <Library.Example title="color: 'brand' (default)">
-          <Library.Demo withSource>
-            Content that contains a{' '}
+          <Library.Demo
+            title="Using default color='brand' for sign up link"
+            withSource
+          >
             <Link href="https://www.example.com" color="brand">
-              link to somewhere
-            </Link>{' '}
-            using (default) brand color.
+              Sign up
+            </Link>
           </Library.Demo>
         </Library.Example>
 
         <Library.Example title="color: 'text-light'">
-          <p>
-            This is a legacy pattern that should used with caution and in
-            isolated places (away from running text) as its contrast is low and
-            it does not read as a link. It styles links with the{' '}
-            <code>color-text-light</code> color.
-          </p>
-          <Library.Demo withSource>
-            Content that contains a
+          <Library.Demo
+            title="Using color='text-light' for an annotation tag"
+            withSource
+          >
             <Link href="https://www.example.com" color="text-light">
-              link to somewhere
+              <div className="flex items-center border rounded-sm bg-grey-0 px-1.5 py-1">
+                annotation tag
+              </div>
             </Link>
-            using light color.
           </Library.Demo>
         </Library.Example>
 
         <Library.Example title="color: 'text'">
-          <p>
-            This legacy pattern styles links with <code>color-text</code> and
-            should be avoided or used with underlines.
-          </p>
-          <Library.Demo withSource>
+          <Library.Demo
+            title="Using color='text' for sidebar tab labels"
+            withSource
+          >
             <p className="text-color-text">
-              Content that contains a{' '}
               <Link href="https://www.example.com" color="text">
-                link to somewhere
+                Page notes
               </Link>{' '}
-              using text color.
             </p>
           </Library.Demo>
         </Library.Example>
@@ -106,29 +99,47 @@ export default function LinkPage() {
 
       <Library.Pattern title="Underline">
         <p>
-          <code>Link</code>&apos;s default styling honors legacy design patterns
-          that use no underlines, but authors should consider using underlines
-          for usability and accessibility.
+          By default, <code>Link</code>s are not underlined. This is acceptable
+          when the <code>Link</code> is a standalone, interactive element.
+          Underline on hover is encouraged, however, and <code>Link</code>s
+          inline with text content should always be underlined.
         </p>
         <Library.Example title="underline:'none' (default)">
-          <Library.Demo withSource>
+          <Library.Demo
+            title="Using underline='none' for standalone log in link"
+            withSource
+          >
             <Link href="https://www.example.com" underline="none">
-              no underlines, nope, never
+              Log in
             </Link>
           </Library.Demo>
         </Library.Example>
         <Library.Example title="underline:'hover'">
-          <Library.Demo withSource>
-            <Link href="https://www.example.com" underline="hover">
-              underline on hover
+          <Library.Demo
+            title="Using underline='hover' for reply-expansion link"
+            withSource
+          >
+            <Link
+              href="https://www.example.com"
+              color="text-light"
+              underline="hover"
+            >
+              Show replies (7)
             </Link>
           </Library.Demo>
         </Library.Example>
         <Library.Example title="underline:'always'">
-          <Library.Demo withSource>
-            <Link href="https://www.example.com" underline="always">
-              always underlined
-            </Link>
+          <Library.Demo
+            title="Using underline='always' in text content"
+            withSource
+          >
+            <p>
+              Links should be{' '}
+              <Link href="https://www.example.com" underline="always">
+                underlined
+              </Link>{' '}
+              when inline with text content.
+            </p>
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
