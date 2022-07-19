@@ -58,6 +58,37 @@ function ChangelogItem({ status, children }) {
 }
 
 /**
+ * Render provided `content` as a "code block" example.
+ *
+ * @param {object} props
+ *   @param {string} props.content - Code content
+ *   @param {'sm'|'md'|'lg'} [props.size]
+ *   @param {string} [props.title] - Caption (e.g. filename, description) of
+ *     code block
+ */
+function Code({ content, size, title }) {
+  return (
+    <figure className="space-y-2">
+      <div
+        className={classnames(
+          'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md',
+          { 'text-sm': size === 'sm' }
+        )}
+      >
+        <code className="text-color-text-inverted">
+          <pre className="whitespace-pre-wrap">{jsxToString(content)}</pre>
+        </code>
+      </div>
+      {title && (
+        <figcaption className="flex justify-end">
+          <span className="italic">{title}</span>
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/**
  * Render import "usage" of a given `componentName`
  *
  * @param {object} props
@@ -70,18 +101,16 @@ function Usage({ componentName, generation = 'next' }) {
       ? '@hypothesis/frontend-shared/lib/next'
       : '@hypothesis/frontend-shared';
   return (
-    <div className="unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md">
-      <code>
-        {jsxToString(`
-import { ${componentName} } from '${importPath}';
-`)}
-      </code>
-    </div>
+    <Code
+      content={`import { ${componentName} } from '${importPath}';
+`}
+    />
   );
 }
 
 export default {
   Changelog,
   ChangelogItem,
+  Code,
   Usage,
 };

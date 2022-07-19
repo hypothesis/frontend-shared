@@ -22,6 +22,9 @@ import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
+import GettingStartedPage from './components/patterns/GettingStarted';
+import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
+
 import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
@@ -55,9 +58,11 @@ const routes = [
   {
     title: 'Getting started',
     group: 'foundations',
+    component: GettingStartedPage,
+    route: '/getting-started',
   },
   {
-    title: 'Customizing',
+    title: 'Using components',
     group: 'foundations',
   },
   {
@@ -78,6 +83,12 @@ const routes = [
     title: 'Utilities',
     component: UtilityFoundations,
     group: 'foundations',
+  },
+  {
+    title: 'Customizing components',
+    group: 'foundations',
+    component: CustomizingComponentsPage,
+    route: '/customizing-components',
   },
   {
     route: '/foundations-layout',

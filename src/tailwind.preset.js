@@ -39,7 +39,7 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
           1: '#e3e3e5',
           3: '#babac4',
           5: '#9c9cab',
-          7: '#595969',
+          7: '#575768',
           9: '#131316',
         },
         blue: {
