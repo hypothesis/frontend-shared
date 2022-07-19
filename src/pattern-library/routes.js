@@ -7,7 +7,6 @@ import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
-import LinkPatterns from './components/patterns/LinkPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
 import SpinnerPatterns from './components/patterns/SpinnerPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
@@ -22,6 +21,8 @@ import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
+
+import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
   data: 'Data Display',
@@ -94,12 +95,6 @@ const routes = [
     route: '/patterns-forms',
     title: 'Forms',
     component: FormPatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-links',
-    title: 'Links',
-    component: LinkPatterns,
     group: 'patterns',
   },
   {
@@ -192,7 +187,12 @@ const routes = [
   { title: 'TextField', group: 'input' },
   { title: 'Card', group: 'layout' },
   { title: 'Panel', group: 'layout' },
-  { title: 'Link', group: 'navigation' },
+  {
+    title: 'Link',
+    group: 'navigation',
+    route: '/navigation-link',
+    component: LinkPage,
+  },
 ];
 
 /**

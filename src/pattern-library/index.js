@@ -1,5 +1,7 @@
 // Entry point for extending the pattern library
 import { render } from 'preact';
+// Enable preact debug checks
+import 'preact/debug';
 
 import { registerIcons } from '../';
 import iconSet from './icons';

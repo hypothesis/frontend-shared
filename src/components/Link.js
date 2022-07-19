@@ -17,6 +17,8 @@ import classnames from 'classnames';
 /**
  * Style and add some attributes to an anchor (`<a>`) element
  *
+ * @deprecated - Use re-implemented component in the navigation group
+ *
  * @param {LinkProps} props
  */
 export function Link({ children, classes = '', linkRef, ...restProps }) {

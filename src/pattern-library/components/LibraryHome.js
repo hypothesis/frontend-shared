@@ -18,7 +18,7 @@ export default function LibraryHome() {
       </Library.Pattern>
 
       <Library.Pattern title="Components">
-        <ul className="hyp-list">
+        <ul>
           <li>
             <strong>Components</strong> are{' '}
             <Link href="https://preactjs.com/">Preact</Link> components that use{' '}
