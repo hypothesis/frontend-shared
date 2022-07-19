@@ -1,7 +1,6 @@
 import LibraryHome from './components/LibraryHome';
 
 import ColorFoundations from './components/patterns/ColorFoundations';
-import IconFoundations from './components/patterns/IconFoundations';
 import LayoutFoundations from './components/patterns/LayoutFoundations';
 import UtilityFoundations from './components/patterns/UtilityFoundations';
 
@@ -16,6 +15,7 @@ import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
 import DialogComponents from './components/patterns/DialogComponents';
 import FormComponents from './components/patterns/FormComponents';
+import IconComponents from './components/patterns/IconComponents';
 import LinkComponents from './components/patterns/LinkComponents';
 import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
@@ -24,6 +24,8 @@ import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
 import GettingStartedPage from './components/patterns/GettingStarted';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
+
+import IconsPage from './components/patterns/data/Icons';
 
 import LinkPage from './components/patterns/navigation/Link';
 
@@ -69,12 +71,6 @@ const routes = [
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorFoundations,
-    group: 'foundations',
-  },
-  {
-    route: '/foundations-icons',
-    title: 'Icons',
-    component: IconFoundations,
     group: 'foundations',
   },
 
@@ -157,6 +153,12 @@ const routes = [
     group: 'components',
   },
   {
+    route: '/foundations-icons',
+    title: 'Icons',
+    component: IconComponents,
+    group: 'components',
+  },
+  {
     route: '/components-links',
     title: 'Links',
     component: LinkComponents,
@@ -187,7 +189,7 @@ const routes = [
     group: 'components',
   },
   { title: 'Scrollbox', group: 'data' },
-  { title: 'Icons', group: 'data' },
+  { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   { title: 'Spinner', group: 'feedback' },

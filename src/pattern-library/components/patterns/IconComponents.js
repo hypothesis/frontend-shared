@@ -1,4 +1,5 @@
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 import { Card, Icon, registerIcon } from '../../../';
 import * as iconSrc from '../../../icons';
@@ -11,9 +12,26 @@ for (const iconName in iconSrc) {
   }
 }
 
-export default function IconFoundations() {
+export default function IconComponents() {
   return (
-    <Library.Page title="Icons">
+    <Library.Page
+      title="Icons"
+      intro={
+        <p>
+          The legacy <code>Icon</code> component renders an SVG icon indicated
+          by the <code>name</code> prop.
+        </p>
+      }
+    >
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The single icon component <code>Icon</code> is deprecated in favor
+            of individual icon components. The <code>Icon</code> component is
+            slated for removal in <code>v6.0</code> of this package.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
       <Library.Pattern title="Hypothesis icon set">
         <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
           {Object.keys(icons).map(iconName => (
