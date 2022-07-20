@@ -8,7 +8,7 @@ Run a local webserver that will rebuild on changes to JS or SASS source.
 $ make dev
 ```
 
-You can view the pattern library at http://localhost:4001/ui-playground
+You can view the pattern library at http://localhost:4001/
 
 ## Testing locally with other projects
 
