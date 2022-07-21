@@ -27,6 +27,9 @@ import CustomizingComponentsPage from './components/patterns/CustomizingComponen
 
 import IconsPage from './components/patterns/data/Icons';
 
+import ButtonsPage from './components/patterns/input/Button';
+import IconButtonPage from './components/patterns/input/IconButton';
+
 import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
@@ -193,9 +196,19 @@ const routes = [
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   { title: 'Spinner', group: 'feedback' },
-  { title: 'Button', group: 'input' },
+  {
+    title: 'Button',
+    group: 'input',
+    component: ButtonsPage,
+    route: '/input-button',
+  },
   { title: 'Checkbox', group: 'input' },
-  { title: 'IconButton', group: 'input' },
+  {
+    title: 'IconButton',
+    group: 'input',
+    component: IconButtonPage,
+    route: '/input-iconbutton',
+  },
   { title: 'LinkButton', group: 'input' },
   { title: 'TextField', group: 'input' },
   { title: 'Card', group: 'layout' },
