@@ -100,6 +100,7 @@ function ButtonBase({
 /**
  * An icon-only button
  *
+ * @deprecated - Use re-implemented component in the input group
  * @param {IconButtonProps} props
  */
 export function IconButton({ className = 'Hyp-IconButton', ...restProps }) {
@@ -114,6 +115,7 @@ export function IconButton({ className = 'Hyp-IconButton', ...restProps }) {
 /**
  * A labeled button, with or without an icon
  *
+ * @deprecated - Use re-implemented component in the input group
  * @param {ButtonBaseProps} props
  */
 export function LabeledButton({

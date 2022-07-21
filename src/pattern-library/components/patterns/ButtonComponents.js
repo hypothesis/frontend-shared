@@ -1,9 +1,37 @@
 import { IconButton, LabeledButton, LinkButton } from '../../../';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 export default function ButtonComponents() {
   return (
     <Library.Page title="Buttons">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Button</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Button</code> component in the input group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>IconButton</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>IconButton</code> component in the input group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
+      <Library.Pattern title="Usage">
+        <Next.Usage componentName="Button" generation="legacy" />
+        <Next.Usage componentName="IconButton" generation="legacy" />
+        <Next.Usage componentName="LinkButton" generation="legacy" />
+      </Library.Pattern>
       <Library.Pattern title="Button variants">
         <p>
           Button components support the following <strong>variants</strong>:
