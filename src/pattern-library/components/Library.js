@@ -171,6 +171,8 @@ function DemoButton({ children, onClick, pressed }) {
 /**
  * @typedef DemoProps
  * @prop {import("preact").ComponentChildren} [children]
+ * @prop {string} [classes] - Extra CSS classes for the demo content's immediate
+ *   parent container
  * @prop {boolean} [withSource=false] - Should the demo also render the source?
  *   When true, a "Source" tab will be rendered, which will display the JSX
  *   source of the Demo's children
@@ -186,7 +188,7 @@ function DemoButton({ children, onClick, pressed }) {
  *
  * @param {DemoProps} props
  */
-function Demo({ children, withSource = false, style = {}, title }) {
+function Demo({ children, classes, withSource = false, style = {}, title }) {
   const [visibleTab, setVisibleTab] = useState('demo');
   const source = toChildArray(children).map((child, idx) => {
     return (
@@ -227,7 +229,12 @@ function Demo({ children, withSource = false, style = {}, title }) {
       <div className="bg-slate-0 p-2 rounded-md unstyled-text">
         {visibleTab === 'demo' && (
           <div className="w-full bg-white p-8 rounded-md" style={style}>
-            <div className="h-full flex flex-row items-center justify-center gap-2">
+            <div
+              className={classnames(
+                'h-full flex flex-row items-center justify-center gap-2',
+                classes
+              )}
+            >
               {children}
             </div>
           </div>
