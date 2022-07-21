@@ -108,6 +108,9 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       // only apply (set the element's background color to white) if a parent
       // element had the `.theme-clean` class.
       addVariant('theme-clean', '.theme-clean &');
+      // Tailwind does not provide variants for ARIA-attributes out of the box
+      addVariant('aria-pressed', '&[aria-pressed="true"]');
+      addVariant('aria-expanded', '&[aria-expanded="true"]');
     }),
   ],
 });

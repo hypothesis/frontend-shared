@@ -23,5 +23,11 @@
  * @prop {import('preact').Ref<HTMLElement>} [elementRef]
  */
 
+/**
+ * A type describing any of the standalone icon components, which take any
+ * valid `<svg>` element attribute as props.
+ *
+ *  @typedef {import('preact').FunctionComponent<import('preact').JSX.SVGAttributes<SVGSVGElement>>} IconComponent
+ */
 // Make TypeScript treat this file as a module.
 export const unused = {};
