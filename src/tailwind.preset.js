@@ -87,6 +87,8 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       },
       spacing: {
         em: '1em',
+        '2em': '2em',
+        '4em': '4em',
         'touch-minimum': minimumTouchDimension,
       },
       zIndex: {
