@@ -26,6 +26,9 @@ import CustomizingComponentsPage from './components/patterns/CustomizingComponen
 
 import IconsPage from './components/patterns/data/Icons';
 
+import ScrollPage from './components/patterns/data/Scroll';
+import ScrollBoxPage from './components/patterns/data/ScrollBox';
+
 import SpinnerPage from './components/patterns/feedback/Spinner';
 
 import ButtonsPage from './components/patterns/input/Button';
@@ -186,7 +189,18 @@ const routes = [
     component: ThumbnailComponents,
     group: 'components',
   },
-  { title: 'Scrollbox', group: 'data' },
+  {
+    title: 'Scroll',
+    group: 'data',
+    component: ScrollPage,
+    route: '/data-scroll',
+  },
+  {
+    title: 'ScrollBox',
+    group: 'data',
+    component: ScrollBoxPage,
+    route: '/data-sbox',
+  },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
