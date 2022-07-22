@@ -27,6 +27,8 @@ import CustomizingComponentsPage from './components/patterns/CustomizingComponen
 
 import IconsPage from './components/patterns/data/Icons';
 
+import SpinnerPage from './components/patterns/feedback/Spinner';
+
 import ButtonsPage from './components/patterns/input/Button';
 import IconButtonPage from './components/patterns/input/IconButton';
 
@@ -195,7 +197,12 @@ const routes = [
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
-  { title: 'Spinner', group: 'feedback' },
+  {
+    title: 'Spinner',
+    group: 'feedback',
+    component: SpinnerPage,
+    route: '/feedback-spinner',
+  },
   {
     title: 'Button',
     group: 'input',
