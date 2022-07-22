@@ -24,6 +24,7 @@ const spinnerIcon = registerIcon('spinner', spinnerSVG);
 /**
  * Loading indicator.
  *
+ * @deprecated - Use re-implemented component in the feedback group
  * @param {SpinnerProps} props
  */
 export function Spinner({ classes = '', size = 'medium' }) {

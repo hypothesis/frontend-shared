@@ -7,7 +7,6 @@ import UtilityFoundations from './components/patterns/UtilityFoundations';
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
 import PanelPatterns from './components/patterns/PanelPatterns';
-import SpinnerPatterns from './components/patterns/SpinnerPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -113,12 +112,6 @@ const routes = [
     route: '/patterns-panels',
     title: 'Panels',
     component: PanelPatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-spinners',
-    title: 'Spinners',
-    component: SpinnerPatterns,
     group: 'patterns',
   },
   {

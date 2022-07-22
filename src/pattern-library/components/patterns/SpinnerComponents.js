@@ -3,6 +3,7 @@ import { useRef, useState } from 'preact/hooks';
 import { FullScreenSpinner, LabeledButton, Spinner } from '../../..';
 import { useElementShouldClose } from '../../../hooks/use-element-should-close';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 export default function SpinnerComponents() {
   const [fullScreenSpinnerVisible, setFullScreenSpinnerVisible] =
@@ -24,6 +25,27 @@ export default function SpinnerComponents() {
         The <code>Spinner</code> component is based on the <code>spinner</code>{' '}
         pattern and renders an animated SVG.
       </p>
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            This legacy implementation of
+            <s>
+              <code>Spinner</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Spinner</code> component in the feedback group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
+      <Library.Pattern title="Usage">
+        <Next.Usage componentName="Spinner" generation="legacy" />
+        <Library.Example>
+          <Library.Demo withSource>
+            <Spinner />
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
       <Library.Pattern title="Spinner">
         <Library.Example title="Basic usage">
           <Library.Demo withSource>
