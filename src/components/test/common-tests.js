@@ -1,6 +1,10 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
+/**
+ * @typedef {import('preact').FunctionComponent} FunctionComponent
+ */
+
 const createComponent = (Component, props = {}) => {
   return mount(<Component {...props}>This is child content</Component>);
 };
@@ -8,7 +12,7 @@ const createComponent = (Component, props = {}) => {
 /**
  * Set of tests common to all presentational components
  *
- * @param {import('preact').FunctionComponent} Component
+ * @param {FunctionComponent} Component
  */
 export function testPresentationalComponent(Component) {
   describe('Common presentational functionality', () => {
@@ -48,7 +52,7 @@ export function testPresentationalComponent(Component) {
 /**
  * Set of tests common to all base components
  *
- * @param {import('preact').FunctionComponent} Component
+ * @param {FunctionComponent} Component
  */
 export function testBaseComponent(Component) {
   describe('Common base component functionality', () => {
@@ -76,6 +80,20 @@ export function testBaseComponent(Component) {
 
       assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
       assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
+    });
+  });
+}
+
+/**
+ * Common tests for simple design components
+ *
+ * @param {FunctionComponent} Component
+ */
+export function testSimpleComponent(Component) {
+  describe('Common simple component functionality', () => {
+    it('renders', () => {
+      const wrapper = createComponent(Component);
+      assert.isTrue(wrapper.find(Component).exists());
     });
   });
 }
