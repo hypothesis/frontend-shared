@@ -14,6 +14,33 @@ const createComponent = (Component, props = {}) => {
  *
  * @param {FunctionComponent} Component
  */
+export function testCompositeComponent(Component) {
+  describe('Common composite functionality', () => {
+    it('applies `ref` via `elementRef`', () => {
+      const elementRef = createRef();
+      createComponent(Component, { elementRef });
+
+      assert.instanceOf(elementRef.current, Node);
+    });
+
+    it('applies HTML attributes to outer element', () => {
+      const wrapperOuterEl = createComponent(Component, {
+        'data-testid': 'foo-container',
+      })
+        .childAt(0)
+        .getDOMNode();
+
+      assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
+      assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
+    });
+  });
+}
+
+/**
+ * Set of tests common to all presentational components
+ *
+ * @param {import('preact').FunctionComponent} Component
+ */
 export function testPresentationalComponent(Component) {
   describe('Common presentational functionality', () => {
     it('applies extra classes', () => {
