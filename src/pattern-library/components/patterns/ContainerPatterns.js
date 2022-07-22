@@ -3,8 +3,6 @@ import { useState } from 'preact/hooks';
 import { IconButton, LabeledButton } from '../../../';
 import Library from '../Library';
 
-import { SampleListElements } from './samples';
-
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
@@ -211,53 +209,6 @@ export default function ContainerPatterns() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Scrollbox">
-        <p>
-          <code>Scrollbox</code> is a CSS-only pattern that provides scroll-hint
-          affordances for overflowing content (shadows). It sets its own{' '}
-          <code>overflow: auto</code> scrolling context, but authors need to
-          define bounding dimensions.
-        </p>
-        <Library.Example title="List in a scrollbox">
-          <p>
-            This example shows an overflowing <code>ul</code> in a{' '}
-            <code>scrollbox</code>.
-          </p>
-          <Library.Demo withSource>
-            <div style="height:250px;width:250px">
-              <div className="hyp-scrollbox">
-                <ul className="p-3 space-y-4">
-                  <SampleListElements />
-                </ul>
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Scrollbox with header offset">
-          <p>
-            The <code>scrollbox--with-header</code> pattern offsets the top
-            scroll-hinting shadow to accommodate one header-like element with a
-            touch-target height (currently 44px).
-          </p>
-
-          <Library.Demo withSource>
-            <div style="height:250px;width:250px">
-              <div className="hyp-scrollbox--with-header">
-                <div className="hyp-sticky-header">
-                  <div className="hyp-sticky-header__heading">
-                    <strong>NATO Phonetic Alphabet</strong>
-                  </div>
-                </div>
-                <ul className="p-3 space-y-4">
-                  <SampleListElements />
-                </ul>
               </div>
             </div>
           </Library.Demo>

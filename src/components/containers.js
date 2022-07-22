@@ -100,6 +100,7 @@ export function Actions({
  * Render a scrollable container to contain content that might overflow.
  * Optionally provide styling affordances for a sticky header (`withHeader`).
  *
+ * @deprecated - Use re-implemented ScrollBox component in the data-display group
  * @param {{withHeader?: boolean} & PresentationalProps} props
  */
 export function Scrollbox({

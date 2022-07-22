@@ -1,11 +1,26 @@
 import { Actions, Card, Frame, Scrollbox, LabeledButton } from '../../..';
+
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 import { SampleListElements } from './samples';
 
 export default function ContainerComponents() {
   return (
     <Library.Page title="Containers">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Scrollbox</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>ScrollBox</code> component in the data display group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
       <Library.Pattern title="Frame">
         <Library.Example title="Laying out content in a Frame">
           <p>
