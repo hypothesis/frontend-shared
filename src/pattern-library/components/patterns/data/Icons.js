@@ -9,7 +9,7 @@ export default function IconPage() {
   return (
     <Library.Page
       title="Icons"
-      intro={<p>Icons are available as standalone components.</p>}
+      intro={<p>Icons are simple, standalone components.</p>}
     >
       <Library.Pattern title="Status">
         <p>

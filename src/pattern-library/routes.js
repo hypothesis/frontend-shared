@@ -24,6 +24,7 @@ import ThumbnailComponents from './components/patterns/ThumbnailComponents';
 
 import GettingStartedPage from './components/patterns/GettingStarted';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
+import UsingComponentsPage from './components/patterns/UsingComponents';
 
 import IconsPage from './components/patterns/data/Icons';
 
@@ -69,6 +70,8 @@ const routes = [
   {
     title: 'Using components',
     group: 'foundations',
+    component: UsingComponentsPage,
+    route: '/using-components',
   },
   {
     route: '/foundations-colors',
