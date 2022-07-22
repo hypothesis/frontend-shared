@@ -99,10 +99,11 @@ function Code({ content, size, title }) {
  * Render import "usage" of a given `componentName`
  *
  * @param {object} props
- *   @prop {string} props.componentName
- *   @prop {'next'|'legacy'} [props.generation]
+ *   @param {string} props.componentName
+ *   @param {'next'|'legacy'} [props.generation]
+ *   @param {'sm'|'md'|'lg'} [props.size]
  */
-function Usage({ componentName, generation = 'next' }) {
+function Usage({ componentName, generation = 'next', size = 'md' }) {
   const importPath =
     generation === 'next'
       ? '@hypothesis/frontend-shared/lib/next'
@@ -111,6 +112,7 @@ function Usage({ componentName, generation = 'next' }) {
     <Code
       content={`import { ${componentName} } from '${importPath}';
 `}
+      size={size}
     />
   );
 }
