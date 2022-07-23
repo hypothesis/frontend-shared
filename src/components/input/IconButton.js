@@ -14,8 +14,9 @@ import ButtonBase from './ButtonBase';
  * @prop {IconComponent} [Icon] - reference to an icon function component
  *   to render in this button, e.g. CautionIcon
  * @prop {'sm'|'md'|'lg'} [size='md']
- * @prop {boolean} [responsive=true] - Apply dimensions for touch
- *   interfaces to ensure touch target is large enough.
+ * @prop {boolean} [disableTouchSizing=false] - Disable minimum tap target
+ *   sizing for touch devices. This may be necessary in legacy patterns where
+ *   there isn't enough room in the interface for these larger dimensions.
  * @prop {'primary'|'secondary'|'dark'} [variant='secondary']
  * @prop {string} title - Required for `IconButton` as there is no text label
  */
@@ -34,7 +35,7 @@ export default function IconButton({
   expanded,
 
   Icon,
-  responsive = true,
+  disableTouchSizing = false,
   size = 'md',
   title,
   variant = 'secondary',
@@ -62,7 +63,8 @@ export default function IconButton({
           'p-3': size === 'lg',
 
           // Responsive
-          'touch:min-w-touch-minimum touch:min-h-touch-minimum': responsive,
+          'touch:min-w-touch-minimum touch:min-h-touch-minimum':
+            !disableTouchSizing,
         },
         classes
       )}

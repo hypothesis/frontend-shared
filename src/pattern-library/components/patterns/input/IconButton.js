@@ -208,17 +208,17 @@ export default function IconButtonPage() {
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Disabling responsive sizing">
+        <Library.Example title="Disabling touch-target sizing">
           <p>
             By default, <code>IconButton</code> will apply styles for touch
             devices (<code>pointer: coarse</code>) to ensure the minimum
             dimensions are equal or greater to our defined touch-target minimums
-            (<code>44×44</code>). In some cases that is undesirable. Disable
-            with the <code>responsive</code> boolean prop.
+            (44×44px). In some cases that is undesirable. Disable with the{' '}
+            <code>disableTouchSizing</code> boolean prop.
           </p>
 
           <Library.Demo withSource>
-            <IconButton Icon={EditIcon} title="Edit" responsive={false} />
+            <IconButton Icon={EditIcon} title="Edit" disableTouchSizing />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>
