@@ -42,6 +42,7 @@
     "mocha": "10.0.0",
     "mustache": "^4.2.0",
     "mustache-express": "^1.3.0",
+    "plop": "^3.1.1",
     "postcss": "^8.3.9",
     "preact": "^10.5.6",
     "prettier": "^2.2.1",
@@ -66,6 +67,7 @@
     "checkformatting": "prettier --check '**/*.{js,scss,md}'",
     "format": "prettier --list-different --write '**/*.{js,scss,md}'",
     "test": "gulp test",
+    "plop": "plop",
     "push": "yarn build && yalc push"
   },
   "prettier": {
