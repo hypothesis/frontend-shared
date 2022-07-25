@@ -1,0 +1,20 @@
+import { mount } from 'enzyme';
+
+import { testCompositeComponent } from '../../test/common-tests';
+
+import {{name}} from '../{{name}}';
+
+const createComponent = (Component, props = {}) => {
+  return mount(<Component {...props}>This is child content</Component>);
+};
+
+describe('{{name}}', () => {
+  testCompositeComponent({{name}});
+
+  // This is an auto-generated test. Expand or delete.
+  it('has other functionality...', () => {
+    const wrapper = createComponent({{name}}, { size: 'lg' });
+
+    assert.isTrue(wrapper.childAt(0).hasClass('p-4'));
+  });
+});

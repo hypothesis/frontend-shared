@@ -1,0 +1,29 @@
+import classnames from 'classnames';
+
+
+/**
+ * @typedef {{name}}Props
+ * @prop {'sm'|'md'|'lg'} [size='sm']
+ */
+
+/**
+ * TODO
+ * {{!See https://github.com/handlebars-lang/handlebars.js/issues/1404 }}
+ * @param { {{~name~}} Props} props
+ */
+const {{name}}Next = function {{name}}({ size = 'md' }) {
+  return (
+    <div
+      className={classnames(
+        {
+          'w-em h-em': size === 'sm',
+          'w-2em h-2em': size === 'md', // default
+          'w-4em h-4em': size === 'lg',
+        }
+      )}
+      data-component="{{name}}"
+    />
+  );
+};
+
+export default {{name}}Next;

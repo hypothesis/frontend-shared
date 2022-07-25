@@ -1,0 +1,1 @@
+The files in this directory are used to scaffold out new components for this project using [`plop`](https://plopjs.com/). See ['Development Guide'](../docs/developing.md) for details.

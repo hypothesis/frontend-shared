@@ -1,0 +1,53 @@
+import classnames from 'classnames';
+
+import { downcastRef } from '../../util/typing';
+
+/**
+ * @typedef {import('../../types').PresentationalProps} CommonProps
+ * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'>} HTMLAttributes
+ *
+ * @typedef {{ name }}Props
+ * @prop {'sm'|'md'|'lg'} [size='md']
+ * @prop {'primary'|'secondary'} [variant='secondary']
+ */
+
+/**
+ * TODO
+ *
+ * @param {CommonProps & {{name}}Props & HTMLAttributes} props
+ */
+const {{name}}Next = function {{name}}({
+  children,
+  classes,
+  elementRef,
+
+  size = 'md',
+  variant = 'secondary',
+
+  ...htmlAttributes
+}) {
+  return (
+    <div
+      {...htmlAttributes}
+      ref={downcastRef(elementRef)}
+      className={classnames(
+        'border',
+        {
+          'bg-slate-0 text-color-text': variant === 'secondary', // default
+          'bg-grey-7 text-color-text-inverted': variant === 'primary',
+        },
+        {
+          'p-3': size === 'md', // default
+          'p-2': size === 'sm',
+          'p-4': size === 'lg',
+        },
+        classes
+      )}
+      data-component="{{name}}"
+    >
+      {children}
+    </div>
+  );
+};
+
+export default {{name}}Next;
