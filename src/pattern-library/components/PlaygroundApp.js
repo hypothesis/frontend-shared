@@ -69,7 +69,7 @@ export default function PlaygroundApp({
                 activeRoute?.route === route.route,
               'border-transparent': activeRoute?.route !== route.route,
             })}
-            href={route.toString()}
+            href={route.route.toString()}
             onClick={e => navigate(e, route.route)}
           >
             {route.title}
