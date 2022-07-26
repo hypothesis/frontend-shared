@@ -35,6 +35,8 @@ import SpinnerPage from './components/patterns/feedback/Spinner';
 import ButtonsPage from './components/patterns/input/Button';
 import IconButtonPage from './components/patterns/input/IconButton';
 
+import CardPage from './components/patterns/layout/Card';
+
 import LinkPage from './components/patterns/navigation/Link';
 
 export const componentGroups = {
@@ -228,8 +230,13 @@ const routes = [
   },
   { title: 'LinkButton', group: 'input' },
   { title: 'TextField', group: 'input' },
-  { title: 'Card', group: 'layout' },
   { title: 'Panel', group: 'layout' },
+  {
+    title: 'Card',
+    group: 'layout',
+    component: CardPage,
+    route: '/layout-card',
+  },
   {
     title: 'Link',
     group: 'navigation',
