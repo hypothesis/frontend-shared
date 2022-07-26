@@ -6,7 +6,6 @@ import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
-import PanelPatterns from './components/patterns/PanelPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -115,12 +114,6 @@ const routes = [
     route: '/patterns-forms',
     title: 'Forms',
     component: FormPatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-panels',
-    title: 'Panels',
-    component: PanelPatterns,
     group: 'patterns',
   },
   {

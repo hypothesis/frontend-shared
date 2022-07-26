@@ -13,6 +13,15 @@ export default function ContainerComponents() {
           <Next.ChangelogItem status="deprecated">
             The legacy implementation of
             <s>
+              <code>Card</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Card</code> component in the layout group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
               <code>Scrollbox</code>
             </s>{' '}
             is deprecated and slated for removal in v6 of{' '}

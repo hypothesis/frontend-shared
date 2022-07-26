@@ -1,10 +1,24 @@
 import { Panel } from '../../../';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 export default function PanelComponents() {
   return (
     <Library.Page title="Panel">
       <Library.Pattern title="Panel">
+        <Library.Pattern title="Status">
+          <Next.Changelog>
+            <Next.ChangelogItem status="deprecated">
+              The legacy implementation of
+              <s>
+                <code>Panel</code>
+              </s>{' '}
+              is deprecated and slated for removal in v6 of{' '}
+              <code>frontend-shared</code>. Use re-implemented
+              <code>Panel</code> component in the layout group instead.
+            </Next.ChangelogItem>
+          </Next.Changelog>
+        </Library.Pattern>
         <Library.Example title="Basic usage">
           <Library.Demo withSource>
             <Panel title="Basic panel">
