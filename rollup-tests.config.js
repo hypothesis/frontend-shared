@@ -64,7 +64,11 @@ export default {
         [
           'babel-plugin-istanbul',
           {
-            exclude: ['**/test/**/*.js', '**/test-util/**'],
+            exclude: [
+              '**/test/**/*.js',
+              '**/test-util/**',
+              'src/components/icons/**/*.js',
+            ],
           },
         ],
       ],

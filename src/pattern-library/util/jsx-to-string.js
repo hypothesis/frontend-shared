@@ -60,10 +60,11 @@ export function jsxToString(vnode) {
           return '';
         }
 
-        // Boolean props are assumed to default to `false`, in which case they
-        // can be omitted.
+        // When a boolean property is present, render:
+        // 'booleanPropName' => when true
+        // 'booleanPropName={false}' => when false
         if (typeof value === 'boolean') {
-          return value ? name : '';
+          return value ? name : `${name}={false}`;
         }
 
         let valueStr;
