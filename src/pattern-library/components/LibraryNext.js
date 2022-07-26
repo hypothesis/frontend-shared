@@ -4,8 +4,9 @@
  */
 
 import classnames from 'classnames';
+import { useMemo } from 'preact/hooks';
 
-import { jsxToString } from '../util/jsx-to-string';
+import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
  * Render a little label or pill next to changelog items
@@ -68,6 +69,8 @@ function ChangelogItem({ status, children }) {
  *     code block
  */
 function Code({ content, size, title }) {
+  const codeMarkup = useMemo(() => jsxToHTML(content), [content]);
+
   return (
     <figure className="space-y-2">
       <div
@@ -77,7 +80,10 @@ function Code({ content, size, title }) {
         )}
       >
         <code className="text-color-text-inverted">
-          <pre className="whitespace-pre-wrap">{jsxToString(content)}</pre>
+          <pre
+            className="whitespace-pre-wrap"
+            dangerouslySetInnerHTML={{ __html: codeMarkup }}
+          />
         </code>
       </div>
       {title && (

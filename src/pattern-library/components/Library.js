@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks';
 
 import { Frame } from '../../components/containers';
 
-import { jsxToString } from '../util/jsx-to-string';
+import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
  * @typedef LibraryBaseProps
@@ -194,9 +194,10 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
     return (
       <li key={idx}>
         <code>
-          <pre className="font-pre whitespace-pre-wrap break-words text-sm">
-            {jsxToString(child)}
-          </pre>
+          <pre
+            className="font-pre whitespace-pre-wrap break-words text-sm"
+            dangerouslySetInnerHTML={{ __html: jsxToHTML(child) }}
+          />
         </code>
       </li>
     );

@@ -9,3 +9,6 @@
 @use 'tailwindcss/utilities';
 @use 'tailwindcss/components';
 @use 'library';
+
+// Syntax highlighting style for Highlight.js.
+@use 'highlight.js/styles/github-dark.css';
