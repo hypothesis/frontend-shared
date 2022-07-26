@@ -36,6 +36,7 @@ import ButtonsPage from './components/patterns/input/Button';
 import IconButtonPage from './components/patterns/input/IconButton';
 
 import CardPage from './components/patterns/layout/Card';
+import PanelPage from './components/patterns/layout/Panel';
 
 import LinkPage from './components/patterns/navigation/Link';
 
@@ -230,12 +231,17 @@ const routes = [
   },
   { title: 'LinkButton', group: 'input' },
   { title: 'TextField', group: 'input' },
-  { title: 'Panel', group: 'layout' },
   {
     title: 'Card',
     group: 'layout',
     component: CardPage,
     route: '/layout-card',
+  },
+  {
+    title: 'Panel',
+    group: 'layout',
+    component: PanelPage,
+    route: '/layout-panel',
   },
   {
     title: 'Link',
