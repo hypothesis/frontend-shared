@@ -1,3 +1,7 @@
+import hljs from 'highlight.js/lib/core';
+import hljsXMLLang from 'highlight.js/lib/languages/xml';
+import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
+
 /**
  * Escape `str` for use in a "-quoted string.
  *
@@ -98,4 +102,27 @@ export function jsxToString(vnode) {
   } else {
     return '';
   }
+}
+
+/**
+ * Render a JSX expression as syntax-highlighted HTML markup.
+ *
+ * For the syntax highlighting to be visible, a Highlight.js CSS stylesheet must be
+ * loaded on the page.
+ *
+ * @param {import('preact').ComponentChildren} vnode - JSX expression to render.
+ *   See {@link jsxToString}
+ * @return {string}
+ */
+export function jsxToHTML(vnode) {
+  // JSX support in Highlight.js involves a combination of the JS and XML
+  // languages, so we need to load both.
+  if (!hljs.getLanguage('javascript')) {
+    hljs.registerLanguage('javascript', hljsJavascriptLang);
+  }
+  if (!hljs.getLanguage('xml')) {
+    hljs.registerLanguage('xml', hljsXMLLang);
+  }
+  const code = jsxToString(vnode);
+  return hljs.highlightAuto(code).value;
 }
