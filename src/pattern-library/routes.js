@@ -190,16 +190,16 @@ const routes = [
     group: 'components',
   },
   {
+    title: 'ScrollBox',
+    group: 'data',
+    component: ScrollBoxPage,
+    route: '/data-scrollbox',
+  },
+  {
     title: 'Scroll',
     group: 'data',
     component: ScrollPage,
     route: '/data-scroll',
-  },
-  {
-    title: 'ScrollBox',
-    group: 'data',
-    component: ScrollBoxPage,
-    route: '/data-sbox',
   },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
