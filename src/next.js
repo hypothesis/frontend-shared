@@ -14,5 +14,6 @@ export {
   CardHeader,
   CardTitle,
   CardActions,
+  Panel,
 } from './components/layout';
 export { Link, LinkUnstyled } from './components/navigation/';
