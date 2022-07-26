@@ -6,13 +6,22 @@ function routeFromCurrentURL(baseURL) {
 
 export function useRoute(baseURL, routes) {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
-  const routeData = useMemo(
-    () => routes.find(r => r.route && route.match(r.route)),
-    [route, routes]
-  );
+
+  // Data associated with the currently-applied route
+  const routeData = useMemo(() => {
+    return routes.find(r => {
+      if (!r.route) {
+        return false;
+      }
+      if (typeof r.route === 'string') {
+        return r.route === route;
+      }
+      return r.route && route.match(r.route);
+    });
+  }, [route, routes]);
   const title = `${
     routeData?.title ?? 'Page not found'
-  }: Hypothesis UI playground`;
+  }: Hypothesis Component Library`;
 
   useEffect(() => {
     document.title = title;
