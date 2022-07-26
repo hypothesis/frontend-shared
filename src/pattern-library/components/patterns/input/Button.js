@@ -34,14 +34,16 @@ export default function ButtonPage() {
             <Next.ChangelogItem status="breaking">
               Prop:{' '}
               <s>
-                <code>icon</code>
-              </s>
-              ,{' '}
-              <s>
                 <code>iconPosition</code>
               </s>{' '}
-              ➜ Use <code>Icon</code> prop instead. Icons are always positioned
-              left.
+              ➜ Icons are always positioned left
+            </Next.ChangelogItem>
+            <Next.ChangelogItem status="breaking">
+              Prop: <code>icon</code>,{' '}
+              <s>
+                <code>{'{string}'}</code>
+              </s>{' '}
+              ➜ Now takes <code>{'{IconComponent}'}</code>
             </Next.ChangelogItem>
             <Next.ChangelogItem status="breaking">
               Prop: <code>variant</code> value{' '}
@@ -76,7 +78,7 @@ export default function ButtonPage() {
         <Library.Example>
           <p>
             The <code>Button</code>
-            {"'s"} <code>Icon</code> prop accepts an icon component and will
+            {"'s"} <code>icon</code> prop accepts an icon component and will
             render it to the left of content, sized proportionally to the local
             font size.
           </p>
@@ -85,11 +87,11 @@ export default function ButtonPage() {
             withSource
           >
             <span className="text-xl">
-              <Button Icon={CancelIcon}>Cancel</Button>
+              <Button icon={CancelIcon}>Cancel</Button>
             </span>
-            <Button Icon={CancelIcon}>Cancel</Button>
+            <Button icon={CancelIcon}>Cancel</Button>
             <span className="text-xs">
-              <Button Icon={CancelIcon}>Cancel</Button>
+              <Button icon={CancelIcon}>Cancel</Button>
             </span>
           </Library.Demo>
         </Library.Example>
@@ -148,13 +150,13 @@ export default function ButtonPage() {
         </p>
         <Library.Example>
           <Library.Demo withSource>
-            <Button Icon={EditIcon} size="sm">
+            <Button icon={EditIcon} size="sm">
               Small (sm)
             </Button>
-            <Button Icon={ReplyIcon} size="md">
+            <Button icon={ReplyIcon} size="md">
               Medium (md, default)
             </Button>
-            <Button Icon={CheckIcon} size="lg">
+            <Button icon={CheckIcon} size="lg">
               Large (lg)
             </Button>
           </Library.Demo>

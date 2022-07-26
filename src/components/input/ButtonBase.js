@@ -7,7 +7,6 @@ import { downcastRef } from '../../util/typing';
  * @prop {boolean} [expanded] - Is the element associated with this button
  *   expanded? (set `aria-expanded`)
  * @prop {never} [aria-expanded] - Use `expanded` prop instead
- * @prop {never} [icon] - Use `Icon` with button components that support it
  * @prop {boolean} [pressed] - Is this button currently "active?" (set
  *   `aria-pressed` or `aria-selected` depending on button `role`)
  * @prop {never} [aria-pressed] - Use `pressed` prop instead

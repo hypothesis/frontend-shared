@@ -11,7 +11,7 @@ import ButtonBase from './ButtonBase';
  * @typedef {import('./ButtonBase').HTMLButtonAttributes} HTMLButtonAttributes
  *
  * @typedef IconButtonProps
- * @prop {IconComponent} [Icon] - reference to an icon function component
+ * @prop {IconComponent} [icon] - reference to an icon function component
  *   to render in this button, e.g. CautionIcon
  * @prop {'sm'|'md'|'lg'} [size='md']
  * @prop {boolean} [disableTouchSizing=false] - Disable minimum tap target
@@ -34,7 +34,7 @@ export default function IconButton({
   pressed,
   expanded,
 
-  Icon,
+  icon: Icon,
   disableTouchSizing = false,
   size = 'md',
   title,

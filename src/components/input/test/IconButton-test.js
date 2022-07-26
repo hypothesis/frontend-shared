@@ -13,7 +13,7 @@ describe('IconButton', () => {
   testPresentationalComponent(IconButton);
 
   it('renders proportionally-sized icon', () => {
-    const wrapper = createComponent({ Icon: CancelIcon });
+    const wrapper = createComponent({ icon: CancelIcon });
     const icon = wrapper.find('CancelIcon');
 
     assert.isTrue(icon.exists());

@@ -30,11 +30,11 @@ export default function IconButtonPage() {
               ➜ <code>elementRef</code>
             </Next.ChangelogItem>
             <Next.ChangelogItem status="breaking">
-              Prop:{' '}
+              Prop: <code>icon</code>,{' '}
               <s>
-                <code>icon</code>
-              </s>
-              , ➜ Use <code>Icon</code> prop instead
+                <code>{'{string}'}</code>
+              </s>{' '}
+              ➜ Now takes <code>{'{IconComponent}'}</code>
             </Next.ChangelogItem>
             <Next.ChangelogItem status="breaking">
               Prop: <code>variant</code> value{' '}
@@ -60,7 +60,7 @@ export default function IconButtonPage() {
           <Library.Demo title="Basic IconButton" withSource>
             <IconButton
               onClick={() => alert('You clicked the button')}
-              Icon={ReplyIcon}
+              icon={ReplyIcon}
               title="Reply"
             />
           </Library.Demo>
@@ -71,16 +71,16 @@ export default function IconButtonPage() {
         <Library.Example>
           <p>
             The <code>IconButton</code>
-            {"'s"} <code>Icon</code> prop accepts an icon component and will
+            {"'s"} <code>icon</code> prop accepts an icon component and will
             render it sized proportionally to the local font size.
           </p>
           <Library.Demo withSource>
             <span className="text-xl">
-              <IconButton Icon={ShareIcon} title="Share" />
+              <IconButton icon={ShareIcon} title="Share" />
             </span>
-            <IconButton Icon={ShareIcon} title="Share" />
+            <IconButton icon={ShareIcon} title="Share" />
             <span className="text-xs">
-              <IconButton Icon={ShareIcon} title="Share" />
+              <IconButton icon={ShareIcon} title="Share" />
             </span>
           </Library.Demo>
         </Library.Example>
@@ -115,24 +115,24 @@ export default function IconButtonPage() {
             <IconButton
               variant="secondary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
             />
             <IconButton
               variant="secondary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               pressed
             />
             <IconButton
               variant="secondary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               expanded
             />
             <IconButton
               variant="secondary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               disabled
             />
           </Library.Demo>
@@ -143,24 +143,24 @@ export default function IconButtonPage() {
             <IconButton
               variant="primary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
             />
             <IconButton
               variant="primary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               pressed
             />
             <IconButton
               variant="primary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               expanded
             />
             <IconButton
               variant="primary"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               disabled
             />
           </Library.Demo>
@@ -172,23 +172,23 @@ export default function IconButtonPage() {
             title="default, pressed, expanded, disabled"
             withSource
           >
-            <IconButton variant="dark" title="Watch out!" Icon={CautionIcon} />
+            <IconButton variant="dark" title="Watch out!" icon={CautionIcon} />
             <IconButton
               variant="dark"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               pressed
             />
             <IconButton
               variant="dark"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               expanded
             />
             <IconButton
               variant="dark"
               title="Watch out!"
-              Icon={CautionIcon}
+              icon={CautionIcon}
               disabled
             />
           </Library.Demo>
@@ -202,9 +202,9 @@ export default function IconButtonPage() {
         </p>
         <Library.Example>
           <Library.Demo withSource>
-            <IconButton Icon={EditIcon} size="sm" title="Edit" />
-            <IconButton Icon={EditIcon} size="md" title="Edit" />
-            <IconButton Icon={EditIcon} size="lg" title="Edit" />
+            <IconButton icon={EditIcon} size="sm" title="Edit" />
+            <IconButton icon={EditIcon} size="md" title="Edit" />
+            <IconButton icon={EditIcon} size="lg" title="Edit" />
           </Library.Demo>
         </Library.Example>
 
@@ -218,7 +218,7 @@ export default function IconButtonPage() {
           </p>
 
           <Library.Demo withSource>
-            <IconButton Icon={EditIcon} title="Edit" disableTouchSizing />
+            <IconButton icon={EditIcon} title="Edit" disableTouchSizing />
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>

@@ -14,7 +14,7 @@ import ButtonBase from './ButtonBase';
  * @typedef ButtonProps
  * @prop {'sm'|'md'|'lg'} [size='md'] - Adjusts padding on button
  * @prop {'primary'|'secondary'} [variant='secondary']
- * @prop {IconComponent} [Icon] - Optional icon to display at left
+ * @prop {IconComponent} [icon] - Optional icon to display at left
  *   of button label text. Will be sized proportional to local font size.
  */
 
@@ -32,7 +32,7 @@ export default function Button({
   pressed,
   title,
 
-  Icon,
+  icon: Icon,
   size = 'md',
   variant = 'secondary',
 
