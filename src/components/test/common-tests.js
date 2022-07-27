@@ -13,8 +13,11 @@ const createComponent = (Component, props = {}) => {
  * Set of tests common to all presentational components
  *
  * @param {FunctionComponent} Component
+ * @param {string} [componentName] - Temporary affordance to prevent name
+ *   collisions between updated components and legacy components with the same
+ *   component function name.
  */
-export function testCompositeComponent(Component) {
+export function testCompositeComponent(Component, componentName) {
   describe('Common composite functionality', () => {
     it('applies `ref` via `elementRef`', () => {
       const elementRef = createRef();
@@ -33,6 +36,16 @@ export function testCompositeComponent(Component) {
       assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
       assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
     });
+
+    it('applies a `data-composite-component` attribute for debugging', () => {
+      const wrapperOuterEl = createComponent(Component).childAt(0).getDOMNode();
+
+      assert.isTrue(wrapperOuterEl.hasAttribute('data-composite-component'));
+      assert.equal(
+        wrapperOuterEl.getAttribute('data-composite-component'),
+        componentName ?? Component.name
+      );
+    });
   });
 }
 
@@ -40,8 +53,11 @@ export function testCompositeComponent(Component) {
  * Set of tests common to all presentational components
  *
  * @param {import('preact').FunctionComponent} Component
+ * @param {string} [componentName] - Temporary affordance to prevent name
+ *   collisions between updated components and legacy components with the same
+ *   component function name.
  */
-export function testPresentationalComponent(Component) {
+export function testPresentationalComponent(Component, componentName) {
   describe('Common presentational functionality', () => {
     it('applies extra classes', () => {
       const wrapper = createComponent(Component, { classes: 'foo bar' });
@@ -72,6 +88,16 @@ export function testPresentationalComponent(Component) {
 
       assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
       assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
+    });
+
+    it('applies a `data-component` attribute for debugging', () => {
+      const wrapperOuterEl = createComponent(Component).childAt(0).getDOMNode();
+
+      assert.isTrue(wrapperOuterEl.hasAttribute('data-component'));
+      assert.equal(
+        wrapperOuterEl.getAttribute('data-component'),
+        componentName ?? Component.name
+      );
     });
   });
 }

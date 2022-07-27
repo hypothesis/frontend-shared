@@ -10,7 +10,7 @@ describe('IconButton', () => {
     return mount(<IconButton {...props} />);
   };
 
-  testPresentationalComponent(IconButton);
+  testPresentationalComponent(IconButton, 'IconButton');
 
   it('renders proportionally-sized icon', () => {
     const wrapper = createComponent({ icon: CancelIcon });
