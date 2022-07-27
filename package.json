@@ -81,7 +81,6 @@
   "main": "./lib/index.js",
   "browserslist": "chrome 70, firefox 70, safari 11.1",
   "dependencies": {
-    "highlight.js": "^11.6.0",
-    "normalize.css": "^8.0.1"
+    "highlight.js": "^11.6.0"
   }
 }
