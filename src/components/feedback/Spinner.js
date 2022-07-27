@@ -27,6 +27,7 @@ export default function Spinner({ size = 'sm', color = 'text-light' }) {
           'w-4em h-4em': size === 'lg',
         }
       )}
+      data-component="Spinner"
     />
   );
 }

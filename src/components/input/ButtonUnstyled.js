@@ -32,6 +32,7 @@ export default function ButtonUnstyled({
       expanded={expanded}
       pressed={pressed}
       title={title}
+      data-component="ButtonUnstyled"
     >
       {children}
     </ButtonBase>

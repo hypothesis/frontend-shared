@@ -23,6 +23,7 @@ export default function ScrollContent({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames('px-3 py-2', classes)}
+      data-component="ScrollContent"
     >
       {children}
     </div>

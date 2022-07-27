@@ -24,6 +24,7 @@ export default function LinkUnstyled({
       {...htmlAttributes}
       className={classnames(classes)}
       elementRef={downcastRef(elementRef)}
+      data-component="LinkUnstyled"
     >
       {children}
     </LinkBase>
