@@ -37,6 +37,7 @@ export default function ScrollContainer({
         { border: !borderless },
         classes
       )}
+      data-component="ScrollContainer"
     >
       {children}
     </div>

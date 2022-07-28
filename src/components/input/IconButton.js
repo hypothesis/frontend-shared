@@ -72,6 +72,7 @@ export default function IconButton({
       title={title}
       pressed={pressed}
       expanded={expanded}
+      data-component="IconButton"
     >
       {Icon && <Icon className="w-em h-em" />}
       {children}

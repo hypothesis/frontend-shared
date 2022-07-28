@@ -29,6 +29,7 @@ export default function ScrollBox({
       {...htmlAttributes}
       borderless={borderless}
       elementRef={elementRef}
+      data-composite-component="ScrollBox"
     >
       <Scroll>
         <ScrollContent>{children}</ScrollContent>

@@ -37,6 +37,7 @@ export default function Scroll({
         { 'scroll-shadows': variant === 'raised' },
         classes
       )}
+      data-component="Scroll"
     >
       {children}
     </div>

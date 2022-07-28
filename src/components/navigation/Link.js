@@ -48,6 +48,7 @@ export default function Link({
         classes
       )}
       elementRef={downcastRef(elementRef)}
+      data-component="Link"
     >
       {children}
     </LinkBase>
