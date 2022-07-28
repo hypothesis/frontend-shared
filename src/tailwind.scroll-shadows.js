@@ -33,7 +33,7 @@ import plugin from 'tailwindcss/plugin.js';
  *   - The bottom scroll-hint shadow is always present, even if content is
  *     fully scrolled
  */
-export default plugin(({ addUtilities }) => {
+export const scrollShadows = plugin(({ addUtilities }) => {
   // These "shadow covers" scroll with the content. They align with and
   // obscure the shadows when an element is scrolled all the way in one
   // direction. If there is no overflow (nothing to scroll), these covers keep
