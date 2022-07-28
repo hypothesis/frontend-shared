@@ -5,7 +5,7 @@ import { Link } from '../../../../next';
 
 import * as Icons from '../../../../components/icons';
 
-export default function IconPage() {
+export default function IconsPage() {
   return (
     <Library.Page
       title="Icons"
