@@ -1,6 +1,7 @@
 import hljs from 'highlight.js/lib/core';
 import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
+import { Fragment } from 'preact';
 
 /**
  * Escape `str` for use in a "-quoted string.
@@ -32,6 +33,17 @@ function indentLines(str, indent) {
 }
 
 /**
+ * Test if an element looks like a JSX element.
+ *
+ * @param {any} value
+ * @return {value is import('preact').VNode<any>}
+ */
+function isJSXElement(value) {
+  const elementType = value?.type;
+  return typeof elementType === 'string' || typeof elementType === 'function';
+}
+
+/**
  * Render a JSX expression as a code string.
  *
  * Currently this only supports serializing props with simple types (strings,
@@ -53,8 +65,6 @@ export function jsxToString(vnode) {
   } else if (typeof vnode === 'boolean') {
     return '';
   } else if (vnode && 'type' in vnode) {
-    const name = componentName(vnode.type);
-
     // nb. The special `key` and `ref` props are not included in `vnode.props`.
     // `ref` is not serializable to a string and `key` is generally set dynamically
     // (eg. from an index or item ID) so it doesn't make sense to include it either.
@@ -77,6 +87,8 @@ export function jsxToString(vnode) {
         } else if (typeof value === 'function' && componentName(value)) {
           // Handle {import("preact").FunctionComponent<{}>} props
           valueStr = `{${componentName(value)}}`;
+        } else if (isJSXElement(value)) {
+          valueStr = `{${jsxToString(value)}}`;
         } else if (value) {
           // `toString` necessary for Symbols
           valueStr = `{${value.toString()}}`;
@@ -89,6 +101,7 @@ export function jsxToString(vnode) {
       propStr = ' ' + propStr;
     }
 
+    const name = vnode.type === Fragment ? '' : componentName(vnode.type);
     const children = vnode.props.children;
     if (children) {
       let childrenStr = Array.isArray(children)
