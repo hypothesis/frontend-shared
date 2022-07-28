@@ -12,6 +12,13 @@
  */
 
 /**
+ * Props common to components that are opinionated compositions of other
+ * components.
+ *
+ * @typedef {Omit<PresentationalProps, 'classes'>} CompositeProps
+ */
+
+/**
  * Props common to Base, abstract components. These are not part of the
  * package API.
  *
