@@ -1,6 +1,7 @@
 import hljs from 'highlight.js/lib/core';
 import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
+import { Fragment } from 'preact';
 
 /**
  * Escape `str` for use in a "-quoted string.
@@ -64,8 +65,6 @@ export function jsxToString(vnode) {
   } else if (typeof vnode === 'boolean') {
     return '';
   } else if (vnode && 'type' in vnode) {
-    const name = componentName(vnode.type);
-
     // nb. The special `key` and `ref` props are not included in `vnode.props`.
     // `ref` is not serializable to a string and `key` is generally set dynamically
     // (eg. from an index or item ID) so it doesn't make sense to include it either.
@@ -102,6 +101,7 @@ export function jsxToString(vnode) {
       propStr = ' ' + propStr;
     }
 
+    const name = vnode.type === Fragment ? '' : componentName(vnode.type);
     const children = vnode.props.children;
     if (children) {
       let childrenStr = Array.isArray(children)
