@@ -14,9 +14,11 @@ export default function CardPage() {
     <Library.Page
       title="Card"
       intro={
-        <p>
-          The <code>Card</code> family of presentational components provide
-          support for laying out content in a card-like interface:
+        <>
+          <p>
+            The <code>Card</code> family of presentational components provide
+            support for laying out content in a card-like interface:
+          </p>
           <ul>
             <li>
               <code>Card</code> lays out content in a frame, with dimensional
@@ -35,7 +37,7 @@ export default function CardPage() {
               <code>Card</code>
             </li>
           </ul>
-        </p>
+        </>
       }
     >
       <Library.Pattern title="Status">
