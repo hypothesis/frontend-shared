@@ -225,16 +225,16 @@ const routes = [
   { title: 'LinkButton', group: 'input' },
   { title: 'TextField', group: 'input' },
   {
-    title: 'Card',
-    group: 'layout',
-    component: CardPage,
-    route: '/layout-card',
-  },
-  {
     title: 'Panel',
     group: 'layout',
     component: PanelPage,
     route: '/layout-panel',
+  },
+  {
+    title: 'Card',
+    group: 'layout',
+    component: CardPage,
+    route: '/layout-card',
   },
   {
     title: 'Link',
