@@ -1,169 +1,12 @@
 import { useState } from 'preact/hooks';
 
-import { IconButton, LabeledButton } from '../../../';
+import { LabeledButton } from '../../../';
 import Library from '../Library';
 
 export default function ContainerPatterns() {
   const [showModalExample, setShowModalExample] = useState(false);
   return (
     <Library.Page title="Containers">
-      <Library.Pattern title="Frame">
-        <Library.Example title="Basic frame">
-          <p>
-            A <code>frame</code> provides a border, background, padding and
-            vertical spacing of immediate children.
-          </p>
-          <Library.Demo withSource>
-            <div className="hyp-frame">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <div>
-                Sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua.
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Using frames with the 'clean' theme">
-          <p>Clean-theme styling removes borders from frames.</p>
-          <Library.Demo withSource>
-            <div className="theme-clean">
-              <div className="hyp-frame">
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
-                <div>
-                  Sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.
-                </div>
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Card">
-        <Library.Example title="Basic card">
-          <p>
-            A <code>card</code> is a frame with a shadow and hover-shadow effect
-            that fills available horizontal space. It extends <code>frame</code>
-            .
-          </p>
-          <Library.Demo withSource>
-            <div className="hyp-card">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Card with no hover">
-          <p>A card&apos;s hover can be disabled by using a modifying class.</p>
-          <Library.Demo withSource>
-            <div className="hyp-card--no-hover">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Card example with actions">
-          <p>This example shows a card with some available actions.</p>
-          <Library.Demo withSource>
-            <div className="hyp-card">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <div className="hyp-actions">
-                <IconButton title="User" icon="profile" />
-                <IconButton title="Edit" icon="edit" />
-                <IconButton title="Delete" icon="trash" />
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Using cards with the 'clean' theme">
-          <p>Clean-theme styling removes hover shadows and borders.</p>
-          <Library.Demo withSource>
-            <div className="theme-clean">
-              <div className="hyp-card">
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div>
-                <div className="hyp-actions">
-                  <IconButton title="User" icon="profile" />
-                  <IconButton title="Edit" icon="edit" />
-                  <IconButton title="Delete" icon="trash" />
-                </div>
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Actions">
-        <p>
-          The <code>actions</code> pattern lays out a set of items, typically
-          buttons, in a row (default) or column, with spacing.{' '}
-        </p>
-        <Library.Example title="Horizontal (default) layout">
-          <p>
-            These examples show <code>Actions</code> used in its default layout
-            (horizontal) with <code>LabeledButton</code> and{' '}
-            <code>IconButton</code> components.
-          </p>
-          <Library.Demo withSource>
-            <div className="hyp-actions">
-              <LabeledButton icon="profile">User</LabeledButton>
-              <LabeledButton icon="edit">Edit</LabeledButton>
-              <LabeledButton icon="trash">Delete</LabeledButton>
-            </div>
-          </Library.Demo>
-
-          <Library.Demo withSource>
-            <div className="hyp-actions">
-              <IconButton title="User" icon="profile" />
-              <IconButton title="Edit" icon="edit" />
-              <IconButton title="Delete" icon="trash" />
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Columnar layout">
-          <Library.Demo withSource>
-            <div className="hyp-actions--column">
-              <LabeledButton>User</LabeledButton>
-              <LabeledButton>Edit</LabeledButton>
-              <LabeledButton>Delete</LabeledButton>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Columnar layout, filling space">
-          <p>
-            This example shows buttons stretching to fill available space in{' '}
-            <code>actions</code>.
-          </p>
-          <Library.Demo withSource>
-            <div style="width:300px">
-              <div className="hyp-actions--column">
-                <LabeledButton variant="primary">Do this</LabeledButton>
-                <LabeledButton variant="primary">No, this!</LabeledButton>
-                <LabeledButton variant="primary">Maybe this?</LabeledButton>
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
       <Library.Pattern title="Modal">
         <Library.Example title="Responsive modal container">
           <p>
@@ -184,7 +27,7 @@ export default function ContainerPatterns() {
                 style={{ visibility: showModalExample ? 'visible' : 'hidden' }}
               >
                 <div className="hyp-modal">
-                  <div className="hyp-card">
+                  <div className="border p-3 bg-white">
                     <div>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -199,7 +42,7 @@ export default function ContainerPatterns() {
                         consectetur elit.
                       </p>
                     </div>
-                    <div className="hyp-actions">
+                    <div className="flex justify-end p-2">
                       <LabeledButton
                         variant="primary"
                         onClick={() => setShowModalExample(false)}

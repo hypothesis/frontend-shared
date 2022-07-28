@@ -27,6 +27,7 @@ import { downcastRef } from '../util/typing';
 /**
  * Render content inside of a "frame"
  *
+ * @deprecated - Use Card component in the layout group
  * @param {PresentationalProps} props
  */
 export function Frame({
@@ -50,6 +51,7 @@ export function Frame({
 /**
  * Render content inside of a "card"
  *
+ * @deprecated - Use re-implemented Card component in the layout group
  * @param {PresentationalProps} props
  */
 export function Card({
@@ -74,6 +76,7 @@ export function Card({
  * Render a set of actions (typically buttons) laid out either horizontally
  * by default or vertically.
  *
+ * @deprecated - Use CardActions component in the layout group
  * @param {{ direction?: 'row'|'column'} & PresentationalProps} props
  */
 export function Actions({

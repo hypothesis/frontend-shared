@@ -6,7 +6,6 @@ import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
-import PanelPatterns from './components/patterns/PanelPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -34,6 +33,9 @@ import SpinnerPage from './components/patterns/feedback/Spinner';
 
 import ButtonsPage from './components/patterns/input/Button';
 import IconButtonPage from './components/patterns/input/IconButton';
+
+import CardPage from './components/patterns/layout/Card';
+import PanelPage from './components/patterns/layout/Panel';
 
 import LinkPage from './components/patterns/navigation/Link';
 
@@ -112,12 +114,6 @@ const routes = [
     route: '/patterns-forms',
     title: 'Forms',
     component: FormPatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-panels',
-    title: 'Panels',
-    component: PanelPatterns,
     group: 'patterns',
   },
   {
@@ -228,8 +224,18 @@ const routes = [
   },
   { title: 'LinkButton', group: 'input' },
   { title: 'TextField', group: 'input' },
-  { title: 'Card', group: 'layout' },
-  { title: 'Panel', group: 'layout' },
+  {
+    title: 'Panel',
+    group: 'layout',
+    component: PanelPage,
+    route: '/layout-panel',
+  },
+  {
+    title: 'Card',
+    group: 'layout',
+    component: CardPage,
+    route: '/layout-card',
+  },
   {
     title: 'Link',
     group: 'navigation',

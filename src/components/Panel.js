@@ -21,6 +21,7 @@ const cancelIcon = registerIcon('cancel', cancelSVG);
  * Render a "panel"-like interface with a title and optional icon and/or
  * close button.
  *
+ * @deprecated - Use re-implemented Panel component in the layout group
  * @param {PanelProps} props
  */
 export function Panel({ children, icon, onClose, title }) {
