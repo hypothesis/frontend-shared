@@ -32,6 +32,17 @@ function indentLines(str, indent) {
 }
 
 /**
+ * Test if an element looks like a JSX element.
+ *
+ * @param {any} value
+ * @return {value is import('preact').VNode<any>}
+ */
+function isJSXElement(value) {
+  const elementType = value?.type;
+  return typeof elementType === 'string' || typeof elementType === 'function';
+}
+
+/**
  * Render a JSX expression as a code string.
  *
  * Currently this only supports serializing props with simple types (strings,
@@ -77,6 +88,8 @@ export function jsxToString(vnode) {
         } else if (typeof value === 'function' && componentName(value)) {
           // Handle {import("preact").FunctionComponent<{}>} props
           valueStr = `{${componentName(value)}}`;
+        } else if (isJSXElement(value)) {
+          valueStr = `{${jsxToString(value)}}`;
         } else if (value) {
           // `toString` necessary for Symbols
           valueStr = `{${value.toString()}}`;
