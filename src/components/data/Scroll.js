@@ -30,8 +30,8 @@ export default function Scroll({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
-        // Prevent vertical flex or grid blowout: keep this contained vertically
-        // to parent by setting a min width
+        // Prevent overflow by overriding `min-height: auto`.
+        // See https://stackoverflow.com/a/66689926/434243.
         'min-h-0',
         'h-full w-full overflow-auto',
         { 'scroll-shadows': variant === 'raised' },

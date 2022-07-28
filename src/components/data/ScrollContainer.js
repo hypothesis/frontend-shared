@@ -30,7 +30,10 @@ export default function ScrollContainer({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
-        'flex flex-col min-h-0 h-full w-full',
+        'flex flex-colh-full w-full',
+        // Prevent overflow by overriding `min-height: auto`.
+        // See https://stackoverflow.com/a/66689926/434243.
+        'min-h-0',
         { border: !borderless },
         classes
       )}
