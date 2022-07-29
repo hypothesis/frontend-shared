@@ -24,20 +24,19 @@ import GettingStartedPage from './components/patterns/GettingStarted';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
 import UsingComponentsPage from './components/patterns/UsingComponents';
 
-import IconsPage from './components/patterns/data/Icons';
+import IconsPage from './components/patterns/data/IconsPage';
+import ScrollPage from './components/patterns/data/ScrollPage';
+import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 
-import ScrollPage from './components/patterns/data/Scroll';
-import ScrollBoxPage from './components/patterns/data/ScrollBox';
+import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
-import SpinnerPage from './components/patterns/feedback/Spinner';
+import ButtonsPage from './components/patterns/input/ButtonPage';
+import IconButtonPage from './components/patterns/input/IconButtonPage';
 
-import ButtonsPage from './components/patterns/input/Button';
-import IconButtonPage from './components/patterns/input/IconButton';
+import CardPage from './components/patterns/layout/CardPage';
+import PanelPage from './components/patterns/layout/PanelPage';
 
-import CardPage from './components/patterns/layout/Card';
-import PanelPage from './components/patterns/layout/Panel';
-
-import LinkPage from './components/patterns/navigation/Link';
+import LinkPage from './components/patterns/navigation/LinkPage';
 
 export const componentGroups = {
   data: 'Data Display',

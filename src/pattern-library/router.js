@@ -4,6 +4,23 @@ function routeFromCurrentURL(baseURL) {
   return location.pathname.slice(baseURL.length);
 }
 
+function scrollToFragment(hash) {
+  const fragmentId = decodeURIComponent(hash.substring(1));
+  const fragElement = document.getElementById(fragmentId);
+  // Vertical offset (px) that should be added to scroll to ensure
+  // content is not obscured by sticky header on page
+  const headerOffset = 72;
+  if (fragElement) {
+    fragElement.scrollIntoView();
+    const fragTop = fragElement.getBoundingClientRect().top;
+    if (fragTop <= headerOffset) {
+      // Adjustment to accommodate sticky header (only if fragment is at or
+      // near top of viewport)
+      window.scrollBy({ top: -1 * (headerOffset - fragTop) });
+    }
+  }
+}
+
 export function useRoute(baseURL, routes) {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
 
@@ -28,11 +45,33 @@ export function useRoute(baseURL, routes) {
   }, [title]);
 
   useEffect(() => {
+    // Reset scrolling after navigation
+    const hash = location.hash;
+
+    if (!hash) {
+      window.scrollTo({ top: 0 });
+      return;
+    }
+
+    scrollToFragment(hash);
+  }, [route]);
+
+  useEffect(() => {
+    const hashChangeListener = e => {
+      try {
+        const hash = new URL(e.newURL).hash;
+        scrollToFragment(hash);
+      } catch (e) {
+        // no op
+      }
+    };
     const popstateListener = () => {
       setRoute(routeFromCurrentURL(baseURL));
     };
+    window.addEventListener('hashchange', hashChangeListener);
     window.addEventListener('popstate', popstateListener);
     return () => {
+      window.removeEventListener('hashchange', hashChangeListener);
       window.removeEventListener('popstate', popstateListener);
     };
   }, [baseURL]);

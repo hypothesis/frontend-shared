@@ -2,8 +2,8 @@ import plugin from 'tailwindcss/plugin.js';
 
 import colors from 'tailwindcss/colors.js';
 
-import focusVisibleRing from './tailwind.focus-visible-ring.js';
-import scrollShadows from './tailwind.scroll-shadows.js';
+import { focusVisibleRing } from './tailwind.focus-visible-ring.js';
+import { scrollShadows } from './tailwind.scroll-shadows.js';
 
 // Equivalent to spacing value 11; minimum touch-target size
 const minimumTouchDimension = '44px';
