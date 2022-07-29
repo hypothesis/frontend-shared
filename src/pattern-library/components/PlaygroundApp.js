@@ -32,14 +32,15 @@ export default function PlaygroundApp({
 }) {
   const routes = getRoutes();
   const allRoutes = routes.concat(extraRoutes);
-  const [activeRoute, navigate] = useRoute(baseURL, allRoutes);
-  const content = activeRoute ? (
-    <activeRoute.component />
-  ) : (
-    <Library.Page title=":( Sorry">
-      <h1 className="text-2xl">Page not found</h1>
-    </Library.Page>
-  );
+  const [activeRoute] = useRoute(baseURL, allRoutes);
+  const content =
+    activeRoute && activeRoute.component ? (
+      <activeRoute.component />
+    ) : (
+      <Library.Page title=":( Sorry">
+        <h1 className="text-2xl">Page not found</h1>
+      </Library.Page>
+    );
 
   /**
    * Header for a primary section of nav
@@ -70,7 +71,6 @@ export default function PlaygroundApp({
               'border-transparent': activeRoute?.route !== route.route,
             })}
             href={route.route.toString()}
-            onClick={e => navigate(e, route.route)}
           >
             {route.title}
           </Link>
@@ -122,11 +122,7 @@ export default function PlaygroundApp({
         <div className="md:h-screen md:sticky md:top-0 overflow-scroll">
           <div className="md:sticky md:top-0 h-16 px-6 flex items-center bg-slate-0 border-b">
             <h1>
-              <Link
-                href={baseURL}
-                classes="grow flex gap-x-2 text-lg"
-                onClick={e => navigate(e, '/')}
-              >
+              <Link href={baseURL + '/'} classes="grow flex gap-x-2 text-lg">
                 <SvgIcon name="logo" />
                 Component Library
               </Link>
