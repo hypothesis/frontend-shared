@@ -2,6 +2,8 @@ import classnames from 'classnames';
 
 import { downcastRef } from '../../util/typing';
 
+import { inputGroupStyles } from './InputGroup';
+
 import ButtonBase from './ButtonBase';
 
 /**
@@ -66,6 +68,8 @@ const IconButtonNext = function IconButton({
           'touch:min-w-touch-minimum touch:min-h-touch-minimum':
             !disableTouchSizing,
         },
+        // Adapt styling when this component is inside an InputGroup
+        inputGroupStyles,
         classes
       )}
       elementRef={downcastRef(elementRef)}
