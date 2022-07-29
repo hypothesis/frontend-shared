@@ -61,7 +61,7 @@ const IconButtonNext = function IconButton({
 
           // size
           'p-2': size === 'md', // Default
-          'p-1': size === 'sm',
+          'p-1.5': size === 'sm',
           'p-3': size === 'lg',
 
           // Responsive
