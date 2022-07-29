@@ -1,6 +1,6 @@
 import Library from '../Library';
 
-export default function UtilityFoundations() {
+export default function UtilitiesPage() {
   return (
     <Library.Page title="Utilities">
       <Library.Pattern title="Focus rings">
