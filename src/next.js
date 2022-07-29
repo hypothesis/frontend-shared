@@ -1,5 +1,4 @@
 export * from './components/icons';
-
 export {
   Scroll,
   ScrollContent,
@@ -7,7 +6,13 @@ export {
   ScrollBox,
 } from './components/data';
 export { Spinner } from './components/feedback';
-export { Button, ButtonUnstyled, IconButton } from './components/input';
+export {
+  Button,
+  ButtonUnstyled,
+  IconButton,
+  Input,
+  InputGroup,
+} from './components/input';
 export {
   Card,
   CardContent,
