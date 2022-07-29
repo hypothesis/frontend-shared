@@ -70,7 +70,7 @@ export default function PlaygroundApp({
                 activeRoute?.route === route.route,
               'border-transparent': activeRoute?.route !== route.route,
             })}
-            href={route.route.toString()}
+            href={`${baseURL}${route.route.toString()}`}
           >
             {route.title}
           </Link>
