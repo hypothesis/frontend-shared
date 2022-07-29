@@ -1,9 +1,30 @@
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 
+/**
+ * @typedef {import('./routes').PlaygroundRoute} PlaygroundRoute
+ */
+
+/** @param {string} baseURL */
 function routeFromCurrentURL(baseURL) {
   return location.pathname.slice(baseURL.length);
 }
 
+/** @param {string} url */
+function isAbsolute(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    // URL constructor throws if passed a relative URL
+    return false;
+  }
+}
+
+/**
+ * Scroll page to target of fragment identifier.
+ *
+ * @param {string} hash - Fragment including the leading `#`
+ */
 function scrollToFragment(hash) {
   const fragmentId = decodeURIComponent(hash.substring(1));
   const fragElement = document.getElementById(fragmentId);
@@ -18,6 +39,19 @@ function scrollToFragment(hash) {
   }
 }
 
+/**
+ * Hook that sets up the router for the component library and returns the
+ * current route.
+ *
+ * Clicks on links in the current page to URLs that are under {@link baseURL}
+ * are automatically intercepted and handled.
+ *
+ * @param {string} baseURL - Pathname of the root URL of the application.
+ * @param {PlaygroundRoute[]} routes
+ * @return {[route?: PlaygroundRoute, navigate: (e: Event, url: string) => void]} -
+ *   Returns the current route's data and a `navigate` function to manually
+ *   trigger a client-side navigation to another route.
+ */
 export function useRoute(baseURL, routes) {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
 
@@ -54,6 +88,7 @@ export function useRoute(baseURL, routes) {
   }, [route]);
 
   useEffect(() => {
+    /** @param {HashChangeEvent} e */
     const hashChangeListener = e => {
       try {
         const hash = new URL(e.newURL).hash;
@@ -73,11 +108,52 @@ export function useRoute(baseURL, routes) {
     };
   }, [baseURL]);
 
-  const navigate = (event, route) => {
-    event.preventDefault();
-    history.pushState({}, title, baseURL + route);
-    setRoute(route);
-  };
+  const navigate = useCallback(
+    /**
+     * @param {Event} event - Event which triggered the navigation
+     * @param {string} url - Relative or absolute URL. If relative, it is
+     *   assumed to be relative to {@link baseURL}
+     */
+    (event, url) => {
+      if (!isAbsolute(url)) {
+        url = baseURL + url;
+      }
+      const routeURL = new URL(url, location.href);
+
+      event.preventDefault();
+      history.pushState({}, '' /* unused */, routeURL);
+
+      setRoute(routeURL.pathname.slice(baseURL.length));
+    },
+    [baseURL]
+  );
+
+  // Intercept clicks on links and trigger navigation to a route within the
+  // app if appropriate.
+  useEffect(() => {
+    const clickListener = event => {
+      const link = event.target.closest('a');
+      if (!link) {
+        return;
+      }
+
+      // Don't handle links that point outside this app or links that open in a
+      // new tab.
+      if (
+        link.origin !== location.origin ||
+        !link.pathname.startsWith(baseURL) ||
+        link.target !== ''
+      ) {
+        return;
+      }
+
+      navigate(event, link.href);
+    };
+    window.addEventListener('click', clickListener);
+    return () => {
+      window.removeEventListener('click', clickListener);
+    };
+  }, [baseURL, navigate]);
 
   return [routeData, navigate];
 }
