@@ -14,6 +14,8 @@ import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
 import IconButtonPage from './components/patterns/input/IconButtonPage';
+import InputPage from './components/patterns/input/InputPage';
+import InputGroupPage from './components/patterns/input/InputGroupPage';
 
 import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
@@ -215,7 +217,6 @@ const routes = [
     component: ButtonsPage,
     route: '/input-button',
   },
-  { title: 'Checkbox', group: 'input' },
   {
     title: 'IconButton',
     group: 'input',
@@ -223,7 +224,6 @@ const routes = [
     route: '/input-iconbutton',
   },
   { title: 'LinkButton', group: 'input' },
-  { title: 'TextField', group: 'input' },
   {
     title: 'Panel',
     group: 'layout',
@@ -236,6 +236,19 @@ const routes = [
     component: CardPage,
     route: '/layout-card',
   },
+  {
+    title: 'Input',
+    group: 'input',
+    component: InputPage,
+    route: '/input-input',
+  },
+  {
+    title: 'InputGroup',
+    group: 'input',
+    component: InputGroupPage,
+    route: '/input-input-group',
+  },
+  { title: 'Checkbox', group: 'input' },
   {
     title: 'Link',
     group: 'navigation',
