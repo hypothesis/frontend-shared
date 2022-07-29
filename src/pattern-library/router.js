@@ -7,13 +7,16 @@ function routeFromCurrentURL(baseURL) {
 function scrollToFragment(hash) {
   const fragmentId = decodeURIComponent(hash.substring(1));
   const fragElement = document.getElementById(fragmentId);
+  // Vertical offset (px) that should be added to scroll to ensure
+  // content is not obscured by sticky header on page
+  const headerOffset = 72;
   if (fragElement) {
     fragElement.scrollIntoView();
     const fragTop = fragElement.getBoundingClientRect().top;
-    if (fragTop <= 72) {
+    if (fragTop <= headerOffset) {
       // Adjustment to accommodate sticky header (only if fragment is at or
       // near top of viewport)
-      window.scrollBy({ top: -1 * (72 - fragTop) });
+      window.scrollBy({ top: -1 * (headerOffset - fragTop) });
     }
   }
 }
