@@ -10,6 +10,7 @@ export {
   Button,
   ButtonUnstyled,
   IconButton,
+  LinkButton,
   Input,
   InputGroup,
 } from './components/input';
