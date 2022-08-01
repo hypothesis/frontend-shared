@@ -16,6 +16,7 @@ import ButtonsPage from './components/patterns/input/ButtonPage';
 import IconButtonPage from './components/patterns/input/IconButtonPage';
 import InputPage from './components/patterns/input/InputPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
+import LinkButtonPage from './components/patterns/input/LinkButtonPage';
 
 import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
@@ -223,7 +224,12 @@ const routes = [
     component: IconButtonPage,
     route: '/input-iconbutton',
   },
-  { title: 'LinkButton', group: 'input' },
+  {
+    title: 'LinkButton',
+    group: 'input',
+    component: LinkButtonPage,
+    route: '/input-linkbutton',
+  },
   {
     title: 'Panel',
     group: 'layout',
