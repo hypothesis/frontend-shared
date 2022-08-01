@@ -12,7 +12,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {CommonProps & HTMLAttributes} props
  */
-export default function CardActions({
+const CardActionsNext = function CardActions({
   children,
   classes,
   elementRef,
@@ -29,4 +29,6 @@ export default function CardActions({
       {children}
     </div>
   );
-}
+};
+
+export default CardActionsNext;

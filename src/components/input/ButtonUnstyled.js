@@ -14,7 +14,7 @@ import ButtonBase from './ButtonBase';
  *
  * @param {CommonProps & ButtonCommonProps} props
  */
-export default function ButtonUnstyled({
+const ButtonUnstyledNext = function ButtonUnstyled({
   children,
   classes,
   elementRef,
@@ -37,4 +37,6 @@ export default function ButtonUnstyled({
       {children}
     </ButtonBase>
   );
-}
+};
+
+export default ButtonUnstyledNext;

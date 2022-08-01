@@ -12,7 +12,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {CommonProps & HTMLDivAttributes} props
  */
-export default function ScrollContent({
+const ScrollContentNext = function ScrollContent({
   children,
   classes,
   elementRef,
@@ -28,4 +28,6 @@ export default function ScrollContent({
       {children}
     </div>
   );
-}
+};
+
+export default ScrollContentNext;

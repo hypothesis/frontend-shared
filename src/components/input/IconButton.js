@@ -26,7 +26,7 @@ import ButtonBase from './ButtonBase';
  *
  * @param {CommonProps & ButtonCommonProps & IconButtonProps & HTMLButtonAttributes} props
  */
-export default function IconButton({
+const IconButtonNext = function IconButton({
   children,
   classes,
   elementRef,
@@ -78,4 +78,6 @@ export default function IconButton({
       {children}
     </ButtonBase>
   );
-}
+};
+
+export default IconButtonNext;

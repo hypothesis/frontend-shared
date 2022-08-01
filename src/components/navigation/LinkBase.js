@@ -10,7 +10,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {BaseProps & HTMLAnchorAttributes} props
  */
-export default function LinkBase({
+const LinkBaseNext = function LinkBase({
   children,
   className,
   elementRef,
@@ -27,4 +27,6 @@ export default function LinkBase({
       {children}
     </a>
   );
-}
+};
+
+export default LinkBaseNext;

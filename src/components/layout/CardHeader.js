@@ -22,7 +22,7 @@ import CardTitle from './CardTitle';
  *
  * @param {CommonProps & CardHeaderProps & HTMLAttributes} props
  */
-export default function CardHeader({
+const CardHeaderNext = function CardHeader({
   children,
   classes,
   elementRef,
@@ -51,4 +51,6 @@ export default function CardHeader({
       )}
     </div>
   );
-}
+};
+
+export default CardHeaderNext;

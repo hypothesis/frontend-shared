@@ -26,7 +26,7 @@ import CardActions from './CardActions';
  *
  * @param {CompositeProps & PanelProps & Omit<HTMLAttributes, 'icon'|'size'|'width'>} props
  */
-export default function Panel({
+const PanelNext = function Panel({
   children,
   elementRef,
 
@@ -53,4 +53,6 @@ export default function Panel({
       </CardContent>
     </Card>
   );
-}
+};
+
+export default PanelNext;
