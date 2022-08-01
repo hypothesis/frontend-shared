@@ -27,7 +27,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {BaseProps & ButtonCommonProps & HTMLButtonAttributes} props
  */
-export default function ButtonBase({
+const ButtonBaseNext = function ButtonBase({
   elementRef,
   children,
   className,
@@ -64,4 +64,6 @@ export default function ButtonBase({
       {children}
     </button>
   );
-}
+};
+
+export default ButtonBaseNext;

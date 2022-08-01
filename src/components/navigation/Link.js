@@ -18,7 +18,7 @@ import LinkBase from './LinkBase';
  *
  * @param {CommonProps & LinkProps & HTMLAnchorAttributes} props
  */
-export default function Link({
+const LinkNext = function Link({
   children,
   classes,
   elementRef,
@@ -53,4 +53,6 @@ export default function Link({
       {children}
     </LinkBase>
   );
-}
+};
+
+export default LinkNext;

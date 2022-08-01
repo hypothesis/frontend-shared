@@ -15,7 +15,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {CommonProps & CardContentProps & Omit<HTMLAttributes, 'size'>} props
  */
-export default function CardContent({
+const CardContentNext = function CardContent({
   children,
   classes,
   elementRef,
@@ -41,4 +41,6 @@ export default function CardContent({
       {children}
     </div>
   );
-}
+};
+
+export default CardContentNext;

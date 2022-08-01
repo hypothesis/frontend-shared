@@ -16,7 +16,7 @@ import ScrollContent from './ScrollContent';
  *
  * @param {CompositeProps & ScrollBoxProps} props
  */
-export default function ScrollBox({
+const ScrollBoxNext = function ScrollBox({
   children,
   elementRef,
 
@@ -36,4 +36,6 @@ export default function ScrollBox({
       </Scroll>
     </ScrollContainer>
   );
-}
+};
+
+export default ScrollBoxNext;

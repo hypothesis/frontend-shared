@@ -13,7 +13,7 @@ import { SpinnerSpokesIcon } from '../icons';
  *
  * @param {SpinnerProps} props
  */
-export default function Spinner({ size = 'sm', color = 'text-light' }) {
+const SpinnerNext = function Spinner({ size = 'sm', color = 'text-light' }) {
   return (
     <SpinnerSpokesIcon
       className={classnames(
@@ -30,4 +30,6 @@ export default function Spinner({ size = 'sm', color = 'text-light' }) {
       data-component="Spinner"
     />
   );
-}
+};
+
+export default SpinnerNext;

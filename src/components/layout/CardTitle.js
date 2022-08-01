@@ -13,7 +13,7 @@ import { downcastRef } from '../../util/typing';
  *
  * @param {CommonProps & HTMLAttributes} props
  */
-export default function CardTitle({
+const CardTitleNext = function CardTitle({
   children,
   classes,
   elementRef,
@@ -30,4 +30,6 @@ export default function CardTitle({
       {children}
     </div>
   );
-}
+};
+
+export default CardTitleNext;

@@ -96,7 +96,7 @@ export function testPresentationalComponent(Component, componentName) {
       assert.isTrue(wrapperOuterEl.hasAttribute('data-component'));
       assert.equal(
         wrapperOuterEl.getAttribute('data-component'),
-        componentName ?? Component.name
+        componentName ?? Component.displayName ?? Component.name
       );
     });
   });

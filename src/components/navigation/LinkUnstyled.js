@@ -12,7 +12,7 @@ import LinkBase from './LinkBase';
  *
  * @param {CommonProps & HTMLAnchorAttributes} props
  */
-export default function LinkUnstyled({
+const LinkUnstyledNext = function LinkUnstyled({
   children,
   classes,
   elementRef,
@@ -29,4 +29,6 @@ export default function LinkUnstyled({
       {children}
     </LinkBase>
   );
-}
+};
+
+export default LinkUnstyledNext;
