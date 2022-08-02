@@ -71,13 +71,13 @@ export default function ScrollBoxPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="Border">
-        <p>
-          <code>ScrollBox</code> applies a border to the outer{' '}
-          <code>ScrollContainer</code> by default. This can be disabled with the{' '}
-          <code>borderless</code> boolean prop.
-        </p>
-        <Library.Example>
+      <Library.Pattern title="Props">
+        <Library.Example title="borderless">
+          <p>
+            <code>ScrollBox</code> applies a border to the outer{' '}
+            <code>ScrollContainer</code> by default. This can be disabled with
+            the <code>borderless</code> boolean prop.
+          </p>
           <Library.Demo title="Turning off borders" withSource>
             <div className="w-[280px] h-[200px]">
               <ScrollBox borderless>

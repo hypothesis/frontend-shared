@@ -86,7 +86,7 @@ export default function ScrollPage() {
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Variant">
+        <Library.Example title="variant">
           <p>
             <code>Scroll</code>
             {"'s"} <code>raised</code> variant (default) renders CSS shadows to
@@ -162,7 +162,7 @@ export default function ScrollPage() {
             </div>
           </Library.Demo>
         </Library.Example>
-        <Library.Example title="Disabling borders">
+        <Library.Example title="borderless">
           <p>
             Turn off <code>ScrollContainer</code> borders with the{' '}
             <code>borderless</code> boolean prop.
