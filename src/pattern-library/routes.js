@@ -1,8 +1,27 @@
 import LibraryHome from './components/LibraryHome';
 
-import ColorFoundations from './components/patterns/ColorFoundations';
+import GettingStartedPage from './components/patterns/GettingStartedPage';
+import ColorsPage from './components/patterns/ColorsPage';
+import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
+import UsingComponentsPage from './components/patterns/UsingComponentsPage';
+import UtilitiesPage from './components/patterns/UtilitiesPage';
+
+import IconsPage from './components/patterns/data/IconsPage';
+import ScrollPage from './components/patterns/data/ScrollPage';
+import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
+
+import SpinnerPage from './components/patterns/feedback/SpinnerPage';
+
+import ButtonsPage from './components/patterns/input/ButtonPage';
+import IconButtonPage from './components/patterns/input/IconButtonPage';
+
+import CardPage from './components/patterns/layout/CardPage';
+import PanelPage from './components/patterns/layout/PanelPage';
+
+import LinkPage from './components/patterns/navigation/LinkPage';
+
+// Legacy pattern-library pages
 import LayoutFoundations from './components/patterns/LayoutFoundations';
-import UtilityFoundations from './components/patterns/UtilityFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
 import ContainerPatterns from './components/patterns/ContainerPatterns';
@@ -19,24 +38,6 @@ import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
-
-import GettingStartedPage from './components/patterns/GettingStarted';
-import CustomizingComponentsPage from './components/patterns/CustomizingComponents';
-import UsingComponentsPage from './components/patterns/UsingComponents';
-
-import IconsPage from './components/patterns/data/IconsPage';
-import ScrollPage from './components/patterns/data/ScrollPage';
-import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
-
-import SpinnerPage from './components/patterns/feedback/SpinnerPage';
-
-import ButtonsPage from './components/patterns/input/ButtonPage';
-import IconButtonPage from './components/patterns/input/IconButtonPage';
-
-import CardPage from './components/patterns/layout/CardPage';
-import PanelPage from './components/patterns/layout/PanelPage';
-
-import LinkPage from './components/patterns/navigation/LinkPage';
 
 export const componentGroups = {
   data: 'Data Display',
@@ -81,14 +82,14 @@ const routes = [
   {
     route: '/foundations-colors',
     title: 'Colors',
-    component: ColorFoundations,
+    component: ColorsPage,
     group: 'foundations',
   },
 
   {
     route: '/foundations-util',
     title: 'Utilities',
-    component: UtilityFoundations,
+    component: UtilitiesPage,
     group: 'foundations',
   },
   {

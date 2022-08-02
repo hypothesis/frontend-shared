@@ -61,7 +61,7 @@ const focusExamples = (
   </>
 );
 
-export default function ColorFoundations() {
+export default function ColorsPage() {
   return (
     <Library.Page title="Colors">
       <Library.Pattern title="Brand red">
