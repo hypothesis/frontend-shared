@@ -55,11 +55,11 @@ export default function PanelPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="onClose">
-        <p>
-          Provide a function to <code>onClose</code> to render a close button.
-        </p>
-        <Library.Example>
+      <Library.Pattern title="Props">
+        <Library.Example title="onClose">
+          <p>
+            Provide a function to <code>onClose</code> to render a close button.
+          </p>
           <Library.Demo title="Panel with close button" withSource>
             <Panel title="Panel title" onClose={() => alert('you clicked it')}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -67,14 +67,12 @@ export default function PanelPage() {
             </Panel>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="icon">
-        <p>
-          An <code>IconComponent</code> provided to the <code>icon</code> prop
-          will be rendered to the left of the title.
-        </p>
-        <Library.Example>
+        <Library.Example title="icon">
+          <p>
+            An <code>IconComponent</code> provided to the <code>icon</code> prop
+            will be rendered to the left of the title.
+          </p>
           <Library.Demo withSource>
             <Panel title="Panel title" icon={EditIcon}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -82,14 +80,12 @@ export default function PanelPage() {
             </Panel>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="buttons">
-        <p>
-          <code>ComponentChildren</code> passed to the <code>buttons</code> prop
-          will be rendered as actions in the panel.
-        </p>
-        <Library.Example>
+        <Library.Example title="buttons">
+          <p>
+            <code>ComponentChildren</code> passed to the <code>buttons</code>{' '}
+            prop will be rendered as actions in the panel.
+          </p>
           <Library.Demo withSource>
             <Panel
               title="Panel title"

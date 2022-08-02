@@ -55,39 +55,24 @@ export default function LinkPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="Color">
-        <p>
-          <code>color</code> applies to link text and hovered link text.
-        </p>
-        <Library.Example title="color: 'brand' (default)">
-          <Library.Demo
-            title="Using default color='brand' for sign up link"
-            withSource
-          >
+      <Library.Pattern title="Props">
+        <Library.Example title="color">
+          <p>
+            <code>color</code> applies to link text and hovered link text.
+          </p>
+          <Library.Demo title="color: 'brand' (default)" withSource>
             <Link href="https://www.example.com" color="brand">
               Sign up
             </Link>
           </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="color: 'text-light'">
-          <Library.Demo
-            title="Using color='text-light' for an annotation tag"
-            withSource
-          >
+          <Library.Demo title="color: 'text-light'" withSource>
             <Link href="https://www.example.com" color="text-light">
               <div className="flex items-center border rounded-sm bg-grey-0 px-1.5 py-1">
                 annotation tag
               </div>
             </Link>
           </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="color: 'text'">
-          <Library.Demo
-            title="Using color='text' for sidebar tab labels"
-            withSource
-          >
+          <Library.Demo title="color: 'text'" withSource>
             <p className="text-color-text">
               <Link href="https://www.example.com" color="text">
                 Page notes
@@ -95,30 +80,21 @@ export default function LinkPage() {
             </p>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="Underline">
-        <p>
-          By default, <code>Link</code>s are not underlined. This is acceptable
-          when the <code>Link</code> is a standalone, interactive element.
-          Underline on hover is encouraged, however, and <code>Link</code>s
-          inline with text content should always be underlined.
-        </p>
-        <Library.Example title="underline:'none' (default)">
-          <Library.Demo
-            title="Using underline='none' for standalone log in link"
-            withSource
-          >
+        <Library.Example title="underline">
+          <p>
+            By default, <code>Link</code>s are not underlined. This is
+            acceptable when the <code>Link</code> is a standalone, interactive
+            element. Underline on hover is encouraged, however, and{' '}
+            <code>Link</code>s inline with text content should always be
+            underlined.
+          </p>
+          <Library.Demo title="underline:'none' (default)" withSource>
             <Link href="https://www.example.com" underline="none">
               Log in
             </Link>
           </Library.Demo>
-        </Library.Example>
-        <Library.Example title="underline:'hover'">
-          <Library.Demo
-            title="Using underline='hover' for reply-expansion link"
-            withSource
-          >
+          <Library.Demo title="underline:'hover'" withSource>
             <Link
               href="https://www.example.com"
               color="text-light"
@@ -127,12 +103,7 @@ export default function LinkPage() {
               Show replies (7)
             </Link>
           </Library.Demo>
-        </Library.Example>
-        <Library.Example title="underline:'always'">
-          <Library.Demo
-            title="Using underline='always' in text content"
-            withSource
-          >
+          <Library.Demo title="underline:'always'" withSource>
             <p>
               Links should be{' '}
               <Link href="https://www.example.com" underline="always">
