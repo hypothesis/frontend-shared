@@ -108,6 +108,12 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
     // Add `.scroll-shadows` for use by Scroll components
     scrollShadows,
     plugin(({ addVariant }) => {
+      // Add a custom variant to mark an element to serve as a container for
+      // a set of grouped input components. This is the same functionality
+      // as Tailwind's built-in "group" variant, but with a different name for
+      // clarity of purpose.
+      // See https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
+      addVariant('input-group', '.input-group &');
       // Add a custom variant such that the `theme-clean:` modifier is available
       // for all tailwind utility classes. e.g. `.theme-clean:bg-white` would
       // only apply (set the element's background color to white) if a parent

@@ -26,6 +26,7 @@ import classnames from 'classnames';
 /**
  * Wrap a textual `<input>` element with some styles and provide error UI
  *
+ * @deprecated - Use Input component in the input group
  * @param {TextInputProps} props
  */
 export function TextInput({
@@ -60,6 +61,7 @@ export function TextInput({
  *
  * Current implementation assumes the input is on the left and button on right.
  *
+ * @deprecated - Use InputGroup component in the input group
  * @param {TextInputWithButtonProps} props
  */
 export function TextInputWithButton({ children, classes = '' }) {

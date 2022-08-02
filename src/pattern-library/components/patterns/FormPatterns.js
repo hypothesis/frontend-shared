@@ -1,4 +1,4 @@
-import { IconButton, SvgIcon } from '../../../';
+import { SvgIcon } from '../../../';
 import Library from '../Library';
 
 export default function FormPatterns() {
@@ -37,63 +37,6 @@ export default function FormPatterns() {
               <SvgIcon name="checkbox" />
               <span>Click me, please</span>
             </label>
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Text inputs">
-        <p>
-          A pattern for <code>input type=&quot;text&quot;</code>
-        </p>
-        <Library.Example title="Basic text input">
-          <Library.Demo withSource>
-            <input
-              className="hyp-text-input"
-              type="text"
-              placeholder="http://www.example.com"
-            />
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Text input in an error state">
-          <Library.Demo withSource>
-            <input
-              className="hyp-text-input has-error"
-              type="text"
-              placeholder="http://www.example.com"
-            />
-          </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Text input with button">
-        <p>
-          A pattern that pairs a text input field with an icon-only button. Use
-          a dark-variant button to match the standard pattern here.
-        </p>
-        <Library.Example title="Text input with a dark-variant IconButton">
-          <Library.Demo withSource>
-            <div style={{ width: '300px' }}>
-              <div className="hyp-text-input-with-button">
-                <input type="text" placeholder="http://www.example.com" />
-                <IconButton icon="arrow-right" title="go" variant="dark" />
-              </div>
-            </div>
-          </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="Text input and button in an error state">
-          <Library.Demo withSource>
-            <div style={{ width: '300px' }}>
-              <div className="hyp-text-input-with-button">
-                <input
-                  type="text"
-                  placeholder="http://www.example.com"
-                  className="has-error"
-                />
-                <IconButton icon="arrow-right" title="go" variant="dark" />
-              </div>
-            </div>
           </Library.Demo>
         </Library.Example>
       </Library.Pattern>

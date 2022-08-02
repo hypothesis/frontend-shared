@@ -63,7 +63,7 @@ function ChangelogItem({ status, children }) {
  * Render provided `content` as a "code block" example.
  *
  * @param {object} props
- *   @param {string} props.content - Code content
+ *   @param {import('preact').ComponentChildren} props.content - Code content
  *   @param {'sm'|'md'|'lg'} [props.size]
  *   @param {string} [props.title] - Caption (e.g. filename, description) of
  *     code block

@@ -7,6 +7,7 @@ import {
   TextInputWithButton,
 } from '../../..';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 export default function FormComponents() {
   const [wantSandwich, setWantSandwich] = useState(true);
@@ -14,6 +15,27 @@ export default function FormComponents() {
   const [textInputHasError, setTextInputHasError] = useState(true);
   return (
     <Library.Page title="Forms">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            <s>
+              <code>TextInput</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use
+            <code>Input</code> component in the input group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            <s>
+              <code>TextInputWithButton</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use
+            <code>InputGroup</code> component in the input group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
+
       <Library.Pattern title="LabeledCheckbox">
         <Library.Example title="Unchecked (default)">
           <div style="font-size: 2em">
