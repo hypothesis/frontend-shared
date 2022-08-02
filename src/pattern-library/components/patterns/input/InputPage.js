@@ -47,39 +47,41 @@ export default function InputPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="type">
-        <p>
-          <code>Input</code> currently supports the following <code>type</code>{' '}
-          values:
-        </p>
-        <ul>
-          <li>
-            <code>text</code> (default)
-          </li>
-          <li>
-            <code>url</code>
-          </li>
-          <li>
-            <code>email</code>
-          </li>
-          <li>
-            <code>text</code>
-          </li>
-        </ul>
-      </Library.Pattern>
+      <Library.Pattern title="Props">
+        <Library.Example title="type">
+          <p>
+            <code>Input</code> currently supports the following{' '}
+            <code>type</code> values:
+          </p>
+          <ul>
+            <li>
+              <code>text</code> (default)
+            </li>
+            <li>
+              <code>url</code>
+            </li>
+            <li>
+              <code>email</code>
+            </li>
+            <li>
+              <code>text</code>
+            </li>
+          </ul>
+        </Library.Example>
 
-      <Library.Pattern title="hasError">
-        <Library.Example>
-          <Library.Demo title="Input with an associated error" withSource>
+        <Library.Example title="hasError">
+          <p>
+            Set <code>hasError</code> to indicate that there is an associated
+            error for the <code>Input</code>.
+          </p>
+          <Library.Demo withSource>
             <div className="w-[350px]">
               <Input hasError value="something invalid" />
             </div>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="disabled">
-        <Library.Example>
+        <Library.Example title="disabled">
           <Library.Demo withSource>
             <div className="w-[350px]">
               <Input placeholder="Disabled..." disabled />

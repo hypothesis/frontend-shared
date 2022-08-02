@@ -58,29 +58,27 @@ export default function SpinnerPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="Color">
-        <Library.Example title="color: 'text-light' (default)">
-          <Library.Demo withSource>
+      <Library.Pattern title="Props">
+        <Library.Example title="color">
+          <Library.Demo title="color: 'text-light' (default)" withSource>
             <Spinner color="text-light" size="md" />
           </Library.Demo>
-        </Library.Example>
-        <Library.Example title="color: 'text'">
-          <Library.Demo withSource>
+          <Library.Demo title="color: 'text'" withSource>
             <Spinner color="text" size="md" />
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="Size">
-        <Library.Demo title="size: 'sm' (1em) (default)" withSource>
-          <Spinner size="sm" />
-        </Library.Demo>
-        <Library.Demo title="size: 'md' (2em)" withSource>
-          <Spinner size="md" />
-        </Library.Demo>
-        <Library.Demo title="size: 'lg' (4em)" withSource>
-          <Spinner size="lg" />
-        </Library.Demo>
+        <Library.Example title="size">
+          <Library.Demo title="size: 'sm' (1em) (default)" withSource>
+            <Spinner size="sm" />
+          </Library.Demo>
+          <Library.Demo title="size: 'md' (2em)" withSource>
+            <Spinner size="md" />
+          </Library.Demo>
+          <Library.Demo title="size: 'lg' (4em)" withSource>
+            <Spinner size="lg" />
+          </Library.Demo>
+        </Library.Example>
       </Library.Pattern>
     </Library.Page>
   );
