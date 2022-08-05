@@ -19,6 +19,7 @@ import InputGroupPage from './components/patterns/input/InputGroupPage';
 
 import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
+import OverlayPage from './components/patterns/layout/OverlayPage';
 
 import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
@@ -235,6 +236,12 @@ const routes = [
     group: 'layout',
     component: CardPage,
     route: '/layout-card',
+  },
+  {
+    title: 'Overlay',
+    group: 'layout',
+    component: OverlayPage,
+    route: '/layout-overlay',
   },
   {
     title: 'Input',
