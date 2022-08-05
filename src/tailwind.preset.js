@@ -98,6 +98,7 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
         3: '3',
         4: '4',
         5: '5',
+        10: '10',
         max: '2147483647',
       },
     },
