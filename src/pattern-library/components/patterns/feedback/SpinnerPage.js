@@ -66,6 +66,12 @@ export default function SpinnerPage() {
           <Library.Demo title="color: 'text'" withSource>
             <Spinner color="text" size="md" />
           </Library.Demo>
+
+          <Library.Demo title="color: 'text-inverted'" withSource>
+            <div className="bg-slate-7 rounded-lg flex items-center justify-center p-8">
+              <Spinner color="text-inverted" size="md" />
+            </div>
+          </Library.Demo>
         </Library.Example>
 
         <Library.Example title="size">
