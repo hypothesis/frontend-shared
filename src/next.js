@@ -19,6 +19,7 @@ export {
   CardHeader,
   CardTitle,
   CardActions,
+  Overlay,
   Panel,
 } from './components/layout';
 export { Link, LinkUnstyled, LinkButton } from './components/navigation/';
