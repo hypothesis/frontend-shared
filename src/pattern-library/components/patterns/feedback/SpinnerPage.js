@@ -1,18 +1,30 @@
-import { Spinner } from '../../../../next';
+import { useState } from 'preact/hooks';
+
+import { Spinner, SpinnerOverlay, Button } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
 export default function SpinnerPage() {
+  const [overlayOpen, setOverlayOpen] = useState(false);
+
+  function toggleOverlayOpen() {
+    setOverlayOpen(!overlayOpen);
+  }
   return (
     <Library.Page
       title="Spinner"
       intro={
-        <p>
-          <code>Spinner</code> is a simple component to render a spinner with
-          spokes, representing loading or other progress. To customize, use the{' '}
-          <code>SpinnerSpokesIcon</code> or <code>SpinnerCircleIcon</code>{' '}
-          component instead.
-        </p>
+        <>
+          <p>
+            <code>Spinner</code> is a simple component to render a spinner with
+            spokes, representing loading or other progress.
+          </p>
+          <p>
+            <code>SpinnerOverlay</code> is a simple component that styles a
+            full-screen <code>Overlay</code> with a centered{' '}
+            <code>Spinner</code>.
+          </p>
+        </>
       }
     >
       <Library.Pattern title="Status">
@@ -20,8 +32,12 @@ export default function SpinnerPage() {
           <code>Spinner</code> is a reimplementation of an existing legacy
           component of the same name.
         </p>
+        <p>
+          <code>SpinnerOverlay</code> is a new component modeled after the
+          legacy <code>FullScreenSpinner</code> component.
+        </p>
 
-        <Library.Example title="Migrating to this component">
+        <Library.Example title="Migrating to this component (Spinner)">
           <Next.Changelog>
             <Next.ChangelogItem status="breaking">
               Prop:{' '}
@@ -85,6 +101,25 @@ export default function SpinnerPage() {
             <Spinner size="lg" />
           </Library.Demo>
         </Library.Example>
+      </Library.Pattern>
+
+      <Library.Pattern title="SpinnerOverlay">
+        <p>
+          This component encapsulates a design pattern for a full-page loading
+          spinner.
+        </p>
+        <Library.Example title="Usage">
+          <Next.Usage componentName="SpinnerOverlay" />
+          <Library.Demo withSource>
+            <Button onClick={toggleOverlayOpen}>Show overlay</Button>
+            {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}
+          </Library.Demo>
+        </Library.Example>
+      </Library.Pattern>
+      <Library.Pattern title="Props">
+        <p>
+          <code>SpinnerOverlay</code> accepts HTML attributes.
+        </p>
       </Library.Pattern>
     </Library.Page>
   );
