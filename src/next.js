@@ -21,4 +21,4 @@ export {
   CardActions,
   Panel,
 } from './components/layout';
-export { Link, LinkUnstyled } from './components/navigation/';
+export { Link, LinkUnstyled, LinkButton } from './components/navigation/';

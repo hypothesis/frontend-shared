@@ -25,6 +25,15 @@ export default function ButtonComponents() {
             <code>frontend-shared</code>. Use re-implemented
             <code>IconButton</code> component in the input group instead.
           </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>LinkButton</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>LinkButton</code> component in the navigation group instead.
+          </Next.ChangelogItem>
         </Next.Changelog>
       </Library.Pattern>
       <Library.Pattern title="Usage">
