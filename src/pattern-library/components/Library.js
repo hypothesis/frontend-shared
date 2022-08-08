@@ -89,13 +89,16 @@ function PageIntro({ children }) {
  *
  * @param {object} props
  *   @param {Children} props.children
+ *   @param {string} [props.id]
  *   @param {Children} [props.intro]
  *   @param {string} props.title
  */
-function Section({ children, intro, title }) {
+function Section({ children, id, intro, title }) {
   return (
     <section className="pb-16 space-y-8">
-      <h2 className="text-3xl font-bold">{title}</h2>
+      <h2 className="text-3xl font-bold" id={id}>
+        {title}
+      </h2>
       {intro && <SectionIntro>{intro}</SectionIntro>}
       <div className="space-y-16 styled-text">{children}</div>
     </section>
@@ -121,13 +124,16 @@ function SectionIntro({ children }) {
  *
  * @param {object} props
  *   @param {Children} props.children
+ *   @param {string} [props.id]
  *   @param {Children} [props.intro]
- *   @param {string} [props.title]
+ *   @param {string} props.title
  */
-function Pattern({ children, title }) {
+function Pattern({ children, id, title }) {
   return (
     <section className="space-y-8">
-      <h3 className="text-2xl text-slate-7">{title}</h3>
+      <h3 className="text-2xl text-slate-7" id={id}>
+        {title}
+      </h3>
       <div className="space-y-8 px-4">{children}</div>
     </section>
   );
@@ -138,9 +144,10 @@ function Pattern({ children, title }) {
  *
  * @param {object} props
  *   @param {Children} props.children
+ *   @param {string} [props.id]
  *   @param {string} [props.title]
  */
-function Example({ children, title }) {
+function Example({ children, id, title }) {
   const kids = toChildArray(children);
 
   // Extract Demo components out of any children
@@ -152,7 +159,11 @@ function Example({ children, title }) {
 
   return (
     <div className="space-y-6">
-      {title && <h4 className="text-xl text-slate-9 font-light">{title}</h4>}
+      {title && (
+        <h4 className="text-xl text-slate-9 font-light" id={id}>
+          {title}
+        </h4>
+      )}
 
       <div className="space-y-6 px-4">{notDemos}</div>
       <div className="space-y-16 px-4">{demos}</div>
