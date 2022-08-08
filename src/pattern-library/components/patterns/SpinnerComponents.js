@@ -36,6 +36,15 @@ export default function SpinnerComponents() {
             <code>frontend-shared</code>. Use re-implemented
             <code>Spinner</code> component in the feedback group instead.
           </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            This legacy implementation of
+            <s>
+              <code>FullScreenSpinner</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>SpinnerOverlay</code> component in the feedback group instead.
+          </Next.ChangelogItem>
         </Next.Changelog>
       </Library.Pattern>
       <Library.Pattern title="Usage">
