@@ -29,7 +29,7 @@ function TableExample() {
   );
 
   return (
-    <Library.Example title="Basic Table" variant="wide">
+    <Library.Example title="Basic Table">
       <p>
         A <code>Table</code> will fill available space if none of its ancestors
         apply any constraints on height or width. It will fill 100% of its
@@ -64,7 +64,7 @@ function ScrollboxTableExample() {
   );
 
   return (
-    <Library.Example title="Constrained Table" variant="wide">
+    <Library.Example title="Constrained Table">
       <p>
         <code>Tables</code> render inside of a <code>Scrollbox</code> container
         component, which gives the table a scroll context and allows it to
@@ -119,7 +119,7 @@ function EmptyTableExample() {
   );
 
   return (
-    <Library.Example title="Constrained Table" variant="wide">
+    <Library.Example title="Constrained Table">
       <p>
         This Table has no items (it is empty). When not in loading state, the
         provided <code>emptyItemsMessage</code> will render centered in the

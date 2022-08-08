@@ -5,12 +5,7 @@ import { useState } from 'preact/hooks';
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
- * @typedef LibraryBaseProps
- * @prop {import("preact").ComponentChildren} [intro] - Optional
- *   introductory content
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {string} [title]
- *
+ * @typedef {import('preact').ComponentChildren} Children
  */
 
 /**
@@ -46,7 +41,10 @@ import { jsxToHTML } from '../util/jsx-to-string';
 /**
  * Render content for a pattern-library page
  *
- * @param {LibraryBaseProps} props
+ * @param {object} props
+ *   @param {Children} props.children
+ *   @param {Children} [props.intro]
+ *   @param {string} props.title
  */
 function Page({ children, intro, title }) {
   return (
@@ -60,6 +58,9 @@ function Page({ children, intro, title }) {
 
 /**
  * Sticky pattern-library page header
+ *
+ * @param {object} props
+ *   @param {string} props.title
  */
 function PageTitle({ title }) {
   return (
@@ -71,6 +72,9 @@ function PageTitle({ title }) {
 
 /**
  * Page introductory text
+ *
+ * @param {object} props
+ *   @param {Children} props.children
  */
 function PageIntro({ children }) {
   return (
@@ -83,7 +87,10 @@ function PageIntro({ children }) {
 /**
  * Render info about a primary section of a page
  *
- * @param {LibraryBaseProps} props
+ * @param {object} props
+ *   @param {Children} props.children
+ *   @param {Children} [props.intro]
+ *   @param {string} props.title
  */
 function Section({ children, intro, title }) {
   return (
@@ -97,6 +104,9 @@ function Section({ children, intro, title }) {
 
 /**
  * Page introductory text
+ *
+ *  @param {object} props
+ *    @param {Children} props.children
  */
 function SectionIntro({ children }) {
   return (
@@ -109,7 +119,10 @@ function SectionIntro({ children }) {
 /**
  * Render info about a secondary section of a page
  *
- * @param {LibraryBaseProps} props
+ * @param {object} props
+ *   @param {Children} props.children
+ *   @param {Children} [props.intro]
+ *   @param {string} [props.title]
  */
 function Pattern({ children, title }) {
   return (
@@ -121,24 +134,13 @@ function Pattern({ children, title }) {
 }
 
 /**
- * @typedef LibraryExampleProps
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {string} [title]
- * @prop {'split'|'wide'} [variant='split'] - Layout variant. Applies
- *   appropriate className.
- *   - Split (default) lays out in a row. Non-demo example content is rendered
- *     left, with demos right. Demos in this variant stack vertically.
- *   - Wide lays out in a full-width column. Non-example is rendered first,
- *     then a row to contain demos. Demos in this variant render next to each
- *     other in a single row.
- */
-
-/**
  * Render information about a tertiary section on a page.
  *
- * @param {LibraryExampleProps} props
+ * @param {object} props
+ *   @param {Children} props.children
+ *   @param {string} [props.title]
  */
-function Example({ children, title, variant = 'split' }) {
+function Example({ children, title }) {
   const kids = toChildArray(children);
 
   // Extract Demo components out of any children
@@ -153,28 +155,18 @@ function Example({ children, title, variant = 'split' }) {
       {title && <h4 className="text-xl text-slate-9 font-light">{title}</h4>}
 
       <div className="space-y-6 px-4">{notDemos}</div>
-      <div
-        className={classnames({
-          'space-y-16 px-4': variant === 'split',
-          'flex flex-row gap-16 flex-wrap': variant === 'wide',
-        })}
-      >
-        {demos}
-      </div>
+      <div className="space-y-16 px-4">{demos}</div>
     </div>
   );
 }
 
 /**
- * @typedef DemoButtonProps
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {() => void} [onClick]
- * @prop {boolean} pressed
- */
-
-/**
+ * Render a button to swap between demo and source views in a Demo
  *
- * @param {DemoButtonProps} props
+ * @param {object} props
+ *   @param {import("preact").ComponentChildren} props.children
+ *   @param {() => void} props.onClick
+ *   @param {boolean} props.pressed
  */
 function DemoButton({ children, onClick, pressed }) {
   return (
@@ -195,24 +187,20 @@ function DemoButton({ children, onClick, pressed }) {
 }
 
 /**
- * @typedef DemoProps
- * @prop {import("preact").ComponentChildren} [children]
- * @prop {string} [classes] - Extra CSS classes for the demo content's immediate
- *   parent container
- * @prop {boolean} [withSource=false] - Should the demo also render the source?
- *   When true, a "Source" tab will be rendered, which will display the JSX
- *   source of the Demo's children
- * @prop {object} [style] - Inline styles to apply to the demo container
- * @prop {string} [title]
- */
-
-/**
  * Render a "Demo", with optional source. This will render the children as
  * provided in a tabbed container. If `withSource` is `true`, the JSX source
  * of the children will be provided in a separate "Source" tab from the
  * rendered Demo content.
  *
- * @param {DemoProps} props
+ * @param {object} props
+ *   @param {import("preact").ComponentChildren} [props.children]
+ *   @param {string} [props.classes] - Extra CSS classes for the demo content's
+ *     immediate parent container
+ *   @param {boolean} [props.withSource=false] - Should the demo also render the source?
+ *   When true, a "Source" tab will be rendered, which will display the JSX
+ *   source of the Demo's children
+ *   @param {object} [props.style] - Inline styles to apply to the demo container
+ *   @param {string} [props.title]
  */
 function Demo({ children, classes, withSource = false, style = {}, title }) {
   const [visibleTab, setVisibleTab] = useState('demo');

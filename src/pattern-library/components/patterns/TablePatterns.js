@@ -13,7 +13,7 @@ export default function TablePatterns() {
         spaces.
       </p>
       <Library.Pattern title="Table">
-        <Library.Example title="Basic table" variant="wide">
+        <Library.Example title="Basic table">
           <p>
             By default, a <code>table</code> will fill available horizontal
             space, and will use whatever height is needed to render its rows.{' '}

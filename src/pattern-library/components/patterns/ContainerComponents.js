@@ -106,7 +106,7 @@ export default function ContainerComponents() {
           overflowing content. It provides a scroll context and is styled with
           the <code>scrollbox</code> pattern.
         </p>
-        <Library.Example variant="wide">
+        <Library.Example>
           <p>
             A <code>Scrollbox</code> will fill its available space. Constraints
             to that space need to be applied to a parent element. Here a parent
