@@ -2,8 +2,6 @@ import classnames from 'classnames';
 import { toChildArray } from 'preact';
 import { useState } from 'preact/hooks';
 
-import { Frame } from '../../components/containers';
-
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -17,34 +15,36 @@ import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
  * Components for rendering patterns, examples and demos in the pattern-library
- * page. A pattern-library Page contains Patterns, which in turn contain
- * Examples. An Example _may_ contain one or more Demos. Child content (markup)
- * may also be rendered in these components, as desired.
+ * page.
  *
  * Example of structure:
  *
- * <Library.Page intro={<p>Some introductory content</p>} title="Elephants">
+ * <Page intro={<p>Some introductory content</p>} title="Elephants">
  *   <p>Any content you want on the page.</p>
- *   More content: it can be any valid `ComponentChildren`
  *
- *   <Library.Pattern title="Elephant">
- *     <p>The `Elephant` component is used to render information about elephant
- *     personalities.</p>
- *     <Library.Example title="Colored elephants">
- *       <p>You can change the color of your elephant.</p>
- *       <Library.Demo withSource>
- *         <Elephant color="pink" />
- *       </Library.Demo>
- *     </Library.Example>
- *     // More Examples if desired
- *   </Library.Pattern>
- *
+ *   <Library.Section title="ComponentName">
+ *     <Library.Pattern title="Usage">
+ *       <p>The `Elephant` component is used to render information about elephant
+ *       personalities.</p>
+ *       <Library.Example title="Colored elephants">
+ *         <p>You can change the color of your elephant.</p>
+ *         <Library.Demo withSource>
+ *           <Elephant color="pink" />
+ *         </Library.Demo>
+ *         // More Demos if desired...
+ *       </Library.Example>
+ *       // More Examples if desired...
+ *     </Library.Pattern>
  *   // more Patterns if desired...
+ *   </Library.Section>
+ *
+ *   // More Sections...
+ *
  * </Library.Page>
  */
 
 /**
- * Render a pattern-library page.
+ * Render content for a pattern-library page
  *
  * @param {LibraryBaseProps} props
  */
@@ -81,14 +81,40 @@ function PageIntro({ children }) {
 }
 
 /**
- * Render info about a single pattern (or component) on a pattern-library page.
+ * Render info about a primary section of a page
+ *
+ * @param {LibraryBaseProps} props
+ */
+function Section({ children, intro, title }) {
+  return (
+    <section className="pb-16 space-y-8">
+      <h2 className="text-3xl font-bold">{title}</h2>
+      {intro && <SectionIntro>{intro}</SectionIntro>}
+      <div className="space-y-16 styled-text">{children}</div>
+    </section>
+  );
+}
+
+/**
+ * Page introductory text
+ */
+function SectionIntro({ children }) {
+  return (
+    <div className="styled-text text-lg space-y-3 leading-relaxed">
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Render info about a secondary section of a page
  *
  * @param {LibraryBaseProps} props
  */
 function Pattern({ children, title }) {
   return (
     <section className="space-y-8">
-      <h2 className="text-2xl text-slate-7">{title}</h2>
+      <h3 className="text-2xl text-slate-7">{title}</h3>
       <div className="space-y-8 px-4">{children}</div>
     </section>
   );
@@ -108,7 +134,7 @@ function Pattern({ children, title }) {
  */
 
 /**
- * Render example content and optional Demo(s) for a pattern.
+ * Render information about a tertiary section on a page.
  *
  * @param {LibraryExampleProps} props
  */
@@ -124,7 +150,7 @@ function Example({ children, title, variant = 'split' }) {
 
   return (
     <div className="space-y-6">
-      {title && <h3 className="text-xl text-slate-9 font-light">{title}</h3>}
+      {title && <h4 className="text-xl text-slate-9 font-light">{title}</h4>}
 
       <div className="space-y-6 px-4">{notDemos}</div>
       <div
@@ -206,7 +232,7 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
     <div className="space-y-2 p-4">
       <div className="flex items-center">
         <div className="py-2 grow">
-          <h4 className="text-lg italic text-slate-7 font-light">{title}</h4>
+          <h5 className="text-lg italic text-slate-7 font-light">{title}</h5>
         </div>
         <div className="flex flex-row items-center justify-end gap-x-4">
           {withSource && (
@@ -241,9 +267,9 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
           </div>
         )}
         {visibleTab === 'source' && (
-          <Frame classes="w-full rounded-md bg-slate-7 text-color-text-inverted p-4">
+          <div className="border w-full rounded-md bg-slate-7 text-color-text-inverted p-4">
             <ul>{source}</ul>
-          </Frame>
+          </div>
         )}
       </div>
     </div>
@@ -252,6 +278,7 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
 
 export default {
   Page,
+  Section,
   Pattern,
   Example,
   Demo,
