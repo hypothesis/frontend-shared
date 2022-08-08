@@ -136,7 +136,7 @@ export function LabeledButton({
 /**
  * A button styled to appear as an HTML link (<a>)
  *
- * @deprecated - Use re-implemented component in the input group
+ * @deprecated - Use re-implemented component in the navigation group
  * @param {ButtonBaseProps} props
  */
 export function LinkButton(props) {
