@@ -2,12 +2,12 @@ import classnames from 'classnames';
 
 import { downcastRef } from '../../util/typing';
 
-import ButtonBase from './ButtonBase';
+import ButtonBase from '../input/ButtonBase';
 
 /**
  * @typedef {import('../../types').PresentationalProps} CommonProps
  * @typedef {import('preact').JSX.HTMLAttributes<HTMLButtonElement>} HTMLAttributes
- * @typedef {import('./ButtonBase').ButtonCommonProps} ButtonCommonProps
+ * @typedef {import('../input/ButtonBase').ButtonCommonProps} ButtonCommonProps
  *
  * @typedef LinkButtonProps
  * @prop {'brand'|'text'|'text-light'} [color='brand']
