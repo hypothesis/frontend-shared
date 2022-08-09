@@ -89,6 +89,9 @@ export function jsxToString(vnode) {
           valueStr = `{${componentName(value)}}`;
         } else if (isJSXElement(value)) {
           valueStr = `{${jsxToString(value)}}`;
+        } else if (value && typeof value === 'object') {
+          // Use the prop name instead of [Object object]; it's more helpful
+          valueStr = `{${name}}`;
         } else if (value) {
           // `toString` necessary for Symbols
           valueStr = `{${value.toString()}}`;
