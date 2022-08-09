@@ -7,13 +7,11 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import IconsPage from './components/patterns/data/IconsPage';
-import ScrollPage from './components/patterns/data/ScrollPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
-import IconButtonPage from './components/patterns/input/IconButtonPage';
 import InputPage from './components/patterns/input/InputPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 
@@ -87,7 +85,6 @@ const routes = [
     component: ColorsPage,
     group: 'foundations',
   },
-
   {
     route: '/foundations-util',
     title: 'Utilities',
@@ -99,6 +96,71 @@ const routes = [
     group: 'foundations',
     component: CustomizingComponentsPage,
     route: '/customizing-components',
+  },
+
+  { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
+  {
+    title: 'ScrollBox',
+    group: 'data',
+    component: ScrollBoxPage,
+    route: '/data-scrollbox',
+  },
+  { title: 'Table', group: 'data' },
+  { title: 'Dialog', group: 'feedback' },
+  {
+    title: 'Spinner',
+    group: 'feedback',
+    component: SpinnerPage,
+    route: '/feedback-spinner',
+  },
+  {
+    title: 'Button',
+    group: 'input',
+    component: ButtonsPage,
+    route: '/input-button',
+  },
+  { title: 'Checkbox', group: 'input' },
+  {
+    title: 'Input',
+    group: 'input',
+    component: InputPage,
+    route: '/input-input',
+  },
+  {
+    title: 'InputGroup',
+    group: 'input',
+    component: InputGroupPage,
+    route: '/input-input-group',
+  },
+  {
+    title: 'Card',
+    group: 'layout',
+    component: CardPage,
+    route: '/layout-card',
+  },
+  {
+    title: 'Panel',
+    group: 'layout',
+    component: PanelPage,
+    route: '/layout-panel',
+  },
+  {
+    title: 'Overlay',
+    group: 'layout',
+    component: OverlayPage,
+    route: '/layout-overlay',
+  },
+  {
+    title: 'Link',
+    group: 'navigation',
+    route: '/navigation-link',
+    component: LinkPage,
+  },
+  {
+    title: 'LinkButton',
+    group: 'navigation',
+    component: LinkButtonPage,
+    route: '/input-linkbutton',
   },
   {
     route: '/patterns-forms',
@@ -177,82 +239,6 @@ const routes = [
     title: 'Thumbnail',
     component: ThumbnailComponents,
     group: 'components',
-  },
-  {
-    title: 'ScrollBox',
-    group: 'data',
-    component: ScrollBoxPage,
-    route: '/data-scrollbox',
-  },
-  {
-    title: 'Scroll',
-    group: 'data',
-    component: ScrollPage,
-    route: '/data-scroll',
-  },
-  { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
-  { title: 'Table', group: 'data' },
-  { title: 'Dialog', group: 'feedback' },
-  {
-    title: 'Spinner',
-    group: 'feedback',
-    component: SpinnerPage,
-    route: '/feedback-spinner',
-  },
-  {
-    title: 'Button',
-    group: 'input',
-    component: ButtonsPage,
-    route: '/input-button',
-  },
-  {
-    title: 'IconButton',
-    group: 'input',
-    component: IconButtonPage,
-    route: '/input-iconbutton',
-  },
-  {
-    title: 'Panel',
-    group: 'layout',
-    component: PanelPage,
-    route: '/layout-panel',
-  },
-  {
-    title: 'Card',
-    group: 'layout',
-    component: CardPage,
-    route: '/layout-card',
-  },
-  {
-    title: 'Overlay',
-    group: 'layout',
-    component: OverlayPage,
-    route: '/layout-overlay',
-  },
-  {
-    title: 'Input',
-    group: 'input',
-    component: InputPage,
-    route: '/input-input',
-  },
-  {
-    title: 'InputGroup',
-    group: 'input',
-    component: InputGroupPage,
-    route: '/input-input-group',
-  },
-  { title: 'Checkbox', group: 'input' },
-  {
-    title: 'Link',
-    group: 'navigation',
-    route: '/navigation-link',
-    component: LinkPage,
-  },
-  {
-    title: 'LinkButton',
-    group: 'navigation',
-    component: LinkButtonPage,
-    route: '/input-linkbutton',
   },
 ];
 
