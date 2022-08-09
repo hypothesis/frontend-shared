@@ -7,7 +7,6 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import IconsPage from './components/patterns/data/IconsPage';
-import ScrollPage from './components/patterns/data/ScrollPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
@@ -183,12 +182,6 @@ const routes = [
     group: 'data',
     component: ScrollBoxPage,
     route: '/data-scrollbox',
-  },
-  {
-    title: 'Scroll',
-    group: 'data',
-    component: ScrollPage,
-    route: '/data-scroll',
   },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   { title: 'Table', group: 'data' },
