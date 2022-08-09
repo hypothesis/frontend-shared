@@ -12,7 +12,6 @@ import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
-import IconButtonPage from './components/patterns/input/IconButtonPage';
 import InputPage from './components/patterns/input/InputPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 
@@ -197,12 +196,6 @@ const routes = [
     group: 'input',
     component: ButtonsPage,
     route: '/input-button',
-  },
-  {
-    title: 'IconButton',
-    group: 'input',
-    component: IconButtonPage,
-    route: '/input-iconbutton',
   },
   {
     title: 'Panel',
