@@ -8,6 +8,8 @@ import { useMemo } from 'preact/hooks';
 
 import { jsxToHTML } from '../util/jsx-to-string';
 
+import { Scroll, ScrollContainer } from '../../next';
+
 /**
  * Render a little label or pill next to changelog items
  *
@@ -62,6 +64,9 @@ function ChangelogItem({ status, children }) {
 /**
  * Render provided `content` as a "code block" example.
  *
+ * Long code content will scroll if <Code /> is rendered inside a parent
+ * element with constrained dimensions.
+ *
  * @param {object} props
  *   @param {import('preact').ComponentChildren} props.content - Code content
  *   @param {'sm'|'md'|'lg'} [props.size]
@@ -72,25 +77,29 @@ function Code({ content, size, title }) {
   const codeMarkup = useMemo(() => jsxToHTML(content), [content]);
 
   return (
-    <figure className="space-y-2">
-      <div
-        className={classnames(
-          'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md',
-          { 'text-sm': size === 'sm' }
+    <figure className="space-y-2 min-h-0 h-full">
+      <ScrollContainer borderless>
+        <div
+          className={classnames(
+            'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md min-h-0 h-full',
+            { 'text-sm': size === 'sm' }
+          )}
+        >
+          <Scroll variant="flat">
+            <code className="text-color-text-inverted">
+              <pre
+                className="whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: codeMarkup }}
+              />
+            </code>
+          </Scroll>
+        </div>
+        {title && (
+          <figcaption className="flex justify-end">
+            <span className="italic">{title}</span>
+          </figcaption>
         )}
-      >
-        <code className="text-color-text-inverted">
-          <pre
-            className="whitespace-pre-wrap"
-            dangerouslySetInnerHTML={{ __html: codeMarkup }}
-          />
-        </code>
-      </div>
-      {title && (
-        <figcaption className="flex justify-end">
-          <span className="italic">{title}</span>
-        </figcaption>
-      )}
+      </ScrollContainer>
     </figure>
   );
 }
