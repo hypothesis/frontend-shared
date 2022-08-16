@@ -1,5 +1,6 @@
 export * from './components/icons';
 export {
+  AspectRatio,
   Scroll,
   ScrollContent,
   ScrollContainer,
