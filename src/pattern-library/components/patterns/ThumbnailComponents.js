@@ -1,9 +1,23 @@
 import { Thumbnail } from '../../..';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 export default function ThumbnailComponents() {
   return (
     <Library.Page title="Thumbnail">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Thumbnail</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Thumbnail</code> component in the data display group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
       <Library.Pattern title="Thumbnail">
         <p>
           The <code>Thumbnail</code> component handles rendering a thumbnail or

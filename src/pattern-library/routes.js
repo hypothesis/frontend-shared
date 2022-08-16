@@ -28,7 +28,6 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 // Legacy pattern-library pages
 
 import TablePatterns from './components/patterns/TablePatterns';
-import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
@@ -185,12 +184,6 @@ const routes = [
     route: '/patterns-tables',
     title: 'Tables',
     component: TablePatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-thumbnails',
-    title: 'Thumbnails',
-    component: ThumbnailPatterns,
     group: 'patterns',
   },
   {
