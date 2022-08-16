@@ -5,6 +5,7 @@ export {
   ScrollContent,
   ScrollContainer,
   ScrollBox,
+  Thumbnail,
 } from './components/data';
 export { Spinner, SpinnerOverlay } from './components/feedback';
 export {
