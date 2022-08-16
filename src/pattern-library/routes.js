@@ -6,6 +6,7 @@ import CustomizingComponentsPage from './components/patterns/CustomizingComponen
 import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
+import AspectRatioPage from './components/patterns/data/AspectRatioPage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 
@@ -98,6 +99,12 @@ const routes = [
     route: '/customizing-components',
   },
 
+  {
+    title: 'AspectRatio',
+    group: 'data',
+    component: AspectRatioPage,
+    route: '/data-aspectratio',
+  },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   {
     title: 'ScrollBox',
