@@ -12,6 +12,7 @@ import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
+import CheckboxPage from './components/patterns/input/CheckboxPage';
 import InputPage from './components/patterns/input/InputPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 
@@ -119,7 +120,12 @@ const routes = [
     component: ButtonsPage,
     route: '/input-button',
   },
-  { title: 'Checkbox', group: 'input' },
+  {
+    title: 'Checkbox',
+    group: 'input',
+    component: CheckboxPage,
+    route: '/input-checkbox',
+  },
   {
     title: 'Input',
     group: 'input',
