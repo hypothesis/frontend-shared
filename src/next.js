@@ -9,6 +9,7 @@ export { Spinner, SpinnerOverlay } from './components/feedback';
 export {
   Button,
   ButtonUnstyled,
+  Checkbox,
   IconButton,
   Input,
   InputGroup,
