@@ -19,6 +19,22 @@ export default function FormComponents() {
         <Next.Changelog>
           <Next.ChangelogItem status="deprecated">
             <s>
+              <code>Checkbox</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use
+            <code>Checkbox</code> component in the input group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            <s>
+              <code>LabeledCheckbox</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use
+            <code>Checkbox</code> component in the input group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            <s>
               <code>TextInput</code>
             </s>{' '}
             is deprecated and slated for removal in v6 of{' '}

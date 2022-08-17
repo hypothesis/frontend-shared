@@ -25,7 +25,6 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
 // Legacy pattern-library pages
 
-import FormPatterns from './components/patterns/FormPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -167,12 +166,6 @@ const routes = [
     group: 'navigation',
     component: LinkButtonPage,
     route: '/navigation-linkbutton',
-  },
-  {
-    route: '/patterns-forms',
-    title: 'Forms',
-    component: FormPatterns,
-    group: 'patterns',
   },
   {
     route: '/patterns-tables',
