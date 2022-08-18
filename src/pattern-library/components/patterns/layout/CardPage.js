@@ -114,7 +114,7 @@ export default function CardPage() {
           intensify on hover. These can be disabled by using the{' '}
           <code>flat</code> variant.
         </p>
-        <Library.Example title="Variant">
+        <Library.Example title="variant">
           <Library.Demo title="variant: 'raised' (default)" withSource>
             <Card variant="raised">
               <CardContent>
@@ -200,7 +200,7 @@ export default function CardPage() {
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Size">
+        <Library.Example title="size">
           <p>
             The <code>size</code> prop (<em>default</em> <code>md</code>)
             adjusts relative padding and spacing in <code>CardContent</code>.
@@ -313,28 +313,27 @@ export default function CardPage() {
             </Card>
           </Library.Demo>
         </Library.Example>
+      </Library.Pattern>
 
-        <Library.Example title="CardTitle">
-          <p>
-            Using <code>CardTitle</code> allows for more layout flexibility in{' '}
-            <code>CardHeader</code>.
-          </p>
-          <Library.Demo title="Setting title with CardTitle" withSource>
-            <Card>
-              <CardHeader>
-                <EditIcon />
-                <CardTitle>Card title</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div>
-                  Using <code>CardTitle</code> in a <code>CardHeader</code>.
-                  This allows for other custom content in the{' '}
-                  <code>CardHeader</code>.
-                </div>
-              </CardContent>
-            </Card>
-          </Library.Demo>
-        </Library.Example>
+      <Library.Pattern title="CardTitle">
+        <p>
+          Using <code>CardTitle</code> allows for more layout flexibility in{' '}
+          <code>CardHeader</code>.
+        </p>
+        <Library.Demo title="Setting title with CardTitle" withSource>
+          <Card>
+            <CardHeader>
+              <EditIcon />
+              <CardTitle>Card title</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div>
+                Using <code>CardTitle</code> in a <code>CardHeader</code>. This
+                allows for other custom content in the <code>CardHeader</code>.
+              </div>
+            </CardContent>
+          </Card>
+        </Library.Demo>
       </Library.Pattern>
 
       <Library.Pattern title="CardActions">

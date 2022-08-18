@@ -74,8 +74,8 @@ export default function ButtonPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="Icons">
-        <Library.Example>
+      <Library.Pattern title="Props">
+        <Library.Example title="icon">
           <p>
             The <code>Button</code>
             {"'s"} <code>icon</code> prop accepts an icon component and will
@@ -95,17 +95,15 @@ export default function ButtonPage() {
             </span>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
 
-      <Library.Pattern title="Variant">
-        <p>
-          These examples show each variant in each of the supported states, as
-          well as an example with an icon. These states are associated with the{' '}
-          <code>pressed</code>, <code>expanded</code> and <code>disabled</code>{' '}
-          boolean props.
-        </p>
-        <Library.Example title="variant: 'secondary' (default)">
-          <Library.Demo withSource>
+        <Library.Example title="variant">
+          <p>
+            These examples show each variant in each of the supported states, as
+            well as an example with an icon. These states are associated with
+            the <code>pressed</code>, <code>expanded</code> and{' '}
+            <code>disabled</code> boolean props.
+          </p>
+          <Library.Demo title="variant: 'secondary' (default)" withSource>
             <Button variant="secondary">Default</Button>
             <Button variant="secondary">
               <CancelIcon />
@@ -121,10 +119,8 @@ export default function ButtonPage() {
               Disabled
             </Button>
           </Library.Demo>
-        </Library.Example>
 
-        <Library.Example title="variant: 'primary'">
-          <Library.Demo withSource>
+          <Library.Demo title="variant: 'primary'" withSource>
             <Button variant="primary">Default</Button>
             <Button variant="primary">
               <EditIcon />
@@ -141,14 +137,11 @@ export default function ButtonPage() {
             </Button>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Size">
-        <p>
-          The <code>size</code> prop affects padding and spacing within the{' '}
-          <code>Button</code>, but other sizing (e.g. font size) is inherited.
-        </p>
-        <Library.Example>
+        <Library.Example title="size">
+          <p>
+            The <code>size</code> prop affects padding and spacing within the{' '}
+            <code>Button</code>, but other sizing (e.g. font size) is inherited.
+          </p>
           <Library.Demo withSource>
             <Button icon={EditIcon} size="sm">
               Small (sm)

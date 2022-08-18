@@ -67,8 +67,8 @@ export default function IconButtonPage() {
         </Library.Example>
       </Library.Pattern>
 
-      <Library.Pattern title="Icons">
-        <Library.Example>
+      <Library.Pattern title="Props">
+        <Library.Example title="icon">
           <p>
             The <code>IconButton</code>
             {"'s"} <code>icon</code> prop accepts an icon component and will
@@ -84,7 +84,7 @@ export default function IconButtonPage() {
             </span>
           </Library.Demo>
         </Library.Example>
-        <Library.Example title="Custom icon styling">
+        <Library.Example title="icon: customizing styles">
           <p>
             If you need more control over icon styles, use an icon component
             directly in the content instead.
@@ -98,20 +98,17 @@ export default function IconButtonPage() {
             </IconButton>
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
+        <Library.Example title="variant">
+          <p>
+            These examples show each variant in each of the supported states.
+            These states are associated with the <code>pressed</code>,{' '}
+            <code>expanded</code> and <code>disabled</code> boolean props.
+          </p>
 
-      <Library.Pattern title="Variant">
-        <p>
-          These examples show each variant in each of the supported states.
-          These states are associated with the <code>pressed</code>,{' '}
-          <code>expanded</code> and <code>disabled</code> boolean props.
-        </p>
-
-        <p>
-          For customization, use <code>ButtonUnstyled</code>.
-        </p>
-        <Library.Example title="variant: 'secondary' (default)">
-          <Library.Demo title="default, pressed, expanded, disabled" withSource>
+          <p>
+            For customization, use <code>ButtonUnstyled</code>.
+          </p>
+          <Library.Demo title="variant: 'secondary' (default)" withSource>
             <IconButton
               variant="secondary"
               title="Watch out!"
@@ -136,10 +133,8 @@ export default function IconButtonPage() {
               disabled
             />
           </Library.Demo>
-        </Library.Example>
 
-        <Library.Example title="variant: 'primary'">
-          <Library.Demo title="default, pressed, expanded, disabled" withSource>
+          <Library.Demo title="variant: 'primary'" withSource>
             <IconButton
               variant="primary"
               title="Watch out!"
@@ -164,12 +159,9 @@ export default function IconButtonPage() {
               disabled
             />
           </Library.Demo>
-        </Library.Example>
-
-        <Library.Example title="variant: 'dark'">
           <Library.Demo
             classes="bg-slate-0 p-4"
-            title="default, pressed, expanded, disabled"
+            title="variant: 'dark'"
             withSource
           >
             <IconButton variant="dark" title="Watch out!" icon={CautionIcon} />
@@ -193,22 +185,19 @@ export default function IconButtonPage() {
             />
           </Library.Demo>
         </Library.Example>
-      </Library.Pattern>
-
-      <Library.Pattern title="Size">
-        <p>
-          The <code>size</code> prop affects padding and spacing within the{' '}
-          <code>IconButton</code>.
-        </p>
-        <Library.Example>
-          <Library.Demo withSource>
+        <Library.Example title="size">
+          <p>
+            The <code>size</code> prop affects padding and spacing within the{' '}
+            <code>IconButton</code>.
+          </p>
+          <Library.Demo title="size: 'sm', 'md' and 'lg'" withSource>
             <IconButton icon={EditIcon} size="sm" title="Edit" />
             <IconButton icon={EditIcon} size="md" title="Edit" />
             <IconButton icon={EditIcon} size="lg" title="Edit" />
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Disabling touch-target sizing">
+        <Library.Example title="disableTouchSizing">
           <p>
             By default, <code>IconButton</code> will apply styles for touch
             devices (<code>pointer: coarse</code>) to ensure the minimum
@@ -217,7 +206,7 @@ export default function IconButtonPage() {
             <code>disableTouchSizing</code> boolean prop.
           </p>
 
-          <Library.Demo withSource>
+          <Library.Demo title="Disabling touch-target sizing" withSource>
             <IconButton icon={EditIcon} title="Edit" disableTouchSizing />
           </Library.Demo>
         </Library.Example>
