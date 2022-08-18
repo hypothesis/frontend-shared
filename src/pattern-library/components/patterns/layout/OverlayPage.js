@@ -10,17 +10,10 @@ export default function OverlayPage() {
   const [darkOpen, setDarkOpen] = useState(false);
   const [lightOpen, setLightOpen] = useState(false);
 
-  function toggleDefaultOverlay() {
-    setDefaultOpen(!defaultOpen);
-  }
+  const toggleDefaultOverlay = () => setDefaultOpen(!defaultOpen);
+  const toggleLightOpen = () => setLightOpen(!lightOpen);
+  const toggleDarkOpen = () => setDarkOpen(!darkOpen);
 
-  function toggleLightOpen() {
-    setLightOpen(!lightOpen);
-  }
-
-  function toggleDarkOpen() {
-    setDarkOpen(!darkOpen);
-  }
   return (
     <Library.Page
       title="Overlay"
