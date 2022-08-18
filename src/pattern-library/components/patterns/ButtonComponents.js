@@ -84,7 +84,7 @@ export default function ButtonComponents() {
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Variants" variant="wide">
+        <Library.Example title="Variants">
           <h4>Dark variant</h4>
           <p>
             The <code>IconButton</code> dark variant is for use on darker (light
@@ -220,7 +220,7 @@ export default function ButtonComponents() {
           </Library.Demo>
         </Library.Example>
 
-        <Library.Example title="Variants" variant="wide">
+        <Library.Example title="Variants">
           <Library.Demo title="Default" withSource>
             <LabeledButton icon="edit">Edit</LabeledButton>
             <LabeledButton icon="edit" pressed>
