@@ -82,10 +82,15 @@ export default function LinkButtonPage() {
         </Library.Example>
 
         <Library.Example title="underline">
+          <p>
+            By default, <code>LinkButton</code>s are not underlined. This is
+            acceptable when the LinkButton is a standalone, interactive element.
+            Underline on hover is encouraged, however, and LinkButtons inline
+            with text content should always be underlined.
+          </p>
           <Library.Demo title="underline:'none' (default)" withSource>
             <LinkButton underline="none">Log in</LinkButton>
           </Library.Demo>
-
           <Library.Demo title="underline:'hover'" withSource>
             <LinkButton
               href="https://www.example.com"
