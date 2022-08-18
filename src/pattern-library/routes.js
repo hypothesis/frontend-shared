@@ -160,7 +160,7 @@ const routes = [
     title: 'LinkButton',
     group: 'navigation',
     component: LinkButtonPage,
-    route: '/input-linkbutton',
+    route: '/navigation-linkbutton',
   },
   {
     route: '/patterns-forms',
