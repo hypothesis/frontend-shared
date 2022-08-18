@@ -10,10 +10,10 @@ import Spinner from './Spinner';
  *
  * @param {HTMLAttributes} props
  */
-const SpinnerOverlayNext = function SpinnerOverlay({ ...HTMLAttributes }) {
+const SpinnerOverlayNext = function SpinnerOverlay({ ...htmlAttributes }) {
   return (
     <Overlay
-      {...HTMLAttributes}
+      {...htmlAttributes}
       variant="light"
       data-composite-component="SpinnerOverlay"
     >

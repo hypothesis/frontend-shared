@@ -11,7 +11,7 @@ const createComponent = (Component, props = {}) => {
 describe('Overlay', () => {
   testPresentationalComponent(Overlay);
 
-  it("Doesn't render if `open` is `false`", () => {
+  it("doesn't render if `open` is `false`", () => {
     const wrapper = createComponent(Overlay, { open: false });
 
     assert.isFalse(wrapper.childAt(0).exists());
