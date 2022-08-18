@@ -77,7 +77,7 @@ export default function IconsPage() {
           <p>
             Icons are often sized relative to the surrounding text. The{' '}
             <code>em</code> spacing value provided by this {"package's"}{' '}
-            tailwind preset allows sizing at <code>1em</code>.
+            Tailwind preset allows sizing at <code>1em</code>.
           </p>
 
           <p>
