@@ -21,6 +21,7 @@ import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
 
 import LinkPage from './components/patterns/navigation/LinkPage';
+import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
 // Legacy pattern-library pages
 import LayoutFoundations from './components/patterns/LayoutFoundations';
@@ -223,7 +224,6 @@ const routes = [
     component: IconButtonPage,
     route: '/input-iconbutton',
   },
-  { title: 'LinkButton', group: 'input' },
   {
     title: 'Panel',
     group: 'layout',
@@ -254,6 +254,12 @@ const routes = [
     group: 'navigation',
     route: '/navigation-link',
     component: LinkPage,
+  },
+  {
+    title: 'LinkButton',
+    group: 'navigation',
+    component: LinkButtonPage,
+    route: '/input-linkbutton',
   },
 ];
 
