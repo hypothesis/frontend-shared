@@ -110,10 +110,15 @@ export default function SpinnerPage() {
         </p>
         <Library.Example title="Usage">
           <Next.Usage componentName="SpinnerOverlay" />
-          <Library.Demo withSource>
+          <Library.Demo>
             <Button onClick={toggleOverlayOpen}>Show overlay</Button>
             {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}
           </Library.Demo>
+          <Next.Code
+            content={`<Button onClick={toggleOverlayOpen}>Show overlay</Button>
+{overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}`}
+            title="Source for spinner-overlay example"
+          />
         </Library.Example>
       </Library.Pattern>
       <Library.Pattern title="Props">
