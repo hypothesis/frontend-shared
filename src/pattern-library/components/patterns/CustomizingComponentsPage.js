@@ -65,9 +65,10 @@ export default function CustomizingComponentsPage() {
                 consideration.
               </p>
               <p>
-                The intention is to allow for extension, not override. There is
-                no guarantee that provided <code>classes</code> {"won't"}{' '}
-                conflict with classes applied by the component.
+                The intention is to allow for extension, not override. in the
+                event of a conflict between the {"component's"} own styling and
+                the classes specified here, there is currently no guarantee of
+                which will take precedence.
               </p>
             </li>
             <li>
