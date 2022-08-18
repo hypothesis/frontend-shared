@@ -10,7 +10,7 @@ const createComponent = (Component, props = {}) => {
 };
 
 describe('Panel', () => {
-  testCompositeComponent(Panel, 'Panel');
+  testCompositeComponent(Panel);
 
   it('renders an icon if one provided to `icon`', () => {
     const wrapper = createComponent(Panel, { icon: EditIcon });
