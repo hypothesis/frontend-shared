@@ -5,7 +5,7 @@ import { SpinnerSpokesIcon } from '../icons';
 /**
  * @typedef SpinnerProps
  * @prop {'sm'|'md'|'lg'} [size='sm']
- * @prop {'text-light'|'text'} [color='text-light']
+ * @prop {'text-light'|'text'|'text-inverted'} [color='text-light']
  */
 
 /**
@@ -20,6 +20,7 @@ const SpinnerNext = function Spinner({ size = 'sm', color = 'text-light' }) {
         {
           'text-color-text-light': color === 'text-light', // default
           'text-color-text': color === 'text',
+          'text-color-text-inverted': color === 'text-inverted',
         },
         {
           'w-em h-em': size === 'sm', // default

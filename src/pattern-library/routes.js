@@ -19,15 +19,14 @@ import InputGroupPage from './components/patterns/input/InputGroupPage';
 
 import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
+import OverlayPage from './components/patterns/layout/OverlayPage';
 
 import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
 // Legacy pattern-library pages
-import LayoutFoundations from './components/patterns/LayoutFoundations';
 
 import FormPatterns from './components/patterns/FormPatterns';
-import ContainerPatterns from './components/patterns/ContainerPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -100,18 +99,6 @@ const routes = [
     group: 'foundations',
     component: CustomizingComponentsPage,
     route: '/customizing-components',
-  },
-  {
-    route: '/foundations-layout',
-    title: 'Layout',
-    component: LayoutFoundations,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-containers',
-    title: 'Containers',
-    component: ContainerPatterns,
-    group: 'patterns',
   },
   {
     route: '/patterns-forms',
@@ -235,6 +222,12 @@ const routes = [
     group: 'layout',
     component: CardPage,
     route: '/layout-card',
+  },
+  {
+    title: 'Overlay',
+    group: 'layout',
+    component: OverlayPage,
+    route: '/layout-overlay',
   },
   {
     title: 'Input',
