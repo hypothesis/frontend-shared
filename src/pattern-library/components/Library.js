@@ -113,7 +113,7 @@ function Section({ children, id, intro, title }) {
  */
 function SectionIntro({ children }) {
   return (
-    <div className="styled-text text-lg space-y-3 leading-relaxed">
+    <div className="styled-text text-base space-y-3 leading-relaxed">
       {children}
     </div>
   );
