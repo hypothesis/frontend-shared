@@ -85,7 +85,8 @@ function PageIntro({ children }) {
 }
 
 /**
- * Render info about a primary section of a page
+ * Render a primary section of a page. Each component documented on a pattern-
+ * library page gets its own section.
  *
  * @param {object} props
  *   @param {Children} props.children
@@ -120,7 +121,7 @@ function SectionIntro({ children }) {
 }
 
 /**
- * Render info about a secondary section of a page
+ * Render a second-level section. e.g. Usage, Props, Status
  *
  * @param {object} props
  *   @param {Children} props.children
@@ -139,7 +140,8 @@ function Pattern({ children, id, title }) {
 }
 
 /**
- * Render information about a tertiary section on a page.
+ * Render content in a third-level section, e.g. documentation
+ * about a specific prop or examples of usage.
  *
  * @param {object} props
  *   @param {Children} props.children
@@ -207,8 +209,8 @@ function DemoButton({ children, onClick, pressed }) {
  *   @param {string} [props.classes] - Extra CSS classes for the demo content's
  *     immediate parent container
  *   @param {boolean} [props.withSource=false] - Should the demo also render the source?
- *   When true, a "Source" tab will be rendered, which will display the JSX
- *   source of the Demo's children
+ *    When true, a "Source" tab will be rendered, which will display the JSX
+ *    source of the Demo's children.
  *   @param {object} [props.style] - Inline styles to apply to the demo container
  *   @param {string} [props.title]
  */
