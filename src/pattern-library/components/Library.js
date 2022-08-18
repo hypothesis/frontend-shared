@@ -14,7 +14,7 @@ import { jsxToHTML } from '../util/jsx-to-string';
  *
  * Example of structure:
  *
- * <Page intro={<p>Some introductory content</p>} title="Elephants">
+ * <Library.Page intro={<p>Some introductory content</p>} title="Elephants">
  *   <p>Any content you want on the page.</p>
  *
  *   <Library.Section title="ComponentName">
@@ -106,7 +106,7 @@ function Section({ children, id, intro, title }) {
 }
 
 /**
- * Page introductory text
+ * Section introductory text
  *
  *  @param {object} props
  *    @param {Children} props.children
@@ -125,7 +125,6 @@ function SectionIntro({ children }) {
  * @param {object} props
  *   @param {Children} props.children
  *   @param {string} [props.id]
- *   @param {Children} [props.intro]
  *   @param {string} props.title
  */
 function Pattern({ children, id, title }) {
@@ -175,7 +174,7 @@ function Example({ children, id, title }) {
  * Render a button to swap between demo and source views in a Demo
  *
  * @param {object} props
- *   @param {import("preact").ComponentChildren} props.children
+ *   @param {Children} props.children
  *   @param {() => void} props.onClick
  *   @param {boolean} props.pressed
  */
@@ -204,7 +203,7 @@ function DemoButton({ children, onClick, pressed }) {
  * rendered Demo content.
  *
  * @param {object} props
- *   @param {import("preact").ComponentChildren} [props.children]
+ *   @param {Children} [props.children]
  *   @param {string} [props.classes] - Extra CSS classes for the demo content's
  *     immediate parent container
  *   @param {boolean} [props.withSource=false] - Should the demo also render the source?
