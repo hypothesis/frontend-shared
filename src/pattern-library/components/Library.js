@@ -149,15 +149,6 @@ function Pattern({ children, id, title }) {
  *   @param {string} [props.title]
  */
 function Example({ children, id, title }) {
-  const kids = toChildArray(children);
-
-  // Extract Demo components out of any children
-  const demos = kids.filter(
-    kid => typeof kid === 'object' && kid?.type === Demo
-  );
-  // And everything else that is not a demo...
-  const notDemos = kids.filter(kid => !demos.includes(kid));
-
   return (
     <div className="space-y-6">
       {title && (
@@ -165,9 +156,7 @@ function Example({ children, id, title }) {
           {title}
         </h4>
       )}
-
-      <div className="space-y-6 px-4">{notDemos}</div>
-      <div className="space-y-16 px-4">{demos}</div>
+      {children}
     </div>
   );
 }
