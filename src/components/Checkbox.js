@@ -39,6 +39,7 @@ const checkboxIcon = registerIcon('checkbox', checkboxSVG);
  * A checkbox component is a combination of an <input> element and a sibling
  * <svg> element that is used for the visual appearance of the checkbox.
  *
+ * @deprecated - Use re-implemented Checkbox component in the input group
  * @param {CheckboxProps} props
  */
 export function Checkbox({
@@ -74,6 +75,7 @@ export function Checkbox({
 }
 
 /**
+ * @deprecated - Use re-implemented Checkbox component in the input group
  * A labeled checkbox input
  *
  * @param {LabeledCheckboxProps} props

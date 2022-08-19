@@ -12,6 +12,7 @@ import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
+import CheckboxPage from './components/patterns/input/CheckboxPage';
 import InputPage from './components/patterns/input/InputPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 
@@ -24,7 +25,6 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
 // Legacy pattern-library pages
 
-import FormPatterns from './components/patterns/FormPatterns';
 import TablePatterns from './components/patterns/TablePatterns';
 import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
@@ -119,7 +119,12 @@ const routes = [
     component: ButtonsPage,
     route: '/input-button',
   },
-  { title: 'Checkbox', group: 'input' },
+  {
+    title: 'Checkbox',
+    group: 'input',
+    component: CheckboxPage,
+    route: '/input-checkbox',
+  },
   {
     title: 'Input',
     group: 'input',
@@ -161,12 +166,6 @@ const routes = [
     group: 'navigation',
     component: LinkButtonPage,
     route: '/navigation-linkbutton',
-  },
-  {
-    route: '/patterns-forms',
-    title: 'Forms',
-    component: FormPatterns,
-    group: 'patterns',
   },
   {
     route: '/patterns-tables',

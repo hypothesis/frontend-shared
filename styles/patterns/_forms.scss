@@ -1,9 +1,0 @@
-@use '../mixins/patterns/forms';
-
-.hyp-label {
-  @include forms.label;
-}
-
-.hyp-checkbox {
-  @include forms.checkbox;
-}
