@@ -28,6 +28,11 @@ const InputNext = function Input({
 
   ...htmlAttributes
 }) {
+  if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
+    console.warn(
+      '`Input` component should have either an `id` or an `aria-label` attribute'
+    );
+  }
   return (
     <input
       {...htmlAttributes}

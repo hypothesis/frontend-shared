@@ -42,7 +42,7 @@ gulp.task(
  * nb. This is only used for unit tests that need CSS to verify accessibility requirements.
  */
 gulp.task('build-test-css', () =>
-  buildCSS(['styles/index.scss'], { tailwindConfig })
+  buildCSS(['styles/test.scss'], { tailwindConfig })
 );
 
 // Some (eg. a11y) tests rely on CSS bundles. We assume that JS will always take
