@@ -1,9 +1,11 @@
 export * from './components/icons';
 export {
+  AspectRatio,
   Scroll,
   ScrollContent,
   ScrollContainer,
   ScrollBox,
+  Thumbnail,
 } from './components/data';
 export { Spinner, SpinnerOverlay } from './components/feedback';
 export {

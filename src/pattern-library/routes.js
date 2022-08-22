@@ -6,8 +6,10 @@ import CustomizingComponentsPage from './components/patterns/CustomizingComponen
 import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
+import AspectRatioPage from './components/patterns/data/AspectRatioPage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
+import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
@@ -26,7 +28,6 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 // Legacy pattern-library pages
 
 import TablePatterns from './components/patterns/TablePatterns';
-import ThumbnailPatterns from './components/patterns/ThumbnailPatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
@@ -98,12 +99,24 @@ const routes = [
     route: '/customizing-components',
   },
 
+  {
+    title: 'AspectRatio',
+    group: 'data',
+    component: AspectRatioPage,
+    route: '/data-aspectratio',
+  },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   {
     title: 'ScrollBox',
     group: 'data',
     component: ScrollBoxPage,
     route: '/data-scrollbox',
+  },
+  {
+    title: 'Thumbnail',
+    group: 'data',
+    component: ThumbnailPage,
+    route: '/data-thumbnail',
   },
   { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
@@ -171,12 +184,6 @@ const routes = [
     route: '/patterns-tables',
     title: 'Tables',
     component: TablePatterns,
-    group: 'patterns',
-  },
-  {
-    route: '/patterns-thumbnails',
-    title: 'Thumbnails',
-    component: ThumbnailPatterns,
     group: 'patterns',
   },
   {
