@@ -1,6 +1,8 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
+import { checkAccessibility } from '../../../test/util/accessibility';
+
 /**
  * @typedef {import('preact').FunctionComponent} FunctionComponent
  */
@@ -73,6 +75,13 @@ export function testCompositeComponent(
         displayName
       );
     });
+
+    it(
+      'should pass a11y checks',
+      checkAccessibility({
+        content: () => createContent(Component),
+      })
+    );
   });
 }
 
@@ -129,6 +138,13 @@ export function testPresentationalComponent(
       assert.isTrue(primaryEl.hasAttribute('data-component'));
       assert.equal(primaryEl.getAttribute('data-component'), displayName);
     });
+
+    it(
+      'should pass a11y checks',
+      checkAccessibility({
+        content: () => createContent(Component),
+      })
+    );
   });
 }
 
@@ -164,6 +180,13 @@ export function testBaseComponent(Component) {
       assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
       assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
     });
+
+    it(
+      'should pass a11y checks',
+      checkAccessibility({
+        content: () => createComponent(Component),
+      })
+    );
   });
 }
 
