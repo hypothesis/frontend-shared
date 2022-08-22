@@ -49,7 +49,28 @@ export default function InputPage() {
           <Library.Example>
             <Library.Demo title="Basic Input" withSource>
               <div className="w-[350px]">
-                <Input placeholder="Placeholder..." />
+                <Input
+                  aria-label="Input example"
+                  placeholder="Placeholder..."
+                />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Accessibility">
+            <p>
+              Hypothesis does not currently have a design pattern for labeling
+              text inputs. However, for accessibility, it is critical that an{' '}
+              <code>Input</code> have either an associated <code>label</code>{' '}
+              element or an <code>aria-label</code> attribute.
+            </p>
+
+            <Library.Demo title="Input with label" withSource>
+              <div className="w-[350px]">
+                <label htmlFor="input-with-label" className="font-semibold">
+                  Label
+                </label>
+                <Input id="input-with-label" placeholder="Placeholder..." />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -84,7 +105,11 @@ export default function InputPage() {
             </p>
             <Library.Demo withSource>
               <div className="w-[350px]">
-                <Input hasError value="something invalid" />
+                <Input
+                  aria-label="Example input"
+                  hasError
+                  value="something invalid"
+                />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -92,7 +117,11 @@ export default function InputPage() {
           <Library.Example title="disabled">
             <Library.Demo withSource>
               <div className="w-[350px]">
-                <Input placeholder="Disabled..." disabled />
+                <Input
+                  aria-label="Example input"
+                  placeholder="Disabled..."
+                  disabled
+                />
               </div>
             </Library.Demo>
           </Library.Example>
