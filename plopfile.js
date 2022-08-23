@@ -1,7 +1,11 @@
+import chalk from 'chalk';
+
 /**
  * Defines a plop (https://plopjs.com/) generator to scaffold out new components
  *
  * Run with `yarn run plop` or `npm run plop`
+ *
+ * @param {import('plop').NodePlopAPI} plop
  */
 export default function (plop) {
   plop.setGenerator('component', {
@@ -31,7 +35,7 @@ export default function (plop) {
         default: false,
       },
     ],
-    actions: function (data) {
+    actions: data => {
       const actionList = [
         {
           type: 'add',
@@ -68,17 +72,31 @@ export default function (plop) {
           path: 'src/pattern-library/components/patterns/{{group}}/{{name}}Page.js',
           templateFile: 'plop-templates/pattern-library-page.hbs',
         });
-        actionList.push(
-          `A pattern-library page has been created for ${data.name}. Don't forget to add an appropriate route entry in './src/pattern-library/routes.js'`
-        );
-        actionList.push(`Suggested route:
-  {
-    title: '${data.name}',
-    group: '${data.group}',
-    component: ${data.name}Page,
-    route: '/${data.group}-${data.name.toLowerCase()}'
-  }`);
       }
+      actionList.push(`${chalk.green('✔')} ${chalk.bold('Next steps:')}
+
+      - [ ] ${chalk.bold('implement')} the component
+      - [ ] write ${chalk.bold('tests')} for the component
+      - [ ] ensure that ${chalk.bold('exports')} are appropriate in
+          - \`src/components/${data.group}/index.js\` and
+          - \`src/next.js\`
+      - [ ] ${chalk.bold(
+        'test'
+      )} against an external application (client or lms)
+      - [ ] add ${chalk.bold(
+        'documentation'
+      )} to a new or existing pattern-library page`);
+      if (data.addPatternLibraryPage) {
+        actionList.push(`          - Add route to \`src/pattern-library/routes.js\`, e.g.:
+              {
+                title: '${data.name}',
+                group: '${data.group}',
+                component: ${data.name}Page,
+                route: '/${data.group}-${data.name.toLowerCase()}'
+              }
+  `);
+      }
+
       return actionList;
     },
   });
