@@ -399,7 +399,10 @@ export default function ButtonPage() {
           </p>
           <Library.Example>
             <Library.Demo withSource>
-              <ButtonUnstyled classes="focus-visible-ring bg-slate-0 p-2">
+              <ButtonUnstyled
+                classes="focus-visible-ring bg-slate-0 p-2"
+                onClick={() => alert('You clicked it!')}
+              >
                 My custom button
               </ButtonUnstyled>
             </Library.Demo>

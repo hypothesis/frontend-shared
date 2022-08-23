@@ -7,12 +7,13 @@ import ButtonBase from './ButtonBase';
 /**
  * @typedef {import('../../types').PresentationalProps} CommonProps
  * @typedef {import('./ButtonBase').ButtonCommonProps} ButtonCommonProps
+ * @typedef {import('./ButtonBase').HTMLButtonAttributes} HTMLButtonAttributes
  */
 
 /**
  * Render a button with common attributes but no styling
  *
- * @param {CommonProps & ButtonCommonProps} props
+ * @param {CommonProps & ButtonCommonProps & HTMLButtonAttributes} props
  */
 const ButtonUnstyledNext = function ButtonUnstyled({
   children,
