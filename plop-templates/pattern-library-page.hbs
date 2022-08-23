@@ -1,0 +1,63 @@
+import { {{name}} } from '../../../../next';
+import Library from '../../Library';
+import Next from '../../LibraryNext';
+
+export default function {{name}}Page() {
+  return (
+    <Library.Page title="{{name}}" intro={<p>TODO</p>}>
+      <Library.Section
+        title="{{name}}"
+        intro={<p><code>{{name}}</code> is a {{category}} component</p>}
+      >
+        <Library.Pattern title="Status">
+          <p>
+            <code>{{name}}</code> is a {{category}} component...
+          </p>
+          <Library.Example title="Migrating to this component">
+            <Next.Changelog>
+              <Next.ChangelogItem status="breaking">
+                Prop name:{' '}
+                <s>
+                  <code>oldName</code>
+                </s>{' '}
+                ➜ <code>newName</code>
+              </Next.ChangelogItem>
+              <Next.ChangelogItem status="changed">
+                This changed...
+              </Next.ChangelogItem>
+              <Next.ChangelogItem status="added">
+                This was added...
+              </Next.ChangelogItem>
+              <Next.ChangelogItem status="deprecated">
+                The legacy implementation of{' '}
+                <s>
+                  <code>SomeComponent</code>
+                </s>{' '}
+                is deprecated...
+              </Next.ChangelogItem>
+            </Next.Changelog>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Usage">
+          <Next.Usage componentName="{{name}}" />
+          <Library.Example>
+            <Library.Demo withSource>
+              <{{name}}>Example of {{name}}</{{name}}>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Props">
+          <Library.Example title="size">
+            <Library.Demo withSource>
+              <{{name}} size="sm">Small (sm)</{{name}}>
+              <{{name}} size="md">Medium (md) (default)</{{name}}>
+              <{{name}} size="lg">Large (lg)</{{name}}>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+      </Library.Section>
+    </Library.Page>
+  );
+}
