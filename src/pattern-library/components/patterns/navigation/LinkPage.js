@@ -1,4 +1,4 @@
-import { Link, LinkUnstyled } from '../../../../next';
+import { Link, LinkBase } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
@@ -9,8 +9,8 @@ export default function LinkPage() {
       intro={
         <p>
           <code>Link</code> is a presentational component for anchor (
-          <code>a</code>) elements. A <code>LinkUnstyled</code> component is
-          also available.
+          <code>a</code>) elements. A <code>LinkBase</code> base presentational
+          component is also available.
         </p>
       }
     >
@@ -41,13 +41,13 @@ export default function LinkPage() {
                 <s>
                   <code>className</code>
                 </s>{' '}
-                ➜ no longer supported; use <code>LinkUnstyled</code> instead
+                ➜ no longer supported; use <code>LinkBase</code> instead
               </Next.ChangelogItem>
               <Next.ChangelogItem status="added">
                 <code>color</code>, <code>underline</code> props
               </Next.ChangelogItem>
               <Next.ChangelogItem status="added">
-                <code>LinkUnstyled</code> component
+                <code>LinkBase</code> component
               </Next.ChangelogItem>
             </Next.Changelog>
           </Library.Example>
@@ -125,33 +125,63 @@ export default function LinkPage() {
       </Library.Section>
 
       <Library.Section
-        title="LinkUnstyled"
+        title="LinkBase"
         intro={
-          <p>
-            <code>LinkUnstyled</code> is a presentational component. It does not
-            apply any styling and can be used for customization.
-          </p>
+          <>
+            <p>
+              <code>LinkBase</code> is a base presentational component that
+              allows style customization of links.
+            </p>
+            <p>
+              <code>LinkBase</code> applies minimal common styling. Turn off all
+              styling by setting the <code>unstyled</code> prop.
+            </p>
+          </>
         }
       >
         <Library.Pattern title="Status">
           <p>
-            <code>LinkUnstyled</code> is a new component.
+            <code>LinkBase</code> is a new component.
           </p>
         </Library.Pattern>
+
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="LinkUnstyled" />
-          <p>
-            To enable a focus ring consistent with other interactive elements,
-            use the <code>.focus-visible-ring</code> utility class.
-          </p>
+          <Next.Usage componentName="LinkBase" />
+
           <Library.Example>
-            <Library.Demo withSource>
-              <LinkUnstyled
-                href="https://www.example.com"
-                classes="focus-visible-ring bg-slate-0 p-2"
+            <p>
+              This example shows a <code>LinkBase</code> with some additional{' '}
+              <code>classes</code>. These <code>classes</code> are appended to
+              the {"component's"} base styling classes.
+            </p>
+
+            <Library.Demo
+              title="LinkBase with some additional styles"
+              withSource
+            >
+              <LinkBase
+                classes="border hover:underline"
+                onClick={() => alert('You clicked the link')}
               >
-                A link to somewhere
-              </LinkUnstyled>
+                Click me
+              </LinkBase>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+        <Library.Pattern title="Props">
+          <Library.Example title="unstyled">
+            <p>
+              Set <code>unstyled</code> to style your link from scratch.{' '}
+              <em>Only</em> the classes in <code>classes</code> are applied.
+            </p>
+            <Library.Demo title="LinkBase" withSource>
+              <LinkBase
+                classes="border hover:underline"
+                onClick={() => alert('You clicked the link')}
+                unstyled
+              >
+                Click me
+              </LinkBase>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>

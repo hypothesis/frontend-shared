@@ -47,9 +47,9 @@ const IconButtonNext = function IconButton({
   return (
     <ButtonBase
       {...htmlAttributes}
-      className={classnames(
-        'focus-visible-ring transition-colors whitespace-nowrap rounded-sm',
-        'flex items-center justify-center gap-x-2',
+      classes={classnames(
+        // NB: Base classes are applied by ButtonBase
+        'justify-center gap-x-2',
         {
           // variant
           'text-grey-7 bg-transparent enabled:hover:text-grey-9 aria-pressed:text-brand aria-expanded:text-brand':

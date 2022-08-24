@@ -22,13 +22,22 @@ export default function UsingComponentsPage() {
       <Library.Pattern title="Component categories">
         <ul>
           <li>
-            <strong>Simple components</strong>: Opinionated, simple components
-            that apply design patterns. Example: <code>Spinner</code>.
-          </li>
-          <li>
             <strong>Presentational components</strong>: Composable components
             with customization flexibility. Example: <code>Button</code>,{' '}
-            <code>Link</code>.
+            <code>Link</code>. This is the most common category of component.
+            <ul>
+              <li>
+                <strong>Base presentational components</strong>: A type of
+                presentational component that only applies minimal, core styles
+                for the {"component's"} primary element. This adds flexibility
+                for style customization. Example: <code>ButtonBase</code>,{' '}
+                <code>LinkBase</code>.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Simple components</strong>: Opinionated, simple components
+            that apply design patterns. Example: <code>Spinner</code>.
           </li>
           <li>
             <strong>Composite components</strong>: These components are
@@ -70,7 +79,7 @@ export default function UsingComponentsPage() {
  * @prop {import('preact').ComponentChildren} [children]
  * @prop {string|string[]} [classes] - Optional extra CSS classes to append to the
  *   component's default classes
- * @prop {never} [className] - Use variants, props, unstyled component (when
+ * @prop {never} [className] - Use variants, props, base component (when
  *   available) or classes instead
  * @prop {import('preact').Ref<HTMLElement>} [elementRef] - Ref for component's
  *   outermost element.
@@ -84,6 +93,16 @@ export default function UsingComponentsPage() {
             applicable to their outermost element.
           </p>
         </Library.Example>
+
+        <Library.Example title="Base presentational components">
+          <p>
+            <strong>Base presentational components</strong> extend
+            presentational component props with an optional boolean{' '}
+            <code>unstyled</code> prop. When set, the component will have no
+            styling at all, allowing for complete customization.
+          </p>
+        </Library.Example>
+
         <Library.Example title="Composite components">
           <p>
             <strong>Composite components</strong> accept the same common props

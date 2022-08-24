@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { downcastRef } from '../../util/typing';
 
 /**
@@ -30,7 +31,8 @@ import { downcastRef } from '../../util/typing';
 const ButtonBaseNext = function ButtonBase({
   elementRef,
   children,
-  className,
+  classes,
+  unstyled = false,
 
   expanded,
   pressed,
@@ -56,8 +58,19 @@ const ButtonBaseNext = function ButtonBase({
     <button
       role={role ?? 'button'}
       {...ariaProps}
+      data-base-component="ButtonBase"
+      /* data-component will be overwritten unless this component is used directly */
+      data-component="ButtonBase"
       {...htmlAttributes}
-      className={className}
+      className={classNames(
+        {
+          'focus-visible-ring rounded-sm': !unstyled,
+          'transition-colors': !unstyled,
+          // Set layout for button content
+          'whitespace-nowrap flex items-center': !unstyled,
+        },
+        classes
+      )}
       title={title}
       ref={downcastRef(elementRef)}
     >

@@ -1,4 +1,4 @@
-import { Button, IconButton, ButtonUnstyled } from '../../../../next';
+import { Button, IconButton, ButtonBase } from '../../../../next';
 import {
   CancelIcon,
   CheckIcon,
@@ -64,7 +64,7 @@ export default function ButtonPage() {
                   <code>{"'dark'"}</code>:
                 </s>{' '}
                 This is no longer a standard variant ➜ Use{' '}
-                <code>ButtonUnstyled</code> instead.
+                <code>ButtonBase</code> instead.
               </Next.ChangelogItem>
               <Next.ChangelogItem status="breaking">
                 Prop: <code>variant</code> default value{' '}
@@ -207,7 +207,7 @@ export default function ButtonPage() {
                   <code>{"'light'"}</code>:
                 </s>{' '}
                 This is no longer a standard variant ➜ Use{' '}
-                <code>ButtonUnstyled</code> instead
+                <code>ButtonBase</code> instead
               </Next.ChangelogItem>
               <Next.ChangelogItem status="breaking">
                 Prop: <code>variant</code> default value{' '}
@@ -271,7 +271,7 @@ export default function ButtonPage() {
             </p>
 
             <p>
-              For customization, use <code>ButtonUnstyled</code>.
+              For customization, use <code>ButtonBase</code>.
             </p>
             <Library.Demo title="variant: 'secondary' (default)" withSource>
               <IconButton
@@ -383,28 +383,70 @@ export default function ButtonPage() {
       </Library.Section>
 
       <Library.Section
-        title="ButtonUnstyled"
+        title="ButtonBase"
         intro={
-          <p>
-            <code>ButtonUnstyled</code> is a presentational component that does
-            not apply any styling. It can be used for custom buttons.
-          </p>
+          <>
+            <p>
+              <code>ButtonBase</code> is a base presentational component that
+              allows style customization of buttons.
+            </p>
+            <p>
+              <code>ButtonBase</code> applies minimal common styling. Turn off
+              all styling by setting the <code>unstyled</code> prop.
+            </p>
+          </>
         }
       >
-        <Library.Pattern title="Usage">
-          <Next.Usage componentName="ButtonUnstyled" />
+        <Library.Pattern title="Status">
           <p>
-            To enable a focus ring consistent with other interactive elements,
-            use the <code>.focus-visible-ring</code> utility class.
+            <code>ButtonBase</code> is a new component.
           </p>
+        </Library.Pattern>
+
+        <Library.Pattern title="Usage">
+          <Next.Usage componentName="ButtonBase" />
+
           <Library.Example>
-            <Library.Demo withSource>
-              <ButtonUnstyled
-                classes="focus-visible-ring bg-slate-0 p-2"
-                onClick={() => alert('You clicked it!')}
+            <p>
+              <code>ButtonBase</code> applies color transition and layout basic
+              styling, but no colors, padding, hover or state styling.
+            </p>
+            <p>
+              This example shows a <code>ButtonBase</code> with some additional{' '}
+              <code>classes</code>. These <code>classes</code> are appended to
+              the {"component's"} base styling classes.
+            </p>
+
+            <Library.Demo
+              title="ButtonBase with some additional styles"
+              withSource
+            >
+              <ButtonBase
+                classes="border bg-grey-0 hover:bg-grey-1"
+                onClick={() => alert('You clicked the button')}
               >
-                My custom button
-              </ButtonUnstyled>
+                <CheckIcon />
+                Click me
+              </ButtonBase>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+        <Library.Pattern title="Props">
+          <Library.Example title="unstyled">
+            <p>
+              Set <code>unstyled</code> to style your button from scratch. This
+              example shows an unstyled <code>ButtonBase</code> with the same{' '}
+              <code>classes</code> as above. <em>Only</em> the classes in{' '}
+              <code>classes</code> are applied.
+            </p>
+            <Library.Demo title="ButtonBase unstyled" withSource>
+              <ButtonBase
+                classes="border bg-grey-0 hover:bg-grey-1"
+                onClick={() => alert('You clicked the button')}
+                unstyled
+              >
+                <CheckIcon /> Click me
+              </ButtonBase>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
