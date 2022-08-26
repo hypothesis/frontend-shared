@@ -1,13 +1,31 @@
 {
-  "extends": ["hypothesis", "plugin:jsx-a11y/recommended"],
+  "extends": [
+    "hypothesis",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
     // Replaced by TypeScript's static checking.
-    "react/prop-types": "off"
-  },
-  "parserOptions": {
-    "sourceType": "module"
+    "react/prop-types": "off",
+    // Upgrade TS rules from warning to error.
+    "@typescript-eslint/no-unused-vars": "error",
+
+    // Disable TS rules that we dislike.
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-this-alias": "off",
+
+    // Enforce consistency in cases where TypeScript supports old and new
+    // syntaxes for the same thing.
+    //
+    // - Require `<var> as <type>` for casts
+    // - Require `import type` for type imports. The corresponding rule for
+    //   exports is not enabled yet because that requires setting up type-aware
+    //   linting.
+    "@typescript-eslint/consistent-type-assertions": "error",
+    "@typescript-eslint/consistent-type-imports": "error"
   }
 }
