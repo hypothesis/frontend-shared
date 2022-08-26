@@ -65,7 +65,7 @@ export { default as listOrdered } from '../images/icons/list-ordered.svg';
 export { default as listUnordered } from '../images/icons/list-unordered.svg';
 export { default as list } from '../images/icons/list.svg';
 export { default as lock } from '../images/icons/lock.svg';
-export { default as lockFilled } from '../images/icons/lock-filled.svg';
+export { default as lockFilled } from '../images/icons/lock-alt-filled.svg';
 export { default as logout } from '../images/icons/logout.svg';
 export { default as logo } from '../images/icons/logo.svg';
 export { default as note } from '../images/icons/note.svg';
