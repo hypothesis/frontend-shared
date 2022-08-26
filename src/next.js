@@ -10,7 +10,7 @@ export {
 export { Spinner, SpinnerOverlay } from './components/feedback';
 export {
   Button,
-  ButtonUnstyled,
+  ButtonBase,
   Checkbox,
   IconButton,
   Input,
@@ -25,4 +25,4 @@ export {
   Overlay,
   Panel,
 } from './components/layout';
-export { Link, LinkUnstyled, LinkButton } from './components/navigation/';
+export { Link, LinkBase, LinkButton } from './components/navigation/';

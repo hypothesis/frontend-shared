@@ -41,9 +41,19 @@ export default function CustomizingComponentsPage() {
               intended to be adjusted.
             </li>
             <li>
-              Use an <strong>unstyled component</strong>, e.g.{' '}
-              <code>LinkUnstyled</code>. This is appropriate if you want to do
-              considerable customization of a component.
+              Use a <strong>base presentational component</strong>, e.g.{' '}
+              <code>LinkBase</code>. This will only apply minimal, base styles.
+              Extend with the <code>classes</code> prop.
+            </li>
+            <li>
+              Use a{' '}
+              <strong>
+                base presentational component, with the <code>unstyled</code>
+                boolean prop set
+              </strong>
+              . This will prevent the component from setting <i>any</i> styles,
+              allowing you to start from scratch with the <code>classes</code>{' '}
+              prop.
             </li>
           </ol>
         </Library.Example>
@@ -56,13 +66,12 @@ export default function CustomizingComponentsPage() {
           <ol>
             <li>
               <p>
-                Use the{' '}
                 <strong>
-                  <code>classes</code> prop
-                </strong>
-                . This allows authors to append arbitrary classes to the{' '}
-                {"component's"} outermost element but should be used with
-                consideration.
+                  Extend presentational components with the <code>classes</code>{' '}
+                  prop
+                </strong>{' '}
+                (using the <code>classes</code> prop on base presentational
+                components is always OK).
               </p>
               <p>
                 The intention is to allow for extension, not override. in the
@@ -84,9 +93,10 @@ export default function CustomizingComponentsPage() {
             </li>
           </ol>
           <p>
-            Any time you use <code>classes</code> and especially if you use{' '}
-            <code>!important</code> hacks, raise the issue. It may be that the
-            component needs adjustment, or that a new component is called for.
+            Any time you use <code>classes</code> on a presentational component
+            and especially if you use <code>!important</code> hacks, raise the
+            issue. It may be that the component needs adjustment, or that a new
+            component is called for.
           </p>
         </Library.Example>
       </Library.Pattern>

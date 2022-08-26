@@ -151,34 +151,52 @@ export function testPresentationalComponent(
 /**
  * Set of tests common to all base components
  *
- * @param {FunctionComponent} Component
+ * @param {import('preact').FunctionComponent} Component
+ * @param {CommonTestOpts} opts
  */
-export function testBaseComponent(Component) {
-  describe('Common base component functionality', () => {
+export function testBaseComponent(
+  Component,
+  { componentName, createContent = createComponent, elementSelector } = {}
+) {
+  const displayName = componentName ?? Component.displayName ?? Component.name;
+  describe(`Common base presentational functionality for ${displayName}`, () => {
     it('applies `ref` via `elementRef`', () => {
       const elementRef = createRef();
-      createComponent(Component, { elementRef });
+      createContent(Component, { elementRef });
 
       assert.instanceOf(elementRef.current, Node);
     });
 
-    it('applies supplied `className`', () => {
-      const wrapper = createComponent(Component, { className: 'testClass' });
+    it('applies extra classes to primary element', () => {
+      const wrapper = createContent(Component, { classes: 'foo bar' });
+      const primaryEl = primaryElement(wrapper, elementSelector);
 
-      const allClasses = [...wrapper.childAt(0).getDOMNode().classList];
+      const allClasses = [...primaryEl.classList];
+      assert.equal(allClasses.at(-2), 'foo');
+      assert.equal(allClasses.at(-1), 'bar');
+    });
+
+    it('does not apply base classes if `unstyled` is set', () => {
+      const wrapper = createContent(Component, {
+        classes: 'testClass',
+        unstyled: true,
+      });
+
+      const allClasses = [
+        ...primaryElement(wrapper, elementSelector).classList,
+      ];
 
       assert.deepEqual(allClasses, ['testClass']);
     });
 
-    it('applies HTML attributes to outer element', () => {
-      const wrapperOuterEl = createComponent(Component, {
+    it('applies HTML attributes to primary element', () => {
+      const wrapper = createContent(Component, {
         'data-testid': 'foo-container',
-      })
-        .childAt(0)
-        .getDOMNode();
+      });
+      const primaryEl = primaryElement(wrapper, elementSelector);
 
-      assert.isTrue(wrapperOuterEl.hasAttribute('data-testid'));
-      assert.equal(wrapperOuterEl.getAttribute('data-testid'), 'foo-container');
+      assert.isTrue(primaryEl.hasAttribute('data-testid'));
+      assert.equal(primaryEl.getAttribute('data-testid'), 'foo-container');
     });
 
     it(

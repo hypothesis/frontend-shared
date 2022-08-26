@@ -31,8 +31,8 @@ const LinkNext = function Link({
   return (
     <LinkBase
       {...htmlAttributes}
-      className={classnames(
-        'focus-visible-ring rounded-sm',
+      classes={classnames(
+        // NB: Base classes are applied by LinkBase
         {
           // color
           'text-brand hover:text-brand-dark': color === 'brand', // default

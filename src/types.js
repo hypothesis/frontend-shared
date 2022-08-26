@@ -5,7 +5,7 @@
  * @prop {import('preact').ComponentChildren} [children]
  * @prop {string|string[]} [classes] - Optional extra CSS classes to append to the
  *   component's default classes
- * @prop {never} [className] - Use variants, props, unstyled component (when
+ * @prop {never} [className] - Use variants, props, base component (when
  *   available) or `classes` instead
  * @prop {import('preact').Ref<HTMLElement>} [elementRef] - Ref for component's
  *   outermost element.
@@ -19,15 +19,9 @@
  */
 
 /**
- * Props common to Base, abstract components. These are not part of the
- * package API.
+ * Props common to Base components.
  *
- * @typedef BaseProps
- * @prop {import('preact').ComponentChildren} [children]
- * @prop {string} className - Base components require a className for base
- *   styling.
- * @prop {never} [classes] - Use `className` instead
- * @prop {import('preact').Ref<HTMLElement>} [elementRef]
+ * @typedef {PresentationalProps & { unstyled?:boolean } } BaseProps
  */
 
 /**

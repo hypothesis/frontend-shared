@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 import { downcastRef } from '../../util/typing';
 
 /**
@@ -6,21 +8,28 @@ import { downcastRef } from '../../util/typing';
  */
 
 /**
- * Base component for Link components. Applies common attributes.
+ * Base component for Link components. Applies common attributes and styles.
  *
  * @param {BaseProps & HTMLAnchorAttributes} props
  */
 const LinkBaseNext = function LinkBase({
   children,
-  className,
+  classes,
   elementRef,
+  unstyled = false,
 
   ...htmlAttributes
 }) {
   return (
     <a
+      data-base-component="LinkBase"
+      /* data-component will be overwritten unless this component is used directly */
+      data-component="LinkBase"
       {...htmlAttributes}
-      className={className}
+      className={classnames(
+        { 'focus-visible-ring rounded-sm': !unstyled },
+        classes
+      )}
       rel="noopener noreferrer"
       ref={downcastRef(elementRef)}
     >
