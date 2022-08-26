@@ -2,18 +2,18 @@ import classnames from 'classnames';
 
 import { SpinnerSpokesIcon } from '../icons';
 
-/**
- * @typedef SpinnerProps
- * @prop {'sm'|'md'|'lg'} [size='sm']
- * @prop {'text-light'|'text'|'text-inverted'} [color='text-light']
- */
+type SpinnerProps = {
+  size?: 'sm' | 'md' | 'lg';
+  color?: 'text-light' | 'text' | 'text-inverted';
+};
 
 /**
  * Style a spinner icon.
- *
- * @param {SpinnerProps} props
  */
-const SpinnerNext = function Spinner({ size = 'sm', color = 'text-light' }) {
+const SpinnerNext = function Spinner({
+  size = 'sm',
+  color = 'text-light',
+}: SpinnerProps) {
   return (
     <SpinnerSpokesIcon
       className={classnames(
