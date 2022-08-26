@@ -64,7 +64,7 @@
     "preact": "^10.4.0"
   },
   "scripts": {
-    "build-lib": "babel src --out-dir lib/ --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
+    "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
     "build": "yarn build-lib && tsc --build src/tsconfig.json",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint .",
