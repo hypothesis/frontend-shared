@@ -14,16 +14,16 @@ export default function CustomizingComponentsPage() {
         </>
       }
     >
-      <Library.Pattern title="Step 1: Stop and reflect">
-        <p>
-          Components in this library are designed to be flexible within the
-          bounds of established design patterns. Certain guard rails exist on
-          purpose. Reflect before you customize!
-        </p>
-      </Library.Pattern>
+      <Library.Section title="How to customize a component">
+        <Library.Pattern title="Step 1: Stop and reflect">
+          <p>
+            Components in this library are designed to be flexible within the
+            bounds of established design patterns. Certain guard rails exist on
+            purpose. Reflect before you customize!
+          </p>
+        </Library.Pattern>
 
-      <Library.Pattern title="How to customize a component">
-        <Library.Example title="Intended customization">
+        <Library.Pattern title="Supported customization">
           <p>
             The following options represent flexibility purposely baked into
             components.
@@ -56,9 +56,9 @@ export default function CustomizingComponentsPage() {
               prop.
             </li>
           </ol>
-        </Library.Example>
+        </Library.Pattern>
 
-        <Library.Example title="Stronger medicine">
+        <Library.Pattern title="Stronger medicine">
           <p>
             For use if the above options do not satisfy the need. Tread with
             care.
@@ -98,8 +98,8 @@ export default function CustomizingComponentsPage() {
             issue. It may be that the component needs adjustment, or that a new
             component is called for.
           </p>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.Pattern>
+      </Library.Section>
     </Library.Page>
   );
 }
