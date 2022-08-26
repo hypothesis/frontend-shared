@@ -19,7 +19,7 @@
     }
 
     :where(li):not(:where([class~='unstyled-text'] *)) {
-      @apply leading-relaxed;
+      @apply leading-relaxed space-y-2;
     }
   }
 }
