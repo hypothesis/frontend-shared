@@ -15,10 +15,16 @@ export default function SortIcon(props) {
       aria-hidden="true"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M12 7a1 1 0 0 1 1 1v4.585l1.293-1.292a1 1 0 0 1 1.32-.083l.094.083a1 1 0 0 1 .083 1.32l-.083.094-3 3a1 1 0 0 1-1.32.083l-.094-.083-3-3a1 1 0 0 1 1.32-1.497l.094.083L11 12.585V8a1 1 0 0 1 1-1ZM4.613.21l.094.083 3 3a1 1 0 0 1-1.32 1.497l-.094-.083L5 3.415V8a1 1 0 1 1-2 0V3.415L1.707 4.707a1 1 0 0 1-1.32.083l-.094-.083a1 1 0 0 1-.083-1.32l.083-.094 3-3A1 1 0 0 1 4.613.21Z"
-      />
+      <g fill-rule="evenodd" fill="none">
+        <path d="M0 0h16v16H0z" />
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 9V2v7zM1 5l4-4 4 4m2 2v7-7zm-4 4 4 4 4-4"
+        />
+      </g>
     </svg>
   );
 }

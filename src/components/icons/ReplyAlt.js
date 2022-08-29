@@ -1,11 +1,11 @@
 // This file was auto-generated using scripts/generate-icons.js
 
 /**
- * Icon generated from lock-filled.svg
+ * Icon generated from reply-alt.svg
  *
  * @param {import('preact').JSX.SVGAttributes<SVGSVGElement>} props
  */
-export default function LockFilledIcon(props) {
+export default function ReplyAltIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ export default function LockFilledIcon(props) {
     >
       <path
         fill="currentColor"
-        d="M15 7a1 1 0 0 1 .993.883L16 8v7a1 1 0 0 1-.883.993L15 16H1a1 1 0 0 1-.993-.883L0 15V8a1 1 0 0 1 .883-.993L1 7h14ZM8 0a5 5 0 0 1 4.995 4.783L13 5v.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V5a3 3 0 0 0-5.995-.176L5 5v.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V5a5 5 0 0 1 5-5Z"
+        d="M7.707.293a1 1 0 0 1 .083 1.32l-.083.094L5.415 4H8a6 6 0 1 1 0 12 1 1 0 0 1 0-2 4 4 0 1 0 0-8H5.415l2.292 2.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083-4-4a1 1 0 0 1-.083-1.32l.083-.094 4-4a1 1 0 0 1 1.414 0Z"
       />
     </svg>
   );
