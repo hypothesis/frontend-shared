@@ -5,6 +5,7 @@ export {
   ScrollContent,
   ScrollContainer,
   ScrollBox,
+  DataTable,
   Table,
   TableHead,
   TableBody,
