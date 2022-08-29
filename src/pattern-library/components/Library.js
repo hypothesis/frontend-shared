@@ -96,7 +96,7 @@ function PageIntro({ children }) {
  */
 function Section({ children, id, intro, title }) {
   return (
-    <section className="pb-16 space-y-8">
+    <section className="my-16 space-y-8">
       <h2 className="text-3xl font-bold" id={id}>
         {title}
       </h2>
@@ -156,7 +156,7 @@ function Example({ children, id, title }) {
           {title}
         </h4>
       )}
-      {children}
+      <div className="space-y-6 px-4">{children}</div>
     </div>
   );
 }
@@ -218,7 +218,7 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
     );
   });
   return (
-    <div className="space-y-2 p-4">
+    <div className="space-y-2">
       <div className="flex items-center">
         <div className="py-2 grow">
           <h5 className="text-lg italic text-slate-7 font-light">{title}</h5>

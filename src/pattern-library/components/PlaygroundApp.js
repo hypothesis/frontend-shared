@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { Link, SvgIcon } from '../../';
+import { Link, LogoIcon } from '../../next';
 import Library from './Library';
 
 import { componentGroups, getRoutes } from '../routes';
@@ -121,9 +121,9 @@ export default function PlaygroundApp({
       <div className="md:grid md:grid-cols-[2fr_5fr]">
         <div className="md:h-screen md:sticky md:top-0 overflow-scroll">
           <div className="md:sticky md:top-0 h-16 px-6 flex items-center bg-slate-0 border-b">
-            <h1>
-              <Link href={baseURL + '/'} classes="grow flex gap-x-2 text-lg">
-                <SvgIcon name="logo" />
+            <h1 className="text-lg">
+              <Link href={baseURL + '/'} classes="grow flex gap-x-2">
+                <LogoIcon />
                 Component Library
               </Link>
             </h1>
