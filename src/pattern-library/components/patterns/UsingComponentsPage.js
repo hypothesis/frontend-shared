@@ -30,13 +30,11 @@ export default function UsingComponentsPage() {
                 Presentational components
               </strong>{' '}
               are composable components that encapsulate design patterns and UI
-              behavior
+              behavior, with limited styling customization
             </li>
             <li>
-              <strong className="font-semibold">
-                Base presentational components
-              </strong>{' '}
-              are presentational components that provide more customization
+              <strong className="font-semibold">Base components</strong> are
+              similar to presentational components but allow more styling
               flexibility
             </li>
             <li>
@@ -89,37 +87,43 @@ export default function UsingComponentsPage() {
             rendered by the component.
           </p>
         </Library.Pattern>
+      </Library.Section>
 
-        <Library.Pattern title="Base presentational components">
-          <p>
-            <strong>Base presentational components</strong> are similar to
-            presentational components, but allow more extensive customization.
-          </p>
-          <p>
-            Example: <code>ButtonBase</code>, <code>LinkBase</code>.
-          </p>
+      <Library.Section title="Base components">
+        <p>
+          <strong>Base components</strong> are similar to presentational
+          components, but apply minimal styling. They are intended for use cases
+          that require customization flexibility.
+        </p>
+        <p>
+          Example: <code>ButtonBase</code>, <code>LinkBase</code>.
+        </p>
 
+        <p>
+          By default, base components apply some core styling.{' '}
+          <strong>Base styling might include</strong> things like basic layout
+          (e.g. establishing a <code>flex</code> layout), focus rings,
+          establishing transition properties (but not the property values of the
+          transitioned properties) or preventing text from wrapping inside a
+          button.
+        </p>
+        <p>
+          However, <strong>base styling does not include</strong> things like
+          colors, dimensions (padding, spacing, gaps, margins or sizing), text
+          styling (size, style, weight, decoration) or borders.
+        </p>
+        <p>
+          Alternately, base components can be configured to disable all base
+          styles.
+        </p>
+
+        <Library.Pattern title="Props API">
           <p>
-            By default, base presentational components apply some core styling.{' '}
-            <strong>Base styling might include</strong> things like basic layout
-            (e.g. establishing a <code>flex</code> layout), focus rings,
-            establishing transition <em>properties</em> or preventing text from
-            wrapping inside a button. Base presentational components can be
-            configured to disable all base styles.
+            <strong>Base components</strong> extend presentational component
+            props with an optional boolean <code>unstyled</code> prop. When set,
+            the component will have no styling at all, allowing for complete
+            customization.
           </p>
-          <p>
-            However, <strong>base styling does not include</strong> things like
-            colors, dimensions (padding, spacing, gaps, margins or sizing), text
-            styling (size, style, weight, decoration) or borders.
-          </p>
-          <Library.Example title="Props API">
-            <p>
-              <strong>Base presentational components</strong> extend
-              presentational component props with an optional boolean{' '}
-              <code>unstyled</code> prop. When set, the component will have no
-              styling at all, allowing for complete customization.
-            </p>
-          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
