@@ -20,8 +20,10 @@ export default function LibraryHome() {
         </li>
         <li>
           <strong>Components</strong> document the{' '}
-          <Link href="https://preactjs.com/">Preact</Link> components that make
-          up this {"package's"} core content.
+          <Link underline="always" href="https://preactjs.com/">
+            Preact
+          </Link>{' '}
+          components that make up this {"package's"} core content.
         </li>
         <li>
           <strong>Legacy</strong> patterns and components are also documented,
