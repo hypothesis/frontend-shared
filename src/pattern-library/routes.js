@@ -7,6 +7,7 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import AspectRatioPage from './components/patterns/data/AspectRatioPage';
+import DataTablePage from './components/patterns/data/DataTablePage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
@@ -105,6 +106,12 @@ const routes = [
     component: AspectRatioPage,
     route: '/data-aspectratio',
   },
+  {
+    title: 'DataTable',
+    group: 'data',
+    component: DataTablePage,
+    route: '/data-table',
+  },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   {
     title: 'ScrollBox',
@@ -118,7 +125,6 @@ const routes = [
     component: ThumbnailPage,
     route: '/data-thumbnail',
   },
-  { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   {
     title: 'Spinner',

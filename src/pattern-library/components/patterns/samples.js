@@ -220,3 +220,58 @@ export function sampleTableContent() {
     ],
   };
 }
+
+export function nabokovNovels() {
+  return [
+    {
+      title: 'Машенька',
+      year: '1926',
+      language: 'Russian',
+      translatedTitle: 'Mary',
+    },
+    {
+      title: 'Король, дама, валет',
+      year: '1928',
+      language: 'Russian',
+      translatedTitle: 'King, Queen, Knave',
+    },
+    {
+      title: 'Защита Лужина',
+      year: '1930',
+      language: 'Russian',
+      translatedTitle: 'The Defense',
+    },
+    {
+      title: 'Соглядатай',
+      year: '1930',
+      language: 'Russian',
+      translatedTitle: 'The Eye',
+    },
+    {
+      title: 'The Real Life of Sebastian Knight',
+      year: '1941',
+      language: 'English',
+    },
+    {
+      title: 'Bend Sinister',
+      year: '1947',
+      language: 'English',
+    },
+    {
+      title: 'Pale Fire',
+      year: '1965',
+      language: 'English',
+    },
+    {
+      title: 'Подвиг',
+      year: '1932',
+      language: 'Russian',
+      translatedTitle: 'Glory',
+    },
+    {
+      title: 'Ada or Ardor: A Family Chronicle',
+      year: '1969',
+      language: 'English',
+    },
+  ];
+}
