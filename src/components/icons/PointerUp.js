@@ -8,7 +8,7 @@
 export default function PointerUpIcon(props) {
   return (
     <svg width="16" height="9" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="m.5 9 7-8 8 8" stroke="currentColor" class="layer" />
+      <path d="m.5 9 7-8 8 8" stroke="currentColor" />
     </svg>
   );
 }

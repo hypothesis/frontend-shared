@@ -13,7 +13,6 @@ export default function SortIcon(props) {
       height="16"
       viewBox="0 0 16 16"
       aria-hidden="true"
-      class="Icon Icon--sort"
       {...props}
     >
       <g fill-rule="evenodd" fill="none">
