@@ -48,7 +48,7 @@ export default function GettingStartedPage() {
             <ul>
               <li>Use this {"package's"} tailwind preset</li>
               <li>
-                Add this {"package's"} JS source to the {"configuration's"}{' '}
+                Add this {"package's"} source to the {"configuration's"}{' '}
                 <code>content</code> globs
               </li>
             </ul>
@@ -60,7 +60,7 @@ export default function GettingStartedPage() {
 export default {
   presets: [tailwindConfig],
   content: [
-    './node_modules/@hypothesis/frontend-shared/lib/**/*.js',
+    './node_modules/@hypothesis/frontend-shared/lib/**/*.{js,ts,tsx}',
     // ...
   ],
   // ...`}
