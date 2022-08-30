@@ -8,10 +8,6 @@ import TableSectionContext from './TableSectionContext';
 /**
  * @typedef {import('../../types').PresentationalProps} CommonProps
  * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'>} HTMLAttributes
- *
- * @typedef TableCellProps
- * @prop {'sm'|'md'|'lg'} [size='md']
- * @prop {'primary'|'secondary'} [variant='secondary']
  */
 
 /**
