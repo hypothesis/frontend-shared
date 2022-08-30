@@ -5,6 +5,11 @@ export {
   ScrollContent,
   ScrollContainer,
   ScrollBox,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Thumbnail,
 } from './components/data';
 export { Spinner, SpinnerOverlay } from './components/feedback';
