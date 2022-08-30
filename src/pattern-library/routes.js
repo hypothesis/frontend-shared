@@ -24,6 +24,7 @@ import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
 
+import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
@@ -189,6 +190,12 @@ const routes = [
     group: 'navigation',
     component: LinkButtonPage,
     route: '/navigation-linkbutton',
+  },
+  {
+    title: 'PointerButton',
+    group: 'navigation',
+    component: PointerButtonPage,
+    route: '/navigation-pointerbutton',
   },
   {
     route: '/components-buttons',
