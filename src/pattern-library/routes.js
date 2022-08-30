@@ -24,6 +24,7 @@ import CardPage from './components/patterns/layout/CardPage';
 import PanelPage from './components/patterns/layout/PanelPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
 
+import BucketsPage from './components/patterns/navigation/BucketsPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
@@ -177,6 +178,12 @@ const routes = [
     group: 'layout',
     component: OverlayPage,
     route: '/layout-overlay',
+  },
+  {
+    title: 'Buckets',
+    group: 'navigation',
+    component: BucketsPage,
+    route: '/navigation-buckets',
   },
   {
     title: 'Link',

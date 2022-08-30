@@ -36,4 +36,9 @@ export {
   Overlay,
   Panel,
 } from './components/layout';
-export { Link, LinkBase, LinkButton } from './components/navigation/';
+export {
+  BucketButton,
+  Link,
+  LinkBase,
+  LinkButton,
+} from './components/navigation/';
