@@ -7,6 +7,7 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import AspectRatioPage from './components/patterns/data/AspectRatioPage';
+import TablePage from './components/patterns/data/TablePage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
@@ -98,7 +99,6 @@ const routes = [
     component: CustomizingComponentsPage,
     route: '/customizing-components',
   },
-
   {
     title: 'AspectRatio',
     group: 'data',
@@ -113,12 +113,17 @@ const routes = [
     route: '/data-scrollbox',
   },
   {
+    title: 'Table',
+    group: 'data',
+    component: TablePage,
+    route: '/data-table',
+  },
+  {
     title: 'Thumbnail',
     group: 'data',
     component: ThumbnailPage,
     route: '/data-thumbnail',
   },
-  { title: 'Table', group: 'data' },
   { title: 'Dialog', group: 'feedback' },
   {
     title: 'Spinner',
