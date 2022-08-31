@@ -7,9 +7,10 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import AspectRatioPage from './components/patterns/data/AspectRatioPage';
-import TablePage from './components/patterns/data/TablePage';
+import DataTablePage from './components/patterns/data/DataTablePage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
+import TablePage from './components/patterns/data/TablePage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
@@ -104,6 +105,12 @@ const routes = [
     group: 'data',
     component: AspectRatioPage,
     route: '/data-aspectratio',
+  },
+  {
+    title: 'DataTable',
+    group: 'data',
+    component: DataTablePage,
+    route: '/data-datatable',
   },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   {
