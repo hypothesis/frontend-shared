@@ -145,13 +145,8 @@ export default function PlaygroundApp({
               );
             })}
 
-            <NavHeader>Legacy</NavHeader>
-            <NavSection title="Legacy Patterns">
-              <NavList routes={getRoutes('patterns')} />
-            </NavSection>
-            <NavSection title="Legacy Components">
-              <NavList routes={getRoutes('components')} />
-            </NavSection>
+            <NavHeader>Legacy Components</NavHeader>
+            <NavList routes={getRoutes('components')} />
 
             {extraRoutes.length > 0 && (
               <>
