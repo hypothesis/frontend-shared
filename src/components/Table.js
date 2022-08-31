@@ -68,6 +68,7 @@ function nextItem(items, currentItem, step) {
  *
  * @template Item
  * @param {TableProps<Item>} props
+ * @deprecated - Use re-implemented DataTable component in the data group
  */
 export function Table({
   accessibleLabel,
