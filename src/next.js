@@ -1,3 +1,8 @@
+// Hooks
+export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
+export { useSyncedRef } from './hooks/use-synced-ref';
+
+// Components
 export * from './components/icons';
 export {
   AspectRatio,
