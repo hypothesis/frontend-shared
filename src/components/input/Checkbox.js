@@ -69,7 +69,7 @@ const CheckboxNext = function Checkbox({
         'cursor-pointer': !disabled,
         'opacity-70': disabled,
       })}
-      html-for={id}
+      htmlFor={id}
       data-composite-component="Checkbox"
     >
       <input
