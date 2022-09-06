@@ -198,6 +198,8 @@ export function Table({
                 })}
                 onMouseDown={() => onSelectItem(item)}
                 onClick={() => onSelectItem(item)}
+                /* preact-React incompatibility `onDblClick` */
+                /* eslint-disable-next-line react/no-unknown-property */
                 onDblClick={() => onUseItem(item)}
                 ref={node => (rowRefs.current[index] = node)}
                 tabIndex={-1}
