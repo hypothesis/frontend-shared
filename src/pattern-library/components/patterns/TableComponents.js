@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import { LabeledButton, Table } from '../../../';
 
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 import { sampleTableContent } from './samples';
 
@@ -151,6 +152,19 @@ function EmptyTableExample() {
 export default function TableComponents() {
   return (
     <Library.Page title="Table">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Table</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6.0 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>DataTable</code> component in the data group instead.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
       <Library.Pattern title="Table">
         <TableExample />
         <ScrollboxTableExample />

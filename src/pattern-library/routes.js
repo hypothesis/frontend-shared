@@ -7,9 +7,10 @@ import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 
 import AspectRatioPage from './components/patterns/data/AspectRatioPage';
-import TablePage from './components/patterns/data/TablePage';
+import DataTablePage from './components/patterns/data/DataTablePage';
 import IconsPage from './components/patterns/data/IconsPage';
 import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
+import TablePage from './components/patterns/data/TablePage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
@@ -27,8 +28,6 @@ import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 
 // Legacy pattern-library pages
-
-import TablePatterns from './components/patterns/TablePatterns';
 
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
@@ -50,12 +49,12 @@ export const componentGroups = {
 };
 
 /**
- * @typedef {keyof componentGroups|'home'|'foundations'|'patterns'|'components'} PlaygroundRouteGroup
+ * @typedef {keyof componentGroups|'home'|'foundations'|'components'} PlaygroundRouteGroup
  *
  * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
  *   that should be rendered for the indicated route
  * @prop {RegExp|string} [route] - Pattern or string path relative to
- *   `baseURL`, e.g. '/my-patterns'
+ *   `baseURL`, e.g. '/data-my-component'
  * @prop {string} title
  * @prop {import("preact").FunctionComponent<{}>} [component]
  * @prop {PlaygroundRouteGroup} group
@@ -104,6 +103,12 @@ const routes = [
     group: 'data',
     component: AspectRatioPage,
     route: '/data-aspectratio',
+  },
+  {
+    title: 'DataTable',
+    group: 'data',
+    component: DataTablePage,
+    route: '/data-datatable',
   },
   { title: 'Icons', group: 'data', component: IconsPage, route: '/data-icons' },
   {
@@ -184,12 +189,6 @@ const routes = [
     group: 'navigation',
     component: LinkButtonPage,
     route: '/navigation-linkbutton',
-  },
-  {
-    route: '/patterns-tables',
-    title: 'Tables',
-    component: TablePatterns,
-    group: 'patterns',
   },
   {
     route: '/components-buttons',

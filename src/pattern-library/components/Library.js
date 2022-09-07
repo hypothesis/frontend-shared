@@ -9,8 +9,8 @@ import { jsxToHTML } from '../util/jsx-to-string';
  */
 
 /**
- * Components for rendering patterns, examples and demos in the pattern-library
- * page.
+ * Components for rendering component documentation, examples and demos in the
+ * pattern-library page.
  *
  * Example of structure:
  *

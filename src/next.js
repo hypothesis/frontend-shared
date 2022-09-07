@@ -6,6 +6,7 @@ export { useSyncedRef } from './hooks/use-synced-ref';
 export * from './components/icons';
 export {
   AspectRatio,
+  DataTable,
   Scroll,
   ScrollContent,
   ScrollContainer,
