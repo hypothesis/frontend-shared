@@ -38,7 +38,7 @@ import TableCell from './TableCell';
  *   double-click or pressing "Enter"
  * @prop {(r: Row) => void} [onSelectRow] - Callback when a row is "selected" by
  *   focus or click
- * @prop {(r: Row, field: string) => Children} [renderItem] - Callback to render an individual table cell
+ * @prop {(r: Row, field: keyof Row) => Children} [renderItem] - Callback to render an individual table cell
  * @prop {Children} [emptyMessage] - Content to render if rows is empty (and not
  *   in a loading state)
  */
@@ -58,7 +58,7 @@ const DataTableNext = function DataTable({
   title,
   selectedRow,
   loading = false,
-  renderItem = (row, field) => row[field],
+  renderItem = (row, field) => /** @type {Children} */ (row[field]),
   onSelectRow,
   onConfirmRow,
   emptyMessage,
@@ -160,7 +160,9 @@ const DataTableNext = function DataTable({
               onKeyDown={event => handleKeyDown(event, row)}
             >
               {fields.map(field => (
-                <TableCell key={field}>{renderItem(row, field)}</TableCell>
+                <TableCell key={field}>
+                  {renderItem(row, /** @type {keyof Row} */ (field))}
+                </TableCell>
               ))}
             </TableRow>
           ))}

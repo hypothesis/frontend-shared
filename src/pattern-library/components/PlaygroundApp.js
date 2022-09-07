@@ -135,7 +135,14 @@ export default function PlaygroundApp({
             <NavHeader>Components</NavHeader>
             {Object.keys(componentGroups).map(group => {
               return (
-                <NavSection key={group} title={componentGroups[group]}>
+                <NavSection
+                  key={group}
+                  title={
+                    componentGroups[
+                      /** @type {keyof componentGroups} */ (group)
+                    ]
+                  }
+                >
                   <NavList
                     routes={getRoutes(
                       /** @type PlaygroundRouteGroup */ (group)

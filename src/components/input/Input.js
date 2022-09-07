@@ -28,6 +28,7 @@ const InputNext = function Input({
 
   ...htmlAttributes
 }) {
+  // @ts-expect-error - "aria-label" is missing from HTMLInputAttributes
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
       '`Input` component should have either an `id` or an `aria-label` attribute'

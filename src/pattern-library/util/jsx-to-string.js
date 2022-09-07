@@ -12,6 +12,7 @@ function escapeQuotes(str) {
   return str.replace(/"/g, '\\"');
 }
 
+/** @param {any} type */
 function componentName(type) {
   const name = typeof type === 'string' ? type : type.displayName ?? type.name;
   // Handle (display)name conflicts if there are two components with the same

@@ -7,6 +7,13 @@ import Next from '../LibraryNext';
 
 import { sampleTableContent } from './samples';
 
+/**
+ * @typedef File
+ * @prop {string} displayName
+ * @prop {string} updated
+ */
+
+/** @param {File} file */
 const renderCallback = file => (
   <>
     <td>{file.displayName}</td>
@@ -14,6 +21,7 @@ const renderCallback = file => (
   </>
 );
 
+/** @param {File} file */
 const customizedRenderCallback = file => (
   <>
     <td className="text-grey-6">{file.displayName}</td>
@@ -26,7 +34,7 @@ const { tableHeaders, items } = sampleTableContent();
 function TableExample() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(
-    /** @type {null|object} */ (null)
+    /** @type {null|File} */ (null)
   );
 
   return (
@@ -61,7 +69,7 @@ function TableExample() {
 function ScrollboxTableExample() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(
-    /** @type {null|object} */ (items[items.length - 1])
+    /** @type {null|File} */ (items[items.length - 1])
   );
 
   return (
@@ -107,9 +115,10 @@ function ScrollboxTableExample() {
 
 function EmptyTableExample() {
   const [isLoading, setIsLoading] = useState(false);
+  /** @type {File[]} */
   const items = [];
   const [selectedFile, setSelectedFile] = useState(
-    /** @type {null|object} */ (items[items.length - 1])
+    /** @type {null|File} */ (items[items.length - 1])
   );
 
   const emptyItemsMessage = (

@@ -4,12 +4,11 @@ import Next from '../LibraryNext';
 import { Card, Icon, registerIcon } from '../../../';
 import * as iconSrc from '../../../icons';
 
+/** @type {Record<string, symbol>} */
 const icons = {};
 
-for (const iconName in iconSrc) {
-  if (Object.prototype.hasOwnProperty.call(iconSrc, iconName)) {
-    icons[iconName] = registerIcon(iconName, iconSrc[iconName]);
-  }
+for (let [iconName, src] of Object.entries(iconSrc)) {
+  icons[iconName] = registerIcon(iconName, src);
 }
 
 export default function IconComponents() {
