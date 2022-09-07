@@ -134,8 +134,9 @@ export function useRoute(baseURL, routes) {
   // Intercept clicks on links and trigger navigation to a route within the
   // app if appropriate.
   useEffect(() => {
+    /** @param {Event} event */
     const clickListener = event => {
-      const link = event.target.closest('a');
+      const link = /** @type {HTMLElement} */ (event.target).closest('a');
       if (!link) {
         return;
       }

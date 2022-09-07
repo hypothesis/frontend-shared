@@ -10,7 +10,7 @@ import { Spinner } from './Spinner';
  * @prop {Children|null} [children] - Thumbnail content (typically an img)
  * @prop {string} [classes] - Additional CSS classes to apply
  * @prop {boolean} [isLoading=false] - Is the thumbnail loading?
- * @prop {object} [placeholder='...'] - Optional placeholder to replace default
+ * @prop {Children} [placeholder='...'] - Optional placeholder to replace default
  * @prop {'small'|'medium'|'large'} [size='medium'] - Relative size of spinner
  *   to surrounding content. Typically the `large` size is appropriate, but for
  *   small thumbnails, `medium` might feel more appropriate.

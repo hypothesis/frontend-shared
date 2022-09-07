@@ -65,6 +65,8 @@ function ButtonBase({
   ...restProps
 }) {
   const role = restProps?.role ?? 'button';
+
+  /** @type {Record<string, unknown>} */
   const ariaProps = {
     'aria-label': restProps.title,
   };

@@ -41,6 +41,7 @@ const ButtonBaseNext = function ButtonBase({
   role,
   ...htmlAttributes
 }) {
+  /** @type {Record<string, unknown>} */
   const ariaProps = {
     'aria-label': title,
   };

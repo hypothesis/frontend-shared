@@ -200,7 +200,7 @@ function DemoButton({ children, onClick, pressed }) {
  *   @param {boolean} [props.withSource=false] - Should the demo also render the source?
  *    When true, a "Source" tab will be rendered, which will display the JSX
  *    source of the Demo's children.
- *   @param {object} [props.style] - Inline styles to apply to the demo container
+ *   @param {import('preact').JSX.CSSProperties} [props.style] - Inline styles to apply to the demo container
  *   @param {string} [props.title]
  */
 function Demo({ children, classes, withSource = false, style = {}, title }) {

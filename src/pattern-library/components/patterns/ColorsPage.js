@@ -1,6 +1,13 @@
 import classnames from 'classnames';
 import Library from '../Library';
 
+/**
+ * @typedef ColorSwatchProps
+ * @prop {string} colorClass
+ * @prop {string} colorName
+ */
+
+/** @param {ColorSwatchProps} props */
 function ColorSwatch({ colorClass, colorName }) {
   return (
     <div>
