@@ -1,5 +1,5 @@
 // Hooks
-export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
+export { useArrowKeyNavigation } from './hooks/keyboard-navigation';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
 // Components
