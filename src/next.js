@@ -1,5 +1,9 @@
 // Hooks
-export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
+export {
+  useArrowKeyNavigation,
+  useFocusCapture,
+  useKeyboardNavigation,
+} from './hooks/keyboard-navigation';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
 // Components
@@ -36,4 +40,6 @@ export {
   Overlay,
   Panel,
 } from './components/layout';
+
 export { Link, LinkBase, LinkButton } from './components/navigation/';
+export { Dialog } from './components/feedback';
