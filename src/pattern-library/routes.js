@@ -13,6 +13,7 @@ import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import TablePage from './components/patterns/data/TablePage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 
+import DialogPage from './components/patterns/feedback/DialogPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 
 import ButtonsPage from './components/patterns/input/ButtonPage';
@@ -129,7 +130,12 @@ const routes = [
     component: ThumbnailPage,
     route: '/data-thumbnail',
   },
-  { title: 'Dialog', group: 'feedback' },
+  {
+    title: 'Dialog',
+    group: 'feedback',
+    component: DialogPage,
+    route: '/feedback-dialog',
+  },
   {
     title: 'Spinner',
     group: 'feedback',
