@@ -40,7 +40,7 @@ export class ListenerCollection {
    * @param {Target} eventTarget
    * @param {Type} eventType
    * @param {(event: EventType<Target, Type>) => void} listener
-   * @param {AddEventListenerOptions} [options]
+   * @param {AddEventListenerOptions & { useCapture?: boolean }} [options]
    */
   add(eventTarget, eventType, listener, options) {
     eventTarget.addEventListener(
