@@ -2,7 +2,7 @@ import { options as preactOptions, render } from 'preact';
 import { useRef } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
-import { useArrowKeyNavigation } from '../use-arrow-key-navigation';
+import { useArrowKeyNavigation } from '../keyboard-navigation';
 import { waitFor } from '../../test-util/wait';
 
 function Toolbar({ navigationOptions = {} }) {

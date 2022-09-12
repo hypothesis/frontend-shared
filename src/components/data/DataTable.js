@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'preact/hooks';
 
-import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
+import { useArrowKeyNavigation } from '../../hooks/keyboard-navigation';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { downcastRef } from '../../util/typing';
 
