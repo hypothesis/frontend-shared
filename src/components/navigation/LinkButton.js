@@ -39,7 +39,7 @@ const LinkButtonNext = function LinkButton({
       elementRef={downcastRef(elementRef)}
       classes={classnames(
         // NB: Base classes are applied by ButtonBase
-        'aria-pressed:font-semibold aria-expanded:font-semibold',
+        'aria-pressed:font-semibold aria-expanded:font-semibold rounded-sm',
         {
           // inline
           inline: inline,

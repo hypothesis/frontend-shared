@@ -49,7 +49,7 @@ const IconButtonNext = function IconButton({
       {...htmlAttributes}
       classes={classnames(
         // NB: Base classes are applied by ButtonBase
-        'justify-center gap-x-2',
+        'justify-center gap-x-2 rounded-sm',
         {
           // variant
           'text-grey-7 bg-transparent enabled:hover:text-grey-9 aria-pressed:text-brand aria-expanded:text-brand':
