@@ -87,7 +87,7 @@ const DialogNext = function Dialog({
   });
 
   useEffect(() => {
-    const onKeyDown = event => {
+    const onKeyDown = /** @param {KeyboardEvent} event */ event => {
       if (event.key === 'Escape') {
         onClose?.();
         event.preventDefault();
@@ -105,12 +105,12 @@ const DialogNext = function Dialog({
     };
   }, [open, onClose]);
 
-  const widths = {
+  const widths = /** @type {Record<string,string>} */ ({
     sm: '448px', // 28rem
     md: '576px', // 36rem (default)
     lg: '672px', // 42rem
     full: '100%',
-  };
+  });
   const maxWidthStyle = widths[maxWidth] ?? maxWidth;
   const maxHeightStyle =
     maxHeight === 'full' ? '80vh' : `min(80vh, ${maxHeight})`;
