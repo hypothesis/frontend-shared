@@ -65,7 +65,7 @@ const ButtonBaseNext = function ButtonBase({
       {...htmlAttributes}
       className={classNames(
         {
-          'focus-visible-ring rounded-sm': !unstyled,
+          'focus-visible-ring': !unstyled,
           'transition-colors': !unstyled,
           // Set layout for button content
           'whitespace-nowrap flex items-center': !unstyled,

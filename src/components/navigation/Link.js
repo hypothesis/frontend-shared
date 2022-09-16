@@ -32,6 +32,7 @@ const LinkNext = function Link({
     <LinkBase
       {...htmlAttributes}
       classes={classnames(
+        'rounded-sm',
         // NB: Base classes are applied by LinkBase
         {
           // color

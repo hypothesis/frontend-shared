@@ -43,7 +43,7 @@ const ButtonNext = function Button({
       {...htmlAttributes}
       classes={classnames(
         // NB: Base classes are applied by ButtonBase
-        'font-semibold',
+        'font-semibold rounded-sm',
         {
           // Variants
           'text-grey-7 bg-grey-1 enabled:hover:text-grey-9 enabled:hover:bg-grey-2 aria-pressed:text-grey-9 aria-expanded:text-grey-9':

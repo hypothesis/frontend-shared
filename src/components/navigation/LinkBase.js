@@ -26,10 +26,7 @@ const LinkBaseNext = function LinkBase({
       /* data-component will be overwritten unless this component is used directly */
       data-component="LinkBase"
       {...htmlAttributes}
-      className={classnames(
-        { 'focus-visible-ring rounded-sm': !unstyled },
-        classes
-      )}
+      className={classnames({ 'focus-visible-ring': !unstyled }, classes)}
       rel="noopener noreferrer"
       ref={downcastRef(elementRef)}
     >
