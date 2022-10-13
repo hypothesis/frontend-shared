@@ -8,6 +8,10 @@ import { registerIcon, SvgIcon } from './SvgIcon';
 const checkboxIcon = registerIcon('checkbox', checkboxSVG);
 
 /**
+ * @typedef {import('preact').JSX.IntrinsicElements["input"]} HTMLInputAttributes
+ */
+
+/**
  * @typedef CheckboxBaseProps
  * @prop {string} [classes] - Additional CSS classes to apply to the <input>
  * @prop {string} name - The `name` of the checkbox.
@@ -21,7 +25,7 @@ const checkboxIcon = registerIcon('checkbox', checkboxSVG);
  * The props for Checkbox component extends and narrows the attributes of the native input element.
  * `onToggle` event should only be associated to HTMLDetailsElement, but Preact is not very strict with types.
  * We omit the `onToggle` because it clashes with our definition.
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLInputElement>, 'onToggle'> & CheckboxBaseProps} CheckboxProps
+ * @typedef {Omit<HTMLInputAttributes, 'onToggle'> & CheckboxBaseProps} CheckboxProps
  */
 
 /**

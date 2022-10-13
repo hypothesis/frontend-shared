@@ -14,7 +14,7 @@ import classnames from 'classnames';
  */
 
 /**
- * @typedef {TextInputBaseProps & import('preact').JSX.HTMLAttributes<HTMLInputElement>} TextInputProps
+ * @typedef {TextInputBaseProps & import('preact').JSX.IntrinsicElements["input"]} TextInputProps
  */
 
 /**

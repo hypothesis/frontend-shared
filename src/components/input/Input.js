@@ -6,7 +6,7 @@ import { inputGroupStyles } from './InputGroup';
 
 /**
  * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLInputElement>} HTMLInputAttributes
+ * @typedef {import('preact').JSX.IntrinsicElements["input"]} HTMLInputAttributes
  *
  * @typedef InputProps
  * @prop {boolean} [hasError=false]

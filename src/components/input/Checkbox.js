@@ -7,7 +7,7 @@ import { CheckboxOutlineIcon, CheckboxCheckedIcon } from '../icons';
 
 /**
  * @typedef {import('../../types').CompositeProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLInputElement>, 'size'|'icon'>} HTMLAttributes
+ * @typedef {Omit<import('preact').JSX.IntrinsicElements["input"], 'size'|'icon'>} HTMLAttributes
  * @typedef {import('../../types').IconComponent} IconComponent
  *
  * @typedef CheckboxProps
