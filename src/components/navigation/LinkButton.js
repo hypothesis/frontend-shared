@@ -38,7 +38,7 @@ const LinkButtonNext = function LinkButton({
       {...htmlAttributes}
       elementRef={downcastRef(elementRef)}
       classes={classnames(
-        // NB: Base classes are applied by ButtonBase
+        'focus-visible-ring transition-colors whitespace-nowrap',
         'aria-pressed:font-semibold aria-expanded:font-semibold rounded-sm',
         {
           // inline
@@ -66,6 +66,7 @@ const LinkButtonNext = function LinkButton({
         classes
       )}
       data-component="LinkButton"
+      unstyled
     >
       {children}
     </ButtonBase>
