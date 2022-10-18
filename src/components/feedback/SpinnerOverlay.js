@@ -2,7 +2,7 @@ import Overlay from '../layout/Overlay';
 import Spinner from './Spinner';
 
 /**
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'className'>} HTMLAttributes
+ * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'className'|'open'>} HTMLAttributes
  */
 
 /**

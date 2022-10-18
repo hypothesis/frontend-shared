@@ -14,7 +14,7 @@ import { downcastRef } from '../../util/typing';
 /**
  * A full-screen fixed backdrop overlay
  *
- * @param {CommonProps & OverlayProps & HTMLAttributes} props
+ * @param {CommonProps & OverlayProps & Omit<HTMLAttributes, 'open'>} props
  */
 const OverlayNext = function Overlay({
   children,
