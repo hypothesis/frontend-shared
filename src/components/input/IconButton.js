@@ -48,7 +48,7 @@ const IconButtonNext = function IconButton({
     <ButtonBase
       {...htmlAttributes}
       classes={classnames(
-        // NB: Base classes are applied by ButtonBase
+        'focus-visible-ring transition-colors whitespace-nowrap flex items-center',
         'justify-center gap-x-2 rounded-sm',
         {
           // variant
@@ -77,6 +77,7 @@ const IconButtonNext = function IconButton({
       pressed={pressed}
       expanded={expanded}
       data-component="IconButton"
+      unstyled
     >
       {Icon && <Icon className="w-em h-em" />}
       {children}
