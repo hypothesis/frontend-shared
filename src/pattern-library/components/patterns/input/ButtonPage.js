@@ -251,6 +251,17 @@ export default function ButtonPage() {
                 ➜ <code>{"'xs'"}</code>, <code>{"'sm'"}</code>,{' '}
                 <code>{"'md'"}</code>, <code>{"'lg'"}</code>
               </Next.ChangelogItem>
+              <Next.ChangelogItem status="breaking">
+                Prop: <code>size</code> value{' '}
+                <s>
+                  <code>{"'small'"}</code>
+                </s>{' '}
+                ➜ use <code>{"'xs'"}</code> instead: the padding/spacing values
+                have been adjusted such that all Button components are
+                harmonized. <code>{"IconButton's"}</code>{' '}
+                <code>{"'small'"}</code> size was inconsistent with the{' '}
+                <code>{"'sm'"}</code> size for other Buttons.
+              </Next.ChangelogItem>
             </Next.Changelog>
           </Library.Example>
         </Library.Pattern>
