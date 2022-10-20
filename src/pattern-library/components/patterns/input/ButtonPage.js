@@ -73,6 +73,22 @@ export default function ButtonPage() {
                 </s>{' '}
                 ➜ <code>{"'secondary'"}</code>
               </Next.ChangelogItem>
+              <Next.ChangelogItem status="breaking">
+                Prop: <code>size</code> values{' '}
+                <s>
+                  <code>{"'small'"}</code>
+                </s>
+                ,{' '}
+                <s>
+                  <code>{"'medium'"}</code>
+                </s>{' '}
+                ,
+                <s>
+                  <code>{"'large'"}</code>
+                </s>{' '}
+                ➜ <code>{"'xs'"}</code>, <code>{"'sm'"}</code>,{' '}
+                <code>{"'md'"}</code>, <code>{"'lg'"}</code>
+              </Next.ChangelogItem>
             </Next.Changelog>
           </Library.Example>
         </Library.Pattern>
@@ -150,13 +166,16 @@ export default function ButtonPage() {
               </Button>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="size">
+          <Library.Example title="size: 'xs', 'sm', 'md' (default), 'lg'">
             <p>
               The <code>size</code> prop affects padding and spacing within the{' '}
               <code>Button</code>, but other sizing (e.g. font size) is
               inherited.
             </p>
             <Library.Demo withSource>
+              <Button icon={EditIcon} size="xs">
+                X-Small (xs)
+              </Button>
               <Button icon={EditIcon} size="sm">
                 Small (sm)
               </Button>
@@ -215,6 +234,33 @@ export default function ButtonPage() {
                   <code>{"'normal'"}</code>
                 </s>{' '}
                 ➜ <code>{"'secondary'"}</code>
+              </Next.ChangelogItem>
+              <Next.ChangelogItem status="breaking">
+                Prop: <code>size</code> values{' '}
+                <s>
+                  <code>{"'small'"}</code>
+                </s>
+                ,{' '}
+                <s>
+                  <code>{"'medium'"}</code>
+                </s>{' '}
+                ,
+                <s>
+                  <code>{"'large'"}</code>
+                </s>{' '}
+                ➜ <code>{"'xs'"}</code>, <code>{"'sm'"}</code>,{' '}
+                <code>{"'md'"}</code>, <code>{"'lg'"}</code>
+              </Next.ChangelogItem>
+              <Next.ChangelogItem status="breaking">
+                Prop: <code>size</code> value{' '}
+                <s>
+                  <code>{"'small'"}</code>
+                </s>{' '}
+                ➜ use <code>{"'xs'"}</code> instead: the padding/spacing values
+                have been adjusted such that all Button components are
+                harmonized. <code>{"IconButton's"}</code>{' '}
+                <code>{"'small'"}</code> size was inconsistent with the{' '}
+                <code>{"'sm'"}</code> size for other Buttons.
               </Next.ChangelogItem>
             </Next.Changelog>
           </Library.Example>
@@ -359,7 +405,8 @@ export default function ButtonPage() {
               The <code>size</code> prop affects padding and spacing within the{' '}
               <code>IconButton</code>.
             </p>
-            <Library.Demo title="size: 'sm', 'md' and 'lg'" withSource>
+            <Library.Demo title="size: 'xs', 'sm', 'md' and 'lg'" withSource>
+              <IconButton icon={EditIcon} size="xs" title="Edit" />
               <IconButton icon={EditIcon} size="sm" title="Edit" />
               <IconButton icon={EditIcon} size="md" title="Edit" />
               <IconButton icon={EditIcon} size="lg" title="Edit" />

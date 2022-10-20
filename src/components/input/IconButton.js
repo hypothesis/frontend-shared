@@ -15,7 +15,7 @@ import ButtonBase from './ButtonBase';
  * @typedef IconButtonProps
  * @prop {IconComponent} [icon] - reference to an icon function component
  *   to render in this button, e.g. CautionIcon
- * @prop {'sm'|'md'|'lg'} [size='md']
+ * @prop {'xs'|'sm'|'md'|'lg'} [size='md']
  * @prop {boolean} [disableTouchSizing=false] - Disable minimum tap target
  *   sizing for touch devices. This may be necessary in legacy patterns where
  *   there isn't enough room in the interface for these larger dimensions.
@@ -61,8 +61,9 @@ const IconButtonNext = function IconButton({
 
           // size
           'p-2': size === 'md', // Default
+          'p-1': size === 'xs',
           'p-1.5': size === 'sm',
-          'p-3': size === 'lg',
+          'p-2.5': size === 'lg',
 
           // Responsive
           'touch:min-w-touch-minimum touch:min-h-touch-minimum':

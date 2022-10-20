@@ -12,7 +12,7 @@ import ButtonBase from './ButtonBase';
  * @typedef {import('./ButtonBase').HTMLButtonAttributes} HTMLButtonAttributes
  *
  * @typedef ButtonProps
- * @prop {'sm'|'md'|'lg'} [size='md'] - Adjusts padding on button
+ * @prop {'xs'|'sm'|'md'|'lg'} [size='md'] - Adjusts padding on button
  * @prop {'primary'|'secondary'} [variant='secondary']
  * @prop {IconComponent} [icon] - Optional icon to display at left
  *   of button label text. Will be sized proportional to local font size.
@@ -54,8 +54,9 @@ const ButtonNext = function Button({
         {
           // Sizes
           'p-2 gap-x-2': size === 'md', // default
-          'px-1.5 py-1 gap-x-1.5': size === 'sm',
-          'px-3 py-2.5 gap-x-2.5': size === 'lg',
+          'p-1 gap-x-1': size === 'xs',
+          'p-1.5 gap-x-1.5': size === 'sm',
+          'p-2.5 gap-x-1.5': size === 'lg',
         },
         classes
       )}
