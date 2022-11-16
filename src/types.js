@@ -7,7 +7,7 @@
  *   component's default classes
  * @prop {never} [className] - Use variants, props, base component (when
  *   available) or `classes` instead
- * @prop {import('preact').Ref<HTMLElement>} [elementRef] - Ref for component's
+ * @prop {import('preact').Ref<HTMLElement | undefined>} [elementRef] - Ref for component's
  *   outermost element.
  */
 
