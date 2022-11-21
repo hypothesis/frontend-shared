@@ -46,7 +46,7 @@ function isElementVisible(element) {
  * [1] https://www.w3.org/TR/wai-aria-practices/#kbd_roving_tabindex
  * [2] https://www.w3.org/TR/wai-aria-practices/#keyboard
  *
- * @param {import('preact').RefObject<HTMLElement>} containerRef
+ * @param {import('preact').RefObject<HTMLElement | undefined>} containerRef
  * @param {object} options
  *   @param {boolean} [options.autofocus] - Whether to focus the first element
  *     in the set of matching elements when the component is mounted
