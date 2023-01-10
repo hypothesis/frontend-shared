@@ -45,7 +45,15 @@ const CardHeaderNext = function CardHeader({
       {title && <CardTitle>{title}</CardTitle>}
       {children}
       {onClose && (
-        <IconButton onClick={onClose} title="Close">
+        <IconButton
+          onClick={onClose}
+          title="Close"
+          classes={classnames(
+            // Pull button right such that its icon right-aligns with the
+            // header's bottom border
+            '-mr-3'
+          )}
+        >
           <CancelIcon />
         </IconButton>
       )}
