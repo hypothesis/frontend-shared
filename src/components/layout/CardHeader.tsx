@@ -1,5 +1,7 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 import { CancelIcon } from '../icons';
@@ -7,20 +9,24 @@ import { IconButton } from '../input';
 
 import CardTitle from './CardTitle';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- * @typedef CardHeaderProps
- * @prop {string} [title]
- * @prop {() => void} [onClose] - Optional callback to close the Card. When
- *   present, a close button will be rendered
- */
+type ComponentProps = {
+  title?: string;
+
+  /**
+   * Optional callback for close-button click. When present, a close button
+   * will be rendered.
+   */
+  onClose?: () => void;
+};
+
+type HTMLAttributes = JSX.HTMLAttributes<HTMLElement>;
+
+export type CardHeaderProps = PresentationalProps &
+  ComponentProps &
+  HTMLAttributes;
 
 /**
  * Render a header area in a Card with optional title and/or close button
- *
- * @param {CommonProps & CardHeaderProps & HTMLAttributes} props
  */
 const CardHeaderNext = function CardHeader({
   children,
@@ -31,7 +37,7 @@ const CardHeaderNext = function CardHeader({
   title,
 
   ...htmlAttributes
-}) {
+}: CardHeaderProps) {
   return (
     <div
       {...htmlAttributes}
