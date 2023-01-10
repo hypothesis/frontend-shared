@@ -1,9 +1,5 @@
 /* eslint-env node */
 
-let chromeFlags = [];
-
-process.env.CHROME_BIN = require('puppeteer').executablePath();
-
 module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -68,17 +64,9 @@ module.exports = function (config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeHeadless_Custom'],
-    browserNoActivityTimeout: 20000,
+    browsers: ['ChromeHeadless'],
 
-    customLaunchers: {
-      ChromeHeadless_Custom: {
-        base: 'ChromeHeadless',
-        flags: chromeFlags,
-      },
-    },
+    browserNoActivityTimeout: 20000,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
