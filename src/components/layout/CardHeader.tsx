@@ -57,7 +57,7 @@ const CardHeaderNext = function CardHeader({
           classes={classnames(
             // Pull button right such that its icon right-aligns with the
             // header's bottom border
-            '-mr-3'
+            '-mr-2.5'
           )}
         >
           <CancelIcon />
