@@ -14,7 +14,9 @@ function escapeQuotes(str) {
 
 /** @param {any} type */
 function componentName(type) {
-  const name = typeof type === 'string' ? type : type.displayName ?? type.name;
+  let name = typeof type === 'string' ? type : type.displayName ?? type.name;
+
+  name = name.replace('Wrapper', '');
   // Handle (display)name conflicts if there are two components with the same
   // name. e.g. if there are two components named `Foo`, the second of those
   // encountered will have a name of `Foo$1`. Strip the `$1` in this case.
@@ -71,6 +73,11 @@ export function jsxToString(vnode) {
     // (eg. from an index or item ID) so it doesn't make sense to include it either.
     let propStr = Object.entries(vnode.props)
       .map(([name, value]) => {
+        // Allow certain pattern-library-defined props to be invisible in source
+        // view
+        if (name.includes('WrapperProp')) {
+          return '';
+        }
         if (name === 'children') {
           return '';
         }
