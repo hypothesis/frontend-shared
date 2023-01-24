@@ -84,6 +84,7 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
         DEFAULT: '2px',
       },
       screens: {
+        tall: { raw: '(min-height: 32rem)' },
         touch: { raw: '(pointer: coarse)' },
       },
       spacing: {
