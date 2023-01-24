@@ -39,7 +39,7 @@ export default function (plop) {
       const actionList = [
         {
           type: 'add',
-          path: 'src/components/{{group}}/{{name}}.js',
+          path: 'src/components/{{group}}/{{name}}.tsx',
           templateFile: 'plop-templates/{{category}}-component.hbs',
         },
         {

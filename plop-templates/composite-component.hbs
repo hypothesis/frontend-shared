@@ -1,20 +1,22 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').CompositeProps} CompositeProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'>} HTMLAttributes
- *
- * @typedef {{ name }}Props
- * @prop {'sm'|'md'|'lg'} [size='md']
- * @prop {'primary'|'secondary'} [variant='secondary']
- */
+type ComponentProps = {
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary';
+};
+
+type HTMLAttributes = Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
+
+export type {{name}}Props = CompositeProps &
+  ComponentProps &
+  Omit<HTMLAttributes, 'size'>;
 
 /**
  * TODO
- *
- * @param {CompositeProps & {{name}}Props & Omit<HTMLAttributes, 'size'>} props
  */
 const {{name}}Next = function {{name}}({
   children,
@@ -24,7 +26,7 @@ const {{name}}Next = function {{name}}({
   variant = 'secondary',
 
   ...htmlAttributes
-}) {
+}:{{name}}Props) {
   return (
     <div
       {...htmlAttributes}

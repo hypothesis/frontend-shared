@@ -1,17 +1,13 @@
 import classnames from 'classnames';
 
-
-/**
- * @typedef {{name}}Props
- * @prop {'sm'|'md'|'lg'} [size='sm']
- */
+export type {{name}}Props = {
+  size?: 'sm' | 'md' | 'lg';
+};
 
 /**
  * TODO
- * {{!See https://github.com/handlebars-lang/handlebars.js/issues/1404 }}
- * @param { {{~name~}} Props} props
  */
-const {{name}}Next = function {{name}}({ size = 'md' }) {
+const {{name}}Next = function {{name}}({ size = 'md' }: {{name}}Props) {
   return (
     <div
       className={classnames(
