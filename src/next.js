@@ -18,7 +18,7 @@ export {
   TableRow,
   Thumbnail,
 } from './components/data';
-export { Spinner, SpinnerOverlay } from './components/feedback';
+export { Modal, Spinner, SpinnerOverlay } from './components/feedback';
 export {
   Button,
   ButtonBase,
