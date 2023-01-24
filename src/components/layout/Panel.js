@@ -6,6 +6,8 @@ import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
 
+import Scroll from '../data/Scroll';
+
 /**
  * @typedef {import('../../types').CompositeProps} CompositeProps
  * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
@@ -40,6 +42,7 @@ const PanelNext = function Panel({
   return (
     <Card
       {...htmlAttributes}
+      classes={'flex flex-col min-h-0 h-full'}
       elementRef={downcastRef(elementRef)}
       data-composite-component="Panel"
     >
@@ -47,8 +50,10 @@ const PanelNext = function Panel({
         {Icon && <Icon className="w-em h-em" />}
         <CardTitle>{title}</CardTitle>
       </CardHeader>
+      <Scroll>
+        <CardContent>{children}</CardContent>
+      </Scroll>
       <CardContent>
-        {children}
         {buttons && <CardActions>{buttons}</CardActions>}
       </CardContent>
     </Card>
