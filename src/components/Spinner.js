@@ -40,6 +40,7 @@ export function Spinner({ classes = '', size = 'medium' }) {
 /**
  * Full-screen loading indicator.
  *
+ * @deprecated - Use `SpinnerOverlay` in the feedback group
  * @param {FullScreenSpinnerProps} props
  */
 export function FullScreenSpinner({ classes = '', containerClasses = '' }) {
