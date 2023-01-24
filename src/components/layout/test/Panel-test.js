@@ -5,8 +5,14 @@ import { testCompositeComponent } from '../../test/common-tests';
 import Panel from '../Panel';
 import { EditIcon } from '../../icons';
 
+import { LoremIpsum } from '../../../pattern-library/components/patterns/samples';
+
 const createComponent = (Component, props = {}) => {
-  return mount(<Component {...props}>This is child content</Component>);
+  return mount(
+    <Component title="Test title" {...props}>
+      This is child content
+    </Component>
+  );
 };
 
 describe('Panel', () => {
@@ -32,5 +38,49 @@ describe('Panel', () => {
 
     assert.isTrue(wrapper.find('CardActions').exists());
     assert.equal(wrapper.find('CardActions').text(), 'click me');
+  });
+
+  context('when rendered in an element with constrained dimensions', () => {
+    let container;
+    let unboundedContainer;
+
+    beforeEach(() => {
+      container = document.createElement('div');
+      unboundedContainer = document.createElement('div');
+      container.style.height = '200px';
+      document.body.append(container);
+      document.body.append(unboundedContainer);
+    });
+
+    afterEach(() => {
+      container.remove();
+      unboundedContainer.remove();
+    });
+
+    it('should not exceed height of parent container', () => {
+      const loremWrapper = mount(<LoremIpsum />, {
+        attachTo: unboundedContainer,
+      });
+
+      // The lorem ipsum content in the Panel will be constrained and will scroll
+      // within the allotted 200px height
+      const wrapper = mount(
+        <Panel title="Constrained Panel">
+          <LoremIpsum />
+        </Panel>,
+        { attachTo: container }
+      );
+
+      // Lorem ipsum rendered without constraints will take up more than 200
+      // vertical pixels
+      assert.isTrue(loremWrapper.find('p').getDOMNode().clientHeight > 200);
+      // But when in a Panel, and the Panel is within a height-constrained
+      // element, the total Panel height will not exceed parent height (200px)
+      assert.equal(
+        wrapper.find('div[data-composite-component="Panel"]').getDOMNode()
+          .clientHeight,
+        200
+      );
+    });
   });
 });
