@@ -74,6 +74,20 @@ export default function SpinnerComponents() {
       </Library.Pattern>
 
       <Library.Pattern title="Full-Screen Spinner">
+        <Library.Example title="Status">
+          <Next.Changelog>
+            <Next.ChangelogItem status="deprecated">
+              This legacy implementation of
+              <s>
+                <code>FullScreenSpinner</code>
+              </s>{' '}
+              is deprecated and slated for removal in v6 of{' '}
+              <code>frontend-shared</code>. Use re-implemented
+              <code>SpinnerOverlay</code> component in the feedback group
+              instead.
+            </Next.ChangelogItem>
+          </Next.Changelog>
+        </Library.Example>
         <Library.Example>
           <p>
             A component that renders a full-screen spinner over an overlay.
