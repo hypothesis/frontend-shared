@@ -50,7 +50,7 @@ export const componentGroups = {
 };
 
 /**
- * @typedef {keyof componentGroups|'home'|'foundations'|'components'} PlaygroundRouteGroup
+ * @typedef {keyof componentGroups|'home'|'foundations'|'components'|'custom'} PlaygroundRouteGroup
  *
  * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
  *   that should be rendered for the indicated route
@@ -59,6 +59,8 @@ export const componentGroups = {
  * @prop {string} title
  * @prop {import("preact").FunctionComponent<{}>} [component]
  * @prop {PlaygroundRouteGroup} group
+ *
+ * @typedef {Omit<PlaygroundRoute, 'group'>} CustomPlaygroundRoute
  */
 
 /** @type {PlaygroundRoute[]} */
