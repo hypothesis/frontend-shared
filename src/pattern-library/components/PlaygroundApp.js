@@ -8,6 +8,7 @@ import { useRoute } from '../router';
 
 /**
  * @typedef {import("../routes").PlaygroundRoute} PlaygroundRoute
+ * @typedef {import("../routes").CustomPlaygroundRoute} CustomPlaygroundRoute
  * @typedef {import("../routes").PlaygroundRouteGroup} PlaygroundRouteGroup
  * @typedef {import('preact').ComponentChildren} Children
  */
@@ -15,8 +16,11 @@ import { useRoute } from '../router';
 /**
  * @typedef PlaygroundAppProps
  * @prop {string} [baseURL]
- * @prop {PlaygroundRoute[]} [extraRoutes] - Local-/application-specific routes
- *   to add to this pattern library in addition to the shared/common routes
+ * @prop {CustomPlaygroundRoute[]} [extraRoutes] -
+ *   Local-/application-specific routes to add to this pattern library in
+ *   addition to the shared/common routes
+ * @prop {string} extraRoutesTitle - Title to show above any extra routes
+ * provided
  */
 
 /**
@@ -29,9 +33,15 @@ import { useRoute } from '../router';
 export default function PlaygroundApp({
   baseURL = '/ui-playground',
   extraRoutes = [],
+  extraRoutesTitle,
 }) {
   const routes = getRoutes();
-  const allRoutes = routes.concat(extraRoutes);
+
+  // Put all of the custom routes into the "custom" group
+  const customRoutes = extraRoutes.map(route => {
+    return /** @type PlaygroundRoute */ ({ ...route, group: 'custom' });
+  });
+  const allRoutes = routes.concat(customRoutes);
   const [activeRoute] = useRoute(baseURL, allRoutes);
   const content =
     activeRoute && activeRoute.component ? (
@@ -152,15 +162,15 @@ export default function PlaygroundApp({
               );
             })}
 
-            <NavHeader>Legacy Components</NavHeader>
-            <NavList routes={getRoutes('components')} />
-
             {extraRoutes.length > 0 && (
               <>
-                <NavHeader>Application</NavHeader>
-                <NavList routes={extraRoutes} />
+                <NavHeader>{extraRoutesTitle}</NavHeader>
+                <NavList routes={customRoutes} />
               </>
             )}
+
+            <NavHeader>Legacy Components</NavHeader>
+            <NavList routes={getRoutes('components')} />
           </nav>
         </div>
         <div className="bg-white pb-16">{content}</div>
