@@ -1,45 +1,34 @@
 import classnames from 'classnames';
+import type { ComponentChildren } from 'preact';
 
 import { Link, LogoIcon } from '../../next';
 import Library from './Library';
 
 import { componentGroups, getRoutes } from '../routes';
+import type { CustomPlaygroundRoute, PlaygroundRoute } from '../routes';
 import { useRoute } from '../router';
 
-/**
- * @typedef {import("../routes").PlaygroundRoute} PlaygroundRoute
- * @typedef {import("../routes").CustomPlaygroundRoute} CustomPlaygroundRoute
- * @typedef {import("../routes").PlaygroundRouteGroup} PlaygroundRouteGroup
- * @typedef {import('preact').ComponentChildren} Children
- */
-
-/**
- * @typedef PlaygroundAppProps
- * @prop {string} [baseURL]
- * @prop {CustomPlaygroundRoute[]} [extraRoutes] -
- *   Local-/application-specific routes to add to this pattern library in
- *   addition to the shared/common routes
- * @prop {string} extraRoutesTitle - Title to show above any extra routes
- * provided
- */
+export type PlaygroundAppProps = {
+  baseURL?: string;
+  extraRoutes?: CustomPlaygroundRoute[];
+  extraRoutesTitle?: string;
+};
 
 /**
  * Render web content for the playground application. This includes the "frame"
  * around the page and a navigation channel, as well as the content rendered
  * by the component handling the current route.
- *
- * @param {PlaygroundAppProps} props
  */
 export default function PlaygroundApp({
   baseURL = '/ui-playground',
   extraRoutes = [],
   extraRoutesTitle,
-}) {
+}: PlaygroundAppProps) {
   const routes = getRoutes();
 
   // Put all of the custom routes into the "custom" group
   const customRoutes = extraRoutes.map(route => {
-    return /** @type PlaygroundRoute */ ({ ...route, group: 'custom' });
+    return { ...route, group: 'custom' } as PlaygroundRoute;
   });
   const allRoutes = routes.concat(customRoutes);
   const [activeRoute] = useRoute(baseURL, allRoutes);
@@ -54,11 +43,8 @@ export default function PlaygroundApp({
 
   /**
    * Header for a primary section of nav
-   *
-   * @param {object} props
-   *   @param {Children} props.children
    */
-  function NavHeader({ children }) {
+  function NavHeader({ children }: { children: ComponentChildren }) {
     return (
       <h2 className="border-b px-2 py-1 font-light text-lg">{children}</h2>
     );
@@ -66,11 +52,8 @@ export default function PlaygroundApp({
 
   /**
    * A single navigation link
-   *
-   * @param {object} props
-   *   @param {PlaygroundRoute} props.route
    */
-  function NavLink({ route }) {
+  function NavLink({ route }: { route: PlaygroundRoute }) {
     return (
       <li className="-ml-[2px]">
         {route.route && (
@@ -96,11 +79,8 @@ export default function PlaygroundApp({
 
   /**
    * Render a list of navigation items
-   *
-   * @param {object} props
-   *   @param {PlaygroundRoute[]} props.routes
    */
-  function NavList({ routes }) {
+  function NavList({ routes }: { routes: PlaygroundRoute[] }) {
     return (
       <ul className="ml-2 space-y-2 border-l-2 border-slate-0">
         {routes.map(route => (
@@ -112,12 +92,14 @@ export default function PlaygroundApp({
 
   /**
    * Secondary section of navigation, with header
-   *
-   * @param {object} props
-   *   @param {string} props.title - Title of navigation section
-   *   @param {Children} props.children
    */
-  function NavSection({ title, children }) {
+  function NavSection({
+    title,
+    children,
+  }: {
+    title: string;
+    children: ComponentChildren;
+  }) {
     return (
       <div className="space-y-4">
         <h3 className="mx-2 text-slate-7 font-semibold text-sm">{title}</h3>
@@ -125,7 +107,9 @@ export default function PlaygroundApp({
       </div>
     );
   }
-
+  const groupKeys = Object.keys(componentGroups) as Array<
+    keyof typeof componentGroups
+  >;
   return (
     <main className="max-w-[1200px] mx-auto">
       <div className="md:grid md:grid-cols-[2fr_5fr]">
@@ -143,21 +127,14 @@ export default function PlaygroundApp({
             <NavList routes={getRoutes('foundations')} />
 
             <NavHeader>Components</NavHeader>
-            {Object.keys(componentGroups).map(group => {
+
+            {groupKeys.map(group => {
               return (
                 <NavSection
                   key={group}
-                  title={
-                    componentGroups[
-                      /** @type {keyof componentGroups} */ (group)
-                    ]
-                  }
+                  title={componentGroups[group] as string}
                 >
-                  <NavList
-                    routes={getRoutes(
-                      /** @type PlaygroundRouteGroup */ (group)
-                    )}
-                  />
+                  <NavList routes={getRoutes(group)} />
                 </NavSection>
               );
             })}
