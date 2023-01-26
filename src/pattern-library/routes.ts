@@ -1,3 +1,5 @@
+import type { FunctionComponent } from 'preact';
+
 import LibraryHome from './components/LibraryHome';
 
 import GettingStartedPage from './components/patterns/GettingStartedPage';
@@ -47,24 +49,34 @@ export const componentGroups = {
   input: 'Input',
   layout: 'Layout',
   navigation: 'Navigation',
-};
+} as const;
+
+export type PlaygroundRouteGroup =
+  | keyof typeof componentGroups
+  | 'home'
+  | 'foundations'
+  | 'components'
+  | 'custom';
 
 /**
- * @typedef {keyof componentGroups|'home'|'foundations'|'components'|'custom'} PlaygroundRouteGroup
- *
- * @typedef PlaygroundRoute - Route "handler" that provides a component (function)
- *   that should be rendered for the indicated route
- * @prop {RegExp|string} [route] - Pattern or string path relative to
- *   `baseURL`, e.g. '/data-my-component'
- * @prop {string} title
- * @prop {import("preact").FunctionComponent<{}>} [component]
- * @prop {PlaygroundRouteGroup} group
- *
- * @typedef {Omit<PlaygroundRoute, 'group'>} CustomPlaygroundRoute
+ * Route "handler" that provides a component (function) that should be rendered
+ * for the indicated route
  */
+export type PlaygroundRoute = {
+  /**
+   * Pattern or string path relative to `baseURL`, e.g. '/data-my-component'. If
+   * not provided, a placeholder entry for this route will be added to the
+   * navigation, with no link.
+   */
+  route?: RegExp | string;
+  title: string;
+  component?: FunctionComponent;
+  group: PlaygroundRouteGroup;
+};
 
-/** @type {PlaygroundRoute[]} */
-const routes = [
+export type CustomPlaygroundRoute = Omit<PlaygroundRoute, 'group'>;
+
+const routes: PlaygroundRoute[] = [
   {
     route: /^\/?$/,
     title: 'Home',
@@ -263,11 +275,8 @@ const routes = [
 
 /**
  * Retrieve all routes or the subset in group `group`.
- *
- * @param {PlaygroundRouteGroup} [group]
- * @returns {PlaygroundRoute[]}
  */
-export function getRoutes(group) {
+export function getRoutes(group?: PlaygroundRouteGroup) {
   if (group) {
     return routes.filter(route => route.group === group);
   }
