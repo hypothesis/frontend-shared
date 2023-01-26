@@ -14,7 +14,7 @@
     "strict": true,
     "target": "ES2020"
   },
-  "include": ["**/*.js"],
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "types/*.d.ts"],
   "exclude": [
     // Tests are not checked.
     "**/test/**/*.js",
