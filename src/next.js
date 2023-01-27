@@ -41,4 +41,6 @@ export {
   Link,
   LinkBase,
   LinkButton,
+  Tab,
+  TabList,
 } from './components/navigation/';
