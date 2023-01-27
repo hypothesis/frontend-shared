@@ -29,6 +29,7 @@ import OverlayPage from './components/patterns/layout/OverlayPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
+import TabPage from './components/patterns/navigation/TabPage';
 
 // Legacy pattern-library pages
 
@@ -210,6 +211,12 @@ const routes: PlaygroundRoute[] = [
     group: 'navigation',
     component: PointerButtonPage,
     route: '/navigation-pointerbutton',
+  },
+  {
+    title: 'Tabs',
+    group: 'navigation',
+    component: TabPage,
+    route: '/navigation-tab',
   },
   {
     route: '/components-buttons',
