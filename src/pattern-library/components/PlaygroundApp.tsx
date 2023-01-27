@@ -5,14 +5,10 @@ import { Link, LogoIcon } from '../../next';
 import Library from './Library';
 
 import { componentGroups, getRoutes } from '../routes';
-import type { CustomPlaygroundRoute, PlaygroundRoute } from '../routes';
+import type { PlaygroundRoute } from '../routes';
 import { useRoute } from '../router';
 
-export type PlaygroundAppProps = {
-  baseURL?: string;
-  extraRoutes?: CustomPlaygroundRoute[];
-  extraRoutesTitle?: string;
-};
+import type { PlaygroundAppProps } from '../';
 
 /**
  * Render web content for the playground application. This includes the "frame"
@@ -22,13 +18,13 @@ export type PlaygroundAppProps = {
 export default function PlaygroundApp({
   baseURL = '/ui-playground',
   extraRoutes = [],
-  extraRoutesTitle,
+  extraRoutesTitle = 'Playground',
 }: PlaygroundAppProps) {
   const routes = getRoutes();
 
   // Put all of the custom routes into the "custom" group
-  const customRoutes = extraRoutes.map(route => {
-    return { ...route, group: 'custom' } as PlaygroundRoute;
+  const customRoutes = extraRoutes.map((route): PlaygroundRoute => {
+    return { ...route, group: 'custom' };
   });
   const allRoutes = routes.concat(customRoutes);
   const [activeRoute] = useRoute(baseURL, allRoutes);
