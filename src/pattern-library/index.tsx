@@ -4,12 +4,12 @@ import { render } from 'preact';
 import 'preact/debug';
 
 import { registerIcons } from '../';
+import type { CustomPlaygroundRoute } from './routes';
 
 import PlaygroundApp from './components/PlaygroundApp';
-import type { CustomPlaygroundRoute } from './routes';
 import iconSet from './icons';
 
-export type PatternLibraryAppOptions = {
+export type PlaygroundAppProps = {
   /**
    * The path relative to web root where the pattern library is served. Defaults
    * to `/ui-playground`.
@@ -27,7 +27,9 @@ export type PatternLibraryAppOptions = {
    * navigation menu. Default title is "Playground".
    */
   extraRoutesTitle?: string;
+};
 
+export type PatternLibraryAppOptions = {
   /**
    * Icons, additional to default pattern-library icons, to register for use in
    * patterns/components in the pattern library.
@@ -35,28 +37,18 @@ export type PatternLibraryAppOptions = {
    * @deprecated - Use individual icon components instead
    */
   icons?: Record<string, string>;
-};
+} & PlaygroundAppProps;
 
 /**
  * Render the pattern-library preact app
- *
- * @param {PatternLibraryAppOptions} options
  */
 export function startApp({
-  baseURL = '',
-  extraRoutes = [],
-  extraRoutesTitle = 'Playground',
   icons = {},
+
+  ...componentProps
 } = {}) {
   const allIcons = { ...iconSet, ...icons };
   registerIcons(allIcons);
   const container = document.querySelector('#app');
-  render(
-    <PlaygroundApp
-      baseURL={baseURL}
-      extraRoutes={extraRoutes}
-      extraRoutesTitle={extraRoutesTitle}
-    />,
-    container as Element
-  );
+  render(<PlaygroundApp {...componentProps} />, container as Element);
 }
