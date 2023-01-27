@@ -16,7 +16,7 @@ import type { PlaygroundAppProps } from '../';
  * by the component handling the current route.
  */
 export default function PlaygroundApp({
-  baseURL = '/ui-playground',
+  baseURL = '',
   extraRoutes = [],
   extraRoutesTitle = 'Playground',
 }: PlaygroundAppProps) {
