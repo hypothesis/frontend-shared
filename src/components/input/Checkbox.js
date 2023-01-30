@@ -63,6 +63,8 @@ const CheckboxNext = function Checkbox({
     }
   }
 
+  const Icon = isChecked ? CheckedIcon : UncheckedIcon;
+
   return (
     <label
       className={classnames('relative flex items-center gap-x-1.5', {
@@ -77,6 +79,9 @@ const CheckboxNext = function Checkbox({
         type="checkbox"
         ref={downcastRef(elementRef)}
         className={classnames(
+          // Set the special Tailwind peer class to allow sibling elements
+          // to style themselves based on the state of this element
+          'peer',
           // Position this atop the icon and size it to the same dimensions
           'absolute w-em h-em',
           // Make checkbox input visually hidden, but
@@ -91,11 +96,15 @@ const CheckboxNext = function Checkbox({
         id={id}
         onChange={handleChange}
       />
-      {isChecked ? (
-        <CheckedIcon className="w-em h-em" />
-      ) : (
-        <UncheckedIcon className="w-em h-em" />
-      )}
+      <Icon
+        className={classnames(
+          // Add an outline ring to the icon when the input is focus-visible.
+          // The ring needs to be applied here because the `input` has an
+          // effectively-0 opacity.
+          'peer-focus-visible:ring',
+          'w-em h-em'
+        )}
+      />
       {children}
     </label>
   );
