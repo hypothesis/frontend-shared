@@ -22,7 +22,9 @@ gulp.task(
       [
         './styles/**/*.scss',
         './src/components/**/*.js',
+        './src/components/**/*.ts*',
         './src/pattern-library/**/*.js',
+        './src/pattern-library/**/*.ts*',
       ],
       gulp.task('bundle-css')
     )
