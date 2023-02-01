@@ -70,6 +70,8 @@ export default {
               '**/test/**/*.js',
               '**/test-util/**',
               'src/components/icons/**/*.js',
+              'src/pattern-library/**/*.js',
+              'src/pattern-library/**/*.ts*',
             ],
           },
         ],
