@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 
 import { Scrollbox } from '../../..';
 import Library from '../Library';
+import Next from '../LibraryNext';
 
 import {
   ConfirmModal,
@@ -225,6 +226,30 @@ function ConfirmModalExample() {
 export default function DialogComponents() {
   return (
     <Library.Page title="Dialogs">
+      <Library.Pattern title="Status">
+        <Next.Changelog>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Modal</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Modal</code> component in the feedback group instead.
+          </Next.ChangelogItem>
+          <Next.ChangelogItem status="deprecated">
+            The legacy implementation of
+            <s>
+              <code>Dialog</code>
+            </s>{' '}
+            is deprecated and slated for removal in v6 of{' '}
+            <code>frontend-shared</code>. Use re-implemented
+            <code>Modal</code> component in the feedback group instead: it
+            combines the functionality of <code>Dialog</code> and{' '}
+            <code>Modal</code>.
+          </Next.ChangelogItem>
+        </Next.Changelog>
+      </Library.Pattern>
       <Library.Pattern title="Dialog">
         <p>
           A <code>Dialog</code> prompts for user interaction and will take focus
