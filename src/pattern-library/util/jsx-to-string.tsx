@@ -3,20 +3,26 @@ import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
 import { Fragment } from 'preact';
 
+import type { ComponentChildren, VNode } from 'preact';
+
 /**
  * Escape `str` for use in a "-quoted string.
- *
- * @param {string} str
  */
-function escapeQuotes(str) {
+function escapeQuotes(str: string) {
   return str.replace(/"/g, '\\"');
 }
 
-/** @param {any} type */
-function componentName(type) {
+/**
+ * Format a component's name for display
+ */
+function componentName(type: any) {
   let name = typeof type === 'string' ? type : type.displayName ?? type.name;
 
-  name = name.replace('Wrapper', '');
+  // Remove the string "Wrapper" from component names. This allows the pattern
+  // library to create a convenience wrapper component around a given component
+  // being documented, and have it appear that the documented component is being
+  // used directly in rendered source content.
+  name = name.replace(/\BWrapper$/, '');
   // Handle (display)name conflicts if there are two components with the same
   // name. e.g. if there are two components named `Foo`, the second of those
   // encountered will have a name of `Foo$1`. Strip the `$1` in this case.
@@ -25,11 +31,8 @@ function componentName(type) {
 
 /**
  * Indent a multi-line string by `indent` spaces.
- *
- * @param {string} str
- * @param {number} indent
  */
-function indentLines(str, indent) {
+function indentLines(str: string, indent: number) {
   const indentStr = ' '.repeat(indent);
   const lines = str.split('\n');
   return lines.map(line => indentStr + line).join('\n');
@@ -37,11 +40,8 @@ function indentLines(str, indent) {
 
 /**
  * Test if an element looks like a JSX element.
- *
- * @param {any} value
- * @return {value is import('preact').VNode<any>}
  */
-function isJSXElement(value) {
+function isJSXElement(value: any): value is VNode<any> {
   const elementType = value?.type;
   return typeof elementType === 'string' || typeof elementType === 'function';
 }
@@ -54,11 +54,8 @@ function isJSXElement(value) {
  *
  * @example
  *   jsxToString(<Widget expanded={true} label="Thing"/>) // returns `<Widget expanded label="Thing"/>`
- *
- * @param {import('preact').ComponentChildren} vnode
- * @return {string}
  */
-export function jsxToString(vnode) {
+export function jsxToString(vnode: ComponentChildren): string {
   if (
     typeof vnode === 'string' ||
     typeof vnode === 'number' ||
@@ -73,8 +70,8 @@ export function jsxToString(vnode) {
     // (eg. from an index or item ID) so it doesn't make sense to include it either.
     let propStr = Object.entries(vnode.props)
       .map(([name, value]) => {
-        // Allow certain pattern-library-defined props to be invisible in source
-        // view
+        // Don't render props that are for internal pattern-library wrapper
+        // component use only
         if (name.includes('WrapperProp')) {
           return '';
         }
@@ -134,12 +131,8 @@ export function jsxToString(vnode) {
  *
  * For the syntax highlighting to be visible, a Highlight.js CSS stylesheet must be
  * loaded on the page.
- *
- * @param {import('preact').ComponentChildren} vnode - JSX expression to render.
- *   See {@link jsxToString}
- * @return {string}
  */
-export function jsxToHTML(vnode) {
+export function jsxToHTML(vnode: ComponentChildren): string {
   // JSX support in Highlight.js involves a combination of the JS and XML
   // languages, so we need to load both.
   if (!hljs.getLanguage('javascript')) {
