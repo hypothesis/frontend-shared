@@ -65,6 +65,7 @@ function useUniqueId(prefix) {
  * Dialog container element, or `initialFocus` HTMLElement if provided.
  *
  * @param {DialogProps} props
+ * @deprecated
  */
 export function Dialog({
   buttons,

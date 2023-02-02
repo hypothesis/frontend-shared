@@ -22,6 +22,7 @@ import { LabeledButton } from './buttons';
  * if user clicks/taps outside of it.
  *
  * @param {ModalProps} props
+ * @deprecated
  */
 export function Modal({ children, onCancel, ...restProps }) {
   const modalContainerRef = /** @type {{ current: HTMLDivElement }} */ (
@@ -61,6 +62,7 @@ export function Modal({ children, onCancel, ...restProps }) {
  * request a boolean yes/no confirmation from the user.
  *
  * @param {ConfirmModalProps} props
+ * @deprecated
  */
 export function ConfirmModal({
   message,
