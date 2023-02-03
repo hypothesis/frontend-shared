@@ -1,22 +1,22 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 import { inputGroupStyles } from './InputGroup';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLInputElement>} HTMLInputAttributes
- *
- * @typedef InputProps
- * @prop {boolean} [hasError=false]
- * @prop {'email'|'search'|'text'|'url'} [type="text"]
- */
+type ComponentProps = {
+  hasError?: boolean;
+  type?: 'email' | 'search' | 'text' | 'url';
+};
+
+export type InputProps = PresentationalProps &
+  ComponentProps &
+  JSX.HTMLAttributes<HTMLInputElement>;
 
 /**
  * Render a text field input
- *
- * @param {CommonProps & InputProps & Omit<HTMLInputAttributes, 'type'>} props
  */
 const InputNext = function Input({
   children,
@@ -27,7 +27,7 @@ const InputNext = function Input({
   type = 'text',
 
   ...htmlAttributes
-}) {
+}: InputProps) {
   // @ts-expect-error - "aria-label" is missing from HTMLInputAttributes
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
