@@ -1,10 +1,9 @@
-import classnames from 'classnames';
 import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-import { inputGroupStyles } from './InputGroup';
+import InputRoot from './InputRoot';
 
 type ComponentProps = {
   hasError?: boolean;
@@ -19,39 +18,20 @@ export type InputProps = PresentationalProps &
  * Render a text field input
  */
 const InputNext = function Input({
-  children,
-  classes,
   elementRef,
-
   hasError,
   type = 'text',
 
   ...htmlAttributes
 }: InputProps) {
-  // @ts-expect-error - "aria-label" is missing from HTMLInputAttributes
-  if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
-    console.warn(
-      '`Input` component should have either an `id` or an `aria-label` attribute'
-    );
-  }
   return (
-    <input
-      {...htmlAttributes}
+    <InputRoot
+      elementRef={downcastRef(elementRef)}
       type={type}
-      ref={downcastRef(elementRef)}
-      className={classnames(
-        'focus-visible-ring ring-inset border rounded-sm w-full p-2',
-        'bg-grey-0 focus:bg-white disabled:bg-grey-1',
-        'placeholder:text-color-grey-5 disabled:placeholder:color-grey-6',
-        { 'ring-inset ring-2 ring-red-error': hasError },
-        // Adapt styles when this component is inside an InputGroup
-        inputGroupStyles,
-        classes
-      )}
+      hasError={hasError}
+      {...htmlAttributes}
       data-component="Input"
-    >
-      {children}
-    </input>
+    />
   );
 };
 
