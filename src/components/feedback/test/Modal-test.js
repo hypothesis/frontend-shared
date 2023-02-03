@@ -58,10 +58,10 @@ describe('Modal', () => {
       );
     });
 
-    it('does not set focus if `initialFocus` is set to `null`', () => {
+    it('does not set focus if `initialFocus` is set to "manual"', () => {
       const focusedBefore = document.activeElement;
       mount(
-        <Modal initialFocus={null} title="My modal">
+        <Modal initialFocus={'manual'} title="My modal">
           <div>Test</div>
         </Modal>,
         { attachTo: container }

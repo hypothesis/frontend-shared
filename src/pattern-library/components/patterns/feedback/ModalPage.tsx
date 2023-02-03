@@ -147,6 +147,11 @@ export default function ModalPage() {
                 <code>icon</code> prop: Now takes an <code>IconComponent</code>{' '}
                 instead of a <code>string</code>.
               </Next.ChangelogItem>
+              <Next.ChangelogItem status="changed">
+                <code>initialFocus</code> prop: Set to <code>{"'manual'"}</code>{' '}
+                to opt out of automatic focus routing (formerly{' '}
+                <code>null</code>).
+              </Next.ChangelogItem>
               <Next.ChangelogItem status="added">
                 Optional <code>width</code> prop
               </Next.ChangelogItem>
@@ -193,9 +198,8 @@ export default function ModalPage() {
               of the modal, or if the <kbd>ESC</kbd> key is pressed.
             </li>
             <li>
-              Modals will route focus initially to any provided{' '}
-              <code>initialFocus</code> Ref. If none is provided, a modal will
-              focus its outer element when first rendered.
+              Modals route initial focus unless directed not to do so. See
+              documentation for the <code>initialFocus</code> prop.
             </li>
             <li>Modals do not (yet) trap focus. They should.</li>
           </ul>
@@ -325,7 +329,7 @@ export default function ModalPage() {
             <p>
               To opt out of focus routing entirely, e.g. in cases where the
               consumer wants to handle its own focus routing, set{' '}
-              <code>initialFocus</code> to <code>null</code>.
+              <code>initialFocus</code> to <code>{"'manual'"}</code>.
             </p>
           </Library.Example>
 

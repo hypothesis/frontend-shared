@@ -22,10 +22,10 @@ type ComponentProps = {
   width?: 'sm' | 'md' | 'lg' | 'custom';
   /**
    * Element that should take focus when the Dialog is first rendered. When not
-   * provided, the dialog's outer element will take focus. Setting this prop to
-   * `null` will opt out of focus routing.
+   * provided ("auto"), the dialog's outer element will take focus. Setting this
+   * prop to "manual" will opt out of focus routing.
    */
-  initialFocus?: RefObject<HTMLElement | null> | null;
+  initialFocus?: RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual';
 };
 
 export type ModalProps = PresentationalProps & ComponentProps & PanelProps;
@@ -41,7 +41,7 @@ const ModalNext = function Modal({
 
   classes,
   elementRef,
-  initialFocus,
+  initialFocus = 'auto',
 
   // Forwarded to Panel
   buttons,
@@ -58,18 +58,28 @@ const ModalNext = function Modal({
   const dialogDescriptionId = useUniqueId('dialog-description');
 
   useEffect(() => {
-    // Route focus unless `initialFocus` is set to `null`
-    if (initialFocus !== null) {
-      const focusEl = initialFocus?.current as HTMLInputElement;
-      if (focusEl && !focusEl.disabled) {
-        focusEl.focus();
-      } else {
-        // The `initialFocus` prop has not been set, so use automatic focus
-        // handling. Modern accessibility guidance is to focus the dialog itself
-        // rather than trying to be smart about focusing a particular control
-        // within the dialog.
-        modalRef.current?.focus();
-      }
+    if (initialFocus === 'manual') {
+      return;
+    }
+    if (initialFocus === 'auto') {
+      // An explicit `initialFocus` has not be set, so use automatic focus
+      // handling. Modern accessibility guidance is to focus the dialog itself
+      // rather than trying to be smart about focusing a particular control
+      // within the dialog.
+      modalRef.current?.focus();
+      return;
+    }
+
+    const focusEl = initialFocus?.current as HTMLElement & {
+      disabled?: boolean;
+    };
+
+    if (focusEl && !focusEl.disabled) {
+      focusEl.focus();
+    } else {
+      // Fall back to focusing the modal itself
+      modalRef.current?.focus();
+      return;
     }
 
     // We only want to run this effect once when the dialog is mounted.
