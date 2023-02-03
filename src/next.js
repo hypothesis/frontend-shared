@@ -26,6 +26,7 @@ export {
   IconButton,
   Input,
   InputGroup,
+  Select,
 } from './components/input';
 export {
   Card,
