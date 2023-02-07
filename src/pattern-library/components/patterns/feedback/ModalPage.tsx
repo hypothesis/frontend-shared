@@ -32,25 +32,25 @@ function ModalButtons() {
   );
 }
 
-type ModalWrapperProps = ModalProps & {
+type Modal_Props = ModalProps & {
   /** Pattern-wrapping prop. Not visible in source view */
-  nonCloseableWrapperProp?: boolean;
+  _nonCloseable?: boolean;
 };
 
 /**
  * Wrap the Modal component with some state management to make reuse in
  * multiple examples plausible and convenient.
  */
-function ModalWrapper({
+function Modal_({
   buttons,
-  nonCloseableWrapperProp,
+  _nonCloseable,
   children,
   ...modalProps
-}: ModalWrapperProps) {
+}: Modal_Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const closeModal = () => setModalOpen(false);
 
-  const closeHandler = nonCloseableWrapperProp ? undefined : closeModal;
+  const closeHandler = _nonCloseable ? undefined : closeModal;
   const forwardedButtons = buttons ? (
     buttons
   ) : (
@@ -162,7 +162,7 @@ export default function ModalPage() {
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Modal" />
           <Library.Demo title="Basic modal" withSource>
-            <ModalWrapper
+            <Modal_
               buttons={<ModalButtons />}
               icon={EditIcon}
               initialFocus={inputRef}
@@ -177,7 +177,7 @@ export default function ModalPage() {
                 <Input name="my-input" elementRef={inputRef} />
                 <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
               </InputGroup>
-            </ModalWrapper>
+            </Modal_>
           </Library.Demo>
         </Library.Pattern>
 
@@ -209,13 +209,13 @@ export default function ModalPage() {
               exceeding viewport capacity.
             </p>
             <Library.Demo title="Modal with overflowing content" withSource>
-              <ModalWrapper
+              <Modal_
                 buttons={<ModalButtons />}
                 onClose={() => {}}
                 title="Modal with long content"
               >
                 <LoremIpsum size="lg" />
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
           </Library.Example>
 
@@ -229,10 +229,7 @@ export default function ModalPage() {
             </p>
 
             <Library.Demo title="Non-closeable modal" withSource>
-              <ModalWrapper
-                title="Non-closeable modal"
-                nonCloseableWrapperProp={true}
-              >
+              <Modal_ title="Non-closeable modal" _nonCloseable={true}>
                 <p>
                   This is a non-closeable modal. There is no close button at the
                   top of the panel, and the modal cannot be dismissed by
@@ -240,7 +237,7 @@ export default function ModalPage() {
                   hatch has been provided for you below (typically non-closeable
                   modals do not have any buttons).
                 </p>
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
           </Library.Example>
 
@@ -259,7 +256,7 @@ export default function ModalPage() {
               title="Modal with a minimum height and not much content"
               withSource
             >
-              <ModalWrapper
+              <Modal_
                 title="Modal with a fixed height"
                 buttons={<ModalButtons />}
                 onClose={() => {}}
@@ -270,14 +267,14 @@ export default function ModalPage() {
                     class.
                   </p>
                 </div>
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
 
             <Library.Demo
               title="Modal with a minimum height and more content"
               withSource
             >
-              <ModalWrapper
+              <Modal_
                 title="Modal with a fixed height"
                 buttons={<ModalButtons />}
                 onClose={() => {}}
@@ -291,14 +288,14 @@ export default function ModalPage() {
                     <LoremIpsum size="md" />
                   </p>
                 </div>
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
 
             <Library.Demo
               title="Modal with a minimum height and scrolling content"
               withSource
             >
-              <ModalWrapper
+              <Modal_
                 title="Modal with a fixed height"
                 buttons={<ModalButtons />}
                 onClose={() => {}}
@@ -312,7 +309,7 @@ export default function ModalPage() {
                     <LoremIpsum size="lg" />
                   </p>
                 </div>
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
@@ -335,36 +332,36 @@ export default function ModalPage() {
 
           <Library.Example title="width">
             <Library.Demo title="width='sm'" withSource>
-              <ModalWrapper
+              <Modal_
                 buttons={<ModalButtons />}
                 onClose={() => {}}
                 title="Small modal"
                 width="sm"
               >
                 <LoremIpsum size="sm" />
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
 
             <Library.Demo title="width='md' (default)" withSource>
-              <ModalWrapper
+              <Modal_
                 buttons={<ModalButtons />}
                 onClose={() => {}}
                 title="Medium-width modal"
                 width="md"
               >
                 <LoremIpsum size="md" />
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
 
             <Library.Demo title="width='lg'" withSource>
-              <ModalWrapper
+              <Modal_
                 buttons={<ModalButtons />}
                 onClose={() => {}}
                 title="Wide modal"
                 width="lg"
               >
                 <LoremIpsum size="md" />
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
 
             <p>
@@ -374,7 +371,7 @@ export default function ModalPage() {
             </p>
 
             <Library.Demo title="width='custom'" withSource>
-              <ModalWrapper
+              <Modal_
                 buttons={<ModalButtons />}
                 classes="w-[40em]"
                 onClose={() => {}}
@@ -382,7 +379,7 @@ export default function ModalPage() {
                 width="custom"
               >
                 <LoremIpsum size="md" />
-              </ModalWrapper>
+              </Modal_>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
