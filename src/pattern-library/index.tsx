@@ -46,7 +46,7 @@ export function startApp({
   icons = {},
 
   ...componentProps
-} = {}) {
+}: PatternLibraryAppOptions = {}) {
   const allIcons = { ...iconSet, ...icons };
   registerIcons(allIcons);
   const container = document.querySelector('#app');
