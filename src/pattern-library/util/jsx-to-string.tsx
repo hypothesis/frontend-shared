@@ -18,15 +18,17 @@ function escapeQuotes(str: string) {
 function componentName(type: any) {
   let name = typeof type === 'string' ? type : type.displayName ?? type.name;
 
-  // Remove the string "Wrapper" from component names. This allows the pattern
-  // library to create a convenience wrapper component around a given component
-  // being documented, and have it appear that the documented component is being
-  // used directly in rendered source content.
-  name = name.replace(/\BWrapper$/, '');
   // Handle (display)name conflicts if there are two components with the same
   // name. e.g. if there are two components named `Foo`, the second of those
   // encountered will have a name of `Foo$1`. Strip the `$1` in this case.
-  return name.replace(/\$[0-9]+$/, '');
+  name = name.replace(/\$[0-9]+$/, '');
+  // Remove trailing underscore from component names. This allows the pattern
+  // library to create a convenience wrapper component around a given component
+  // being documented, and have it appear that the documented component is being
+  // used directly in rendered source content.
+  name = name.replace(/\B_$/, '');
+
+  return name;
 }
 
 /**
@@ -47,13 +49,25 @@ function isJSXElement(value: any): value is VNode<any> {
 }
 
 /**
+ * Should the prop with `name` be ignored from output code strings?
+ *
+ * The special `children` prop, as well as any prop name beginning with an
+ * underscore, should be ignored.
+ */
+function isExcludedProp(name: string) {
+  return name.match(/^_/) || name === 'children';
+}
+
+/**
  * Render a JSX expression as a code string.
  *
- * Currently this only supports serializing props with simple types (strings,
- * booleans, numbers).
+ * A trailing underscore in component names will be omitted, allowing wrapper
+ * components to be represented as the component they wrap. Props with a
+ * leading underscore will be ignored.
  *
  * @example
- *   jsxToString(<Widget expanded={true} label="Thing"/>) // returns `<Widget expanded label="Thing"/>`
+ *   jsxToString(<Widget_ count={0} error={false} open={true} label="Thing" onClick={() => go()} _hello={"hello"} />)
+ *   // returns '<Widget count={0}error={false} open label="Thing" onClick={onClick} />'
  */
 export function jsxToString(vnode: ComponentChildren): string {
   if (
@@ -70,38 +84,54 @@ export function jsxToString(vnode: ComponentChildren): string {
     // (eg. from an index or item ID) so it doesn't make sense to include it either.
     let propStr = Object.entries(vnode.props)
       .map(([name, value]) => {
-        // Don't render props that are for internal pattern-library wrapper
-        // component use only
-        if (name.includes('WrapperProp')) {
-          return '';
-        }
-        if (name === 'children') {
+        if (isExcludedProp(name)) {
           return '';
         }
 
-        // When a boolean property is present, render:
-        // 'booleanPropName' => when true
-        // 'booleanPropName={false}' => when false
-        if (typeof value === 'boolean') {
-          return value ? name : `${name}={false}`;
+        if (isJSXElement(value)) {
+          return `${name}={${jsxToString(value)}}`;
         }
 
-        let valueStr;
-        if (typeof value === 'string') {
-          valueStr = `"${escapeQuotes(value)}"`;
-        } else if (typeof value === 'function' && componentName(value)) {
-          // Handle {import("preact").FunctionComponent<{}>} props
-          valueStr = `{${componentName(value)}}`;
-        } else if (isJSXElement(value)) {
-          valueStr = `{${jsxToString(value)}}`;
-        } else if (value && typeof value === 'object') {
-          // Use the prop name instead of [Object object]; it's more helpful
-          valueStr = `{${name}}`;
-        } else if (value) {
-          // `toString` necessary for Symbols
-          valueStr = `{${value.toString()}}`;
+        let valueStr = '';
+
+        switch (typeof value) {
+          case 'boolean':
+            // When a boolean property is present, render:
+            // 'booleanPropName' => when true
+            // 'booleanPropName={false}' => when false
+            valueStr = value ? name : `${name}={false}`;
+            break;
+          case 'string':
+            valueStr = `${name}="${escapeQuotes(value)}"`;
+            break;
+          case 'bigint':
+          case 'number':
+          case 'undefined':
+            valueStr = `${name}={${value}}`;
+            break;
+          case 'function':
+            // This also handles function components
+            valueStr = componentName(value)
+              ? `${name}={${componentName(value)}}`
+              : `${name}={${value.toString()}}`;
+            break;
+          case 'object':
+            // Use the prop name instead of [Object object]; it's more helpful
+            if (value) {
+              valueStr = `${name}={${name}}`;
+            } else {
+              // null is an object
+              valueStr = `${name}={${value}}`;
+            }
+            break;
+          default:
+            if (value) {
+              // `toString` necessary for Symbols
+              valueStr = `${name}={${value.toString()}}`;
+            }
+            break;
         }
-        return `${name}=${valueStr}`;
+        return valueStr;
       })
       .join(' ')
       .trim();
