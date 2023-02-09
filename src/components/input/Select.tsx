@@ -31,7 +31,7 @@ const SelectNext = function Select({
   return (
     <InputRoot
       classes={classnames(
-        'appearance-none h-touch-minimum',
+        'appearance-none',
         // position the down-arrow image centered at the right, offset from the
         // right edge by 0.5rem. Arrow image width (4 units) + horizontal
         // padding (3 units) = 7 units of right padding needed.
