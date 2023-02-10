@@ -62,6 +62,9 @@ const ButtonBaseNext = function ButtonBase({
       data-base-component="ButtonBase"
       /* data-component will be overwritten unless this component is used directly */
       data-component="ButtonBase"
+      // Setting a default `type` can prevent undesired form submissions in
+      // certain cases
+      type="button"
       {...htmlAttributes}
       className={classNames(
         {
