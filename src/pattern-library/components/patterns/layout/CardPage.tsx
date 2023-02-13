@@ -324,6 +324,31 @@ export default function CardPage() {
               </Card>
             </Library.Demo>
           </Library.Example>
+
+          <Library.Example title="fullWidth">
+            <p>
+              In some cases, it might be desirable for the{' '}
+              <code>CardHeader</code> and its border to span the full width of
+              the <code>Card</code>.
+            </p>
+            <Library.Demo
+              title="Making a CardHeader span the full width"
+              withSource
+            >
+              <Card>
+                <CardHeader
+                  title="Full-width header"
+                  onClose={() => alert('you clicked it')}
+                  fullWidth
+                />
+                <CardContent>
+                  <div>
+                    A <code>Card</code> with <code>CardHeader</code>.
+                  </div>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 

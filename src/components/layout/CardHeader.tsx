@@ -17,6 +17,11 @@ type ComponentProps = {
    * will be rendered.
    */
   onClose?: () => void;
+
+  /**
+   * Make the header take the full width of the Card, with a full-width border
+   */
+  fullWidth?: boolean;
 };
 
 type HTMLAttributes = JSX.HTMLAttributes<HTMLElement>;
@@ -33,6 +38,7 @@ const CardHeaderNext = function CardHeader({
   classes,
   elementRef,
 
+  fullWidth = false,
   onClose,
   title,
 
@@ -42,7 +48,8 @@ const CardHeaderNext = function CardHeader({
     <div
       {...htmlAttributes}
       className={classnames(
-        'flex items-center gap-x-2 mx-3 py-2 border-b',
+        'flex items-center gap-x-2 border-b py-2',
+        { 'mx-3': !fullWidth, 'px-3': fullWidth },
         classes
       )}
       ref={downcastRef(elementRef)}
