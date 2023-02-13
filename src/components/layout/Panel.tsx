@@ -13,6 +13,19 @@ import CardActions from './CardActions';
 type ComponentProps = {
   /** Buttons are rendered at the bottom right of the Panel. */
   buttons?: ComponentChildren;
+
+  /**
+   * Make the header take the full width of the Panel, with a full-width border
+   */
+  fullWidthHeader?: boolean;
+
+  /**
+   * Forwarded to `CardContent`. If `none`, content is not wrapped with
+   * `CardContent`. This allows content to span the full width and height of
+   * the Panel's content area without any inset/padding.
+   */
+  paddingSize?: 'sm' | 'md' | 'lg' | 'none';
+
   /** Optional icon to render in the header */
   icon?: IconComponent;
 
@@ -21,6 +34,13 @@ type ComponentProps = {
    * this function as an onClick handler
    */
   onClose?: () => void;
+  /**
+   * The content of the Panel should scroll if it exceeds available vertical
+   * space. This will cause the `CardHeader` (and its bottom border) to span the
+   * full width of the Panel. This prevents scroll shadow hints from looking
+   * awkward.
+   */
+  scrollable?: boolean;
   title: string;
 };
 
@@ -40,12 +60,23 @@ const PanelNext = function Panel({
   elementRef,
 
   buttons,
+  fullWidthHeader = false,
   icon: Icon,
   onClose,
+  paddingSize = 'md',
+  scrollable = false,
   title,
 
   ...htmlAttributes
 }: PanelProps) {
+  const panelContent =
+    paddingSize === 'none' ? (
+      children
+    ) : (
+      <CardContent data-testid="panel-content-wrapper" size={paddingSize}>
+        {children}
+      </CardContent>
+    );
   return (
     <Card
       {...htmlAttributes}
@@ -53,13 +84,11 @@ const PanelNext = function Panel({
       elementRef={downcastRef(elementRef)}
       data-composite-component="Panel"
     >
-      <CardHeader onClose={onClose}>
+      <CardHeader onClose={onClose} fullWidth={scrollable || fullWidthHeader}>
         {Icon && <Icon className="w-em h-em" />}
         <CardTitle>{title}</CardTitle>
       </CardHeader>
-      <Scroll>
-        <CardContent>{children}</CardContent>
-      </Scroll>
+      {scrollable ? <Scroll>{panelContent}</Scroll> : <>{panelContent}</>}
       <CardContent>
         {buttons && <CardActions>{buttons}</CardActions>}
       </CardContent>

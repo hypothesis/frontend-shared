@@ -64,9 +64,9 @@ export default function PanelPage() {
           <Library.Example title="Scrolling long content">
             <p>
               If a <code>Panel</code> is a direct child of an element with a
-              height constraint, content will scroll as needed, but not the
-              heading or buttons. This can be useful if a <code>Panel</code> is
-              needed in a constrained interface, like a modal.
+              height constraint and the <code>scrollable</code> prop is set, its
+              content will scroll if it exceeds the available height. Header and
+              buttons do not scroll.
             </p>
 
             <Library.Demo withSource>
@@ -80,6 +80,7 @@ export default function PanelPage() {
                       <Button variant="primary">Scroll</Button>
                     </>
                   }
+                  scrollable
                 >
                   <LoremIpsum />
                 </Panel>
@@ -136,6 +137,83 @@ export default function PanelPage() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Panel>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="paddingSize">
+            <p>
+              This sizing prop defines how much padding will be used around the
+              Panel content. Set to <code>none</code> to turn off padding
+              (background colors are set here to help show effect of padding).
+            </p>
+            <Library.Demo withSource>
+              <Panel title="paddingSize: 'sm'" paddingSize="sm">
+                <div className="bg-grey-1">
+                  <LoremIpsum size="sm" />
+                </div>
+              </Panel>
+            </Library.Demo>
+
+            <Library.Demo withSource>
+              <Panel title="paddingSize: 'md' (default)" paddingSize="md">
+                <div className="bg-grey-1">
+                  <LoremIpsum size="sm" />
+                </div>
+              </Panel>
+            </Library.Demo>
+
+            <Library.Demo withSource>
+              <Panel title="paddingSize: 'lg'" paddingSize="lg">
+                <div className="bg-grey-1">
+                  <LoremIpsum size="sm" />
+                </div>
+              </Panel>
+            </Library.Demo>
+
+            <Library.Demo withSource title="No padding">
+              <Panel title="paddingSize: 'none'" paddingSize="none">
+                <div className="bg-grey-1">
+                  <LoremIpsum size="sm" />
+                </div>
+              </Panel>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="fullWidthHeader">
+            <p>
+              This boolean prop (default <code>false</code>) determines whether
+              the header of the Panel and its bottom border stretches the full
+              width of the Panel.
+            </p>
+            <Library.Demo withSource>
+              <Panel title="Panel with full-width header" fullWidthHeader>
+                <LoremIpsum size="sm" />
+              </Panel>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="scrollable">
+            <p>
+              This boolean prop (default <code>false</code>) determines whether
+              content will scroll if it exceeds height constraints. Scrollable
+              Panels have a full-width header so that scrolling shadow hints{' '}
+              {"don't"} look funky.
+            </p>
+            <Library.Demo withSource>
+              <div className="h-[300px]">
+                <Panel
+                  title="Scrolling panel"
+                  buttons={
+                    <>
+                      <Button>Cancel</Button>
+                      <Button variant="primary">Do it</Button>
+                    </>
+                  }
+                  scrollable
+                >
+                  <LoremIpsum size="lg" />
+                </Panel>
+              </div>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>

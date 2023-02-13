@@ -57,7 +57,7 @@ describe('Panel', () => {
       unboundedContainer.remove();
     });
 
-    it('should not exceed height of parent container', () => {
+    it('should not exceed height of parent container if `scrollable` is set', () => {
       const loremWrapper = mount(<LoremIpsum />, {
         attachTo: unboundedContainer,
       });
@@ -65,7 +65,7 @@ describe('Panel', () => {
       // The lorem ipsum content in the Panel will be constrained and will scroll
       // within the allotted 200px height
       const wrapper = mount(
-        <Panel title="Constrained Panel">
+        <Panel title="Constrained Panel" scrollable>
           <LoremIpsum />
         </Panel>,
         { attachTo: container }
@@ -80,6 +80,33 @@ describe('Panel', () => {
         wrapper.find('div[data-composite-component="Panel"]').getDOMNode()
           .clientHeight,
         200
+      );
+    });
+
+    it('should not constrain content if `scrollable` is not set', () => {
+      const wrapper = mount(
+        <Panel title="Unconstrained Panel">
+          <LoremIpsum />
+        </Panel>,
+        { attachTo: container }
+      );
+
+      assert.isAbove(
+        wrapper.find('div[data-component="CardContent"]').first().getDOMNode()
+          .clientHeight,
+        200
+      );
+    });
+
+    it('should not wrap content in `CardContent` if paddingSize is `none`', () => {
+      const wrapper = createComponent(Panel);
+      const noPaddingWrapper = createComponent(Panel, { paddingSize: 'none' });
+
+      assert.isTrue(
+        wrapper.find('[data-testid="panel-content-wrapper"]').exists()
+      );
+      assert.isFalse(
+        noPaddingWrapper.find('[data-testid="panel-content-wrapper"]').exists()
       );
     });
   });
