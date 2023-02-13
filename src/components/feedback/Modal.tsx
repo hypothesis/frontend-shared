@@ -47,6 +47,7 @@ const ModalNext = function Modal({
   buttons,
   icon,
   onClose,
+  paddingSize = 'md',
   title,
 
   ...htmlAttributes
@@ -135,7 +136,14 @@ const ModalNext = function Modal({
         data-component="Modal"
         ref={downcastRef(modalRef)}
       >
-        <Panel buttons={buttons} icon={icon} onClose={onClose} title={title}>
+        <Panel
+          buttons={buttons}
+          icon={icon}
+          onClose={onClose}
+          paddingSize={paddingSize}
+          title={title}
+          scrollable
+        >
           {children}
         </Panel>
       </div>

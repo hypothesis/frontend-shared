@@ -185,8 +185,7 @@ export default function ModalPage() {
           <ul>
             <li>
               <code>Modal</code> supports and forwards several props to{' '}
-              <code>Panel</code>: <code>buttons</code>, <code>icon</code>,{' '}
-              <code>onClose</code>, <code>title</code>.
+              <code>Panel</code>: see Props section for details.
             </li>
             <li>
               <code>Modal</code> does not currently manage state. If a{' '}
@@ -315,6 +314,13 @@ export default function ModalPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Props">
+          <Library.Example title="props forwarded to Panel">
+            <p>
+              These props are forwarded to <code>Panel</code>:{' '}
+              <code>buttons</code>, <code>icon</code>, <code>onClose</code>,{' '}
+              <code>paddingSize</code> and <code>title</code>.
+            </p>
+          </Library.Example>
           <Library.Example title="initialFocus">
             <p>
               <code>Modal</code> will route focus when it is rendered. By
