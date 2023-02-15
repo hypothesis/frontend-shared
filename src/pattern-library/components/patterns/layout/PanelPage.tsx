@@ -1,5 +1,5 @@
 import { Panel } from '../../../../next';
-import { Button, EditIcon } from '../../../../next';
+import { Button, EditIcon, ScrollBox } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
@@ -83,6 +83,33 @@ export default function PanelPage() {
                   scrollable
                 >
                   <LoremIpsum />
+                </Panel>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Scrolling certain content">
+            <p>
+              It is also possible to scroll some of the content of a Panel but
+              not all of it.
+            </p>
+
+            <Library.Demo withSource>
+              <div className="h-[350px]">
+                <Panel
+                  title="Scrolling selected content"
+                  buttons={
+                    <>
+                      <Button>Buttons</Button>
+                      <Button>do not</Button>
+                      <Button variant="primary">Scroll</Button>
+                    </>
+                  }
+                >
+                  <p>This content does not scroll.</p>
+                  <ScrollBox>
+                    <LoremIpsum />
+                  </ScrollBox>
                 </Panel>
               </div>
             </Library.Demo>

@@ -92,7 +92,7 @@ describe('Panel', () => {
       );
 
       assert.isAbove(
-        wrapper.find('div[data-component="CardContent"]').first().getDOMNode()
+        wrapper.find('div[data-component="CardContent"] p').first().getDOMNode()
           .clientHeight,
         200
       );
