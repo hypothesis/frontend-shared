@@ -69,18 +69,27 @@ const PanelNext = function Panel({
 
   ...htmlAttributes
 }: PanelProps) {
+  // These classes are set on the content container hierarchy in this component
+  // to ensure that the overall height is constrained to height rules set on
+  // parent elements. This allows for control over scrolling content,
+  // specifically.
+  const heightConstraintClasses = 'flex flex-col min-h-0 h-full';
   const panelContent =
     paddingSize === 'none' ? (
       children
     ) : (
-      <CardContent data-testid="panel-content-wrapper" size={paddingSize}>
+      <CardContent
+        classes={heightConstraintClasses}
+        data-testid="panel-content-wrapper"
+        size={paddingSize}
+      >
         {children}
       </CardContent>
     );
   return (
     <Card
       {...htmlAttributes}
-      classes={'flex flex-col min-h-0 h-full'}
+      classes={heightConstraintClasses}
       elementRef={downcastRef(elementRef)}
       data-composite-component="Panel"
     >
