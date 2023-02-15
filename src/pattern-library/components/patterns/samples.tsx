@@ -272,7 +272,14 @@ export function sampleTableContent() {
   };
 }
 
-export function nabokovNovels() {
+export type NabokovNovel = {
+  title: string;
+  year: string;
+  language: string;
+  translatedTitle?: string;
+};
+
+export function nabokovNovels(): NabokovNovel[] {
   return [
     {
       title: 'Машенька',
