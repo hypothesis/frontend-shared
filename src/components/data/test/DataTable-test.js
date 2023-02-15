@@ -64,6 +64,9 @@ describe('DataTable', () => {
     assert.isFalse(outer.prop('interactive'));
 
     assert.isTrue(interactiveWrapper.find('Table').props().interactive);
+    assert.isTrue(
+      interactiveWrapper.find('[data-component="TableFoot"]').exists()
+    );
   });
 
   describe('table columns', () => {
@@ -190,6 +193,11 @@ describe('DataTable', () => {
       const wrapper = createComponent(DataTable, { loading: true });
       assert.equal(wrapper.find('thead tr th').length, 3);
     });
+
+    it('does not render a TableFoot', () => {
+      const wrapper = createComponent(DataTable, { loading: true });
+      assert.isFalse(wrapper.find('[data-component="TableFoot"]').exists());
+    });
   });
 
   context('when empty', () => {
@@ -207,6 +215,13 @@ describe('DataTable', () => {
         rows: [],
       });
       assert.equal(wrapper.find('thead tr th').length, 3);
+    });
+
+    it('does not render a TableFoot', () => {
+      const wrapper = createComponent(DataTable, {
+        rows: [],
+      });
+      assert.isFalse(wrapper.find('[data-component="TableFoot"]').exists());
     });
   });
 
