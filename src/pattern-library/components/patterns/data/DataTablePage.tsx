@@ -5,6 +5,7 @@ import Library from '../../Library';
 import Next from '../../LibraryNext';
 
 import { nabokovNovels } from '../samples';
+import type { NabokovNovel } from '../samples';
 
 const nabokovRows = nabokovNovels();
 const nabokovColumns = [
@@ -14,18 +15,12 @@ const nabokovColumns = [
 ];
 
 export default function DataTablePage() {
-  const [selectedRow, setSelectedRow] = useState(
-    /** @type {nabokovRows[number]|null} */ (
-      nabokovRows[nabokovRows.length - 1]
-    )
+  const [selectedRow, setSelectedRow] = useState<NabokovNovel | null>(
+    nabokovRows[nabokovRows.length - 1]
   );
 
-  const [selectedRow2, setSelectedRow2] = useState(
-    /** @type {nabokovRows[number]|null} */ (null)
-  );
-  const [confirmedRow, setConfirmedRow] = useState(
-    /** @type {nabokovRows[number]|null} */ (null)
-  );
+  const [selectedRow2, setSelectedRow2] = useState<NabokovNovel | null>(null);
+  const [confirmedRow, setConfirmedRow] = useState<NabokovNovel | null>(null);
   return (
     <Library.Page
       title="DataTable"
@@ -152,6 +147,27 @@ export default function DataTablePage() {
               compatible with scrolling contexts. The examples on this page are
               constrained within <code>Scroll</code> components.
             </p>
+            <p>
+              <code>DataTable</code> is designed to fill its containing space
+              vertically. If there are sparse data (fewer rows than fill the
+              space), the <code>Table</code> will still occupy the full vertical
+              height.
+            </p>
+
+            <Library.Demo
+              withSource
+              title="Constrained Table with sparse content"
+            >
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="A subset of Nabokov's novels with publish date and original language"
+                    rows={[nabokovRows[0], nabokovRows[1]]}
+                    columns={nabokovColumns}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
