@@ -13,6 +13,7 @@ import TableHead from './TableHead';
 import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableCell from './TableCell';
+import TableFoot from './TableFoot';
 
 export type TableColumn = {
   field: string;
@@ -121,6 +122,10 @@ const DataTableNext = function DataTable<Row>({
     }
   }, [selectedRow, tableRef, scrollContext]);
 
+  // Render a <tfoot> element when there are any row data. This absorbs any
+  // excess vertical space in tables with sparse rows data.
+  const withFoot = !loading && rows.length > 0;
+
   return (
     <Table
       {...htmlAttributes}
@@ -171,6 +176,7 @@ const DataTableNext = function DataTable<Row>({
         )}
       </TableBody>
       {children}
+      {withFoot && <TableFoot />}
     </Table>
   );
 };
