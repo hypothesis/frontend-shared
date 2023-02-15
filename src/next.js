@@ -14,6 +14,7 @@ export {
   Table,
   TableBody,
   TableCell,
+  TableFoot,
   TableHead,
   TableRow,
   Thumbnail,
