@@ -28,7 +28,11 @@ type ComponentProps = {
   initialFocus?: RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual';
 };
 
-export type ModalProps = PresentationalProps & ComponentProps & PanelProps;
+// This component forwards a number of props on to `Panel` but always sets the
+// `fullWidthHeader` prop to `true`.
+export type ModalProps = PresentationalProps &
+  ComponentProps &
+  Omit<PanelProps, 'fullWidthHeader'>;
 
 const noop = () => {};
 
@@ -48,6 +52,7 @@ const ModalNext = function Modal({
   icon,
   onClose,
   paddingSize = 'md',
+  scrollable = true,
   title,
 
   ...htmlAttributes
@@ -138,11 +143,12 @@ const ModalNext = function Modal({
       >
         <Panel
           buttons={buttons}
+          fullWidthHeader={true}
           icon={icon}
           onClose={onClose}
           paddingSize={paddingSize}
           title={title}
-          scrollable
+          scrollable={scrollable}
         >
           {children}
         </Panel>

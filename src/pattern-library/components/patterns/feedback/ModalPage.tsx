@@ -3,17 +3,26 @@ import { useState, useRef } from 'preact/hooks';
 import {
   ArrowRightIcon,
   Button,
+  DataTable,
   EditIcon,
   IconButton,
   Input,
   InputGroup,
   Modal,
+  Scroll,
 } from '../../../../next';
 import type { ModalProps } from '../../../../components/feedback/Modal';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
-import { LoremIpsum } from '../samples';
+import { LoremIpsum, nabokovNovels } from '../samples';
+
+const nabokovRows = nabokovNovels();
+const nabokovColumns = [
+  { field: 'title', label: 'Title' },
+  { field: 'year', label: 'Year' },
+  { field: 'language', label: 'Language' },
+];
 
 function ModalButtons() {
   return (
@@ -204,8 +213,8 @@ export default function ModalPage() {
           </ul>
           <Library.Example title="Handling long content">
             <p>
-              Content in a modal will scroll as needed to keep the modal from
-              exceeding viewport capacity.
+              By default, content in a modal will scroll as needed to keep the
+              modal from exceeding viewport capacity.
             </p>
             <Library.Demo title="Modal with overflowing content" withSource>
               <Modal_
@@ -240,51 +249,74 @@ export default function ModalPage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="Use case: setting preferred height for modal content">
+          <Library.Example title="Managing modal height">
             <p>
-              In some cases it might be desirable to set a preferred height for
-              the content of a modal, so that the modal container does not
-              resize or jump around if content changes.
+              By default, the height of a modal is dependent on the content
+              inside of it. It will grow in height as needed for the content
+              until it fills the available vertical space in the viewport, after
+              which it will (unless disabled) scroll overheight content.
             </p>
-            <p>To do this, set a minimum height on the modal content.</p>
             <p>
-              Styling in the <code>Modal</code> component should prevent content
-              from escaping the bounds of the viewport.
+              But you may wish to control the height of your modals. There are
+              two options:
             </p>
+            <ul>
+              <li>
+                <strong>Set a height on the Modal</strong> itself. The Modal
+                will always render at this height. If contained content height
+                exceeds this height, it will scroll.
+              </li>
+              <li>
+                <strong>Set a minimum height on the {"Modal's"} content</strong>
+                . The Modal will always render at least this height, but will
+                grow in height if needed to accommodate longer content (up to
+                the bounds of the viewport).
+              </li>
+            </ul>
+            <Library.Demo title="Modal with a fixed height" withSource>
+              <Modal_
+                title="Modal with a fixed height"
+                buttons={<ModalButtons />}
+                classes="h-[25rem]"
+                onClose={() => {}}
+              >
+                <p>
+                  This Modal has a height of <code>25rem</code>.
+                </p>
+              </Modal_>
+            </Library.Demo>
+
             <Library.Demo
-              title="Modal with a minimum height and not much content"
+              title="Modal with a fixed height: long content"
               withSource
             >
               <Modal_
                 title="Modal with a fixed height"
+                buttons={<ModalButtons />}
+                classes="h-[25rem]"
+                onClose={() => {}}
+              >
+                <p>
+                  This Modal has a height of <code>25rem</code> and long
+                  content.
+                </p>
+                <LoremIpsum size="lg" />
+              </Modal_>
+            </Library.Demo>
+
+            <Library.Demo
+              title="Modal with a minimum content height and not much content"
+              withSource
+            >
+              <Modal_
+                title="Modal with minimum height set on content"
                 buttons={<ModalButtons />}
                 onClose={() => {}}
               >
                 <div className="min-h-[15rem]">
                   <p>
-                    This content has a preferred height of 15rem set by a CSS
-                    class.
-                  </p>
-                </div>
-              </Modal_>
-            </Library.Demo>
-
-            <Library.Demo
-              title="Modal with a minimum height and more content"
-              withSource
-            >
-              <Modal_
-                title="Modal with a fixed height"
-                buttons={<ModalButtons />}
-                onClose={() => {}}
-              >
-                <div className="min-h-[15rem] space-y-3">
-                  <p>
-                    This modal has a preferred height of 15rem, but its content
-                    needs more space, so the modal height grows.{' '}
-                  </p>
-                  <p>
-                    <LoremIpsum size="md" />
+                    This {"Modal's"} content has a preferred height of 15rem set
+                    by a CSS class.
                   </p>
                 </div>
               </Modal_>
@@ -295,7 +327,7 @@ export default function ModalPage() {
               withSource
             >
               <Modal_
-                title="Modal with a fixed height"
+                title="Modal with a minimum height and tall content"
                 buttons={<ModalButtons />}
                 onClose={() => {}}
               >
@@ -304,6 +336,7 @@ export default function ModalPage() {
                     This modal has a preferred height of 15rem, but its content
                     exceeds the height of the viewport, and scrolls.
                   </p>
+                  <hr />
                   <p>
                     <LoremIpsum size="lg" />
                   </p>
@@ -319,6 +352,9 @@ export default function ModalPage() {
               These props are forwarded to <code>Panel</code>:{' '}
               <code>buttons</code>, <code>icon</code>, <code>onClose</code>,{' '}
               <code>paddingSize</code> and <code>title</code>.
+            </p>
+            <p>
+              <code>fullWidthHeader</code> is always <code>true</code>.
             </p>
           </Library.Example>
           <Library.Example title="initialFocus">
@@ -385,6 +421,40 @@ export default function ModalPage() {
                 width="custom"
               >
                 <LoremIpsum size="md" />
+              </Modal_>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="scrollable (default true)">
+            <p>
+              By default, Modals will scroll overflowing content. In some cases,
+              it is desireable to scroll only a portion of the content, or to
+              disable scrolling entirely.
+            </p>
+            <p>
+              This example demonstrates setting the boolean{' '}
+              <code>scrollable</code> prop to <code>false</code> and using a{' '}
+              <code>Scroll</code> component within Modal content to scroll only
+              a portion of the content.
+            </p>
+            <Library.Demo title="Manually controlling scrolling" withSource>
+              <Modal_
+                buttons={<ModalButtons />}
+                classes="h-[25rem]"
+                onClose={() => {}}
+                title="Modal with scrollable disabled"
+                scrollable={false}
+              >
+                <p>
+                  Fake {'>'} breadcrumbs {'>'} example
+                </p>
+                <Scroll>
+                  <DataTable
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    title="Nabokov novels"
+                  />
+                </Scroll>
               </Modal_>
             </Library.Demo>
           </Library.Example>
