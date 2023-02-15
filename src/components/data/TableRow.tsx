@@ -1,19 +1,21 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 import { useContext } from 'preact/hooks';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 import TableSectionContext from './TableSectionContext';
 import TableContext from './TableContext';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'>} HTMLAttributes
- *
- * @typedef TableRowProps
- * @prop {boolean} [selected=false]
- */
+type ComponentProps = {
+  selected?: boolean;
+};
+
+export type TableRowProps = PresentationalProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
 
 /**
  * Render a table row
@@ -28,7 +30,7 @@ const TableRowNext = function TableRow({
   selected,
 
   ...htmlAttributes
-}) {
+}: TableRowProps) {
   const rowRef = useSyncedRef(elementRef);
 
   const sectionContext = useContext(TableSectionContext);
