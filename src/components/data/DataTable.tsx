@@ -1,7 +1,9 @@
+import type { ComponentChildren, JSX } from 'preact';
 import { useContext, useEffect } from 'preact/hooks';
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 import { SpinnerSpokesIcon } from '../icons';
@@ -12,44 +14,42 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableCell from './TableCell';
 
-/**
- * @typedef {import('../../types').CompositeProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'|'rows'|'role'|'loading'>} HTMLAttributes
- * @typedef {import('./TableContext').TableInfo} TableInfo
- * @typedef {import('preact').ComponentChildren} Children
- */
+export type TableColumn = {
+  field: string;
+  label: string;
+  classes?: string;
+};
 
-/**
- * @typedef Column
- * @prop {string} field
- * @prop {string} label
- * @prop {string} [classes]
- */
+type ComponentProps<Row> = {
+  rows: Row[];
+  columns: TableColumn[];
 
-/**
- * @template {object} Row
- * @typedef DataTableProps
- * @prop {Column[]} columns
- * @prop {Row[]} rows
- * @prop {string} title
- * @prop {Row|null} [selectedRow]
- * @prop {boolean} [loading=false]
- * @prop {(r: Row) => void} [onConfirmRow] - Callback when a row is "confirmed" by
- *   double-click or pressing "Enter"
- * @prop {(r: Row) => void} [onSelectRow] - Callback when a row is "selected" by
- *   focus or click
- * @prop {(r: Row, field: keyof Row) => Children} [renderItem] - Callback to render an individual table cell
- * @prop {Children} [emptyMessage] - Content to render if rows is empty (and not
- *   in a loading state)
- */
+  /** Content to render if rows is empty (and not in a loading state) */
+  emptyMessage?: ComponentChildren;
+  loading?: boolean;
+  selectedRow?: Row | null;
+
+  /** Callback when a row is "selected" by focus or click */
+  onSelectRow?: (r: Row) => void;
+
+  /**
+   * Callback when a row is "confirmed" by double-click or pressing "Enter"
+   */
+  onConfirmRow?: (r: Row) => void;
+
+  /** Callback to render an individual table cell */
+  renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
+  title: string;
+};
+
+export type DataTableProps<Row> = CompositeProps &
+  ComponentProps<Row> &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'>;
 
 /**
  * An interactive table of rows and columns with a sticky header.
- *
- * @template {object} Row
- * @param {CommonProps & DataTableProps<Row> & HTMLAttributes} props
  */
-const DataTableNext = function DataTable({
+const DataTableNext = function DataTable<Row>({
   children,
   elementRef,
 
@@ -58,13 +58,13 @@ const DataTableNext = function DataTable({
   title,
   selectedRow,
   loading = false,
-  renderItem = (row, field) => /** @type {Children} */ (row[field]),
+  renderItem = (r: Row, field: keyof Row) => r[field] as ComponentChildren,
   onSelectRow,
   onConfirmRow,
   emptyMessage,
 
   ...htmlAttributes
-}) {
+}: DataTableProps<Row>) {
   const tableRef = useSyncedRef(elementRef);
   const scrollContext = useContext(ScrollContext);
 
@@ -77,21 +77,15 @@ const DataTableNext = function DataTable({
   const noContent = loading || (!rows.length && emptyMessage);
   const fields = columns.map(column => column.field);
 
-  /** @param {Row} row */
-  function selectRow(row) {
+  function selectRow(row: Row) {
     onSelectRow?.(row);
   }
 
-  /** @param {Row} row */
-  function confirmRow(row) {
+  function confirmRow(row: Row) {
     onConfirmRow?.(row);
   }
 
-  /**
-   * @param {KeyboardEvent} event
-   * @param {Row} row
-   * */
-  function handleKeyDown(event, row) {
+  function handleKeyDown(event: KeyboardEvent, row: Row) {
     if (event.key === 'Enter') {
       confirmRow(row);
       event.preventDefault();
@@ -107,10 +101,8 @@ const DataTableNext = function DataTable({
     }
     const scrollEl = scrollContext.scrollRef.current;
     const tableHead = tableRef.current?.querySelector('thead');
-    /** @type {HTMLElement | undefined | null} */
-    const selectedRowEl = tableRef.current?.querySelector(
-      'tr[aria-selected="true"]'
-    );
+    const selectedRowEl: HTMLElement | undefined | null =
+      tableRef.current?.querySelector('tr[aria-selected="true"]');
 
     if (scrollEl && selectedRowEl) {
       // Ensure the row is visible within the scroll content area
@@ -161,7 +153,7 @@ const DataTableNext = function DataTable({
             >
               {fields.map(field => (
                 <TableCell key={field}>
-                  {renderItem(row, /** @type {keyof Row} */ (field))}
+                  {renderItem(row, field as keyof Row)}
                 </TableCell>
               ))}
             </TableRow>
