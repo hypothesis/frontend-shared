@@ -14,6 +14,7 @@ export default function EditorTextItalicIcon(props: EditorTextItalicIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="EditorTextItalicIcon"
       {...props}
     >
       <g fill-rule="evenodd">

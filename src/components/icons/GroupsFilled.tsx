@@ -14,6 +14,7 @@ export default function GroupsFilledIcon(props: GroupsFilledIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="GroupsFilledIcon"
       {...props}
     >
       <path

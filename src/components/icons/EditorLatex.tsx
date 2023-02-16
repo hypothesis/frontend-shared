@@ -14,6 +14,7 @@ export default function EditorLatexIcon(props: EditorLatexIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="EditorLatexIcon"
       {...props}
     >
       <g fill-rule="evenodd">

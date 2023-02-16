@@ -13,6 +13,7 @@ export default function RefreshIcon(props: RefreshIconProps) {
       width="16"
       height="16"
       viewBox="0 0 16 16"
+      data-component="RefreshIcon"
       {...props}
     >
       <g fill="currentColor" fill-rule="evenodd">

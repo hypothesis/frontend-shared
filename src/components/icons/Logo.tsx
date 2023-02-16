@@ -13,6 +13,7 @@ export default function LogoIcon(props: LogoIconProps) {
       width="24"
       height="28"
       viewBox="0 0 24 28"
+      data-component="LogoIcon"
       {...props}
     >
       <path fill="#fff" d="M3.886 3.945H21.03v16.047H3.886z" />

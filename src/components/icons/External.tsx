@@ -14,6 +14,7 @@ export default function ExternalIcon(props: ExternalIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="ExternalIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

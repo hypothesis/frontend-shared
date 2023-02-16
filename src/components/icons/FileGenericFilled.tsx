@@ -16,6 +16,7 @@ export default function FileGenericFilledIcon(
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="FileGenericFilledIcon"
       {...props}
     >
       <path

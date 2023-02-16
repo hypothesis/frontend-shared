@@ -8,7 +8,13 @@ export type SpinnerSpokesIconProps = JSX.SVGAttributes<SVGSVGElement>;
  */
 export default function SpinnerSpokesIcon(props: SpinnerSpokesIconProps) {
   return (
-    <svg width="16" height="16" viewBox="0 0 64 64" {...props}>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 64 64"
+      data-component="SpinnerSpokesIcon"
+      {...props}
+    >
       <g stroke="currentColor" stroke-linecap="round" stroke-width="6">
         <path d="M32 16V4">
           <animate

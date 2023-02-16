@@ -14,6 +14,7 @@ export default function FileCodeFilledIcon(props: FileCodeFilledIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="FileCodeFilledIcon"
       {...props}
     >
       <path

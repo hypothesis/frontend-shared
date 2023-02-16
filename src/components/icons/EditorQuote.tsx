@@ -14,6 +14,7 @@ export default function EditorQuoteIcon(props: EditorQuoteIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="EditorQuoteIcon"
       {...props}
     >
       <g fill-rule="evenodd">

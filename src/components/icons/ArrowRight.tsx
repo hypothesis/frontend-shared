@@ -14,6 +14,7 @@ export default function ArrowRightIcon(props: ArrowRightIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="ArrowRightIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">
