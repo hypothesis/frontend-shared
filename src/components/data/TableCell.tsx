@@ -1,14 +1,14 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 import { useContext } from 'preact/hooks';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 import TableSectionContext from './TableSectionContext';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'>} HTMLAttributes
- */
+export type TableCellProps = PresentationalProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
 
 /**
  * Render a single table cell
@@ -21,7 +21,7 @@ const TableCellNext = function TableCell({
   elementRef,
 
   ...htmlAttributes
-}) {
+}: TableCellProps) {
   const sectionContext = useContext(TableSectionContext);
   const isHeadCell = sectionContext && sectionContext.section === 'head';
   const Cell = isHeadCell ? 'th' : 'td';
