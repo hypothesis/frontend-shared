@@ -11,8 +11,8 @@ export default function TagAltFilledIcon(props) {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      viewBox="0 0 16 16"
       aria-hidden="true"
+      viewBox="0 0 16 16"
       {...props}
     >
       <path

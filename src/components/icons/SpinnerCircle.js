@@ -8,35 +8,35 @@
 export default function SpinnerCircleIcon(props) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
       viewBox="0 0 38 38"
-      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g transform="translate(1 1)" fill="none" fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
         <path
-          d="M36 18c0-9.94-8.06-18-18-18"
           stroke="currentColor"
           stroke-width="2"
+          d="M36 18c0-9.94-8.06-18-18-18"
         >
           <animateTransform
             attributeName="transform"
-            type="rotate"
-            from="0 18 18"
-            to="360 18 18"
             dur="0.9s"
+            from="0 18 18"
             repeatCount="indefinite"
+            to="360 18 18"
+            type="rotate"
           />
         </path>
-        <circle fill="#fff" cx="36" cy="18" r="1">
+        <circle cx="36" cy="18" r="1" fill="#fff">
           <animateTransform
             attributeName="transform"
-            type="rotate"
-            from="0 18 18"
-            to="360 18 18"
             dur="0.9s"
+            from="0 18 18"
             repeatCount="indefinite"
+            to="360 18 18"
+            type="rotate"
           />
         </circle>
       </g>
