@@ -58,14 +58,21 @@ function generateIcon(name, src, inputFileName) {
 ${AUTO_GENERATED_COMMENT}
 import type { JSX } from 'preact';
 
+export type ${name}Props = JSX.SVGAttributes<SVGSVGElement>;
+
 /**
  * Icon generated from ${inputFileName}
  */
-export default function ${name}(props: JSX.SVGAttributes<SVGSVGElement>) {
+export default function ${name}(props:${name}Props) {
   return ${content};
 }
 `;
-  return format(jsx, { parser: 'babel' });
+  return format(jsx, {
+    parser: 'babel',
+    // Duplication of rules in package.json
+    arrowParens: 'avoid',
+    singleQuote: true,
+  });
 }
 
 /**
