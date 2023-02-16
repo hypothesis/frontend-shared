@@ -69,7 +69,7 @@ export default {
             exclude: [
               '**/test/**/*.js',
               '**/test-util/**',
-              'src/components/icons/**/*.js',
+              'src/components/icons/**/*.ts*',
               'src/pattern-library/**/*.js',
               'src/pattern-library/**/*.ts*',
             ],
