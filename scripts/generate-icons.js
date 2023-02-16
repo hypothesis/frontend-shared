@@ -56,13 +56,12 @@ function generateIcon(name, src, inputFileName) {
 
   const jsx = `
 ${AUTO_GENERATED_COMMENT}
+import type { JSX } from 'preact';
 
 /**
  * Icon generated from ${inputFileName}
- *
- * @param {import('preact').JSX.SVGAttributes<SVGSVGElement>} props
  */
-export default function ${name}(props) {
+export default function ${name}(props: JSX.SVGAttributes<SVGSVGElement>) {
   return ${content};
 }
 `;
@@ -85,7 +84,7 @@ function generateIconFromFile(inputFile, outputDir) {
   const iconName = kebabCaseToPascalCase(basename);
   const componentName = iconName + 'Icon';
 
-  const outputFile = `${outputDir}/${iconName}.js`;
+  const outputFile = `${outputDir}/${iconName}.tsx`;
   const outputSrc = generateIcon(componentName, src, basename + '.svg');
 
   writeFileSync(outputFile, outputSrc);
@@ -100,15 +99,15 @@ function generateIconFromFile(inputFile, outputDir) {
  */
 function generateIconIndex(componentDir) {
   const iconComponents = readdirSync(componentDir).filter(
-    file => file.endsWith('.js') && !file.includes('index')
+    file => file.endsWith('.tsx') && !file.includes('index')
   );
   let outputSrc = `${AUTO_GENERATED_COMMENT}\n`;
   for (let componentFile of iconComponents) {
-    const componentModule = path.basename(componentFile, '.js');
+    const componentModule = path.basename(componentFile, '.tsx');
     const componentName = `${componentModule}Icon`;
     outputSrc += `export { default as ${componentName} } from './${componentModule}';\n`;
   }
-  const outputFile = `${componentDir}/index.js`;
+  const outputFile = `${componentDir}/index.ts`;
 
   writeFileSync(outputFile, outputSrc);
 }
