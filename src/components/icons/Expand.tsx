@@ -14,6 +14,7 @@ export default function ExpandIcon(props: ExpandIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="ExpandIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

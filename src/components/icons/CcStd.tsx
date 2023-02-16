@@ -14,6 +14,7 @@ export default function CcStdIcon(props: CcStdIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="CcStdIcon"
       {...props}
     >
       <g fill-rule="evenodd">

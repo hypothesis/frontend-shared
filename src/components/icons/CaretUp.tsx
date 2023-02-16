@@ -14,6 +14,7 @@ export default function CaretUpIcon(props: CaretUpIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="CaretUpIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

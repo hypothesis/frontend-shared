@@ -13,6 +13,7 @@ export default function SpinnerCircleIcon(props: SpinnerCircleIconProps) {
       width="16"
       height="16"
       viewBox="0 0 38 38"
+      data-component="SpinnerCircleIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd" transform="translate(1 1)">

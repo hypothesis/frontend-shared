@@ -51,7 +51,7 @@ function generateIcon(name, src, inputFileName) {
   // We assume the performance cost of this is very minor.
   const content = optimized.data.replace(
     /<svg ([^>]+)>/,
-    '<svg $1 {...props}>'
+    `<svg $1 data-component="${name}" {...props}>`
   );
 
   const jsx = `

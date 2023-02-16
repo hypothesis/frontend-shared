@@ -14,6 +14,7 @@ export default function GroupsIcon(props: GroupsIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="GroupsIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

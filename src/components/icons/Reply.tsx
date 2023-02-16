@@ -13,6 +13,7 @@ export default function ReplyIcon(props: ReplyIconProps) {
       width="16"
       height="16"
       viewBox="0 0 16 16"
+      data-component="ReplyIcon"
       {...props}
     >
       <path

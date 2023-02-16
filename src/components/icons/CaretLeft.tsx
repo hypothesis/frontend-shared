@@ -14,6 +14,7 @@ export default function CaretLeftIcon(props: CaretLeftIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="CaretLeftIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

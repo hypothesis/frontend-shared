@@ -14,6 +14,7 @@ export default function BookmarkIcon(props: BookmarkIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="BookmarkIcon"
       {...props}
     >
       <g fill="none" fill-rule="evenodd">

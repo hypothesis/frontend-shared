@@ -13,6 +13,7 @@ export default function CheckboxIcon(props: CheckboxIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="-4 -4 39 39"
+      data-component="CheckboxIcon"
       {...props}
     >
       <rect

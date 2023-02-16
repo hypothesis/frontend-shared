@@ -14,6 +14,7 @@ export default function FileImageFilledIcon(props: FileImageFilledIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="FileImageFilledIcon"
       {...props}
     >
       <path

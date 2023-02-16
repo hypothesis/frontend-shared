@@ -13,6 +13,7 @@ export default function LockIcon(props: LockIconProps) {
       width="14"
       height="16"
       viewBox="0 0 48 56"
+      data-component="LockIcon"
       {...props}
     >
       <g fill="currentColor" fill-rule="evenodd">

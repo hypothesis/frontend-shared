@@ -14,6 +14,7 @@ export default function LogoutIcon(props: LogoutIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="LogoutIcon"
       {...props}
     >
       <path

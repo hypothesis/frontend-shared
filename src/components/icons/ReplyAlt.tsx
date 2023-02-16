@@ -14,6 +14,7 @@ export default function ReplyAltIcon(props: ReplyAltIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="ReplyAltIcon"
       {...props}
     >
       <path

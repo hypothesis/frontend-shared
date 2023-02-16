@@ -14,6 +14,7 @@ export default function BookmarkFilledIcon(props: BookmarkFilledIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="BookmarkFilledIcon"
       {...props}
     >
       <g fill-rule="evenodd">

@@ -14,6 +14,7 @@ export default function SocialTwitterIcon(props: SocialTwitterIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
+      data-component="SocialTwitterIcon"
       {...props}
     >
       <g fill-rule="evenodd">
