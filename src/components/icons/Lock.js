@@ -8,10 +8,10 @@
 export default function LockIcon(props) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width="14"
       height="16"
       viewBox="0 0 48 56"
-      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <g fill="currentColor" fill-rule="evenodd">
