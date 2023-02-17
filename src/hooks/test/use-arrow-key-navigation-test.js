@@ -239,17 +239,11 @@ describe('useArrowKeyNavigation', () => {
       return <div />;
     }
 
-    // Suppress "Add @babel/plugin-transform-react-jsx-source to get a more
-    // detailed component stack" warning from the `render` call below.
-    sinon.stub(console, 'warn');
-
     let error;
     try {
       act(() => render(<BrokenToolbar />, container));
     } catch (e) {
       error = e;
-    } finally {
-      console.warn.restore();
     }
 
     assert.instanceOf(error, Error);
