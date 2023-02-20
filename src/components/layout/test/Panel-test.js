@@ -32,6 +32,17 @@ describe('Panel', () => {
     assert.calledOnce(onClose);
   });
 
+  it('does not render a container for `buttons` if none provided', () => {
+    const buttons = <button>click me</button>;
+    const wrapper = createComponent(Panel, { buttons });
+    const noButtonWrapper = createComponent(Panel);
+
+    assert.isTrue(wrapper.find('[data-testid="panel-buttons"]').exists());
+    assert.isFalse(
+      noButtonWrapper.find('[data-testid="panel-buttons"]').exists()
+    );
+  });
+
   it('renders `buttons` as CardActions', () => {
     const buttons = <button>click me</button>;
     const wrapper = createComponent(Panel, { buttons });

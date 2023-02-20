@@ -98,9 +98,11 @@ const PanelNext = function Panel({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       {scrollable ? <Scroll>{panelContent}</Scroll> : <>{panelContent}</>}
-      <CardContent>
-        {buttons && <CardActions>{buttons}</CardActions>}
-      </CardContent>
+      {buttons && (
+        <CardContent data-testid="panel-buttons">
+          <CardActions>{buttons}</CardActions>
+        </CardContent>
+      )}
     </Card>
   );
 };
