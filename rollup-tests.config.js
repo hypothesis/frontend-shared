@@ -12,6 +12,12 @@ export default {
     sourcemap: true,
   },
   treeshake: false,
+  // Suppress a warning (https://rollupjs.org/guide/en/#error-this-is-undefined)
+  // due to https://github.com/babel/babel/issues/9149.
+  //
+  // Any code string other than "undefined" which evaluates to `undefined` will
+  // work here.
+  context: 'void(0)',
   plugins: [
     // Replace some problematic dependencies which are imported but not actually
     // used with stubs. Per @rollup/plugin-virtual's docs, this must be listed
@@ -53,16 +59,19 @@ export default {
         [
           '@babel/preset-react',
           {
-            // Turn off the `development` setting in tests to prevent warnings
-            // about `this`. See https://github.com/babel/babel/issues/9149.
-            development: false,
+            development: true,
             runtime: 'automatic',
             importSource: 'preact',
           },
         ],
       ],
       plugins: [
-        'mockable-imports',
+        [
+          'mockable-imports',
+          {
+            excludeDirs: ['test', 'icons', 'pattern-library'],
+          },
+        ],
         [
           'babel-plugin-istanbul',
           {
