@@ -32,6 +32,7 @@ const InputGroupNext = function InputGroup({
 }) {
   return (
     <div
+      data-component="InputGroup"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -41,7 +42,6 @@ const InputGroupNext = function InputGroup({
         'flex items-stretch w-full justify-center',
         classes
       )}
-      data-component="InputGroup"
     >
       {children}
     </div>

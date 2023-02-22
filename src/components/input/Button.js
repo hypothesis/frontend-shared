@@ -40,6 +40,7 @@ const ButtonNext = function Button({
 }) {
   return (
     <ButtonBase
+      data-component="Button"
       {...htmlAttributes}
       classes={classnames(
         'focus-visible-ring transition-colors whitespace-nowrap flex items-center',
@@ -64,7 +65,6 @@ const ButtonNext = function Button({
       expanded={expanded}
       pressed={pressed}
       title={title}
-      data-component="Button"
       unstyled
     >
       {Icon && <Icon className="w-em h-em" />}
