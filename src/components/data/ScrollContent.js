@@ -20,10 +20,10 @@ const ScrollContentNext = function ScrollContent({
 }) {
   return (
     <div
+      data-component="ScrollContent"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames('px-3 py-2', classes)}
-      data-component="ScrollContent"
     >
       {children}
     </div>

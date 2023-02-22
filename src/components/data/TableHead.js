@@ -33,6 +33,7 @@ const TableHeadNext = function TableHead({
   return (
     <TableSectionContext.Provider value={sectionContext}>
       <thead
+        data-component="TableHead"
         {...htmlAttributes}
         ref={downcastRef(elementRef)}
         className={classnames(
@@ -42,7 +43,6 @@ const TableHeadNext = function TableHead({
           },
           classes
         )}
-        data-component="TableHead"
       >
         {children}
       </thead>

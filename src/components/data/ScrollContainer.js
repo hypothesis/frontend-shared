@@ -27,6 +27,7 @@ const ScrollContainerNext = function ScrollContainer({
 }) {
   return (
     <div
+      data-component="ScrollContainer"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -37,7 +38,6 @@ const ScrollContainerNext = function ScrollContainer({
         { border: !borderless },
         classes
       )}
-      data-component="ScrollContainer"
     >
       {children}
     </div>

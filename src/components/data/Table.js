@@ -42,6 +42,7 @@ const TableNext = function Table({
   return (
     <TableContext.Provider value={tableContext}>
       <table
+        data-component="Table"
         {...htmlAttributes}
         aria-label={title}
         className={classnames(
@@ -60,7 +61,6 @@ const TableNext = function Table({
           classes
         )}
         ref={downcastRef(ref)}
-        data-component="Table"
       >
         {children}
       </table>

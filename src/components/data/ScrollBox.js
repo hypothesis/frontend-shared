@@ -26,10 +26,10 @@ const ScrollBoxNext = function ScrollBox({
 }) {
   return (
     <ScrollContainer
+      data-composite-component="ScrollBox"
       {...htmlAttributes}
       borderless={borderless}
       elementRef={elementRef}
-      data-composite-component="ScrollBox"
     >
       <Scroll>
         <ScrollContent>{children}</ScrollContent>

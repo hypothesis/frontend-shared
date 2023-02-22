@@ -28,8 +28,8 @@ const TableFootNext = function TableFoot({
   return (
     <TableSectionContext.Provider value={sectionContext}>
       <tfoot
-        {...htmlAttributes}
         data-component="TableFoot"
+        {...htmlAttributes}
         ref={downcastRef(elementRef)}
         className={classnames(
           // This tfoot element will take up available extra vertical space when

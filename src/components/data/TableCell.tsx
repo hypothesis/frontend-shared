@@ -28,6 +28,7 @@ const TableCellNext = function TableCell({
 
   return (
     <Cell
+      data-component="TableCell"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -48,7 +49,6 @@ const TableCellNext = function TableCell({
         },
         classes
       )}
-      data-component="TableCell"
       scope={isHeadCell ? 'col' : undefined}
     >
       {children}
