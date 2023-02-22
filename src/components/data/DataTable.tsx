@@ -128,13 +128,13 @@ const DataTableNext = function DataTable<Row>({
 
   return (
     <Table
+      data-composite-component="DataTable"
+      role="grid"
       {...htmlAttributes}
       title={title}
       elementRef={downcastRef(tableRef)}
       interactive={!!(onSelectRow || onConfirmRow)}
       stickyHeader={true}
-      role="grid"
-      data-composite-component="DataTable"
     >
       <TableHead>
         <TableRow>
