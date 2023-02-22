@@ -42,6 +42,7 @@ const TabNext = function Tab({
 }: TabProps) {
   return (
     <ButtonBase
+      data-component="Tab"
       {...htmlAttributes}
       classes={classnames(
         'gap-x-1.5 enabled:hover:text-brand-dark',
@@ -53,7 +54,6 @@ const TabNext = function Tab({
       elementRef={downcastRef(elementRef)}
       aria-selected={selected}
       role="tab"
-      data-component="Tab"
     >
       {Icon && (
         <Icon

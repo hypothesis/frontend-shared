@@ -30,6 +30,7 @@ const LinkNext = function Link({
 }) {
   return (
     <LinkBase
+      data-component="Link"
       {...htmlAttributes}
       classes={classnames(
         'rounded-sm',
@@ -49,7 +50,6 @@ const LinkNext = function Link({
         classes
       )}
       elementRef={downcastRef(elementRef)}
-      data-component="Link"
     >
       {children}
     </LinkBase>
