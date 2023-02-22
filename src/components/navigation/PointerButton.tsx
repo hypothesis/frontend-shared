@@ -51,6 +51,7 @@ const PointerButtonNext = function PointerButton({
 }: PointerButtonProps) {
   return (
     <ButtonBase
+      data-component="PointerButton"
       {...htmlAttributes}
       elementRef={downcastRef(elementRef)}
       classes={classnames(
@@ -122,7 +123,6 @@ const PointerButtonNext = function PointerButton({
         },
         classes
       )}
-      data-component="PointerButton"
       expanded={expanded}
       pressed={pressed}
       title={title}

@@ -35,6 +35,7 @@ const LinkButtonNext = function LinkButton({
 }) {
   return (
     <ButtonBase
+      data-component="LinkButton"
       {...htmlAttributes}
       elementRef={downcastRef(elementRef)}
       classes={classnames(
@@ -65,7 +66,6 @@ const LinkButtonNext = function LinkButton({
         },
         classes
       )}
-      data-component="LinkButton"
       unstyled
     >
       {children}

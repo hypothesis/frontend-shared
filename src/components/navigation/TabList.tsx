@@ -43,12 +43,12 @@ const TabListNext = function TabList({
 
   return (
     <div
+      data-component="TabList"
       {...htmlAttributes}
       ref={downcastRef(tabListRef)}
       className={classnames('flex', { 'flex-col': vertical }, classes)}
       role="tablist"
       aria-orientation={vertical ? 'vertical' : 'horizontal'}
-      data-component="TabList"
     >
       {children}
     </div>
