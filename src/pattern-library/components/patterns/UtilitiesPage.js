@@ -53,26 +53,7 @@ export default function UtilitiesPage() {
           This package also provides some tailwind variants (modifiers) that can
           be combined with other tailwind utility classes.
         </p>
-        <Library.Example title="ARIA variants">
-          <p>
-            Tailwind does not provide out-of-the-box <code>aria-*</code>{' '}
-            variants. This package provides <code>aria-pressed</code> and{' '}
-            <code>aria-expanded</code>.
-          </p>
-          <Library.Demo title="button with `aria-pressed` styling" withSource>
-            <button aria-pressed className="border p-2 aria-pressed:bg-slate-1">
-              Button
-            </button>
-          </Library.Demo>
-          <Library.Demo title="button with `aria-expanded` styling" withSource>
-            <button
-              aria-expanded
-              className="border p-2 aria-expanded:bg-slate-7 aria-expanded:text-color-text-inverted"
-            >
-              Button
-            </button>
-          </Library.Demo>
-        </Library.Example>
+
         <Library.Example title="Styling groups of inputs">
           <p>
             The <code>input-group</code> modifier allows adaptation of styling
