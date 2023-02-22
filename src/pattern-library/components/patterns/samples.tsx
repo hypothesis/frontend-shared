@@ -88,10 +88,23 @@ export function SampleTableBody() {
 
 /**
  * @param {object} props
- *   @param {'sm'|'md'|'lg'} [props.size]
+ *   @param {'xs'|'sm'|'md'|'lg'} [props.size]
  */
 export function LoremIpsum({ size = 'lg' }) {
-  if (size === 'sm') {
+  if (size === 'xs') {
+    return (
+      <>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sapien
+          cursus, fringilla diam posuere, varius urna.
+        </p>
+        <p>
+          Phasellus dictum sodales dui, sed scelerisque mauris auctor et.
+          Integer suscipit justo in erat tristique, nec feugiat augue ultrices.
+        </p>
+      </>
+    );
+  } else if (size === 'sm') {
     return (
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a sapien
