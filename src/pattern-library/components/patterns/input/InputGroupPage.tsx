@@ -1,4 +1,12 @@
-import { InputGroup, Input, IconButton, CopyIcon } from '../../../../next';
+import {
+  InputGroup,
+  Input,
+  IconButton,
+  CopyIcon,
+  Select,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+} from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
@@ -31,6 +39,32 @@ export default function InputGroupPage() {
                 <InputGroup>
                   <Input name="test" />
                   <IconButton icon={CopyIcon} title="copy" variant="dark" />
+                </InputGroup>
+              </div>
+            </Library.Demo>
+
+            <Library.Demo
+              title="Select and IconButton components in InputGroup"
+              withSource
+            >
+              <div className="w-[350px]">
+                <InputGroup>
+                  <IconButton
+                    icon={ArrowLeftIcon}
+                    title="Previous"
+                    variant="dark"
+                  />
+                  <Select>
+                    <option value="0">Select a fruit</option>
+                    <option value="1">Apple</option>
+                    <option value="2">Banana</option>
+                    <option value="3">Cherries</option>
+                  </Select>
+                  <IconButton
+                    icon={ArrowRightIcon}
+                    title="Next"
+                    variant="dark"
+                  />
                 </InputGroup>
               </div>
             </Library.Demo>
@@ -68,6 +102,9 @@ export default function InputGroupPage() {
               </li>
               <li>
                 <code>IconButton</code>
+              </li>
+              <li>
+                <code>Select</code>
               </li>
             </ul>
           </Library.Example>
