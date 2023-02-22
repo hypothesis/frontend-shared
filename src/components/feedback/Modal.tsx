@@ -113,6 +113,7 @@ const ModalNext = function Modal({
   return (
     <Overlay>
       <div
+        data-component="Modal"
         tabIndex={-1}
         // NB: Role can be overridden with an HTML attribute; this is purposeful
         role="dialog"
@@ -138,7 +139,6 @@ const ModalNext = function Modal({
           },
           classes
         )}
-        data-component="Modal"
         ref={downcastRef(modalRef)}
       >
         <Panel

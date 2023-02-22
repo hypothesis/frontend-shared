@@ -13,9 +13,9 @@ import Spinner from './Spinner';
 const SpinnerOverlayNext = function SpinnerOverlay({ ...htmlAttributes }) {
   return (
     <Overlay
+      data-composite-component="SpinnerOverlay"
       {...htmlAttributes}
       variant="light"
-      data-composite-component="SpinnerOverlay"
     >
       <Spinner size="lg" />
     </Overlay>
