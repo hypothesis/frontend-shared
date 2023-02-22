@@ -156,6 +156,44 @@ export default function CardPage() {
               </Card>
             </Library.Demo>
           </Library.Example>
+
+          <Library.Example title="width">
+            <Library.Demo title="width: 'full' (default)" withSource>
+              <Card width="full">
+                <CardContent>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                  <p>
+                    Adipiscing bibendum est ultricies integer quis auctor elit.
+                    Id eu nisl nunc mi ipsum.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+
+            <Library.Demo title="width: 'auto'" withSource>
+              <Card width="auto">
+                <CardContent>
+                  <p>Sizes itself to content automatically.</p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+
+            <p>
+              The <code>custom</code> width value allows the author to set width
+              with the <code>classes</code> prop.
+            </p>
+            <Library.Demo title="width: 'custom'" withSource>
+              <Card classes="w-[400px]" width="custom">
+                <CardContent>
+                  <p>Sized to 400 px.</p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
