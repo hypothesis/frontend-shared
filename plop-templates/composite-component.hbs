@@ -29,6 +29,7 @@ const {{name}}Next = function {{name}}({
 }:{{name}}Props) {
   return (
     <div
+      data-composite-component="{{name}}"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -43,7 +44,6 @@ const {{name}}Next = function {{name}}({
           'p-4': size === 'lg',
         },
       )}
-      data-composite-component="{{name}}"
     >
       {children}
     </div>
