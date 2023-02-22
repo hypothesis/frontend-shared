@@ -30,6 +30,7 @@ const SelectNext = function Select({
 }: SelectProps) {
   return (
     <InputRoot
+      data-component="Select"
       classes={classnames(
         'appearance-none',
         // position the down-arrow image centered at the right, offset from the
@@ -45,7 +46,6 @@ const SelectNext = function Select({
         backgroundImage: arrowImage,
       }}
       {...htmlAttributes}
-      data-component="Select"
     >
       {children}
     </InputRoot>

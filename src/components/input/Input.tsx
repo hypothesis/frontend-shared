@@ -26,11 +26,11 @@ const InputNext = function Input({
 }: InputProps) {
   return (
     <InputRoot
+      data-component="Input"
       elementRef={downcastRef(elementRef)}
       type={type}
       hasError={hasError}
       {...htmlAttributes}
-      data-component="Input"
     />
   );
 };
