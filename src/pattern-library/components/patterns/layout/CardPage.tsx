@@ -9,6 +9,8 @@ import { Button, EditIcon } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
 
+import { LoremIpsum } from '../samples';
+
 export default function CardPage() {
   return (
     <Library.Page
@@ -80,15 +82,7 @@ export default function CardPage() {
             <Library.Demo title="Basic Card with CardContent" withSource>
               <Card>
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Adipiscing bibendum est ultricies integer quis auctor elit.
-                    Id eu nisl nunc mi ipsum.
-                  </p>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -105,15 +99,7 @@ export default function CardPage() {
             <Library.Demo title="variant: 'raised' (default)" withSource>
               <Card variant="raised">
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Adipiscing bibendum est ultricies integer quis auctor elit.
-                    Id eu nisl nunc mi ipsum.
-                  </p>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -121,15 +107,7 @@ export default function CardPage() {
             <Library.Demo title="variant: 'flat'" withSource>
               <Card variant="flat">
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Adipiscing bibendum est ultricies integer quis auctor elit.
-                    Id eu nisl nunc mi ipsum.
-                  </p>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -143,15 +121,7 @@ export default function CardPage() {
             <Library.Demo title="active: true" withSource>
               <Card active>
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Adipiscing bibendum est ultricies integer quis auctor elit.
-                    Id eu nisl nunc mi ipsum.
-                  </p>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -161,15 +131,7 @@ export default function CardPage() {
             <Library.Demo title="width: 'full' (default)" withSource>
               <Card width="full">
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Adipiscing bibendum est ultricies integer quis auctor elit.
-                    Id eu nisl nunc mi ipsum.
-                  </p>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -213,15 +175,7 @@ export default function CardPage() {
             <Library.Demo title="Card with CardContent" withSource>
               <Card>
                 <CardContent>
-                  <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <div>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat.
-                  </div>
+                  <LoremIpsum size="xs" />
                 </CardContent>
               </Card>
             </Library.Demo>
@@ -256,15 +210,7 @@ export default function CardPage() {
                       </strong>
                       .
                     </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                    <p>
-                      Adipiscing bibendum est ultricies integer quis auctor
-                      elit. Id eu nisl nunc mi ipsum.
-                    </p>
+                    <LoremIpsum size="xs" />
                   </CardContent>
                 </Card>
 
@@ -277,15 +223,7 @@ export default function CardPage() {
                       </strong>
                       .
                     </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                    <p>
-                      Adipiscing bibendum est ultricies integer quis auctor
-                      elit. Id eu nisl nunc mi ipsum.
-                    </p>
+                    <LoremIpsum size="xs" />
                   </CardContent>
                 </Card>
 
@@ -298,15 +236,7 @@ export default function CardPage() {
                       </strong>
                       .
                     </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                    <p>
-                      Adipiscing bibendum est ultricies integer quis auctor
-                      elit. Id eu nisl nunc mi ipsum.
-                    </p>
+                    <LoremIpsum size="xs" />
                   </CardContent>
                 </Card>
               </div>
@@ -441,11 +371,7 @@ export default function CardPage() {
               <Card>
                 <CardHeader title="This card has some actions" />
                 <CardContent>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
+                  <LoremIpsum size="xs" />
                   <CardActions>
                     <Button>Cancel</Button>
                     <Button variant="primary">Do it</Button>
