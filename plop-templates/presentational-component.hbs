@@ -28,6 +28,7 @@ const {{name}}Next = function {{name}}({
 }: {{name}}Props) {
   return (
     <div
+      data-component="{{name}}"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -43,7 +44,6 @@ const {{name}}Next = function {{name}}({
         },
         classes
       )}
-      data-component="{{name}}"
     >
       {children}
     </div>
