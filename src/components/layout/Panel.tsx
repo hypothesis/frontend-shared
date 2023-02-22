@@ -88,10 +88,10 @@ const PanelNext = function Panel({
     );
   return (
     <Card
+      data-composite-component="Panel"
       {...htmlAttributes}
       classes={heightConstraintClasses}
       elementRef={downcastRef(elementRef)}
-      data-composite-component="Panel"
     >
       <CardHeader onClose={onClose} fullWidth={scrollable || fullWidthHeader}>
         {Icon && <Icon className="w-em h-em" />}
