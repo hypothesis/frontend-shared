@@ -32,6 +32,7 @@ const OverlayNext = function Overlay({
 
   return (
     <div
+      data-component="Overlay"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -42,7 +43,6 @@ const OverlayNext = function Overlay({
         },
         classes
       )}
-      data-component="Overlay"
     >
       {children}
     </div>

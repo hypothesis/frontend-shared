@@ -22,10 +22,10 @@ const CardTitleNext = function CardTitle({
 }) {
   return (
     <div
+      data-component="CardTitle"
       {...htmlAttributes}
       className={classnames('grow text-lg text-brand font-semibold', classes)}
       ref={downcastRef(elementRef)}
-      data-component="CardTitle"
     >
       {children}
     </div>

@@ -21,10 +21,10 @@ const CardActionsNext = function CardActions({
 }) {
   return (
     <div
+      data-component="CardActions"
       {...htmlAttributes}
       className={classnames('flex items-center justify-end space-x-3', classes)}
       ref={downcastRef(elementRef)}
-      data-component="CardActions"
     >
       {children}
     </div>

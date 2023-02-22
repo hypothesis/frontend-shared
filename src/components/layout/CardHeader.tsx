@@ -46,6 +46,7 @@ const CardHeaderNext = function CardHeader({
 }: CardHeaderProps) {
   return (
     <div
+      data-component="CardHeader"
       {...htmlAttributes}
       className={classnames(
         'flex items-center gap-x-2 border-b py-2',
@@ -53,7 +54,6 @@ const CardHeaderNext = function CardHeader({
         classes
       )}
       ref={downcastRef(elementRef)}
-      data-component="CardHeader"
     >
       {title && <CardTitle>{title}</CardTitle>}
       {children}

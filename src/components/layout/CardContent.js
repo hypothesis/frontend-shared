@@ -26,6 +26,7 @@ const CardContentNext = function CardContent({
 }) {
   return (
     <div
+      data-component="CardContent"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
@@ -36,7 +37,6 @@ const CardContentNext = function CardContent({
         },
         classes
       )}
-      data-component="CardContent"
     >
       {children}
     </div>
