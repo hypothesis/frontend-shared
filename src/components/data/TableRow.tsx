@@ -40,6 +40,7 @@ const TableRowNext = function TableRow({
 
   return (
     <tr
+      data-component="TableRow"
       {...htmlAttributes}
       aria-selected={selected}
       ref={downcastRef(rowRef)}
@@ -56,7 +57,6 @@ const TableRowNext = function TableRow({
         },
         classes
       )}
-      data-component="TableRow"
       data-section={isHeadRow ? 'head' : 'body'}
     >
       {children}

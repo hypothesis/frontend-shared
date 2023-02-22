@@ -32,13 +32,13 @@ const TableBodyNext = function TableBody({
   return (
     <TableSectionContext.Provider value={sectionContext}>
       <tbody
+        data-component="TableBody"
         {...htmlAttributes}
         ref={downcastRef(elementRef)}
         className={classnames(
           { 'cursor-pointer': tableContext?.interactive },
           classes
         )}
-        data-component="TableBody"
       >
         {children}
       </tbody>

@@ -56,6 +56,7 @@ const ThumbnailNext = function Thumbnail({
 
   return (
     <div
+      data-composite-component="Thumbnail"
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames('bg-grey-1 w-full h-full overflow-hidden', {
@@ -64,7 +65,6 @@ const ThumbnailNext = function Thumbnail({
         'p-4': size === 'lg' && !borderless,
         'p-0': borderless,
       })}
-      data-composite-component="Thumbnail"
     >
       <div className="bg-white h-full w-full flex items-center justify-center overflow-hidden">
         <AspectRatio ratio={ratio}>

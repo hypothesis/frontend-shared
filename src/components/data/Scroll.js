@@ -38,6 +38,7 @@ const ScrollNext = function Scroll({
   return (
     <ScrollContext.Provider value={scrollContext}>
       <div
+        data-component="Scroll"
         {...htmlAttributes}
         ref={downcastRef(ref)}
         className={classnames(
@@ -48,7 +49,6 @@ const ScrollNext = function Scroll({
           { 'scroll-shadows': variant === 'raised' },
           classes
         )}
-        data-component="Scroll"
       >
         {children}
       </div>
