@@ -82,15 +82,14 @@ export function SampleTableBody() {
   );
 }
 
-/**
- * Provide Lorem Ipsum text.
- */
+export type LoremIpsumProps = {
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+};
 
 /**
- * @param {object} props
- *   @param {'xs'|'sm'|'md'|'lg'} [props.size]
+ * Render some example Lorem Ipsum text at different lengths.
  */
-export function LoremIpsum({ size = 'lg' }) {
+export function LoremIpsum({ size = 'lg' }: LoremIpsumProps) {
   if (size === 'xs') {
     return (
       <>
