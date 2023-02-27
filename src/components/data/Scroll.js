@@ -1,8 +1,7 @@
 import classnames from 'classnames';
 
-import { downcastRef } from '../../util/typing';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-
+import { downcastRef } from '../../util/typing';
 import ScrollContext from './ScrollContext';
 
 /**

@@ -1,9 +1,8 @@
 import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
-import TableRow from '../TableRow';
 import TableContext from '../TableContext';
+import TableRow from '../TableRow';
 import TableSectionContext from '../TableSectionContext';
 
 describe('TableRow', () => {

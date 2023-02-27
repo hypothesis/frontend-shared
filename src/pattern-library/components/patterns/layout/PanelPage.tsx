@@ -2,7 +2,6 @@ import { Panel } from '../../../../next';
 import { Button, EditIcon, ScrollBox } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
 import { LoremIpsum } from '../samples';
 
 export default function PanelPage() {

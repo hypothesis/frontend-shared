@@ -1,9 +1,7 @@
+import * as Icons from '../../../../components/icons';
+import { Link } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
-import { Link } from '../../../../next';
-
-import * as Icons from '../../../../components/icons';
 
 export default function IconsPage() {
   return (

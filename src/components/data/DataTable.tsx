@@ -5,15 +5,14 @@ import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import { SpinnerSpokesIcon } from '../icons';
 import ScrollContext from './ScrollContext';
 import Table from './Table';
-import TableHead from './TableHead';
 import TableBody from './TableBody';
-import TableRow from './TableRow';
 import TableCell from './TableCell';
 import TableFoot from './TableFoot';
+import TableHead from './TableHead';
+import TableRow from './TableRow';
 
 export type TableColumn = {
   field: string;

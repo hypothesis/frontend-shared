@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testCompositeComponent } from '../../test/common-tests';
-
 import ScrollBox from '../ScrollBox';
 
 const createComponent = (Component, props = {}) => {

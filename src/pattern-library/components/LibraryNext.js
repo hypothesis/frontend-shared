@@ -2,13 +2,11 @@
  * Pattern library components related to UI component re-implementation and
  * migration.
  */
-
 import classnames from 'classnames';
 import { useMemo } from 'preact/hooks';
 
-import { jsxToHTML } from '../util/jsx-to-string';
-
 import { Scroll, ScrollContainer } from '../../next';
+import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
  * Render a little label or pill next to changelog items

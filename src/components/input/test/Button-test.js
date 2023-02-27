@@ -1,9 +1,8 @@
 import { mount } from 'enzyme';
 
-import { testPresentationalComponent } from '../../test/common-tests';
-
-import Button from '../Button';
 import { CancelIcon } from '../../icons';
+import { testPresentationalComponent } from '../../test/common-tests';
+import Button from '../Button';
 
 describe('Button', () => {
   const createComponent = (props = {}) => {

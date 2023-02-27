@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 
 import { downcastRef } from '../../util/typing';
-
 import ButtonBase from '../input/ButtonBase';
 
 /**

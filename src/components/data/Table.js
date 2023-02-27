@@ -2,7 +2,6 @@ import classnames from 'classnames';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { downcastRef } from '../../util/typing';
-
 import TableContext from './TableContext';
 
 /**

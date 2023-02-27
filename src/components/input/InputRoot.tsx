@@ -3,7 +3,6 @@ import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import { inputGroupStyles } from './InputGroup';
 
 type RootComponentProps = {

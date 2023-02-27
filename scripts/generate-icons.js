@@ -1,6 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as path from 'node:path';
-
 import { format } from 'prettier';
 import { optimize } from 'svgo';
 

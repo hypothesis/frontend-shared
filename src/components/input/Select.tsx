@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import type { ComponentChildren, JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
-
 import InputRoot from './InputRoot';
 
 type ComponentProps = {

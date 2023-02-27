@@ -2,7 +2,6 @@ import { mount } from 'enzyme';
 import { useState } from 'preact/hooks';
 
 import { testCompositeComponent } from '../../test/common-tests';
-
 import DataTable from '../DataTable';
 import Scroll from '../Scroll';
 

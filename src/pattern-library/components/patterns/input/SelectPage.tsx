@@ -1,3 +1,4 @@
+import type { SelectProps } from '../../../../components/input/Select';
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -7,8 +8,6 @@ import {
 } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
-import type { SelectProps } from '../../../../components/input/Select';
 
 function SelectWrapper({ children, ...selectProps }: SelectProps) {
   const options = children ?? (

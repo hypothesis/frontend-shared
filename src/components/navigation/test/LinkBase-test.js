@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testBaseComponent } from '../../test/common-tests';
-
 import LinkBase from '../LinkBase';
 
 describe('LinkBase', () => {

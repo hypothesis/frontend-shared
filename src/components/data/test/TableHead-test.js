@@ -1,9 +1,8 @@
 import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
-import TableHead from '../TableHead';
 import TableContext from '../TableContext';
+import TableHead from '../TableHead';
 
 describe('TableHead', () => {
   let tableContextValue;

@@ -1,10 +1,9 @@
 import { mount } from 'enzyme';
 
-import { Panel } from '../Panel';
-import { $imports } from '../Panel';
-
 import { checkAccessibility } from '../../../test/util/accessibility';
 import mockImportedComponents from '../../../test/util/mock-imported-components';
+import { Panel } from '../Panel';
+import { $imports } from '../Panel';
 
 describe('Panel', () => {
   const createPanel = props =>
