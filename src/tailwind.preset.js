@@ -1,6 +1,5 @@
-import plugin from 'tailwindcss/plugin.js';
-
 import colors from 'tailwindcss/colors.js';
+import plugin from 'tailwindcss/plugin.js';
 
 import { focusVisibleRing } from './tailwind.focus-visible-ring.js';
 import { scrollShadows } from './tailwind.scroll-shadows.js';

@@ -1,8 +1,7 @@
-import Library from '../Library';
-import Next from '../LibraryNext';
-
 import { Card, Icon, registerIcon } from '../../../';
 import * as iconSrc from '../../../icons';
+import Library from '../Library';
+import Next from '../LibraryNext';
 
 /** @type {Record<string, symbol>} */
 const icons = {};

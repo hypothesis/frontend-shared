@@ -2,9 +2,8 @@ import classnames from 'classnames';
 import { useContext } from 'preact/hooks';
 
 import { downcastRef } from '../../util/typing';
-
-import TableSectionContext from './TableSectionContext';
 import TableContext from './TableContext';
+import TableSectionContext from './TableSectionContext';
 
 /**
  * @typedef {import('../../types').PresentationalProps} CommonProps

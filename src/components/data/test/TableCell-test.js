@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
 import TableCell from '../TableCell';
 import TableSectionContext from '../TableSectionContext';
 

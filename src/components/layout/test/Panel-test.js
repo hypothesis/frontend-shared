@@ -1,11 +1,9 @@
 import { mount } from 'enzyme';
 
-import { testCompositeComponent } from '../../test/common-tests';
-
-import Panel from '../Panel';
-import { EditIcon } from '../../icons';
-
 import { LoremIpsum } from '../../../pattern-library/components/patterns/samples';
+import { EditIcon } from '../../icons';
+import { testCompositeComponent } from '../../test/common-tests';
+import Panel from '../Panel';
 
 const createComponent = (Component, props = {}) => {
   return mount(

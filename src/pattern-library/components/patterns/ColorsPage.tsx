@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+
 import Library from '../Library';
 
 type ColorSwatchProps = {

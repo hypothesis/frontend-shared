@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import { toChildArray } from 'preact';
-import { downcastRef } from '../../util/typing';
 
-import AspectRatio from './AspectRatio';
-import { EllipsisIcon } from '../icons';
+import { downcastRef } from '../../util/typing';
 import Spinner from '../feedback/Spinner';
+import { EllipsisIcon } from '../icons';
+import AspectRatio from './AspectRatio';
 
 /**
  * @typedef {import('../../types').CompositeProps} CompositeProps

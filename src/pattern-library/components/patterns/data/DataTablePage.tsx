@@ -3,7 +3,6 @@ import { useState } from 'preact/hooks';
 import { DataTable, Scroll } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
 import { nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
 

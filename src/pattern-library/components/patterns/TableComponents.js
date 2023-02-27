@@ -1,10 +1,8 @@
 import { useState } from 'preact/hooks';
 
 import { LabeledButton, Table } from '../../../';
-
 import Library from '../Library';
 import Next from '../LibraryNext';
-
 import { sampleTableContent } from './samples';
 
 /**

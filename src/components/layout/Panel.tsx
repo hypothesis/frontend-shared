@@ -2,13 +2,12 @@ import type { ComponentChildren, JSX } from 'preact';
 
 import type { IconComponent, CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import Scroll from '../data/Scroll';
 import Card from './Card';
+import CardActions from './CardActions';
 import CardContent from './CardContent';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
-import CardActions from './CardActions';
 
 type ComponentProps = {
   /** Buttons are rendered at the bottom right of the Panel. */

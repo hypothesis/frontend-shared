@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
 import Overlay from '../Overlay';
 
 const createComponent = (Component, props = {}) => {

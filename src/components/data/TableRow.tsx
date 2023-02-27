@@ -5,9 +5,8 @@ import { useContext } from 'preact/hooks';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
-import TableSectionContext from './TableSectionContext';
 import TableContext from './TableContext';
+import TableSectionContext from './TableSectionContext';
 
 type ComponentProps = {
   selected?: boolean;

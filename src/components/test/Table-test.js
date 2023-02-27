@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 
-import { Table } from '../Table';
 import { checkAccessibility } from '../../../test/util/accessibility';
+import { Table } from '../Table';
 
 describe('Table', () => {
   let constrainedContainer;

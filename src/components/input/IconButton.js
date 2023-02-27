@@ -1,10 +1,8 @@
 import classnames from 'classnames';
 
 import { downcastRef } from '../../util/typing';
-
-import { inputGroupStyles } from './InputGroup';
-
 import ButtonBase from './ButtonBase';
+import { inputGroupStyles } from './InputGroup';
 
 /**
  * @typedef {import('../../types').IconComponent} IconComponent

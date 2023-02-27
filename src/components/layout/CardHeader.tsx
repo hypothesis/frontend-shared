@@ -3,10 +3,8 @@ import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import { CancelIcon } from '../icons';
 import { IconButton } from '../input';
-
 import CardTitle from './CardTitle';
 
 type ComponentProps = {

@@ -1,8 +1,7 @@
 import hljs from 'highlight.js/lib/core';
-import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
+import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import { Fragment } from 'preact';
-
 import type { ComponentChildren, VNode } from 'preact';
 
 /**

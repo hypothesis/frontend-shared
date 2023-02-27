@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import arrowLeftIcon from '../../images/icons/arrow-left.svg';
 import arrowRightIcon from '../../images/icons/arrow-right.svg';
 import cancelIcon from '../../images/icons/cancel.svg';

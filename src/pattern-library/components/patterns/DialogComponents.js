@@ -2,9 +2,6 @@ import { createRef } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { Scrollbox } from '../../..';
-import Library from '../Library';
-import Next from '../LibraryNext';
-
 import {
   ConfirmModal,
   Dialog,
@@ -14,7 +11,8 @@ import {
   TextInput,
   TextInputWithButton,
 } from '../../../';
-
+import Library from '../Library';
+import Next from '../LibraryNext';
 import { LoremIpsum } from './samples';
 
 function DialogExample() {

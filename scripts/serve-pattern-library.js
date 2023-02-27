@@ -1,9 +1,8 @@
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-
 import express from 'express';
 import log from 'fancy-log';
 import mustacheExpress from 'mustache-express';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 export function servePatternLibrary(port = 4001) {
   const dirname = path.dirname(fileURLToPath(import.meta.url));

@@ -1,8 +1,7 @@
 import { mount } from 'enzyme';
 
-import { testPresentationalComponent } from '../../test/common-tests';
-
 import { ProfileIcon } from '../../icons';
+import { testPresentationalComponent } from '../../test/common-tests';
 import Tab from '../Tab';
 
 const contentFn = (Component, props = {}) => {

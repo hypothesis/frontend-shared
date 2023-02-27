@@ -1,14 +1,12 @@
 import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 
+import type { PlaygroundAppProps } from '../';
 import { Link, LogoIcon } from '../../next';
-import Library from './Library';
-
+import { useRoute } from '../router';
 import { componentGroups, getRoutes } from '../routes';
 import type { PlaygroundRoute } from '../routes';
-import { useRoute } from '../router';
-
-import type { PlaygroundAppProps } from '../';
+import Library from './Library';
 
 /**
  * Render web content for the playground application. This includes the "frame"

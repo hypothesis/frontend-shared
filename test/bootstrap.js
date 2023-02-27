@@ -1,12 +1,11 @@
+import { configure } from 'enzyme';
+import { Adapter } from 'enzyme-adapter-preact-pure';
+import 'preact/debug';
+
 // Expose the sinon assertions.
 sinon.assert.expose(assert, { prefix: null });
 
 // Configure Enzyme for UI tests.
-import 'preact/debug';
-
-import { configure } from 'enzyme';
-import { Adapter } from 'enzyme-adapter-preact-pure';
-
 configure({ adapter: new Adapter() });
 
 // Ensure that uncaught exceptions between tests result in the tests failing.
