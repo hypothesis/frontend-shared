@@ -1,6 +1,6 @@
-// @ts-ignore
 import classnames from 'classnames';
 
+// @ts-ignore
 import checkboxSVG from '../../images/icons/checkbox.svg';
 import { registerIcon, SvgIcon } from './SvgIcon';
 

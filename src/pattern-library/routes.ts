@@ -1,40 +1,6 @@
 import type { FunctionComponent } from 'preact';
 
-import LibraryHome from './components/LibraryHome';
-
-import GettingStartedPage from './components/patterns/GettingStartedPage';
-import ColorsPage from './components/patterns/ColorsPage';
-import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
-import UsingComponentsPage from './components/patterns/UsingComponentsPage';
-import UtilitiesPage from './components/patterns/UtilitiesPage';
-
-import AspectRatioPage from './components/patterns/data/AspectRatioPage';
-import DataTablePage from './components/patterns/data/DataTablePage';
-import IconsPage from './components/patterns/data/IconsPage';
-import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
-import TablePage from './components/patterns/data/TablePage';
-import ThumbnailPage from './components/patterns/data/ThumbnailPage';
-
-import ModalPage from './components/patterns/feedback/ModalPage';
-import SpinnerPage from './components/patterns/feedback/SpinnerPage';
-
-import ButtonsPage from './components/patterns/input/ButtonPage';
-import CheckboxPage from './components/patterns/input/CheckboxPage';
-import InputPage from './components/patterns/input/InputPage';
-import InputGroupPage from './components/patterns/input/InputGroupPage';
-import SelectPage from './components/patterns/input/SelectPage';
-
-import CardPage from './components/patterns/layout/CardPage';
-import PanelPage from './components/patterns/layout/PanelPage';
-import OverlayPage from './components/patterns/layout/OverlayPage';
-
-import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
-import LinkPage from './components/patterns/navigation/LinkPage';
-import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
-import TabPage from './components/patterns/navigation/TabPage';
-
 // Legacy pattern-library pages
-
 import ButtonComponents from './components/patterns/ButtonComponents';
 import ContainerComponents from './components/patterns/ContainerComponents';
 import DialogComponents from './components/patterns/DialogComponents';
@@ -45,6 +11,33 @@ import PanelComponents from './components/patterns/PanelComponents';
 import SpinnerComponents from './components/patterns/SpinnerComponents';
 import TableComponents from './components/patterns/TableComponents';
 import ThumbnailComponents from './components/patterns/ThumbnailComponents';
+
+import LibraryHome from './components/LibraryHome';
+import ColorsPage from './components/patterns/ColorsPage';
+import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
+import GettingStartedPage from './components/patterns/GettingStartedPage';
+import UsingComponentsPage from './components/patterns/UsingComponentsPage';
+import UtilitiesPage from './components/patterns/UtilitiesPage';
+import AspectRatioPage from './components/patterns/data/AspectRatioPage';
+import DataTablePage from './components/patterns/data/DataTablePage';
+import IconsPage from './components/patterns/data/IconsPage';
+import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
+import TablePage from './components/patterns/data/TablePage';
+import ThumbnailPage from './components/patterns/data/ThumbnailPage';
+import ModalPage from './components/patterns/feedback/ModalPage';
+import SpinnerPage from './components/patterns/feedback/SpinnerPage';
+import ButtonsPage from './components/patterns/input/ButtonPage';
+import CheckboxPage from './components/patterns/input/CheckboxPage';
+import InputGroupPage from './components/patterns/input/InputGroupPage';
+import InputPage from './components/patterns/input/InputPage';
+import SelectPage from './components/patterns/input/SelectPage';
+import CardPage from './components/patterns/layout/CardPage';
+import OverlayPage from './components/patterns/layout/OverlayPage';
+import PanelPage from './components/patterns/layout/PanelPage';
+import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
+import LinkPage from './components/patterns/navigation/LinkPage';
+import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
+import TabPage from './components/patterns/navigation/TabPage';
 
 export const componentGroups = {
   data: 'Data Display',
