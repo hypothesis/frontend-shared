@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { checkAccessibility } from '../../../test/util/accessibility';
-
 import { LabeledCheckbox, Checkbox } from '../Checkbox';
 
 describe('Checkbox', () => {

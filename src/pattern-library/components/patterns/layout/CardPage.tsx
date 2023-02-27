@@ -8,7 +8,6 @@ import {
 import { Button, EditIcon } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
 import { LoremIpsum } from '../samples';
 
 export default function CardPage() {

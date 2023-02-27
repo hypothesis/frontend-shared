@@ -1,8 +1,8 @@
 import { render } from 'preact';
 
 import * as iconSrc from '../../icons';
-import { availableIcons, registerIcons, registerIcon } from '../SvgIcon';
 import { Icon } from '../Icon';
+import { availableIcons, registerIcons, registerIcon } from '../SvgIcon';
 
 describe('Icon', () => {
   // Tests here use DOM APIs rather than Enzyme because SvgIcon uses

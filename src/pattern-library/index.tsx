@@ -4,10 +4,9 @@ import { render } from 'preact';
 import 'preact/debug';
 
 import { registerIcons } from '../';
-import type { CustomPlaygroundRoute } from './routes';
-
 import PlaygroundApp from './components/PlaygroundApp';
 import iconSet from './icons';
+import type { CustomPlaygroundRoute } from './routes';
 
 export type PlaygroundAppProps = {
   /**

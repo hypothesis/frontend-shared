@@ -5,10 +5,8 @@ import { useEffect, useLayoutEffect } from 'preact/hooks';
 import { useElementShouldClose } from '../../hooks/use-element-should-close';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useUniqueId } from '../../hooks/use-unique-id';
-
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import Overlay from '../layout/Overlay';
 import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';

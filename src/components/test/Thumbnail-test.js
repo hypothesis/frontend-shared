@@ -1,8 +1,7 @@
 import { mount } from 'enzyme';
 
-import { Thumbnail } from '../Thumbnail';
-
 import { checkAccessibility } from '../../../test/util/accessibility';
+import { Thumbnail } from '../Thumbnail';
 
 describe('Thumbnail', () => {
   const createComponent = (props = {}) =>

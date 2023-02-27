@@ -3,8 +3,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 
 // @ts-ignore
 import cancelSVG from '../../images/icons/cancel.svg';
-import { IconButton, LabeledButton } from './buttons';
 import { registerIcon, SvgIcon } from './SvgIcon';
+import { IconButton, LabeledButton } from './buttons';
 
 // Register the checkbox icon for use
 const cancelIcon = registerIcon('cancel', cancelSVG);

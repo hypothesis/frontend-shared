@@ -1,9 +1,9 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
+import { checkAccessibility } from '../../../test/util/accessibility';
 import { Dialog } from '../Dialog';
 import { registerIcon } from '../SvgIcon';
-import { checkAccessibility } from '../../../test/util/accessibility';
 
 describe('Dialog', () => {
   it('renders content', () => {

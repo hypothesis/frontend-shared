@@ -6,7 +6,6 @@ import {
 } from '../../../../next';
 import Library from '../../Library';
 import Next from '../../LibraryNext';
-
 import { SampleListElements } from '../samples';
 
 export default function ScrollBoxPage() {

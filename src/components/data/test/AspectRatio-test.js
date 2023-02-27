@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testSimpleComponent } from '../../test/common-tests';
-
 import AspectRatio from '../AspectRatio';
 
 const createComponent = (Component, props = {}) => {

@@ -2,7 +2,6 @@ import { mount } from 'enzyme';
 import { act } from 'preact/test-utils';
 
 import { testCompositeComponent } from '../../test/common-tests';
-
 import Checkbox from '../Checkbox';
 
 const createComponent = (Component, props = {}) => {

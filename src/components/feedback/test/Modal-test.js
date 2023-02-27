@@ -2,7 +2,6 @@ import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
 import Modal from '../Modal';
 
 const createComponent = (Component, props = {}) => {

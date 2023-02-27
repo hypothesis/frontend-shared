@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import { useState } from 'preact/hooks';
 
 import { downcastRef } from '../../util/typing';
-
 import { CheckboxOutlineIcon, CheckboxCheckedIcon } from '../icons';
 
 /**

@@ -1,7 +1,6 @@
+import { Link } from '../../../next';
 import Library from '../Library';
 import Next from '../LibraryNext';
-
-import { Link } from '../../../next';
 
 export default function GettingStartedPage() {
   return (

@@ -4,7 +4,6 @@ import { useContext } from 'preact/hooks';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import TableSectionContext from './TableSectionContext';
 
 export type TableCellProps = PresentationalProps &

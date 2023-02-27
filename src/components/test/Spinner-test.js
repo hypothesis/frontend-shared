@@ -1,8 +1,7 @@
 import { mount } from 'enzyme';
 
-import { FullScreenSpinner, Spinner } from '../Spinner';
-
 import { checkAccessibility } from '../../../test/util/accessibility';
+import { FullScreenSpinner, Spinner } from '../Spinner';
 
 describe('Spinner', () => {
   const createSpinner = (props = {}) => mount(<Spinner {...props} />);

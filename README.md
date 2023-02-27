@@ -63,9 +63,8 @@ import { Link } from '@hypothesis/frontend-shared';
 ### Icons (legacy)
 
 ```js
-import { profile, share, trash } from '@hypothesis/frontend-shared/lib/icons';
-
 import { registerIcons } from '@hypothesis/frontend-shared';
+import { profile, share, trash } from '@hypothesis/frontend-shared/lib/icons';
 
 registerIcons({ profile, shareAnnotation: share, trash });
 

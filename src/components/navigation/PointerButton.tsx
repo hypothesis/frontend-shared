@@ -2,7 +2,6 @@ import classnames from 'classnames';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import ButtonBase from '../input/ButtonBase';
 import type {
   ButtonCommonProps,

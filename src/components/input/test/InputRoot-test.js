@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
-
 import InputRoot from '../InputRoot';
 
 const contentFn = (Component, props = {}) => {

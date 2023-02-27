@@ -2,8 +2,8 @@ import classnames from 'classnames';
 
 // @ts-ignore
 import cancelSVG from '../../images/icons/cancel.svg';
-import { IconButton } from './buttons';
 import { registerIcon, SvgIcon } from './SvgIcon';
+import { IconButton } from './buttons';
 
 // Register the cancel icon for use
 const cancelIcon = registerIcon('cancel', cancelSVG);

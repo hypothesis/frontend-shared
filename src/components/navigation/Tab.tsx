@@ -3,7 +3,6 @@ import type { JSX } from 'preact';
 
 import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
 import ButtonBase from '../input/ButtonBase';
 
 type ComponentProps = {

@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 
 import { testCompositeComponent } from '../../test/common-tests';
-
 import Thumbnail from '../Thumbnail';
 
 const createComponent = (Component, props = {}) => {

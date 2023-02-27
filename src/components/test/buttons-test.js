@@ -1,11 +1,10 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
-import { IconButton, LabeledButton, LinkButton } from '../buttons.js';
-import { $imports } from '../buttons.js';
-
 import { checkAccessibility } from '../../../test/util/accessibility';
 import mockImportedComponents from '../../../test/util/mock-imported-components';
+import { IconButton, LabeledButton, LinkButton } from '../buttons.js';
+import { $imports } from '../buttons.js';
 
 // Add common tests for a button component for stuff provided by `ButtonBase`
 function addCommonTests({ componentName, createComponentFn, withIcon = true }) {
