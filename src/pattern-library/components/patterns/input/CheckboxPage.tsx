@@ -20,60 +20,6 @@ export default function CheckboxPage() {
         </p>
       }
     >
-      <Library.Pattern title="Status">
-        <p>
-          <code>Checkbox</code> combines the functionality of both the{' '}
-          <code>Checkbox</code> and <code>LabeledCheckbox</code> legacy
-          components.
-        </p>
-
-        <Library.Example title="Migrating to this component (from Checkbox)">
-          <Next.Changelog>
-            <Next.ChangelogItem status="breaking">
-              Prop name:{' '}
-              <s>
-                <code>onToggle</code>
-              </s>{' '}
-              ➜ Use <code>onChange</code> instead
-            </Next.ChangelogItem>
-            <Next.ChangelogItem status="breaking">
-              Prop:{' '}
-              <s>
-                <code>inputRef</code>
-              </s>{' '}
-              ➜ <code>elementRef</code>
-            </Next.ChangelogItem>
-            <Next.ChangelogItem status="breaking">
-              The presence of prop <code>checked</code> now configures{' '}
-              <code>Checkbox</code> as a controlled component.
-            </Next.ChangelogItem>
-            <Next.ChangelogItem status="added">
-              Prop <code>defaultChecked</code>
-            </Next.ChangelogItem>
-            <Next.ChangelogItem status="added">
-              Now accepts HTML attributes allowed for <code>HTMLInput</code>{' '}
-              elements.
-            </Next.ChangelogItem>
-            <Next.ChangelogItem status="changed">
-              Prop <code>id</code> is no longer required
-            </Next.ChangelogItem>
-          </Next.Changelog>
-        </Library.Example>
-
-        <Library.Example title="Migrating to this component (from LabeledCheckbox)">
-          <Next.Changelog>
-            <Next.ChangelogItem status="breaking">
-              Prop:{' '}
-              <s>
-                <code>containerClasses</code>
-              </s>{' '}
-              ➜ this is now a composite component (does not take extra CSS{' '}
-              <code>classes</code>)
-            </Next.ChangelogItem>
-          </Next.Changelog>
-        </Library.Example>
-      </Library.Pattern>
-
       <Library.Pattern title="Usage">
         <Next.Usage componentName="Checkbox" />
         <Library.Example>
