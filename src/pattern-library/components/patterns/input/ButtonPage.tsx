@@ -30,68 +30,6 @@ export default function ButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Button</code> is a new component that re-implements the{' '}
-            <code>LabeledButton</code> legacy component.{' '}
-          </p>
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>buttonRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop:{' '}
-                <s>
-                  <code>iconPosition</code>
-                </s>{' '}
-                ➜ Icons are always positioned left
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>icon</code>,{' '}
-                <s>
-                  <code>{'{string}'}</code>
-                </s>{' '}
-                ➜ Now takes <code>{'{IconComponent}'}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>variant</code> value{' '}
-                <s>
-                  <code>{"'dark'"}</code>:
-                </s>{' '}
-                This is no longer a standard variant ➜ Use{' '}
-                <code>ButtonBase</code> instead.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>variant</code> default value{' '}
-                <s>
-                  <code>{"'normal'"}</code>
-                </s>{' '}
-                ➜ <code>{"'secondary'"}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>size</code> values{' '}
-                <s>
-                  <code>{"'small'"}</code>
-                </s>
-                ,{' '}
-                <s>
-                  <code>{"'medium'"}</code>
-                </s>{' '}
-                ,
-                <s>
-                  <code>{"'large'"}</code>
-                </s>{' '}
-                ➜ <code>{"'xs'"}</code>, <code>{"'sm'"}</code>,{' '}
-                <code>{"'md'"}</code>, <code>{"'lg'"}</code>
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Button" />
           <Library.Example>
@@ -198,73 +136,6 @@ export default function ButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>IconButton</code> is a reimplementation of an existing legacy
-            component with the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>buttonRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>icon</code>,{' '}
-                <s>
-                  <code>{'{string}'}</code>
-                </s>{' '}
-                ➜ Now takes <code>{'{IconComponent}'}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>variant</code> value{' '}
-                <s>
-                  <code>{"'light'"}</code>:
-                </s>{' '}
-                This is no longer a standard variant ➜ Use{' '}
-                <code>ButtonBase</code> instead
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>variant</code> default value{' '}
-                <s>
-                  <code>{"'normal'"}</code>
-                </s>{' '}
-                ➜ <code>{"'secondary'"}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>size</code> values{' '}
-                <s>
-                  <code>{"'small'"}</code>
-                </s>
-                ,{' '}
-                <s>
-                  <code>{"'medium'"}</code>
-                </s>{' '}
-                ,
-                <s>
-                  <code>{"'large'"}</code>
-                </s>{' '}
-                ➜ <code>{"'xs'"}</code>, <code>{"'sm'"}</code>,{' '}
-                <code>{"'md'"}</code>, <code>{"'lg'"}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop: <code>size</code> value{' '}
-                <s>
-                  <code>{"'small'"}</code>
-                </s>{' '}
-                ➜ use <code>{"'xs'"}</code> instead: the padding/spacing values
-                have been adjusted such that all Button components are
-                harmonized. <code>{"IconButton's"}</code>{' '}
-                <code>{"'small'"}</code> size was inconsistent with the{' '}
-                <code>{"'sm'"}</code> size for other Buttons.
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="IconButton" />
           <Library.Example>
@@ -444,12 +315,6 @@ export default function ButtonPage() {
           </>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>ButtonBase</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="ButtonBase" />
 
