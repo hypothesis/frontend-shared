@@ -8,25 +8,15 @@ export default function AspectRatioPage() {
       title="AspectRatio"
       intro={
         <p>
-          <code>AspectRatio</code> lays out content with a specified aspect
-          ratio.
+          <code>AspectRatio</code> is a simple component that controls the
+          aspect ratio of its first direct child.
         </p>
       }
     >
       <Library.Section title="AspectRatio">
-        <Library.Pattern title="Status">
-          <p>
-            <code>AspectRatio</code> is a new simple component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="AspectRatio" />
           <Library.Example>
-            <p>
-              <code>AspectRatio</code> controls the aspect ratio and containment
-              of its first direct child.
-            </p>
             <Library.Demo
               title="AspectRatio with default 16:9 ratio"
               withSource
