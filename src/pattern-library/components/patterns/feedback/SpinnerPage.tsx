@@ -31,41 +31,6 @@ export default function SpinnerPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Spinner</code> is a new reimplementation of a legacy component
-            of the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop:{' '}
-                <s>
-                  <code>classes</code>
-                </s>{' '}
-                removed
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop values for <code>size</code>:{' '}
-                <s>
-                  <code>{"'small'"}</code>,<code>{"'medium'"}</code>,
-                  <code>{"'large'"}</code>
-                </s>{' '}
-                ➜ Use <code>{"'sm'"}</code>, <code>{"'md'"}</code>, or{' '}
-                <code>{"'lg'"}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Default <code>size</code>:{' '}
-                <s>
-                  <code>{"'medium'"}</code>
-                </s>{' '}
-                ➜ <code>{"'sm'"}</code>
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Spinner" />
           <Library.Example>
