@@ -22,46 +22,6 @@ export default function ThumbnailPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Thumbnail</code> is a reimplementation of a legacy component
-            with the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>classes</code>
-                </s>{' '}
-                ➜ No longer supported. Style a parent container instead, or use{' '}
-                <code>AspectRatio</code> directly
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>isLoading</code>
-                </s>{' '}
-                ➜ <code>loading</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop values for <code>size</code>:{' '}
-                <s>
-                  <code>{"'small'"}</code>,<code>{"'medium'"}</code>,
-                  <code>{"'large'"}</code>
-                </s>{' '}
-                ➜ Use <code>{"'sm'"}</code>, <code>{"'md'"}</code>, or{' '}
-                <code>{"'lg'"}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                Prop <code>ratio</code> (default <code>{'"16/9"'}</code>) ➜ All
-                content is constrained to this aspect ratio
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Thumbnail" />
           <Library.Example>
