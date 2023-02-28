@@ -35,9 +35,8 @@ export default function IconsPage() {
 
         <Library.Pattern title="Available icon components">
           <div className="grid grid-cols-4 gap-6">
-            {Object.keys(Icons).map(iconName => {
-              const IconComponent =
-                Icons[/** @type {keyof Icons} */ (iconName)];
+            {(Object.keys(Icons) as Array<keyof typeof Icons>).map(iconName => {
+              const IconComponent = Icons[iconName];
               return (
                 <div
                   className="flex flex-col gap-y-4 border rounded-sm p-4 items-center justify-center"
