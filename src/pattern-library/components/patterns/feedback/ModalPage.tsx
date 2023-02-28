@@ -93,80 +93,17 @@ export default function ModalPage() {
         </p>
       }
     >
-      <Library.Section title="Modal">
-        <Library.Pattern title="Status">
-          <p>
-            <code>Modal</code> is a presentational component that combines
-            aspects of legacy <code>Modal</code> and <code>Dialog</code>{' '}
-            components.
-          </p>
+      <Library.Section
+        title="Modal"
+        intro={
           <p>
             This is an interim implementation of a modal dialog that conforms to
             updated styling and API conventions. It does not yet fully implement
             an accessible dialog. It routes focus, but does not trap or restore
             focus, e.g.
           </p>
-          <p>
-            This implementation should, however, provide a more flexible and
-            simplified API compared to its legacy counterpart.
-          </p>
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop removed:{' '}
-                <s>
-                  <code>contentClass</code>
-                </s>{' '}
-                ➜ use <code>classes</code> instead to style the outer container.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop removed:{' '}
-                <s>
-                  <code>cancelLabel</code>
-                </s>{' '}
-                ➜ A cancel button is no longer automatically added when a close
-                handler is present. Pass a cancel button with the other buttons
-                in the <code>buttons</code> prop instead, and label it however
-                you like.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>onCancel</code>
-                </s>{' '}
-                ➜ <code>onClose</code>: This prop is forwarded to{' '}
-                <code>Panel</code> and its naming more clearly indicates that
-                its purpose is to handle the closing of the modal.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Props removed:{' '}
-                <s>
-                  <code>withCancelButton</code>
-                </s>{' '}
-                and{' '}
-                <s>
-                  <code>withCloseButton</code>
-                </s>
-                ➜ Cancel buttons are no longer automatically rendered based on
-                the presence of the close handler. A close button will now
-                always be rendered if <code>onClose</code> is provided.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="changed">
-                <code>icon</code> prop: Now takes an <code>IconComponent</code>{' '}
-                instead of a <code>string</code>.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="changed">
-                <code>initialFocus</code> prop: Set to <code>{"'manual'"}</code>{' '}
-                to opt out of automatic focus routing (formerly{' '}
-                <code>null</code>).
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                Optional <code>width</code> prop
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
+        }
+      >
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Modal" />
           <Library.Demo title="Basic modal" withSource>
