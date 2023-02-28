@@ -29,41 +29,6 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>ScrollBox</code> is a re-implementation of the legacy
-            component <code>Scrollbox</code> (note casing change).
-          </p>
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                <strong>Watch out!</strong> The casing of this {"component's"}{' '}
-                name has changed:
-                <s>
-                  <code>Scrollbox</code>
-                </s>{' '}
-                ➜ <code>ScrollBox</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop:
-                <s>
-                  <code>withHeader</code>
-                </s>{' '}
-                ➜ No longer supported. Use <code>Scroll</code> components
-                directly to add header-like non-scrolling content.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop:
-                <s>
-                  <code>classes</code>
-                </s>{' '}
-                ➜ no longer supported. Use <code>Scroll</code>-family components
-                directly for more customization
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="ScrollBox" />
           <Library.Example title="Basic ScrollBox">
@@ -146,12 +111,6 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Scroll</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Scroll" />
           <Library.Example>
@@ -208,12 +167,6 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>ScrollContent</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="ScrollContent" />
           <Library.Example>
@@ -249,12 +202,6 @@ export default function ScrollBoxPage() {
           </>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>ScrollContainer</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="ScrollContainer" />
 
