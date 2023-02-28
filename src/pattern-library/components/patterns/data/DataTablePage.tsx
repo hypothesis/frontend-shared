@@ -32,19 +32,6 @@ export default function DataTablePage() {
       }
     >
       <Library.Section title="DataTable">
-        <Library.Pattern title="Status">
-          <p>
-            <code>DataTable</code> is a new composite component loosely based
-            upon the legacy <code>Table</code> component.
-          </p>
-          <Library.Example title="Migrating to this component">
-            <p>
-              Because API changes to this component are so extensive, it should
-              be considered a new component.
-            </p>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="DataTable" />
 
