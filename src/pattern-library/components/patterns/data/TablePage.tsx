@@ -22,17 +22,6 @@ export default function TablePage() {
       }
     >
       <Library.Section title="Table">
-        <Library.Pattern title="Status">
-          <p>
-            <code>Table</code>, <code>TableHead</code>, <code>TableBody</code>,{' '}
-            <code>TableRow</code> and <code>TableCell</code> are new components.
-          </p>
-          <p>
-            <code>Table</code> is a presentational component, and, as such, is
-            not equivalent to the legacy <code>Table</code> component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage
             componentName="Table, TableHead, TableBody, TableRow, TableCell"
