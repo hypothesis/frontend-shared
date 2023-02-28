@@ -7,23 +7,11 @@ export default function IconsPage() {
   return (
     <Library.Page
       title="Icons"
-      intro={<p>Icons are simple, standalone components.</p>}
+      intro={
+        <p>Icons are simple, standalone components that wrap SVG source.</p>
+      }
     >
       <Library.Section title="Icon components">
-        <Library.Pattern title="Status">
-          <p>
-            These standalone icon components are new. These are intended to
-            replace the single legacy <code>Icon</code> component.
-          </p>
-          <Library.Example title="Migrating to updated icons">
-            <Next.Changelog>
-              <Next.ChangelogItem status="changed">
-                It is no longer necessary to import SVG source nor registration
-                functions from this package to use icons.
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="CancelIcon" />
           <Library.Example>
