@@ -7,9 +7,8 @@ import Next from '../../LibraryNext';
 export default function CheckboxPage() {
   const [checked, setChecked] = useState(false);
 
-  /** @param {Event} e */
-  const handleControlledChange = e => {
-    setChecked(/** @type {HTMLInputElement} */ (e.target).checked);
+  const handleControlledChange = (e: Event) => {
+    setChecked((e.target! as HTMLInputElement).checked);
   };
   return (
     <Library.Page
