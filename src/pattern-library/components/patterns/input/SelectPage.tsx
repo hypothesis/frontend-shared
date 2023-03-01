@@ -43,11 +43,6 @@ export default function SelectPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Select</code> is a new component.
-          </p>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Select" />
 
