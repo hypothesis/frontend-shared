@@ -30,7 +30,8 @@ const InputRootNext = function InputRoot({
 
   ...htmlAttributes
 }: InputRootProps) {
-  // @ts-expect-error - "aria-label" is missing from HTMLInputAttributes
+  // TODO Remove next line once updated to preact 10.13.0
+  // @ts-ignore-next - "aria-label" is missing from HTMLInputAttributes.
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
       '`Input` component should have either an `id` or an `aria-label` attribute'
