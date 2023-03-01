@@ -2,6 +2,14 @@
 export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
+// Types
+export type {
+  BaseProps,
+  CompositeProps,
+  IconComponent,
+  PresentationalProps,
+} from './types';
+
 // Components
 export * from './components/icons';
 export {

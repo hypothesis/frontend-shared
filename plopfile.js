@@ -60,7 +60,7 @@ export default function (plop) {
         },
         {
           type: 'modify',
-          path: 'src/next.js',
+          path: 'src/next.ts',
           pattern: /\n\n*$/g,
           template: `\nexport { {{name}} } from './components/{{group}}';\n`,
         },
@@ -79,7 +79,7 @@ export default function (plop) {
       - [ ] write ${chalk.bold('tests')} for the component
       - [ ] ensure that ${chalk.bold('exports')} are appropriate in
           - \`src/components/${data.group}/index.js\` and
-          - \`src/next.js\`
+          - \`src/next.ts\`
       - [ ] ${chalk.bold(
         'test'
       )} against an external application (client or lms)
