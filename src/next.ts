@@ -2,14 +2,6 @@
 export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
-// Types
-export type {
-  BaseProps,
-  CompositeProps,
-  IconComponent,
-  PresentationalProps,
-} from './types';
-
 // Components
 export * from './components/icons';
 export {
@@ -54,3 +46,27 @@ export {
   Tab,
   TabList,
 } from './components/navigation/';
+
+// Types
+export type {
+  BaseProps,
+  CompositeProps,
+  IconComponent,
+  PresentationalProps,
+} from './types';
+
+export type {
+  AspectRatioProps,
+  DataTableProps,
+  ScrollProps,
+  ScrollContentProps,
+  ScrollContainerProps,
+  ScrollBoxProps,
+  TableProps,
+  TableBodyProps,
+  TableCellProps,
+  TableFootProps,
+  TableHeadProps,
+  TableRowProps,
+  ThumbnailProps,
+} from './components/data';
