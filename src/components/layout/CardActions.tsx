@@ -1,16 +1,14 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- */
+export type CardActionsProps = PresentationalProps &
+  JSX.HTMLAttributes<HTMLElement>;
 
 /**
  * Render a group of buttons or interactive elements inside a Card
- *
- * @param {CommonProps & HTMLAttributes} props
  */
 const CardActionsNext = function CardActions({
   children,
@@ -18,7 +16,7 @@ const CardActionsNext = function CardActions({
   elementRef,
 
   ...htmlAttributes
-}) {
+}: CardActionsProps) {
   return (
     <div
       data-component="CardActions"
