@@ -19,7 +19,14 @@ type ComponentProps = {
 
 type HTMLAttributes = Omit<
   JSX.HTMLAttributes<HTMLButtonElement>,
-  'size' | 'icon' | 'title'
+  | 'size'
+  | 'icon'
+  | 'title'
+  | 'selected'
+  // Omitting these aria attributes, as they are set as `never` in ButtonBase
+  | 'aria-expanded'
+  | 'aria-pressed'
+  | 'aria-label'
 >;
 
 export type TabProps = PresentationalProps & ComponentProps & HTMLAttributes;
