@@ -1,26 +1,28 @@
 import classnames from 'classnames';
 
+import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import ButtonBase from './ButtonBase';
+import type { ButtonCommonProps, HTMLButtonAttributes } from './ButtonBase';
 
-/**
- * @typedef {import('../../types').IconComponent} IconComponent
- *
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('./ButtonBase').ButtonCommonProps} ButtonCommonProps
- * @typedef {import('./ButtonBase').HTMLButtonAttributes} HTMLButtonAttributes
- *
- * @typedef ButtonProps
- * @prop {'xs'|'sm'|'md'|'lg'} [size='md'] - Adjusts padding on button
- * @prop {'primary'|'secondary'} [variant='secondary']
- * @prop {IconComponent} [icon] - Optional icon to display at left
- *   of button label text. Will be sized proportional to local font size.
- */
+type ComponentProps = {
+  /** Adjusts padding on button */
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary';
 
+  /**
+   * Optional icon to display at left of button label text. Will be sized
+   * proportional to local font size.
+   */
+  icon?: IconComponent;
+};
+
+export type ButtonProps = PresentationalProps &
+  ButtonCommonProps &
+  ComponentProps &
+  HTMLButtonAttributes;
 /**
  * Render a button with a label (`children`) and optional icon
- *
- * @param {CommonProps & ButtonCommonProps & ButtonProps & HTMLButtonAttributes} props
  */
 const ButtonNext = function Button({
   children,
@@ -36,7 +38,7 @@ const ButtonNext = function Button({
   variant = 'secondary',
 
   ...htmlAttributes
-}) {
+}: ButtonProps) {
   return (
     <ButtonBase
       data-component="Button"
