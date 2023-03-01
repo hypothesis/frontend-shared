@@ -1,11 +1,8 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- */
 
 // These styles may be applied to input components to adapt them when in
 // an InputGroup
@@ -18,10 +15,11 @@ export const inputGroupStyles = classnames(
   'input-group:border-l-0 input-group:first:border-l'
 );
 
+export type InputGroupProps = PresentationalProps &
+  JSX.HTMLAttributes<HTMLElement>;
+
 /**
  * Render a container that lays out a group of input components
- *
- * @param {CommonProps & HTMLAttributes} props
  */
 const InputGroupNext = function InputGroup({
   children,
@@ -29,7 +27,7 @@ const InputGroupNext = function InputGroup({
   elementRef,
 
   ...htmlAttributes
-}) {
+}: InputGroupProps) {
   return (
     <div
       data-component="InputGroup"
