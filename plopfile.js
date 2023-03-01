@@ -44,12 +44,12 @@ export default function (plop) {
         },
         {
           type: 'add',
-          path: 'src/components/{{group}}/index.js',
+          path: 'src/components/{{group}}/index.ts',
           skipIfExists: true,
         },
         {
           type: 'modify',
-          path: 'src/components/{{group}}/index.js',
+          path: 'src/components/{{group}}/index.ts',
           pattern: /\n\n*$/g,
           template: `\nexport { default as {{name}} } from './{{name}}';\n`,
         },
@@ -78,7 +78,7 @@ export default function (plop) {
       - [ ] ${chalk.bold('implement')} the component
       - [ ] write ${chalk.bold('tests')} for the component
       - [ ] ensure that ${chalk.bold('exports')} are appropriate in
-          - \`src/components/${data.group}/index.js\` and
+          - \`src/components/${data.group}/index.ts\` and
           - \`src/next.ts\`
       - [ ] ${chalk.bold(
         'test'
