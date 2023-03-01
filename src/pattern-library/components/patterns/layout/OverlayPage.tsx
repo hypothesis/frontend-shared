@@ -33,13 +33,6 @@ export default function OverlayPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Overlay</code> is a new component based on a design pattern
-            used in legacy modals and <code>FullScreenSpinner</code> components.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Overlay" />
           <Library.Example>
