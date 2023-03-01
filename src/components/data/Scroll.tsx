@@ -1,23 +1,19 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import ScrollContext from './ScrollContext';
+import type { ScrollInfo } from './ScrollContext';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- * @typedef {import('./ScrollContext').ScrollInfo} ScrollInfo
- *
- * @typedef ScrollProps
- * @prop {'raised'|'flat'} [variant='raised'] - Render with scroll-hinting
- *   shadows ('raised') or without ('flat')
- */
+export type ScrollProps = PresentationalProps & {
+  /** Render with scroll-hinting shadows ('raised') or without ('flat') */
+  variant?: 'raised' | 'flat';
+} & JSX.HTMLAttributes<HTMLElement>;
 
 /**
  * Render a fluid container that scrolls on overflow.
- *
- * @param {CommonProps & ScrollProps & HTMLAttributes} props
  */
 const ScrollNext = function Scroll({
   children,
@@ -27,12 +23,12 @@ const ScrollNext = function Scroll({
   variant = 'raised',
 
   ...htmlAttributes
-}) {
+}: ScrollProps) {
   const ref = useSyncedRef(elementRef);
 
-  const scrollContext = /** @type {ScrollInfo} */ ({
+  const scrollContext: ScrollInfo = {
     scrollRef: ref,
-  });
+  };
 
   return (
     <ScrollContext.Provider value={scrollContext}>
