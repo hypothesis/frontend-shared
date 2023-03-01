@@ -1,25 +1,29 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- * @typedef CardProps
- * @prop {boolean} [active=false] - When true, the Card will be styled to
- *   appear as if hovered ("active")
- * @prop {'raised'|'flat'} [variant='raised'] - The "raised" default variant
- *   adds dimensionality with shadows; those shadows intensify on hover. "Flat"
- *   variant does not have any dimensionality or hover.
- * @prop {'full'|'auto'|'custom'} [width='full'] - When `custom`, user should
- *   set desired width using `classes` prop
- */
+type ComponentProps = {
+  /** When true, the Card will be styled to appear as if hovered ("active") */
+  active?: boolean;
+
+  /**
+   * The "raised" default variant adds dimensionality with shadows; those
+   * shadows intensify on hover. "Flat" variant does not have any dimensionality
+   * or hover.
+   */
+  variant?: 'raised' | 'flat';
+  /** When `custom`, user should set desired width using `classes` prop */
+  width?: 'full' | 'auto' | 'custom';
+};
+
+export type CardProps = PresentationalProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'width'>;
 
 /**
  * Render content in a card-like frame
- *
- * @param {CommonProps & CardProps & Omit<HTMLAttributes, 'width'>} props
  */
 const CardNext = function Card({
   children,
@@ -31,7 +35,7 @@ const CardNext = function Card({
   width = 'full',
 
   ...htmlAttributes
-}) {
+}: CardProps) {
   return (
     <div
       data-component="Card"
