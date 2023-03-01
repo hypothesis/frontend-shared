@@ -31,12 +31,6 @@ export default function PointerButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>PointerButton</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="PointerButton" />
           <Library.Example>
