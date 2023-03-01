@@ -1,17 +1,14 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- */
+export type CardTitleProps = PresentationalProps &
+  JSX.HTMLAttributes<HTMLElement>;
 
 /**
  * Style a title for a Card
- *
- * @param {CommonProps & HTMLAttributes} props
  */
 const CardTitleNext = function CardTitle({
   children,
@@ -19,7 +16,7 @@ const CardTitleNext = function CardTitle({
   elementRef,
 
   ...htmlAttributes
-}) {
+}: CardTitleProps) {
   return (
     <div
       data-component="CardTitle"
