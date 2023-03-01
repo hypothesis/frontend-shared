@@ -51,7 +51,8 @@ export default function (plop) {
           type: 'modify',
           path: 'src/components/{{group}}/index.ts',
           pattern: /\n\n*$/g,
-          template: `\nexport { default as {{name}} } from './{{name}}';\n`,
+          template: `\nexport { default as {{name}} } from './{{name}}';
+export type { {{name}}Props } from './{{name}}';\n`,
         },
         {
           type: 'add',
@@ -62,7 +63,8 @@ export default function (plop) {
           type: 'modify',
           path: 'src/next.ts',
           pattern: /\n\n*$/g,
-          template: `\nexport { {{name}} } from './components/{{group}}';\n`,
+          template: `\nexport { {{name}} } from './components/{{group}}';
+export type { {{name}}Props } from './components/{{group}}';\n`,
         },
       ];
 
@@ -77,7 +79,7 @@ export default function (plop) {
 
       - [ ] ${chalk.bold('implement')} the component
       - [ ] write ${chalk.bold('tests')} for the component
-      - [ ] ensure that ${chalk.bold('exports')} are appropriate in
+      - [ ] put ${chalk.bold('exports')} in the appropriate order in
           - \`src/components/${data.group}/index.ts\` and
           - \`src/next.ts\`
       - [ ] ${chalk.bold(
