@@ -1,23 +1,22 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import TableContext from './TableContext';
+import type { TableInfo } from './TableContext';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'rows'>} HTMLAttributes
- * @typedef {import('./TableContext').TableInfo} TableInfo
- *
- * @typedef TableProps
- * @prop {boolean} [stickyHeader=false]
- * @prop {string} title - Sets accessible aria-label
- * @prop {boolean} [interactive=false] - This table has rows that can be selected
- */
+export type TableProps = PresentationalProps & {
+  stickyHeader?: boolean;
+  /** Sets accessible aria-label */
+  title: string;
+  /** This table has rows that can be selected */
+  interactive?: boolean;
+} & Omit<JSX.HTMLAttributes<HTMLElement>, 'rows'>;
 
 /**
  * Render table content
- * @param {CommonProps & TableProps & HTMLAttributes} props
  */
 const TableNext = function Table({
   children,
@@ -26,17 +25,17 @@ const TableNext = function Table({
 
   interactive = false,
   title,
-  stickyHeader,
+  stickyHeader = false,
 
   ...htmlAttributes
-}) {
+}: TableProps) {
   const ref = useSyncedRef(elementRef);
 
-  const tableContext = /** @type {TableInfo} */ ({
+  const tableContext: TableInfo = {
     interactive,
     stickyHeader,
     tableRef: ref,
-  });
+  };
 
   return (
     <TableContext.Provider value={tableContext}>
