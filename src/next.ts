@@ -70,3 +70,9 @@ export type {
   TableRowProps,
   ThumbnailProps,
 } from './components/data';
+
+export type {
+  ModalProps,
+  SpinnerProps,
+  SpinnerOverlayProps,
+} from './components/feedback';
