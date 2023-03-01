@@ -21,28 +21,6 @@ export default function InputPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Input</code> is new component modeled after the{' '}
-            <code>TextInput</code> legacy component.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>inputRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="changed">
-                The <code>input</code> element now stretches to fill all
-                available horizontal space
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Input" />
 
