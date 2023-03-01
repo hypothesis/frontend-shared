@@ -1,31 +1,42 @@
 import classnames from 'classnames';
 import { toChildArray } from 'preact';
+import type { JSX, ComponentChildren } from 'preact';
 
+import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import Spinner from '../feedback/Spinner';
 import { EllipsisIcon } from '../icons';
 import AspectRatio from './AspectRatio';
 
-/**
- * @typedef {import('../../types').CompositeProps} CompositeProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'|'loading'|'placeholder'>} HTMLAttributes
- *
- * @typedef ThumbnailProps
- * @prop {boolean} [borderless=false]
- * @prop {boolean} [loading=false]
- * @prop {import('preact').ComponentChildren} [placeholder] - Custom content to
- *   show if there are no children, and not in a loading state
- * @prop {string} [ratio='16/9'] - Aspect ratio, expressed as a string.
- *   This will be used in a CSS `calc()` expression.
- * @prop {'sm'|'md'|'lg'} [size='md'] - Relative size of border, loading spinner
- *   and placeholder content (if using default placeholder content)
- */
+type ComponentProps = {
+  borderless?: boolean;
+  loading?: boolean;
+
+  /**
+   * Custom content to show if there are no children, and not in a loading state
+   */
+  placeholder?: ComponentChildren;
+
+  /**
+   * Aspect ratio, expressed as a string. This will be used in a CSS `calc()`
+   * expression.
+   */
+  ratio?: string;
+
+  /**
+   * Relative size of border, loading spinner and placeholder content (if using
+   * default placeholder content)
+   */
+  size?: 'sm' | 'md' | 'lg';
+};
+
+export type ThumbnailProps = CompositeProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'loading' | 'placeholder'>;
 
 /**
  * Render embedded media (e.g. image), handling aspect ratio, loading state and
  * placeholder content.
- *
- * @param {CompositeProps & ThumbnailProps & Omit<HTMLAttributes, 'size'>} props
  */
 const ThumbnailNext = function Thumbnail({
   children,
@@ -38,7 +49,7 @@ const ThumbnailNext = function Thumbnail({
   size = 'md',
 
   ...htmlAttributes
-}) {
+}: ThumbnailProps) {
   const emptyContent = placeholder ?? (
     <EllipsisIcon
       className={classnames('text-grey-5', {
