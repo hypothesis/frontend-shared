@@ -1,20 +1,21 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- * @typedef OverlayProps
- * @prop {boolean} [open=true] - Overlay won't render if not open
- * @prop {'dark'|'light'} [variant='dark']
- */
+type ComponentProps = {
+  /** Overlay won't render if not open */
+  open?: boolean;
+  variant?: 'dark' | 'light';
+};
+
+export type OverlayProps = PresentationalProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'open'>;
 
 /**
  * A full-screen fixed backdrop overlay
- *
- * @param {CommonProps & OverlayProps & Omit<HTMLAttributes, 'open'>} props
  */
 const OverlayNext = function Overlay({
   children,
@@ -25,7 +26,7 @@ const OverlayNext = function Overlay({
   variant = 'dark',
 
   ...htmlAttributes
-}) {
+}: OverlayProps) {
   if (!open) {
     return null;
   }
