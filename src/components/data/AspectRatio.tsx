@@ -1,15 +1,16 @@
 import classnames from 'classnames';
 import { cloneElement, toChildArray } from 'preact';
+import type { ComponentChildren, VNode } from 'preact';
 
-/**
- * @typedef {import('preact').ComponentChildren} Children
- *
- * @typedef AspectRatioProps
- * @prop {Children} children
- * @prop {'cover'|'contain'|'fill'|'none'|'scale-down'} [objectFit="cover"]
- * @prop {string} [ratio='16/9'] - Aspect ratio, expressed as a string.
- *   This will be used in a CSS `calc()` expression.
- */
+export type AspectRatioProps = {
+  children: ComponentChildren;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  /**
+   * CSS aspect ratio, expressed as a string. Default '16/9'. Used in a CSS
+   * `calc()` expression.
+   */
+  ratio?: string;
+};
 
 /**
  * Render a wrapper element that constrains its first direct child to the
@@ -24,14 +25,12 @@ import { cloneElement, toChildArray } from 'preact';
  * is absolute-positioned with respect to the container.
  *
  * See https://www.smashingmagazine.com/2013/09/responsive-images-performance-problem-case-study/#the-padding-bottom-hack
- *
- * @param {AspectRatioProps} props
  */
 const AspectRatioNext = function AspectRatio({
   children,
   objectFit = 'cover',
   ratio = '16/9',
-}) {
+}: AspectRatioProps) {
   // Find the first vNode. This is the element that will be constrained to the
   // aspect ratio. Typically, this is either:
   // - a "replaceable element", e.g. image or video (media), or
@@ -39,9 +38,9 @@ const AspectRatioNext = function AspectRatio({
   //   case, content within this node will be centered horizontally and
   //   vertically.
   const childNodes = toChildArray(children);
-  const firstChildNode =
-    /** @type {import('preact').VNode<any>|undefined} */
-    (childNodes.find(child => typeof child === 'object'));
+  const firstChildNode = childNodes.find(child => typeof child === 'object') as
+    | VNode<any>
+    | undefined;
 
   const otherChildren = firstChildNode
     ? childNodes.filter(child => child !== firstChildNode)
