@@ -1,23 +1,21 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLDivElement>} HTMLDivAttributes
- */
+export type ScrollContentProps = PresentationalProps &
+  JSX.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Apply consistent padding and spacing to content within a Scroll
- *
- * @param {CommonProps & HTMLDivAttributes} props
  */
 const ScrollContentNext = function ScrollContent({
   children,
   classes,
   elementRef,
   ...htmlAttributes
-}) {
+}: ScrollContentProps) {
   return (
     <div
       data-component="ScrollContent"
