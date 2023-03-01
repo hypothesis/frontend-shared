@@ -1,33 +1,53 @@
 import classNames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { BaseProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 /**
  * Common props used for Button components.
- *
- * @typedef ButtonCommonProps
- * @prop {boolean} [expanded] - Is the element associated with this button
- *   expanded? (set `aria-expanded`)
- * @prop {never} [aria-expanded] - Use `expanded` prop instead
- * @prop {boolean} [pressed] - Is this button currently "active?" (set
- *   `aria-pressed` or `aria-selected` depending on button `role`)
- * @prop {never} [aria-pressed] - Use `pressed` prop instead
- * @prop {string} [title] - Button title; used for `aria-label` attribute
- * @prop {never} [aria-label] - Use `title` prop instead
- *
- * HTML attributes accepted by button components. This eliminates conflicting
- * `icon` and `size` attributes.
- *
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLButtonElement>, 'icon'|'size'>} HTMLButtonAttributes
- *
  */
+export type ButtonCommonProps = {
+  /**
+   * Is the element associated with this button expanded?
+   * (sets `aria-expanded` attribute)
+   */
+  expanded?: boolean;
+
+  /**
+   * Is this button currently "active"?
+   * (sets `aria-pressed` or `aria-selected` depending on button `role`)
+   */
+  pressed?: boolean;
+
+  /**
+   * Button title (sets `aria-label` attribute)
+   */
+  title?: string;
+
+  /** Use `expanded` prop instead */
+  'aria-expanded'?: never;
+  /** Use `pressed` prop instead */
+  'aria-pressed'?: never;
+  /** Use `title` prop instead */
+  'aria-label'?: never;
+};
 
 /**
- * @typedef {import('../../types').BaseProps} BaseProps
- *
+ * HTML attributes accepted by button components. This eliminates conflicting
+ * `icon` and `size` attributes.
+ */
+export type HTMLButtonAttributes = Omit<
+  JSX.HTMLAttributes<HTMLButtonElement>,
+  'icon' | 'size'
+>;
+
+export type ButtonBaseProps = BaseProps &
+  ButtonCommonProps &
+  HTMLButtonAttributes;
+
+/**
  * Base component for Button components. Applies common attributes.
- *
- * @param {BaseProps & ButtonCommonProps & HTMLButtonAttributes} props
  */
 const ButtonBaseNext = function ButtonBase({
   elementRef,
@@ -41,9 +61,8 @@ const ButtonBaseNext = function ButtonBase({
 
   role,
   ...htmlAttributes
-}) {
-  /** @type {Record<string, unknown>} */
-  const ariaProps = {
+}: ButtonBaseProps) {
+  const ariaProps: Record<string, unknown> = {
     'aria-label': title,
   };
 
