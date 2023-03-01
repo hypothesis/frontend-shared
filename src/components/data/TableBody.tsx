@@ -1,20 +1,18 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 import { useContext } from 'preact/hooks';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import TableContext from './TableContext';
 import TableSectionContext from './TableSectionContext';
+import type { TableSection } from './TableSectionContext';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'size'|'rows'>} HTMLAttributes
- * @typedef {import('./TableSectionContext').TableSection} TableSection
- */
+export type TableBodyProps = PresentationalProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows'>;
 
 /**
  * Render a table body
- *
- * @param {CommonProps & HTMLAttributes} props
  */
 const TableBodyNext = function TableBody({
   children,
@@ -22,11 +20,11 @@ const TableBodyNext = function TableBody({
   elementRef,
 
   ...htmlAttributes
-}) {
+}: TableBodyProps) {
   const tableContext = useContext(TableContext);
-  const sectionContext = /** @type {TableSection} */ ({
+  const sectionContext: TableSection = {
     section: 'body',
-  });
+  };
 
   return (
     <TableSectionContext.Provider value={sectionContext}>
