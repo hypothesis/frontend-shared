@@ -37,12 +37,6 @@ export default function TabPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Tab</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Tab" />
           <Library.Example>
