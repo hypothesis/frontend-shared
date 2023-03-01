@@ -1,9 +1,9 @@
 export { default as AspectRatio } from './AspectRatio';
 export { default as DataTable } from './DataTable';
 export { default as Scroll } from './Scroll';
+export { default as ScrollBox } from './ScrollBox';
 export { default as ScrollContainer } from './ScrollContainer';
 export { default as ScrollContent } from './ScrollContent';
-export { default as ScrollBox } from './ScrollBox';
 export { default as Table } from './Table';
 export { default as TableBody } from './TableBody';
 export { default as TableCell } from './TableCell';
@@ -11,3 +11,17 @@ export { default as TableFoot } from './TableFoot';
 export { default as TableHead } from './TableHead';
 export { default as TableRow } from './TableRow';
 export { default as Thumbnail } from './Thumbnail';
+
+export type { AspectRatioProps } from './AspectRatio';
+export type { DataTableProps } from './DataTable';
+export type { ScrollProps } from './Scroll';
+export type { ScrollBoxProps } from './ScrollBox';
+export type { ScrollContainerProps } from './ScrollContainer';
+export type { ScrollContentProps } from './ScrollContent';
+export type { TableProps } from './Table';
+export type { TableBodyProps } from './TableBody';
+export type { TableCellProps } from './TableCell';
+export type { TableFootProps } from './TableFoot';
+export type { TableHeadProps } from './TableHead';
+export type { TableRowProps } from './TableRow';
+export type { ThumbnailProps } from './Thumbnail';
