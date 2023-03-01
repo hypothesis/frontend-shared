@@ -1,30 +1,34 @@
 import classnames from 'classnames';
 
+import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import ButtonBase from './ButtonBase';
+import type { ButtonCommonProps, HTMLButtonAttributes } from './ButtonBase';
 import { inputGroupStyles } from './InputGroup';
 
-/**
- * @typedef {import('../../types').IconComponent} IconComponent
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('./ButtonBase').ButtonCommonProps} ButtonCommonProps
- * @typedef {import('./ButtonBase').HTMLButtonAttributes} HTMLButtonAttributes
- *
- * @typedef IconButtonProps
- * @prop {IconComponent} [icon] - reference to an icon function component
- *   to render in this button, e.g. CautionIcon
- * @prop {'xs'|'sm'|'md'|'lg'} [size='md']
- * @prop {boolean} [disableTouchSizing=false] - Disable minimum tap target
- *   sizing for touch devices. This may be necessary in legacy patterns where
- *   there isn't enough room in the interface for these larger dimensions.
- * @prop {'primary'|'secondary'|'dark'} [variant='secondary']
- * @prop {string} title - Required for `IconButton` as there is no text label
- */
+type ComponentProps = {
+  icon?: IconComponent;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+
+  /**
+   * Disable minimum tap target sizing for touch devices. This may be necessary
+   * in legacy patterns where there isn't enough room in the interface for these
+   * larger dimensions.
+   */
+  disableTouchSizing?: boolean;
+  variant?: 'primary' | 'secondary' | 'dark';
+
+  /** Required for `IconButton` as there is no text label */
+  title: string;
+};
+
+export type IconButtonProps = PresentationalProps &
+  ButtonCommonProps &
+  ComponentProps &
+  HTMLButtonAttributes;
 
 /**
  * Render a button that only contains an icon.
- *
- * @param {CommonProps & ButtonCommonProps & IconButtonProps & HTMLButtonAttributes} props
  */
 const IconButtonNext = function IconButton({
   children,
@@ -41,7 +45,7 @@ const IconButtonNext = function IconButton({
   variant = 'secondary',
 
   ...htmlAttributes
-}) {
+}: IconButtonProps) {
   return (
     <ButtonBase
       data-component="IconButton"
