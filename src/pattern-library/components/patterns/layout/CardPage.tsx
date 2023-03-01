@@ -30,51 +30,6 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Card</code> is a re-implementation of a legacy component of
-            the same name. <code>CardContent</code>, <code>CardHeader</code>,{' '}
-            <code>CardTitle</code> and <code>CardActions</code> are new
-            components.
-          </p>
-
-          <Library.Example title="Migrating to this component (Card)">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                <code>Card</code> no longer provides padding or spacing around
-                content. Use <code>Card</code> in combination with{' '}
-                <code>CardContent</code> for spacing.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                <code>Card</code> no longer provides styling for the{' '}
-                <code>clean</code> theme. Use <code>classes</code> to apply
-                theme styles.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                <code>Card</code> no longer provides styling for the{' '}
-                <code>.is-focused</code> class. Use the <code>active</code> prop
-                instead.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>containerRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                <code>variant:</code> <code>raised</code> (default) or{' '}
-                <code>flat</code>. The <code>flat</code> variant disables any
-                dimensionality or shadows.
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                <code>active</code> (boolean): Sets hover-style shadows on{' '}
-                <code>Card</code>. Must be combined with <code>raised</code>{' '}
-                variant.
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Card, CardContent" />
           <Library.Example>
