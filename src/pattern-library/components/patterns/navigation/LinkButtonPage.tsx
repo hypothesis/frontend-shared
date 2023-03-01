@@ -21,42 +21,6 @@ export default function LinkButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>LinkButton</code> is a re-implementation of a legacy component
-            with the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <p>
-              <code>LinkButton</code> styling approach has changed. Instead of
-              defining its own inconsistent set of <code>variant</code>s, it
-              applies the same design patterns as <code>Link</code>. Most
-              styling control is handled by the <code>color</code> and{' '}
-              <code>underline</code> props.
-            </p>
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>buttonRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Most <code>variant</code> values have been removed
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>className</code>
-                </s>{' '}
-                ➜ No longer supported
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="LinkButton" />
           <Library.Example>
