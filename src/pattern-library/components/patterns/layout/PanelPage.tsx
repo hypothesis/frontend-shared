@@ -24,28 +24,6 @@ export default function PanelPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Panel</code> is a re-implementation of a legacy component with
-            the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop <code>icon</code>:{' '}
-                <s>
-                  <code>{'{string}'}</code>
-                </s>{' '}
-                ➜ now takes <code>{'{IconComponent}'}</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                Prop <code>containerRef</code>
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Panel" />
           <Library.Example>
