@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import { SpinnerSpokesIcon } from '../icons';
 
-type SpinnerProps = {
+export type SpinnerProps = {
   size?: 'sm' | 'md' | 'lg';
   color?: 'text-light' | 'text' | 'text-inverted';
 };
