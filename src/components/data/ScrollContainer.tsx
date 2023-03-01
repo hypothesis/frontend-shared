@@ -1,14 +1,13 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLDivElement>} HTMLDivAttributes
- *
- * @typedef ScrollContainerProps
- * @prop {boolean} [borderless=false] - Remove border around container
- */
+export type ScrollContainerProps = PresentationalProps & {
+  /** Remove border around container */
+  borderless?: boolean;
+} & JSX.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Constrain children (which may include both scrollable and non-scrolling
@@ -24,7 +23,7 @@ const ScrollContainerNext = function ScrollContainer({
   borderless = false,
 
   ...htmlAttributes
-}) {
+}: ScrollContainerProps) {
   return (
     <div
       data-component="ScrollContainer"
