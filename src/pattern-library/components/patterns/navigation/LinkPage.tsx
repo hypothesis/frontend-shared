@@ -22,36 +22,6 @@ export default function LinkPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>Link</code> is a reimplementation of an existing legacy
-            component with the same name.
-          </p>
-
-          <Library.Example title="Migrating to this component">
-            <Next.Changelog>
-              <Next.ChangelogItem status="breaking">
-                Prop name:{' '}
-                <s>
-                  <code>linkRef</code>
-                </s>{' '}
-                ➜ <code>elementRef</code>
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="breaking">
-                <s>
-                  <code>className</code>
-                </s>{' '}
-                ➜ no longer supported; use <code>LinkBase</code> instead
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                <code>color</code>, <code>underline</code> props
-              </Next.ChangelogItem>
-              <Next.ChangelogItem status="added">
-                <code>LinkBase</code> component
-              </Next.ChangelogItem>
-            </Next.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="Link" />
           <Library.Example>
@@ -139,12 +109,6 @@ export default function LinkPage() {
           </>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>LinkBase</code> is a new component.
-          </p>
-        </Library.Pattern>
-
         <Library.Pattern title="Usage">
           <Next.Usage componentName="LinkBase" />
 
