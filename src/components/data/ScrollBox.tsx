@@ -1,20 +1,16 @@
+import type { CompositeProps } from '../../types';
 import Scroll from './Scroll';
 import ScrollContainer from './ScrollContainer';
 import ScrollContent from './ScrollContent';
 
-/**
- * @typedef {import('../../types').CompositeProps} CompositeProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- * @typedef ScrollBoxProps
- * @prop {boolean} [borderless=false] - Turn off borders on outer container
- */
+export type ScrollBoxProps = CompositeProps & {
+  /** Turn off borders on outer container */
+  borderless?: boolean;
+};
 
 /**
  * Render an opinionated composition of Scroll components, making `children`
  * scrollable.
- *
- * @param {CompositeProps & ScrollBoxProps} props
  */
 const ScrollBoxNext = function ScrollBox({
   children,
@@ -23,7 +19,7 @@ const ScrollBoxNext = function ScrollBox({
   borderless = false,
 
   ...htmlAttributes
-}) {
+}: ScrollBoxProps) {
   return (
     <ScrollContainer
       data-composite-component="ScrollBox"
