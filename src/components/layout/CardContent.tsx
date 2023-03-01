@@ -1,19 +1,20 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLElement>} HTMLAttributes
- *
- * @typedef CardContentProps
- * @prop {'sm'|'md'|'lg'} [size='md'] - Relative spacing sizing
- */
+type ComponentProps = {
+  /** relative internal spacing */
+  size?: 'sm' | 'md' | 'lg';
+};
+
+export type CardActionsProps = PresentationalProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
 
 /**
- * Apply consistent spacing and padding for content inside a Card
- *
- * @param {CommonProps & CardContentProps & Omit<HTMLAttributes, 'size'>} props
+ * Apply consistent spacing and padding for actions content inside a Card
  */
 const CardContentNext = function CardContent({
   children,
@@ -23,7 +24,7 @@ const CardContentNext = function CardContent({
   size = 'md',
 
   ...htmlAttributes
-}) {
+}: CardActionsProps) {
   return (
     <div
       data-component="CardContent"
