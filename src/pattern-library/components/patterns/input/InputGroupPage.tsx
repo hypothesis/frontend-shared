@@ -22,12 +22,6 @@ export default function InputGroupPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>InputGroup</code> is a new component based loosely on the
-            legacy <code>TextInputWithButton</code> component.
-          </p>
-        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Next.Usage componentName="InputGroup" />
           <Library.Example>
