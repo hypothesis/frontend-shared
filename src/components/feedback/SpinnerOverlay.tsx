@@ -1,16 +1,19 @@
+import type { JSX } from 'preact';
+
 import Overlay from '../layout/Overlay';
 import Spinner from './Spinner';
 
-/**
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLElement>, 'className'|'open'>} HTMLAttributes
- */
+export type SpinnerOverlayProps = Omit<
+  JSX.HTMLAttributes<HTMLElement>,
+  'className' | 'open'
+>;
 
 /**
  * Render a full-screen spinner atop a light-colored overlay
- *
- * @param {HTMLAttributes} props
  */
-const SpinnerOverlayNext = function SpinnerOverlay({ ...htmlAttributes }) {
+const SpinnerOverlayNext = function SpinnerOverlay({
+  ...htmlAttributes
+}: SpinnerOverlayProps) {
   return (
     <Overlay
       data-composite-component="SpinnerOverlay"
