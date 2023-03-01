@@ -1,30 +1,36 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 import { useState } from 'preact/hooks';
 
+import type { CompositeProps, IconComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { CheckboxOutlineIcon, CheckboxCheckedIcon } from '../icons';
 
-/**
- * @typedef {import('../../types').CompositeProps} CommonProps
- * @typedef {Omit<import('preact').JSX.HTMLAttributes<HTMLInputElement>, 'size'|'icon'>} HTMLAttributes
- * @typedef {import('../../types').IconComponent} IconComponent
- *
- * @typedef CheckboxProps
- * @prop {boolean} [checked=false] - Current checked state. Used when the
- *   Checkbox is controlled.
- * @prop {boolean} [defaultChecked=false] - Default checked state. Used to set
- *   initial state when the Checkbox is not controlled.
- * @prop {IconComponent} [icon=CheckboxOutlineIcon] - Custom icon to show when input is unchecked
- * @prop {IconComponent} [checkedIcon=CheckboxCheckedIcon] - Custom icon to show when input is checked
- * @prop {never} [type] - Type is always 'checkbox'
- */
+type ComponentProps = {
+  /** Current checked state. Used when the Checkbox is controlled. */
+  checked?: boolean;
+
+  /**
+   * Default checked state. Used to set initial state when the Checkbox is not
+   * controlled.
+   */
+  defaultChecked?: boolean;
+  /** Custom icon to show when input is unchecked */
+  icon?: IconComponent;
+  /** Custom icon to show when input is checked */
+  checkedIcon?: IconComponent;
+  /** type is always `checkbox` */
+  type?: never;
+};
+
+export type CheckboxProps = CompositeProps &
+  ComponentProps &
+  Omit<JSX.HTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
 
 /**
  * Render a labeled checkbox input. The checkbox is styled with two icons:
  * one for the unchecked state and one for the checked state. The input itself
  * is positioned exactly on top of the icon, but is non-visible.
- *
- * @param {CommonProps & CheckboxProps & HTMLAttributes} props
  */
 const CheckboxNext = function Checkbox({
   children,
@@ -39,7 +45,7 @@ const CheckboxNext = function Checkbox({
   onChange,
   id,
   ...htmlAttributes
-}) {
+}: CheckboxProps) {
   // If `checked` is present, treat this as a controlled component
   const isControlled = typeof checked === 'boolean';
   // Only use this local state if checkbox is uncontrolled
@@ -47,18 +53,13 @@ const CheckboxNext = function Checkbox({
     useState(defaultChecked);
   const isChecked = isControlled ? checked : uncontrolledChecked;
 
-  /**
-   * @param {import('preact').JSX.TargetedEvent<HTMLInputElement>} event
-   * @this HTMLInputElement
-   */
-  function handleChange(event) {
-    // preact event handlers expects `this` context to be of type `never`
-    // https://github.com/preactjs/preact/issues/3137
-    onChange?.call(/** @type {never} */ (this), event);
+  function handleChange(
+    this: void,
+    event: JSX.TargetedEvent<HTMLInputElement>
+  ) {
+    onChange?.call(this, event);
     if (!isControlled) {
-      setUncontrolledChecked(
-        /** @type {HTMLInputElement} */ (event.target).checked
-      );
+      setUncontrolledChecked((event.target as HTMLInputElement).checked);
     }
   }
 
