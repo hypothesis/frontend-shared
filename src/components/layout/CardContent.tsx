@@ -9,7 +9,7 @@ type ComponentProps = {
   size?: 'sm' | 'md' | 'lg';
 };
 
-export type CardActionsProps = PresentationalProps &
+export type CardContentProps = PresentationalProps &
   ComponentProps &
   Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
 
@@ -24,7 +24,7 @@ const CardContentNext = function CardContent({
   size = 'md',
 
   ...htmlAttributes
-}: CardActionsProps) {
+}: CardContentProps) {
   return (
     <div
       data-component="CardContent"
