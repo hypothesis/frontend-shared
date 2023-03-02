@@ -96,3 +96,12 @@ export type {
   OverlayProps,
   PanelProps,
 } from './components/layout';
+
+export type {
+  PointerButtonProps,
+  LinkProps,
+  LinkBaseProps,
+  LinkButtonProps,
+  TabProps,
+  TabListProps,
+} from './components/navigation/';
