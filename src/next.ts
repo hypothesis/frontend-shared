@@ -76,3 +76,13 @@ export type {
   SpinnerProps,
   SpinnerOverlayProps,
 } from './components/feedback';
+
+export type {
+  ButtonProps,
+  ButtonBaseProps,
+  CheckboxProps,
+  IconButtonProps,
+  InputProps,
+  InputGroupProps,
+  SelectProps,
+} from './components/input';
