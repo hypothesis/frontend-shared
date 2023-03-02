@@ -1,21 +1,21 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import LinkBase from './LinkBase';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLAnchorElement>} HTMLAnchorAttributes
- *
- * @typedef LinkProps
- * @prop {'always'|'hover'|'none'} [underline]
- * @prop {'brand'|'text-light'|'text'} [color='brand']
- */
+type ComponentProps = {
+  underline?: 'always' | 'hover' | 'none';
+  color?: 'brand' | 'text-light' | 'text';
+};
+
+export type LinkProps = PresentationalProps &
+  ComponentProps &
+  JSX.HTMLAttributes<HTMLAnchorElement>;
 
 /**
  * Styled component for a link (`<a>` element).
- *
- * @param {CommonProps & LinkProps & HTMLAnchorAttributes} props
  */
 const LinkNext = function Link({
   children,
@@ -26,7 +26,7 @@ const LinkNext = function Link({
   color = 'brand',
 
   ...htmlAttributes
-}) {
+}: LinkProps) {
   return (
     <LinkBase
       data-component="Link"
