@@ -1,24 +1,25 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import ButtonBase from '../input/ButtonBase';
+import type { ButtonCommonProps } from '../input/ButtonBase';
 
-/**
- * @typedef {import('../../types').PresentationalProps} CommonProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLButtonElement>} HTMLAttributes
- * @typedef {import('../input/ButtonBase').ButtonCommonProps} ButtonCommonProps
- *
- * @typedef LinkButtonProps
- * @prop {'brand'|'text'|'text-light'} [color='brand']
- * @prop {boolean} [inline=false]
- * @prop {'always'|'hover'|'none'} [underline='hover']
- * @prop {'secondary'|'primary'} [variant='secondary']
- */
+type ComponentProps = {
+  color?: 'brand' | 'text' | 'text-light';
+  inline?: boolean;
+  underline?: 'always' | 'hover' | 'none';
+  variant?: 'secondary' | 'primary';
+};
+
+export type LinkButtonProps = PresentationalProps &
+  ButtonCommonProps &
+  ComponentProps &
+  JSX.HTMLAttributes<HTMLButtonElement>;
 
 /**
  * Style a button as a link
- *
- * @param {CommonProps & ButtonCommonProps & LinkButtonProps & HTMLAttributes} props
  */
 const LinkButtonNext = function LinkButton({
   children,
@@ -31,7 +32,7 @@ const LinkButtonNext = function LinkButton({
   variant = 'secondary',
 
   ...htmlAttributes
-}) {
+}: LinkButtonProps) {
   return (
     <ButtonBase
       data-component="LinkButton"
