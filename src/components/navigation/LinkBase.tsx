@@ -1,16 +1,13 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
+import type { BaseProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 
-/**
- * @typedef {import('../../types').BaseProps} BaseProps
- * @typedef {import('preact').JSX.HTMLAttributes<HTMLAnchorElement>} HTMLAnchorAttributes
- */
+export type LinkBaseProps = BaseProps & JSX.HTMLAttributes<HTMLAnchorElement>;
 
 /**
  * Base component for Link components. Applies common attributes and styles.
- *
- * @param {BaseProps & HTMLAnchorAttributes} props
  */
 const LinkBaseNext = function LinkBase({
   children,
@@ -19,7 +16,7 @@ const LinkBaseNext = function LinkBase({
   unstyled = false,
 
   ...htmlAttributes
-}) {
+}: LinkBaseProps) {
   return (
     <a
       data-base-component="LinkBase"
