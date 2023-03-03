@@ -5,7 +5,6 @@ import {
   ScrollContent,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 import { SampleListElements } from '../samples';
 
 export default function ScrollBoxPage() {
@@ -30,7 +29,7 @@ export default function ScrollBoxPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="ScrollBox" />
+          <Library.Usage componentName="ScrollBox" />
           <Library.Example title="Basic ScrollBox">
             <Library.Demo withSource>
               <div className="w-[280px] h-[200px]">
@@ -112,7 +111,7 @@ export default function ScrollBoxPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Scroll" />
+          <Library.Usage componentName="Scroll" />
           <Library.Example>
             <Library.Demo title="Using Scroll by itself" withSource>
               <div className="w-[320px] h-[200px]">
@@ -168,7 +167,7 @@ export default function ScrollBoxPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="ScrollContent" />
+          <Library.Usage componentName="ScrollContent" />
           <Library.Example>
             <Library.Demo title="Scroll with ScrollContent" withSource>
               <div className="w-[320px] h-[200px]">
@@ -203,7 +202,7 @@ export default function ScrollBoxPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="ScrollContainer" />
+          <Library.Usage componentName="ScrollContainer" />
 
           <Library.Example>
             <Library.Demo title="Using ScrollContainer" withSource>

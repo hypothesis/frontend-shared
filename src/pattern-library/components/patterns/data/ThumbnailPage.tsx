@@ -1,6 +1,5 @@
 import { Thumbnail, ImageIcon } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function ThumbnailPage() {
   return (
@@ -23,7 +22,7 @@ export default function ThumbnailPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Thumbnail" />
+          <Library.Usage componentName="Thumbnail" />
           <Library.Example>
             <p>
               <code>Thumbnail</code> lays out its content based on parent

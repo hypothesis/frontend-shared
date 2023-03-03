@@ -2,7 +2,6 @@ import { useState } from 'preact/hooks';
 
 import { Spinner, SpinnerOverlay, Button } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function SpinnerPage() {
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -32,7 +31,7 @@ export default function SpinnerPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Spinner" />
+          <Library.Usage componentName="Spinner" />
           <Library.Example>
             <Library.Demo withSource>
               <Spinner />
@@ -79,13 +78,13 @@ export default function SpinnerPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="SpinnerOverlay" />
+          <Library.Usage componentName="SpinnerOverlay" />
           <Library.Example>
             <Library.Demo>
               <Button onClick={toggleOverlayOpen}>Show overlay</Button>
               {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}
             </Library.Demo>
-            <Next.Code
+            <Library.Code
               content={`<Button onClick={toggleOverlayOpen}>Show overlay</Button>
 {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}`}
               title="Source for spinner-overlay example"

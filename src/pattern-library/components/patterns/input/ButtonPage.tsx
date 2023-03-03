@@ -8,7 +8,6 @@ import {
   CautionIcon,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function ButtonPage() {
   return (
@@ -31,7 +30,7 @@ export default function ButtonPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Button" />
+          <Library.Usage componentName="Button" />
           <Library.Example>
             <Library.Demo title="Basic Button" withSource>
               <Button onClick={() => alert('You clicked the button')}>
@@ -137,7 +136,7 @@ export default function ButtonPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="IconButton" />
+          <Library.Usage componentName="IconButton" />
           <Library.Example>
             <Library.Demo title="Basic IconButton" withSource>
               <IconButton
@@ -316,7 +315,7 @@ export default function ButtonPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="ButtonBase" />
+          <Library.Usage componentName="ButtonBase" />
 
           <Library.Example>
             <p>

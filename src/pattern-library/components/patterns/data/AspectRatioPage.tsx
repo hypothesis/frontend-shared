@@ -1,6 +1,5 @@
 import { AspectRatio, FileImageIcon, Link } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function AspectRatioPage() {
   return (
@@ -15,7 +14,7 @@ export default function AspectRatioPage() {
     >
       <Library.Section title="AspectRatio">
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="AspectRatio" />
+          <Library.Usage componentName="AspectRatio" />
           <Library.Example>
             <Library.Demo
               title="AspectRatio with default 16:9 ratio"

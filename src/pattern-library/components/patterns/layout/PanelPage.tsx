@@ -1,7 +1,6 @@
 import { Panel } from '../../../../next';
 import { Button, EditIcon, ScrollBox } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 import { LoremIpsum } from '../samples';
 
 export default function PanelPage() {
@@ -25,7 +24,7 @@ export default function PanelPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Panel" />
+          <Library.Usage componentName="Panel" />
           <Library.Example>
             <p>
               All <code>Panel</code>s have a <code>title</code>.

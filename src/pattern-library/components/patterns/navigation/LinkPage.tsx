@@ -1,6 +1,5 @@
 import { Link, LinkBase } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function LinkPage() {
   return (
@@ -23,7 +22,7 @@ export default function LinkPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Link" />
+          <Library.Usage componentName="Link" />
           <Library.Example>
             <Library.Demo title="Basic Link" withSource>
               <p>
@@ -110,7 +109,7 @@ export default function LinkPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="LinkBase" />
+          <Library.Usage componentName="LinkBase" />
 
           <Library.Example>
             <p>

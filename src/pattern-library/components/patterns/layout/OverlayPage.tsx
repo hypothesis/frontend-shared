@@ -3,7 +3,6 @@ import { useState } from 'preact/hooks';
 import { Button, Card, CardContent, Spinner } from '../../../../next';
 import { Overlay } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function OverlayPage() {
   const [defaultOpen, setDefaultOpen] = useState(false);
@@ -34,7 +33,7 @@ export default function OverlayPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Overlay" />
+          <Library.Usage componentName="Overlay" />
           <Library.Example>
             <Library.Demo title="Basic Overlay" withSource>
               <Button onClick={toggleDefaultOverlay}>Show Overlay</Button>

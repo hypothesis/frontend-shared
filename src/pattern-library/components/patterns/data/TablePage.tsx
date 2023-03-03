@@ -7,7 +7,6 @@ import {
   TableRow,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function TablePage() {
   return (
@@ -23,7 +22,7 @@ export default function TablePage() {
     >
       <Library.Section title="Table">
         <Library.Pattern title="Usage">
-          <Next.Usage
+          <Library.Usage
             componentName="Table, TableHead, TableBody, TableRow, TableCell"
             size="sm"
           />

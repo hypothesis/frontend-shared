@@ -1,6 +1,5 @@
 import { PointerButton } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function PointerButtonPage() {
   return (
@@ -32,7 +31,7 @@ export default function PointerButtonPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="PointerButton" />
+          <Library.Usage componentName="PointerButton" />
           <Library.Example>
             <Library.Demo
               title="PointerButton directions 'up', 'down', 'left'"

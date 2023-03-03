@@ -7,7 +7,6 @@ import {
   Select,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 function SelectWrapper({ children, ...selectProps }: SelectProps) {
   const options = children ?? (
@@ -44,7 +43,7 @@ export default function SelectPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Select" />
+          <Library.Usage componentName="Select" />
 
           <Library.Example>
             <Library.Demo title="Basic Select" withSource>

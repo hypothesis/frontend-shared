@@ -1,6 +1,5 @@
 import { Input } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function InputPage() {
   return (
@@ -22,7 +21,7 @@ export default function InputPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Input" />
+          <Library.Usage componentName="Input" />
 
           <Library.Example>
             <Library.Demo title="Basic Input" withSource>
