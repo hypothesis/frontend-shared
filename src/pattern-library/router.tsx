@@ -1,16 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 
-/**
- * @typedef {import('./routes').PlaygroundRoute} PlaygroundRoute
- */
+import type { PlaygroundRoute } from './routes';
 
-/** @param {string} baseURL */
-function routeFromCurrentURL(baseURL) {
+function routeFromCurrentURL(baseURL: string) {
   return location.pathname.slice(baseURL.length);
 }
 
-/** @param {string} url */
-function isAbsolute(url) {
+function isAbsolute(url: string) {
   try {
     new URL(url);
     return true;
@@ -23,9 +19,9 @@ function isAbsolute(url) {
 /**
  * Scroll page to target of fragment identifier.
  *
- * @param {string} hash - Fragment including the leading `#`
+ * @param hash - Fragment including the leading `#`
  */
-function scrollToFragment(hash) {
+function scrollToFragment(hash: string) {
   const fragmentId = decodeURIComponent(hash.substring(1));
   const fragElement = document.getElementById(fragmentId);
   // Vertical offset (px) that should be added to scroll to ensure
@@ -46,16 +42,17 @@ function scrollToFragment(hash) {
  * Hook that sets up the router for the component library and returns the
  * current route.
  *
- * Clicks on links in the current page to URLs that are under {@link baseURL}
+ * Clicks on links in the current page to URLs that are under `baseURL`
  * are automatically intercepted and handled.
  *
- * @param {string} baseURL - Pathname of the root URL of the application.
- * @param {PlaygroundRoute[]} routes
- * @return {[route?: PlaygroundRoute, navigate: (e: Event, url: string) => void]} -
- *   Returns the current route's data and a `navigate` function to manually
- *   trigger a client-side navigation to another route.
+ * @return - Returns a two-item array with the current route's data and a
+ *   `navigate` function to manually trigger a client-side navigation to another
+ *   route.
  */
-export function useRoute(baseURL, routes) {
+export function useRoute(
+  baseURL: string,
+  routes: PlaygroundRoute[]
+): [PlaygroundRoute | undefined, (e: Event, url: string) => void] {
   const [route, setRoute] = useState(() => routeFromCurrentURL(baseURL));
 
   // Data associated with the currently-applied route
@@ -91,8 +88,7 @@ export function useRoute(baseURL, routes) {
   }, [route]);
 
   useEffect(() => {
-    /** @param {HashChangeEvent} e */
-    const hashChangeListener = e => {
+    const hashChangeListener = (e: HashChangeEvent) => {
       try {
         const hash = new URL(e.newURL).hash;
         scrollToFragment(hash);
@@ -113,11 +109,10 @@ export function useRoute(baseURL, routes) {
 
   const navigate = useCallback(
     /**
-     * @param {Event} event - Event which triggered the navigation
-     * @param {string} url - Relative or absolute URL. If relative, it is
-     *   assumed to be relative to {@link baseURL}
+     * @param  url - Relative or absolute URL. If relative, it is assumed to be
+     * relative to {@link baseURL}
      */
-    (event, url) => {
+    (event: Event, url: string) => {
       if (!isAbsolute(url)) {
         url = baseURL + url;
       }
@@ -134,9 +129,8 @@ export function useRoute(baseURL, routes) {
   // Intercept clicks on links and trigger navigation to a route within the
   // app if appropriate.
   useEffect(() => {
-    /** @param {Event} event */
-    const clickListener = event => {
-      const link = /** @type {HTMLElement} */ (event.target).closest('a');
+    const clickListener = (event: Event) => {
+      const link = (event.target as HTMLElement).closest('a');
       if (!link) {
         return;
       }
