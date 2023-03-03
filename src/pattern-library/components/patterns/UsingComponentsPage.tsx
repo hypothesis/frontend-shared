@@ -8,7 +8,6 @@ import {
   ScrollBox,
 } from '../../../next';
 import Library from '../Library';
-import Next from '../LibraryNext';
 import { SampleListElements } from './samples';
 
 export default function UsingComponentsPage() {
@@ -63,7 +62,7 @@ export default function UsingComponentsPage() {
             <strong>Presentational components</strong> take these common props
             unless documented otherwise:
           </p>
-          <Next.Code
+          <Library.Code
             size="sm"
             content={`/**
  * @typedef PresentationalProps
@@ -253,7 +252,7 @@ export default function UsingComponentsPage() {
               Presentational and simple components set{' '}
               <code>data-component</code> only.
             </p>
-            <Next.Code
+            <Library.Code
               content={
                 <div
                   /* eslint-disable-next-line react/no-unknown-property */
@@ -273,7 +272,7 @@ export default function UsingComponentsPage() {
               <code>Card</code> (<code>data-component</code>) and a{' '}
               <code>Panel</code> (<code>data-composite-component</code>).
             </p>
-            <Next.Code
+            <Library.Code
               content={
                 <div
                   /* eslint-disable-next-line react/no-unknown-property */
