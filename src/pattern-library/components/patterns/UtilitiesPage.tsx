@@ -1,6 +1,5 @@
 import { Link } from '../../../next';
 import Library from '../Library';
-import Next from '../LibraryNext';
 
 export default function UtilitiesPage() {
   return (
@@ -76,7 +75,7 @@ export default function UtilitiesPage() {
             are inside of an <code>input-group</code>.
           </p>
 
-          <Next.Code
+          <Library.Code
             content={
               <button className="border p-2 rounded-lg input-group:rounded-none">
                 Label
