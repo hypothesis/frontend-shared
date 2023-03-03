@@ -1,5 +1,6 @@
 // Hooks
 export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
+export { useElementShouldClose } from './hooks/use-element-should-close';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
 // Components
