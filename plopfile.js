@@ -71,7 +71,7 @@ export type { {{name}}Props } from './components/{{group}}';\n`,
       if (data.addPatternLibraryPage) {
         actionList.push({
           type: 'add',
-          path: 'src/pattern-library/components/patterns/{{group}}/{{name}}Page.js',
+          path: 'src/pattern-library/components/patterns/{{group}}/{{name}}Page.tsx',
           templateFile: 'plop-templates/pattern-library-page.hbs',
         });
       }
