@@ -8,7 +8,6 @@ import {
   ArrowRightIcon,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function InputGroupPage() {
   return (
@@ -23,7 +22,7 @@ export default function InputGroupPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="InputGroup" />
+          <Library.Usage componentName="InputGroup" />
           <Library.Example>
             <Library.Demo
               title="Basic InputGroup with an Input and an IconButton"

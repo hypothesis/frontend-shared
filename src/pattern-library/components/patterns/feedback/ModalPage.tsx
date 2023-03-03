@@ -13,7 +13,6 @@ import {
   Scroll,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 import { LoremIpsum, nabokovNovels } from '../samples';
 
 const nabokovRows = nabokovNovels();
@@ -105,7 +104,7 @@ export default function ModalPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Modal" />
+          <Library.Usage componentName="Modal" />
           <Library.Demo title="Basic modal" withSource>
             <Modal_
               buttons={<ModalButtons />}

@@ -2,7 +2,6 @@ import { useState } from 'preact/hooks';
 
 import { DataTable, Scroll } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 import { nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
 
@@ -33,7 +32,7 @@ export default function DataTablePage() {
     >
       <Library.Section title="DataTable">
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="DataTable" />
+          <Library.Usage componentName="DataTable" />
 
           <Library.Example title="Basic DataTable">
             <p>
@@ -70,7 +69,7 @@ export default function DataTablePage() {
               same <code>rows</code> data:
             </p>
             <div className="h-[300px]">
-              <Next.Code
+              <Library.Code
                 title="rows data used for examples on this page"
                 content={`const rows = [
     {
@@ -170,7 +169,7 @@ export default function DataTablePage() {
               rendered. In other words, row objects may contain entries that are
               not used by <code>DataTable</code>.
             </p>
-            <Next.Code
+            <Library.Code
               title="columns data used for this example"
               content={`const columns = [
   { field: 'title', label: 'Title' },
@@ -202,7 +201,7 @@ export default function DataTablePage() {
               <code>th</code> elements and is mainly intended for setting the
               width of columns.
             </p>
-            <Next.Code
+            <Library.Code
               title="columns data used for this example"
               content={`const columns = [
   { field: 'title', label: 'Title', classes: 'w-[80%]' },
@@ -231,7 +230,7 @@ export default function DataTablePage() {
               of an individual table cell. It is given the current{' '}
               <code>row</code> and the <code>field</code> to format.
             </p>
-            <Next.Code
+            <Library.Code
               title="columns data used for this example"
               content={`const columns = [
   { field: 'title', label: 'Title' },
@@ -239,7 +238,7 @@ export default function DataTablePage() {
   { field: 'year', label: 'Year' },
 ];`}
             />
-            <Next.Code
+            <Library.Code
               title="`renderItem` callback used for this example"
               size="sm"
               content={`const renderItem = (row, field) => {

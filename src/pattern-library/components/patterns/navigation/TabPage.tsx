@@ -10,7 +10,6 @@ import {
   TabList,
 } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function TabPage() {
   const [prefPanel, setPrefPanel] = useState('notifications');
@@ -38,7 +37,7 @@ export default function TabPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Tab" />
+          <Library.Usage componentName="Tab" />
           <Library.Example>
             <Library.Demo title="Basic (non-interactive) example" withSource>
               <div role="tablist" className="gap-x-6 flex">
@@ -257,7 +256,7 @@ export default function TabPage() {
           </p>
         </Library.Pattern>
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="TabList" />
+          <Library.Usage componentName="TabList" />
           <Library.Example>
             <p>
               This example demonstrates a full Tab pattern with{' '}

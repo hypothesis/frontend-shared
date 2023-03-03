@@ -7,7 +7,6 @@ import {
 } from '../../../../next';
 import { Button, EditIcon } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 import { LoremIpsum } from '../samples';
 
 export default function CardPage() {
@@ -31,7 +30,7 @@ export default function CardPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Card, CardContent" />
+          <Library.Usage componentName="Card, CardContent" />
           <Library.Example>
             <Library.Demo title="Basic Card with CardContent" withSource>
               <Card>
@@ -123,7 +122,7 @@ export default function CardPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Card, CardContent" />
+          <Library.Usage componentName="Card, CardContent" />
 
           <Library.Example title="Laying out Card content">
             <Library.Demo title="Card with CardContent" withSource>
@@ -209,7 +208,10 @@ export default function CardPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="Card, CardContent, CardHeader" size="sm" />
+          <Library.Usage
+            componentName="Card, CardContent, CardHeader"
+            size="sm"
+          />
         </Library.Pattern>
 
         <Library.Pattern title="Props">
@@ -284,7 +286,7 @@ export default function CardPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage
+          <Library.Usage
             componentName="Card, CardContent, CardHeader, CardTitle"
             size="sm"
           />
@@ -316,7 +318,7 @@ export default function CardPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage
+          <Library.Usage
             componentName="Card, CardContent, CardHeader, CardActions"
             size="sm"
           />

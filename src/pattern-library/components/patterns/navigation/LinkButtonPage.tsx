@@ -1,6 +1,5 @@
 import { LinkButton } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function LinkButtonPage() {
   return (
@@ -22,7 +21,7 @@ export default function LinkButtonPage() {
         }
       >
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="LinkButton" />
+          <Library.Usage componentName="LinkButton" />
           <Library.Example>
             <Library.Demo title="Basic LinkButton" withSource>
               <LinkButton>Example of LinkButton</LinkButton>

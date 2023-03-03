@@ -2,7 +2,6 @@ import { useState } from 'preact/hooks';
 
 import { Checkbox, ShowIcon, HideIcon } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function CheckboxPage() {
   const [checked, setChecked] = useState(false);
@@ -21,7 +20,7 @@ export default function CheckboxPage() {
       }
     >
       <Library.Pattern title="Usage">
-        <Next.Usage componentName="Checkbox" />
+        <Library.Usage componentName="Checkbox" />
         <Library.Example>
           <Library.Demo title="Basic Checkbox" withSource>
             <Checkbox>Click me</Checkbox>
@@ -35,7 +34,7 @@ export default function CheckboxPage() {
             When the <code>checked</code> prop is present, <code>Checkbox</code>{' '}
             will behave as a controlled component.
           </p>
-          <Next.Code
+          <Library.Code
             content={`const [checked, setChecked] = useState(false);
 
 const handleControlledChange = e => {
