@@ -11,19 +11,6 @@ export default function GettingStartedPage() {
             The <code>@hypothesis/frontend-shared</code> package provides
             reusable UI components for Hypothesis front-end applications.
           </p>
-          <p>This package provides two sets of components:</p>
-          <ul>
-            <li>
-              <strong>Updated components</strong>. These components require{' '}
-              <code>tailwindcss</code>. Use of these components is preferred.
-            </li>
-            <li>
-              <strong>Legacy components</strong> with external assets (SASS and
-              SVG source, e.g.). These are being deprecated as their updated
-              counterparts are implemented, and are slated for removal in v6.0
-              of this package.
-            </li>
-          </ul>
         </>
       }
     >
@@ -71,21 +58,6 @@ export default {
             <code>lib/next</code>.
           </p>
           <Library.Usage componentName="Card, Link" />
-        </Library.Pattern>
-      </Library.Section>
-
-      <Library.Section title="Legacy components">
-        <Library.Pattern title="Configuration">
-          <Library.Example title="Import SASS styles">
-            <Library.Code
-              size="sm"
-              title="Your project's SASS entry point"
-              content={`@use '@hypothesis/frontend-shared/styles';`}
-            />
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Usage">
-          <Library.Usage generation="legacy" componentName="Card, Link" />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
