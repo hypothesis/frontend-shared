@@ -1,7 +1,6 @@
 import * as Icons from '../../../../components/icons';
 import { Link } from '../../../../next';
 import Library from '../../Library';
-import Next from '../../LibraryNext';
 
 export default function IconsPage() {
   return (
@@ -13,7 +12,7 @@ export default function IconsPage() {
     >
       <Library.Section title="Icon components">
         <Library.Pattern title="Usage">
-          <Next.Usage componentName="CancelIcon" />
+          <Library.Usage componentName="CancelIcon" />
           <Library.Example>
             <Library.Demo title="Usage example with CancelIcon" withSource>
               <Icons.CancelIcon />
