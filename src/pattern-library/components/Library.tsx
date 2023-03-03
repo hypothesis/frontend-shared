@@ -1,12 +1,9 @@
 import classnames from 'classnames';
 import { toChildArray } from 'preact';
+import type { ComponentChildren, JSX } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { jsxToHTML } from '../util/jsx-to-string';
-
-/**
- * @typedef {import('preact').ComponentChildren} Children
- */
 
 /**
  * Components for rendering component documentation, examples and demos in the
@@ -38,97 +35,68 @@ import { jsxToHTML } from '../util/jsx-to-string';
  * </Library.Page>
  */
 
+export type LibraryPageProps = {
+  children?: ComponentChildren;
+  intro?: ComponentChildren;
+  title?: string;
+};
+
 /**
  * Render content for a pattern-library page
- *
- * @param {object} props
- *   @param {Children} props.children
- *   @param {Children} [props.intro]
- *   @param {string} props.title
  */
-function Page({ children, intro, title }) {
+function Page({ children, intro, title }: LibraryPageProps) {
   return (
     <section className="max-w-6xl pb-16 space-y-8 text-slate-7">
-      <PageTitle title={title} />
-      {intro && <PageIntro>{intro}</PageIntro>}
+      <div className="sticky top-0 z-4 h-16 flex items-center bg-slate-0 border-b">
+        <h1 className="px-4 text-4xl font-light">{title}</h1>
+      </div>
+      {intro && (
+        <div className="styled-text px-4 text-xl font-light space-y-4 leading-relaxed">
+          {intro}
+        </div>
+      )}
       <div className="px-4 space-y-16 styled-text">{children}</div>
     </section>
   );
 }
 
-/**
- * Sticky pattern-library page header
- *
- * @param {object} props
- *   @param {string} props.title
- */
-function PageTitle({ title }) {
-  return (
-    <div className="sticky top-0 z-4 h-16 flex items-center bg-slate-0 border-b">
-      <h1 className="px-4 text-4xl font-light">{title}</h1>
-    </div>
-  );
-}
-
-/**
- * Page introductory text
- *
- * @param {object} props
- *   @param {Children} props.children
- */
-function PageIntro({ children }) {
-  return (
-    <div className="styled-text px-4 text-xl font-light space-y-4 leading-relaxed">
-      {children}
-    </div>
-  );
-}
+export type LibrarySectionProps = {
+  children?: ComponentChildren;
+  intro?: ComponentChildren;
+  id?: string;
+  title: string;
+};
 
 /**
  * Render a primary section of a page. Each component documented on a pattern-
  * library page gets its own section.
- *
- * @param {object} props
- *   @param {Children} props.children
- *   @param {string} [props.id]
- *   @param {Children} [props.intro]
- *   @param {string} props.title
  */
-function Section({ children, id, intro, title }) {
+function Section({ children, id, intro, title }: LibrarySectionProps) {
   return (
     <section className="my-16 space-y-8">
       <h2 className="text-3xl font-bold" id={id}>
         {title}
       </h2>
-      {intro && <SectionIntro>{intro}</SectionIntro>}
+      {intro && (
+        <div className="styled-text text-base space-y-3 leading-relaxed">
+          {intro}
+        </div>
+      )}
       <div className="space-y-16 styled-text">{children}</div>
     </section>
   );
 }
 
-/**
- * Section introductory text
- *
- *  @param {object} props
- *    @param {Children} props.children
- */
-function SectionIntro({ children }) {
-  return (
-    <div className="styled-text text-base space-y-3 leading-relaxed">
-      {children}
-    </div>
-  );
-}
+export type LibraryPatternProps = {
+  children?: ComponentChildren;
+  id?: string;
+  title: string;
+};
 
 /**
  * Render a second-level section. e.g. Usage, Props, Status
- *
- * @param {object} props
- *   @param {Children} props.children
- *   @param {string} [props.id]
- *   @param {string} props.title
  */
-function Pattern({ children, id, title }) {
+function Pattern({ children, id, title }: LibraryPatternProps) {
   return (
     <section className="space-y-8">
       <h3 className="text-2xl text-slate-7" id={id}>
@@ -139,16 +107,17 @@ function Pattern({ children, id, title }) {
   );
 }
 
+export type LibraryExampleProps = {
+  children?: ComponentChildren;
+  id?: string;
+  title?: string;
+};
+
 /**
  * Render content in a third-level section, e.g. documentation
  * about a specific prop or examples of usage.
- *
- * @param {object} props
- *   @param {Children} props.children
- *   @param {string} [props.id]
- *   @param {string} [props.title]
  */
-function Example({ children, id, title }) {
+function Example({ children, id, title }: LibraryExampleProps) {
   return (
     <div className="space-y-6">
       {title && (
@@ -161,15 +130,15 @@ function Example({ children, id, title }) {
   );
 }
 
+type DemoButtonProps = {
+  children: ComponentChildren;
+  onClick: () => void;
+  pressed: boolean;
+};
 /**
  * Render a button to swap between demo and source views in a Demo
- *
- * @param {object} props
- *   @param {Children} props.children
- *   @param {() => void} props.onClick
- *   @param {boolean} props.pressed
  */
-function DemoButton({ children, onClick, pressed }) {
+function DemoButton({ children, onClick, pressed }: DemoButtonProps) {
   return (
     <button
       className={classnames(
@@ -187,23 +156,33 @@ function DemoButton({ children, onClick, pressed }) {
   );
 }
 
+export type LibraryDemoProps = {
+  children: ComponentChildren;
+  /** Extra CSS classes for the demo content's immediate parent container */
+  classes?: string | string[];
+  /** Inline styles to apply to the demo container */
+  style?: JSX.CSSProperties;
+  title?: string;
+  /**
+   * Should the demo also render the source? When true, a "Source" tab will be
+   * rendered, which will display the JSX source of the Demo's children.
+   */
+  withSource?: boolean;
+};
+
 /**
  * Render a "Demo", with optional source. This will render the children as
  * provided in a tabbed container. If `withSource` is `true`, the JSX source
  * of the children will be provided in a separate "Source" tab from the
  * rendered Demo content.
- *
- * @param {object} props
- *   @param {Children} [props.children]
- *   @param {string} [props.classes] - Extra CSS classes for the demo content's
- *     immediate parent container
- *   @param {boolean} [props.withSource=false] - Should the demo also render the source?
- *    When true, a "Source" tab will be rendered, which will display the JSX
- *    source of the Demo's children.
- *   @param {import('preact').JSX.CSSProperties} [props.style] - Inline styles to apply to the demo container
- *   @param {string} [props.title]
  */
-function Demo({ children, classes, withSource = false, style = {}, title }) {
+function Demo({
+  children,
+  classes,
+  withSource = false,
+  style = {},
+  title,
+}: LibraryDemoProps) {
   const [visibleTab, setVisibleTab] = useState('demo');
   const source = toChildArray(children).map((child, idx) => {
     return (
@@ -266,9 +245,9 @@ function Demo({ children, classes, withSource = false, style = {}, title }) {
 }
 
 export default {
-  Page,
-  Section,
-  Pattern,
-  Example,
   Demo,
+  Example,
+  Page,
+  Pattern,
+  Section,
 };
