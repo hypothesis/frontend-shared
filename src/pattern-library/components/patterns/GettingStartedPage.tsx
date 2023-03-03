@@ -1,6 +1,5 @@
 import { Link } from '../../../next';
 import Library from '../Library';
-import Next from '../LibraryNext';
 
 export default function GettingStartedPage() {
   return (
@@ -37,7 +36,7 @@ export default function GettingStartedPage() {
             </Link>{' '}
             to use this {"package's"} updated components.
           </p>
-          <Next.Code
+          <Library.Code
             content={`$ yarn add tailwindcss @hypothesis/frontend-shared`}
           />
         </Library.Pattern>
@@ -51,7 +50,7 @@ export default function GettingStartedPage() {
                 <code>content</code> globs
               </li>
             </ul>
-            <Next.Code
+            <Library.Code
               size="sm"
               title="Your project's tailwind config"
               content={`import tailwindConfig from '@hypothesis/frontend-shared/lib/tailwind.preset.js';
@@ -71,14 +70,14 @@ export default {
             Note that component modules are imported from an entrypoint at{' '}
             <code>lib/next</code>.
           </p>
-          <Next.Usage componentName="Card, Link" />
+          <Library.Usage componentName="Card, Link" />
         </Library.Pattern>
       </Library.Section>
 
       <Library.Section title="Legacy components">
         <Library.Pattern title="Configuration">
           <Library.Example title="Import SASS styles">
-            <Next.Code
+            <Library.Code
               size="sm"
               title="Your project's SASS entry point"
               content={`@use '@hypothesis/frontend-shared/styles';`}
@@ -86,7 +85,7 @@ export default {
           </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Usage">
-          <Next.Usage generation="legacy" componentName="Card, Link" />
+          <Library.Usage generation="legacy" componentName="Card, Link" />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
