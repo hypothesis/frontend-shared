@@ -60,17 +60,13 @@ function Dialog_({
         Show dialog
       </Button>
     );
-  } else {
-    return (
-      <Dialog
-        buttons={forwardedButtons}
-        {...dialogProps}
-        onClose={closeHandler}
-      >
-        {children}
-      </Dialog>
-    );
   }
+
+  return (
+    <Dialog buttons={forwardedButtons} {...dialogProps} onClose={closeHandler}>
+      {children}
+    </Dialog>
+  );
 }
 
 export default function DialogPage() {
