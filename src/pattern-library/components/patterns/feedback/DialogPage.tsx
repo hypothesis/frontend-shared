@@ -111,6 +111,51 @@ export default function DialogPage() {
               </InputGroup>
             </Dialog_>
           </Library.Demo>
+
+          <Library.Demo title="Basic modal Dialog" withSource>
+            <Dialog_
+              buttons={<DialogButtons />}
+              icon={EditIcon}
+              initialFocus={inputRef}
+              onClose={() => {}}
+              title="Basic dialog"
+              modal
+            >
+              <p>
+                This is a basic modal Dialog that routes focus initially to a
+                text input.
+              </p>
+              <InputGroup>
+                <Input name="my-input" elementRef={inputRef} />
+                <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
+              </InputGroup>
+            </Dialog_>
+          </Library.Demo>
+        </Library.Pattern>
+
+        <Library.Pattern title="Props">
+          <p>
+            <em>Note</em>: At present these props only include those that are
+            additional to or differ from props accepted by the Modal component.
+            All component props will be documented before Dialog is released.
+          </p>
+          <Library.Example title="modal">
+            <p>
+              Setting the <code>modal</code> <code>boolean</code> prop (default{' '}
+              <code>false</code>) indicates that the Dialog should have modal
+              behavior.
+            </p>
+            <p>
+              <code>modal</code> Dialogs:
+            </p>
+            <ul>
+              <li>Have a full-screen backdrop</li>
+              <li>
+                Position themselves on the screen and constrain the Dialog
+                dimensions based on the viewport
+              </li>
+            </ul>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
