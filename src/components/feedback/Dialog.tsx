@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import type { RefObject } from 'preact';
+import { Fragment } from 'preact';
 import { useEffect, useLayoutEffect } from 'preact/hooks';
 
 import { useElementShouldClose } from '../../hooks/use-element-should-close';
@@ -14,16 +15,23 @@ import type { PanelProps } from '../layout/Panel';
 type ComponentProps = {
   /**
    * Dialog _should_ be provided with a close handler. We have a few edge use
-   * cases, however, in which we need to render a "non-closeable" modal.
+   * cases, however, in which we need to render a "non-closeable" modal dialog.
    */
   onClose?: () => void;
   width?: 'sm' | 'md' | 'lg' | 'custom';
+
   /**
    * Element that should take focus when the Dialog is first rendered. When not
    * provided ("auto"), the dialog's outer element will take focus. Setting this
    * prop to "manual" will opt out of focus routing.
    */
   initialFocus?: RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual';
+
+  /**
+   * Make this Dialog modal. Modal dialogs are:
+   * - Rendered with a full-screen overlay backdrop
+   */
+  modal?: boolean;
 };
 
 // This component forwards a number of props on to `Panel` but always sets the
@@ -44,6 +52,7 @@ const DialogNext = function Dialog({
   classes,
   elementRef,
   initialFocus = 'auto',
+  modal = false,
 
   // Forwarded to Panel
   buttons,
@@ -108,31 +117,37 @@ const DialogNext = function Dialog({
     [dialogDescriptionId, modalRef]
   );
 
+  // Wrap modal dialogs in a full-screen overlay
+  const Wrapper = modal ? Overlay : Fragment;
+
   return (
-    <Overlay>
+    <Wrapper>
       <div
+        aria-modal={modal}
         data-component="Dialog"
         tabIndex={-1}
         // NB: Role can be overridden with an HTML attribute; this is purposeful
         role="dialog"
         {...htmlAttributes}
         className={classnames(
-          // Maximum width and height should not exceed 90vw/h
-          'max-w-[90vw] max-h-[90vh]',
-          // Overlay sets up a flex layout centered on both axes. For taller
-          // viewports, remove this modal container from the flex flow with
-          // fixed positioning and position it 10vh from the top of the
-          // viewport. This feels more balanced on taller screens. Ensure an
-          // equal 10vh gap at the bottom of the screen by adjusting max-height
-          // to `80vh`.
-          'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
           // Column-flex layout to constrain content to max-height
           'flex flex-col',
           {
+            // Maximum width and height should not exceed 90vw/h
+            'max-w-[90vw] max-h-[90vh]': modal,
+            // Overlay sets up a flex layout centered on both axes. For taller
+            // viewports, remove this modal container from the flex flow with
+            // fixed positioning and position it 10vh from the top of the
+            // viewport. This feels more balanced on taller screens. Ensure an
+            // equal 10vh gap at the bottom of the screen by adjusting max-height
+            // to `80vh`.
+            'tall:fixed tall:max-h-[80vh] tall:top-[10vh]': modal,
+          },
+          {
             // Max-width rules will ensure actual width never exceeds 90vw
-            'w-[30rem]': width === 'sm',
-            'w-[36rem]': width === 'md', // default
-            'w-[42rem]': width === 'lg',
+            'w-[30rem]': modal && width === 'sm',
+            'w-[36rem]': modal && width === 'md', // default
+            'w-[42rem]': modal && width === 'lg',
             // No width classes are added if width is 'custom'
           },
           classes
@@ -151,7 +166,7 @@ const DialogNext = function Dialog({
           {children}
         </Panel>
       </div>
-    </Overlay>
+    </Wrapper>
   );
 };
 

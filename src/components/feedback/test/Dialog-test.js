@@ -132,4 +132,38 @@ describe('Dialog', () => {
       assert.isNull(content.getAttribute('aria-describedby'));
     });
   });
+
+  describe('modal Dialogs', () => {
+    let nonModalWrapper;
+    let modalWrapper;
+
+    beforeEach(() => {
+      nonModalWrapper = mount(
+        <Dialog title="My dialog">
+          <p>Dialog content</p>
+        </Dialog>
+      );
+
+      modalWrapper = mount(
+        <Dialog title="My dialog" modal>
+          <p>Modal Dialog content</p>
+        </Dialog>
+      );
+    });
+
+    it('should render a backdrop for modal dialogs', () => {
+      assert.isFalse(nonModalWrapper.find('Overlay').exists());
+      assert.isTrue(modalWrapper.find('Overlay').exists());
+    });
+
+    it('should set aria-modal for modal dialogs', () => {
+      const nonModalContainer = nonModalWrapper
+        .find('[role="dialog"]')
+        .getDOMNode();
+      const modalContainer = modalWrapper.find('[role="dialog"]').getDOMNode();
+
+      assert.equal(nonModalContainer.getAttribute('aria-modal'), 'false');
+      assert.equal(modalContainer.getAttribute('aria-modal'), 'true');
+    });
+  });
 });
