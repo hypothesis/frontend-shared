@@ -90,6 +90,49 @@ export default function DialogPage() {
             </strong>{' '}
             and is not yet part of this {"package's"} public API.
           </p>
+
+          <Library.Example title="Done">
+            <ul>
+              <li>
+                Differentiation between modal and non-modal Dialogs via a{' '}
+                <code>modal</code> prop.
+              </li>
+            </ul>
+          </Library.Example>
+
+          <Library.Example title="TODO">
+            <ul>
+              <li>
+                Close on ESC keypress: Defaults to enabled for modal dialogs,
+                off for non-modal dialogs. Can be controlled with a prop.
+              </li>
+              <li>
+                Close on click-away: Defaults to enabled for modal dialogs, off
+                for non-modal dialogs. Can be controlled with a prop.
+              </li>
+              <li>
+                Close on focus-away: Defaults to off for all dialogs. Can be
+                conrolled with a prop.
+              </li>
+              <li>
+                Focus trap: Defaults to enabled for modal dialogs, off for
+                non-modal dialogs. Can be controlled with a prop.
+              </li>
+              <li>
+                Initial focus: Should search for <code>autofocus</code> elements
+                when in {'"auto"'} mode. {"'manual'"} value should be renamed to{' '}
+                {"'custom'"} per conventions.
+              </li>
+              <li>Focus restoration after close.</li>
+              <li>
+                Control over using <code>Panel</code> or not.
+              </li>
+              <li>
+                <code>size</code> and <code>unstyled</code> support
+              </li>
+              <li>Vet automated accessibility tests.</li>
+            </ul>
+          </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Usage">
           <Library.Usage componentName="Dialog" />
