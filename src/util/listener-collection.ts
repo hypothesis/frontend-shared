@@ -2,6 +2,7 @@ export type Listener = {
   eventTarget: EventTarget;
   eventType: string;
   listener: EventListener;
+  options?: AddEventListenerOptions;
 };
 
 /**
@@ -48,6 +49,7 @@ export class ListenerCollection {
       eventTarget,
       eventType,
       listener,
+      options,
     });
     return symbol;
   }
@@ -58,15 +60,15 @@ export class ListenerCollection {
   remove(listenerId: symbol) {
     const event = this._listeners.get(listenerId);
     if (event) {
-      const { eventTarget, eventType, listener } = event;
-      eventTarget.removeEventListener(eventType, listener);
+      const { eventTarget, eventType, listener, options } = event;
+      eventTarget.removeEventListener(eventType, listener, options);
       this._listeners.delete(listenerId);
     }
   }
 
   removeAll() {
-    this._listeners.forEach(({ eventTarget, eventType, listener }) => {
-      eventTarget.removeEventListener(eventType, listener);
+    this._listeners.forEach(({ eventTarget, eventType, listener, options }) => {
+      eventTarget.removeEventListener(eventType, listener, options);
     });
     this._listeners.clear();
   }
