@@ -1,9 +1,8 @@
-/**
- * @typedef Listener
- * @prop {EventTarget} eventTarget
- * @prop {string} eventType
- * @prop {(event: Event) => void} listener
- */
+export type Listener = {
+  eventTarget: EventTarget;
+  eventType: string;
+  listener: EventListener;
+};
 
 /**
  * Return the event type that a listener will receive.
@@ -13,57 +12,50 @@
  * The event type is extracted from the target's `on${Type}` property (eg.
  * `HTMLElement.onkeydown` here) If there is no such property, the type defaults
  * to `Event`.
- *
- * @template {EventTarget} Target
- * @template {string} Type
- * @typedef {`on${Type}` extends keyof Target ?
- *   Target[`on${Type}`] extends ((...args: any[]) => void)|null ?
- *     Parameters<NonNullable<Target[`on${Type}`]>>[0]
- *  : Event : Event} EventType
  */
+type EventType<
+  Target extends EventTarget,
+  TypeName extends string
+> = `on${TypeName}` extends keyof Target
+  ? Target[`on${TypeName}`] extends ((...args: any[]) => void) | null
+    ? Parameters<NonNullable<Target[`on${TypeName}`]>>[0]
+    : Event
+  : Event;
 
 /**
  * Utility that provides a way to conveniently remove a set of DOM event
  * listeners when they are no longer needed.
  */
 export class ListenerCollection {
+  private _listeners: Map<symbol, Listener>;
+
   constructor() {
-    /** @type {Map<Symbol, Listener>} */
     this._listeners = new Map();
   }
 
   /**
    * Add a listener and return an ID that can be used to remove it later
-   *
-   * @template {string} Type
-   * @template {EventTarget} Target
-   * @param {Target} eventTarget
-   * @param {Type} eventType
-   * @param {(event: EventType<Target, Type>) => void} listener
-   * @param {AddEventListenerOptions} [options]
    */
-  add(eventTarget, eventType, listener, options) {
-    eventTarget.addEventListener(
-      eventType,
-      /** @type {EventListener} */ (listener),
-      options
-    );
+  add(
+    eventTarget: EventTarget,
+    eventType: string,
+    listener: (event: EventType<EventTarget, string>) => void,
+    options?: AddEventListenerOptions
+  ) {
+    eventTarget.addEventListener(eventType, listener, options);
     const symbol = Symbol();
     this._listeners.set(symbol, {
       eventTarget,
       eventType,
-      // eslint-disable-next-line object-shorthand
-      listener: /** @type {EventListener} */ (listener),
+      listener,
     });
     return symbol;
   }
 
   /**
    * Remove a specific listener.
-   *
-   * @param {Symbol} listenerId
    */
-  remove(listenerId) {
+  remove(listenerId: symbol) {
     const event = this._listeners.get(listenerId);
     if (event) {
       const { eventTarget, eventType, listener } = event;
