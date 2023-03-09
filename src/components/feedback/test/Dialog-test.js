@@ -3,6 +3,7 @@ import { createRef } from 'preact';
 
 import { testPresentationalComponent } from '../../test/common-tests';
 import Dialog from '../Dialog';
+import { $imports } from '../Dialog';
 
 const createComponent = (Component, props = {}) => {
   return mount(
@@ -13,9 +14,34 @@ const createComponent = (Component, props = {}) => {
 };
 
 describe('Dialog', () => {
+  let fakeUseClickAway;
+  let fakeUseFocusAway;
+  let fakeUseKeyPress;
+
   testPresentationalComponent(Dialog, {
     createContent: createComponent,
     elementSelector: 'div[data-component="Dialog"]',
+  });
+
+  beforeEach(() => {
+    fakeUseClickAway = sinon.stub();
+    fakeUseFocusAway = sinon.stub();
+    fakeUseKeyPress = sinon.stub();
+    $imports.$mock({
+      '../../hooks/use-click-away': {
+        useClickAway: fakeUseClickAway,
+      },
+      '../../hooks/use-focus-away': {
+        useFocusAway: fakeUseFocusAway,
+      },
+      '../../hooks/use-key-press': {
+        useKeyPress: fakeUseKeyPress,
+      },
+    });
+  });
+
+  afterEach(() => {
+    $imports.$restore();
   });
 
   describe('initial focus', () => {
@@ -87,12 +113,77 @@ describe('Dialog', () => {
   });
 
   describe('closing the dialog', () => {
-    it('closes when `ESC` pressed', () => {
-      const onClose = sinon.stub();
-      const container = document.createElement('div');
+    let container;
+    let onClose;
+
+    beforeEach(() => {
+      onClose = sinon.stub();
+      container = document.createElement('div');
       document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+      container.remove();
+    });
+
+    context('modal dialog', () => {
+      it('enables close on `ESC`, but not on external click or focus', () => {
+        mount(
+          <Dialog title="Test dialog" modal onClose={onClose}>
+            Modal dialog
+          </Dialog>,
+          {
+            attachTo: container,
+          }
+        );
+
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[2], { enabled: true });
+        assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: false });
+        assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: false });
+      });
+
+      it('does not enable close on `ESC` if overridden by `closeOnEscape`', () => {
+        mount(
+          <Dialog
+            closeOnEscape={false}
+            title="Test dialog"
+            modal
+            onClose={onClose}
+          >
+            Modal dialog
+          </Dialog>,
+          {
+            attachTo: container,
+          }
+        );
+
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[2], { enabled: false });
+      });
+    });
+
+    context('non-modal dialog', () => {
+      it('does not enable close on ESC, external clicks or external focus events', () => {
+        mount(
+          <Dialog title="Test dialog" onClose={onClose}>
+            This is my dialog
+          </Dialog>,
+          {
+            attachTo: container,
+          }
+        );
+
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
+        assert.deepEqual(fakeUseKeyPress.lastCall.args[2], { enabled: false });
+        assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: false });
+        assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: false });
+      });
+    });
+
+    it('enables close on external click if `closeOnClickAway` set', () => {
       mount(
-        <Dialog title="Test dialog" onClose={onClose}>
+        <Dialog title="Test dialog" closeOnClickAway onClose={onClose}>
           This is my dialog
         </Dialog>,
         {
@@ -100,11 +191,20 @@ describe('Dialog', () => {
         }
       );
 
-      const event = new Event('keydown');
-      event.key = 'Escape';
-      document.body.dispatchEvent(event);
-      assert.called(onClose);
-      container.remove();
+      assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: true });
+    });
+
+    it('enables close on external focus if `closeOnFocusAway` set', () => {
+      mount(
+        <Dialog title="Test dialog" closeOnFocusAway onClose={onClose}>
+          This is my dialog
+        </Dialog>,
+        {
+          attachTo: container,
+        }
+      );
+
+      assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: true });
     });
   });
 
