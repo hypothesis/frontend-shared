@@ -37,10 +37,10 @@ export class ListenerCollection {
   /**
    * Add a listener and return an ID that can be used to remove it later
    */
-  add(
-    eventTarget: EventTarget,
-    eventType: string,
-    listener: (event: EventType<EventTarget, string>) => void,
+  add<ListenerTarget extends EventTarget, Type extends string>(
+    eventTarget: ListenerTarget,
+    eventType: Type,
+    listener: (event: EventType<ListenerTarget, Type>) => void,
     options?: AddEventListenerOptions
   ) {
     eventTarget.addEventListener(eventType, listener, options);
