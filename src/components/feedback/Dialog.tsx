@@ -3,7 +3,9 @@ import type { RefObject } from 'preact';
 import { Fragment } from 'preact';
 import { useEffect, useLayoutEffect } from 'preact/hooks';
 
-import { useElementShouldClose } from '../../hooks/use-element-should-close';
+import { useClickAway } from '../../hooks/use-click-away';
+import { useFocusAway } from '../../hooks/use-focus-away';
+import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useUniqueId } from '../../hooks/use-unique-id';
 import type { PresentationalProps } from '../../types';
@@ -13,6 +15,9 @@ import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';
 
 type ComponentProps = {
+  closeOnClickAway?: boolean;
+  closeOnEscape?: boolean;
+  closeOnFocusAway?: boolean;
   /**
    * Dialog _should_ be provided with a close handler. We have a few edge use
    * cases, however, in which we need to render a "non-closeable" modal dialog.
@@ -43,16 +48,19 @@ export type DialogProps = PresentationalProps &
 const noop = () => {};
 
 /**
- * Show a modal
+ * Show a dialog
  */
 const DialogNext = function Dialog({
+  closeOnClickAway = false,
+  closeOnEscape, // Default depends on whether modal or not
+  closeOnFocusAway = false,
   children,
   width = 'md',
+  initialFocus = 'auto',
+  modal = false,
 
   classes,
   elementRef,
-  initialFocus = 'auto',
-  modal = false,
 
   // Forwarded to Panel
   buttons,
@@ -66,7 +74,22 @@ const DialogNext = function Dialog({
 }: DialogProps) {
   const modalRef = useSyncedRef(elementRef);
   const closeHandler = onClose ?? noop;
-  useElementShouldClose(modalRef, true, closeHandler);
+
+  // Closing when ESC pressed is default behavior for modal dialogs
+  const closeOnEscapeEnabled =
+    (modal && closeOnEscape !== false) || closeOnEscape === true;
+
+  useClickAway(modalRef, () => closeHandler(), {
+    enabled: closeOnClickAway,
+  });
+
+  useKeyPress(['Escape'], () => closeHandler(), {
+    enabled: closeOnEscapeEnabled,
+  });
+
+  useFocusAway(modalRef, () => closeHandler(), {
+    enabled: closeOnFocusAway,
+  });
 
   const dialogDescriptionId = useUniqueId('dialog-description');
 
