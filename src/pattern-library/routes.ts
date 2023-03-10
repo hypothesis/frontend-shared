@@ -25,6 +25,7 @@ import ScrollBoxPage from './components/patterns/data/ScrollBoxPage';
 import TablePage from './components/patterns/data/TablePage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 import DialogPage from './components/patterns/feedback/DialogPage';
+import ModalDialogPage from './components/patterns/feedback/ModalDialogPage';
 import ModalPage from './components/patterns/feedback/ModalPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 import ButtonsPage from './components/patterns/input/ButtonPage';
@@ -146,6 +147,12 @@ const routes: PlaygroundRoute[] = [
     group: 'feedback',
     component: DialogPage,
     route: '/feedback-dialog',
+  },
+  {
+    title: 'ModalDialog',
+    group: 'feedback',
+    component: ModalDialogPage,
+    route: '/feedback-modal-dialog',
   },
   {
     title: 'Modal',
