@@ -17,7 +17,8 @@ describe('useKeyPress', () => {
   // Create a fake component to mount in tests that uses the hook
   function FakeComponent({ keys = defaultKeys, enabled = true }) {
     const myRef = useRef();
-    useKeyPress(keys, handler, { enabled });
+    const hookOpts = enabled === true ? undefined : { enabled };
+    useKeyPress(keys, handler, hookOpts);
     return (
       <div ref={myRef}>
         <button>Hi</button>
