@@ -37,6 +37,8 @@ function listen(element, events, listener, { useCapture = false } = {}) {
  * that should close it - such as clicks outside the element or Esc key presses.
  * When such an interaction happens, the `handleClose` callback is invoked.
  *
+ * @deprecated Use `useKeyPress`, `useClickAway` and/or `useFocusAway` instead
+ *
  * @param {Ref<HTMLElement | undefined>} closeableEl - Outer DOM element for the popup
  * @param {boolean} isOpen - Whether the popup is currently visible/open
  * @param {() => void} handleClose - Callback invoked to close the popup

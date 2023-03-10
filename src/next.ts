@@ -1,6 +1,8 @@
 // Hooks
 export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
-export { useElementShouldClose } from './hooks/use-element-should-close';
+export { useClickAway } from './hooks/use-click-away';
+export { useFocusAway } from './hooks/use-focus-away';
+export { useKeyPress } from './hooks/use-key-press';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
 // Components
@@ -106,3 +108,6 @@ export type {
   TabProps,
   TabListProps,
 } from './components/navigation/';
+
+// Deprecated
+export { useElementShouldClose } from './hooks/use-element-should-close';
