@@ -12,7 +12,8 @@ describe('useFocusAway', () => {
   // Create a fake component to mount in tests that uses the hook
   function FakeComponent({ enabled = true }) {
     const myRef = useRef();
-    useFocusAway(myRef, handler, { enabled });
+    const hookOpts = enabled === true ? undefined : { enabled };
+    useFocusAway(myRef, handler, hookOpts);
     return (
       <div ref={myRef}>
         <button>Hi</button>

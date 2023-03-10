@@ -12,7 +12,8 @@ describe('useClickAway', () => {
   // Create a fake component to mount in tests that uses the hook
   function FakeComponent({ enabled = true }) {
     const myRef = useRef();
-    useClickAway(myRef, handler, { enabled });
+    const hookOpts = enabled === true ? undefined : { enabled };
+    useClickAway(myRef, handler, hookOpts);
     return (
       <div ref={myRef}>
         <button>Hi</button>
