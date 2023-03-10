@@ -77,8 +77,7 @@ export default function DialogPage() {
       intro={
         <p>
           <code>Dialog</code> is intended as a more full-featured replacement
-          for the <code>Modal</code> component, supporting both modal and
-          non-modal dialogs.
+          for the <code>Modal</code> component, for non-modal dialogs.
         </p>
       }
     >
@@ -94,43 +93,22 @@ export default function DialogPage() {
           <Library.Example title="Done">
             <ul>
               <li>
-                Differentiation between modal and non-modal Dialogs via a{' '}
-                <code>modal</code> prop.
+                Creation of <code>Dialog</code> component.
               </li>
-              <li>
-                Close on ESC keypress: Defaults to enabled for modal dialogs,
-                off for non-modal dialogs. Can be controlled with a prop.
-              </li>
-              <li>
-                Close on click-away: Defaults to off for all dialogs. Can be
-                controlled with a prop.
-              </li>
-              <li>
-                Close on focus-away: Defaults to off for all dialogs. Can be
-                controlled with a prop.
-              </li>
+              <li>Support close-on-ESC (disabled by default).</li>
+              <li>Support close-on-click-away (disabled by default).</li>
+              <li>Support close-on-away-focus (disabled by default).</li>
+              <li>Initial focus routing</li>
             </ul>
           </Library.Example>
 
           <Library.Example title="TODO">
             <ul>
+              <li>Support focus trapping (disabled by default)</li>
               <li>
-                Focus trap: Defaults to enabled for modal dialogs, off for
-                non-modal dialogs. Can be controlled with a prop.
+                Support focus restoration after close (disabled by default)
               </li>
-              <li>
-                Initial focus: Should search for <code>autofocus</code> elements
-                when in {'"auto"'} mode. {"'manual'"} value should be renamed to{' '}
-                {"'custom'"} per conventions.
-              </li>
-              <li>Focus restoration after close.</li>
-              <li>
-                Control over using <code>Panel</code> or not.
-              </li>
-              <li>
-                <code>size</code> and <code>unstyled</code> support
-              </li>
-              <li>Vet automated accessibility tests.</li>
+              <li>All tests and vet automated accessibility tests</li>
             </ul>
           </Library.Example>
         </Library.Pattern>
@@ -154,31 +132,6 @@ export default function DialogPage() {
               </InputGroup>
             </Dialog_>
           </Library.Demo>
-
-          <p>
-            Modal dialogs position themselves atop a full-screen overlay, and
-            will close by default when <kbd>Escape</kbd> is pressed.
-          </p>
-
-          <Library.Demo title="Basic modal Dialog" withSource>
-            <Dialog_
-              buttons={<DialogButtons />}
-              icon={EditIcon}
-              initialFocus={inputRef}
-              onClose={() => {}}
-              title="Basic dialog"
-              modal
-            >
-              <p>
-                This is a basic modal Dialog that routes focus initially to a
-                text input.
-              </p>
-              <InputGroup>
-                <Input name="my-input" elementRef={inputRef} />
-                <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
-              </InputGroup>
-            </Dialog_>
-          </Library.Demo>
         </Library.Pattern>
 
         <Library.Pattern title="Props">
@@ -187,23 +140,7 @@ export default function DialogPage() {
             additional to or differ from props accepted by the Modal component.
             All component props will be documented before Dialog is released.
           </p>
-          <Library.Example title="modal">
-            <p>
-              Setting the <code>modal</code> <code>boolean</code> prop (default{' '}
-              <code>false</code>) indicates that the Dialog should have modal
-              behavior.
-            </p>
-            <p>
-              <code>modal</code> Dialogs:
-            </p>
-            <ul>
-              <li>Have a full-screen backdrop</li>
-              <li>
-                Position themselves on the screen and constrain the Dialog
-                dimensions based on the viewport
-              </li>
-            </ul>
-          </Library.Example>
+
           <Library.Example title="closeOnClickAway">
             <p>
               This boolean prop (default <code>false</code>) controls whether
@@ -242,33 +179,17 @@ export default function DialogPage() {
           </Library.Example>
           <Library.Example title="closeOnEscape">
             <p>
-              Close-on-<kbd>Escape</kbd> keypress behavior is enabled by default
-              when <code>modal</code> is set. The default behavior may be
-              overridden by setting this prop:
+              Enable close-on-ESC behavior by setting this boolean prop (default{' '}
+              <code>false</code>).
             </p>
-            <ul>
-              <li>
-                Set to <code>true</code> to explicitly enable closing on{' '}
-                <code>Escape</code>, e.g. on non-modal Dialogs
-              </li>
-              <li>
-                Set to <code>false</code> to explicitly disable closing on{' '}
-                <code>Escape</code>, e.g. on modal Dialogs
-              </li>
-            </ul>
 
             <Library.Demo
-              title="Disabling close-on-Escape for a modal dialog"
+              title="Dialog with close-on-Escape behavior"
               withSource
             >
-              <Dialog_
-                closeOnEscape={false}
-                modal
-                onClose={() => {}}
-                title="ESC won't close me!"
-              >
+              <Dialog_ closeOnEscape onClose={() => {}} title="Close on ESC">
                 <p>
-                  This dialog will not close if you press <kbd>Escape</kbd>.
+                  This dialog will close if you press <kbd>Escape</kbd>.
                 </p>
               </Dialog_>
             </Library.Demo>
