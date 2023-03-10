@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import type { RefObject } from 'preact';
-import { Fragment } from 'preact';
 import { useEffect, useLayoutEffect } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
@@ -10,7 +9,6 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useUniqueId } from '../../hooks/use-unique-id';
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import Overlay from '../layout/Overlay';
 import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';
 
@@ -23,7 +21,6 @@ type ComponentProps = {
    * cases, however, in which we need to render a "non-closeable" modal dialog.
    */
   onClose?: () => void;
-  width?: 'sm' | 'md' | 'lg' | 'custom';
 
   /**
    * Element that should take focus when the Dialog is first rendered. When not
@@ -31,12 +28,6 @@ type ComponentProps = {
    * prop to "manual" will opt out of focus routing.
    */
   initialFocus?: RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual';
-
-  /**
-   * Make this Dialog modal. Modal dialogs are:
-   * - Rendered with a full-screen overlay backdrop
-   */
-  modal?: boolean;
 };
 
 // This component forwards a number of props on to `Panel` but always sets the
@@ -52,12 +43,10 @@ const noop = () => {};
  */
 const DialogNext = function Dialog({
   closeOnClickAway = false,
-  closeOnEscape, // Default depends on whether modal or not
+  closeOnEscape = false,
   closeOnFocusAway = false,
   children,
-  width = 'md',
   initialFocus = 'auto',
-  modal = false,
 
   classes,
   elementRef,
@@ -75,19 +64,15 @@ const DialogNext = function Dialog({
   const modalRef = useSyncedRef(elementRef);
   const closeHandler = onClose ?? noop;
 
-  // Closing when ESC pressed is default behavior for modal dialogs
-  const closeOnEscapeEnabled =
-    (modal && closeOnEscape !== false) || closeOnEscape === true;
-
-  useClickAway(modalRef, () => closeHandler(), {
+  useClickAway(modalRef, closeHandler, {
     enabled: closeOnClickAway,
   });
 
-  useKeyPress(['Escape'], () => closeHandler(), {
-    enabled: closeOnEscapeEnabled,
+  useKeyPress(['Escape'], closeHandler, {
+    enabled: closeOnEscape,
   });
 
-  useFocusAway(modalRef, () => closeHandler(), {
+  useFocusAway(modalRef, closeHandler, {
     enabled: closeOnFocusAway,
   });
 
@@ -140,56 +125,32 @@ const DialogNext = function Dialog({
     [dialogDescriptionId, modalRef]
   );
 
-  // Wrap modal dialogs in a full-screen overlay
-  const Wrapper = modal ? Overlay : Fragment;
-
   return (
-    <Wrapper>
-      <div
-        aria-modal={modal}
-        data-component="Dialog"
-        tabIndex={-1}
-        // NB: Role can be overridden with an HTML attribute; this is purposeful
-        role="dialog"
-        {...htmlAttributes}
-        className={classnames(
-          // Column-flex layout to constrain content to max-height
-          'flex flex-col',
-          {
-            // Maximum width and height should not exceed 90vw/h
-            'max-w-[90vw] max-h-[90vh]': modal,
-            // Overlay sets up a flex layout centered on both axes. For taller
-            // viewports, remove this modal container from the flex flow with
-            // fixed positioning and position it 10vh from the top of the
-            // viewport. This feels more balanced on taller screens. Ensure an
-            // equal 10vh gap at the bottom of the screen by adjusting max-height
-            // to `80vh`.
-            'tall:fixed tall:max-h-[80vh] tall:top-[10vh]': modal,
-          },
-          {
-            // Max-width rules will ensure actual width never exceeds 90vw
-            'w-[30rem]': modal && width === 'sm',
-            'w-[36rem]': modal && width === 'md', // default
-            'w-[42rem]': modal && width === 'lg',
-            // No width classes are added if width is 'custom'
-          },
-          classes
-        )}
-        ref={downcastRef(modalRef)}
+    <div
+      data-component="Dialog"
+      tabIndex={-1}
+      // NB: Role can be overridden with an HTML attribute; this is purposeful
+      role="dialog"
+      {...htmlAttributes}
+      className={classnames(
+        // Column-flex layout to constrain content to max-height
+        'flex flex-col',
+        classes
+      )}
+      ref={downcastRef(modalRef)}
+    >
+      <Panel
+        buttons={buttons}
+        fullWidthHeader={true}
+        icon={icon}
+        onClose={closeHandler}
+        paddingSize={paddingSize}
+        title={title}
+        scrollable={scrollable}
       >
-        <Panel
-          buttons={buttons}
-          fullWidthHeader={true}
-          icon={icon}
-          onClose={onClose}
-          paddingSize={paddingSize}
-          title={title}
-          scrollable={scrollable}
-        >
-          {children}
-        </Panel>
-      </div>
-    </Wrapper>
+        {children}
+      </Panel>
+    </div>
   );
 };
 

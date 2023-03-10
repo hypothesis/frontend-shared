@@ -126,45 +126,8 @@ describe('Dialog', () => {
       container.remove();
     });
 
-    context('modal dialog', () => {
-      it('enables close on `ESC`, but not on external click or focus', () => {
-        mount(
-          <Dialog title="Test dialog" modal onClose={onClose}>
-            Modal dialog
-          </Dialog>,
-          {
-            attachTo: container,
-          }
-        );
-
-        assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
-        assert.deepEqual(fakeUseKeyPress.lastCall.args[2], { enabled: true });
-        assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: false });
-        assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: false });
-      });
-
-      it('does not enable close on `ESC` if overridden by `closeOnEscape`', () => {
-        mount(
-          <Dialog
-            closeOnEscape={false}
-            title="Test dialog"
-            modal
-            onClose={onClose}
-          >
-            Modal dialog
-          </Dialog>,
-          {
-            attachTo: container,
-          }
-        );
-
-        assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
-        assert.deepEqual(fakeUseKeyPress.lastCall.args[2], { enabled: false });
-      });
-    });
-
-    context('non-modal dialog', () => {
-      it('does not enable close on ESC, external clicks or external focus events', () => {
+    describe('closing the dialog', () => {
+      it('does not lose on ESC, external clicks or external focus events by default', () => {
         mount(
           <Dialog title="Test dialog" onClose={onClose}>
             This is my dialog
@@ -230,40 +193,6 @@ describe('Dialog', () => {
       );
       const content = wrapper.find('[role="dialog"]').getDOMNode();
       assert.isNull(content.getAttribute('aria-describedby'));
-    });
-  });
-
-  describe('modal Dialogs', () => {
-    let nonModalWrapper;
-    let modalWrapper;
-
-    beforeEach(() => {
-      nonModalWrapper = mount(
-        <Dialog title="My dialog">
-          <p>Dialog content</p>
-        </Dialog>
-      );
-
-      modalWrapper = mount(
-        <Dialog title="My dialog" modal>
-          <p>Modal Dialog content</p>
-        </Dialog>
-      );
-    });
-
-    it('should render a backdrop for modal dialogs', () => {
-      assert.isFalse(nonModalWrapper.find('Overlay').exists());
-      assert.isTrue(modalWrapper.find('Overlay').exists());
-    });
-
-    it('should set aria-modal for modal dialogs', () => {
-      const nonModalContainer = nonModalWrapper
-        .find('[role="dialog"]')
-        .getDOMNode();
-      const modalContainer = modalWrapper.find('[role="dialog"]').getDOMNode();
-
-      assert.equal(nonModalContainer.getAttribute('aria-modal'), 'false');
-      assert.equal(modalContainer.getAttribute('aria-modal'), 'true');
     });
   });
 });
