@@ -51,13 +51,11 @@ export function Checkbox({
 }) {
   /**
    * @param {import('preact').JSX.TargetedMouseEvent<HTMLInputElement>} event
-   * @this HTMLInputElement
+   * @this void
    */
   function onPressed(event) {
     onToggle?.(event.currentTarget.checked);
-    // preact event handlers expects `this` context to be of type `never`
-    // https://github.com/preactjs/preact/issues/3137
-    onClick?.call(/** @type {never} */ (this), event);
+    onClick?.call(this, event);
   }
 
   return (
