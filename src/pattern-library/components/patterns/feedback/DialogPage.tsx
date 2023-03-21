@@ -32,6 +32,7 @@ function DialogButtons() {
 type Dialog_Props = DialogProps & {
   /** Pattern-wrapping prop. Not visible in source view */
   _nonCloseable?: boolean;
+  _alwaysShowButton?: boolean;
 };
 
 /**
@@ -40,6 +41,7 @@ type Dialog_Props = DialogProps & {
  */
 function Dialog_({
   buttons,
+  _alwaysShowButton = false,
   _nonCloseable,
   children,
   ...dialogProps
@@ -54,18 +56,27 @@ function Dialog_({
     <Button onClick={closeDialog}>Escape!</Button>
   );
 
-  if (!dialogOpen) {
-    return (
-      <Button onClick={() => setDialogOpen(!dialogOpen)} variant="primary">
-        Show dialog
-      </Button>
-    );
-  }
+  const openButton = (
+    <Button onClick={() => setDialogOpen(!dialogOpen)} variant="primary">
+      {dialogOpen ? 'Hide' : 'Show'} dialog
+    </Button>
+  );
 
   return (
-    <Dialog buttons={forwardedButtons} {...dialogProps} onClose={closeHandler}>
-      {children}
-    </Dialog>
+    <div className="flex w-full gap-x-2">
+      {(!dialogOpen || _alwaysShowButton) && <div>{openButton}</div>}
+      <div className="grow">
+        {dialogOpen && (
+          <Dialog
+            buttons={forwardedButtons}
+            {...dialogProps}
+            onClose={closeHandler}
+          >
+            {children}
+          </Dialog>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -99,15 +110,15 @@ export default function DialogPage() {
               <li>Support close-on-click-away (disabled by default).</li>
               <li>Support close-on-away-focus (disabled by default).</li>
               <li>Initial focus routing</li>
+              <li>
+                Support focus restoration after close (disabled by default)
+              </li>
             </ul>
           </Library.Example>
 
           <Library.Example title="TODO">
             <ul>
               <li>Support focus trapping (disabled by default)</li>
-              <li>
-                Support focus restoration after close (disabled by default)
-              </li>
               <li>All tests and vet automated accessibility tests</li>
             </ul>
           </Library.Example>
@@ -190,6 +201,35 @@ export default function DialogPage() {
               <Dialog_ closeOnEscape onClose={() => {}} title="Close on ESC">
                 <p>
                   This dialog will close if you press <kbd>Escape</kbd>.
+                </p>
+              </Dialog_>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="restoreFocus">
+            <p>
+              This boolean prop (default <code>false</code>) restores focus when
+              the Dialog is closed to the element that had focus before it was
+              opened.
+            </p>
+            <p>
+              Note: This example does not hide its button when the Dialog is
+              open, as the button needs to be present to restore focus to it.
+            </p>
+
+            <Library.Demo
+              title="Dialog with focus restoration on close"
+              withSource
+            >
+              <Dialog_
+                _alwaysShowButton
+                restoreFocus
+                onClose={() => {}}
+                title="Restore focus"
+              >
+                <p>
+                  This dialog will restore focus to the previously-focused
+                  element on close.
                 </p>
               </Dialog_>
             </Library.Demo>

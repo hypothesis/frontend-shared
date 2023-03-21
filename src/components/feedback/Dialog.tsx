@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import type { RefObject } from 'preact';
-import { useEffect, useLayoutEffect } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
@@ -28,6 +28,11 @@ type ComponentProps = {
    * prop to "manual" will opt out of focus routing.
    */
   initialFocus?: RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual';
+
+  /**
+   * Restore focus to previously-focused element when unmounted/closed
+   */
+  restoreFocus?: boolean;
 };
 
 // This component forwards a number of props on to `Panel` but always sets the
@@ -47,6 +52,7 @@ const DialogNext = function Dialog({
   closeOnFocusAway = false,
   children,
   initialFocus = 'auto',
+  restoreFocus = false,
 
   classes,
   elementRef,
@@ -63,6 +69,9 @@ const DialogNext = function Dialog({
 }: DialogProps) {
   const modalRef = useSyncedRef(elementRef);
   const closeHandler = onClose ?? noop;
+  const restoreFocusEl = useRef<HTMLElement | null>(
+    document.activeElement as HTMLElement | null
+  );
 
   useClickAway(modalRef, closeHandler, {
     enabled: closeOnClickAway,
@@ -106,6 +115,23 @@ const DialogNext = function Dialog({
     // We only want to run this effect once when the dialog is mounted.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useLayoutEffect(
+    /**
+     * Restore focus when component is unmounted, if `restoreFocus` is set.
+     */
+    () => {
+      const restoreFocusTo = restoreFocusEl.current;
+      return () => {
+        if (restoreFocus && restoreFocusTo) {
+          restoreFocusTo.focus();
+        }
+      };
+    },
+    // We only want to run this effect once when the dialog is mounted.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useLayoutEffect(
     /**
