@@ -27,6 +27,7 @@ const ModalDialogNext = function ModalDialog({
   closeOnClickAway = false,
   closeOnFocusAway = false,
   initialFocus = 'auto',
+  restoreFocus = true,
 
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
@@ -43,6 +44,7 @@ const ModalDialogNext = function ModalDialog({
         closeOnFocusAway={closeOnFocusAway}
         closeOnEscape={closeOnEscape}
         initialFocus={initialFocus}
+        restoreFocus={restoreFocus}
         classes={classnames(
           // Column-flex layout to constrain content to max-height
           'flex flex-col',

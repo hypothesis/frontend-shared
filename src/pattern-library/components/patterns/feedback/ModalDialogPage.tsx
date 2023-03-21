@@ -32,6 +32,7 @@ function ModalDialogButtons() {
 type ModalDialog_Props = ModalDialogProps & {
   /** Pattern-wrapping prop. Not visible in source view */
   _nonCloseable?: boolean;
+  _alwaysShowButton?: boolean;
 };
 
 /**
@@ -40,6 +41,7 @@ type ModalDialog_Props = ModalDialogProps & {
  */
 function ModalDialog_({
   buttons,
+  _alwaysShowButton = false,
   _nonCloseable,
   children,
   ...dialogProps
@@ -54,22 +56,25 @@ function ModalDialog_({
     <Button onClick={closeDialog}>Escape!</Button>
   );
 
-  if (!dialogOpen) {
-    return (
-      <Button onClick={() => setDialogOpen(!dialogOpen)} variant="primary">
-        Show modal dialog
-      </Button>
-    );
-  }
+  const openButton = (
+    <Button onClick={() => setDialogOpen(!dialogOpen)} variant="primary">
+      {dialogOpen ? 'Hide' : 'Show'} dialog
+    </Button>
+  );
 
   return (
-    <ModalDialog
-      buttons={forwardedButtons}
-      {...dialogProps}
-      onClose={closeHandler}
-    >
-      {children}
-    </ModalDialog>
+    <>
+      {(!dialogOpen || _alwaysShowButton) && openButton}
+      {dialogOpen && (
+        <ModalDialog
+          buttons={forwardedButtons}
+          {...dialogProps}
+          onClose={closeHandler}
+        >
+          {children}
+        </ModalDialog>
+      )}
+    </>
   );
 }
 
@@ -98,10 +103,11 @@ export default function ModalDialogPage() {
           <Library.Usage componentName="ModalDialog" />
           <p>
             By default, <code>ModalDialog</code>s close when the ESC key is
-            pressed.
+            pressed, and will restore focus when closed.
           </p>
           <Library.Demo title="Basic ModalDialog" withSource>
             <ModalDialog_
+              _alwaysShowButton
               buttons={<ModalDialogButtons />}
               icon={EditIcon}
               initialFocus={inputRef}
