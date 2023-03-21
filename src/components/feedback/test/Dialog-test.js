@@ -112,6 +112,61 @@ describe('Dialog', () => {
     });
   });
 
+  describe('restoring focus', () => {
+    let container;
+
+    beforeEach(() => {
+      container = document.createElement('div');
+      const button = document.createElement('button');
+      button.id = 'focus-button';
+      document.body.appendChild(button);
+      document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+      container.remove();
+    });
+
+    it('should not restore focus by default', () => {
+      const wrapper = mount(
+        <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
+        {
+          attachTo: container,
+        }
+      );
+      const dialogElement = document.getElementById('focus-dialog');
+      // Focus moves to dialog by default when mounted
+      assert.equal(document.activeElement, dialogElement);
+
+      wrapper.unmount();
+
+      // Focus on unmount is not handled; it reverts to the body here.
+      assert.equal(document.activeElement, document.body);
+    });
+
+    it('should restore focus when unmounted when `restoreFocus` set', () => {
+      const button = document.getElementById('focus-button');
+
+      // Start with focus on a button
+      button.focus();
+      assert.equal(document.activeElement, button);
+
+      const wrapper = mount(
+        <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
+        {
+          attachTo: container,
+        }
+      );
+      const dialogElement = document.getElementById('focus-dialog');
+      // Focus moves to dialog by default when mounted
+      assert.equal(document.activeElement, dialogElement);
+
+      // Unmount cleanup should restore focus to the button
+      wrapper.unmount();
+      assert.equal(document.activeElement, button);
+    });
+  });
+
   describe('closing the dialog', () => {
     let container;
     let onClose;
