@@ -36,4 +36,14 @@ describe('ModalDialog', () => {
       assert.isFalse(dialogProps.closeOnFocusAway);
     });
   });
+
+  describe('restoring focus', () => {
+    it('restores focus by default', () => {
+      const wrapper = mount(
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+      );
+      const dialogProps = wrapper.find('Dialog').props();
+      assert.isTrue(dialogProps.restoreFocus);
+    });
+  });
 });
