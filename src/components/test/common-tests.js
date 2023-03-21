@@ -18,6 +18,13 @@ function primaryElement(wrapper, elementSelector) {
   return wrapper.childAt(0).getDOMNode();
 }
 
+function wrapperElement(wrapper, wrapperSelector) {
+  if (wrapperSelector) {
+    return wrapper.find(wrapperSelector).getDOMNode();
+  }
+  return wrapper.childAt(0).getDOMNode();
+}
+
 /**
  * Set of tests common to all presentational components
  *
@@ -31,13 +38,28 @@ function primaryElement(wrapper, elementSelector) {
  * @prop {string} [elementSelector] - Selector to find the element to which any
  *   passed HTML attributes are applied, when it is not the outermost element
  *   rendered by the component.
+ */
+
+/**
+ * For composite components, add a `wrapperSelector` option, a selector for the
+ * element to which a `data-composite-component` attribute is applied, when it
+ * is not the outermost element rendered by the component.
  *
+ * @typedef {CommonTestOpts & { wrapperSelector?: string }} CompositeTestOpts
+ */
+
+/**
  * @param {FunctionComponent} Component
- * @param {CommonTestOpts} opts
+ * @param {CompositeTestOpts} opts
  */
 export function testCompositeComponent(
   Component,
-  { componentName, createContent = createComponent, elementSelector } = {}
+  {
+    componentName,
+    createContent = createComponent,
+    elementSelector,
+    wrapperSelector,
+  } = {}
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -50,24 +72,18 @@ export function testCompositeComponent(
     });
 
     it('applies HTML attributes to primary element', () => {
-      let primaryEl;
-
       const wrapper = createContent(Component, {
         'data-testid': 'foo-container',
       });
-
-      if (elementSelector) {
-        primaryEl = wrapper.find(elementSelector).getDOMNode();
-      } else {
-        primaryEl = wrapper.childAt(0).getDOMNode();
-      }
+      const primaryEl = primaryElement(wrapper, elementSelector);
 
       assert.isTrue(primaryEl.hasAttribute('data-testid'));
       assert.equal(primaryEl.getAttribute('data-testid'), 'foo-container');
     });
 
     it('applies a `data-composite-component` attribute for debugging', () => {
-      const wrapperOuterEl = createContent(Component).childAt(0).getDOMNode();
+      const wrapper = createContent(Component);
+      const wrapperOuterEl = wrapperElement(wrapper, wrapperSelector);
 
       assert.isTrue(wrapperOuterEl.hasAttribute('data-composite-component'));
       assert.equal(
