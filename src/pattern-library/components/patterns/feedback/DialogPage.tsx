@@ -100,28 +100,6 @@ export default function DialogPage() {
             </strong>{' '}
             and is not yet part of this {"package's"} public API.
           </p>
-
-          <Library.Example title="Done">
-            <ul>
-              <li>
-                Creation of <code>Dialog</code> component.
-              </li>
-              <li>Support close-on-ESC (disabled by default).</li>
-              <li>Support close-on-click-away (disabled by default).</li>
-              <li>Support close-on-away-focus (disabled by default).</li>
-              <li>Initial focus routing</li>
-              <li>
-                Support focus restoration after close (disabled by default)
-              </li>
-            </ul>
-          </Library.Example>
-
-          <Library.Example title="TODO">
-            <ul>
-              <li>Support focus trapping (disabled by default)</li>
-              <li>All tests and vet automated accessibility tests</li>
-            </ul>
-          </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Usage">
           <Library.Usage componentName="Dialog" />
