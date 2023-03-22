@@ -13,6 +13,17 @@ const createComponent = (Component, props = {}) => {
 };
 
 describe('ModalDialog', () => {
+  let fakeUseTabKeyNavigation;
+
+  beforeEach(() => {
+    fakeUseTabKeyNavigation = sinon.stub();
+    $imports.$mock({
+      '../../hooks/use-tab-key-navigation': {
+        useTabKeyNavigation: fakeUseTabKeyNavigation,
+      },
+    });
+  });
+
   testCompositeComponent(ModalDialog, {
     createContent: createComponent,
     // ModalDialog's primary component element is its wrapped Dialog
@@ -44,6 +55,28 @@ describe('ModalDialog', () => {
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isTrue(dialogProps.restoreFocus);
+    });
+  });
+
+  describe('trapping focus', () => {
+    it('traps focus by default', () => {
+      mount(
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+      );
+      assert.deepEqual(fakeUseTabKeyNavigation.lastCall.args[1], {
+        enabled: true,
+      });
+    });
+
+    it('allows disabling of focus trap', () => {
+      mount(
+        <ModalDialog title="Test modal dialog" disableFocusTrap>
+          This is my dialog
+        </ModalDialog>
+      );
+      assert.deepEqual(fakeUseTabKeyNavigation.lastCall.args[1], {
+        enabled: false,
+      });
     });
   });
 });

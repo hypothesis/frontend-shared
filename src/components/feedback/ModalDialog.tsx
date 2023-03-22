@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import { useTabKeyNavigation } from '../../hooks/use-tab-key-navigation';
 import { downcastRef } from '../../util/typing';
 import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
@@ -8,6 +9,12 @@ import type { DialogProps } from './Dialog';
 
 type ComponentProps = {
   size?: 'sm' | 'md' | 'lg' | 'custom';
+
+  /**
+   * Disable WAI-ARIA-specific modal-dialog focus trap and tab/shift-tab
+   * keyboard navigation
+   */
+  disableFocusTrap?: boolean;
 };
 
 export type ModalDialogProps = DialogProps & ComponentProps;
@@ -18,6 +25,7 @@ export type ModalDialogProps = DialogProps & ComponentProps;
 const ModalDialogNext = function ModalDialog({
   children,
   size = 'md',
+  disableFocusTrap = false,
 
   classes,
   elementRef,
@@ -32,6 +40,8 @@ const ModalDialogNext = function ModalDialog({
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
   const modalRef = useSyncedRef(elementRef);
+
+  useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
 
   return (
     <Overlay data-composite-component="ModalDialog">
