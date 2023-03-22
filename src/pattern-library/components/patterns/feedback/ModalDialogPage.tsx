@@ -9,6 +9,7 @@ import {
   IconButton,
   Input,
   InputGroup,
+  Link,
 } from '../../../../next';
 import Library from '../../Library';
 
@@ -102,9 +103,13 @@ export default function ModalDialogPage() {
         <Library.Pattern title="Usage">
           <Library.Usage componentName="ModalDialog" />
           <p>
-            By default, <code>ModalDialog</code>s close when the ESC key is
-            pressed, and will restore focus when closed.
+            By default, <code>ModalDialog</code> components:
           </p>
+          <ul>
+            <li>Close on ESC keypress</li>
+            <li>Trap focus and allow navigation with Tab/Shift-Tab keys</li>
+            <li>Restore focus to previously-focused element when closed</li>
+          </ul>
           <Library.Demo title="Basic ModalDialog" withSource>
             <ModalDialog_
               _alwaysShowButton
@@ -122,7 +127,67 @@ export default function ModalDialogPage() {
             </ModalDialog_>
           </Library.Demo>
         </Library.Pattern>
-        <Library.Pattern title="Props">TODO</Library.Pattern>
+        <Library.Pattern title="Props">
+          <Library.Example title="disableFocusTrap">
+            <p>
+              This boolean prop (default <code>true</code>) enables modal-dialog
+              focus trap and keyboard navigation as specified by{' '}
+              <Link
+                href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/#keyboardinteraction"
+                underline="always"
+              >
+                WAI-ARIA authoring guidelines
+              </Link>
+              .
+            </p>
+            <p>
+              <em>Note</em>: Disabling this prop is not recommended and could
+              raise issues of accessibility.
+            </p>
+            <Library.Demo title="Disabling focus trapping">
+              <ModalDialog_
+                _alwaysShowButton
+                buttons={<ModalDialogButtons />}
+                icon={EditIcon}
+                initialFocus={inputRef}
+                onClose={() => {}}
+                title="Modal Dialog with disabled `trapFocus`"
+                disableFocusTrap
+              >
+                <p>This is a ModalDialog that does not trap focus.</p>
+                <InputGroup>
+                  <Input name="my-input" elementRef={inputRef} />
+                  <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
+                </InputGroup>
+              </ModalDialog_>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Props forwarded to Dialog">
+            <p>
+              The following optional props (<code>ModalDialog</code> defaults in
+              parentheses) are forwarded to <code>Dialog</code>. See{' '}
+              <code>Dialog</code> documentation for details.
+            </p>
+            <ul>
+              <li>
+                <code>closeOnEscape</code> (<code>true</code>)
+              </li>
+              <li>
+                <code>closeOnClickAway</code> (<code>false</code>)
+              </li>
+              <li>
+                <code>closeOnFocusAway</code> (<code>false</code>)
+              </li>
+              <li>
+                <code>initialFocus</code> (<code>{"'auto'"}</code>)
+              </li>
+              <li>
+                <code>restoreFocus</code> (<code>true</code>)
+              </li>
+            </ul>
+          </Library.Example>
+        </Library.Pattern>
       </Library.Section>
     </Library.Page>
   );
