@@ -1,4 +1,4 @@
-import { options as preactOptions, render } from 'preact';
+import { render } from 'preact';
 import { useRef } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
@@ -33,16 +33,6 @@ describe('useArrowKeyNavigation', () => {
 
   afterEach(() => {
     container.remove();
-  });
-
-  // Workaround for an issue with `useEffect` throwing exceptions during
-  // `act` callbacks. Can be removed when https://github.com/preactjs/preact/pull/3530 is shipped.
-  let prevDebounceRendering;
-  beforeEach(() => {
-    prevDebounceRendering = preactOptions.debounceRendering;
-  });
-  afterEach(() => {
-    preactOptions.debounceRendering = prevDebounceRendering;
   });
 
   function renderToolbar(options = {}) {
