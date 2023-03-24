@@ -543,39 +543,35 @@ export default function DialogPage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="size">
-            <p>
-              The <code>size</code> prop affects the width of a{' '}
-              <code>ModalDialog</code>.
-            </p>
-            <Library.Demo title="size='sm'" withSource>
+          <Library.Example title="width">
+            <Library.Demo title="width='sm'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Small modal"
-                size="sm"
+                width="sm"
               >
                 <LoremIpsum size="sm" />
               </ModalDialog_>
             </Library.Demo>
 
-            <Library.Demo title="size='md' (default)" withSource>
+            <Library.Demo title="width='md' (default)" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Medium-width modal"
-                size="md"
+                width="md"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
             </Library.Demo>
 
-            <Library.Demo title="size='lg'" withSource>
+            <Library.Demo title="width='lg'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Wide modal"
-                size="lg"
+                width="lg"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
@@ -583,17 +579,17 @@ export default function DialogPage() {
 
             <p>
               To style your <code>ModalDialog</code> with a custom width, set{' '}
-              <code>size</code> to <code>{"'custom'"}</code> and provide sizing
+              <code>width</code> to <code>{"'custom'"}</code> and provide sizing
               CSS class(es) via the <code>classes</code> prop.
             </p>
 
-            <Library.Demo title="size='custom'" withSource>
+            <Library.Demo title="width='custom'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 classes="w-[40em]"
                 onClose={() => {}}
                 title="Custom-width modal"
-                size="custom"
+                width="custom"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
