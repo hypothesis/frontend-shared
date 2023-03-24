@@ -103,6 +103,19 @@ export default function ModalPage() {
           </p>
         }
       >
+        <Library.Pattern title="Status">
+          <Library.Changelog>
+            <Library.ChangelogItem status="deprecated">
+              This implementation of
+              <s>
+                <code>Modal</code>
+              </s>{' '}
+              is deprecated. Use
+              <code>ModalDialog</code> or <code>Dialog</code> instead, which
+              provide a similar API and enhanced accessibility.
+            </Library.ChangelogItem>
+          </Library.Changelog>
+        </Library.Pattern>
         <Library.Pattern title="Usage">
           <Library.Usage componentName="Modal" />
           <Library.Demo title="Basic modal" withSource>

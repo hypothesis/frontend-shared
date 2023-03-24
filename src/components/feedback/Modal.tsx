@@ -36,6 +36,7 @@ const noop = () => {};
 
 /**
  * Show a modal
+ * @deprecated - Use `ModalDialog` instead
  */
 const ModalNext = function Modal({
   children,
