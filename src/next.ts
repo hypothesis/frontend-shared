@@ -22,7 +22,13 @@ export {
   TableRow,
   Thumbnail,
 } from './components/data';
-export { Modal, Spinner, SpinnerOverlay } from './components/feedback';
+export {
+  Dialog,
+  Modal,
+  ModalDialog,
+  Spinner,
+  SpinnerOverlay,
+} from './components/feedback';
 export {
   Button,
   ButtonBase,
@@ -75,7 +81,9 @@ export type {
 } from './components/data';
 
 export type {
+  DialogProps,
   ModalProps,
+  ModalDialogProps,
   SpinnerProps,
   SpinnerOverlayProps,
 } from './components/feedback';
