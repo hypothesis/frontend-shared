@@ -168,9 +168,8 @@ export default function DialogPage() {
         <Library.Pattern title="Status">
           <p>
             <strong>
-              <code>Dialog</code> is under development
-            </strong>{' '}
-            and is not yet part of this {"package's"} public API.
+              <code>Dialog</code> is a new component.
+            </strong>
           </p>
         </Library.Pattern>
         <Library.Pattern title="Usage">
@@ -365,19 +364,43 @@ export default function DialogPage() {
         <Library.Pattern title="Status">
           <p>
             <strong>
-              <code>ModalDialog</code> is under development
-            </strong>{' '}
-            and is not yet part of this {"package's"} public API.
+              <code>ModalDialog</code> is intended to replace the existing,
+              deprecated <code>Modal</code> component.
+            </strong>
           </p>
+          <Library.Example title="Migrating to this component from Modal">
+            <Library.Changelog>
+              <Library.ChangelogItem status="changed">
+                ModalDialogs trap focus and provide tab/shift-tab navigation
+                through navigable elements. Disable this behavior by setting the{' '}
+                <code>disableFocusTrap</code> prop.
+              </Library.ChangelogItem>
+              <Library.ChangelogItem status="changed">
+                ModalDialogs restore focus to the previously-focused element
+                when closed. Disable this behavior by setting the{' '}
+                <code>disableRestoreFocus</code> prop.
+              </Library.ChangelogItem>
+              <Library.ChangelogItem status="changed">
+                ModalDialogs do not close when the user clicks outside of them.
+                Re-enable this behavior if needed by setting the{' '}
+                <code>closeOnClickAway</code> prop.
+              </Library.ChangelogItem>
+              <Library.ChangelogItem status="changed">
+                ModalDialogs do not close if there are focus events outside of
+                their container. Re-enable this behavior if needed by setting
+                the <code>closeOnFocusAwayProp</code>.
+              </Library.ChangelogItem>
+              <Library.ChangelogItem status="changed">
+                ModalDialogs (still) close when the <kbd>Escape</kbd> key is
+                pressed, but you can disable this behavior by setting the{' '}
+                <code>disableCloseOnEscape</code> prop.
+              </Library.ChangelogItem>
+            </Library.Changelog>
+          </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Usage">
           <Library.Usage componentName="ModalDialog" />
-          <p>
-            By default, <code>ModalDialog</code>s will close on escape keypress
-            (<code>closeOnEscape</code>) and restore focus on close (
-            <code>restoreFocus</code>). It also traps focus unless overridden
-            with <code>disableFocusTrap</code>.
-          </p>
+
           <Library.Demo title="Basic ModalDialog" withSource>
             <ModalDialog_
               _alwaysShowButton
@@ -388,6 +411,16 @@ export default function DialogPage() {
               title="Basic dialog"
             >
               <p>This is a basic ModalDialog.</p>
+              <ul className="list-disc m-8">
+                <li>
+                  It will close if you press the <kbd>Escape</kbd> key.
+                </li>
+                <li>
+                  It will trap focus and allow navigation with tab and
+                  shift-tab.
+                </li>
+                <li>It will restore focus after it is closed.</li>
+              </ul>
               <InputGroup>
                 <Input name="my-input" elementRef={inputRef} />
                 <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
@@ -424,15 +457,17 @@ export default function DialogPage() {
             </p>
             <ul>
               <li>
-                <strong>Set a height on the Modal</strong> itself. The Modal
-                will always render at this height. If contained content height
-                exceeds this height, it will scroll.
+                <strong>Set a height on the ModalDialog</strong> itself. The
+                Modal will always render at this height. If contained content
+                height exceeds this height, it will scroll.
               </li>
               <li>
-                <strong>Set a minimum height on the {"Modal's"} content</strong>
-                . The Modal will always render at least this height, but will
-                grow in height if needed to accommodate longer content (up to
-                the bounds of the viewport).
+                <strong>
+                  Set a minimum height on the {"ModalDialog's"} content
+                </strong>
+                . The ModalDialog will always render at least this height, but
+                will grow in height if needed to accommodate longer content (up
+                to the bounds of the viewport).
               </li>
             </ul>
             <Library.Demo title="ModalDialog with a fixed height" withSource>
@@ -443,7 +478,7 @@ export default function DialogPage() {
                 onClose={() => {}}
               >
                 <p>
-                  This Modal has a height of <code>25rem</code>.
+                  This ModalDialog has a height of <code>25rem</code>.
                 </p>
               </ModalDialog_>
             </Library.Demo>
@@ -459,7 +494,7 @@ export default function DialogPage() {
                 onClose={() => {}}
               >
                 <p>
-                  This Modal has a height of <code>25rem</code> and long
+                  This ModalDialog has a height of <code>25rem</code> and long
                   content.
                 </p>
                 <LoremIpsum size="lg" />
@@ -477,8 +512,8 @@ export default function DialogPage() {
               >
                 <div className="min-h-[15rem]">
                   <p>
-                    This {"Modal's"} content has a preferred height of 15rem set
-                    by a CSS class.
+                    This {"ModalDialog's"} content has a preferred height of
+                    15rem set by a CSS class.
                   </p>
                 </div>
               </ModalDialog_>
@@ -508,10 +543,16 @@ export default function DialogPage() {
           </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Props">
+          <Library.Example title="disableCloseOnEscape">
+            <p>
+              Set this boolean prop (default <code>false</code>) to disable
+              closing the modal when the <kbd>Escape</kbd> key is pressed.
+            </p>
+          </Library.Example>
           <Library.Example title="disableFocusTrap">
             <p>
-              This boolean prop (default <code>true</code>) enables modal-dialog
-              focus trap and keyboard navigation as specified by{' '}
+              This boolean prop (default <code>false</code>) enables
+              modal-dialog focus trap and keyboard navigation as specified by{' '}
               <Link
                 href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/#keyboardinteraction"
                 underline="always"
@@ -524,23 +565,13 @@ export default function DialogPage() {
               <em>Note</em>: Disabling this prop is not recommended and could
               raise issues of accessibility.
             </p>
-            <Library.Demo title="Disabling focus trapping">
-              <ModalDialog_
-                _alwaysShowButton
-                buttons={<DialogButtons />}
-                icon={EditIcon}
-                initialFocus={inputRef}
-                onClose={() => {}}
-                title="Modal Dialog with disabled `trapFocus`"
-                disableFocusTrap
-              >
-                <p>This is a ModalDialog that does not trap focus.</p>
-                <InputGroup>
-                  <Input name="my-input" elementRef={inputRef} />
-                  <IconButton icon={ArrowRightIcon} variant="dark" title="go" />
-                </InputGroup>
-              </ModalDialog_>
-            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="disableRestoreFocus">
+            <p>
+              Set this boolean prop (default <code>false</code>) to disable the
+              restoration of focus after the <code>ModalDialog</code> is closed.
+            </p>
           </Library.Example>
 
           <Library.Example title="width">
@@ -632,9 +663,23 @@ export default function DialogPage() {
 
           <Library.Example title="Forwarded Props: Dialog">
             <p>
-              <code>ModalDialog</code> accepts and forwards all{' '}
-              <code>Dialog</code> props, including forwarded <code>Panel</code>{' '}
-              props.
+              <code>ModalDialog</code> forwards the following props (defaults in
+              parentheses) to <code>Dialog</code>:
+            </p>
+            <ul>
+              <li>
+                <code>closeOnClickAway</code> (<code>false</code>)
+              </li>
+              <li>
+                <code>closeOnFocusAway</code> (<code>false</code>)
+              </li>
+              <li>
+                <code>initialFocus</code> (<code>{"'auto'"}</code>)
+              </li>
+            </ul>
+            <p>
+              <code>Panel</code> props forwarded by <code>Dialog</code> are also
+              accepted.
             </p>
           </Library.Example>
         </Library.Pattern>
