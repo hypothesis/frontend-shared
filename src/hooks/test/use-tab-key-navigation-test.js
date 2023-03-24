@@ -1,17 +1,29 @@
 import { render } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
 import { waitFor } from '../../test-util/wait';
 import { useTabKeyNavigation } from '../use-tab-key-navigation';
 
-function Toolbar({ navigationOptions = {} }) {
+function Toolbar({
+  focusContainer = false,
+  initialFocusIndex = -1,
+  navigationOptions = {},
+}) {
   const containerRef = useRef();
+
+  useEffect(() => {
+    if (focusContainer) {
+      containerRef.current.focus();
+    } else if (initialFocusIndex >= 0) {
+      containerRef.current.children[initialFocusIndex].focus();
+    }
+  }, [focusContainer, initialFocusIndex]);
 
   useTabKeyNavigation(containerRef, navigationOptions);
 
   return (
-    <div ref={containerRef} data-testid="toolbar">
+    <div ref={containerRef} tabIndex={-1} data-testid="toolbar">
       <button data-testid="bold">Bold</button>
       <button data-testid="italic">Italic</button>
       <button data-testid="underline">Underline</button>
@@ -35,12 +47,23 @@ describe('useTabKeyNavigation', () => {
     container.remove();
   });
 
-  function renderToolbar(options = {}) {
+  function renderToolbar({
+    focusContainer = false,
+    initialFocusIndex = -1,
+    ...options
+  } = {}) {
     // We render the component with Preact directly rather than using Enzyme
     // for these tests. Since the `tabIndex` state lives only in the DOM,
     // and there are no child components involved, this is more convenient.
     act(() => {
-      render(<Toolbar navigationOptions={options} />, container);
+      render(
+        <Toolbar
+          focusContainer={focusContainer}
+          initialFocusIndex={initialFocusIndex}
+          navigationOptions={options}
+        />,
+        container
+      );
     });
     return findElementByTestId('toolbar');
   }
@@ -141,6 +164,51 @@ describe('useTabKeyNavigation', () => {
       );
       assert.equal(handleKeyDown.called, !shouldHandle, `${key} propagated`);
       handleKeyDown.resetHistory();
+    });
+  });
+
+  context('when initial focus is on the container', () => {
+    it('should move to first item in tab sequence when tab pressed', async () => {
+      const toolbar = renderToolbar({ focusContainer: true });
+      await waitFor(() => document.activeElement === toolbar);
+
+      pressKey('Tab');
+      assert.equal(currentItem(), 'Bold');
+
+      // Container has been removed from the tab sequence
+      pressKey({ key: 'Tab', shiftKey: true });
+      assert.equal(currentItem(), 'Help');
+    });
+
+    it('should not include container in tab sequence', async () => {
+      const toolbar = renderToolbar({ focusContainer: true });
+      await waitFor(() => document.activeElement === toolbar);
+
+      // Forward to first item in tab sequence
+      pressKey('Tab');
+      // Back to last item in tab sequence
+      pressKey({ key: 'Tab', shiftKey: true });
+      assert.equal(currentItem(), 'Help');
+    });
+  });
+
+  context('when initial focus is not on first item in tab sequence', () => {
+    it('should focus on the next item in the tab sequence when "Tab" pressed', async () => {
+      const toolbar = renderToolbar({ initialFocusIndex: 1 });
+      await waitFor(() => document.activeElement === toolbar.children[1]);
+
+      assert.equal(currentItem(), 'Italic');
+
+      pressKey('Tab');
+      assert.equal(currentItem(), 'Underline');
+    });
+
+    it('should focus on the previous item in the tab sequence when "shift-Tab" pressed', async () => {
+      const toolbar = renderToolbar({ initialFocusIndex: 2 });
+      await waitFor(() => document.activeElement === toolbar.children[2]);
+
+      pressKey({ key: 'Tab', shiftKey: true });
+      assert.equal(currentItem(), 'Italic');
     });
   });
 

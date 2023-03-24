@@ -13,12 +13,6 @@ function isElementVisible(element: HTMLElement) {
 
 export type UseTabKeyNavigationOptions = {
   /**
-   * Whether to focus the first element in the set of matching elements when
-   * the component is mounted
-   */
-  autofocus?: boolean;
-
-  /**
    * Don't respond to any keyboard events if not enabled. This allows selective
    * enabling by components using this hook, as hook use itself cannot be
    * conditional.
@@ -26,7 +20,7 @@ export type UseTabKeyNavigationOptions = {
   enabled?: boolean;
 
   /**
-   * CSS selector which specifies the elements that navigation moves between
+   * CSS selector which specifies which elements should be in the tab sequence
    */
   selector?: string;
 };
@@ -35,6 +29,9 @@ export type UseTabKeyNavigationOptions = {
  * Trap focus within a modal dialog and support roving tabindex with 'Tab' and
  * 'Shift-Tab' keys to navigate through interactive descendants. See [1] for
  * reference for how keyboard navigation should work within modal dialogs.
+ *
+ * Note that this hook does not set initial focus: routing initial focus
+ * appropriately is the responsibility of the consuming component.
  *
  * NB: This hook should be removed/disused once we migrate to using native
  * <dialog> elements. The hook duplicates some logic in `useArrowKeyNavigation`.
@@ -64,7 +61,6 @@ export function useTabKeyNavigation(
   containerRef: RefObject<HTMLElement | undefined>,
   {
     enabled = true,
-    autofocus = false,
     selector = 'a,button,input,select,textarea',
   }: UseTabKeyNavigationOptions = {}
 ) {
@@ -81,9 +77,17 @@ export function useTabKeyNavigation(
       const elements: HTMLElement[] = Array.from(
         container.querySelectorAll(selector)
       );
-      return elements.filter(
+      const filtered = elements.filter(
         el => isElementVisible(el) && !isElementDisabled(el)
       );
+      // Include the container itself in the set of navigable elements if it
+      // is currently focused. It will not be part of the tab sequence once it
+      // loses focus. This allows, e.g., a modal container to be focused when
+      // opened but not be part of the subsequent trapped tab sequence.
+      if (document.activeElement === container) {
+        filtered.unshift(container);
+      }
+      return filtered;
     };
 
     /**
@@ -148,7 +152,12 @@ export function useTabKeyNavigation(
       event.stopPropagation();
     };
 
-    updateTabIndexes(getNavigableElements(), 0, autofocus);
+    const elements = getNavigableElements();
+    // One of the navigable elements may already have focus
+    const focusedIndex = elements.indexOf(
+      document.activeElement as HTMLElement
+    );
+    updateTabIndexes(elements, focusedIndex);
 
     const listeners = new ListenerCollection();
 
@@ -181,5 +190,5 @@ export function useTabKeyNavigation(
       listeners.removeAll();
       mo.disconnect();
     };
-  }, [autofocus, containerRef, enabled, selector]);
+  }, [containerRef, enabled, selector]);
 }
