@@ -8,7 +8,7 @@ import Dialog from './Dialog';
 import type { DialogProps } from './Dialog';
 
 type ComponentProps = {
-  size?: 'sm' | 'md' | 'lg' | 'custom';
+  width?: 'sm' | 'md' | 'lg' | 'custom';
 
   /**
    * Disable WAI-ARIA-specific modal-dialog focus trap and tab/shift-tab
@@ -24,7 +24,7 @@ export type ModalDialogProps = DialogProps & ComponentProps;
  */
 const ModalDialogNext = function ModalDialog({
   children,
-  size = 'md',
+  width = 'md',
   disableFocusTrap = false,
 
   classes,
@@ -68,10 +68,10 @@ const ModalDialogNext = function ModalDialog({
           'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
           {
             // Max-width rules will ensure actual width never exceeds 90vw
-            'w-[30rem]': size === 'sm',
-            'w-[36rem]': size === 'md', // default
-            'w-[42rem]': size === 'lg',
-            // No width classes are added if size is 'custom'
+            'w-[30rem]': width === 'sm',
+            'w-[36rem]': width === 'md', // default
+            'w-[42rem]': width === 'lg',
+            // No width classes are added if width is 'custom'
           },
           classes
         )}
