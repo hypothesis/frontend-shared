@@ -11,13 +11,28 @@ type ComponentProps = {
   width?: 'sm' | 'md' | 'lg' | 'custom';
 
   /**
+   * Do not close the modal when the Escape key is pressed
+   */
+  disableCloseOnEscape?: boolean;
+
+  /**
    * Disable WAI-ARIA-specific modal-dialog focus trap and tab/shift-tab
    * keyboard navigation
    */
   disableFocusTrap?: boolean;
+
+  /**
+   * Disable the restoration of focus to the previously-focused element when
+   * the dialog is closed.
+   */
+  disableRestoreFocus?: boolean;
 };
 
-export type ModalDialogProps = DialogProps & ComponentProps;
+export type ModalDialogProps = Omit<
+  DialogProps,
+  'restoreFocus' | 'closeOnEscape'
+> &
+  ComponentProps;
 
 /**
  * Show a modal dialog
@@ -25,17 +40,17 @@ export type ModalDialogProps = DialogProps & ComponentProps;
 const ModalDialogNext = function ModalDialog({
   children,
   width = 'md',
+  disableCloseOnEscape = false,
   disableFocusTrap = false,
+  disableRestoreFocus = false,
 
   classes,
   elementRef,
 
   // Forwarded to Dialog
-  closeOnEscape = true,
   closeOnClickAway = false,
   closeOnFocusAway = false,
   initialFocus = 'auto',
-  restoreFocus = true,
 
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
@@ -52,9 +67,9 @@ const ModalDialogNext = function ModalDialog({
         // Dialog props
         closeOnClickAway={closeOnClickAway}
         closeOnFocusAway={closeOnFocusAway}
-        closeOnEscape={closeOnEscape}
+        closeOnEscape={!disableCloseOnEscape}
         initialFocus={initialFocus}
-        restoreFocus={restoreFocus}
+        restoreFocus={!disableRestoreFocus}
         classes={classnames(
           // Column-flex layout to constrain content to max-height
           'flex flex-col',
