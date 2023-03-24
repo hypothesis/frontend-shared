@@ -259,14 +259,15 @@ function StatusChip({ status }: LibraryStatusChipProps) {
     <span
       className={classnames('rounded-md py-1', {
         'px-2 bg-red-error text-color-text-inverted': status === 'breaking',
-        'px-2 bg-yellow-notice': status === 'deprecated',
-        'font-semibold': status === 'added' || status === 'changed',
+        'px-2 bg-yellow-notice':
+          status === 'deprecated' || status === 'changed',
+        'font-semibold': status === 'added',
       })}
     >
       {status === 'breaking' && <span>Breaking</span>}
       {status === 'deprecated' && <span>Deprecated</span>}
       {status === 'added' && <span>Added:</span>}
-      {status === 'changed' && <span>Changed:</span>}
+      {status === 'changed' && <span>Changed</span>}
     </span>
   );
 }
