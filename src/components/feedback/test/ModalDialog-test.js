@@ -46,6 +46,16 @@ describe('ModalDialog', () => {
       assert.isFalse(dialogProps.closeOnClickAway);
       assert.isFalse(dialogProps.closeOnFocusAway);
     });
+
+    it('allows disabling of close-on-escape', () => {
+      const wrapper = mount(
+        <ModalDialog title="Test modal dialog" disableCloseOnEscape>
+          This is my dialog
+        </ModalDialog>
+      );
+      const dialogProps = wrapper.find('Dialog').props();
+      assert.isFalse(dialogProps.closeOnEscape);
+    });
   });
 
   describe('restoring focus', () => {
@@ -55,6 +65,16 @@ describe('ModalDialog', () => {
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isTrue(dialogProps.restoreFocus);
+    });
+
+    it('allows disabling of focus restoration', () => {
+      const wrapper = mount(
+        <ModalDialog title="Test modal dialog" disableRestoreFocus>
+          This is my dialog
+        </ModalDialog>
+      );
+      const dialogProps = wrapper.find('Dialog').props();
+      assert.isFalse(dialogProps.restoreFocus);
     });
   });
 
