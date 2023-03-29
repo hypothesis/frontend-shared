@@ -1,14 +1,14 @@
 import { useState, useRef } from 'preact/hooks';
 
-import { Dialog } from '../../../../components/feedback';
 import { ModalDialog } from '../../../../components/feedback';
-import type { DialogProps } from '../../../../components/feedback/Dialog';
 import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
+import type { DialogProps } from '../../../../next';
 import {
   ArrowRightIcon,
   Button,
   CautionIcon,
   DataTable,
+  Dialog,
   EditIcon,
   IconButton,
   Input,
