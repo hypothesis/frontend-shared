@@ -15,9 +15,12 @@ import {
   InputGroup,
   Link,
   Scroll,
+  Tab,
+  TabList,
 } from '../../../../next';
 import Library from '../../Library';
 import { LoremIpsum, nabokovNovels } from '../samples';
+import type { NabokovNovel } from '../samples';
 
 const nabokovRows = nabokovNovels();
 const nabokovColumns = [
@@ -145,6 +148,10 @@ function ModalDialog_({
 
 export default function DialogPage() {
   const inputRef = useRef(null);
+
+  // For the complex-modal example
+  const [selectedRow, setSelectedRow] = useState<NabokovNovel | null>(null);
+  const [selectedTab, setSelectedTab] = useState<'tab1' | 'tab2'>('tab1');
   return (
     <Library.Page
       title="Dialogs"
@@ -451,6 +458,72 @@ export default function DialogPage() {
               </ModalDialog_>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="Handling complex modals">
+            <p>
+              Modal dialogs should provide appropriate keyboard navigation even
+              when there are multiple or complex embedded widgts, like data
+              tables (ARIA <code>{'`role="grid"`'}</code>) or tabs (ARIA{' '}
+              <code>{'`role="tablist"`'}</code>).
+            </p>
+            <p>
+              <strong>
+                Keyboard navigation for embedded widgets is under development.
+              </strong>
+            </p>
+            <Library.Demo title="Modal with embedded ARIA widgets" withSource>
+              <ModalDialog_
+                buttons={<DialogButtons />}
+                classes="h-[25rem]"
+                onClose={() => {}}
+                title="Modal with tabs and data table"
+                scrollable={false}
+              >
+                <TabList classes="gap-x-4">
+                  <Tab
+                    textContent="Tab 1"
+                    selected={selectedTab === 'tab1'}
+                    onClick={() => setSelectedTab('tab1')}
+                  >
+                    Tab 1
+                  </Tab>
+                  <Tab
+                    textContent="Tab 2"
+                    selected={selectedTab === 'tab2'}
+                    onClick={() => setSelectedTab('tab2')}
+                  >
+                    Tab 2
+                  </Tab>
+                </TabList>
+                <p>
+                  Content for both tabs, with{' '}
+                  <Link href="#" underline="always">
+                    a link
+                  </Link>
+                  .
+                </p>
+                {selectedTab === 'tab1' && (
+                  <Scroll>
+                    <DataTable
+                      rows={nabokovRows}
+                      columns={nabokovColumns}
+                      title="Nabokov novels"
+                      selectedRow={selectedRow}
+                      onSelectRow={row => setSelectedRow(row)}
+                    />
+                  </Scroll>
+                )}
+                {selectedTab === 'tab2' && (
+                  <>
+                    <p>This is content on another, second, tab.</p>
+                    <div className="flex gap-x-4">
+                      <Button>Click me</Button>
+                      <Button>No, me!</Button>
+                    </div>
+                  </>
+                )}
+              </ModalDialog_>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="Managing modal height">
             <p>
               By default, the height of a modal is dependent on the content
@@ -645,31 +718,9 @@ export default function DialogPage() {
               or to disable scrolling entirely.
             </p>
             <p>
-              This example demonstrates setting the boolean{' '}
-              <code>scrollable</code> prop to <code>false</code> and using a{' '}
-              <code>Scroll</code> component within Modal content to scroll only
-              a portion of the content.
+              The <i>Handling Complex Modals</i> example above disables
+              scrolling with the <code>scrollable</code> prop.
             </p>
-            <Library.Demo title="Manually controlling scrolling" withSource>
-              <ModalDialog_
-                buttons={<DialogButtons />}
-                classes="h-[25rem]"
-                onClose={() => {}}
-                title="Modal with scrollable disabled"
-                scrollable={false}
-              >
-                <p>
-                  Fake {'>'} breadcrumbs {'>'} example
-                </p>
-                <Scroll>
-                  <DataTable
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                    title="Nabokov novels"
-                  />
-                </Scroll>
-              </ModalDialog_>
-            </Library.Demo>
           </Library.Example>
 
           <Library.Example title="width">
