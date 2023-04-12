@@ -46,7 +46,11 @@ const TabListNext = function TabList({
       data-component="TabList"
       {...htmlAttributes}
       ref={downcastRef(tabListRef)}
-      className={classnames('flex', { 'flex-col': vertical }, classes)}
+      className={classnames(
+        'flex focus-visible-ring',
+        { 'flex-col': vertical },
+        classes
+      )}
       role="tablist"
       aria-orientation={vertical ? 'vertical' : 'horizontal'}
     >
