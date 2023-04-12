@@ -1,5 +1,5 @@
 import type { RefObject } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
 
@@ -57,13 +57,21 @@ export type UseTabKeyNavigationOptions = {
  *
  */
 
+// By default, include standard browser focus-able, tab-sequence elements (links, buttons,
+// inputs). Also include the containers for ARIA interactive widgets `grid` and
+// `tablist`. Internal keyboard navigation for those widgets should be handled
+// separately: exclude `tab`-role buttons from this hook's navigation sequence.
+const defaultSelector =
+  'a,button:not([role="tab"]),input,select,textarea,[role="grid"],[role="tablist"]';
+
 export function useTabKeyNavigation(
   containerRef: RefObject<HTMLElement | undefined>,
   {
     enabled = true,
-    selector = 'a,button,input,select,textarea',
+    selector = defaultSelector,
   }: UseTabKeyNavigationOptions = {}
 ) {
+  const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
   useEffect(() => {
     if (!enabled) {
       return () => {};
@@ -116,6 +124,7 @@ export function useTabKeyNavigation(
       for (const [index, element] of elements.entries()) {
         element.tabIndex = index === currentIndex ? 0 : -1;
         if (index === currentIndex && setFocus) {
+          lastFocusedItem.current = element;
           element.focus();
         }
       }
@@ -124,6 +133,16 @@ export function useTabKeyNavigation(
     const onKeyDown = (event: KeyboardEvent) => {
       const elements = getNavigableElements();
       let currentIndex = elements.findIndex(item => item.tabIndex === 0);
+      if (
+        (currentIndex === -1 || elements[currentIndex] === container) &&
+        lastFocusedItem.current
+      ) {
+        // Focus is moving back to/into the container after having left (or
+        // active tabindex is a non-navigable element). Restore previous active
+        // tabindex. This allows the user to exit and re-enter the widget
+        // without losing tab-sequence position.
+        currentIndex = elements.indexOf(lastFocusedItem.current as HTMLElement);
+      }
 
       let handled = false;
       if (event.key === 'Tab' && event.shiftKey) {

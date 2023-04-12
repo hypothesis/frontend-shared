@@ -39,6 +39,9 @@ describe('useTabKeyNavigation', () => {
 
   beforeEach(() => {
     container = document.createElement('div');
+    const button = document.createElement('button');
+    button.setAttribute('data-testid', 'outside-button');
+    container.append(button);
     document.body.append(container);
     renderToolbar();
   });
@@ -99,7 +102,7 @@ describe('useTabKeyNavigation', () => {
     const forwardKey = 'Tab';
     const backKey = { key: 'Tab', shiftKey: true };
 
-    renderToolbar();
+    const toolbar = renderToolbar();
 
     const steps = [
       // Test navigating forwards.
@@ -125,7 +128,7 @@ describe('useTabKeyNavigation', () => {
       const currentElement = document.activeElement;
       assert.equal(currentElement.innerText, expectedItem);
 
-      const toolbarButtons = container.querySelectorAll('a,button');
+      const toolbarButtons = toolbar.querySelectorAll('a,button');
       for (let element of toolbarButtons) {
         if (element === currentElement) {
           assert.equal(element.tabIndex, 0);
@@ -265,6 +268,37 @@ describe('useTabKeyNavigation', () => {
 
     assert.instanceOf(error, Error);
     assert.equal(error.message, 'Container ref not set');
+  });
+
+  it('should restore tabindex sequence when widget is re-entered', () => {
+    const toolbar = renderToolbar();
+    pressKey('Tab');
+
+    assert.equal(currentItem(), 'Italic');
+
+    const outsideButton = container.querySelector(
+      '[data-testid="outside-button"]'
+    );
+    outsideButton.focus();
+
+    assert.equal(document.activeElement, outsideButton);
+
+    toolbar.dispatchEvent(new FocusEvent('focusin'));
+
+    pressKey('Tab');
+
+    // Focus/navigation sequence is restored, and continues on to the next
+    // option on first Tab press after re-entry
+    assert.equal(currentItem(), 'Underline');
+
+    // Put focus back on the widget's container, which is "outside" of the
+    // normal set of navigable elements
+    toolbar.focus();
+
+    // Subsequent tab navigation should pick up where it left off
+    pressKey('Tab');
+
+    assert.equal(currentItem(), 'Help');
   });
 
   it('should respect a custom element selector', () => {
