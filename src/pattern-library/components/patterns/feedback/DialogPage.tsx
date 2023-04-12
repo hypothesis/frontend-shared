@@ -399,6 +399,9 @@ export default function DialogPage() {
                 pressed, but you can disable this behavior by setting the{' '}
                 <code>disableCloseOnEscape</code> prop.
               </Library.ChangelogItem>
+              <Library.ChangelogItem status="deprecated">
+                <code>width</code> prop → use <code>size</code> instead
+              </Library.ChangelogItem>
             </Library.Changelog>
           </Library.Example>
         </Library.Pattern>
@@ -578,35 +581,39 @@ export default function DialogPage() {
             </p>
           </Library.Example>
 
-          <Library.Example title="width">
-            <Library.Demo title="width='sm'" withSource>
+          <Library.Example title="size">
+            <p>
+              The <code>size</code> prop establishes the width of the modal
+              dialog.
+            </p>
+            <Library.Demo title="size='sm'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Small modal"
-                width="sm"
+                size="sm"
               >
                 <LoremIpsum size="sm" />
               </ModalDialog_>
             </Library.Demo>
 
-            <Library.Demo title="width='md' (default)" withSource>
+            <Library.Demo title="size='md' (default)" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Medium-width modal"
-                width="md"
+                size="md"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
             </Library.Demo>
 
-            <Library.Demo title="width='lg'" withSource>
+            <Library.Demo title="size='lg'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
                 title="Wide modal"
-                width="lg"
+                size="lg"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
@@ -614,17 +621,17 @@ export default function DialogPage() {
 
             <p>
               To style your <code>ModalDialog</code> with a custom width, set{' '}
-              <code>width</code> to <code>{"'custom'"}</code> and provide sizing
+              <code>size</code> to <code>{"'custom'"}</code> and provide sizing
               CSS class(es) via the <code>classes</code> prop.
             </p>
 
-            <Library.Demo title="width='custom'" withSource>
+            <Library.Demo title="size='custom'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
                 classes="w-[40em]"
                 onClose={() => {}}
                 title="Custom-width modal"
-                width="custom"
+                size="custom"
               >
                 <LoremIpsum size="md" />
               </ModalDialog_>
@@ -663,6 +670,16 @@ export default function DialogPage() {
                 </Scroll>
               </ModalDialog_>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="width">
+            <p>
+              The{' '}
+              <s>
+                <code>width</code>
+              </s>{' '}
+              prop is deprecated: use <code>size</code> instead.
+            </p>
           </Library.Example>
 
           <Library.Example title="Forwarded Props: Dialog">

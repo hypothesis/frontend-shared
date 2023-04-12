@@ -99,4 +99,47 @@ describe('ModalDialog', () => {
       });
     });
   });
+
+  describe('modal size', () => {
+    function sizedModal(props) {
+      return mount(
+        <ModalDialog title="Test modal dialog" {...props}>
+          This is my dialog
+        </ModalDialog>
+      );
+    }
+
+    function modalSize(wrapper) {
+      return wrapper
+        .find('Dialog')
+        .getDOMNode()
+        .getAttribute('data-modal-size');
+    }
+
+    it('sets a default size if neither `size` nor `width` provided', () => {
+      const wrapper = mount(
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+      );
+
+      assert.equal(modalSize(wrapper), 'md');
+    });
+
+    it('sets size from size prop', () => {
+      const wrapper = sizedModal({ size: 'lg' });
+
+      assert.equal(modalSize(wrapper), 'lg');
+    });
+
+    it('accepts deprecated `width` prop to set size', () => {
+      const wrapper = sizedModal({ width: 'lg' });
+
+      assert.equal(modalSize(wrapper), 'lg');
+    });
+
+    it('prefers `size` over `width` to set size', () => {
+      const wrapper = sizedModal({ size: 'lg', width: 'sm' });
+
+      assert.equal(modalSize(wrapper), 'lg');
+    });
+  });
 });
