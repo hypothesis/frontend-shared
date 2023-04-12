@@ -7,8 +7,13 @@ import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
 import type { DialogProps } from './Dialog';
 
+type ModalWidth = 'sm' | 'md' | 'lg' | 'custom';
+
 type ComponentProps = {
-  width?: 'sm' | 'md' | 'lg' | 'custom';
+  /**
+   * @deprecated  - use `size` instead
+   */
+  width?: ModalWidth;
 
   /**
    * Do not close the modal when the Escape key is pressed
@@ -26,6 +31,11 @@ type ComponentProps = {
    * the dialog is closed.
    */
   disableRestoreFocus?: boolean;
+
+  /**
+   * Relative size (width) of modal dialog
+   */
+  size?: ModalWidth;
 };
 
 export type ModalDialogProps = Omit<
@@ -39,10 +49,11 @@ export type ModalDialogProps = Omit<
  */
 const ModalDialogNext = function ModalDialog({
   children,
-  width = 'md',
   disableCloseOnEscape = false,
   disableFocusTrap = false,
   disableRestoreFocus = false,
+  size,
+  width,
 
   classes,
   elementRef,
@@ -54,6 +65,8 @@ const ModalDialogNext = function ModalDialog({
 
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
+  // Prefer `size` prop but support deprecated `width` if present
+  const modalSize = size ?? width ?? 'md';
   const modalRef = useSyncedRef(elementRef);
 
   useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
@@ -83,14 +96,17 @@ const ModalDialogNext = function ModalDialog({
           'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
           {
             // Max-width rules will ensure actual width never exceeds 90vw
-            'w-[30rem]': width === 'sm',
-            'w-[36rem]': width === 'md', // default
-            'w-[42rem]': width === 'lg',
+            'w-[30rem]': modalSize === 'sm',
+            'w-[36rem]': modalSize === 'md', // default
+            'w-[42rem]': modalSize === 'lg',
             // No width classes are added if width is 'custom'
           },
           classes
         )}
         elementRef={downcastRef(modalRef)}
+        // Testing affordance. TODO: Remove once deprecated `width` prop
+        // no longer supported.
+        data-modal-size={modalSize}
       >
         {children}
       </Dialog>
