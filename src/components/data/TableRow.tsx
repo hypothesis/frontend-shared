@@ -45,11 +45,11 @@ const TableRowNext = function TableRow({
       ref={downcastRef(rowRef)}
       className={classnames(
         'group',
+        'focus-visible-ring ring-inset',
         {
           // Low-opacity backgrounds allow any scroll shadows to be visible
           'odd:bg-slate-9/[.03]': !isHeadRow && !selected,
           'bg-slate-7 text-color-text-inverted': selected,
-          'focus-visible-ring ring-inset': tableContext?.interactive,
           'hover:bg-slate-9/[.08]': tableContext?.interactive && !selected,
           'group/unselected': !selected,
           'group/selected': selected,
