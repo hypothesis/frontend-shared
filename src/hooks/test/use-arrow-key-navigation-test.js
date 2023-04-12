@@ -11,7 +11,7 @@ function Toolbar({ navigationOptions = {} }) {
   useArrowKeyNavigation(containerRef, navigationOptions);
 
   return (
-    <div ref={containerRef} data-testid="toolbar">
+    <div ref={containerRef} data-testid="toolbar" tabIndex={-1}>
       <button data-testid="bold">Bold</button>
       <button data-testid="italic">Italic</button>
       <button data-testid="underline">Underline</button>
@@ -24,11 +24,15 @@ function Toolbar({ navigationOptions = {} }) {
 
 describe('useArrowKeyNavigation', () => {
   let container;
+  let toolbar;
 
   beforeEach(() => {
     container = document.createElement('div');
+    const button = document.createElement('button');
+    button.setAttribute('data-testid', 'outside-button');
+    container.append(button);
     document.body.append(container);
-    renderToolbar();
+    toolbar = renderToolbar();
   });
 
   afterEach(() => {
@@ -98,7 +102,7 @@ describe('useArrowKeyNavigation', () => {
         const currentElement = document.activeElement;
         assert.equal(currentElement.innerText, expectedItem);
 
-        const toolbarButtons = container.querySelectorAll('a,button');
+        const toolbarButtons = toolbar.querySelectorAll('a,button');
         for (let element of toolbarButtons) {
           if (element === currentElement) {
             assert.equal(element.tabIndex, 0);
@@ -257,6 +261,42 @@ describe('useArrowKeyNavigation', () => {
     pressKey('ArrowRight');
     assert.equal(currentItem(), 'Bold');
     pressKey('ArrowLeft');
+    assert.equal(currentItem(), 'Italic');
+  });
+
+  it('should restore tabindex sequence when widget is re-entered', () => {
+    const toolbar = renderToolbar();
+
+    // Set focus on the widget's container, which isn't otherwise part
+    // of the widget's navigable element set.
+    toolbar.focus();
+
+    // In this case, the first right-arrow press will go to the first item
+    pressKey('ArrowRight');
+    assert.equal(currentItem(), 'Bold');
+    pressKey('ArrowRight');
+    assert.equal(currentItem(), 'Italic');
+
+    const outsideButton = container.querySelector(
+      '[data-testid="outside-button"]'
+    );
+
+    // Place focus on an element entirely outside of the widget
+    outsideButton.focus();
+    assert.equal(document.activeElement, outsideButton);
+
+    // Now trigger a `focusin` event on the widget's container
+    toolbar.dispatchEvent(new FocusEvent('focusin'));
+
+    // Focus/navigation sequence is restored to the last option
+    assert.equal(currentItem(), 'Italic');
+
+    // Take focus out of the sequence of navigable elements and set it back
+    // on the container
+    toolbar.focus();
+
+    // As there is a previously-focused item, focus will be restored
+    // to that item
     assert.equal(currentItem(), 'Italic');
   });
 

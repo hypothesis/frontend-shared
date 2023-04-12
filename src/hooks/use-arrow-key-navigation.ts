@@ -1,5 +1,5 @@
 import type { RefObject } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
 
@@ -72,6 +72,11 @@ export function useArrowKeyNavigation(
     selector = 'a,button',
   }: UseArrowKeyNavigationOptions = {}
 ) {
+  // Keep track of the element that was last focused by this hook such that
+  // navigation can be restored if focus moves outside of the container
+  // and then back to/into it.
+  const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
+
   useEffect(() => {
     if (!containerRef.current) {
       throw new Error('Container ref not set');
@@ -82,9 +87,17 @@ export function useArrowKeyNavigation(
       const elements: HTMLElement[] = Array.from(
         container.querySelectorAll(selector)
       );
-      return elements.filter(
+      const filtered = elements.filter(
         el => isElementVisible(el) && !isElementDisabled(el)
       );
+      // Include the container itself in the set of navigable elements if it
+      // is currently focused. It will not be part of the tab sequence once it
+      // loses focus. This allows, e.g., a widget container to be focused when
+      // opened but not be part of the subsequent keyboard-navigation sequence.
+      if (document.activeElement === container) {
+        filtered.unshift(container);
+      }
+      return filtered;
     };
 
     /**
@@ -113,6 +126,7 @@ export function useArrowKeyNavigation(
       for (const [index, element] of elements.entries()) {
         element.tabIndex = index === currentIndex ? 0 : -1;
         if (index === currentIndex && setFocus) {
+          lastFocusedItem.current = element;
           element.focus();
         }
       }
@@ -169,6 +183,13 @@ export function useArrowKeyNavigation(
     // may not be received if the element immediately loses focus after it
     // is triggered.
     listeners.add(container, 'focusin', event => {
+      if (event.target === container && lastFocusedItem.current) {
+        // Focus is moving back to the container after having left. Restore the
+        // last tabindex. This allows users to exit and re-enter the widget
+        // without resetting the navigation sequence.
+        lastFocusedItem.current.focus();
+        return;
+      }
       const elements = getNavigableElements();
       const targetIndex = elements.indexOf(event.target as HTMLElement);
       if (targetIndex >= 0) {
