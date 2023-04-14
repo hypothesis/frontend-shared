@@ -27,8 +27,8 @@ export type BaseProps = PresentationalProps & { unstyled?: boolean };
 export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
 
 /**
- * A component type used by other components that can optionally support a
- * transition animation
+ * A component that describes an `in` and an `out` transition, typically to
+ * animate the mounting and unmounting of a child component.
  */
 export type TransitionComponent = JSX.ElementType<{
   visible: boolean;

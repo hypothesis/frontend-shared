@@ -43,7 +43,7 @@ type ComponentProps = {
   restoreFocus?: boolean;
 
   /**
-   * Allows to provide a transition animation to the Dialog contents
+   * Optional TransitionComponent for open (mount) and close (unmount) transitions
    */
   transitionComponent?: TransitionComponent;
 };
@@ -74,7 +74,7 @@ const DialogNext = function Dialog({
   // Forwarded to Panel
   buttons,
   icon,
-  onClose,
+  onClose = noop,
   paddingSize = 'md',
   scrollable = true,
   title,
@@ -87,13 +87,18 @@ const DialogNext = function Dialog({
   );
   const [transitionComponentVisible, setTransitionComponentVisible] =
     useState(false);
-  // If a TransitionComponent was provided, closing the Dialog should just set
-  // it to not visible. The TransitionComponent will take care of actually
-  // closing the dialog once the "out" transition has finished
-  const closeHandler = TransitionComponent
-    ? () => setTransitionComponentVisible(false)
-    : onClose ?? noop;
-  const setInitialFocus = useCallback(() => {
+
+  const closeHandler = useCallback(() => {
+    if (TransitionComponent) {
+      // When a TransitionComponent is provided, the actual "onClose" will be
+      // called by that component, once the "out" transition has finished
+      setTransitionComponentVisible(false);
+    } else {
+      onClose();
+    }
+  }, [onClose, TransitionComponent]);
+
+  const initializeDialog = useCallback(() => {
     if (initialFocus === 'manual') {
       return;
     }
@@ -117,12 +122,12 @@ const DialogNext = function Dialog({
       modalRef.current?.focus();
     }
   }, [initialFocus, modalRef]);
+
   const onTransitionEnd = (direction: 'in' | 'out') => {
     if (direction === 'in') {
-      // We can't check the initial focus until transition "in" has finished
-      setInitialFocus();
+      initializeDialog();
     } else {
-      onClose?.();
+      onClose();
     }
   };
 
@@ -145,10 +150,9 @@ const DialogNext = function Dialog({
   );
 
   useEffect(() => {
-    // Trigger initial "in" transition animation
     setTransitionComponentVisible(true);
     if (!TransitionComponent) {
-      setInitialFocus();
+      initializeDialog();
     }
 
     // We only want to run this effect once when the dialog is mounted.
