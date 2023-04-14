@@ -17,6 +17,7 @@ import {
   Scroll,
 } from '../../../../next';
 import Library from '../../Library';
+import FadeComponent from '../FadeComponent';
 import { LoremIpsum, nabokovNovels } from '../samples';
 
 const nabokovRows = nabokovNovels();
@@ -318,6 +319,37 @@ export default function DialogPage() {
                   pattern should be avoided, but is supported for a few legacy
                   use cases. You can close this modal by clicking the{' '}
                   {'"Escape!"'} button.
+                </p>
+              </Dialog_>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="transitionComponent">
+            <p>
+              It allows to provide a component which supports transitions, but
+              keeping the internal behavior (initial focus, closing, etc)
+              transparent to consumers.
+            </p>
+            <p>
+              The only requirement is that provided component needs to conform
+              to the next props:
+            </p>
+            <Library.Code
+              content={`type TransitionComponentProps = {
+  visible: boolean;
+  onTransitionEnd?: (direction: 'in' | 'out') => void;
+}`}
+            />
+            <Library.Demo
+              title="Dialog with TransitionComponent example"
+              withSource
+            >
+              <Dialog_
+                title="Dialog with TransitionComponent example"
+                transitionComponent={FadeComponent}
+              >
+                <p>
+                  This dialog has a fade in/out transition when opened/closed.
                 </p>
               </Dialog_>
             </Library.Demo>
