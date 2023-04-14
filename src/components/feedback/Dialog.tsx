@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import type { RefObject } from 'preact';
-import type { JSX } from 'preact';
 import { Fragment } from 'preact';
 import {
   useCallback,
@@ -16,15 +15,10 @@ import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useUniqueId } from '../../hooks/use-unique-id';
-import type { PresentationalProps } from '../../types';
+import type { PresentationalProps, TransitionComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
 import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';
-
-type TransitionComponent = JSX.ElementType<{
-  visible: boolean;
-  onTransitionEnd?: () => void;
-}>;
 
 type ComponentProps = {
   closeOnClickAway?: boolean;
@@ -49,11 +43,7 @@ type ComponentProps = {
   restoreFocus?: boolean;
 
   /**
-   * Providing this has the next implications:
-   * - The component will be used to wrap the Dialog contents.
-   * - If initialFocus === 'auto', the Dialog will be focused once the open
-   *   transition has finished.
-   * - onClose will be invoked after the close transition has finished.
+   * Allows to provide a transition animation to the Dialog contents
    */
   transitionComponent?: TransitionComponent;
 };
@@ -95,12 +85,13 @@ const DialogNext = function Dialog({
   const restoreFocusEl = useRef<HTMLElement | null>(
     document.activeElement as HTMLElement | null
   );
-  const [visible, setVisible] = useState(false);
+  const [transitionComponentVisible, setTransitionComponentVisible] =
+    useState(false);
   // If a TransitionComponent was provided, closing the Dialog should just set
   // it to not visible. The TransitionComponent will take care of actually
-  // closing the dialog once transition has finished
+  // closing the dialog once the "out" transition has finished
   const closeHandler = TransitionComponent
-    ? () => setVisible(false)
+    ? () => setTransitionComponentVisible(false)
     : onClose ?? noop;
   const setInitialFocus = useCallback(() => {
     if (initialFocus === 'manual') {
@@ -126,6 +117,14 @@ const DialogNext = function Dialog({
       modalRef.current?.focus();
     }
   }, [initialFocus, modalRef]);
+  const onTransitionEnd = (direction: 'in' | 'out') => {
+    if (direction === 'in') {
+      // We can't check the initial focus until transition "in" has finished
+      setInitialFocus();
+    } else {
+      onClose?.();
+    }
+  };
 
   useClickAway(modalRef, closeHandler, {
     enabled: closeOnClickAway,
@@ -146,9 +145,11 @@ const DialogNext = function Dialog({
   );
 
   useEffect(() => {
-    // Trigger initial open animation
-    setVisible(true);
-    setInitialFocus();
+    // Trigger initial "in" transition animation
+    setTransitionComponentVisible(true);
+    if (!TransitionComponent) {
+      setInitialFocus();
+    }
 
     // We only want to run this effect once when the dialog is mounted.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -191,16 +192,8 @@ const DialogNext = function Dialog({
 
   return (
     <Wrapper
-      visible={visible}
-      onTransitionEnd={() => {
-        if (!visible) {
-          onClose?.();
-        } else {
-          // Once transition on a visible Dialog has finished, we re-check the
-          // initial focus
-          setInitialFocus();
-        }
-      }}
+      visible={transitionComponentVisible}
+      onTransitionEnd={onTransitionEnd}
     >
       <div
         data-component="Dialog"
