@@ -18,8 +18,8 @@ const createComponent = (Component, props = {}) => {
  * @type {import('../../../next.js').TransitionComponent}
  */
 const ComponentWithTransition = ({ children, visible, onTransitionEnd }) => {
-  // Fake a 200ms transition time
-  setTimeout(() => onTransitionEnd?.(visible ? 'in' : 'out'), 200);
+  // Fake a 50ms transition time
+  setTimeout(() => onTransitionEnd?.(visible ? 'in' : 'out'), 50);
   return <div>{children}</div>;
 };
 
@@ -137,7 +137,7 @@ describe('Dialog', () => {
           wrapper.find('[role="dialog"]').getDOMNode()
         );
         // Once the transition has ended, the Dialog should be focused
-        await delay(300); // Transition finishes after 200ms
+        await delay(60); // Transition finishes after 6ms
         assert.equal(
           document.activeElement,
           wrapper.find('[role="dialog"]').getDOMNode()
@@ -278,7 +278,7 @@ describe('Dialog', () => {
         // The onClose callback is not immediately invoked
         assert.notCalled(onClose);
         // Once the transition has ended, the callback should have been called
-        await delay(300); // Transition finishes after 200ms
+        await delay(60); // Transition finishes after 50ms
         assert.called(onClose);
       });
     });

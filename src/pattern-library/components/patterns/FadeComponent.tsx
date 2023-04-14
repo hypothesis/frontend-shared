@@ -3,6 +3,10 @@ import { useCallback } from 'preact/hooks';
 
 import type { TransitionComponent } from '../../../types';
 
+/**
+ * This component is used just to demonstrate the `TransitionComponent`
+ * functionality on components supporting it, like `Dialog`.
+ */
 const FadeComponent: TransitionComponent = ({
   children,
   visible,
@@ -19,7 +23,7 @@ const FadeComponent: TransitionComponent = ({
         'opacity-100': visible,
         'opacity-0': !visible,
       })}
-      // @ts-expect-error react uses "ontransitionend" rather than "onTransitionEnd".
+      // @ts-expect-error preact uses "ontransitionend" rather than "onTransitionEnd".
       // eslint-disable-next-line react/no-unknown-property
       ontransitionend={handleTransitionEnd}
     >
