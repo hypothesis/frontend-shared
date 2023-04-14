@@ -56,6 +56,7 @@ export type {
   CompositeProps,
   IconComponent,
   PresentationalProps,
+  TransitionComponent,
 } from './types';
 
 export type {

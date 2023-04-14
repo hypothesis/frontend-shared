@@ -25,3 +25,12 @@ export type BaseProps = PresentationalProps & { unstyled?: boolean };
  * valid `<svg>` element attribute as props.
  */
 export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
+
+/**
+ * A component type used by other components that can optionally support a
+ * transition animation
+ */
+export type TransitionComponent = JSX.ElementType<{
+  visible: boolean;
+  onTransitionEnd?: (direction: 'in' | 'out') => void;
+}>;
