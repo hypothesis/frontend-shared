@@ -407,10 +407,6 @@ export default function DialogPage() {
               deprecated <code>Modal</code> component.
             </strong>
           </p>
-          <p>
-            <code>ModalDialog</code> is still under development and is not yet
-            part of the package API.
-          </p>
           <Library.Example title="Migrating to this component from Modal">
             <Library.Changelog>
               <Library.ChangelogItem status="changed">
@@ -496,11 +492,6 @@ export default function DialogPage() {
               when there are multiple or complex embedded widgts, like data
               tables (ARIA <code>{'`role="grid"`'}</code>) or tabs (ARIA{' '}
               <code>{'`role="tablist"`'}</code>).
-            </p>
-            <p>
-              <strong>
-                Keyboard navigation for embedded widgets is under development.
-              </strong>
             </p>
             <Library.Demo title="Modal with embedded ARIA widgets" withSource>
               <ModalDialog_
