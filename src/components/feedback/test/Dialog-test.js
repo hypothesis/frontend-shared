@@ -1,6 +1,7 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
+import { delay } from '../../../test-util/wait.js';
 import { testPresentationalComponent } from '../../test/common-tests';
 import Dialog from '../Dialog';
 import { $imports } from '../Dialog';
@@ -11,6 +12,15 @@ const createComponent = (Component, props = {}) => {
       This is child content
     </Component>
   );
+};
+
+/**
+ * @type {import('../../../next.js').TransitionComponent}
+ */
+const ComponentWithTransition = ({ children, visible, onTransitionEnd }) => {
+  // Fake a 200ms transition time
+  setTimeout(() => onTransitionEnd?.(visible ? 'in' : 'out'), 200);
+  return <div>{children}</div>;
 };
 
 describe('Dialog', () => {
@@ -109,6 +119,30 @@ describe('Dialog', () => {
         document.activeElement,
         wrapper.find('[role="dialog"]').getDOMNode()
       );
+    });
+
+    context('when a TransitionComponent is provided', () => {
+      it('focuses dialog only after "in" transition has ended', async () => {
+        const wrapper = mount(
+          <Dialog
+            title="My dialog"
+            transitionComponent={ComponentWithTransition}
+          />,
+          { attachTo: container }
+        );
+
+        // The Dialog is still not focused immediately after mounting it
+        assert.notEqual(
+          document.activeElement,
+          wrapper.find('[role="dialog"]').getDOMNode()
+        );
+        // Once the transition has ended, the Dialog should be focused
+        await delay(300); // Transition finishes after 200ms
+        assert.equal(
+          document.activeElement,
+          wrapper.find('[role="dialog"]').getDOMNode()
+        );
+      });
     });
   });
 
@@ -223,6 +257,30 @@ describe('Dialog', () => {
       );
 
       assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: true });
+    });
+
+    context('when a TransitionComponent is provided', () => {
+      it('closes the Dialog only after "out" transition has ended', async () => {
+        const wrapper = mount(
+          <Dialog
+            title="Test dialog"
+            onClose={onClose}
+            transitionComponent={ComponentWithTransition}
+          />,
+          {
+            attachTo: container,
+          }
+        );
+
+        // We simulate closing the Dialog's Panel
+        wrapper.find('Panel').prop('onClose')();
+
+        // The onClose callback is not immediately invoked
+        assert.notCalled(onClose);
+        // Once the transition has ended, the callback should have been called
+        await delay(300); // Transition finishes after 200ms
+        assert.called(onClose);
+      });
     });
   });
 
