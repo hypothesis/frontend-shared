@@ -78,7 +78,6 @@
     "arrowParens": "avoid",
     "singleQuote": true,
     "importOrder": [
-      "^.\\/components\\/patterns\\/(.*)Components$",
       "^[./]"
     ],
     "importOrderSeparation": true
