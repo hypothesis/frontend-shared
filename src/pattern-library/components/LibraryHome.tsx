@@ -25,10 +25,6 @@ export default function LibraryHome() {
           </Link>{' '}
           components that make up this {"package's"} core content.
         </li>
-        <li>
-          <strong>Legacy</strong> components are also documented, but are
-          deprecated and slated for removal in version 6 of this package.
-        </li>
       </ul>
     </Library.Page>
   );
