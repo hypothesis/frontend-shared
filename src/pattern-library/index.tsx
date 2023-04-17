@@ -3,9 +3,7 @@ import { render } from 'preact';
 // Enable preact debug checks
 import 'preact/debug';
 
-import { registerIcons } from '../';
 import PlaygroundApp from './components/PlaygroundApp';
-import iconSet from './icons';
 import type { CustomPlaygroundRoute } from './routes';
 
 export type PlaygroundAppProps = {
@@ -41,13 +39,7 @@ export type PatternLibraryAppOptions = {
 /**
  * Render the pattern-library preact app
  */
-export function startApp({
-  icons = {},
-
-  ...componentProps
-}: PatternLibraryAppOptions = {}) {
-  const allIcons = { ...iconSet, ...icons };
-  registerIcons(allIcons);
+export function startApp({ ...componentProps }: PatternLibraryAppOptions = {}) {
   const container = document.querySelector('#app');
   render(<PlaygroundApp {...componentProps} />, container as Element);
 }
