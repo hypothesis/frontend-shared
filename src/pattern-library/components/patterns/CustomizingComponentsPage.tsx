@@ -10,7 +10,6 @@ export default function CustomizingComponentsPage() {
             Here are the steps to take when you find yourself wanting to
             customize the styling of a component.
           </p>
-          <p>This guide applies to updated ({'"next"'}) components only.</p>
         </>
       }
     >
