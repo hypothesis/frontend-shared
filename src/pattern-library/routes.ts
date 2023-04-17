@@ -1,17 +1,5 @@
 import type { FunctionComponent } from 'preact';
 
-// Legacy pattern-library pages
-import ButtonComponents from './components/patterns/ButtonComponents';
-import ContainerComponents from './components/patterns/ContainerComponents';
-import DialogComponents from './components/patterns/DialogComponents';
-import FormComponents from './components/patterns/FormComponents';
-import IconComponents from './components/patterns/IconComponents';
-import LinkComponents from './components/patterns/LinkComponents';
-import PanelComponents from './components/patterns/PanelComponents';
-import SpinnerComponents from './components/patterns/SpinnerComponents';
-import TableComponents from './components/patterns/TableComponents';
-import ThumbnailComponents from './components/patterns/ThumbnailComponents';
-
 import LibraryHome from './components/LibraryHome';
 import ColorsPage from './components/patterns/ColorsPage';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
@@ -230,66 +218,6 @@ const routes: PlaygroundRoute[] = [
     group: 'navigation',
     component: TabPage,
     route: '/navigation-tab',
-  },
-  {
-    route: '/components-buttons',
-    title: 'Buttons',
-    component: ButtonComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-containers',
-    title: 'Containers',
-    component: ContainerComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-dialogs',
-    title: 'Dialogs',
-    component: DialogComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-forms',
-    title: 'Forms',
-    component: FormComponents,
-    group: 'components',
-  },
-  {
-    route: '/foundations-icons',
-    title: 'Icons',
-    component: IconComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-links',
-    title: 'Links',
-    component: LinkComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-panel',
-    title: 'Panel',
-    component: PanelComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-spinner',
-    title: 'Spinner',
-    component: SpinnerComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-table',
-    title: 'Table',
-    component: TableComponents,
-    group: 'components',
-  },
-  {
-    route: '/components-thumbnail',
-    title: 'Thumbnail',
-    component: ThumbnailComponents,
-    group: 'components',
   },
 ];
 
