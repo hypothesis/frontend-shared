@@ -115,11 +115,6 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       // clarity of purpose.
       // See https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
       addVariant('input-group', '.input-group &');
-      // Add a custom variant such that the `theme-clean:` modifier is available
-      // for all tailwind utility classes. e.g. `.theme-clean:bg-white` would
-      // only apply (set the element's background color to white) if a parent
-      // element had the `.theme-clean` class.
-      addVariant('theme-clean', '.theme-clean &');
     }),
   ],
 });
