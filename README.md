@@ -18,8 +18,6 @@ $ yarn add preact tailwindcss
 $ yarn add @hypothesis/frontend-shared
 ```
 
-_Note_: To use legacy components, your project must also have `sass` as a dependency.
-
 ### tailwindcss configuration
 
 Update your project's tailwind configuration:
@@ -52,30 +50,6 @@ Full documentation is available in this project's web-based pattern library.
 
 ```js
 import { Link } from '@hypothesis/frontend-shared/lib/next';
-```
-
-## Usage (legacy)
-
-```js
-import { Link } from '@hypothesis/frontend-shared';
-```
-
-### Icons (legacy)
-
-```js
-import { registerIcons } from '@hypothesis/frontend-shared';
-import { profile, share, trash } from '@hypothesis/frontend-shared/lib/icons';
-
-registerIcons({ profile, shareAnnotation: share, trash });
-
-export default function MyComponent() {
-  return (
-    <div>
-      <Icon name="profile" />
-      <Icon name="shareAnnotation" />
-    </div>
-  );
-}
 ```
 
 ### CSS (legacy)
