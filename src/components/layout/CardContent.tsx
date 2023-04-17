@@ -16,7 +16,7 @@ export type CardContentProps = PresentationalProps &
 /**
  * Apply consistent spacing and padding for actions content inside a Card
  */
-const CardContentNext = function CardContent({
+const CardContent = function CardContent({
   children,
   classes,
   elementRef,
@@ -44,4 +44,4 @@ const CardContentNext = function CardContent({
   );
 };
 
-export default CardContentNext;
+export default CardContent;

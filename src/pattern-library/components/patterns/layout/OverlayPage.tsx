@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
-import { Button, Card, CardContent, Spinner } from '../../../../next';
-import { Overlay } from '../../../../next';
+import { Button, Card, CardContent, Spinner } from '../../../../';
+import { Overlay } from '../../../../';
 import Library from '../../Library';
 
 export default function OverlayPage() {

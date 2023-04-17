@@ -16,7 +16,7 @@ export type InputProps = PresentationalProps &
 /**
  * Render a text field input
  */
-const InputNext = function Input({
+const Input = function Input({
   elementRef,
   hasError,
   type = 'text',
@@ -34,4 +34,4 @@ const InputNext = function Input({
   );
 };
 
-export default InputNext;
+export default Input;

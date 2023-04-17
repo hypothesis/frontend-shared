@@ -14,7 +14,7 @@ export type TableBodyProps = PresentationalProps &
 /**
  * Render a table body
  */
-const TableBodyNext = function TableBody({
+const TableBody = function TableBody({
   children,
   classes,
   elementRef,
@@ -43,4 +43,4 @@ const TableBodyNext = function TableBody({
   );
 };
 
-export default TableBodyNext;
+export default TableBody;

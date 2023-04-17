@@ -38,7 +38,7 @@ export type ThumbnailProps = CompositeProps &
  * Render embedded media (e.g. image), handling aspect ratio, loading state and
  * placeholder content.
  */
-const ThumbnailNext = function Thumbnail({
+const Thumbnail = function Thumbnail({
   children,
   elementRef,
 
@@ -92,4 +92,4 @@ const ThumbnailNext = function Thumbnail({
   );
 };
 
-export default ThumbnailNext;
+export default Thumbnail;

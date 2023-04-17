@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { Spinner, SpinnerOverlay, Button } from '../../../../next';
+import { Spinner, SpinnerOverlay, Button } from '../../../../';
 import Library from '../../Library';
 
 export default function SpinnerPage() {

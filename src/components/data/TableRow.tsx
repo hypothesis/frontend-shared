@@ -21,7 +21,7 @@ export type TableRowProps = PresentationalProps &
  *
  * @param {CommonProps & TableRowProps & HTMLAttributes} props
  */
-const TableRowNext = function TableRow({
+const TableRow = function TableRow({
   children,
   classes,
   elementRef,
@@ -63,4 +63,4 @@ const TableRowNext = function TableRow({
   );
 };
 
-export default TableRowNext;
+export default TableRow;

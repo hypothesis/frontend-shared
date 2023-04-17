@@ -1,11 +1,11 @@
-import type { SelectProps } from '../../../../components/input/Select';
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
   IconButton,
   InputGroup,
   Select,
-} from '../../../../next';
+} from '../../../../';
+import type { SelectProps } from '../../../../components/input/Select';
 import Library from '../../Library';
 
 function SelectWrapper({ children, ...selectProps }: SelectProps) {

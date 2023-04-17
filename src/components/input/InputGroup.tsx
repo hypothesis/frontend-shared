@@ -21,7 +21,7 @@ export type InputGroupProps = PresentationalProps &
 /**
  * Render a container that lays out a group of input components
  */
-const InputGroupNext = function InputGroup({
+const InputGroup = function InputGroup({
   children,
   classes,
   elementRef,
@@ -46,4 +46,4 @@ const InputGroupNext = function InputGroup({
   );
 };
 
-export default InputGroupNext;
+export default InputGroup;

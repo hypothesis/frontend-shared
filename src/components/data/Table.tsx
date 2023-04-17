@@ -18,7 +18,7 @@ export type TableProps = PresentationalProps & {
 /**
  * Render table content
  */
-const TableNext = function Table({
+const Table = function Table({
   children,
   classes,
   elementRef,
@@ -67,4 +67,4 @@ const TableNext = function Table({
   );
 };
 
-export default TableNext;
+export default Table;

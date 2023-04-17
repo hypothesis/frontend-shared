@@ -8,7 +8,7 @@ import {
   SettingsIcon,
   Tab,
   TabList,
-} from '../../../../next';
+} from '../../../../';
 import Library from '../../Library';
 
 export default function TabPage() {

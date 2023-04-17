@@ -1,4 +1,4 @@
-import { Button, IconButton, ButtonBase } from '../../../../next';
+import { Button, IconButton, ButtonBase } from '../../../../';
 import {
   CancelIcon,
   CheckIcon,
@@ -6,7 +6,7 @@ import {
   ReplyIcon,
   ShareIcon,
   CautionIcon,
-} from '../../../../next';
+} from '../../../../';
 import Library from '../../Library';
 
 export default function ButtonPage() {

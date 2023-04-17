@@ -30,7 +30,7 @@ export type IconButtonProps = PresentationalProps &
 /**
  * Render a button that only contains an icon.
  */
-const IconButtonNext = function IconButton({
+const IconButton = function IconButton({
   children,
   classes,
   elementRef,
@@ -88,4 +88,4 @@ const IconButtonNext = function IconButton({
   );
 };
 
-export default IconButtonNext;
+export default IconButton;

@@ -3,7 +3,7 @@ import {
   Scroll,
   ScrollContainer,
   ScrollContent,
-} from '../../../../next';
+} from '../../../../';
 import Library from '../../Library';
 import { SampleListElements } from '../samples';
 

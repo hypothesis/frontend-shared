@@ -49,7 +49,7 @@ export type DataTableProps<Row> = CompositeProps &
 /**
  * An interactive table of rows and columns with a sticky header.
  */
-const DataTableNext = function DataTable<Row>({
+const DataTable = function DataTable<Row>({
   children,
   elementRef,
 
@@ -180,4 +180,4 @@ const DataTableNext = function DataTable<Row>({
   );
 };
 
-export default DataTableNext;
+export default DataTable;

@@ -61,7 +61,7 @@ export type { {{name}}Props } from './{{name}}';\n`,
         },
         {
           type: 'modify',
-          path: 'src/next.ts',
+          path: 'src/index.ts',
           pattern: /\n\n*$/g,
           template: `\nexport { {{name}} } from './components/{{group}}';
 export type { {{name}}Props } from './components/{{group}}';\n`,
@@ -81,7 +81,7 @@ export type { {{name}}Props } from './components/{{group}}';\n`,
       - [ ] write ${chalk.bold('tests')} for the component
       - [ ] put ${chalk.bold('exports')} in the appropriate order in
           - \`src/components/${data.group}/index.ts\` and
-          - \`src/next.ts\`
+          - \`src/index.ts\`
       - [ ] ${chalk.bold(
         'test'
       )} against an external application (client or lms)

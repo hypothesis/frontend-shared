@@ -32,7 +32,7 @@ export type CheckboxProps = CompositeProps &
  * one for the unchecked state and one for the checked state. The input itself
  * is positioned exactly on top of the icon, but is non-visible.
  */
-const CheckboxNext = function Checkbox({
+const Checkbox = function Checkbox({
   children,
   elementRef,
 
@@ -110,4 +110,4 @@ const CheckboxNext = function Checkbox({
   );
 };
 
-export default CheckboxNext;
+export default Checkbox;

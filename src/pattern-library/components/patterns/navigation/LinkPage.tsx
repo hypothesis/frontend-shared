@@ -1,4 +1,4 @@
-import { Link, LinkBase } from '../../../../next';
+import { Link, LinkBase } from '../../../../';
 import Library from '../../Library';
 
 export default function LinkPage() {

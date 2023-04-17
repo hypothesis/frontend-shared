@@ -1,8 +1,6 @@
 import { useState, useRef } from 'preact/hooks';
 
-import { ModalDialog } from '../../../../components/feedback';
-import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
-import type { DialogProps } from '../../../../next';
+import type { DialogProps } from '../../../../';
 import {
   ArrowRightIcon,
   Button,
@@ -17,7 +15,9 @@ import {
   Scroll,
   Tab,
   TabList,
-} from '../../../../next';
+} from '../../../../';
+import { ModalDialog } from '../../../../components/feedback';
+import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
 import Library from '../../Library';
 import FadeComponent from '../FadeComponent';
 import { LoremIpsum, nabokovNovels } from '../samples';

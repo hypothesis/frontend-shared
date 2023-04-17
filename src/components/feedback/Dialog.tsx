@@ -59,7 +59,7 @@ const noop = () => {};
 /**
  * Show a dialog
  */
-const DialogNext = function Dialog({
+const Dialog = function Dialog({
   closeOnClickAway = false,
   closeOnEscape = false,
   closeOnFocusAway = false,
@@ -228,4 +228,4 @@ const DialogNext = function Dialog({
   );
 };
 
-export default DialogNext;
+export default Dialog;

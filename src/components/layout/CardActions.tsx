@@ -10,7 +10,7 @@ export type CardActionsProps = PresentationalProps &
 /**
  * Render a group of buttons or interactive elements inside a Card
  */
-const CardActionsNext = function CardActions({
+const CardActions = function CardActions({
   children,
   classes,
   elementRef,
@@ -29,4 +29,4 @@ const CardActionsNext = function CardActions({
   );
 };
 
-export default CardActionsNext;
+export default CardActions;

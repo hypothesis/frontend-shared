@@ -1,6 +1,5 @@
 import { useState, useRef } from 'preact/hooks';
 
-import type { ModalProps } from '../../../../components/feedback/Modal';
 import {
   ArrowRightIcon,
   Button,
@@ -11,7 +10,8 @@ import {
   InputGroup,
   Modal,
   Scroll,
-} from '../../../../next';
+} from '../../../../';
+import type { ModalProps } from '../../../../components/feedback/Modal';
 import Library from '../../Library';
 import { LoremIpsum, nabokovNovels } from '../samples';
 

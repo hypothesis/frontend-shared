@@ -21,7 +21,7 @@ export type InputRootProps = PresentationalProps &
  * Root component for various input types that applies a consistent design
  * pattern.
  */
-const InputRootNext = function InputRoot({
+const InputRoot = function InputRoot({
   element: Element = 'input',
   children,
   classes,
@@ -57,4 +57,4 @@ const InputRootNext = function InputRoot({
   );
 };
 
-export default InputRootNext;
+export default InputRoot;

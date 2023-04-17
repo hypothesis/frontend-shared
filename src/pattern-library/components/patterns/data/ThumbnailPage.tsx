@@ -1,4 +1,4 @@
-import { Thumbnail, ImageIcon } from '../../../../next';
+import { Thumbnail, ImageIcon } from '../../../../';
 import Library from '../../Library';
 
 export default function ThumbnailPage() {

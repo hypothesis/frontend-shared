@@ -1,5 +1,5 @@
-import { Panel } from '../../../../next';
-import { Button, EditIcon, ScrollBox } from '../../../../next';
+import { Panel } from '../../../../';
+import { Button, EditIcon, ScrollBox } from '../../../../';
 import Library from '../../Library';
 import { LoremIpsum } from '../samples';
 

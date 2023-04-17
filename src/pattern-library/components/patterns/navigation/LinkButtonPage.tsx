@@ -1,4 +1,4 @@
-import { LinkButton } from '../../../../next';
+import { LinkButton } from '../../../../';
 import Library from '../../Library';
 
 export default function LinkButtonPage() {

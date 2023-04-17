@@ -1,5 +1,5 @@
+import { Link } from '../../../../';
 import * as Icons from '../../../../components/icons';
-import { Link } from '../../../../next';
 import Library from '../../Library';
 
 export default function IconsPage() {

@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { DataTable, Scroll } from '../../../../next';
+import { DataTable, Scroll } from '../../../../';
 import Library from '../../Library';
 import { nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
