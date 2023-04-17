@@ -16,7 +16,7 @@ export type TableHeadProps = PresentationalProps &
  *
  * @param {CommonProps & HTMLAttributes} props
  */
-const TableHeadNext = function TableHead({
+const TableHead = function TableHead({
   children,
   classes,
   elementRef,
@@ -49,4 +49,4 @@ const TableHeadNext = function TableHead({
   );
 };
 
-export default TableHeadNext;
+export default TableHead;

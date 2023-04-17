@@ -9,7 +9,7 @@ export type LinkBaseProps = BaseProps & JSX.HTMLAttributes<HTMLAnchorElement>;
 /**
  * Base component for Link components. Applies common attributes and styles.
  */
-const LinkBaseNext = function LinkBase({
+const LinkBase = function LinkBase({
   children,
   classes,
   elementRef,
@@ -32,4 +32,4 @@ const LinkBaseNext = function LinkBase({
   );
 };
 
-export default LinkBaseNext;
+export default LinkBase;

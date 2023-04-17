@@ -38,7 +38,7 @@ const noop = () => {};
  * Show a modal
  * @deprecated - Use `ModalDialog` instead
  */
-const ModalNext = function Modal({
+const Modal = function Modal({
   children,
   width = 'md',
 
@@ -156,4 +156,4 @@ const ModalNext = function Modal({
   );
 };
 
-export default ModalNext;
+export default Modal;

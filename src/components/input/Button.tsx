@@ -24,7 +24,7 @@ export type ButtonProps = PresentationalProps &
 /**
  * Render a button with a label (`children`) and optional icon
  */
-const ButtonNext = function Button({
+const Button = function Button({
   children,
   classes,
   elementRef,
@@ -74,4 +74,4 @@ const ButtonNext = function Button({
   );
 };
 
-export default ButtonNext;
+export default Button;

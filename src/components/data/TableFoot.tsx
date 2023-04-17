@@ -13,7 +13,7 @@ export type TableFootProps = PresentationalProps & HTMLAttributes;
 /**
  * Render a table footer section
  */
-const TableFootNext = function TableFoot({
+const TableFoot = function TableFoot({
   children,
   classes,
   elementRef,
@@ -44,4 +44,4 @@ const TableFootNext = function TableFoot({
   );
 };
 
-export default TableFootNext;
+export default TableFoot;

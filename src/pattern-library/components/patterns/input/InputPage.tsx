@@ -1,4 +1,4 @@
-import { Input } from '../../../../next';
+import { Input } from '../../../../';
 import Library from '../../Library';
 
 export default function InputPage() {

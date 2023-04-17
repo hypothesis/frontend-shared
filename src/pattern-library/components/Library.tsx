@@ -3,7 +3,7 @@ import { toChildArray } from 'preact';
 import type { ComponentChildren, JSX } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
 
-import { Scroll, ScrollContainer } from '../../next';
+import { Scroll, ScrollContainer } from '../../';
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -348,23 +348,14 @@ function Code({ content, size, title }: LibraryCodeProps) {
 
 export type LibraryUsageProps = {
   componentName: string;
-  /** TODO: Remove for v6 */
-  generation?: 'next' | 'legacy';
   size?: 'sm' | 'md' | 'lg';
 };
 
 /**
  * Render import "usage" of a given `componentName`
  */
-function Usage({
-  componentName,
-  generation = 'next',
-  size = 'md',
-}: LibraryUsageProps) {
-  const importPath =
-    generation === 'next'
-      ? '@hypothesis/frontend-shared/lib/next'
-      : '@hypothesis/frontend-shared';
+function Usage({ componentName, size = 'md' }: LibraryUsageProps) {
+  const importPath = '@hypothesis/frontend-shared';
   return (
     <Code
       content={`import { ${componentName} } from '${importPath}';

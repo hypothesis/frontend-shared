@@ -1,4 +1,4 @@
-import { PointerButton } from '../../../../next';
+import { PointerButton } from '../../../../';
 import Library from '../../Library';
 
 export default function PointerButtonPage() {

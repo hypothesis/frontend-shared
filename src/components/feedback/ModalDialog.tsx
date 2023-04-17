@@ -47,7 +47,7 @@ export type ModalDialogProps = Omit<
 /**
  * Show a modal dialog
  */
-const ModalDialogNext = function ModalDialog({
+const ModalDialog = function ModalDialog({
   children,
   disableCloseOnEscape = false,
   disableFocusTrap = false,
@@ -114,4 +114,4 @@ const ModalDialogNext = function ModalDialog({
   );
 };
 
-export default ModalDialogNext;
+export default ModalDialog;

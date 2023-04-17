@@ -1,4 +1,4 @@
-import { Link } from '../../next';
+import { Link } from '../../';
 import Library from './Library';
 
 export default function LibraryHome() {

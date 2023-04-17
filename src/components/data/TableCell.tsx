@@ -14,7 +14,7 @@ export type TableCellProps = PresentationalProps &
  *
  * @param {CommonProps & HTMLAttributes} props
  */
-const TableCellNext = function TableCell({
+const TableCell = function TableCell({
   children,
   classes,
   elementRef,
@@ -55,4 +55,4 @@ const TableCellNext = function TableCell({
   );
 };
 
-export default TableCellNext;
+export default TableCell;

@@ -25,7 +25,7 @@ export type CardProps = PresentationalProps &
 /**
  * Render content in a card-like frame
  */
-const CardNext = function Card({
+const Card = function Card({
   children,
   classes,
   elementRef,
@@ -60,4 +60,4 @@ const CardNext = function Card({
   );
 };
 
-export default CardNext;
+export default Card;

@@ -6,7 +6,7 @@ import {
   Select,
   ArrowLeftIcon,
   ArrowRightIcon,
-} from '../../../../next';
+} from '../../../../';
 import Library from '../../Library';
 
 export default function InputGroupPage() {

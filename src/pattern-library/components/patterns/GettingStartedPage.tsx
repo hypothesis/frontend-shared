@@ -1,4 +1,4 @@
-import { Link } from '../../../next';
+import { Link } from '../../../';
 import Library from '../Library';
 
 export default function GettingStartedPage() {
@@ -53,10 +53,6 @@ export default {
           </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="Usage">
-          <p>
-            Note that component modules are imported from an entrypoint at{' '}
-            <code>lib/next</code>.
-          </p>
           <Library.Usage componentName="Card, Link" />
         </Library.Pattern>
       </Library.Section>

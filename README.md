@@ -42,7 +42,7 @@ Full documentation is available in this project's web-based pattern library.
 ## Usage
 
 ```js
-import { Link } from '@hypothesis/frontend-shared/lib/next';
+import { Link } from '@hypothesis/frontend-shared';
 ```
 
 ## Additional dev documentation

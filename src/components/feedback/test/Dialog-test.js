@@ -15,7 +15,7 @@ const createComponent = (Component, props = {}) => {
 };
 
 /**
- * @type {import('../../../next.js').TransitionComponent}
+ * @type {import('../../../types').TransitionComponent}
  */
 const ComponentWithTransition = ({ children, visible, onTransitionEnd }) => {
   // Fake a 50ms transition time

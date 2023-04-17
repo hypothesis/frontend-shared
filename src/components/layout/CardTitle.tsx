@@ -10,7 +10,7 @@ export type CardTitleProps = PresentationalProps &
 /**
  * Style a title for a Card
  */
-const CardTitleNext = function CardTitle({
+const CardTitle = function CardTitle({
   children,
   classes,
   elementRef,
@@ -29,4 +29,4 @@ const CardTitleNext = function CardTitle({
   );
 };
 
-export default CardTitleNext;
+export default CardTitle;

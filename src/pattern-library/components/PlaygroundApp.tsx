@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 
 import type { PlaygroundAppProps } from '../';
-import { Link, LogoIcon } from '../../next';
+import { Link, LogoIcon } from '../../';
 import { useRoute } from '../router';
 import { componentGroups, getRoutes } from '../routes';
 import type { PlaygroundRoute } from '../routes';

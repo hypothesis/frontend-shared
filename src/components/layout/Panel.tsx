@@ -54,7 +54,7 @@ export type PanelProps = CompositeProps &
  * Panel's immediate parent element, content (`children`) will scroll. The
  * header and any buttons will not scroll.
  */
-const PanelNext = function Panel({
+const Panel = function Panel({
   children,
   elementRef,
 
@@ -106,4 +106,4 @@ const PanelNext = function Panel({
   );
 };
 
-export default PanelNext;
+export default Panel;

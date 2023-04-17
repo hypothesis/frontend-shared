@@ -15,7 +15,7 @@ export type ScrollContainerProps = PresentationalProps & {
  *
  * @param {CommonProps & ScrollContainerProps & HTMLDivAttributes} props
  */
-const ScrollContainerNext = function ScrollContainer({
+const ScrollContainer = function ScrollContainer({
   children,
   classes,
   elementRef,
@@ -43,4 +43,4 @@ const ScrollContainerNext = function ScrollContainer({
   );
 };
 
-export default ScrollContainerNext;
+export default ScrollContainer;

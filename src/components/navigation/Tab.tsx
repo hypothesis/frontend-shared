@@ -34,7 +34,7 @@ export type TabProps = PresentationalProps & ComponentProps & HTMLAttributes;
 /**
  * Render a button with appropriate ARIA tab affordances
  */
-const TabNext = function Tab({
+const Tab = function Tab({
   children,
   classes,
   elementRef,
@@ -91,4 +91,4 @@ const TabNext = function Tab({
   );
 };
 
-export default TabNext;
+export default Tab;

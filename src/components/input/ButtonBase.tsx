@@ -49,7 +49,7 @@ export type ButtonBaseProps = BaseProps &
 /**
  * Base component for Button components. Applies common attributes.
  */
-const ButtonBaseNext = function ButtonBase({
+const ButtonBase = function ButtonBase({
   elementRef,
   children,
   classes,
@@ -103,4 +103,4 @@ const ButtonBaseNext = function ButtonBase({
   );
 };
 
-export default ButtonBaseNext;
+export default ButtonBase;

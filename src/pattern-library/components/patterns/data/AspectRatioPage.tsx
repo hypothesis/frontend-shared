@@ -1,4 +1,4 @@
-import { AspectRatio, FileImageIcon, Link } from '../../../../next';
+import { AspectRatio, FileImageIcon, Link } from '../../../../';
 import Library from '../../Library';
 
 export default function AspectRatioPage() {

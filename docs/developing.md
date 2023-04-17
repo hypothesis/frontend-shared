@@ -89,7 +89,7 @@ Before opening a PR with a new component:
 - [ ] determine component category (simple, presentational, or composite) and group
 - [ ] implement the component
 - [ ] write tests for the component
-- [ ] ensure that exports are appropriate in `src/components/{group}/index.js` and `src/next.ts`
+- [ ] ensure that exports are appropriate in `src/components/{group}/index.js` and `src/index.ts`
 - [ ] test against an external application (`client` or `lms`) as described in "Testing locally with other projects" above
 - [ ] add documentation to a new or existing pattern-library page (you may need to update `src/pattern-library/routes.js`)
 

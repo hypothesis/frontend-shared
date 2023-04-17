@@ -17,7 +17,7 @@ export type LinkProps = PresentationalProps &
 /**
  * Styled component for a link (`<a>` element).
  */
-const LinkNext = function Link({
+const Link = function Link({
   children,
   classes,
   elementRef,
@@ -55,4 +55,4 @@ const LinkNext = function Link({
   );
 };
 
-export default LinkNext;
+export default Link;

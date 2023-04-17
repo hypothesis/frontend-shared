@@ -6,7 +6,7 @@ import {
   ReplyIcon,
   CheckIcon,
   ScrollBox,
-} from '../../../next';
+} from '../../../';
 import Library from '../Library';
 import { SampleListElements } from './samples';
 

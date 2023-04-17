@@ -4,8 +4,8 @@ import {
   CardHeader,
   CardTitle,
   CardActions,
-} from '../../../../next';
-import { Button, EditIcon } from '../../../../next';
+} from '../../../../';
+import { Button, EditIcon } from '../../../../';
 import Library from '../../Library';
 import { LoremIpsum } from '../samples';
 

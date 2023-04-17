@@ -10,7 +10,7 @@ export type ScrollContentProps = PresentationalProps &
 /**
  * Apply consistent padding and spacing to content within a Scroll
  */
-const ScrollContentNext = function ScrollContent({
+const ScrollContent = function ScrollContent({
   children,
   classes,
   elementRef,
@@ -28,4 +28,4 @@ const ScrollContentNext = function ScrollContent({
   );
 };
 
-export default ScrollContentNext;
+export default ScrollContent;

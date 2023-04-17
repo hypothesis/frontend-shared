@@ -5,7 +5,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from '../../../../next';
+} from '../../../../';
 import Library from '../../Library';
 
 export default function TablePage() {

@@ -19,7 +19,7 @@ const arrowImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 /**
  * Style a native `<select>` element.
  */
-const SelectNext = function Select({
+const Select = function Select({
   children,
   classes,
   hasError,
@@ -51,4 +51,4 @@ const SelectNext = function Select({
   );
 };
 
-export default SelectNext;
+export default Select;

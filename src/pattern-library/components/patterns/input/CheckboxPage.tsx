@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { Checkbox, ShowIcon, HideIcon } from '../../../../next';
+import { Checkbox, ShowIcon, HideIcon } from '../../../../';
 import Library from '../../Library';
 
 export default function CheckboxPage() {
