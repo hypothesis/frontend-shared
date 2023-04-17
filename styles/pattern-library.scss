@@ -1,10 +1,9 @@
 /**
  * This stylesheet provides all of the styles needed to run a standalone
  * pattern library application, including resets, component styles, util
- * styles and pattern styles.
+ * styles and component styles.
  */
-@use 'base';
-@use 'index'; // component styles
+@use 'tailwindcss/base';
 @use 'tailwindcss/utilities';
 @use 'tailwindcss/components';
 @use 'library';
