@@ -1,10 +1,5 @@
 /**
  * Stylesheet for tests
  */
-
-// Styles for legacy components
-@use 'index';
-
-// Styles for new components
 @use 'tailwindcss/utilities';
 @use 'tailwindcss/components';
