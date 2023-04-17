@@ -24,7 +24,7 @@ export default {
   content: [
     // Be sure to add this project's component source to your
     // tailwind content globs
-    './node_modules/@hypothesis/frontend-shared/lib/**/*.js',
+    './node_modules/@hypothesis/frontend-shared/lib/**/*.{js,ts,tsx}',
   ],
   // ...
 ```
