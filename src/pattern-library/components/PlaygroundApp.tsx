@@ -139,9 +139,6 @@ export default function PlaygroundApp({
                 <NavList routes={customRoutes} />
               </>
             )}
-
-            <NavHeader>Legacy Components</NavHeader>
-            <NavList routes={getRoutes('components')} />
           </nav>
         </div>
         <div className="bg-white pb-16">{content}</div>
