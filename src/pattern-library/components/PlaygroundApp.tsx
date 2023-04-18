@@ -1,10 +1,12 @@
 import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
+import { useEffect } from 'preact/hooks';
 import {
   Route,
   Router,
   Switch,
   Link as RouteLink,
+  useLocation,
   useRoute,
 } from 'wouter-preact';
 
@@ -89,6 +91,41 @@ export default function PlaygroundApp({
   extraRoutesTitle = 'Playground',
 }: PlaygroundAppProps) {
   const routes = getRoutes();
+  const [pathname] = useLocation();
+
+  useEffect(
+    /**
+     * Support hash-based navigation and reset scroll when `wouter` path
+     * changes.
+     * - For locations without hash, reset scroll to top of page
+     * - For locations with hash, scroll to top of fragment-indicated element,
+     *   and ensure it's not obscured by the sticky `#page-header` element.
+     */
+    () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (hash) {
+        const fragElement = document.getElementById(hash);
+        if (fragElement) {
+          fragElement.scrollIntoView();
+          const pageHeaderElement = document.getElementById('page-header');
+          // Height taken up by sticky header on page. Add 8 pixels to give
+          // some visual padding.
+          const headerOffset = pageHeaderElement
+            ? pageHeaderElement.getBoundingClientRect().height + 8
+            : 0;
+          const fragTop = fragElement.getBoundingClientRect().top;
+          if (fragTop <= headerOffset) {
+            // Adjustment to accommodate sticky header (only if fragment is at or
+            // near top of viewport)
+            window.scrollBy({ top: -1 * (headerOffset - fragTop) });
+          }
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    },
+    [pathname]
+  );
 
   // Put all of the custom routes into the "custom" group
   const customRoutes = extraRoutes.map((route): PlaygroundRoute => {

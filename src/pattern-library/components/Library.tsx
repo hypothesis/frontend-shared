@@ -48,7 +48,10 @@ export type LibraryPageProps = {
 function Page({ children, intro, title }: LibraryPageProps) {
   return (
     <section className="max-w-6xl pb-16 space-y-8 text-slate-7">
-      <div className="sticky top-0 z-4 h-16 flex items-center bg-slate-0 border-b">
+      <div
+        className="sticky top-0 z-4 h-16 flex items-center bg-slate-0 border-b"
+        id="page-header"
+      >
         <h1 className="px-4 text-4xl font-light">{title}</h1>
       </div>
       {intro && (
