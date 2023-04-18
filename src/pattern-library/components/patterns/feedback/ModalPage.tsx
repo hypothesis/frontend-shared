@@ -111,8 +111,14 @@ export default function ModalPage() {
                 <code>Modal</code>
               </s>{' '}
               is deprecated. Use
-              <code>ModalDialog</code> or <code>Dialog</code> instead, which
-              provide a similar API and enhanced accessibility.
+              <Library.Link href="/feedback-dialog#modaldialog">
+                <code>ModalDialog</code>
+              </Library.Link>{' '}
+              or{' '}
+              <Library.Link href="/feedback-dialog#dialog">
+                <code>Dialog</code>
+              </Library.Link>{' '}
+              instead, which provide a similar API and enhanced accessibility.
             </Library.ChangelogItem>
           </Library.Changelog>
         </Library.Pattern>

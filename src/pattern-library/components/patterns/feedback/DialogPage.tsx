@@ -165,6 +165,7 @@ export default function DialogPage() {
       }
     >
       <Library.Section
+        id="dialog"
         title="Dialog"
         intro={
           <p>
@@ -391,6 +392,7 @@ export default function DialogPage() {
       </Library.Section>
 
       <Library.Section
+        id="modaldialog"
         title="ModalDialog"
         intro={
           <p>
