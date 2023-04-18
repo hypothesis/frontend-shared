@@ -27,6 +27,7 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
+import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 
 export const componentGroups = {
   data: 'Data Display',
@@ -219,6 +220,12 @@ const routes: PlaygroundRoute[] = [
     group: 'navigation',
     component: TabPage,
     route: '/navigation-tab',
+  },
+  {
+    title: 'Shared Annotations',
+    group: 'prototype',
+    component: SharedAnnotationsPage,
+    route: '/shared-annotations-ui',
   },
 ];
 
