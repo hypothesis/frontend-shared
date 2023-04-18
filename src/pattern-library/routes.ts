@@ -41,6 +41,7 @@ export type PlaygroundRouteGroup =
   | 'home'
   | 'foundations'
   | 'components'
+  | 'prototype'
   | 'custom';
 
 /**
