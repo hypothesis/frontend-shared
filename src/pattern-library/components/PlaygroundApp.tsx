@@ -153,6 +153,8 @@ export default function PlaygroundApp({
     </>
   );
 
+  const prototypeRoutes = getRoutes('prototype');
+
   const groupKeys = Object.keys(componentGroups) as Array<
     keyof typeof componentGroups
   >;
@@ -193,6 +195,17 @@ export default function PlaygroundApp({
                   </NavSection>
                 );
               })}
+
+              {prototypeRoutes.length > 0 && (
+                <>
+                  <NavHeader>Prototypes</NavHeader>
+                  <NavList>
+                    {prototypeRoutes.map(route => (
+                      <NavLink key={route.title} route={route} />
+                    ))}
+                  </NavList>
+                </>
+              )}
 
               {extraRoutes.length > 0 && (
                 <>
