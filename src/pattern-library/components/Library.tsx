@@ -2,8 +2,9 @@ import classnames from 'classnames';
 import { toChildArray } from 'preact';
 import type { ComponentChildren, JSX } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
+import { Link as RouteLink } from 'wouter-preact';
 
-import { Scroll, ScrollContainer } from '../../';
+import { Link as UILink, Scroll, ScrollContainer } from '../../';
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -368,12 +369,30 @@ function Usage({ componentName, size = 'md' }: LibraryUsageProps) {
   );
 }
 
+export type LinkProps = {
+  children: ComponentChildren;
+  href: string;
+};
+
+/**
+ * Render an internal link to another pattern-library page.
+ * TODO: Support external links
+ */
+function Link({ children, href }: LinkProps) {
+  return (
+    <RouteLink href={href}>
+      <UILink underline="always">{children}</UILink>
+    </RouteLink>
+  );
+}
+
 export default {
   Changelog,
   ChangelogItem,
   Code,
   Demo,
   Example,
+  Link,
   Page,
   Pattern,
   Section,
