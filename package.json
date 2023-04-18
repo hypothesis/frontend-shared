@@ -91,6 +91,7 @@
   "main": "./lib/index.js",
   "browserslist": "chrome 70, firefox 70, safari 11.1",
   "dependencies": {
-    "highlight.js": "^11.6.0"
+    "highlight.js": "^11.6.0",
+    "wouter-preact": "^2.10.0-alpha.1"
   }
 }
