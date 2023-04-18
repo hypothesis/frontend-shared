@@ -53,7 +53,7 @@ export type PlaygroundRoute = {
    * not provided, a placeholder entry for this route will be added to the
    * navigation, with no link.
    */
-  route?: RegExp | string;
+  route?: string;
   title: string;
   component?: FunctionComponent;
   group: PlaygroundRouteGroup;
@@ -63,7 +63,7 @@ export type CustomPlaygroundRoute = Omit<PlaygroundRoute, 'group'>;
 
 const routes: PlaygroundRoute[] = [
   {
-    route: /^\/?$/,
+    route: '/',
     title: 'Home',
     component: LibraryHome,
     group: 'home',
