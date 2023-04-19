@@ -4,7 +4,7 @@ import type { ComponentChildren, JSX } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
 import { Link as RouteLink } from 'wouter-preact';
 
-import { Link as UILink, Scroll, ScrollContainer } from '../../';
+import { CodeIcon, Link as UILink, Scroll, ScrollContainer } from '../../';
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -48,19 +48,22 @@ export type LibraryPageProps = {
  */
 function Page({ children, intro, title }: LibraryPageProps) {
   return (
-    <section className="max-w-6xl pb-16 space-y-8 text-slate-7">
+    <section className="max-w-6xl styled-text text-stone-600">
       <div
-        className="sticky top-0 z-4 h-16 flex items-center bg-slate-0 border-b"
+        className="sticky top-0 z-4 h-16 flex items-center bg-stone-100 border-b"
         id="page-header"
       >
-        <h1 className="px-4 text-4xl font-light">{title}</h1>
+        <h1 className="px-2 text-3xl text-slate-700 font-light">{title}</h1>
       </div>
-      {intro && (
-        <div className="styled-text px-4 text-xl font-light space-y-4 leading-relaxed">
-          {intro}
-        </div>
-      )}
-      <div className="px-4 space-y-16 styled-text">{children}</div>
+
+      <div className="px-2 mt-8">
+        {intro && (
+          <div className="my-8 pb-8 border-b space-y-4 font-light text-xl leading-relaxed ">
+            {intro}
+          </div>
+        )}
+        {children}
+      </div>
     </section>
   );
 }
@@ -78,16 +81,14 @@ export type LibrarySectionProps = {
  */
 function Section({ children, id, intro, title }: LibrarySectionProps) {
   return (
-    <section className="my-16 space-y-8">
-      <h2 className="text-3xl font-bold" id={id}>
+    <section className="mt-8 mb-16">
+      <h2 className="text-3xl text-slate-600 font-bold " id={id}>
         {title}
       </h2>
       {intro && (
-        <div className="styled-text text-base space-y-3 leading-relaxed">
-          {intro}
-        </div>
+        <div className="text-base space-y-3 leading-relaxed">{intro}</div>
       )}
-      <div className="space-y-16 styled-text">{children}</div>
+      <div className="leading-relaxed">{children}</div>
     </section>
   );
 }
@@ -95,7 +96,7 @@ function Section({ children, id, intro, title }: LibrarySectionProps) {
 export type LibraryPatternProps = {
   children?: ComponentChildren;
   id?: string;
-  title: string;
+  title?: string;
 };
 
 /**
@@ -103,11 +104,13 @@ export type LibraryPatternProps = {
  */
 function Pattern({ children, id, title }: LibraryPatternProps) {
   return (
-    <section className="space-y-8">
-      <h3 className="text-2xl text-slate-7" id={id}>
-        {title}
-      </h3>
-      <div className="space-y-8 px-4">{children}</div>
+    <section className="mt-8 mb-12">
+      {title && (
+        <h3 className="text-2xl text-slate-600 font-medium" id={id}>
+          {title}
+        </h3>
+      )}
+      <div className="space-y-8">{children}</div>
     </section>
   );
 }
@@ -124,40 +127,17 @@ export type LibraryExampleProps = {
  */
 function Example({ children, id, title }: LibraryExampleProps) {
   return (
-    <div className="space-y-6">
+    <div className="mt-6">
       {title && (
-        <h4 className="text-xl text-slate-9 font-light" id={id}>
+        <h4
+          className="border-b border-stone-300 text-lg text-slate-600 font-normal"
+          id={id}
+        >
           {title}
         </h4>
       )}
-      <div className="space-y-6 px-4">{children}</div>
+      <div className="px-4">{children}</div>
     </div>
-  );
-}
-
-type DemoButtonProps = {
-  children: ComponentChildren;
-  onClick: () => void;
-  pressed: boolean;
-};
-/**
- * Render a button to swap between demo and source views in a Demo
- */
-function DemoButton({ children, onClick, pressed }: DemoButtonProps) {
-  return (
-    <button
-      className={classnames(
-        'flex items-center gap-x-1.5 rounded-sm shadow py-1 px-2',
-        'text-sm text-color-text-light hover:bg-grey-0 hover:text-grey-7 hover:shadow-md',
-        {
-          'bg-grey-2': pressed,
-        }
-      )}
-      onClick={onClick}
-      aria-pressed={pressed}
-    >
-      {children}
-    </button>
   );
 }
 
@@ -202,33 +182,45 @@ function Demo({
     );
   });
   return (
-    <div className="space-y-2">
-      <div className="flex items-center">
-        <div className="py-2 grow">
-          <h5 className="text-lg italic text-slate-7 font-light">{title}</h5>
+    <div className="my-8 p-2 space-y-1">
+      <div className="flex items-center px-2">
+        <div className="py-1 grow">
+          <h5 className="text-base text-base leading-none font-semibold text-slate-600">
+            {title}
+          </h5>
         </div>
         <div className="flex flex-row items-center justify-end gap-x-4">
           {withSource && (
-            <>
-              <DemoButton
-                onClick={() => setVisibleTab('demo')}
-                pressed={visibleTab === 'demo'}
-              >
-                Demo
-              </DemoButton>
-              <DemoButton
-                onClick={() => setVisibleTab('source')}
-                pressed={visibleTab === 'source'}
-              >
-                Source
-              </DemoButton>
-            </>
+            <button
+              className={classnames(
+                'flex items-center gap-x-1.5 py-1 px-2 rounded-md',
+                'text-sm text-slate-500',
+                'hover:bg-slate-50 border hover:border-slate-300',
+                {
+                  'bg-slate-100 border border-slate-400 shadow-inner':
+                    visibleTab === 'source',
+                  'border-slate-100 shadow': visibleTab !== 'source',
+                }
+              )}
+              aria-pressed={visibleTab === 'source'}
+              onClick={() =>
+                setVisibleTab(prevState =>
+                  prevState === 'source' ? 'demo' : 'source'
+                )
+              }
+              title="Toggle view-source panel"
+            >
+              <CodeIcon className="w-[18px] h-[18px]" />
+            </button>
           )}
         </div>
       </div>
-      <div className="bg-slate-0 p-2 rounded-md unstyled-text">
+      <div className="p-2 unstyled-text">
         {visibleTab === 'demo' && (
-          <div className="w-full bg-white p-8 rounded-md" style={style}>
+          <div
+            className="w-full p-8 rounded-md border border-stone-300 bg-slate-50 rounded-md"
+            style={style}
+          >
             <div
               className={classnames(
                 'h-full flex flex-row items-center justify-center gap-2',
@@ -323,7 +315,7 @@ function Code({ content, size, title }: LibraryCodeProps) {
   const codeMarkup = useMemo(() => jsxToHTML(content), [content]);
 
   return (
-    <figure className="space-y-2 min-h-0 h-full">
+    <figure className="space-y-2 min-h-0 h-full my-8">
       <ScrollContainer borderless>
         <div
           className={classnames(
