@@ -20,7 +20,11 @@ import Library from './Library';
  * Header for a primary section of nav
  */
 function NavHeader({ children }: { children: ComponentChildren }) {
-  return <h2 className="border-b px-2 py-1 font-light text-lg">{children}</h2>;
+  return (
+    <h2 className="text-slate-800 border-b border-stone-300 px-2 py-1 font-light text-lg">
+      {children}
+    </h2>
+  );
 }
 
 /**
@@ -35,7 +39,7 @@ function NavSection({
 }) {
   return (
     <div className="space-y-4">
-      <h3 className="mx-2 text-slate-7 font-semibold text-sm">{title}</h3>
+      <h3 className="mx-2 text-slate-700 font-semibold text-sm">{title}</h3>
       {children}
     </div>
   );
@@ -46,7 +50,7 @@ function NavSection({
  */
 function NavList({ children }: { children: ComponentChildren }) {
   return (
-    <ul className="ml-2 space-y-2 border-l-2 border-slate-0">{children}</ul>
+    <ul className="ml-2 space-y-2 border-l-2 border-stone-200">{children}</ul>
   );
 }
 
@@ -158,7 +162,7 @@ export default function PlaygroundApp({
   >;
   return (
     <Router base={baseURL}>
-      <main className="max-w-[1200px] mx-auto">
+      <main className="max-w-[1250px] mx-auto">
         <div className="md:grid md:grid-cols-[2fr_5fr]">
           <div className="md:h-screen md:sticky md:top-0 overflow-scroll">
             <div className="md:sticky md:top-0 h-16 px-6 flex items-center bg-slate-0 border-b">

@@ -10,12 +10,16 @@
     }
 
     :where(code):not(:where([class~='unstyled-text'] *)) {
-      @apply p-1 bg-slate-0 rounded-sm mx-0.5;
+      @apply p-1 bg-stone-100 rounded-sm mx-0.5;
       font-size: 0.85em;
     }
 
+    :where(p):not(:where([class~='unstyled-text'] *)) {
+      @apply my-4;
+    }
+
     :where(ul):not(:where([class~='unstyled-text'] *)) {
-      @apply list-disc list-outside ml-8 space-y-2;
+      @apply list-disc list-outside ml-8 space-y-2 my-4;
     }
 
     :where(ol):not(:where([class~='unstyled-text'] *)) {
