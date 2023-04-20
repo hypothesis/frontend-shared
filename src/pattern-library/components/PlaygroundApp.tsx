@@ -127,6 +127,14 @@ export default function PlaygroundApp({
     [pathname]
   );
 
+  // Update document title when `wouter` path changes.
+  useEffect(() => {
+    const activeRoute = routes.find(({ route }) => route === pathname);
+    document.title = `${
+      activeRoute?.title ?? 'Page not found'
+    }: Hypothesis Component Library`;
+  }, [pathname, routes]);
+
   // Put all of the custom routes into the "custom" group
   const customRoutes = extraRoutes.map((route): PlaygroundRoute => {
     return { ...route, group: 'custom' };
