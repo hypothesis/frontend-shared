@@ -64,17 +64,15 @@ export default function UsingComponentsPage() {
           </p>
           <Library.Code
             size="sm"
-            content={`/**
- * @typedef PresentationalProps
- * @prop {import('preact').ComponentChildren} [children]
- * @prop {string|string[]} [classes] - Optional extra CSS classes to append to the
- *   component's default classes
- * @prop {never} [className] - Use variants, props, base component (when
- *   available) or classes instead
- * @prop {import('preact').Ref<HTMLElement>} [elementRef] - Ref for component's
- *   outermost element.
- */
-`}
+            content={`type PresentationalProps = {
+  children?: ComponentChildren;
+  /** Optional extra CSS classes appended to the component's className */
+  classes?: string | string[];
+  /** Use \`classes\` or props instead */
+  className?: never;
+  /** Ref associated with components outermost or primary element */
+  elementRef?: Ref<HTMLElement | undefined>;
+};`}
             title="Common presentational-component props"
           />
 
