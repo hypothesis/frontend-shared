@@ -9,12 +9,13 @@ export default function GettingStartedPage() {
         <>
           <p>
             The <code>@hypothesis/frontend-shared</code> package provides
-            reusable UI components for Hypothesis front-end applications.
+            reusable UI components, hooks and utilities for Hypothesis front-end
+            applications.
           </p>
         </>
       }
     >
-      <Library.Section title="Updated components">
+      <Library.Section>
         <Library.Pattern title="Installation">
           <p>
             Your application needs to install{' '}

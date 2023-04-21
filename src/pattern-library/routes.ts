@@ -1,6 +1,5 @@
 import type { FunctionComponent } from 'preact';
 
-import LibraryHome from './components/LibraryHome';
 import ColorsPage from './components/patterns/ColorsPage';
 import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
 import GettingStartedPage from './components/patterns/GettingStartedPage';
@@ -65,16 +64,10 @@ export type CustomPlaygroundRoute = Omit<PlaygroundRoute, 'group'>;
 
 const routes: PlaygroundRoute[] = [
   {
-    route: '/',
-    title: 'Home',
-    component: LibraryHome,
-    group: 'home',
-  },
-  {
     title: 'Getting started',
     group: 'foundations',
     component: GettingStartedPage,
-    route: '/getting-started',
+    route: '/',
   },
   {
     title: 'Using components',

@@ -72,7 +72,7 @@ export type LibrarySectionProps = {
   children?: ComponentChildren;
   intro?: ComponentChildren;
   id?: string;
-  title: string;
+  title?: string;
 };
 
 /**
@@ -82,9 +82,11 @@ export type LibrarySectionProps = {
 function Section({ children, id, intro, title }: LibrarySectionProps) {
   return (
     <section className="mt-8 mb-16">
-      <h2 className="text-3xl text-slate-600 font-bold " id={id}>
-        {title}
-      </h2>
+      {title && (
+        <h2 className="text-3xl text-slate-600 font-bold " id={id}>
+          {title}
+        </h2>
+      )}
       {intro && (
         <div className="text-base space-y-3 leading-relaxed">{intro}</div>
       )}
