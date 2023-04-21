@@ -55,6 +55,7 @@ export {
   Tab,
   TabList,
 } from './components/navigation/';
+export { Slider } from './components/transition';
 
 // Types
 export type {
