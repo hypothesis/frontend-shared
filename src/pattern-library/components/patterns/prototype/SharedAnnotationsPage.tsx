@@ -159,6 +159,7 @@ export default function SharedAnnotationsPrototypePage() {
             </p>
           </>
         }
+        level={3}
       />
       <Library.Section
         title="1. Course-shared content"
@@ -171,8 +172,8 @@ export default function SharedAnnotationsPrototypePage() {
           </p>
         }
       >
-        <Library.Pattern title="Creating and managing course-shared content">
-          <Library.Example title="User interface: Creating or editing an annotation">
+        <Library.Section title="Creating and managing course-shared content">
+          <Library.Section title="User interface: Creating or editing an annotation">
             <p>
               We might be able to extend the existing annotation-publish
               control. The annotation-publish control is available when creating{' '}
@@ -184,9 +185,9 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotationPublishControl group="Section 1" />
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.Section>
 
-          <Library.Example title="User interface: When an annotation has replies">
+          <Library.Section title="User interface: When an annotation has replies">
             <p>
               It may be difficult technically and logically to deal with moving
               annotations between course-shared and section-group-only once they
@@ -209,10 +210,10 @@ export default function SharedAnnotationsPrototypePage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.Section>
+        </Library.Section>
 
-        <Library.Pattern title="Displaying course-shared content">
+        <Library.Section title="Displaying course-shared content">
           <p>
             Content visible to all course participants should be “merged into”
             the annotation threads for the active group (section/reading group
@@ -220,7 +221,7 @@ export default function SharedAnnotationsPrototypePage() {
             easy to distinguish which annotation threads are shared to all
             participants.
           </p>
-          <Library.Example title="User interface: showing shared and non-shared annotations together">
+          <Library.Section title="User interface: showing shared and non-shared annotations together">
             <p>
               It should be easy to visually distinguish which annotations in the
               sidebar are shared.
@@ -240,8 +241,8 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.Section>
+        </Library.Section>
       </Library.Section>
 
       <Library.Section
@@ -257,12 +258,12 @@ export default function SharedAnnotationsPrototypePage() {
           </p>
         }
       >
-        <Library.Pattern title="Pinning and unpinning content">
+        <Library.Section title="Pinning and unpinning content">
           <p>
             Pinning is a “toggle” type of functionality. We could restrict its
             availability to top-level annotations.
           </p>
-          <Library.Example title="User interface: Toggling pinning">
+          <Library.Section title="User interface: Toggling pinning">
             <p>
               As pinning is a toggling function, we could add an additional icon
               to the annotation footer.
@@ -272,10 +273,10 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.Section>
+        </Library.Section>
 
-        <Library.Pattern title="Displaying pinned content">
+        <Library.Section title="Displaying pinned content">
           <p>
             Pinned content could be shown <i>above</i> all other content,
             including tabs (i.e. a pinned Page Note would also show up on the
@@ -283,7 +284,7 @@ export default function SharedAnnotationsPrototypePage() {
             relating to creating prompts or instructions for assignments, or for
             otherwise showing certain instructor content at the top.
           </p>
-          <Library.Example title="User interface: Showing pinned, shared and non-shared annotations">
+          <Library.Section title="User interface: Showing pinned, shared and non-shared annotations">
             <p>An annotation may be both shared and pinned.</p>
             <Library.Demo>
               <FakeSidebar>
@@ -301,8 +302,8 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn isShared />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.Section>
+        </Library.Section>
       </Library.Section>
 
       <Library.Section
@@ -319,8 +320,8 @@ export default function SharedAnnotationsPrototypePage() {
           </p>
         }
       >
-        <Library.Pattern title="Copying annotations on first launch">
-          <Library.Example title="User interface: Modal on first launch">
+        <Library.Section title="Copying annotations on first launch">
+          <Library.Section title="User interface: Modal on first launch">
             <Library.Demo>
               <ModalDialog_
                 title="Re-use content for this assignment?"
@@ -342,8 +343,8 @@ export default function SharedAnnotationsPrototypePage() {
                 </p>
               </ModalDialog_>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.Section>
+        </Library.Section>
       </Library.Section>
     </Library.Page>
   );

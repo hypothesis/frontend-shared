@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import { toChildArray } from 'preact';
+import { toChildArray, createContext } from 'preact';
 import type { ComponentChildren, JSX } from 'preact';
-import { useMemo, useState } from 'preact/hooks';
+import { useMemo, useState, useContext } from 'preact/hooks';
 import { Link as RouteLink } from 'wouter-preact';
 
 import { CodeIcon, Link as UILink, Scroll, ScrollContainer } from '../../';
@@ -10,32 +10,9 @@ import { jsxToHTML } from '../util/jsx-to-string';
 /**
  * Components for rendering component documentation, examples and demos in the
  * pattern-library page.
- *
- * Example of structure:
- *
- * <Library.Page intro={<p>Some introductory content</p>} title="Elephants">
- *   <p>Any content you want on the page.</p>
- *
- *   <Library.Section title="ComponentName">
- *     <Library.Pattern>
- *       <p>The `Elephant` component is used to render information about elephant
- *       personalities.</p>
- *       <Library.Example title="Colored elephants">
- *         <p>You can change the color of your elephant.</p>
- *         <Library.Demo withSource>
- *           <Elephant color="pink" />
- *         </Library.Demo>
- *         // More Demos if desired...
- *       </Library.Example>
- *       // More Examples if desired...
- *     </Library.Pattern>
- *   // more Patterns if desired...
- *   </Library.Section>
- *
- *   // More Sections...
- *
- * </Library.Page>
  */
+
+type LibraryElementAttributes = Omit<JSX.HTMLAttributes<HTMLElement>, 'title'>;
 
 export type LibraryPageProps = {
   children?: ComponentChildren;
@@ -58,7 +35,7 @@ function Page({ children, intro, title }: LibraryPageProps) {
 
       <div className="px-2 mt-8">
         {intro && (
-          <div className="my-8 pb-8 border-b space-y-4 font-light text-xl leading-relaxed ">
+          <div className="my-8 pb-8 border-b space-y-4 font-light text-xl leading-relaxed">
             {intro}
           </div>
         )}
@@ -68,58 +45,103 @@ function Page({ children, intro, title }: LibraryPageProps) {
   );
 }
 
-export type LibrarySectionProps = {
+export type LibraryHeadingProps = JSX.HTMLAttributes<HTMLHeadingElement> & {
+  children: ComponentChildren;
+  level: number;
+};
+
+function Heading({
+  children,
+  level = 2,
+  ...htmlAttributes
+}: LibraryHeadingProps) {
+  if (level <= 2) {
+    return (
+      <h2 className="text-3xl text-slate-600 font-bold" {...htmlAttributes}>
+        {children}
+      </h2>
+    );
+  } else if (level === 3) {
+    return (
+      <h3 className="text-2xl text-slate-600 font-medium" {...htmlAttributes}>
+        {children}
+      </h3>
+    );
+  } else {
+    return (
+      <h4
+        className="text-lg border-b border-stone-300 text-slate-600 font-normal"
+        {...htmlAttributes}
+      >
+        {children}
+      </h4>
+    );
+  }
+}
+
+export type LibrarySectionProps = LibraryElementAttributes & {
   children?: ComponentChildren;
   intro?: ComponentChildren;
-  id?: string;
   title?: string;
+  level?: number;
 };
+
+// Keep track of <Section> nested depth
+const SectionDepthContext = createContext<number>(1);
 
 /**
  * Render a primary section of a page. Each component documented on a pattern-
  * library page gets its own section.
  */
-function Section({ children, id, intro, title }: LibrarySectionProps) {
+function Section({
+  children,
+  intro,
+  level,
+  title,
+  ...htmlAttributes
+}: LibrarySectionProps) {
+  const sectionDepth = useContext(SectionDepthContext);
+  const depth = level ?? sectionDepth + 1;
+
   return (
-    <section className="mt-8 mb-16">
-      {title && (
-        <h2 className="text-3xl text-slate-600 font-bold " id={id}>
-          {title}
-        </h2>
-      )}
-      {intro && (
-        <div className="text-base space-y-3 leading-relaxed">{intro}</div>
-      )}
-      <div className="leading-relaxed">{children}</div>
-    </section>
+    <SectionDepthContext.Provider value={depth}>
+      <section
+        data-depth={depth}
+        className={classnames({
+          'mt-8 mb-16': depth <= 2,
+          'mt-8 mb-8': depth === 3,
+          'mt-6 mb-8': depth >= 4,
+        })}
+        {...htmlAttributes}
+      >
+        {title && <Heading level={depth}>{title}</Heading>}
+        {intro && (
+          <div className="text-base space-y-3 leading-relaxed">{intro}</div>
+        )}
+        <div className="leading-relaxed">{children}</div>
+      </section>
+    </SectionDepthContext.Provider>
   );
 }
 
-export type LibraryPatternProps = {
+export type LibraryPatternProps = LibraryElementAttributes & {
   children?: ComponentChildren;
-  id?: string;
   title?: string;
 };
 
 /**
  * Render a second-level section. e.g. Usage, Props, Status
  */
-function Pattern({ children, id, title }: LibraryPatternProps) {
+function Pattern({ children, title, ...htmlAttributes }: LibraryPatternProps) {
   return (
-    <section className="mt-8 mb-12">
-      {title && (
-        <h3 className="text-2xl text-slate-600 font-medium" id={id}>
-          {title}
-        </h3>
-      )}
-      <div className="space-y-8">{children}</div>
-    </section>
+    <Section level={3} title={title} {...htmlAttributes}>
+      {children}
+    </Section>
   );
 }
 
-export type LibraryExampleProps = {
+export type LibraryExampleProps = LibraryElementAttributes & {
   children?: ComponentChildren;
-  id?: string;
   title?: string;
 };
 
@@ -127,19 +149,11 @@ export type LibraryExampleProps = {
  * Render content in a third-level section, e.g. documentation
  * about a specific prop or examples of usage.
  */
-function Example({ children, id, title }: LibraryExampleProps) {
+function Example({ children, title, ...htmlAttributes }: LibraryExampleProps) {
   return (
-    <div className="mt-6">
-      {title && (
-        <h4
-          className="border-b border-stone-300 text-lg text-slate-600 font-normal"
-          id={id}
-        >
-          {title}
-        </h4>
-      )}
-      <div className="px-4">{children}</div>
-    </div>
+    <Section level={4} title={title} {...htmlAttributes}>
+      {children}
+    </Section>
   );
 }
 
