@@ -42,7 +42,7 @@ export default function SelectPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Select" />
 
           <Library.Example>

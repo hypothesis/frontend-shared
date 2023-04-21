@@ -21,7 +21,7 @@ export default function InputGroupPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="InputGroup" />
           <Library.Example>
             <Library.Demo

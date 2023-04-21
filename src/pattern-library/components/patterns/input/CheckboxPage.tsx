@@ -19,7 +19,7 @@ export default function CheckboxPage() {
         </p>
       }
     >
-      <Library.Pattern title="Usage">
+      <Library.Pattern>
         <Library.Usage componentName="Checkbox" />
         <Library.Example>
           <Library.Demo title="Basic Checkbox" withSource>

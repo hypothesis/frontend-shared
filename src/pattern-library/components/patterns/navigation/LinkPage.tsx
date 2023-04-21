@@ -21,7 +21,7 @@ export default function LinkPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Link" />
           <Library.Example>
             <Library.Demo title="Basic Link" withSource>
@@ -108,7 +108,7 @@ export default function LinkPage() {
           </>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="LinkBase" />
 
           <Library.Example>

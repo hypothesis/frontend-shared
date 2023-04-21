@@ -181,7 +181,7 @@ export default function DialogPage() {
             </strong>
           </p>
         </Library.Pattern>
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Dialog" />
           <Library.Demo title="Basic Dialog" withSource>
             <Dialog_
@@ -442,7 +442,7 @@ export default function DialogPage() {
             </Library.Changelog>
           </Library.Example>
         </Library.Pattern>
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="ModalDialog" />
 
           <Library.Demo title="Basic ModalDialog" withSource>

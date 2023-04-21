@@ -31,7 +31,7 @@ export default function DataTablePage() {
       }
     >
       <Library.Section title="DataTable">
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="DataTable" />
 
           <Library.Example title="Basic DataTable">

@@ -13,7 +13,7 @@ export default function AspectRatioPage() {
       }
     >
       <Library.Section title="AspectRatio">
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="AspectRatio" />
           <Library.Example>
             <Library.Demo

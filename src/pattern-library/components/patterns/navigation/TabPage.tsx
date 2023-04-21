@@ -36,7 +36,7 @@ export default function TabPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Tab" />
           <Library.Example>
             <Library.Demo title="Basic (non-interactive) example" withSource>
@@ -255,7 +255,7 @@ export default function TabPage() {
             <code>TabList</code> is a new component.
           </p>
         </Library.Pattern>
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="TabList" />
           <Library.Example>
             <p>

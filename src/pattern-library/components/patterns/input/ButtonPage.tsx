@@ -29,7 +29,7 @@ export default function ButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Button" />
           <Library.Example>
             <Library.Demo title="Basic Button" withSource>
@@ -135,7 +135,7 @@ export default function ButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="IconButton" />
           <Library.Example>
             <Library.Demo title="Basic IconButton" withSource>
@@ -314,7 +314,7 @@ export default function ButtonPage() {
           </>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="ButtonBase" />
 
           <Library.Example>
