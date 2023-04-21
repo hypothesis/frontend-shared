@@ -21,7 +21,7 @@ export default function IconsPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Available icon components">
-          <div className="grid grid-cols-4 gap-6">
+          <div className="my-4 grid grid-cols-4 gap-6">
             {(Object.keys(Icons) as Array<keyof typeof Icons>).map(iconName => {
               const IconComponent = Icons[iconName];
               return (
