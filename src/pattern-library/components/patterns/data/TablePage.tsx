@@ -21,7 +21,7 @@ export default function TablePage() {
       }
     >
       <Library.Section title="Table">
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage
             componentName="Table, TableHead, TableBody, TableRow, TableCell"
             size="sm"

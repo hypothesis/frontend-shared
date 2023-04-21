@@ -28,7 +28,7 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="ScrollBox" />
           <Library.Example title="Basic ScrollBox">
             <Library.Demo withSource>
@@ -110,7 +110,7 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Scroll" />
           <Library.Example>
             <Library.Demo title="Using Scroll by itself" withSource>
@@ -166,7 +166,7 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="ScrollContent" />
           <Library.Example>
             <Library.Demo title="Scroll with ScrollContent" withSource>
@@ -201,7 +201,7 @@ export default function ScrollBoxPage() {
           </>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="ScrollContainer" />
 
           <Library.Example>

@@ -122,7 +122,7 @@ export default function ModalPage() {
             </Library.ChangelogItem>
           </Library.Changelog>
         </Library.Pattern>
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Modal" />
           <Library.Demo title="Basic modal" withSource>
             <Modal_

@@ -30,7 +30,7 @@ export default function PointerButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="PointerButton" />
           <Library.Example>
             <Library.Demo

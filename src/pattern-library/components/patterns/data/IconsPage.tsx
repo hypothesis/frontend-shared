@@ -11,7 +11,7 @@ export default function IconsPage() {
       }
     >
       <Library.Section title="Icon components">
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="CancelIcon" />
           <Library.Example>
             <Library.Demo title="Usage example with CancelIcon" withSource>

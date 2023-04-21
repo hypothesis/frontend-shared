@@ -20,7 +20,7 @@ export default function InputPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Input" />
 
           <Library.Example>

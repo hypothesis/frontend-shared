@@ -17,7 +17,7 @@ import { jsxToHTML } from '../util/jsx-to-string';
  *   <p>Any content you want on the page.</p>
  *
  *   <Library.Section title="ComponentName">
- *     <Library.Pattern title="Usage">
+ *     <Library.Pattern>
  *       <p>The `Elephant` component is used to render information about elephant
  *       personalities.</p>
  *       <Library.Example title="Colored elephants">
@@ -302,7 +302,7 @@ export type LibraryCodeProps = {
   /** Controls relative code font size */
   size?: 'sm' | 'md' | 'lg';
   /** Caption (e.g. filename, description) of code block */
-  title?: string;
+  title?: ComponentChildren;
 };
 
 /**

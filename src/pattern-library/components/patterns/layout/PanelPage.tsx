@@ -23,7 +23,7 @@ export default function PanelPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Panel" />
           <Library.Example>
             <p>

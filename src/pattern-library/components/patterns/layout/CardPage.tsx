@@ -29,7 +29,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Card, CardContent" />
           <Library.Example>
             <Library.Demo title="Basic Card with CardContent" withSource>
@@ -121,7 +121,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Card, CardContent" />
 
           <Library.Example title="Laying out Card content">
@@ -207,7 +207,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage
             componentName="Card, CardContent, CardHeader"
             size="sm"
@@ -285,7 +285,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage
             componentName="Card, CardContent, CardHeader, CardTitle"
             size="sm"
@@ -317,7 +317,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage
             componentName="Card, CardContent, CardHeader, CardActions"
             size="sm"

@@ -20,7 +20,7 @@ export default function LinkButtonPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="LinkButton" />
           <Library.Example>
             <Library.Demo title="Basic LinkButton" withSource>

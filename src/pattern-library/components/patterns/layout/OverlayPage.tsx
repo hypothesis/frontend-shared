@@ -32,7 +32,7 @@ export default function OverlayPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Overlay" />
           <Library.Example>
             <Library.Demo title="Basic Overlay" withSource>

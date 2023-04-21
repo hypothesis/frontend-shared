@@ -30,7 +30,7 @@ export default function SpinnerPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="Spinner" />
           <Library.Example>
             <Library.Demo withSource>
@@ -77,7 +77,7 @@ export default function SpinnerPage() {
           </p>
         }
       >
-        <Library.Pattern title="Usage">
+        <Library.Pattern>
           <Library.Usage componentName="SpinnerOverlay" />
           <Library.Example>
             <Library.Demo>
