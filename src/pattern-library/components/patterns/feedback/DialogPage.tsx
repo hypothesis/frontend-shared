@@ -13,13 +13,13 @@ import {
   InputGroup,
   Link,
   Scroll,
+  Slider,
   Tab,
   TabList,
 } from '../../../../';
 import { ModalDialog } from '../../../../components/feedback';
 import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
 import Library from '../../Library';
-import FadeComponent from '../FadeComponent';
 import { LoremIpsum, nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
 
@@ -354,10 +354,10 @@ export default function DialogPage() {
             >
               <Dialog_
                 title="Dialog with TransitionComponent example"
-                transitionComponent={FadeComponent}
+                transitionComponent={Slider}
               >
                 <p>
-                  This dialog has a fade in/out transition when opened/closed.
+                  This dialog has a slide down/up transition when opened/closed.
                 </p>
               </Dialog_>
             </Library.Demo>
