@@ -71,11 +71,13 @@ export default function ColorsPage() {
   return (
     <Library.Page title="Colors">
       <Library.Pattern title="Brand red">
-        <div className="flex flex-row flex-wrap gap-4">{brandExamples}</div>
+        <div className="my-4 flex flex-row flex-wrap gap-4">
+          {brandExamples}
+        </div>
       </Library.Pattern>
 
       <Library.Pattern title="Greys">
-        <div className="flex flex-row flex-wrap gap-4">{greyExamples}</div>
+        <div className="my-4 flex flex-row flex-wrap gap-4">{greyExamples}</div>
       </Library.Pattern>
 
       <Library.Pattern title="Slates">
@@ -83,15 +85,21 @@ export default function ColorsPage() {
           These slightly blue greys may be used sparingly to help with
           differentiation and clarity within interfaces.
         </p>
-        <div className="flex flex-row flex-wrap gap-4">{slateExamples}</div>
+        <div className="my-4 flex flex-row flex-wrap gap-4">
+          {slateExamples}
+        </div>
       </Library.Pattern>
 
       <Library.Pattern title="State indicators">
-        <div className="flex flex-row flex-wrap gap-4">{stateExamples}</div>
+        <div className="my-4 flex flex-row flex-wrap gap-4">
+          {stateExamples}
+        </div>
       </Library.Pattern>
 
       <Library.Pattern title="Focus indicators">
-        <div className="flex flex-row flex-wrap gap-4">{focusExamples}</div>
+        <div className="my-4 flex flex-row flex-wrap gap-4">
+          {focusExamples}
+        </div>
       </Library.Pattern>
     </Library.Page>
   );
