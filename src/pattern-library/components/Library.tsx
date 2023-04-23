@@ -4,7 +4,13 @@ import type { ComponentChildren, JSX } from 'preact';
 import { useMemo, useState, useContext } from 'preact/hooks';
 import { Link as RouteLink } from 'wouter-preact';
 
-import { CodeIcon, Link as UILink, Scroll, ScrollContainer } from '../../';
+import {
+  CautionIcon,
+  CodeIcon,
+  Link as UILink,
+  Scroll,
+  ScrollContainer,
+} from '../../';
 import { jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -394,7 +400,17 @@ function Link({ children, href }: LinkProps) {
   );
 }
 
+function Callout({ children }: { children: ComponentChildren }) {
+  return (
+    <div className="flex gap-x-2 p-3 rounded-md bg-slate-50 border shadow-inner">
+      <CautionIcon className="text-yellow-notice w-6 h-6" />
+      <div>{children}</div>
+    </div>
+  );
+}
+
 export default {
+  Callout,
   Changelog,
   ChangelogItem,
   Code,
