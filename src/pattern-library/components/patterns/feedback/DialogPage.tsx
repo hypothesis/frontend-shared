@@ -339,15 +339,9 @@ export default function DialogPage() {
               transparent to consumers.
             </p>
             <p>
-              The only requirement is that provided component needs to conform
-              to the next props:
+              The only requirement is that provided component needs to be a{' '}
+              <strong>TransitionComponent</strong>.
             </p>
-            <Library.Code
-              content={`type TransitionComponentProps = {
-  visible: boolean;
-  onTransitionEnd?: (direction: 'in' | 'out') => void;
-}`}
-            />
             <Library.Demo
               title="Dialog with TransitionComponent example"
               withSource
