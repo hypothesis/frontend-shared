@@ -28,6 +28,7 @@ import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
+import SliderPage from './components/patterns/transition/SliderPage';
 
 export const componentGroups = {
   data: 'Data Display',
@@ -35,7 +36,10 @@ export const componentGroups = {
   input: 'Input',
   layout: 'Layout',
   navigation: 'Navigation',
+  transition: 'Transitions',
 } as const;
+
+Object.freeze(componentGroups);
 
 export type PlaygroundRouteGroup =
   | keyof typeof componentGroups
@@ -220,6 +224,12 @@ const routes: PlaygroundRoute[] = [
     group: 'navigation',
     component: TabPage,
     route: '/navigation-tab',
+  },
+  {
+    title: 'Slider',
+    group: 'transition',
+    component: SliderPage,
+    route: '/transitions-slider',
   },
   {
     title: 'Shared Annotations',
