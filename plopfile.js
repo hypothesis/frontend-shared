@@ -25,7 +25,7 @@ export default function (plop) {
         type: 'list',
         name: 'category',
         message: 'component category',
-        choices: ['presentational', 'composite', 'simple'],
+        choices: ['presentational', 'composite', 'simple', 'transition'],
         default: 'presentational',
       },
       {
@@ -52,7 +52,11 @@ export default function (plop) {
           path: 'src/components/{{group}}/index.ts',
           pattern: /\n\n*$/g,
           template: `\nexport { default as {{name}} } from './{{name}}';
-export type { {{name}}Props } from './{{name}}';\n`,
+${
+  data.category !== 'transition'
+    ? "export type { {{name}}Props } from './{{name}}';\n"
+    : ''
+}`,
         },
         {
           type: 'add',
@@ -64,7 +68,11 @@ export type { {{name}}Props } from './{{name}}';\n`,
           path: 'src/index.ts',
           pattern: /\n\n*$/g,
           template: `\nexport { {{name}} } from './components/{{group}}';
-export type { {{name}}Props } from './components/{{group}}';\n`,
+${
+  data.category !== 'transition'
+    ? "export type { {{name}}Props } from './components/{{group}}';\n"
+    : ''
+}`,
         },
       ];
 

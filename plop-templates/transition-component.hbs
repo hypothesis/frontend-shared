@@ -1,0 +1,36 @@
+import { useCallback } from 'preact/hooks';
+
+import type { TransitionComponent } from '../../types';
+
+/**
+ * TODO
+ */
+const {{name}}: TransitionComponent = ({
+  children,
+  visible,
+  onTransitionEnd,
+}) => {
+  const handleTransitionEnd = useCallback(() => {
+    if (visible) {
+      onTransitionEnd?.('in');
+    } else {
+      onTransitionEnd?.('out');
+    }
+  }, [visible, onTransitionEnd]);
+
+  return (
+    <div
+      data-component="{{name}}"
+      // nb. Preact uses "ontransitionend" rather than "onTransitionEnd".
+      // See https://bugs.chromium.org/p/chromium/issues/detail?id=961193
+      //
+      // @ts-ignore
+      // eslint-disable-next-line react/no-unknown-property
+      ontransitionend={handleTransitionEnd}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default {{name}};
