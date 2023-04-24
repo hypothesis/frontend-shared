@@ -30,7 +30,7 @@ export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
  * A component that describes an `in` and an `out` transition, typically to
  * animate the mounting and unmounting of a child component.
  */
-export type TransitionComponent = JSX.ElementType<{
+export type TransitionComponent = FunctionComponent<{
   visible: boolean;
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 }>;
