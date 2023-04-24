@@ -43,6 +43,11 @@ export default function UsingComponentsPage() {
               <strong className="font-semibold">Simple components</strong> are
               opinionated, simple components that apply design patterns
             </li>
+            <li>
+              <strong className="font-semibold">Transition components</strong>{' '}
+              are components with an in/out transition which can be used
+              standalone or wrapped by other components
+            </li>
           </ul>
         </>
       }
@@ -163,6 +168,37 @@ export default function UsingComponentsPage() {
       >
         <Library.Pattern title="Props API">
           Simple components only accept component-specific props.
+        </Library.Pattern>
+      </Library.Section>
+
+      <Library.Section
+        title="Transition components"
+        intro={
+          <>
+            <p>
+              <strong>Transition components</strong> have a common props API to
+              represent their visibility and allows to hook some callbacks for
+              when it changes.
+            </p>
+            <p>
+              Example: <code>Slider</code>.
+            </p>
+          </>
+        }
+      >
+        <Library.Pattern title="Props API">
+          <p>
+            <strong>Transition components</strong> take these common props
+            unless documented otherwise:
+          </p>
+          <Library.Code
+            size="sm"
+            content={`type TransitionComponentProps = {
+  visible: boolean;
+  onTransitionEnd?: (direction: 'in' | 'out') => void;
+};`}
+            title="Common transition-component props"
+          />
         </Library.Pattern>
       </Library.Section>
 
