@@ -196,7 +196,7 @@ const Dialog = function Dialog({
 
   return (
     <Wrapper
-      visible={transitionComponentVisible}
+      direction={transitionComponentVisible ? 'in' : 'out'}
       onTransitionEnd={onTransitionEnd}
     >
       <div
