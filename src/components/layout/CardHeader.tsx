@@ -20,6 +20,8 @@ type ComponentProps = {
    * Make the header take the full width of the Card, with a full-width border
    */
   fullWidth?: boolean;
+
+  variant?: 'primary' | 'secondary';
 };
 
 type HTMLAttributes = JSX.HTMLAttributes<HTMLElement>;
@@ -39,6 +41,7 @@ const CardHeader = function CardHeader({
   fullWidth = false,
   onClose,
   title,
+  variant = 'primary',
 
   ...htmlAttributes
 }: CardHeaderProps) {
@@ -48,12 +51,20 @@ const CardHeader = function CardHeader({
       {...htmlAttributes}
       className={classnames(
         'flex items-center gap-x-2 border-b py-2',
-        { 'mx-3': !fullWidth, 'px-3': fullWidth },
+        {
+          'bg-slate-0 border-slate-5': variant === 'secondary',
+          'mx-3': !fullWidth && variant === 'primary',
+          'px-3': fullWidth || variant === 'secondary',
+        },
         classes
       )}
       ref={downcastRef(elementRef)}
     >
-      {title && <CardTitle>{title}</CardTitle>}
+      {title && (
+        <CardTitle classes="grow" variant={variant}>
+          {title}
+        </CardTitle>
+      )}
       {children}
       {onClose && (
         <IconButton

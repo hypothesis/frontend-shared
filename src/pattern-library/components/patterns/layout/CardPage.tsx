@@ -273,6 +273,39 @@ export default function CardPage() {
               </Card>
             </Library.Demo>
           </Library.Example>
+
+          <Library.Example title="variant">
+            <Library.Demo title="variant='secondary' (default)" withSource>
+              <Card>
+                <CardHeader
+                  variant="primary"
+                  title="Primary variant"
+                  onClose={() => {}}
+                />
+                <CardContent>
+                  <p>
+                    This {"Card's"} <code>CardHeader</code> is styled with the{' '}
+                    <code>primary</code> (default) variant.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+            <Library.Demo title="variant='secondary'" withSource>
+              <Card>
+                <CardHeader
+                  variant="secondary"
+                  onClose={() => {}}
+                  title="Secondary variant"
+                />
+                <CardContent>
+                  <p>
+                    This {"Card's"} <code>CardHeader</code> is styled with the{' '}
+                    <code>secondary</code> variant.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
@@ -305,6 +338,62 @@ export default function CardPage() {
               </CardContent>
             </Card>
           </Library.Demo>
+        </Library.Pattern>
+        <Library.Pattern title="Props">
+          <Library.Example title="tagName">
+            <p>
+              {' '}
+              The <code>
+                tagName: {"'h1' | 'h2' | 'h3' | 'h4' | 'h5'"}
+              </code>{' '}
+              prop (default <code>{"'h1'"}</code>) determines which HTML heading
+              element will wrap the rendered content.
+            </p>
+            <Library.Demo title="tagName='h3'" withSource>
+              <Card>
+                <CardHeader>
+                  <EditIcon />
+                  <CardTitle tagName="h3">Card title</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>
+                    Setting a different heading level (HTML tag) in a{' '}
+                    <code>CardTitle</code>.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="variant">
+            <Library.Demo title="variant='primary'" withSource>
+              <Card>
+                <CardHeader>
+                  <CardTitle variant="primary">Card title</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>
+                    This <code>CardTitle</code> uses the default{' '}
+                    <code>{"'primary'"}</code> variant.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+
+            <Library.Demo title="variant='secondary'" withSource>
+              <Card>
+                <CardHeader>
+                  <CardTitle variant="secondary">Card title</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>
+                    This <code>CardTitle</code> uses the
+                    <code>{"'secondary'"}</code> variant.
+                  </p>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
