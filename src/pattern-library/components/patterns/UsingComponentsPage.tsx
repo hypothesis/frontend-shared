@@ -194,7 +194,13 @@ export default function UsingComponentsPage() {
           <Library.Code
             size="sm"
             content={`type TransitionComponentProps = {
+  /** Sets current direction of the component. Defaults to "in" */
   direction?: 'in' | 'out';
+
+  /**
+   * If provided, it is invoked when the component direction changes,
+   * once the transition has finished.
+   */
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 };`}
             title="Common transition-component props"
