@@ -78,9 +78,8 @@ export default function SliderPage() {
 
         <Library.Pattern title="Props">
           <Library.Example title="direction">
-            This prop tells if the Slider is currently displayed (
-            <code>in</code>) or hidden (<code>out</code>). It is <code>in</code>{' '}
-            by default.
+            This prop tells if the Slider is currently expanded (<code>in</code>
+            ) or collapsed (<code>out</code>). It is <code>in</code> by default.
           </Library.Example>
 
           <Library.Example title="onTransitionEnd">
