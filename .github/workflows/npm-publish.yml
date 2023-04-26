@@ -22,3 +22,7 @@ jobs:
       run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  deploy-website:
+    name: Deploy website
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
