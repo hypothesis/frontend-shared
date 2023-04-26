@@ -31,6 +31,6 @@ export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
  * animate the mounting and unmounting of a child component.
  */
 export type TransitionComponent = FunctionComponent<{
-  visible: boolean;
+  direction?: 'in' | 'out';
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 }>;

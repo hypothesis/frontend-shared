@@ -4,9 +4,10 @@ import type { TransitionComponent } from '../../types';
 
 const Slider: TransitionComponent = ({
   children,
-  visible,
+  direction = 'in',
   onTransitionEnd,
 }) => {
+  const visible = direction === 'in';
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerHeight, setContainerHeight] = useState(visible ? 'auto' : 0);
 

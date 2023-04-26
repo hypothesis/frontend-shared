@@ -17,9 +17,9 @@ const createComponent = (Component, props = {}) => {
 /**
  * @type {import('../../../types').TransitionComponent}
  */
-const ComponentWithTransition = ({ children, visible, onTransitionEnd }) => {
+const ComponentWithTransition = ({ children, direction, onTransitionEnd }) => {
   // Fake a 50ms transition time
-  setTimeout(() => onTransitionEnd?.(visible ? 'in' : 'out'), 50);
+  setTimeout(() => onTransitionEnd?.(direction), 50);
   return <div>{children}</div>;
 };
 

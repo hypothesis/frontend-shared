@@ -8,7 +8,7 @@ describe('Slider', () => {
 
   const createSlider = (props = {}) => {
     return mount(
-      <Slider visible={false} {...props}>
+      <Slider {...props}>
         <div style={{ width: 100, height: 200 }}>Test content</div>
       </Slider>,
       { attachTo: container }
@@ -24,8 +24,8 @@ describe('Slider', () => {
     container.remove();
   });
 
-  it('should render collapsed if `visible` is false on mount', () => {
-    const wrapper = createSlider({ visible: false });
+  it('should render collapsed if `direction` is `out` on mount', () => {
+    const wrapper = createSlider({ direction: 'out' });
     const { height } = wrapper.getDOMNode().getBoundingClientRect();
     assert.equal(height, 0);
 
@@ -34,25 +34,27 @@ describe('Slider', () => {
     assert.equal(wrapper.getDOMNode().style.display, 'none');
   });
 
-  it('should render expanded if `visible` is true on mount', () => {
-    const wrapper = createSlider({ visible: true });
-    const { height } = wrapper.getDOMNode().getBoundingClientRect();
-    assert.equal(height, 200);
+  ['in', undefined].forEach(direction => {
+    it('should render expanded if `direction` is `in` or not provided on mount', () => {
+      const wrapper = createSlider({ direction });
+      const { height } = wrapper.getDOMNode().getBoundingClientRect();
+      assert.equal(height, 200);
+    });
   });
 
-  it('should transition to expanded if `visible` changes to `true`', () => {
-    const wrapper = createSlider({ visible: false });
+  it('should transition to expanded if `direction` changes to `in`', () => {
+    const wrapper = createSlider({ direction: 'out' });
 
-    wrapper.setProps({ visible: true });
+    wrapper.setProps({ direction: 'in' });
 
     const containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.height, '200px');
   });
 
-  it('should transition to collapsed if `visible` changes to `false`', done => {
-    const wrapper = createSlider({ visible: true });
+  it('should transition to collapsed if `direction` changes to `out`', done => {
+    const wrapper = createSlider({ direction: 'in' });
 
-    wrapper.setProps({ visible: false });
+    wrapper.setProps({ direction: 'out' });
 
     setTimeout(() => {
       const containerStyle = wrapper.getDOMNode().style;
@@ -62,9 +64,9 @@ describe('Slider', () => {
   });
 
   it('should set the container height to "auto" when an expand transition finishes', () => {
-    const wrapper = createSlider({ visible: false });
+    const wrapper = createSlider({ direction: 'out' });
 
-    wrapper.setProps({ visible: true });
+    wrapper.setProps({ direction: 'in' });
 
     let containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.height, '200px');
@@ -75,17 +77,17 @@ describe('Slider', () => {
     assert.equal(containerStyle.height, 'auto');
   });
 
-  it('should hide overflowing content when not fully visible', () => {
+  it('should hide overflowing content when not fully expanded', () => {
     // When fully collapsed, overflow should be hidden.
-    const wrapper = createSlider({ visible: false });
+    const wrapper = createSlider({ direction: 'out' });
     let containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.overflow, 'hidden');
 
     // When starting to expand, or when collapsing, overflow should also be hidden.
-    wrapper.setProps({ visible: true });
+    wrapper.setProps({ direction: 'in' });
     assert.equal(containerStyle.overflow, 'hidden');
 
-    // When fully visible, we make overflow visible to make focus rings or
+    // When fully expanded, we make overflow visible to make focus rings or
     // other content which extends beyond the bounds of the Slider visible.
     wrapper.find('div').first().simulate('transitionend');
     containerStyle = wrapper.getDOMNode().style;
@@ -93,9 +95,9 @@ describe('Slider', () => {
   });
 
   it('should stop rendering content when a collapse transition finishes', () => {
-    const wrapper = createSlider({ visible: true });
+    const wrapper = createSlider({ direction: 'in' });
 
-    wrapper.setProps({ visible: false });
+    wrapper.setProps({ direction: 'out' });
 
     wrapper.find('div').first().simulate('transitionend');
 
@@ -103,10 +105,10 @@ describe('Slider', () => {
     assert.equal(containerStyle.display, 'none');
   });
 
-  [true, false].forEach(visible => {
+  ['in', 'out'].forEach(direction => {
     it('should handle unmounting while expanding or collapsing', () => {
-      const wrapper = createSlider({ visible });
-      wrapper.setProps({ visible: !visible });
+      const wrapper = createSlider({ direction });
+      wrapper.setProps({ direction: direction === 'in' ? 'out' : 'in' });
       wrapper.unmount();
     });
   });
@@ -115,12 +117,12 @@ describe('Slider', () => {
     'should pass a11y checks',
     checkAccessibility([
       {
-        name: 'visible',
-        content: () => createSlider({ visible: true }),
+        name: 'in',
+        content: () => createSlider({ direction: 'in' }),
       },
       {
-        name: 'hidden',
-        content: () => createSlider({ visible: false }),
+        name: 'out',
+        content: () => createSlider({ direction: 'out' }),
       },
     ])
   );

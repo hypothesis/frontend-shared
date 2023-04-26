@@ -194,7 +194,7 @@ export default function UsingComponentsPage() {
           <Library.Code
             size="sm"
             content={`type TransitionComponentProps = {
-  visible: boolean;
+  direction?: 'in' | 'out';
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 };`}
             title="Common transition-component props"
