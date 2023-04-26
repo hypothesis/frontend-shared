@@ -26,6 +26,7 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
+import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 import SliderPage from './components/patterns/transition/SliderPage';
 
@@ -229,6 +230,12 @@ const routes: PlaygroundRoute[] = [
     group: 'prototype',
     component: SharedAnnotationsPage,
     route: '/shared-annotations-ui',
+  },
+  {
+    title: 'LMS Content Selection',
+    group: 'prototype',
+    component: LMSContentSelectionPage,
+    route: '/lms-content-selection',
   },
 ];
 
