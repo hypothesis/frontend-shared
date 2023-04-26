@@ -10,6 +10,10 @@ $ make dev
 
 You can view the pattern library at http://localhost:4001/
 
+The pattern library is hosted at https://patterns.hypothes.is/. It gets deployed automatically when a new package version is published.
+
+It can be manually deployed using the [deploy workflow](https://github.com/hypothesis/frontend-shared/actions/workflows/deploy.yml)
+
 ## Testing locally with other projects
 
 This section explains how to test other applications (e.g. [`client`](https://github.com/hypothesis/client), `lms`) with
