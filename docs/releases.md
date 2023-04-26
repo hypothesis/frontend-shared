@@ -3,7 +3,9 @@
 ## Summary
 
 1. **Update the package version** in `package.json` and merge that change into the `main` branch[^1]. We use [Semantic Versioning](https://semver.org/#semantic-versioning-200).
-2. **Create a tag** pointing at the version-change commit and generate a **new GitHub release** (details follow). Publishing a GitHub release will kick off a GitHub Action that will **publish the `@hypothesis/frontend-shared` package to `npm`.**
+2. **Create a tag** pointing at the version-change commit and generate a **new GitHub release** (details follow). Publishing a GitHub release will kick off a GitHub Action that will do the following:
+   - Publish the `@hypothesis/frontend-shared` package to `npm`
+   - Deploy the pattern library to https://patterns.hypothes.is
 
 ## Creating a GitHub release
 
