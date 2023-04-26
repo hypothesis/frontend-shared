@@ -56,15 +56,14 @@ const Slider: TransitionComponent = ({
   const handleTransitionEnd = useCallback(() => {
     if (visible) {
       setContainerHeight('auto');
-      onTransitionEnd?.('in');
     } else {
       // When the collapse animation completes, stop rendering the content so
       // that the browser has fewer nodes to render and the content is removed
       // from keyboard navigation.
       setContentVisible(false);
-      onTransitionEnd?.('out');
     }
-  }, [setContainerHeight, visible, onTransitionEnd]);
+    onTransitionEnd?.(direction);
+  }, [setContainerHeight, visible, onTransitionEnd, direction]);
 
   const isFullyVisible = containerHeight === 'auto';
 
