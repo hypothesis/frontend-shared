@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.0",
+    "highlight.js": "^11.7.0",
     "karma": "^6.3.4",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.0",
@@ -58,6 +59,7 @@
     "svgo": "^3.0.0",
     "tailwindcss": "3.3.1",
     "typescript": "^5.0.2",
+    "wouter-preact": "^2.10.0-alpha.1",
     "yalc": "^1.0.0-pre.50"
   },
   "peerDependencies": {
@@ -89,9 +91,5 @@
   ],
   "type": "module",
   "main": "./lib/index.js",
-  "browserslist": "chrome 70, firefox 70, safari 11.1",
-  "dependencies": {
-    "highlight.js": "^11.6.0",
-    "wouter-preact": "^2.10.0-alpha.1"
-  }
+  "browserslist": "chrome 70, firefox 70, safari 11.1"
 }
