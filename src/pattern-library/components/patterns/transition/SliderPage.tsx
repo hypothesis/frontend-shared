@@ -7,16 +7,17 @@ import Library from '../../Library';
 
 const Slider_: FunctionComponent<
   ComponentProps<TransitionComponent> & { _transitionStatus?: 'in' | 'out' }
-> = ({ children, visible, onTransitionEnd, _transitionStatus }) => {
-  const [isVisible, setIsVisible] = useState(visible);
-  const toggleSlider = () => setIsVisible(prev => !prev);
+> = ({ children, direction, onTransitionEnd, _transitionStatus }) => {
+  const [currentDirection, setCurrentDirection] = useState(direction);
+  const toggleSlider = () =>
+    setCurrentDirection(prev => (prev === 'in' ? 'out' : 'in'));
 
   return (
     <div className="flex-col w-full space-y-2">
       <Button onClick={toggleSlider} variant="primary">
-        {isVisible ? 'Hide' : 'Show'} slider
+        {currentDirection === 'in' ? 'Hide' : 'Show'} slider
       </Button>
-      <Slider visible={isVisible} onTransitionEnd={onTransitionEnd}>
+      <Slider direction={currentDirection} onTransitionEnd={onTransitionEnd}>
         {children}
       </Slider>
       <div>
@@ -66,7 +67,7 @@ export default function SliderPage() {
           <Library.Usage componentName="Slider" />
           <Library.Example>
             <Library.Demo title="Basic example" withSource>
-              <Slider_ visible={false}>
+              <Slider_ direction="out">
                 <Card>
                   <CardContent>This is the content of the Slider</CardContent>
                 </Card>
@@ -76,9 +77,10 @@ export default function SliderPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Props">
-          <Library.Example title="visible">
-            This mandatory boolean prop tells if the Slider is currently
-            displayed or hidden.
+          <Library.Example title="direction">
+            This prop tells if the Slider is currently displayed (
+            <code>in</code>) or hidden (<code>out</code>). It is <code>in</code>{' '}
+            by default.
           </Library.Example>
 
           <Library.Example title="onTransitionEnd">
@@ -86,7 +88,7 @@ export default function SliderPage() {
             <code>in</code>/<code>out</code> transitions end.
             <Library.Demo title="Slider with onTransitionEnd" withSource>
               <Slider_
-                visible={false}
+                direction="out"
                 onTransitionEnd={direction => setTransitionStatus(direction)}
                 _transitionStatus={transitionStatus}
               >
