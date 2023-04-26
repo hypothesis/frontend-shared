@@ -12,7 +12,7 @@ describe('CardHeader', () => {
 
   it('renders a close button if `onClose` set', () => {
     const onClose = sinon.stub();
-    const wrapper = createComponent(CardHeader, { onClose });
+    const wrapper = createComponent(CardHeader, { title: 'My title', onClose });
 
     wrapper.find('button').simulate('click');
     assert.calledOnce(onClose);
