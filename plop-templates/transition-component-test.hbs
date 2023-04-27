@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 
-import { checkAccessibility } from '../../../../test/util/accessibility';
+import { testTransitionComponent } from '../../test/common-tests';
 import {{name}} from '../{{name}}';
 
 describe('{{name}}', () => {
@@ -25,17 +25,5 @@ describe('{{name}}', () => {
     container.remove();
   });
 
-  it(
-    'should pass a11y checks',
-    checkAccessibility([
-      {
-        name: 'in',
-        content: () => create{{name}}({ direction: 'in' }),
-      },
-      {
-        name: 'out',
-        content: () => create{{name}}({ direction: 'out' }),
-      },
-    ])
-  );
+  testTransitionComponent(Slider);
 });
