@@ -5,9 +5,16 @@ import { Button, Card, CardContent, Slider } from '../../../../';
 import type { TransitionComponent } from '../../../../';
 import Library from '../../Library';
 
-const Slider_: FunctionComponent<
-  ComponentProps<TransitionComponent> & { _transitionStatus?: 'in' | 'out' }
-> = ({ children, direction, onTransitionEnd, _transitionStatus }) => {
+type Slider_Props = ComponentProps<TransitionComponent> & {
+  _transitionStatus?: 'in' | 'out';
+};
+
+const Slider_: FunctionComponent<Slider_Props> = ({
+  children,
+  direction,
+  onTransitionEnd,
+  _transitionStatus,
+}) => {
   const [currentDirection, setCurrentDirection] = useState(direction);
   const toggleSlider = () =>
     setCurrentDirection(prev => (prev === 'in' ? 'out' : 'in'));
