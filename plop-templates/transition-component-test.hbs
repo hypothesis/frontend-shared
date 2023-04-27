@@ -9,7 +9,7 @@ describe('{{name}}', () => {
   const create{{name}} = (props = {}) => {
     const style = { width: 100, height: 200 };
     return mount(
-      <{{name}} visible={false} {...props}>
+      <{{name}} {...props}>
         <div style={style}>Test content</div>
       </{{name}}>,
       { attachTo: container }
@@ -29,12 +29,12 @@ describe('{{name}}', () => {
     'should pass a11y checks',
     checkAccessibility([
       {
-        name: 'visible',
-        content: () => create{{name}}({ visible: true }),
+        name: 'in',
+        content: () => create{{name}}({ direction: 'in' }),
       },
       {
-        name: 'hidden',
-        content: () => create{{name}}({ visible: false }),
+        name: 'out',
+        content: () => create{{name}}({ direction: 'out' }),
       },
     ])
   );
