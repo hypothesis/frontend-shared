@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 
 import {
@@ -7,10 +8,17 @@ import {
   Card,
   CardHeader,
   CardContent,
+  FilePdfIcon,
+  FilePdfFilledIcon,
+  GoogleDriveIcon,
   IconButton,
   InputGroup,
   Input,
+  LinkIcon,
+  OneDriveIcon,
+  VitalSourceIcon,
 } from '../../../../';
+import type { IconComponent } from '../../../../types';
 import Library from '../../Library';
 
 function Button1({ children }: { children: ComponentChildren }) {
@@ -77,6 +85,90 @@ function Button4({
         <span className="uppercase text-[11px] text-stone-500">
           {contentType}
         </span>
+      </div>
+    </ButtonBase>
+  );
+}
+
+function Button5({
+  children,
+  icon,
+  contentType = 'pdf',
+}: {
+  children: ComponentChildren;
+  contentType?: string;
+  icon?: IconComponent;
+}) {
+  const Icon = icon ?? FilePdfFilledIcon;
+  return (
+    <ButtonBase classes="w-full bg-stone-50 hover:bg-stone-100 rounded border border-stone-300 hover:border-stone-400 items-center">
+      <div className="p-1.5 bg-stone-200 rounded-l">
+        <Icon className="text-stone-500" />
+      </div>
+      <div className="grow text-start pl-1">
+        <strong className="text-slate-600">{children}</strong>
+      </div>
+      <div className="text-end pr-2">
+        <span className="uppercase text-[11px] text-stone-500">
+          {contentType}
+        </span>
+      </div>
+    </ButtonBase>
+  );
+}
+
+function Button6({
+  children,
+  icon,
+  contentType = 'pdf',
+  selected = false,
+}: {
+  children: ComponentChildren;
+  contentType?: string;
+  icon?: IconComponent;
+  selected?: boolean;
+}) {
+  const Icon = icon ?? FilePdfIcon;
+  return (
+    <ButtonBase
+      classes={classnames(
+        'group bg-stone-50 hover:bg-slate-100 shadow hover:shadow-lg rounded border border-stone-300 hover:border-stone-400 justify-center',
+        {
+          'shadow-inner': selected,
+        }
+      )}
+    >
+      <div className="flex flex-col items-center w-full gap-y-2 pt-2">
+        <Icon
+          className={classnames('group-hover:text-slate-400 w-10 h-10', {
+            'text-stone-300': !selected,
+            'text-slate-400': selected,
+          })}
+        />
+        <div className="grow">
+          <strong className="text-slate-600 text-[15px]">{children}</strong>
+        </div>
+        <div
+          className={classnames(
+            'group-hover:bg-slate-500 w-full p-0.5 rounded-b',
+            {
+              'bg-stone-200': !selected,
+              'bg-slate-500': selected,
+            }
+          )}
+        >
+          <span
+            className={classnames(
+              'uppercase text-[11px] group-hover:text-stone-50',
+              {
+                'text-stone-500': !selected,
+                'text-stone-50': selected,
+              }
+            )}
+          >
+            {contentType}
+          </span>
+        </div>
       </div>
     </ButtonBase>
   );
@@ -308,7 +400,7 @@ export default function LMSContentSelectionPage() {
                             PDF from <strong>OneDrive</strong>
                           </Button1>
                           <Button1>
-                            book from <strong>VitalSource</strong>
+                            Book from <strong>VitalSource</strong>
                           </Button1>
                         </div>
                         <div className="grow" />
@@ -534,6 +626,140 @@ export default function LMSContentSelectionPage() {
                   </div>
                 </Card>
               </div>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Iterative: Round 2">
+          <Library.Example title="Starting point">
+            <p>
+              {"Let's"} start this round by consolidating some parts of the
+              ideas in round 1.
+            </p>
+
+            <Library.Demo>
+              <Card width="custom" classes="w-[700px]">
+                <CardHeader variant="secondary" title="Assignment details" />
+                <div className="px-3 py-6">
+                  <div className="grid grid-cols-[12em_1fr] gap-x-6 gap-y-3">
+                    <div className="space-y-1.5 pt-1">
+                      <div className="leading-none text-[14px] text-end font-medium text-slate-600 uppercase">
+                        Assignment content
+                      </div>
+                      <div className="text-[14px] text-end leading-none font-normal text-stone-500">
+                        <p>Select content for your assignment</p>
+                      </div>
+                    </div>
+                    <div className="space-y-6 text-[14px] leading-none">
+                      <div className="flex flex-row p-y-2">
+                        <div className="grid grid-cols-2 gap-2 w-full">
+                          <Button4 contentType="web page | PDF">URL</Button4>
+                          <Button4>Canvas</Button4>
+                          <Button4>Google Drive</Button4>
+                          <Button4 contentType="article">JSTOR</Button4>
+                          <Button4>OneDrive</Button4>
+                          <Button4 contentType="book">VitalSource</Button4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Icons and hover">
+            <p>
+              We could add SVG icons to the buttons. Here is shown only
+              GoogleDrive, VitalSource and OneDrive as creating SVG icons for
+              all of these content sources would take some time. This sketch
+              also adds a hover interaction to the buttons.
+            </p>
+
+            <Library.Callout>
+              <strong>Regarding icons</strong>: icons in these sketches are
+              intended to show how icons might be used. I was able to quickly
+              find icons for GoogleDrive and OneDrive and fumble something
+              together for VitalSource. We would want to obtain icons for Canvas
+              and JSTOR if we moved forward, and adjust icon sizing to be more
+              consistent.
+            </Library.Callout>
+
+            <Library.Demo>
+              <Card width="custom" classes="w-[700px]">
+                <CardHeader variant="secondary" title="Assignment details" />
+                <div className="px-3 py-6">
+                  <div className="grid grid-cols-[12em_1fr] gap-x-6 gap-y-3">
+                    <div className="space-y-1.5 pt-1">
+                      <div className="leading-none text-[14px] text-end font-medium text-slate-600 uppercase">
+                        Assignment content
+                      </div>
+                      <div className="text-[14px] text-end leading-none font-normal text-stone-500">
+                        <p>Select content for your assignment</p>
+                      </div>
+                    </div>
+                    <div className="space-y-6 text-[14px] leading-none">
+                      <div className="flex flex-row p-y-2">
+                        <div className="grid grid-cols-2 gap-2 w-full">
+                          <Button5 contentType="web page | PDF" icon={LinkIcon}>
+                            URL
+                          </Button5>
+                          <Button5>Canvas</Button5>
+                          <Button5 icon={GoogleDriveIcon}>Google Drive</Button5>
+                          <Button5 contentType="article">JSTOR</Button5>
+                          <Button5 icon={OneDriveIcon}>OneDrive</Button5>
+                          <Button5 contentType="book" icon={VitalSourceIcon}>
+                            VitalSource
+                          </Button5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Tiles">
+            <p>
+              This sketch demonstrates a possible tile layout, with a{' '}
+              {'"selected"'} styling (and hover).
+            </p>
+
+            <Library.Demo>
+              <Card width="custom" classes="w-[700px]">
+                <CardHeader variant="secondary" title="Assignment details" />
+                <div className="px-3 py-6">
+                  <div className="grid grid-cols-[8em_1fr] gap-x-6 gap-y-3">
+                    <div className="space-y-1.5 pt-1">
+                      <div className="leading-none text-[14px] text-end font-medium text-slate-600 uppercase">
+                        Content
+                      </div>
+                      <div className="text-[14px] text-end leading-none font-normal text-stone-500">
+                        <p>Select content for your assignment</p>
+                      </div>
+                    </div>
+                    <div className="space-y-6 text-[14px] leading-none">
+                      <div className="flex flex-row p-y-2">
+                        <div className="grid grid-cols-4 gap-2 w-full">
+                          <Button6 contentType="web page | PDF" icon={LinkIcon}>
+                            URL
+                          </Button6>
+                          <Button6>Canvas</Button6>
+                          <Button6 icon={GoogleDriveIcon}>Google Drive</Button6>
+                          <Button6 contentType="article">JSTOR</Button6>
+                          <Button6 icon={OneDriveIcon} selected>
+                            OneDrive
+                          </Button6>
+                          <Button6 contentType="book" icon={VitalSourceIcon}>
+                            VitalSource
+                          </Button6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
