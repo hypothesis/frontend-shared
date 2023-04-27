@@ -5,6 +5,7 @@ import { checkAccessibility } from '../../../test/util/accessibility';
 
 /**
  * @typedef {import('preact').FunctionComponent} FunctionComponent
+ * @typedef {import('../../types').TransitionComponent} TransitionComponent
  */
 
 const createComponent = (Component, props = {}) => {
@@ -235,5 +236,42 @@ export function testSimpleComponent(Component) {
       const wrapper = createComponent(Component);
       assert.isTrue(wrapper.find(Component).exists());
     });
+  });
+}
+
+/**
+ * Common tests for simple design components
+ *
+ * @param {TransitionComponent} Component
+ * @param {CommonTestOpts} opts
+ */
+export function testTransitionComponent(
+  Component,
+  { componentName, createContent = createComponent } = {}
+) {
+  const displayName = componentName ?? Component.displayName ?? Component.name;
+
+  describe(`Common transition component functionality for ${displayName}`, () => {
+    it('renders', () => {
+      const wrapper = createComponent(Component);
+      assert.isTrue(wrapper.find(Component).exists());
+    });
+
+    ['in', 'out'].forEach(direction => {
+      it('should handle unmounting while expanding or collapsing', () => {
+        const wrapper = createComponent(Component, { direction });
+        wrapper.setProps({ direction: direction === 'in' ? 'out' : 'in' });
+        wrapper.unmount();
+      });
+    });
+
+    it(
+      'should pass a11y checks',
+      checkAccessibility([
+        {
+          content: () => createContent(Component),
+        },
+      ])
+    );
   });
 }
