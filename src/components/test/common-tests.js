@@ -258,7 +258,7 @@ export function testTransitionComponent(
     });
 
     ['in', 'out'].forEach(direction => {
-      it('should handle unmounting while expanding or collapsing', () => {
+      it('should handle unmounting on either direction', () => {
         const wrapper = createComponent(Component, { direction });
         wrapper.setProps({ direction: direction === 'in' ? 'out' : 'in' });
         wrapper.unmount();
