@@ -7,16 +7,12 @@ import type { TransitionComponent } from '../../types';
  */
 const {{name}}: TransitionComponent = ({
   children,
-  visible,
+  direction = 'in',
   onTransitionEnd,
 }) => {
   const handleTransitionEnd = useCallback(() => {
-    if (visible) {
-      onTransitionEnd?.('in');
-    } else {
-      onTransitionEnd?.('out');
-    }
-  }, [visible, onTransitionEnd]);
+    onTransitionEnd?.(direction);
+  }, [direction, onTransitionEnd]);
 
   return (
     <div
