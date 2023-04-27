@@ -258,10 +258,16 @@ export function testTransitionComponent(
     });
 
     ['in', 'out'].forEach(direction => {
-      it('should handle unmounting on either direction', () => {
-        const wrapper = createComponent(Component, { direction });
-        wrapper.setProps({ direction: direction === 'in' ? 'out' : 'in' });
-        wrapper.unmount();
+      it('should handle on transition end', () => {
+        const onTransitionEnd = sinon.stub();
+        const wrapper = createComponent(Component, {
+          direction,
+          onTransitionEnd,
+        });
+
+        wrapper.find('div').prop('ontransitionend')();
+
+        assert.calledWith(onTransitionEnd, direction);
       });
     });
 
