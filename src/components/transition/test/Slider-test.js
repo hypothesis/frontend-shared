@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 
-import { checkAccessibility } from '../../../../test/util/accessibility';
+import { testTransitionComponent } from '../../test/common-tests';
 import Slider from '../Slider';
 
 describe('Slider', () => {
@@ -23,6 +23,8 @@ describe('Slider', () => {
   afterEach(() => {
     container.remove();
   });
+
+  testTransitionComponent(Slider);
 
   it('should render collapsed if `direction` is `out` on mount', () => {
     const wrapper = createSlider({ direction: 'out' });
@@ -104,26 +106,4 @@ describe('Slider', () => {
     const containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.display, 'none');
   });
-
-  ['in', 'out'].forEach(direction => {
-    it('should handle unmounting while expanding or collapsing', () => {
-      const wrapper = createSlider({ direction });
-      wrapper.setProps({ direction: direction === 'in' ? 'out' : 'in' });
-      wrapper.unmount();
-    });
-  });
-
-  it(
-    'should pass a11y checks',
-    checkAccessibility([
-      {
-        name: 'in',
-        content: () => createSlider({ direction: 'in' }),
-      },
-      {
-        name: 'out',
-        content: () => createSlider({ direction: 'out' }),
-      },
-    ])
-  );
 });
