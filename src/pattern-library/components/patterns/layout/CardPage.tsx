@@ -212,13 +212,47 @@ export default function CardPage() {
             componentName="Card, CardContent, CardHeader"
             size="sm"
           />
+
+          <Library.Example title="Using CardHeader">
+            <Library.Demo withSource title="Using CardHeader">
+              <Card>
+                <CardHeader title="Card title" />
+                <CardContent>
+                  <div>
+                    A <code>Card</code> with <code>CardHeader</code>.
+                  </div>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
 
         <Library.Pattern title="Props">
           <Library.Example title="title">
-            <Library.Demo title="Setting a title" withSource>
+            <p>
+              When this optional <code>string</code> prop is provided,{' '}
+              <code>CardHeader</code> will render a <code>CardTitle</code> with
+              this <code>title</code>.
+            </p>
+            <Library.Demo withSource title="With a `title`">
               <Card>
-                <CardHeader title="Card title" />
+                <CardHeader title="Card title" onClose={() => {}} />
+                <CardContent>
+                  <div>
+                    A <code>Card</code> with <code>CardHeader</code>.
+                  </div>
+                </CardContent>
+              </Card>
+            </Library.Demo>
+
+            <Library.Demo
+              withSource
+              title="Composed with `CardTitle` (no `title`)"
+            >
+              <Card>
+                <CardHeader onClose={() => {}}>
+                  <CardTitle>Title here</CardTitle>
+                </CardHeader>
                 <CardContent>
                   <div>
                     A <code>Card</code> with <code>CardHeader</code>.
