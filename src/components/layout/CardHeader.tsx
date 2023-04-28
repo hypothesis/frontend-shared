@@ -60,12 +60,9 @@ const CardHeader = function CardHeader({
       )}
       ref={downcastRef(elementRef)}
     >
-      {title && (
-        <CardTitle classes="grow" variant={variant}>
-          {title}
-        </CardTitle>
-      )}
+      {title && <CardTitle variant={variant}>{title}</CardTitle>}
       {children}
+      <div className="grow" />
       {onClose && (
         <IconButton
           onClick={onClose}
