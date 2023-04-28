@@ -13,3 +13,5 @@ RUN rm -r /usr/share/nginx/html && rm /etc/nginx/conf.d/default.conf
 COPY --from=builder /frontend-shared/build /usr/share/nginx/html
 COPY ./templates/pattern-library.mustache /usr/share/nginx/html/index.html
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 5001
