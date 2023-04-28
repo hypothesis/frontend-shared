@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import type { ComponentChildren, JSX } from 'preact';
 
 import type { IconComponent, CompositeProps } from '../../types';
@@ -94,7 +95,7 @@ const Panel = function Panel({
     >
       <CardHeader onClose={onClose} fullWidth={scrollable || fullWidthHeader}>
         {Icon && <Icon className="w-em h-em" />}
-        <CardTitle>{title}</CardTitle>
+        <CardTitle classes={classnames({ grow: !!onClose })}>{title}</CardTitle>
       </CardHeader>
       {scrollable ? <Scroll>{panelContent}</Scroll> : <>{panelContent}</>}
       {buttons && (
