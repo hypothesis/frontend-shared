@@ -403,7 +403,9 @@ function Link({ children, href }: LinkProps) {
 function Callout({ children }: { children: ComponentChildren }) {
   return (
     <div className="flex gap-x-2 p-3 rounded-md bg-slate-50 border shadow-inner">
-      <CautionIcon className="text-yellow-notice w-6 h-6" />
+      <div className="w-6 h-6">
+        <CautionIcon className="text-yellow-notice w-6 h-6 mt-0.5" />
+      </div>
       <div>{children}</div>
     </div>
   );
