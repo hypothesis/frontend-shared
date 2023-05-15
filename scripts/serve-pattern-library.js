@@ -1,19 +1,20 @@
 import express from 'express';
 import log from 'fancy-log';
-import mustacheExpress from 'mustache-express';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 
 export function servePatternLibrary(port = 4001) {
   const dirname = path.dirname(fileURLToPath(import.meta.url));
   const app = express();
-  app.engine('mustache', mustacheExpress());
-  app.set('view engine', 'mustache');
-  app.set('views', [path.join(dirname, '../templates')]);
+
+  // Map paths from which we serve static files
   app.use('/scripts', express.static(path.join(dirname, '../build/scripts')));
   app.use('/styles', express.static(path.join(dirname, '../build/styles')));
+  app.use('/images', express.static(path.join(dirname, '../images')));
+
+  // For any other path, serve the index.html file to allow client-side routing
   app.get('/:path?', (req, res) => {
-    res.render('pattern-library');
+    res.sendFile(path.join(dirname, '../templates/index.html'));
   });
 
   app.listen(port, () => {
