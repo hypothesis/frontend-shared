@@ -5,5 +5,5 @@ import tailwindPreset from './src/tailwind.preset.js';
 
 export default {
   presets: [tailwindPreset],
-  content: ['./src/**/*.{js,ts,tsx}', './templates/**/*.mustache'],
+  content: ['./src/**/*.{js,ts,tsx}', './templates/**/*.html'],
 };
