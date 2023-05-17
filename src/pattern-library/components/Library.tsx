@@ -63,20 +63,26 @@ function Heading({
 }: LibraryHeadingProps) {
   if (level <= 2) {
     return (
-      <h2 className="text-3xl text-slate-600 font-bold" {...htmlAttributes}>
+      <h2
+        className="text-3xl text-slate-600 font-bold mb-4"
+        {...htmlAttributes}
+      >
         {children}
       </h2>
     );
   } else if (level === 3) {
     return (
-      <h3 className="text-2xl text-slate-600 font-medium" {...htmlAttributes}>
+      <h3
+        className="text-2xl text-slate-600 font-medium mb-4"
+        {...htmlAttributes}
+      >
         {children}
       </h3>
     );
   } else {
     return (
       <h4
-        className="text-lg border-b border-stone-300 text-slate-600 font-normal"
+        className="text-lg border-b border-stone-300 text-slate-600 font-normal mb-4"
         {...htmlAttributes}
       >
         {children}
@@ -113,7 +119,7 @@ function Section({
     <SectionDepthContext.Provider value={depth}>
       <section
         data-depth={depth}
-        className={classnames({
+        className={classnames('leading-relaxed', {
           'mt-8 mb-16': depth <= 2,
           'mt-8 mb-8': depth === 3,
           'mt-6 mb-8': depth >= 4,
@@ -124,7 +130,7 @@ function Section({
         {intro && (
           <div className="text-base space-y-3 leading-relaxed">{intro}</div>
         )}
-        <div className="leading-relaxed">{children}</div>
+        {children}
       </section>
     </SectionDepthContext.Provider>
   );
@@ -337,7 +343,7 @@ function Code({ content, size, title }: LibraryCodeProps) {
   const codeMarkup = useMemo(() => jsxToHTML(content), [content]);
 
   return (
-    <figure className="space-y-2 min-h-0 h-full my-8">
+    <figure className="space-y-2 min-h-0 h-full">
       <ScrollContainer borderless>
         <div
           className={classnames(
