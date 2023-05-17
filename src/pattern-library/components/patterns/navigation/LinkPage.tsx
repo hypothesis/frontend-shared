@@ -1,4 +1,4 @@
-import { Link, LinkBase } from '../../../../';
+import { Link } from '../../../../';
 import Library from '../../Library';
 
 export default function LinkPage() {
@@ -7,87 +7,161 @@ export default function LinkPage() {
       title="Link"
       intro={
         <p>
-          <code>Link</code> is a presentational component for anchor (
-          <code>a</code>) elements. A <code>LinkBase</code> base presentational
-          component is also available.
+          <code>Link</code> is a presentational component that provides styling
+          and common behavior for anchor (<code>a</code>) elements.
         </p>
       }
     >
-      <Library.Section
-        title="Link"
-        intro={
-          <p>
-            <code>Link</code> is a presentational component for styling links.
-          </p>
-        }
-      >
+      <Library.Section title="Link">
         <Library.Pattern>
           <Library.Usage componentName="Link" />
           <Library.Example>
             <Library.Demo title="Basic Link" withSource>
-              <p>
-                <Link href="https://www.example.com">Click me</Link>
-              </p>
+              <Link href="https://www.example.com">A link to a website</Link>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
+          <code>Link</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="color">
-            <p>
-              <code>color</code> applies to link text and hovered link text.
-            </p>
-            <Library.Demo title="color: 'brand' (default)" withSource>
-              <Link href="https://www.example.com" color="brand">
-                Sign up
-              </Link>
+            <Library.Info>
+              <Library.InfoItem label="status">
+                <Library.StatusChip status="deprecated" /> Use{' '}
+                <code>variant</code> prop instead.
+              </Library.InfoItem>
+              <Library.InfoItem label="description">
+                Link <code>color</code> affects the color of link text
+                (including hover color).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'brand' | 'text' | 'text-light'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'brand'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="underline">
+            <div className="m-4">
+              <Library.Callout>
+                <strong>Note</strong> The <code>underline</code> prop is likely
+                to be removed in future and underlining will be controlled with
+                a styling-API prop. This prop is ignored if{' '}
+                <code>unstyled</code> is set (in which case, no underline
+                styling will be applied).
+              </Library.Callout>
+            </div>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Control when underlines are applied to links. Current default is{' '}
+                <code>{"'none'"}</code>, but this will be changing in future.
+                Links inline with text content should set <code>underline</code>{' '}
+                to <code>{"'always'"}</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'none' | 'hover' | 'always'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'none'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo withSource>
+              <div className="flex flex-col">
+                <Link href="https://www.example.com" underline="none">
+                  Link with underline: none
+                </Link>
+                <Link href="https://www.example.com" underline="hover">
+                  Link with underline: hover
+                </Link>
+                <Link href="https://www.example.com" underline="always">
+                  Link with underline: always
+                </Link>
+              </div>
             </Library.Demo>
-            <Library.Demo title="color: 'text-light'" withSource>
-              <Link href="https://www.example.com" color="text-light">
-                <div className="flex items-center border rounded-sm bg-grey-0 px-1.5 py-1">
-                  annotation tag
-                </div>
-              </Link>
-            </Library.Demo>
-            <Library.Demo title="color: 'text'" withSource>
-              <p className="text-color-text">
-                <Link href="https://www.example.com" color="text">
-                  Page notes
-                </Link>{' '}
-              </p>
+          </Library.Example>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Link</code> accepts HTML attribute props applicable to{' '}
+                <code>HTMLAnchorElement</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'preact.JSX.HTMLAttributes<HTMLAnchorElement>'}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="example">
+                <Library.Code
+                  content={`<Link id="my-own-id" href="https://www.example.com">A Link with attributes</Link>`}
+                  size="sm"
+                />
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Styling API">
+          <p>
+            <code>Link</code> accepts the following props from the{' '}
+            <Library.Link href="/using-components#presentational-components-styling-api">
+              presentational component styling API
+            </Library.Link>
+            .
+          </p>
+          <Library.Example title="variant" id="styling-api-variant">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Link <code>variant</code>s affect the color of link text
+                (including hover color). Set to <code>custom</code> to remove
+                theming styles.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'brand' | 'text' | 'text-light' | 'custom'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'brand'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo withSource>
+              <div className="flex flex-col">
+                <Link href="https://www.example.com" variant="brand">
+                  Variant: brand (default)
+                </Link>
+                <Link href="https://www.example.com" variant="text">
+                  Variant: text
+                </Link>
+                <Link href="https://www.example.com" variant="text-light">
+                  Variant: text-light
+                </Link>
+                <Link href="https://www.example.com" variant="custom">
+                  Variant: custom
+                </Link>
+              </div>
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="underline">
-            <p>
-              By default, <code>Link</code>s are not underlined. This is
-              acceptable when the <code>Link</code> is a standalone, interactive
-              element. Underline on hover is encouraged, however, and{' '}
-              <code>Link</code>s inline with text content should always be
-              underlined.
-            </p>
-            <Library.Demo title="underline:'none' (default)" withSource>
-              <Link href="https://www.example.com" underline="none">
-                Log in
+          <Library.Example title="unstyled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set to remove all styling.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo withSource>
+              <Link href="https://www.example.com" unstyled>
+                Unstyled Link
               </Link>
-            </Library.Demo>
-            <Library.Demo title="underline:'hover'" withSource>
-              <Link
-                href="https://www.example.com"
-                color="text-light"
-                underline="hover"
-              >
-                Show replies (7)
-              </Link>
-            </Library.Demo>
-            <Library.Demo title="underline:'always'" withSource>
-              <p>
-                Links should be{' '}
-                <Link href="https://www.example.com" underline="always">
-                  underlined
-                </Link>{' '}
-                when inline with text content.
-              </p>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
@@ -98,55 +172,20 @@ export default function LinkPage() {
         intro={
           <>
             <p>
-              <code>LinkBase</code> is a base presentational component that
-              allows style customization of links.
+              <Library.StatusChip status="deprecated" /> Use the styling API of{' '}
+              <code>Link</code> for customized styling instead.
             </p>
             <p>
-              <code>LinkBase</code> applies minimal common styling. Turn off all
-              styling by setting the <code>unstyled</code> prop.
+              <code>LinkBase</code> is a base presentational component that
+              allows style customization of links. <code>LinkBase</code> applies
+              minimal common styling. Turn off all styling by setting the{' '}
+              <code>unstyled</code> prop.
             </p>
           </>
         }
       >
         <Library.Pattern>
           <Library.Usage componentName="LinkBase" />
-
-          <Library.Example>
-            <p>
-              This example shows a <code>LinkBase</code> with some additional{' '}
-              <code>classes</code>. These <code>classes</code> are appended to
-              the {"component's"} base styling classes.
-            </p>
-
-            <Library.Demo
-              title="LinkBase with some additional styles"
-              withSource
-            >
-              <LinkBase
-                classes="border hover:underline"
-                onClick={() => alert('You clicked the link')}
-              >
-                Click me
-              </LinkBase>
-            </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Props">
-          <Library.Example title="unstyled">
-            <p>
-              Set <code>unstyled</code> to style your link from scratch.{' '}
-              <em>Only</em> the classes in <code>classes</code> are applied.
-            </p>
-            <Library.Demo title="LinkBase" withSource>
-              <LinkBase
-                classes="border hover:underline"
-                onClick={() => alert('You clicked the link')}
-                unstyled
-              >
-                Click me
-              </LinkBase>
-            </Library.Demo>
-          </Library.Example>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
