@@ -276,21 +276,23 @@ type LibraryStatusChipProps = {
 };
 
 /**
- * Render a little label or pill next to changelog items
+ * Render a pill to highlight a change
  */
 function StatusChip({ status }: LibraryStatusChipProps) {
   return (
     <span
-      className={classnames('rounded-md py-1', {
-        'px-2 bg-red-error text-color-text-inverted': status === 'breaking',
-        'px-2 bg-yellow-notice':
-          status === 'deprecated' || status === 'changed',
-        'font-semibold': status === 'added',
-      })}
+      className={classnames(
+        'rounded-md py-1 px-2 mr-1.5 text-sm font-semibold',
+        {
+          'bg-red-error text-color-text-inverted': status === 'breaking',
+          'bg-yellow-notice': status === 'deprecated' || status === 'changed',
+          'bg-green-success text-color-text-inverted': status === 'added',
+        }
+      )}
     >
       {status === 'breaking' && <span>Breaking</span>}
       {status === 'deprecated' && <span>Deprecated</span>}
-      {status === 'added' && <span>Added:</span>}
+      {status === 'added' && <span>Added</span>}
       {status === 'changed' && <span>Changed</span>}
     </span>
   );
@@ -317,9 +319,19 @@ export type LibraryChangelogItemProps = {
  */
 function ChangelogItem({ status, children }: LibraryChangelogItemProps) {
   return (
-    <li className="space-x-2">
-      <StatusChip status={status} />
-      <span>{children}</span>
+    <li
+      className={classnames(
+        'flex gap-x-2',
+        // "Outdent": <ul>s are indented (for readability) by 2rem. In the
+        // case of this particular <ul>, we want to regain left-hand space
+        // because the status chips are aligned to the right.
+        '-ml-8 '
+      )}
+    >
+      <div className="mt-2 min-w-[7rem] text-right">
+        <StatusChip status={status} />
+      </div>
+      <div className="grow">{children}</div>
     </li>
   );
 }
@@ -428,5 +440,6 @@ export default {
   Page,
   Pattern,
   Section,
+  StatusChip,
   Usage,
 };
