@@ -340,7 +340,7 @@ export type LibraryCodeProps = {
   /** Code content (to be rendered with syntax highlighting) */
   content: ComponentChildren;
   /** Controls relative code font size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md';
   /** Caption (e.g. filename, description) of code block */
   title?: ComponentChildren;
 };
@@ -384,7 +384,7 @@ function Code({ content, size, title }: LibraryCodeProps) {
 
 export type LibraryUsageProps = {
   componentName: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md';
 };
 
 /**
