@@ -1,8 +1,8 @@
 import type { FunctionComponent } from 'preact';
 
 import ColorsPage from './components/patterns/ColorsPage';
-import CustomizingComponentsPage from './components/patterns/CustomizingComponentsPage';
 import GettingStartedPage from './components/patterns/GettingStartedPage';
+import StylingComponentsPage from './components/patterns/StylingComponentsPage';
 import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
 import AspectRatioPage from './components/patterns/data/AspectRatioPage';
@@ -81,6 +81,12 @@ const routes: PlaygroundRoute[] = [
     route: '/using-components',
   },
   {
+    title: 'Styling components',
+    group: 'foundations',
+    component: StylingComponentsPage,
+    route: '/styling-components',
+  },
+  {
     route: '/foundations-colors',
     title: 'Colors',
     component: ColorsPage,
@@ -91,12 +97,6 @@ const routes: PlaygroundRoute[] = [
     title: 'Utilities',
     component: UtilitiesPage,
     group: 'foundations',
-  },
-  {
-    title: 'Customizing components',
-    group: 'foundations',
-    component: CustomizingComponentsPage,
-    route: '/customizing-components',
   },
   {
     title: 'AspectRatio',
