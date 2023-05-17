@@ -429,6 +429,37 @@ function Callout({ children }: { children: ComponentChildren }) {
   );
 }
 
+/**
+ * Render a two-column grid for label-description pairs
+ */
+function Info({ children }: { children: ComponentChildren }) {
+  return (
+    <div className="grid grid-cols-[6rem_1fr] gap-x-4 gap-y-2 m-4">
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Render a "row" in an Info layout with a label and description (children)
+ */
+function InfoItem({
+  children,
+  label,
+}: {
+  children: ComponentChildren;
+  label: string;
+}) {
+  return (
+    <>
+      <div className="pt-1 text-right font-medium text-stone-600 text-sm">
+        {label}
+      </div>
+      <div>{children}</div>
+    </>
+  );
+}
+
 export default {
   Callout,
   Changelog,
@@ -436,6 +467,8 @@ export default {
   Code,
   Demo,
   Example,
+  Info,
+  InfoItem,
   Link,
   Page,
   Pattern,
