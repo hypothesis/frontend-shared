@@ -13,6 +13,11 @@ type ComponentProps = {
   loading?: boolean;
 
   /**
+   * How should AspectRatio fit the contained content?
+   */
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+
+  /**
    * Custom content to show if there are no children, and not in a loading state
    */
   placeholder?: ComponentChildren;
@@ -44,6 +49,7 @@ const Thumbnail = function Thumbnail({
 
   borderless = false,
   loading = false,
+  objectFit = 'cover',
   placeholder,
   ratio = '16/9',
   size = 'md',
@@ -78,7 +84,7 @@ const Thumbnail = function Thumbnail({
       })}
     >
       <div className="bg-white h-full w-full flex items-center justify-center overflow-hidden">
-        <AspectRatio ratio={ratio}>
+        <AspectRatio ratio={ratio} objectFit={objectFit}>
           {loading ? (
             <div>
               <Spinner size={size} />
