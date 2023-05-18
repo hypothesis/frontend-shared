@@ -31,15 +31,11 @@ export type LibraryPageProps = {
  */
 function Page({ children, intro, title }: LibraryPageProps) {
   return (
-    <section className="max-w-6xl styled-text text-stone-600">
-      <div
-        className="sticky top-0 z-4 h-16 flex items-center bg-stone-100 border-b"
-        id="page-header"
-      >
-        <h1 className="px-2 text-3xl text-slate-700 font-light">{title}</h1>
-      </div>
-
-      <div className="px-2 mt-8">
+    <section className="styled-text text-stone-600">
+      <div className="px-8 py-4">
+        <h1 className="text-3xl text-slate-600 font-bold" id="page-header">
+          {title}
+        </h1>
         {intro && (
           <div className="my-8 pb-8 border-b space-y-4 font-light text-xl leading-relaxed">
             {intro}
@@ -64,7 +60,7 @@ function Heading({
   if (level <= 2) {
     return (
       <h2
-        className="text-3xl text-slate-600 font-bold mb-4"
+        className="text-2xl text-slate-600 font-medium mb-4"
         {...htmlAttributes}
       >
         {children}
@@ -73,7 +69,7 @@ function Heading({
   } else if (level === 3) {
     return (
       <h3
-        className="text-2xl text-slate-600 font-medium mb-4"
+        className="text-xl text-slate-600 font-medium mb-4"
         {...htmlAttributes}
       >
         {children}
@@ -246,7 +242,7 @@ function Demo({
       <div className="p-2 unstyled-text">
         {visibleTab === 'demo' && (
           <div
-            className="w-full p-8 rounded-md border border-stone-300 bg-slate-50 rounded-md"
+            className="w-full p-8 rounded-md border border-stone-300 bg-stone-50 rounded-md"
             style={style}
           >
             <div

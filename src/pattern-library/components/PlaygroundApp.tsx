@@ -11,7 +11,7 @@ import {
 } from 'wouter-preact';
 
 import type { PlaygroundAppProps } from '../';
-import { Link, LogoIcon } from '../../';
+import { Link, LogoIcon, Scroll, ScrollContainer, ScrollContent } from '../../';
 import { componentGroups, getRoutes } from '../routes';
 import type { PlaygroundRoute } from '../routes';
 import Library from './Library';
@@ -102,8 +102,7 @@ export default function PlaygroundApp({
      * Support hash-based navigation and reset scroll when `wouter` path
      * changes.
      * - For locations without hash, reset scroll to top of page
-     * - For locations with hash, scroll to top of fragment-indicated element,
-     *   and ensure it's not obscured by the sticky `#page-header` element.
+     * - For locations with hash, scroll to top of fragment-indicated element
      */
     () => {
       const hash = window.location.hash.replace(/^#/, '');
@@ -111,18 +110,6 @@ export default function PlaygroundApp({
         const fragElement = document.getElementById(hash);
         if (fragElement) {
           fragElement.scrollIntoView();
-          const pageHeaderElement = document.getElementById('page-header');
-          // Height taken up by sticky header on page. Add 8 pixels to give
-          // some visual padding.
-          const headerOffset = pageHeaderElement
-            ? pageHeaderElement.getBoundingClientRect().height + 8
-            : 0;
-          const fragTop = fragElement.getBoundingClientRect().top;
-          if (fragTop <= headerOffset) {
-            // Adjustment to accommodate sticky header (only if fragment is at or
-            // near top of viewport)
-            window.scrollBy({ top: -1 * (headerOffset - fragTop) });
-          }
         }
       } else {
         window.scrollTo(0, 0);
@@ -164,77 +151,88 @@ export default function PlaygroundApp({
   >;
   return (
     <Router base={baseURL}>
-      <main className="max-w-[1250px] mx-auto">
-        <div className="md:grid md:grid-cols-[2fr_5fr]">
-          <div className="md:h-screen md:sticky md:top-0 overflow-scroll">
-            <div className="md:sticky md:top-0 h-16 px-6 flex items-center bg-slate-0 border-b">
-              <h1 className="text-lg">
-                <Link href={baseURL + '/'} classes="grow flex gap-x-2">
-                  <LogoIcon />
-                  Component Library
-                </Link>
-              </h1>
+      <div className="w-full bg-stone-200">
+        <main className="max-w-[1300px] mx-auto">
+          <div className="md:grid md:grid-cols-[2fr_5fr]">
+            <div className="md:h-screen md:sticky md:top-0 border-l border-stone-400 bg-stone-100">
+              <ScrollContainer borderless>
+                <div className="h-16 flex items-center">
+                  <h1 className="font-medium text-lg pl-6">
+                    <Link
+                      href={baseURL + '/'}
+                      classes="flex gap-x-3 text-stone-700"
+                    >
+                      <LogoIcon className="text-brand" />
+                      Component Library
+                    </Link>
+                  </h1>
+                </div>
+                <Scroll>
+                  <ScrollContent classes="bg-stone-400/10">
+                    <nav id="nav" className="pb-16 space-y-4 mr-4">
+                      <NavHeader>Foundations</NavHeader>
+                      <NavList>
+                        {getRoutes('foundations').map(route => (
+                          <NavLink key={route.title} route={route} />
+                        ))}
+                      </NavList>
+
+                      <NavHeader>Components</NavHeader>
+
+                      {groupKeys.map(group => {
+                        return (
+                          <NavSection
+                            key={group}
+                            title={componentGroups[group] as string}
+                          >
+                            <NavList>
+                              {getRoutes(group).map(route => (
+                                <NavLink key={route.title} route={route} />
+                              ))}
+                            </NavList>
+                          </NavSection>
+                        );
+                      })}
+
+                      {prototypeRoutes.length > 0 && (
+                        <>
+                          <NavHeader>Prototypes</NavHeader>
+                          <NavList>
+                            {prototypeRoutes.map(route => (
+                              <NavLink key={route.title} route={route} />
+                            ))}
+                          </NavList>
+                        </>
+                      )}
+
+                      {extraRoutes.length > 0 && (
+                        <>
+                          <NavHeader>{extraRoutesTitle}</NavHeader>
+                          <NavList>
+                            {customRoutes.map(route => (
+                              <NavLink key={route.title} route={route} />
+                            ))}
+                          </NavList>
+                        </>
+                      )}
+                    </nav>
+                  </ScrollContent>
+                </Scroll>
+              </ScrollContainer>
             </div>
-            <nav id="nav" className="pt-8 pb-16 space-y-4 mr-4">
-              <NavHeader>Foundations</NavHeader>
-              <NavList>
-                {getRoutes('foundations').map(route => (
-                  <NavLink key={route.title} route={route} />
-                ))}
-              </NavList>
-
-              <NavHeader>Components</NavHeader>
-
-              {groupKeys.map(group => {
-                return (
-                  <NavSection
-                    key={group}
-                    title={componentGroups[group] as string}
-                  >
-                    <NavList>
-                      {getRoutes(group).map(route => (
-                        <NavLink key={route.title} route={route} />
-                      ))}
-                    </NavList>
-                  </NavSection>
-                );
-              })}
-
-              {prototypeRoutes.length > 0 && (
-                <>
-                  <NavHeader>Prototypes</NavHeader>
-                  <NavList>
-                    {prototypeRoutes.map(route => (
-                      <NavLink key={route.title} route={route} />
-                    ))}
-                  </NavList>
-                </>
-              )}
-
-              {extraRoutes.length > 0 && (
-                <>
-                  <NavHeader>{extraRoutesTitle}</NavHeader>
-                  <NavList>
-                    {customRoutes.map(route => (
-                      <NavLink key={route.title} route={route} />
-                    ))}
-                  </NavList>
-                </>
-              )}
-            </nav>
+            <div className="bg-white pb-16 border-x border-stone-400">
+              <Switch>
+                {pageRoutes}
+                <Route>
+                  <Library.Page title=":( Sorry">
+                    <h1 className="text-2xl">Page not found</h1>
+                  </Library.Page>
+                </Route>
+              </Switch>
+            </div>
           </div>
-          <div className="bg-white pb-16">
-            <Switch>
-              {pageRoutes}
-              <Route>
-                <Library.Page title=":( Sorry">
-                  <h1 className="text-2xl">Page not found</h1>
-                </Library.Page>
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </Router>
   );
 }
