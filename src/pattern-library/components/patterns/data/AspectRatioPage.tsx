@@ -8,7 +8,7 @@ export default function AspectRatioPage() {
       intro={
         <p>
           <code>AspectRatio</code> is a simple component that controls the
-          aspect ratio of its first direct child.
+          aspect ratio of its first direct child, with a default ratio of 16:9.
         </p>
       }
     >
@@ -16,10 +16,7 @@ export default function AspectRatioPage() {
         <Library.Pattern>
           <Library.Usage componentName="AspectRatio" />
           <Library.Example>
-            <Library.Demo
-              title="AspectRatio with default 16:9 ratio"
-              withSource
-            >
+            <Library.Demo title="Basic AspectRatio" withSource>
               <div className="w-[350px]">
                 <AspectRatio>
                   <img src="https://placekitten.com/400/400" alt="kitty" />
@@ -27,6 +24,8 @@ export default function AspectRatioPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+        </Library.Pattern>
+        <Library.Section title="Using AspectRatio">
           <Library.Example title="Placeholder content">
             <p>
               Placeholder content can be put in a container that is the first
@@ -54,13 +53,7 @@ export default function AspectRatioPage() {
               ) can be controlled with the <code>objectFit</code> prop
               (documented below).
             </p>
-            <Library.Demo title="Changing object-fit to 'contain'" withSource>
-              <div className="w-[350px] border rounded-md">
-                <AspectRatio objectFit="contain">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
-                </AspectRatio>
-              </div>
-            </Library.Demo>
+
             <p>
               <Link
                 href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"
@@ -90,37 +83,57 @@ export default function AspectRatioPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-        </Library.Pattern>
-
-        <Library.Pattern title="Props">
-          <Library.Example title="ratio">
-            <p>
-              Control applied aspect ratio with the <code>ratio</code> prop
-              (default <code>{"'16/9'"}</code>). Note that this prop takes a{' '}
-              <code>string</code> numeric expression or value, which is used in
-              a CSS <code>calc()</code> expression.
-            </p>
-            <Library.Demo title="Setting aspect ratio to 4:3" withSource>
-              <div className="w-[350px]">
-                <AspectRatio ratio="4/3">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
-                </AspectRatio>
-              </div>
-            </Library.Demo>
+        </Library.Section>
+        <Library.Section title="Component API">
+          <Library.Example title="children">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Either the{' '}
+                <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element">
+                  replaced element
+                </Link>{' '}
+                to be sized or placeholder content in a container.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>preact.ComponentChildren</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
-
+          <Library.Example title="ratio">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the aspect ratio for the content
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code> Any numeric string that can be used in a CSS{' '}
+                <code>calc()</code> expression
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'16/9'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
           <Library.Example title="objectFit">
-            <p>
-              Use the <code>objectFit</code> prop to control how the content
-              object is fitted (
-              <Link
-                underline="always"
-                href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"
-              >
-                object-fit
-              </Link>
-              ).
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Control the way the content is resized and fitted (
+                <Link
+                  underline="always"
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"
+                >
+                  object-fit
+                </Link>
+                ).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {"'cover' | 'contain' | 'fill' | 'none' | 'scale-down'"}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'cover'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo title="objectFit:'cover' (default)" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="cover">
@@ -161,7 +174,7 @@ export default function AspectRatioPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-        </Library.Pattern>
+        </Library.Section>
       </Library.Section>
     </Library.Page>
   );
