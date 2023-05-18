@@ -1,4 +1,4 @@
-import { Thumbnail, ImageIcon } from '../../../../';
+import { Thumbnail, ImageIcon, Link } from '../../../../';
 import Library from '../../Library';
 
 export default function ThumbnailPage() {
@@ -7,80 +7,63 @@ export default function ThumbnailPage() {
       title="Thumbnail"
       intro={
         <p>
-          <code>Thumbnail</code> renders media thumbnails. It handles aspect
-          ratio, loading states, and placeholder content.
+          <code>Thumbnail</code> renders media thumbnails, handling aspect
+          ratio, loading states, and placeholder content. It is a composite
+          component that uses{' '}
+          <Library.Link href="/data-aspectratio">
+            <code>AspectRatio</code>
+          </Library.Link>
+          .
         </p>
       }
     >
-      <Library.Section
-        title="Thumbnail"
-        intro={
-          <p>
-            <code>Thumbnail</code> is a composite component. It is built atop
-            the <code>AspectRatio</code> component.
-          </p>
-        }
-      >
+      <Library.Section title="Thumbnail">
         <Library.Pattern>
           <Library.Usage componentName="Thumbnail" />
-          <Library.Example>
-            <p>
-              <code>Thumbnail</code> lays out its content based on parent
-              element constraints. In this example, the parent container sets a
-              width of <code>350px</code>.
-            </p>
-            <Library.Demo
-              title="Basic thumbnail with default 16:9 aspect ratio"
-              withSource
-            >
-              <div className="w-[350px]">
-                <Thumbnail>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
-                </Thumbnail>
-              </div>
-            </Library.Demo>
 
+          <Library.Demo title="Basic Thumbnail" withSource>
+            <div className="w-[250px]">
+              <Thumbnail>
+                <img src="https://placekitten.com/400/400" alt="kitty" />
+              </Thumbnail>
+            </div>
+          </Library.Demo>
+        </Library.Pattern>
+
+        <Library.Pattern title="Using Thumbnail">
+          <Library.Example title="Loading and placeholder content">
             <Library.Demo withSource title="Loading state">
-              <div className="w-[350px]">
+              <div className="w-[250px]">
                 <Thumbnail loading>
                   <img src="https://placekitten.com/400/400" alt="kitty" />
                 </Thumbnail>
               </div>
             </Library.Demo>
 
-            <p>
-              <code>Thumbnail</code> will show placeholder content if it is
-              empty and not loading.
-            </p>
-
-            <Library.Demo withSource title="Placeholder state">
-              <div className="w-[350px]">
+            <Library.Demo withSource title="Placeholder shown when empty">
+              <div className="w-[250px]">
                 <Thumbnail />
               </div>
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="Managing height constraints">
+          <Library.Example title="Height and width constraints">
             <p>
-              If <code>height</code> is set on the parent container, this is the
-              maximum height that the <code>Thumbnail</code> will use.
+              <code>Thumbnail</code> will constrain content to within the height
+              and width constraints of the containing element. If the parent
+              element has a set height and there is extra space, Thumbnail
+              content will be centered vertically.
             </p>
-            <p>
-              If the parent element has a set height and there is extra space,{' '}
-              <code>Thumbnail</code> content will be centered vertically.
-            </p>
-
             <Library.Demo title="Extra available vertical space" withSource>
-              <div className="w-[350px] h-[400px]">
+              <div className="w-[250px] h-[300px]">
                 <Thumbnail>
                   <img src="https://placekitten.com/400/400" alt="kitty" />
                 </Thumbnail>
               </div>
             </Library.Demo>
-
             <p>
               Thumbnail content respects parent constraints, even if there is
-              not enough room to show the full content. In this example,{' '}
+              not enough room to show the full content. In this example,
               <code>object-position: top</code> has been set on the contained
               image to optimize the cropping.
             </p>
@@ -99,35 +82,90 @@ export default function ThumbnailPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="loading">
-            <p>
-              <code>Thumbnail</code> will show a loading spinner if the boolean{' '}
-              <code>loading</code> prop is set.
-            </p>
-            <Library.Demo withSource title="Loading state">
-              <div className="w-[350px]">
-                <Thumbnail loading>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
-                </Thumbnail>
+        <Library.Pattern title="Component API">
+          <p>
+            <code>Thumbnail</code> takes all standard props from the composite
+            component API.
+          </p>
+
+          <Library.Example title="borderless">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Render the <code>Thumbnail</code> with no visual border.
+                Relative border size can be controlled with the{' '}
+                <code>size</code> prop.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="borderless Thumbnails" withSource>
+              <div className="space-y-4">
+                <div className="w-[200px]">
+                  <Thumbnail borderless>
+                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                  </Thumbnail>
+                </div>
+                <div className="w-[200px]">
+                  <Thumbnail borderless />
+                </div>
               </div>
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="placeholder">
-            <p>
-              <code>Thumbnail</code> will render placeholder content if it is
-              empty and not <code>loading</code>. Custom{' '}
-              <code>placeholder</code> content can be set.
-            </p>
-            <Library.Demo withSource title="Default placeholder">
-              <div className="w-[350px]">
-                <Thumbnail />
-              </div>
-            </Library.Demo>
+          <Library.Example title="loading">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Display a loading indicator.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
 
+          <Library.Example title="objectFit">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Control the way the content is resized and fitted (
+                <Link
+                  underline="always"
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"
+                >
+                  object-fit
+                </Link>
+                ).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {"'cover' | 'contain' | 'fill' | 'none' | 'scale-down'"}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'cover'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="placeholder">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Custom placeholder content to use when the{' '}
+                <code>Thumbnail</code> is empty.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>preact.ComponentChildren</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo withSource title="Custom placeholder">
-              <div className="w-[350px]">
+              <div className="w-[250px]">
                 <Thumbnail
                   placeholder={
                     <ImageIcon className="text-grey-5 w-1em h-1em" />
@@ -136,23 +174,23 @@ export default function ThumbnailPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+
           <Library.Example title="ratio">
-            <p>
-              Control applied aspect ratio with the <code>ratio</code> prop
-              (default <code>{"'16/9'"}</code>). Note that this prop takes a{' '}
-              <code>string</code> numeric expression or value, which is used in
-              a CSS <code>calc()</code> expression.
-            </p>
-            <Library.Demo title="ratio: '16/9' (default)" withSource>
-              <div className="w-[350px]">
-                <Thumbnail>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
-                </Thumbnail>
-              </div>
-            </Library.Demo>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the aspect ratio for the content.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code> Any numeric string that can be used in a CSS{' '}
+                <code>calc()</code> expression
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'16/9'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
 
             <Library.Demo title="ratio: '4/3'" withSource>
-              <div className="w-[350px]">
+              <div className="w-[250px]">
                 <Thumbnail ratio="4/3">
                   <img src="https://placekitten.com/400/400" alt="kitty" />
                 </Thumbnail>
@@ -161,78 +199,74 @@ export default function ThumbnailPage() {
           </Library.Example>
 
           <Library.Example title="size">
-            <p>
-              The <code>size</code> prop affects the relative size of the{' '}
-              {"component's"} border, loading spinner size and placeholder size.
-              The overall dimension constraints in these examples are set by the
-              parent container.
-            </p>
-            <Library.Demo title="size: 'md' (default)" withSource>
-              <div className="space-y-4">
-                <div className="w-[300px]">
-                  <Thumbnail>
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
-                  </Thumbnail>
-                </div>
-                <div className="w-[300px]">
-                  <Thumbnail loading />
-                </div>
-                <div className="w-[300px]">
-                  <Thumbnail />
-                </div>
-              </div>
-            </Library.Demo>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the relative proportions of the <code>Thumbnail</code>, its
+                border, loading spinner and placeholder content. If you need
+                more styling control, use{' '}
+                <Library.Link href="/data-aspectratio">
+                  AspectRatio
+                </Library.Link>{' '}
+                directly.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'sm' | 'md' | 'lg'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'md'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
 
             <Library.Demo title="size: 'sm'" withSource>
-              <div className="space-y-4">
+              <div className="flex gap-x-4">
                 <div className="w-[200px]">
                   <Thumbnail size="sm">
                     <img src="https://placekitten.com/400/400" alt="kitty" />
                   </Thumbnail>
                 </div>
+
                 <div className="w-[200px]">
                   <Thumbnail size="sm" loading />
                 </div>
+
                 <div className="w-[200px]">
                   <Thumbnail size="sm" />
                 </div>
               </div>
             </Library.Demo>
 
+            <Library.Demo title="size: 'md'" withSource>
+              <div className="flex gap-x-4">
+                <div className="w-[200px]">
+                  <Thumbnail size="md">
+                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                  </Thumbnail>
+                </div>
+
+                <div className="w-[200px]">
+                  <Thumbnail size="md" loading />
+                </div>
+
+                <div className="w-[200px]">
+                  <Thumbnail size="md" />
+                </div>
+              </div>
+            </Library.Demo>
+
             <Library.Demo title="size: 'lg'" withSource>
-              <div className="space-y-4">
-                <div className="w-[400px]">
+              <div className="flex gap-x-4">
+                <div className="w-[200px]">
                   <Thumbnail size="lg">
                     <img src="https://placekitten.com/400/400" alt="kitty" />
                   </Thumbnail>
                 </div>
-                <div className="w-[400px]">
+
+                <div className="w-[200px]">
                   <Thumbnail size="lg" loading />
                 </div>
-                <div className="w-[400px]">
-                  <Thumbnail size="lg" />
-                </div>
-              </div>
-            </Library.Demo>
-          </Library.Example>
 
-          <Library.Example title="borderless">
-            <p>
-              The {"component's"} border can be turned off by setting the{' '}
-              <code>borderless</code> prop.
-            </p>
-            <Library.Demo title="borderless Thumbnails" withSource>
-              <div className="space-y-4">
-                <div className="w-[300px]">
-                  <Thumbnail borderless>
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
-                  </Thumbnail>
-                </div>
-                <div className="w-[300px]">
-                  <Thumbnail borderless loading />
-                </div>
-                <div className="w-[300px]">
-                  <Thumbnail borderless />
+                <div className="w-[200px]">
+                  <Thumbnail size="lg" />
                 </div>
               </div>
             </Library.Demo>
