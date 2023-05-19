@@ -26,52 +26,65 @@ export default function TablePage() {
             componentName="Table, TableHead, TableBody, TableRow, TableCell"
             size="sm"
           />
-          <Library.Example title="Simple Table">
-            <Library.Demo withSource>
-              <Table title="Some sushi rolls">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Sushi roll name</TableCell>
-                    <TableCell>Definition</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>Alaskan roll</TableCell>
-                    <TableCell>
-                      A variant of the California roll with smoked salmon on the
-                      inside, or layered on the outside.
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Boston roll</TableCell>
-                    <TableCell>
-                      An uramaki California roll with poached shrimp instead of
-                      imitation crab.
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>British Columbia roll</TableCell>
-                    <TableCell>
-                      A roll containing grilled or barbecued salmon skin,
-                      cucumber, sweet sauce, sometimes with roe. Also sometimes
-                      referred to as salmon skin rolls outside of British
-                      Columbia, Canada.
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>California roll</TableCell>
-                    <TableCell>
-                      A roll consisting of avocado, kani kama (imitation
-                      crab/crab stick) (also can contain real crab in{' '}
-                      {'premium'} varieties), cucumber, and tobiko, often made
-                      as uramaki (with rice on the outside, nori on the inside).
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Library.Demo>
+          <Library.Demo title="Basic Table" withSource>
+            <Table title="Some sushi rolls">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Sushi roll name</TableCell>
+                  <TableCell>Definition</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Alaskan roll</TableCell>
+                  <TableCell>
+                    A variant of the California roll with smoked salmon on the
+                    inside, or layered on the outside.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Boston roll</TableCell>
+                  <TableCell>
+                    An uramaki California roll with poached shrimp instead of
+                    imitation crab.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>British Columbia roll</TableCell>
+                  <TableCell>
+                    A roll containing grilled or barbecued salmon skin,
+                    cucumber, sweet sauce, sometimes with roe. Also sometimes
+                    referred to as salmon skin rolls outside of British
+                    Columbia, Canada.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>California roll</TableCell>
+                  <TableCell>
+                    A roll consisting of avocado, kani kama (imitation crab/crab
+                    stick) (also can contain real crab in {'premium'}{' '}
+                    varieties), cucumber, and tobiko, often made as uramaki
+                    (with rice on the outside, nori on the inside).
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Library.Demo>
+        </Library.Pattern>
 
+        <Library.Pattern title="Working with Tables">
+          <Library.Example title="Composing Table components">
+            <p>
+              All <code>Table*</code> (<code>TableHead</code>,{' '}
+              <code>TableFoot</code>, <code>TableRow</code>,{' '}
+              <code>TableCell</code>, <code>TableBody</code>) are presentational
+              components and take all standard props from the presentational
+              component API. All also accept HTML attributes for their
+              associated element.
+            </p>
+          </Library.Example>
+
+          <Library.Example title="Sizing Tables">
             <p>
               Table column width is established by the first row, which are
               typically headers.
@@ -124,12 +137,23 @@ export default function TablePage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
+          <p>
+            <code>Table</code> takes all standard props from the presentational
+            component API.
+          </p>
           <Library.Example title="stickyHeader">
-            <p>
-              Set this boolean prop to make the table headings sticky when in a
-              scrolling context.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Make the table headers sticky in scrolling contexts
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo title="Table with stickyHeader and Scroll" withSource>
               <div className="h-[250px]">
                 <Scroll>
@@ -200,11 +224,20 @@ export default function TablePage() {
           </Library.Example>
 
           <Library.Example title="interactive">
-            <p>
-              Set this boolean prop if rows in the table are select-able or
-              otherwise interactive.
-            </p>
-            <Library.Demo withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set this boolean prop if rows in the table are select-able or
+                otherwise interactive.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Table with interactive set" withSource>
               <Table title="Some sushi rolls" interactive>
                 <TableHead>
                   <TableRow>
@@ -241,6 +274,18 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Link</code> accepts HTML attribute props applicable to{' '}
+                <code>HTMLTableElement</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'preact.JSX.HTMLAttributes<HTMLTableElement>'}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
