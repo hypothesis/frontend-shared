@@ -7,20 +7,25 @@ export default function IconsPage() {
     <Library.Page
       title="Icons"
       intro={
-        <p>Icons are simple, standalone components that wrap SVG source.</p>
+        <p>
+          Icons are simple, standalone components that wrap SVG source markup.
+        </p>
       }
     >
-      <Library.Section title="Icon components">
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="CancelIcon" />
           <Library.Example>
-            <Library.Demo title="Usage example with CancelIcon" withSource>
+            <Library.Demo
+              title="Basic Icon component usage: CancelIcon"
+              withSource
+            >
               <Icons.CancelIcon />
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Available icon components">
+        <Library.Pattern title="Icon components">
           <div className="my-4 grid grid-cols-4 gap-6">
             {(Object.keys(Icons) as Array<keyof typeof Icons>).map(iconName => {
               const IconComponent = Icons[iconName];
@@ -37,59 +42,31 @@ export default function IconsPage() {
           </div>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <p>
-            Icon components accept any{' '}
-            <code>
-              <Link href="https://developer.mozilla.org/en-US/docs/Web/API/SVGSVGElement">
-                SVGSVGElement
-              </Link>
-            </code>{' '}
-            attributes as props. Use <code>className</code> (not{' '}
-            <code>classes</code>) to style icons.
-          </p>
-          <Library.Example>
-            <Library.Demo title="Styled icon component" withSource>
-              <Icons.CautionIcon className="text-yellow-notice w-16 h-16" />
-            </Library.Demo>
+        <Library.Pattern title="Component API">
+          <Library.Example title="...svgProps">
+            <Library.Callout>
+              Unlike other components in this package, Icon components take{' '}
+              <code>className</code>, not <code>classes</code>.
+            </Library.Callout>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Icon components accept SVG attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {'preact.JSX.HTMLAttributes<'}
+                  <Link href="https://developer.mozilla.org/en-US/docs/Web/API/SVGSVGElement">
+                    SVGSVGElement
+                  </Link>
+                </code>
+                {'>'}
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
-        </Library.Pattern>
 
-        <Library.Pattern title="Sizing icons">
-          <p>
-            Icons are sized at <code>16×16</code> unless styled otherwise.
-          </p>
-          <p>
-            Icons are often sized relative to the surrounding text. The{' '}
-            <code>em</code> spacing value provided by this {"package's"}{' '}
-            Tailwind preset allows sizing at <code>1em</code>.
-          </p>
-
-          <p>
-            <Link
-              href="https://tailwindcss.com/docs/customizing-spacing"
-              underline="always"
-            >
-              <div className="flex items-center gap-x-1">
-                More information about {"tailwind's"} sizing utility classes
-                <Icons.ExternalIcon />
-              </div>
-            </Link>
-          </p>
-          <Library.Example>
-            <Library.Demo title="Sized icon components" withSource>
-              <div className="space-y-2">
-                <div className="text-xs items-center flex gap-x-2">
-                  <Icons.ArrowRightIcon className="w-em h-em" />
-                  Icon sized relative to some small text
-                </div>
-                <div className="text-lg items-center flex gap-x-2">
-                  <Icons.ArrowRightIcon className="w-em h-em" />
-                  Icon sized relative to some larger text
-                </div>
-              </div>
-            </Library.Demo>
-          </Library.Example>
+          <Library.Demo title="Styled icon component" withSource>
+            <Icons.CautionIcon className="text-yellow-notice w-16 h-16" />
+          </Library.Demo>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
