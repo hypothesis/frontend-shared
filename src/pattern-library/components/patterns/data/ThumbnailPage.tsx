@@ -17,7 +17,7 @@ export default function ThumbnailPage() {
         </p>
       }
     >
-      <Library.Section title="Thumbnail">
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="Thumbnail" />
 

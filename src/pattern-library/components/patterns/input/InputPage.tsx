@@ -12,7 +12,6 @@ export default function InputPage() {
       }
     >
       <Library.Section
-        title="Input"
         intro={
           <p>
             <code>Input</code> is a presentational component for styling textual{' '}

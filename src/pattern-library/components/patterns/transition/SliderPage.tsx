@@ -61,7 +61,6 @@ export default function SliderPage() {
       }
     >
       <Library.Section
-        title="Slider"
         intro={
           <p>
             <code>Slider</code> implements the <code>TransitionComponent</code>{' '}

@@ -23,7 +23,6 @@ export default function PointerButtonPage() {
       }
     >
       <Library.Section
-        title="PointerButton"
         intro={
           <p>
             <code>PointerButton</code> is a presentational component.

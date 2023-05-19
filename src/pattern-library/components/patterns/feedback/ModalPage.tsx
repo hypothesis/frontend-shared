@@ -93,7 +93,6 @@ export default function ModalPage() {
       }
     >
       <Library.Section
-        title="Modal"
         intro={
           <p>
             This is an interim implementation of a modal dialog that conforms to

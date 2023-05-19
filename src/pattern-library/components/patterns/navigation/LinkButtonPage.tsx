@@ -13,7 +13,6 @@ export default function LinkButtonPage() {
       }
     >
       <Library.Section
-        title="LinkButton"
         intro={
           <p>
             <code>LinkButton</code> is a presentational component.
