@@ -34,35 +34,26 @@ export default function DataTablePage() {
         <Library.Pattern>
           <Library.Usage componentName="DataTable" />
 
-          <Library.Example title="Basic DataTable">
-            <p>
-              This example shows a non-interactive <code>DataTable</code> with{' '}
-              <code>columns</code> and <code>rows</code> data.
-            </p>
-            <Library.Demo
-              title="DataTable showing some of Vladimir Nabokov's novels"
-              withSource
-            >
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <DataTable
-                    title="A subset of Nabokov's novels with publish date and original language"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                  />
-                </Scroll>
-              </div>
-            </Library.Demo>
-          </Library.Example>
+          <Library.Demo title="Basic DataTable" withSource>
+            <div className="w-full h-[250px]">
+              <Scroll>
+                <DataTable
+                  title="A subset of Nabokov's novels with publish date and original language"
+                  rows={nabokovRows}
+                  columns={nabokovColumns}
+                />
+              </Scroll>
+            </div>
+          </Library.Demo>
         </Library.Pattern>
 
         <Library.Pattern title="Working with tables">
           <Library.Example title="Rows, columns and items">
             <p>
-              <code>DataTable</code> operates on <code>rows</code> and{' '}
-              <code>columns</code>, which are described in detail in their
-              respective Props sections. An <code>item</code> is a single field
-              within a row (an individual table cell).
+              <code>DataTable</code> operates on <code>rows</code> and
+              <code>columns</code>. Rows are generic key-value objects and
+              columns determine which fields in each row are rendered in the
+              table.
             </p>
             <p>
               All of the <code>DataTable</code> examples on this page use the
@@ -125,6 +116,60 @@ export default function DataTablePage() {
   ];`}
               />
             </div>
+            <Library.Code
+              title="example of columns"
+              content={`const columns = [
+  { field: 'title', label: 'Title', classes: 'w-[80%]' },
+  { field: 'year', label: 'Year' },
+];`}
+            />
+          </Library.Example>
+          <Library.Example title="Interactive DataTables">
+            <p>
+              The presence of a <code>onSelectRow</code> and/or a{' '}
+              <code>onConfirmRow</code> callback prop will cause a{' '}
+              <code>DataTable</code> to be interactive.
+            </p>
+            <p>
+              Rows in interactive <code>DataTable</code>s can be{' '}
+              <strong>selected</strong> by a single click or keyboard navigation
+              focus, then subsequently — if <code>onConfirmRow</code> is
+              provided — <strong>confirmed</strong> with a double-click or by
+              pressing {"'Enter'"}.
+            </p>
+            <p>
+              <code>DataTable</code> does not maintain internal state and
+              expects a parent component to provide the current{' '}
+              <code>selectedRow</code>.
+            </p>
+
+            <Library.Demo
+              title="Interactive DataTable with callbacks for row selection, confirmation"
+              withSource
+            >
+              <div className="space-y-2 w-full">
+                <div>
+                  Selected row:{' '}
+                  {selectedRow2 ? <i>{selectedRow2.title}</i> : 'None'}
+                </div>
+                <div>
+                  Confirmed row:{' '}
+                  {confirmedRow ? <i>{confirmedRow.title}</i> : 'None'}
+                </div>
+                <div className="w-full h-[250px]">
+                  <Scroll>
+                    <DataTable
+                      title="Some of Nabokov's novels"
+                      rows={nabokovRows}
+                      columns={nabokovColumns}
+                      selectedRow={selectedRow2}
+                      onSelectRow={row => setSelectedRow2(row)}
+                      onConfirmRow={row => setConfirmedRow(row)}
+                    />
+                  </Scroll>
+                </div>
+              </div>
+            </Library.Demo>
           </Library.Example>
           <Library.Example title="Tables in constrained spaces">
             <p>
@@ -156,59 +201,35 @@ export default function DataTablePage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="rows">
-            <p>
-              <code>rows</code> is an Array of objects mapping field names to
-              values.
-            </p>
-            <p>
-              Only fields that are present in the <code>columns</code> data will
-              be rendered. In this example, the <code>translatedTitle</code>{' '}
-              field is not referenced in <code>columns</code>, so it is not
-              rendered. In other words, row objects may contain entries that are
-              not used by <code>DataTable</code>.
-            </p>
-            <Library.Code
-              title="columns data used for this example"
-              content={`const columns = [
-  { field: 'title', label: 'Title' },
-  { field: 'year', label: 'Year' },
-  { field: 'language', label: 'Language' },
-];`}
-            />
-            <Library.Demo withSource>
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <DataTable
-                    title="A subset of Nabokov's novels with publish date and original language"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                  />
-                </Scroll>
-              </div>
-            </Library.Demo>
-          </Library.Example>
-
+        <Library.Pattern title="Component API">
+          <p>
+            <code>rows</code>, <code>columns</code> and <code>title</code> are
+            required.
+          </p>
           <Library.Example title="columns">
-            <p>
-              Columns define the headers that are rendered, as well as which row
-              fields are rendered.
-            </p>
-            <p>
-              <code>field</code> and <code>label</code> are required. Optional{' '}
-              <code>classes</code> will extend CSS classes applied to associated{' '}
-              <code>th</code> elements and is mainly intended for setting the
-              width of columns.
-            </p>
-            <Library.Code
-              title="columns data used for this example"
-              content={`const columns = [
-  { field: 'title', label: 'Title', classes: 'w-[80%]' },
-  { field: 'year', label: 'Year' },
-];`}
-            />
-            <Library.Demo withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                An array of objects defining headers to render, as well as which
+                fields in <code>rows</code> are rendered. Optional{' '}
+                <code>classes</code> extend CSS classes applied to associated{' '}
+                <code>th</code> elements.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <Library.Code
+                  size="sm"
+                  content={`Array<{
+  field: string;
+  label: string;
+  classes?: string;
+}>
+`}
+                />
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Setting columns for a DataTable" withSource>
               <div className="w-full h-[250px]">
                 <Scroll>
                   <DataTable
@@ -222,42 +243,126 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
+            <Library.Code
+              title="columns data used for this example"
+              content={`const columns = [
+  { field: 'title', label: 'Title', classes: 'w-[80%]' },
+  { field: 'year', label: 'Year' },
+];`}
+            />
           </Library.Example>
 
-          <Library.Example title="renderItem">
+          <Library.Example title="rows">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Array of objects mapping field names to values. Only fields that
+                are declared in <code>columns</code> will be rendered.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Array<Record<string,any>>`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo
+              title="Only fields declared in columns are rendered"
+              withSource
+            >
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="A subset of Nabokov's novels with publish date and original language"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+
             <p>
-              <code>renderItem</code> is a callback for formatting the contents
-              of an individual table cell. It is given the current{' '}
-              <code>row</code> and the <code>field</code> to format.
+              In this example, the <code>translatedTitle</code> field is not
+              referenced in <code>columns</code>, so it is not rendered.
             </p>
             <Library.Code
               title="columns data used for this example"
               content={`const columns = [
   { field: 'title', label: 'Title' },
-  { field: 'translatedTitle', label: 'Translated As' },
   { field: 'year', label: 'Year' },
+  { field: 'language', label: 'Language' },
 ];`}
             />
-            <Library.Code
-              title="`renderItem` callback used for this example"
-              size="sm"
-              content={`const renderItem = (row, field) => {
-  switch (field) {
-    case 'title':
-      return <i>{row.title}</i>;
-    case 'translatedTitle':
-      return row.translatedTitle ? (
-        <i>{row.translatedTitle}</i>
-      ) : (
-        'N/A'
-      );
-    default:
-      return row[field];
-  }
-}`}
-            />
+          </Library.Example>
 
+          <Library.Example title="emptyMessage">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Message to show if there are no <code>rows</code>. Superseded by{' '}
+                <code>loading</code> state.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`preact.ComponentChildren`}</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo withSource>
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="Some of Nabokov's novels"
+                    rows={[]}
+                    columns={nabokovColumns}
+                    emptyMessage={<strong>No books found</strong>}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="loading">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Show a loading spinner. Column headings are still displayed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo withSource>
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    loading={true}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="renderItem">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback for formatting the contents of an individual table
+                cell.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`(r: Row, field: keyof Row) => preact.ComponentChildren`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`(r: Row, field: keyof Row) => r[field] as ComponentChildren`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo
+              title="Using renderItem to format table cell contents"
+              withSource
+            >
               <div className="w-full h-[250px]">
                 <Scroll>
                   <DataTable
@@ -286,97 +391,40 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
-
-          <Library.Example title="loading">
-            <p>
-              Set this boolean prop to show a loading spinner, while still
-              displaying column headings.
-            </p>
-            <Library.Demo withSource>
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <DataTable
-                    title="Some of Nabokov's novels"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                    loading={true}
-                  />
-                </Scroll>
-              </div>
-            </Library.Demo>
-          </Library.Example>
-
-          <Library.Example title="emptyMessage">
-            <p>
-              An optional <code>emptyMessage</code> can be shown when the{' '}
-              <code>rows</code> Array is empty and <code>loading</code> is not
-              set.
-            </p>
-            <Library.Demo withSource>
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <DataTable
-                    title="Some of Nabokov's novels"
-                    rows={[]}
-                    columns={nabokovColumns}
-                    emptyMessage={<strong>No books found</strong>}
-                  />
-                </Scroll>
-              </div>
-            </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-
-        <Library.Pattern title="Props for interactive DataTables">
-          <p>
-            Several of the props available on <code>DataTable</code> support
-            interactivity. Rows of data in interactive tables can be either{' '}
-            <em>selected</em> or <em>confirmed</em>.
-          </p>
-          <p>
-            A row can first be <strong>selected</strong> by a single click or
-            keyboard navigation focus, then subsequently — if the use case calls
-            for it — <strong>confirmed</strong> with a double-click or by
-            pressing {"'Enter'"}. Confirmation can be a handy convenience
-            affordance for, e.g., submitting a form, but selection alone may
-            satisfy most use cases in which a user is prompted to choose an
-            entry from a set of data rows.
-          </p>
-          <p>
-            <code>DataTable</code> does not maintain internal state and expects
-            a parent component to provide the current <code>selectedRow</code>.
-            Provided <code>onSelectRow</code> and <code>onConfirmRow</code>{' '}
-            callbacks are invoked when relevant mouse, keyboard and focus events
-            occur.
-          </p>
-
-          <Library.Example title="selectedRow">
-            <p>
-              Identify which row in the <code>rows</code> Array is currently
-              selected.
-            </p>
-            <Library.Demo withSource>
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <DataTable
-                    title="Some of Nabokov's novels"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                    selectedRow={nabokovRows[2]}
-                  />
-                </Scroll>
-              </div>
-            </Library.Demo>
+            <Library.Code
+              title="renderItem callback used for this example"
+              size="sm"
+              content={`const renderItem = (row, field) => {
+  switch (field) {
+    case 'title':
+      return <i>{row.title}</i>;
+    case 'translatedTitle':
+      return row.translatedTitle ? (
+        <i>{row.translatedTitle}</i>
+      ) : (
+        'N/A'
+      );
+    default:
+      return row[field];
+  }
+}`}
+            />
           </Library.Example>
 
           <Library.Example title="onSelectRow">
-            <p>
-              When a table row is keyboard-focused or clicked on, the{' '}
-              <code>onSelectRow</code> callback is invoked with the selected{' '}
-              <code>row</code>.
-            </p>
-            <Library.Demo withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when a row is selected (focused or
+                single-clicked).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`(r: Row) => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="DataTable with onSelectRow callback"
+              withSource
+            >
               <div className="space-y-2 w-full">
                 <div>
                   Selected row:{' '}
@@ -398,35 +446,53 @@ export default function DataTablePage() {
           </Library.Example>
 
           <Library.Example title="onConfirmRow">
-            <p>
-              When a table row is double-clicked, or <code>Enter</code> is
-              pressed with the row in focus, the <code>onConfirmRow</code>{' '}
-              callback is invoked with the confirmed <code>row</code>.
-            </p>
-            <Library.Demo withSource>
-              <div className="space-y-2 w-full">
-                <div>
-                  Selected row:{' '}
-                  {selectedRow2 ? <i>{selectedRow2.title}</i> : 'None'}
-                </div>
-                <div>
-                  Confirmed row:{' '}
-                  {confirmedRow ? <i>{confirmedRow.title}</i> : 'None'}
-                </div>
-                <div className="w-full h-[250px]">
-                  <Scroll>
-                    <DataTable
-                      title="Some of Nabokov's novels"
-                      rows={nabokovRows}
-                      columns={nabokovColumns}
-                      selectedRow={selectedRow2}
-                      onSelectRow={row => setSelectedRow2(row)}
-                      onConfirmRow={row => setConfirmedRow(row)}
-                    />
-                  </Scroll>
-                </div>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when a row is confirmed (double-clicked, or{' '}
+                <kbd>enter</kbd> pressed)
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`(r: Row) => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="selectedRow">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set which Row in <code>rows</code> is currently selected.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Row`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="DataTable with selectedRow" withSource>
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    selectedRow={nabokovRows[2]}
+                  />
+                </Scroll>
               </div>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A title used for accessibility purposes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
