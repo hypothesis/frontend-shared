@@ -45,21 +45,20 @@ const Link = function Link({
       rel="noopener noreferrer"
       {...htmlAttributes}
       className={classnames(
-        {
-          'focus-visible-ring rounded-sm': styled,
+        styled && {
+          'focus-visible-ring rounded-sm': true,
           // underline
           // TODO: Underline should be controlled by `variant` and should default
           // to `always`
-          'no-underline hover:no-underline': styled && underline === 'none', // default
-          'underline hover:underline': styled && underline === 'always',
-          'no-underline hover:underline': styled && underline === 'hover',
+          'no-underline hover:no-underline': underline === 'none', // default
+          'underline hover:underline': underline === 'always',
+          'no-underline hover:underline': underline === 'hover',
         },
-        {
+        themed && {
           // color
-          'text-brand hover:text-brand-dark': themed && theme === 'brand', // default
-          'text-color-text-light hover:text-brand':
-            themed && theme === 'text-light',
-          'text-color-text hover:text-brand-dark': themed && theme === 'text',
+          'text-brand hover:text-brand-dark': theme === 'brand', // default
+          'text-color-text-light hover:text-brand': theme === 'text-light',
+          'text-color-text hover:text-brand-dark': theme === 'text',
         },
         classes
       )}
