@@ -33,7 +33,6 @@ export default function SelectPage() {
       }
     >
       <Library.Section
-        title="Select"
         intro={
           <p>
             <code>Select</code> styles <code>{'<select>'}</code> elements. Note

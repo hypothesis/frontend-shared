@@ -13,7 +13,6 @@ export default function InputGroupPage() {
   return (
     <Library.Page title="InputGroup">
       <Library.Section
-        title="InputGroup"
         intro={
           <p>
             <code>InputGroup</code> is a presentational component that provides

@@ -15,7 +15,6 @@ export default function PanelPage() {
       }
     >
       <Library.Section
-        title="Panel"
         intro={
           <p>
             <code>Panel</code> is a composite component for standardized panel
