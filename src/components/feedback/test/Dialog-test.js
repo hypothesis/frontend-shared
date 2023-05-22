@@ -282,6 +282,13 @@ describe('Dialog', () => {
         assert.called(onClose);
       });
     });
+
+    context('when no onClose callback is provided', () => {
+      it('does not render a close button', () => {
+        const wrapper = mount(<Dialog title="My dialog" />);
+        assert.isFalse(wrapper.find('CancelIcon').exists());
+      });
+    });
   });
 
   describe('aria-describedby', () => {
