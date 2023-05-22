@@ -4,7 +4,6 @@ import type { DialogProps } from '../../../../';
 import {
   ArrowRightIcon,
   Button,
-  CautionIcon,
   DataTable,
   Dialog,
   EditIcon,
@@ -174,13 +173,6 @@ export default function DialogPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <strong>
-              <code>Dialog</code> is a new component.
-            </strong>
-          </p>
-        </Library.Pattern>
         <Library.Pattern>
           <Library.Usage componentName="Dialog" />
           <Library.Demo title="Basic Dialog" withSource>
@@ -203,12 +195,40 @@ export default function DialogPage() {
           </Library.Demo>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="ComponentAPI">
+          <p>
+            <code>Dialog</code> accepts all standard composite component API
+            props.
+          </p>
+
+          <Library.Example title="classes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Atypically for a composite component, <code>Dialog</code>{' '}
+                accepts <code>classes</code> (CSS classes). These will be
+                appended to the classes applied to the {"dialog's"} container
+                element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
           <Library.Example title="closeOnClickAway">
-            <p>
-              This boolean prop (default <code>false</code>) controls whether
-              the Dialog should close when there are click events outside of it.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The <code>Dialog</code> should close (invoke its{' '}
+                <code>onClose</code> callback) when there are click events
+                outside of it
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo
               title="Dialog that closes on external clicks"
               withSource
@@ -222,29 +242,21 @@ export default function DialogPage() {
               </Dialog_>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="closeOnFocusAway">
-            <p>
-              This boolean prop (default <code>false</code>) controls whether
-              the Dialog should close when there are focus events outside of it.
-            </p>
-            <Library.Demo
-              title="Dialog that closes on external focus events"
-              withSource
-            >
-              <Dialog_
-                closeOnFocusAway
-                onClose={() => {}}
-                title="Close on Away Focus"
-              >
-                <p>This dialog will close if you focus outside of it</p>
-              </Dialog_>
-            </Library.Demo>
-          </Library.Example>
+
           <Library.Example title="closeOnEscape">
-            <p>
-              Enable close-on-ESC behavior by setting this boolean prop (default{' '}
-              <code>false</code>).
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The <code>Dialog</code> should close (invoke its{' '}
+                <code>onClose</code> callback) when the <kbd>ESC</kbd> key is
+                pressed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
 
             <Library.Demo
               title="Dialog with close-on-Escape behavior"
@@ -258,33 +270,99 @@ export default function DialogPage() {
             </Library.Demo>
           </Library.Example>
 
+          <Library.Example title="closeOnFocusAway">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The <code>Dialog</code> should close (invoke its{' '}
+                <code>onClose</code> callback) when there are focus events
+                outside of it.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Dialog that closes on external focus events"
+              withSource
+            >
+              <Dialog_
+                closeOnFocusAway
+                onClose={() => {}}
+                title="Close on Away Focus"
+              >
+                <p>This dialog will close if you focus outside of it</p>
+              </Dialog_>
+            </Library.Demo>
+          </Library.Example>
+
           <Library.Example title="initialFocus">
-            <p>
-              The <code>initialFocus</code> prop determines how focus is routed
-              when a <code>Dialog</code> is mounted (opened). Accepted values:
-            </p>
-            <ul>
-              <li>
-                <code>{"'auto'"}</code> (default): Focus is routed to the
-                outermost element of the <code>Dialog</code> when opeend.
-              </li>
-              <li>
-                <code>RefObject{'<HTMLOrSVGElement>'}</code>: Focus will be
-                routed to the referenced element.
-              </li>
-              <li>
-                <code>{"'manual'"}</code>: Disable automatic focus routing.
-                Consumer is responsible for routing focus appropriately.
-              </li>
-            </ul>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determine how initial focus is routed when the{' '}
+                <code>Dialog</code> is mounted (opened). By default (
+                <code>{`'auto'`}</code>), the dialog itself will be focused.
+                Provide a <code>ref</code> to focus a specific element
+                initially, or set to <code>{`'manual'`}</code> to opt out of any
+                focus routing.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`preact.RefObject<HTMLOrSVGElement | null> | 'auto' | 'manual'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'auto'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="onClose">
+            <Library.Callout>
+              The <code>onClose</code> prop is optional, but should be
+              considered required for all new <code>Dialog</code>s. This
+              flexibility exists to support legacy use cases of{' '}
+              {'non-closeable'} dialogs.
+            </Library.Callout>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when the <code>Dialog</code> should be closed.{' '}
+                Note: <code>Dialog</code>s have no state — when rendered, they
+                are always open.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`() => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Non-closeable Dialog example" withSource>
+              <Dialog_
+                icon={EditIcon}
+                title="Non-closeable dialog example"
+                _nonCloseable
+              >
+                <p>
+                  This is a {'"non-closeable"'} <code>Dialog</code>. This
+                  pattern should be avoided, but is supported for a few legacy
+                  use cases. You can close this modal by clicking the{' '}
+                  {'"Escape!"'} button.
+                </p>
+              </Dialog_>
+            </Library.Demo>
           </Library.Example>
 
           <Library.Example title="restoreFocus">
-            <p>
-              This boolean prop (default <code>false</code>) restores focus when
-              the Dialog is closed to the element that had focus before it was
-              opened.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Upon closing (unmounting), restore focus to the element that had
+                focus before the <code>Dialog</code> was opened (mounted).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
 
             <Library.Demo
               title="Dialog with focus restoration on close"
@@ -304,44 +382,18 @@ export default function DialogPage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="onClose">
-            <p>
-              It is possible to create a non-closeable <code>Dialog</code> by
-              omitting the <code>onClose</code> prop.
-            </p>
-            <div className="flex gap-x-2 items-center">
-              <CautionIcon className="text-yellow-notice w-6 h-6" />
-              <p>
-                This flexibility exists to support legacy use cases. Avoid
-                creating new non-closeable dialogs.
-              </p>
-            </div>
-            <Library.Demo title="Non-closeable Dialog example" withSource>
-              <Dialog_
-                icon={EditIcon}
-                title="Non-closeable dialog example"
-                _nonCloseable
-              >
-                <p>
-                  This is a {'"non-closeable"'} <code>Dialog</code>. This
-                  pattern should be avoided, but is supported for a few legacy
-                  use cases. You can close this modal by clicking the{' '}
-                  {'"Escape!"'} button.
-                </p>
-              </Dialog_>
-            </Library.Demo>
-          </Library.Example>
-
           <Library.Example title="transitionComponent">
-            <p>
-              It allows to provide a component which supports transitions, but
-              keeping the internal behavior (initial focus, closing, etc)
-              transparent to consumers.
-            </p>
-            <p>
-              The only requirement is that provided component needs to be a{' '}
-              <strong>TransitionComponent</strong>.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A <code>TransitionComponent</code> to use when this{' '}
+                <code>Dialog</code> is opened/mounted and closed/unmounted. By
+                default, no transition is applied.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>TransitionComponent</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo
               title="Dialog with TransitionComponent example"
               withSource
@@ -356,32 +408,21 @@ export default function DialogPage() {
               </Dialog_>
             </Library.Demo>
           </Library.Example>
-        </Library.Pattern>
 
-        <Library.Pattern title="Forwarded Props: Panel">
-          <p>
-            These props are forwarded to <code>Panel</code>:
-          </p>
-          <ul>
-            <li>
-              <code>buttons</code>
-            </li>
-            <li>
-              <code>icon</code>
-            </li>
-            <li>
-              <code>onClose</code>
-            </li>
-            <li>
-              <code>paddingSize</code>
-            </li>
-            <li>
-              <code>title</code>
-            </li>
-          </ul>
-          <p>
-            <code>fullWidthHeader</code> is always <code>true</code>.
-          </p>
+          <Library.Example title="...panelProps">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Dialog</code> uses <code>Panel</code> for layout. All{' '}
+                <Library.Link href="/layout-panel">Panel</Library.Link> props
+                are accepted and forwarded except for{' '}
+                <code>fullWidthHeader</code> (which is always set for{' '}
+                <code>Dialog</code>).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>TransitionComponent</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
@@ -465,7 +506,8 @@ export default function DialogPage() {
               </InputGroup>
             </ModalDialog_>
           </Library.Demo>
-
+        </Library.Pattern>
+        <Library.Pattern title="Working with ModalDialogs">
           <Library.Example title="Handling long content">
             <p>
               By default, content in a <code>Dialog</code> or{' '}
@@ -486,8 +528,8 @@ export default function DialogPage() {
             <p>
               Modal dialogs should provide appropriate keyboard navigation even
               when there are multiple or complex embedded widgts, like data
-              tables (ARIA <code>{'`role="grid"`'}</code>) or tabs (ARIA{' '}
-              <code>{'`role="tablist"`'}</code>).
+              tables (ARIA <code>{`role="grid"`}</code>) or tabs (ARIA{' '}
+              <code>{`role="tablist"`}</code>).
             </p>
             <Library.Demo title="Modal with embedded ARIA widgets" withSource>
               <ModalDialog_
@@ -556,9 +598,10 @@ export default function DialogPage() {
             </p>
             <ul>
               <li>
-                <strong>Set a height on the ModalDialog</strong> itself. The
-                Modal will always render at this height. If contained content
-                height exceeds this height, it will scroll.
+                <strong>Set a height on the ModalDialog</strong> itself via the{' '}
+                <code>classes</code> prop. The Modal will always render at this
+                height. If contained content height exceeds this height, it will
+                scroll.
               </li>
               <li>
                 <strong>
@@ -641,43 +684,76 @@ export default function DialogPage() {
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
-        <Library.Pattern title="Props">
+        <Library.Pattern title="ComponentAPI">
           <Library.Example title="disableCloseOnEscape">
-            <p>
-              Set this boolean prop (default <code>false</code>) to disable
-              closing the modal when the <kbd>Escape</kbd> key is pressed.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Do not close the <code>ModalDialog</code> when <kbd>ESC</kbd> is
+                pressed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
+
           <Library.Example title="disableFocusTrap">
-            <p>
-              This boolean prop (default <code>false</code>) enables
-              modal-dialog focus trap and keyboard navigation as specified by{' '}
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Do not trap focus in the modal.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Callout>
+              <em>Note</em>: Modal focus trapping is part of{' '}
               <Link
                 href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/#keyboardinteraction"
                 underline="always"
               >
                 WAI-ARIA authoring guidelines
               </Link>
-              .
-            </p>
-            <p>
-              <em>Note</em>: Disabling this prop is not recommended and could
-              raise issues of accessibility.
-            </p>
+              . Disabling this prop is not recommended and could raise issues of
+              accessibility.
+            </Library.Callout>
           </Library.Example>
 
           <Library.Example title="disableRestoreFocus">
-            <p>
-              Set this boolean prop (default <code>false</code>) to disable the
-              restoration of focus after the <code>ModalDialog</code> is closed.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Do not restore focus to previously-focused element when the
+                modal is closed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
 
           <Library.Example title="size">
-            <p>
-              The <code>size</code> prop establishes the width of the modal
-              dialog.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the relative width of the modal element. Set to {`'custom'`}{' '}
+                to customize width via <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'sm' | 'md' | 'lg' | 'custom'`}]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
             <Library.Demo title="size='sm'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
@@ -711,12 +787,6 @@ export default function DialogPage() {
               </ModalDialog_>
             </Library.Demo>
 
-            <p>
-              To style your <code>ModalDialog</code> with a custom width, set{' '}
-              <code>size</code> to <code>{"'custom'"}</code> and provide sizing
-              CSS class(es) via the <code>classes</code> prop.
-            </p>
-
             <Library.Demo title="size='custom'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
@@ -742,36 +812,30 @@ export default function DialogPage() {
             </p>
           </Library.Example>
 
-          <Library.Example title="width">
-            <p>
-              The{' '}
-              <s>
-                <code>width</code>
-              </s>{' '}
-              prop is deprecated: use <code>size</code> instead.
-            </p>
-          </Library.Example>
-
-          <Library.Example title="Forwarded Props: Dialog">
-            <p>
-              <code>ModalDialog</code> forwards the following props (defaults in
-              parentheses) to <code>Dialog</code>:
-            </p>
-            <ul>
-              <li>
-                <code>closeOnClickAway</code> (<code>false</code>)
-              </li>
-              <li>
-                <code>closeOnFocusAway</code> (<code>false</code>)
-              </li>
-              <li>
-                <code>initialFocus</code> (<code>{"'auto'"}</code>)
-              </li>
-            </ul>
-            <p>
-              <code>Panel</code> props forwarded by <code>Dialog</code> are also
-              accepted.
-            </p>
+          <Library.Example title="...dialogProps">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Props forwarded to <code>Dialog</code> and <code>Panel</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="props">
+                All <code>Dialog</code> and <code>Panel</code> props,{' '}
+                <strong>except</strong>:
+                <ul>
+                  <li>
+                    <code>closeOnEscape (Dialog)</code>: Use{' '}
+                    <code>disableCloseOnEscape</code> instead
+                  </li>
+                  <li>
+                    <code>restoreFocus (Dialog)</code>: Use{' '}
+                    <code>disableRestoreFocus</code> instead
+                  </li>
+                  <li>
+                    <code>fullWidthHeader (Panel)</code>: always{' '}
+                    <code>true</code> for all dialogs
+                  </li>
+                </ul>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
