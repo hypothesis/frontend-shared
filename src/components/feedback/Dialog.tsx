@@ -54,8 +54,6 @@ export type DialogProps = PresentationalProps &
   ComponentProps &
   Omit<PanelProps, 'fullWidthHeader'>;
 
-const noop = () => {};
-
 /**
  * Show a dialog
  */
@@ -74,7 +72,7 @@ const Dialog = function Dialog({
   // Forwarded to Panel
   buttons,
   icon,
-  onClose = noop,
+  onClose,
   paddingSize = 'md',
   scrollable = true,
   title,
@@ -87,6 +85,7 @@ const Dialog = function Dialog({
   );
   const [transitionComponentVisible, setTransitionComponentVisible] =
     useState(false);
+  const isClosableDialog = !!onClose;
 
   const closeHandler = useCallback(() => {
     if (TransitionComponent) {
@@ -94,7 +93,7 @@ const Dialog = function Dialog({
       // called by that component, once the "out" transition has finished
       setTransitionComponentVisible(false);
     } else {
-      onClose();
+      onClose?.();
     }
   }, [onClose, TransitionComponent]);
 
@@ -127,7 +126,7 @@ const Dialog = function Dialog({
     if (direction === 'in') {
       initializeDialog();
     } else {
-      onClose();
+      onClose?.();
     }
   };
 
@@ -216,7 +215,7 @@ const Dialog = function Dialog({
           buttons={buttons}
           fullWidthHeader={true}
           icon={icon}
-          onClose={closeHandler}
+          onClose={isClosableDialog ? closeHandler : undefined}
           paddingSize={paddingSize}
           title={title}
           scrollable={scrollable}
