@@ -526,12 +526,15 @@ export default function ButtonPage() {
         intro={
           <>
             <p>
-              <code>ButtonBase</code> is a base presentational component that
-              allows style customization of buttons.
+              <Library.StatusChip status="deprecated" /> Use the styling API of{' '}
+              <code>Button</code> or <code>IconButton</code> for customized
+              styling instead.
             </p>
             <p>
-              <code>ButtonBase</code> applies minimal common styling. Turn off
-              all styling by setting the <code>unstyled</code> prop.
+              <code>ButtonBase</code> is a base presentational component that
+              allows style customization of buttons. <code>ButtonBase</code>{' '}
+              applies minimal common styling. Turn off all styling by setting
+              the <code>unstyled</code> prop.
             </p>
           </>
         }
@@ -539,49 +542,18 @@ export default function ButtonPage() {
         <Library.Pattern>
           <Library.Usage componentName="ButtonBase" />
 
-          <Library.Example>
-            <p>
-              <code>ButtonBase</code> applies color transition and layout basic
-              styling, but no colors, padding, hover or state styling.
-            </p>
-            <p>
-              This example shows a <code>ButtonBase</code> with some additional{' '}
-              <code>classes</code>. These <code>classes</code> are appended to
-              the {"component's"} base styling classes.
-            </p>
-
-            <Library.Demo
-              title="ButtonBase with some additional styles"
-              withSource
+          <Library.Demo
+            title="ButtonBase with some additional styles"
+            withSource
+          >
+            <ButtonBase
+              classes="border bg-grey-0 hover:bg-grey-1"
+              onClick={() => alert('You clicked the button')}
             >
-              <ButtonBase
-                classes="border bg-grey-0 hover:bg-grey-1"
-                onClick={() => alert('You clicked the button')}
-              >
-                <CheckIcon />
-                Click me
-              </ButtonBase>
-            </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Props">
-          <Library.Example title="unstyled">
-            <p>
-              Set <code>unstyled</code> to style your button from scratch. This
-              example shows an unstyled <code>ButtonBase</code> with the same{' '}
-              <code>classes</code> as above. <em>Only</em> the classes in{' '}
-              <code>classes</code> are applied.
-            </p>
-            <Library.Demo title="ButtonBase unstyled" withSource>
-              <ButtonBase
-                classes="border bg-grey-0 hover:bg-grey-1"
-                onClick={() => alert('You clicked the button')}
-                unstyled
-              >
-                <CheckIcon /> Click me
-              </ButtonBase>
-            </Library.Demo>
-          </Library.Example>
+              <CheckIcon />
+              Click me
+            </ButtonBase>
+          </Library.Demo>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
