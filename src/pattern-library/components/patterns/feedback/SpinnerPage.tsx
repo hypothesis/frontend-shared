@@ -39,31 +39,50 @@ export default function SpinnerPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
           <Library.Example title="color">
-            <Library.Demo title="color: 'text-light' (default)" withSource>
-              <Spinner color="text-light" size="md" />
-            </Library.Demo>
-            <Library.Demo title="color: 'text'" withSource>
-              <Spinner color="text" size="md" />
-            </Library.Demo>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the foreground color of the spinner icon.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'text' |'text-light' | 'text-inverted'`}]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'text-light'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Available Spinner colors" withSource>
+              <div className="flex gap-x-8 items-center">
+                <Spinner color="text-light" size="md" />
 
-            <Library.Demo title="color: 'text-inverted'" withSource>
-              <div className="bg-slate-7 rounded-lg flex items-center justify-center p-8">
-                <Spinner color="text-inverted" size="md" />
+                <Spinner color="text" size="md" />
+
+                <div className="bg-slate-7 rounded-lg flex items-center justify-center p-8">
+                  <Spinner color="text-inverted" size="md" />
+                </div>
               </div>
             </Library.Demo>
           </Library.Example>
 
           <Library.Example title="size">
-            <Library.Demo title="size: 'sm' (1em) (default)" withSource>
-              <Spinner size="sm" />
-            </Library.Demo>
-            <Library.Demo title="size: 'md' (2em)" withSource>
-              <Spinner size="md" />
-            </Library.Demo>
-            <Library.Demo title="size: 'lg' (4em)" withSource>
-              <Spinner size="lg" />
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set relative size of the spinner.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'sm' | 'md' | 'lg' `}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Spinner sizes" withSource>
+              <div className="flex gap-x-8 items-center">
+                <Spinner size="sm" />
+                <Spinner size="md" />
+                <Spinner size="lg" />
+              </div>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
@@ -72,15 +91,19 @@ export default function SpinnerPage() {
         title="SpinnerOverlay"
         intro={
           <p>
-            <code>SpinnerOverlay</code> is a simple component encapsulating a
-            design pattern for a full-page loading spinner.
+            <code>SpinnerOverlay</code> is a simple component that composes a
+            spinner with an{' '}
+            <Library.Link href="/layout-overlay">
+              <code>Overlay</code>
+            </Library.Link>
+            .
           </p>
         }
       >
         <Library.Pattern>
           <Library.Usage componentName="SpinnerOverlay" />
           <Library.Example>
-            <Library.Demo>
+            <Library.Demo title="Basic SpinnerOverlay">
               <Button onClick={toggleOverlayOpen}>Show overlay</Button>
               {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}
             </Library.Demo>
@@ -92,11 +115,20 @@ export default function SpinnerPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <p>
-            <code>SpinnerOverlay</code> accepts all HTML attributes except{' '}
-            <code>className</code>.
-          </p>
+        <Library.Pattern title="Component API">
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                HTML attributes applied to the outermost full-screen element.
+              </Library.InfoItem>
+
+              <Library.InfoItem label="type">
+                <code>
+                  {`Omit<JSX.HTMLAttributes<HTMLElement>,'className' | 'open'>`}
+                </code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
