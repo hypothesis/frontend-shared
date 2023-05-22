@@ -48,6 +48,8 @@ export type ButtonBaseProps = BaseProps &
 
 /**
  * Base component for Button components. Applies common attributes.
+ *
+ * @deprecated Use `Button` or `IconButton` with `unstyled` set instead
  */
 const ButtonBase = function ButtonBase({
   elementRef,
