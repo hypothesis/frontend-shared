@@ -1,7 +1,10 @@
 import { mount } from 'enzyme';
 
 import { CancelIcon } from '../../icons';
-import { testPresentationalComponent } from '../../test/common-tests';
+import {
+  testPresentationalComponent,
+  testStyledComponent,
+} from '../../test/common-tests';
 import IconButton from '../IconButton';
 
 describe('IconButton', () => {
@@ -10,6 +13,7 @@ describe('IconButton', () => {
   };
 
   testPresentationalComponent(IconButton, { componentName: 'IconButton' });
+  testStyledComponent(IconButton);
 
   it('renders proportionally-sized icon', () => {
     const wrapper = createComponent({ icon: CancelIcon });

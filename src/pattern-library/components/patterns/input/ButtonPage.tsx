@@ -242,7 +242,7 @@ export default function ButtonPage() {
         title="IconButton"
         intro={
           <p>
-            <code>IconButton</code> is for buttons that contain only an icon.
+            <code>IconButton</code> is for icon-only <code>Button</code>s.
           </p>
         }
       >
@@ -259,27 +259,12 @@ export default function ButtonPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="icon">
-            <p>
-              The <code>IconButton</code>
-              {"'s"} <code>icon</code> prop accepts an icon component and will
-              render it sized proportionally to the local font size.
-            </p>
-            <Library.Demo withSource>
-              <span className="text-xl">
-                <IconButton icon={ShareIcon} title="Share" />
-              </span>
-              <IconButton icon={ShareIcon} title="Share" />
-              <span className="text-xs">
-                <IconButton icon={ShareIcon} title="Share" />
-              </span>
-            </Library.Demo>
-          </Library.Example>
-          <Library.Example title="icon: customizing styles">
+        <Library.Pattern title="Working with IconButtons">
+          <Library.Example title="Styling the icon">
             <p>
               If you need more control over icon styles, use an icon component
-              directly in the content instead.
+              directly in the content instead of passing an <code>icon</code>{' '}
+              prop.
             </p>
             <Library.Demo withSource>
               <IconButton title="Share">
@@ -290,17 +275,92 @@ export default function ButtonPage() {
               </IconButton>
             </Library.Demo>
           </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Component API">
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A <code>title</code> is required for <code>IconButton</code>s.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="disableTouchSizing">
+            <Library.Info>
+              <Library.InfoItem label="status">
+                <Library.StatusChip status="deprecated" /> Set <code>size</code>{' '}
+                to <code>{`'custom'`}</code> and set sizing classes manually
+                instead.
+              </Library.InfoItem>
+              <Library.InfoItem label="description">
+                Disable minimum sizing on touch devices (
+                <code>pointer: coarse</code>). Buttons will be at least 44px in
+                each dimension on these devices by default.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="...buttonProps">
+            <code>IconButton</code> accepts and forwards all props from the{' '}
+            <code>Button</code> component API.
+          </Library.Example>
+
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>IconButton</code> accepts HTML attribute props applicable
+                to <code>HTMLButtonElement</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<preact.JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="Styling API">
+          <p>
+            <code>IconButton</code> accepts the following props from the{' '}
+            <Library.Link href="/using-components#presentational-components-styling-api">
+              presentational component styling API
+            </Library.Link>
+            .
+          </p>
           <Library.Example title="variant">
-            <p>
-              These examples show each variant in each of the supported states.
-              These states are associated with the <code>pressed</code>,{' '}
-              <code>expanded</code> and <code>disabled</code> boolean props.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set a defined theme on the button. Set to {`'custom'`} to
+                disable theming and provide your own theming with{' '}
+                <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'primary' | 'secondary' | 'dark' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'secondary'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
 
             <p>
-              For customization, use <code>ButtonBase</code>.
+              The following examples show themed <code>IconButton</code>s in
+              default state, <code>pressed</code>, <code>expanded</code> and{' '}
+              <code>disabled</code>.
             </p>
-            <Library.Demo title="variant: 'secondary' (default)" withSource>
+
+            <Library.Demo title="variant: 'secondary'" withSource>
               <IconButton
                 variant="secondary"
                 title="Watch out!"
@@ -380,32 +440,83 @@ export default function ButtonPage() {
                 disabled
               />
             </Library.Demo>
+
+            <Library.Demo
+              title="variant: 'custom' with custom theming"
+              withSource
+            >
+              <IconButton
+                classes="border rounded text-slate-600"
+                variant="custom"
+                title="Watch out!"
+                icon={CautionIcon}
+              />
+              <IconButton
+                classes="border rounded text-slate-800 bg-stone-100 border-slate-400"
+                variant="custom"
+                title="Watch out!"
+                icon={CautionIcon}
+                pressed
+              />
+              <IconButton
+                variant="custom"
+                classes="border rounded text-slate-800 bg-stone-100 border-slate-400"
+                title="Watch out!"
+                icon={CautionIcon}
+                expanded
+              />
+              <IconButton
+                classes="border rounded text-slate-400"
+                variant="custom"
+                title="Watch out!"
+                icon={CautionIcon}
+                disabled
+              />
+            </Library.Demo>
           </Library.Example>
+
           <Library.Example title="size">
-            <p>
-              The <code>size</code> prop affects padding and spacing within the{' '}
-              <code>IconButton</code>.
-            </p>
-            <Library.Demo title="size: 'xs', 'sm', 'md' and 'lg'" withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set relative internal sizing. Set to {`'custom'`} to disable
+                sizing classes and set your own with <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'xs' | 'sm' | 'md' | 'lg' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="size: 'xs', 'sm', 'md', 'lg' and 'custom'"
+              withSource
+            >
               <IconButton icon={EditIcon} size="xs" title="Edit" />
               <IconButton icon={EditIcon} size="sm" title="Edit" />
               <IconButton icon={EditIcon} size="md" title="Edit" />
               <IconButton icon={EditIcon} size="lg" title="Edit" />
+              <IconButton
+                icon={EditIcon}
+                size="custom"
+                title="Edit"
+                classes="p-3"
+              />
             </Library.Demo>
           </Library.Example>
-
-          <Library.Example title="disableTouchSizing">
-            <p>
-              By default, <code>IconButton</code> will apply styles for touch
-              devices (<code>pointer: coarse</code>) to ensure the minimum
-              dimensions are equal or greater to our defined touch-target
-              minimums (44×44px). In some cases that is undesirable. Disable
-              with the <code>disableTouchSizing</code> boolean prop.
-            </p>
-
-            <Library.Demo title="Disabling touch-target sizing" withSource>
-              <IconButton icon={EditIcon} title="Edit" disableTouchSizing />
-            </Library.Demo>
+          <Library.Example title="unstyled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set this to disable all styling and provide your own styling
+                with <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
