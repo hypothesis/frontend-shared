@@ -103,6 +103,75 @@ export function testCompositeComponent(
 }
 
 /**
+ * @typedef StyledTestOpts
+ * @prop  {Array<'size'|'unstyled'|'variant'>} supportedProps Which styling
+ *   props are supported
+ */
+/**
+ * Set of tests common to all components that support the Styling API
+ *
+ * @param {import('preact').FunctionComponent} Component
+ * @param {CommonTestOpts & StyledTestOpts} opts
+ */
+export function testStyledComponent(
+  Component,
+  {
+    componentName,
+    createContent = createComponent,
+    elementSelector,
+    supportedProps = ['size', 'unstyled', 'variant'],
+  } = {}
+) {
+  const displayName = componentName ?? Component.displayName ?? Component.name;
+
+  describe(`Common styling API functionality for ${displayName}`, () => {
+    it('applies classes to primary element', () => {
+      const wrapper = createContent(Component);
+      const primaryEl = primaryElement(wrapper, elementSelector);
+
+      assert.isNotEmpty(primaryEl.classList);
+    });
+
+    if (supportedProps.includes('unstyled')) {
+      // It may be necessary to accept exceptions (classes that are always set,
+      // even when unstyled) as another test option in the future
+      it('does not apply any styles when `unstyled` is set', () => {
+        const wrapper = createContent(Component, { unstyled: true });
+        const primaryEl = primaryElement(wrapper, elementSelector);
+
+        assert.isEmpty(primaryEl.classList);
+      });
+    }
+
+    if (supportedProps.includes('variant')) {
+      // It may be necessary to accept exceptions (classes that are always set,
+      // even when unstyled) as another test option in the future
+      it('does not apply theming styles when variant is `custom`', () => {
+        const styled = createContent(Component);
+        const unStyled = createContent(Component, { variant: 'custom' });
+        assert.isTrue(
+          primaryElement(styled, elementSelector).classList.length >
+            primaryElement(unStyled, elementSelector).classList.length
+        );
+      });
+    }
+
+    if (supportedProps.includes('size')) {
+      // It may be necessary to accept exceptions (classes that are always set,
+      // even when unstyled) as another test option in the future
+      it('does not apply size styles when variant is `custom`', () => {
+        const styled = createContent(Component);
+        const unStyled = createContent(Component, { size: 'custom' });
+        assert.isTrue(
+          primaryElement(styled, elementSelector).classList.length >
+            primaryElement(unStyled, elementSelector).classList.length
+        );
+      });
+    }
+  });
+}
+
+/**
  * Set of tests common to all presentational components
  *
  * @param {import('preact').FunctionComponent} Component
