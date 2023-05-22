@@ -1,28 +1,56 @@
 import classnames from 'classnames';
+import type { JSX } from 'preact';
 
 import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import ButtonBase from './ButtonBase';
-import type { ButtonCommonProps, HTMLButtonAttributes } from './ButtonBase';
 
 type ComponentProps = {
-  /** Adjusts padding on button */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary';
+  /**
+   * Is the element associated with this button expanded?
+   * (sets `aria-expanded` attribute)
+   */
+  expanded?: boolean;
 
   /**
-   * Optional icon to display at left of button label text. Will be sized
-   * proportional to local font size.
+   * Optional icon to display at left of button label text.
    */
   icon?: IconComponent;
+
+  /**
+   * Is this button currently "active"?
+   * (sets `aria-pressed` or `aria-selected` depending on button `role`)
+   */
+  pressed?: boolean;
+
+  /**
+   * Button title (sets `aria-label` attribute)
+   */
+  title?: string;
+
+  /** Use `expanded` prop instead */
+  'aria-expanded'?: never;
+  /** Use `pressed` prop instead */
+  'aria-pressed'?: never;
+  /** Use `title` prop instead */
+  'aria-label'?: never;
+
+  // Sizing API
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'custom';
+  variant?: 'primary' | 'secondary' | 'custom';
+  unstyled?: boolean;
 };
 
+export type HTMLButtonAttributes = Omit<
+  JSX.HTMLAttributes<HTMLButtonElement>,
+  'icon' | 'size'
+>;
+
 export type ButtonProps = PresentationalProps &
-  ButtonCommonProps &
   ComponentProps &
   HTMLButtonAttributes;
+
 /**
- * Render a button with a label (`children`) and optional icon
+ * Render a button with optional icon
  */
 const Button = function Button({
   children,
@@ -32,29 +60,53 @@ const Button = function Button({
   expanded,
   pressed,
   title,
-
   icon: Icon,
   size = 'md',
   variant = 'secondary',
+  unstyled = false,
 
+  role,
   ...htmlAttributes
 }: ButtonProps) {
+  const styled = !unstyled;
+  const themed = styled && variant !== 'custom';
+  const sized = styled && size !== 'custom';
+
+  const ariaProps: Record<string, unknown> = {
+    'aria-label': title,
+  };
+
+  // aria-pressed and aria-expanded are not allowed for buttons with
+  // an aria role of `tab`. Instead, the aria-selected attribute is expected.
+  if (role === 'tab') {
+    ariaProps['aria-selected'] = pressed;
+  } else {
+    ariaProps['aria-pressed'] = pressed;
+    ariaProps['aria-expanded'] = expanded;
+  }
+
   return (
-    <ButtonBase
+    <button
+      role={role ?? 'button'}
       data-component="Button"
+      // Setting a default `type` can prevent undesired form submissions in
+      // certain cases
+      type="button"
+      {...ariaProps}
       {...htmlAttributes}
-      classes={classnames(
-        'focus-visible-ring transition-colors whitespace-nowrap flex items-center',
-        'font-semibold rounded-sm',
-        {
-          // Variants
+      className={classnames(
+        styled && {
+          'focus-visible-ring transition-colors whitespace-nowrap flex items-center':
+            true,
+        },
+        themed && {
+          'font-semibold rounded-sm': true,
           'text-grey-7 bg-grey-1 enabled:hover:text-grey-9 enabled:hover:bg-grey-2 aria-pressed:text-grey-9 aria-expanded:text-grey-9':
             variant === 'secondary', // default
           'text-grey-1 bg-grey-7 enabled:hover:bg-grey-8 disabled:text-grey-4':
             variant === 'primary',
         },
-        {
-          // Sizes
+        sized && {
           'p-2 gap-x-2': size === 'md', // default
           'p-1 gap-x-1': size === 'xs',
           'p-1.5 gap-x-1.5': size === 'sm',
@@ -62,15 +114,12 @@ const Button = function Button({
         },
         classes
       )}
-      elementRef={downcastRef(elementRef)}
-      expanded={expanded}
-      pressed={pressed}
+      ref={downcastRef(elementRef)}
       title={title}
-      unstyled
     >
       {Icon && <Icon className="w-em h-em" />}
       {children}
-    </ButtonBase>
+    </button>
   );
 };
 
