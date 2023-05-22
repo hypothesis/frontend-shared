@@ -20,56 +20,109 @@ export default function ButtonPage() {
         </p>
       }
     >
-      <Library.Section
-        title="Button"
-        intro={
-          <p>
-            The <code>Button</code> component can be used for buttons with
-            textual labels and, optionally, an icon.
-          </p>
-        }
-      >
+      <Library.Section title="Button">
         <Library.Pattern>
           <Library.Usage componentName="Button" />
           <Library.Example>
             <Library.Demo title="Basic Button" withSource>
-              <Button onClick={() => alert('You clicked the button')}>
+              <Button
+                icon={CheckIcon}
+                onClick={() => alert('You clicked the button')}
+              >
                 Click me
               </Button>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="icon">
-            <p>
-              The <code>Button</code>
-              {"'s"} <code>icon</code> prop accepts an icon component and will
-              render it to the left of content, sized proportionally to the
-              local font size.
-            </p>
-            <Library.Demo
-              title="Icons are sized proportionally to button label content"
-              withSource
-            >
-              <span className="text-xl">
-                <Button icon={CancelIcon}>Cancel</Button>
-              </span>
-              <Button icon={CancelIcon}>Cancel</Button>
-              <span className="text-xs">
-                <Button icon={CancelIcon}>Cancel</Button>
-              </span>
-            </Library.Demo>
+        <Library.Pattern title="Component API">
+          <code>Button</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
+          <Library.Example title="expanded">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                This {"button's"} associated content is expanded.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
+          <Library.Example title="icon">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                An SVG icon to display to the left of the {"button's"} content.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>IconComponent</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="pressed">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                This button is active
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Used to set an <code>aria-label</code> attribute
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Button</code> accepts HTML attribute props applicable to{' '}
+                <code>HTMLButtonElement</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<preact.JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+        </Library.Pattern>
 
+        <Library.Pattern title="Styling API">
+          <p>
+            <code>Button</code> accepts the following props from the{' '}
+            <Library.Link href="/using-components#presentational-components-styling-api">
+              presentational component styling API
+            </Library.Link>
+            .
+          </p>
           <Library.Example title="variant">
-            <p>
-              These examples show each variant in each of the supported states,
-              as well as an example with an icon. These states are associated
-              with the <code>pressed</code>, <code>expanded</code> and{' '}
-              <code>disabled</code> boolean props.
-            </p>
-            <Library.Demo title="variant: 'secondary' (default)" withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set a defined theme on the button. Set to {`'custom'`} to
+                disable theming and provide your own theming with{' '}
+                <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'primary' | 'secondary' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'secondary'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="variant: 'secondary'" withSource>
               <Button variant="secondary">Default</Button>
               <Button variant="secondary">
                 <CancelIcon />
@@ -102,25 +155,83 @@ export default function ButtonPage() {
                 Disabled
               </Button>
             </Library.Demo>
+
+            <Library.Demo title="variant: 'custom' (custom theming)" withSource>
+              <Button variant="custom" classes="border rounded">
+                Default
+              </Button>
+              <Button variant="custom" classes="border rounded">
+                <EditIcon />
+                Default
+              </Button>
+              <Button variant="custom" pressed classes="border rounded">
+                Pressed
+              </Button>
+              <Button variant="custom" expanded classes="border rounded">
+                Expanded
+              </Button>
+              <Button variant="custom" disabled classes="border rounded">
+                Disabled
+              </Button>
+            </Library.Demo>
           </Library.Example>
-          <Library.Example title="size: 'xs', 'sm', 'md' (default), 'lg'">
-            <p>
-              The <code>size</code> prop affects padding and spacing within the{' '}
-              <code>Button</code>, but other sizing (e.g. font size) is
-              inherited.
-            </p>
-            <Library.Demo withSource>
+
+          <Library.Example title="size">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the relative internal sizing of the button. Set to{' '}
+                {`'custom'`} to disable sizing classes and set your own with{' '}
+                <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'xs' | 'sm' | 'md' | 'lg' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Button sizes" withSource>
               <Button icon={EditIcon} size="xs">
-                X-Small (xs)
+                (xs)
               </Button>
               <Button icon={EditIcon} size="sm">
-                Small (sm)
+                (sm)
               </Button>
               <Button icon={ReplyIcon} size="md">
-                Medium (md, default)
+                (md)
               </Button>
               <Button icon={CheckIcon} size="lg">
-                Large (lg)
+                (lg)
+              </Button>
+              <Button icon={CheckIcon} size="custom" classes="p-2 gap-x-3">
+                (custom)
+              </Button>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="unstyled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set this to disable all styling and provide your own styling
+                with <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo
+              title="unstyled Button with custom styling"
+              withSource
+            >
+              <Button
+                unstyled
+                classes="border rounded p-2 bg-stone-100 font-normal color-slate-600 hover:bg-stone-50 hover:color-slate-700 hover:shadow-lg"
+              >
+                Custom button
               </Button>
             </Library.Demo>
           </Library.Example>
