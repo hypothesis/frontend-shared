@@ -25,7 +25,7 @@ export default function AspectRatioPage() {
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
-        <Library.Section title="Using AspectRatio">
+        <Library.Section title="Working with AspectRatio">
           <Library.Example title="Placeholder content">
             <p>
               Placeholder content can be put in a container that is the first

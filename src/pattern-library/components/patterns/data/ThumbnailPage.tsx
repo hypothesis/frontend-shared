@@ -30,7 +30,7 @@ export default function ThumbnailPage() {
           </Library.Demo>
         </Library.Pattern>
 
-        <Library.Pattern title="Using Thumbnail">
+        <Library.Pattern title="Working with Thumbnails">
           <Library.Example title="Loading and placeholder content">
             <Library.Demo withSource title="Loading state">
               <div className="w-[250px]">
