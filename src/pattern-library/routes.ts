@@ -26,6 +26,7 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
+import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 import SliderPage from './components/patterns/transition/SliderPage';
@@ -226,13 +227,19 @@ const routes: PlaygroundRoute[] = [
     route: '/transitions-slider',
   },
   {
-    title: 'Shared Annotations',
+    title: 'LMS: Content Button',
+    group: 'prototype',
+    component: LMSContentButtonPage,
+    route: '/lms-content-button',
+  },
+  {
+    title: 'Sketches: Shared Annotations',
     group: 'prototype',
     component: SharedAnnotationsPage,
     route: '/shared-annotations-ui',
   },
   {
-    title: 'LMS Content Selection',
+    title: 'Sketches: Content selection',
     group: 'prototype',
     component: LMSContentSelectionPage,
     route: '/lms-content-selection',
