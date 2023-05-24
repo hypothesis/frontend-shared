@@ -124,7 +124,7 @@ export default function SpinnerPage() {
 
               <Library.InfoItem label="type">
                 <code>
-                  {`Omit<JSX.HTMLAttributes<HTMLElement>,'className' | 'open'>`}
+                  {`Omit<JSX.HTMLAttributes<HTMLElement>, 'className' | 'open'>`}
                 </code>
               </Library.InfoItem>
             </Library.Info>
