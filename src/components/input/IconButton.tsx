@@ -60,11 +60,10 @@ const IconButton = function IconButton({
       data-component="IconButton"
       {...htmlAttributes}
       classes={classnames(
-        styled && {
+        {
           'focus-visible-ring transition-colors rounded-sm whitespace-nowrap':
-            true,
-          'flex items-center justify-center': true,
-          // Adapt styling when in an InputGroup
+            styled,
+          'flex items-center justify-center': styled,
         },
         // Adapt styles when in an InputGroup
         styled && inputGroupStyles,

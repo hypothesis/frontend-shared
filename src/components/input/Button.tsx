@@ -95,9 +95,9 @@ const Button = function Button({
       {...ariaProps}
       {...htmlAttributes}
       className={classnames(
-        styled && {
+        {
           'focus-visible-ring transition-colors whitespace-nowrap flex items-center':
-            true,
+            styled,
         },
         themed && {
           'font-semibold rounded-sm': true,
