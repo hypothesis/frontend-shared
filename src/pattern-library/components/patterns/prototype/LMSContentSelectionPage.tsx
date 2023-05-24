@@ -4,7 +4,6 @@ import type { ComponentChildren } from 'preact';
 import {
   ArrowRightIcon,
   Button,
-  ButtonBase,
   Card,
   CardHeader,
   CardContent,
@@ -23,9 +22,13 @@ import Library from '../../Library';
 
 function Button1({ children }: { children: ComponentChildren }) {
   return (
-    <ButtonBase classes="bg-slate-0 p-2 rounded-sm border border-slate-3 gap-x-1">
+    <Button
+      classes="bg-slate-0 rounded-sm border border-slate-3 gap-x-1 p-2"
+      variant="custom"
+      size="custom"
+    >
       {children}
-    </ButtonBase>
+    </Button>
   );
 }
 
@@ -37,14 +40,18 @@ function Button2({
   contentType?: string;
 }) {
   return (
-    <ButtonBase classes="w-[15em] bg-slate-0 rounded-sm border border-slate-3 gap-x-2 items-center">
+    <Button
+      classes="w-[15em] bg-slate-0 rounded-sm border border-slate-3 gap-x-2 items-center"
+      variant="custom"
+      size="custom"
+    >
       <div className="grow text-start p-2">
         <strong>{children}</strong>
       </div>
       <div className="text-end p-2">
         <span className="uppercase text-[11px]">{contentType}</span>
       </div>
-    </ButtonBase>
+    </Button>
   );
 }
 
@@ -56,16 +63,20 @@ function Button3({
   contentType?: string;
 }) {
   return (
-    <ButtonBase classes="w-[15em] bg-stone-50 rounded-sm border border-stone-300 gap-x-2 items-center">
-      <div className="grow text-start p-2">
+    <Button
+      classes="w-[15em] rounded-sm gap-x-2 p-2 border border-stone-300 bg-stone-50"
+      size="custom"
+      variant="custom"
+    >
+      <div className="grow text-start">
         <strong className="text-slate-600">{children}</strong>
       </div>
-      <div className="text-end p-2">
-        <span className="uppercase text-[11px] text-stone-500">
+      <div className="text-end">
+        <span className="uppercase text-[0.8em] text-stone-500">
           {contentType}
         </span>
       </div>
-    </ButtonBase>
+    </Button>
   );
 }
 
@@ -77,7 +88,11 @@ function Button4({
   contentType?: string;
 }) {
   return (
-    <ButtonBase classes="w-full bg-stone-50 rounded-sm border border-stone-300 gap-x-2 items-center">
+    <Button
+      classes="w-full bg-stone-50 rounded-sm border border-stone-300 gap-x-2 items-center"
+      size="custom"
+      variant="custom"
+    >
       <div className="grow text-start p-2">
         <strong className="text-slate-600">{children}</strong>
       </div>
@@ -86,7 +101,7 @@ function Button4({
           {contentType}
         </span>
       </div>
-    </ButtonBase>
+    </Button>
   );
 }
 
@@ -101,7 +116,11 @@ function Button5({
 }) {
   const Icon = icon ?? FilePdfFilledIcon;
   return (
-    <ButtonBase classes="w-full bg-stone-50 hover:bg-stone-100 rounded border border-stone-300 hover:border-stone-400 items-center">
+    <Button
+      classes="w-full bg-stone-50 hover:bg-stone-100 rounded border border-stone-300 hover:border-stone-400 items-center"
+      size="custom"
+      variant="custom"
+    >
       <div className="p-1.5 bg-stone-200 rounded-l">
         <Icon className="text-stone-500" />
       </div>
@@ -113,7 +132,7 @@ function Button5({
           {contentType}
         </span>
       </div>
-    </ButtonBase>
+    </Button>
   );
 }
 
@@ -130,13 +149,15 @@ function Button6({
 }) {
   const Icon = icon ?? FilePdfIcon;
   return (
-    <ButtonBase
+    <Button
       classes={classnames(
         'group bg-stone-50 hover:bg-slate-100 shadow hover:shadow-lg rounded border border-stone-300 hover:border-stone-400 justify-center',
         {
           'shadow-inner': selected,
         }
       )}
+      size="custom"
+      variant="custom"
     >
       <div className="flex flex-col items-center w-full gap-y-2 pt-2">
         <Icon
@@ -170,7 +191,7 @@ function Button6({
           </span>
         </div>
       </div>
-    </ButtonBase>
+    </Button>
   );
 }
 
