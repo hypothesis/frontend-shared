@@ -259,7 +259,7 @@ export default function DataTablePage() {
                 are declared in <code>columns</code> will be rendered.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{`Array<Record<string,any>>`}</code>
+                <code>{`Array<Record<string,any>`}</code>
               </Library.InfoItem>
               <Library.InfoItem label="required">
                 <code>true</code>
