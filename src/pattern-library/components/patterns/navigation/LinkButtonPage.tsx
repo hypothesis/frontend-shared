@@ -7,18 +7,12 @@ export default function LinkButtonPage() {
       title="LinkButton"
       intro={
         <p>
-          <code>LinkButton</code> can be used to style a button to appear as a
-          link.
+          <code>LinkButton</code> is a presentational component that can be used
+          to style a button to appear as a link.
         </p>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>LinkButton</code> is a presentational component.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="LinkButton" />
           <Library.Example>
@@ -28,143 +22,221 @@ export default function LinkButtonPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <p>
-            <code>color</code> applies to link text and hovered link text.
-          </p>
+        <Library.Pattern title="Component API">
           <Library.Example title="color">
-            <Library.Demo title="color: 'brand' (default)" withSource>
-              <LinkButton color="brand" underline="hover">
-                About this version
-              </LinkButton>
-            </Library.Demo>
+            <Library.Info>
+              <Library.InfoItem label="status">
+                <Library.StatusChip status="deprecated" /> Use{' '}
+                <code>variant</code> prop instead.
+              </Library.InfoItem>
+              <Library.InfoItem label="description">
+                Link <code>color</code> affects the color of link text
+                (including hover color).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'brand' | 'text' | 'text-light'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'brand'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
 
-            <Library.Demo title="color: 'text-light'" withSource>
-              <LinkButton color="text-light" underline="hover">
-                Show replies (7)
-              </LinkButton>
-            </Library.Demo>
-            <Library.Demo title="color: 'text'" withSource>
-              <p className="text-color-text">
-                <LinkButton color="text">Page notes</LinkButton>{' '}
-              </p>
+          <Library.Example title="inline">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Style a <code>LinkButton</code> to lay out inline. Ignored if{' '}
+                <code>unstyled</code> is set.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo withSource>
+              <div className="flex flex-col gap-y-4">
+                <p>
+                  This is{' '}
+                  <LinkButton underline="always">
+                    a default LinkButton
+                  </LinkButton>{' '}
+                  with some text.
+                </p>
+                <p>
+                  This is{' '}
+                  <LinkButton underline="always" inline>
+                    an inline LinkButton
+                  </LinkButton>{' '}
+                  with some text.
+                </p>
+              </div>
             </Library.Demo>
           </Library.Example>
 
           <Library.Example title="underline">
-            <p>
-              By default, <code>LinkButton</code>s are not underlined. This is
-              acceptable when the LinkButton is a standalone, interactive
-              element. Underline on hover is encouraged, however, and
-              LinkButtons inline with text content should always be underlined.
-            </p>
-            <Library.Demo title="underline:'none' (default)" withSource>
-              <LinkButton underline="none">Log in</LinkButton>
-            </Library.Demo>
+            <div className="m-4">
+              <Library.Callout>
+                <strong>Note</strong> The <code>underline</code> prop is likely
+                to be removed in future and underlining will be controlled with
+                a styling-API prop. This prop is ignored if{' '}
+                <code>unstyled</code> is set (in which case, no underline
+                styling will be applied).
+              </Library.Callout>
+            </div>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Control when underlines are applied to <code>LinkButton</code>s.
+                Current default is <code>{"'none'"}</code>, but this will be
+                changing in future. Links inline with text content should set{' '}
+                <code>underline</code> to <code>{"'always'"}</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'none' | 'hover' | 'always'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'none'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
 
-            <Library.Demo title="underline:'hover'" withSource>
-              <LinkButton
-                href="https://www.example.com"
-                color="text-light"
-                underline="hover"
-              >
-                Show replies (7)
-              </LinkButton>
-            </Library.Demo>
-            <Library.Demo title="underline:'always'" withSource>
-              <p>
-                LinkButtons should be{' '}
-                <LinkButton underline="always" color="text" inline>
-                  underlined
-                </LinkButton>{' '}
-                when inline with text content.
-              </p>
+            <Library.Demo withSource>
+              <div className="flex flex-col">
+                <LinkButton underline="none">
+                  Underline: none (default)
+                </LinkButton>
+
+                <LinkButton href="https://www.example.com" underline="hover">
+                  Underline: hover
+                </LinkButton>
+
+                <LinkButton href="https://www.example.com" underline="always">
+                  Underline: always
+                </LinkButton>
+                <p>
+                  LinkButtons should be{' '}
+                  <LinkButton underline="always" inline>
+                    always underlined
+                  </LinkButton>{' '}
+                  when inline with text content.
+                </p>
+              </div>
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="variant">
-            <p>
-              <code>primary</code> <code>variant</code> text is a heavier weight
-              than <code>secondary</code>.
-            </p>
-            <Library.Demo title="variant: 'secondary' (default)" withSource>
-              <LinkButton>Log in</LinkButton>
-            </Library.Demo>
-            <Library.Demo title="variant: 'primary'" withSource>
-              <LinkButton variant="primary">Log in</LinkButton>
-            </Library.Demo>
-          </Library.Example>
-
-          <Library.Example title="inline">
-            <p>
-              <code>inline</code> is a convenience <code>boolean</code> prop for
-              styling a <code>LinkButton</code> to lay out inline.
-            </p>
-            <Library.Demo title="inline not set" withSource>
-              <p>
-                This is{' '}
-                <LinkButton color="text" underline="always">
-                  a LinkButton
-                </LinkButton>{' '}
-                with some text.
-              </p>
-            </Library.Demo>
-
-            <Library.Demo title="inline set" withSource>
-              <p>
-                This is{' '}
-                <LinkButton color="text" underline="always" inline>
-                  a LinkButton
-                </LinkButton>{' '}
-                with some text.
-              </p>
-            </Library.Demo>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>LinkButton</code> accepts HTML attribute props applicable
+                to <code>HTMLButtonElement</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'preact.JSX.HTMLAttributes<HTMLButtonElement>'}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="States">
-          <Library.Example title="disabled">
-            <p>
-              <code>disabled</code> <code>LinkButton</code>s do not have hover
-              styling.
-            </p>
-            <Library.Demo withSource>
-              <div>
-                <LinkButton disabled>Disabled (color brand)</LinkButton>
-                <LinkButton disabled color="text">
-                  Disabled (color text)
-                </LinkButton>
-                <LinkButton disabled color="text-light">
-                  Disabled (color text-light)
-                </LinkButton>
+        <Library.Pattern title="Styling API">
+          <p>
+            <code>LinkButton</code> accepts the following props from the{' '}
+            <Library.Link href="/using-components#presentational-components-styling-api">
+              presentational component styling API
+            </Library.Link>
+            .
+          </p>
+          <Library.Example title="variant">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set to <code>custom</code> to remove theming styles.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'brand' | 'text' | 'text-light' | 'custom'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'brand'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <div className="m-8 grid grid-cols-4 gap-x-16 gap-y-4">
+              <div className="row-span-2 self-end">
+                <strong>variant</strong>
               </div>
-            </Library.Demo>
+              <div className="uppercase col-span-3 w-full text-center font-semibold border-b border-stone-300 pb-2 border-dashed">
+                states
+              </div>
+              <div>
+                <strong>default</strong>
+              </div>
+              <div>
+                <strong>pressed</strong>
+              </div>
+              <div>
+                <strong>disabled</strong>
+              </div>
+
+              <div className="col-span-4 border-b border-stone-300" />
+              <div>
+                <code>{`'brand'`}</code>
+              </div>
+              <LinkButton variant="brand">Link text</LinkButton>
+              <LinkButton variant="brand" pressed>
+                Link text
+              </LinkButton>
+              <LinkButton variant="brand" disabled>
+                Link text
+              </LinkButton>
+
+              <div>
+                <code>{`'text'`}</code>
+              </div>
+              <LinkButton variant="text">Link text</LinkButton>
+              <LinkButton variant="text" pressed>
+                Link text
+              </LinkButton>
+              <LinkButton variant="text" disabled>
+                Link text
+              </LinkButton>
+
+              <div>
+                <code>{`'text-light'`}</code>
+              </div>
+              <LinkButton variant="text-light">Link text</LinkButton>
+              <LinkButton variant="text-light" pressed>
+                Link text
+              </LinkButton>
+              <LinkButton variant="text-light" disabled>
+                Link text
+              </LinkButton>
+
+              <div>
+                <code>{`'custom'`}</code>
+              </div>
+              <LinkButton variant="custom">Link text</LinkButton>
+              <LinkButton variant="custom" pressed>
+                Link text
+              </LinkButton>
+              <LinkButton variant="custom" disabled>
+                Link text
+              </LinkButton>
+            </div>
           </Library.Example>
 
-          <Library.Example title="pressed or expanded">
-            <p>
-              <code>pressed</code> and <code>expanded</code> are styled the
-              same.
-            </p>
+          <Library.Example title="unstyled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set to remove all styling.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
-              <div>
-                <LinkButton pressed>Pressed (color brand)</LinkButton>
-                <LinkButton pressed color="text">
-                  Pressed (color text)
-                </LinkButton>
-                <LinkButton pressed color="text-light">
-                  Pressed (color text-light)
-                </LinkButton>
-              </div>
-              <div>
-                <LinkButton expanded>Expanded (color brand)</LinkButton>
-                <LinkButton expanded color="text">
-                  Expanded (color text)
-                </LinkButton>
-                <LinkButton expanded color="text-light">
-                  Expanded (color text-light)
-                </LinkButton>
-              </div>
+              <LinkButton unstyled>Unstyled LinkButton</LinkButton>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
