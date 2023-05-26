@@ -3,18 +3,22 @@ import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import ButtonBase from '../input/ButtonBase';
-import type { ButtonCommonProps } from '../input/ButtonBase';
+import Button from '../input/Button';
+import type { ButtonProps } from '../input/Button';
 
 type ComponentProps = {
+  /** @deprecated use `variant` instead */
   color?: 'brand' | 'text' | 'text-light';
+
   inline?: boolean;
   underline?: 'always' | 'hover' | 'none';
-  variant?: 'secondary' | 'primary';
+
+  variant?: 'brand' | 'text-light' | 'text' | 'custom';
+  unstyled?: boolean;
 };
 
 export type LinkButtonProps = PresentationalProps &
-  ButtonCommonProps &
+  Omit<ButtonProps, 'variant'> &
   ComponentProps &
   JSX.HTMLAttributes<HTMLButtonElement>;
 
@@ -26,50 +30,51 @@ const LinkButton = function LinkButton({
   classes,
   elementRef,
 
-  color = 'brand',
+  color,
   inline = false,
   underline = 'none',
-  variant = 'secondary',
+  variant = 'brand',
+  unstyled = false,
 
   ...htmlAttributes
 }: LinkButtonProps) {
+  // Map from deprecated `color` prop to `variant` if `color` is present
+  const theme = typeof color === 'string' ? color : variant;
+  const styled = !unstyled;
+  const themed = styled && variant !== 'custom';
+
   return (
-    <ButtonBase
+    <Button
       data-component="LinkButton"
       {...htmlAttributes}
       elementRef={downcastRef(elementRef)}
       classes={classnames(
-        'focus-visible-ring transition-colors whitespace-nowrap',
-        'aria-pressed:font-semibold aria-expanded:font-semibold rounded-sm',
-        {
-          // inline
+        styled && {
+          'focus-visible-ring transition-colors whitespace-nowrap rounded-sm':
+            true,
           inline: inline,
           'flex items-center': !inline,
         },
-        {
-          // color
-          'text-brand enabled:hover:text-brand-dark': color === 'brand', // default
-          'text-color-text enabled:hover:text-brand-dark': color === 'text',
-          'text-color-text-light enabled:hover:text-brand':
-            color === 'text-light',
-        },
-        {
+        styled && {
           // underline
           'no-underline hover:no-underline': underline === 'none', // default
           'underline enabled:hover:underline': underline === 'always',
           'no-underline enabled:hover:underline': underline === 'hover',
         },
-        {
-          // variant
-          // no exta styling for default 'secondary' variant
-          'font-semibold': variant === 'primary',
+        themed && {
+          'aria-pressed:font-semibold aria-expanded:font-semibold': true,
+          'text-brand enabled:hover:text-brand-dark': theme === 'brand', // default
+          'text-color-text enabled:hover:text-brand-dark': theme === 'text',
+          'text-color-text-light enabled:hover:text-brand':
+            theme === 'text-light',
         },
+
         classes
       )}
       unstyled
     >
       {children}
-    </ButtonBase>
+    </Button>
   );
 };
 
