@@ -1,3 +1,6 @@
+/* eslint-env node */
+
+/* eslint-disable no-console */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as path from 'node:path';
 import { format } from 'prettier';
@@ -118,8 +121,15 @@ function generateIconIndex(componentDir) {
   writeFileSync(outputFile, outputSrc);
 }
 
-const inputDir = 'images/icons';
-const outputDir = 'src/components/icons';
+const argv = process.argv;
+
+if (argv.includes('--help')) {
+  console.log(`Usage: ${path.basename(argv[1])} [input_dir] [output_dir]`);
+  process.exit(0);
+}
+
+const inputDir = argv[2] ?? 'images/icons';
+const outputDir = argv[3] ?? 'src/components/icons';
 
 const svgFiles = readdirSync(inputDir).filter(file => file.endsWith('.svg'));
 for (let file of svgFiles) {
