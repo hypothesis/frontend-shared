@@ -36,6 +36,7 @@ export {
   IconButton,
   Input,
   InputGroup,
+  OptionButton,
   Select,
 } from './components/input';
 export {
@@ -97,6 +98,7 @@ export type {
   IconButtonProps,
   InputProps,
   InputGroupProps,
+  OptionButtonProps,
   SelectProps,
 } from './components/input';
 
