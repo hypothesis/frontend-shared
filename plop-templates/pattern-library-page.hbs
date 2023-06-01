@@ -3,23 +3,35 @@ import Library from '../../Library';
 
 export default function {{name}}Page() {
   return (
-    <Library.Page title="{{name}}" intro={<p>TODO</p>}>
-      <Library.Section
-        title="{{name}}"
-        intro={<p><code>{{name}}</code> is a {{category}} component</p>}
-      >
-
+    <Library.Page title="{{name}}" intro={<p>Summarize this component</p>}>
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="{{name}}" />
           <Library.Example>
-            <Library.Demo withSource>
-              <{{name}}>Example of {{name}}</{{name}}>
+            <Library.Demo withSource title="Basic {{name}}">
+              <p>Add a basic demo of the component</p>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Working with {{name}}">
+          <p>TODO (optional)</p>
+        </Library.Pattern>
+
+        <Library.Pattern title="Component API">
           <Library.Example title="exampleProp">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                prop description
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
               <p>TODO: Example of component with prop</p>
             </Library.Demo>
