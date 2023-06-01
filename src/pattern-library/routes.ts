@@ -18,6 +18,7 @@ import ButtonsPage from './components/patterns/input/ButtonPage';
 import CheckboxPage from './components/patterns/input/CheckboxPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
+import OptionButtonPage from './components/patterns/input/OptionButtonPage';
 import SelectPage from './components/patterns/input/SelectPage';
 import CardPage from './components/patterns/layout/CardPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
@@ -171,6 +172,12 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: InputGroupPage,
     route: '/input-input-group',
+  },
+  {
+    title: 'OptionButton',
+    group: 'input',
+    component: OptionButtonPage,
+    route: '/input-option-button',
   },
   {
     title: 'Select',
