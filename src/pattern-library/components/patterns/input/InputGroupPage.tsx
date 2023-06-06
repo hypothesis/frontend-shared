@@ -11,20 +11,21 @@ import Library from '../../Library';
 
 export default function InputGroupPage() {
   return (
-    <Library.Page title="InputGroup">
-      <Library.Section
-        intro={
-          <p>
-            <code>InputGroup</code> is a presentational component that provides
-            layout for groups of input components.
-          </p>
-        }
-      >
+    <Library.Page
+      title="InputGroup"
+      intro={
+        <p>
+          <code>InputGroup</code> is a presentational component that provides
+          layout and styling for groups of input components.
+        </p>
+      }
+    >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="InputGroup" />
           <Library.Example>
             <Library.Demo
-              title="Basic InputGroup with an Input and an IconButton"
+              title="Basic InputGroup containing an Input and an IconButton"
               withSource
             >
               <div className="w-[350px]">
@@ -34,7 +35,26 @@ export default function InputGroupPage() {
                 </InputGroup>
               </div>
             </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
 
+        <Library.Pattern title="Working with InputGroups">
+          <Library.Example title="Composing InputGroups">
+            <p>
+              The following input components can be used in an{' '}
+              <code>InputGroup</code>:
+            </p>
+            <ul>
+              <li>
+                <code>Input</code>
+              </li>
+              <li>
+                <code>IconButton</code>
+              </li>
+              <li>
+                <code>Select</code>
+              </li>
+            </ul>
             <Library.Demo
               title="Select and IconButton components in InputGroup"
               withSource
@@ -61,13 +81,8 @@ export default function InputGroupPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-
-          <Library.Example title="Scaling InputGroup size">
-            <p>
-              This example demonstrates <code>InputGroup</code> inputs scaling
-              to the local font size.
-            </p>
-            <Library.Demo withSource>
+          <Library.Example title="Sizing InputGroups">
+            <Library.Demo title="Scaling to local font size" withSource>
               <div className="w-[350px]">
                 <div className="text-xs">
                   <InputGroup>
@@ -83,22 +98,25 @@ export default function InputGroupPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="Group-able Inputs">
-            <p>
-              The following input components are supported by{' '}
-              <code>InputGroup</code>:
-            </p>
-            <ul>
-              <li>
-                <code>Input</code>
-              </li>
-              <li>
-                <code>IconButton</code>
-              </li>
-              <li>
-                <code>Select</code>
-              </li>
-            </ul>
+        </Library.Pattern>
+
+        <Library.Pattern title="Component API">
+          <p>
+            <code>InputGroup</code> accepts all standard{' '}
+            <Library.Link href="/using-components#presentational-components-api">
+              presentational component props
+            </Library.Link>
+            .
+          </p>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>InputGroup</code> accepts HTML attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
