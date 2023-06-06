@@ -9,25 +9,16 @@ export default function PanelPage() {
       title="Panel"
       intro={
         <p>
-          <code>Panel</code> can be used to create panel-like interfaces. For
-          more nuanced control, use <code>Card</code> and its allies.
+          <code>Panel</code> is a composite component that can be used to create
+          panel-like interfaces. For more nuanced control, use <code>Card</code>{' '}
+          and its allies.
         </p>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>Panel</code> is a composite component for standardized panel
-            layouts.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="Panel" />
           <Library.Example>
-            <p>
-              All <code>Panel</code>s have a <code>title</code>.
-            </p>
             <Library.Demo title="Basic Panel" withSource>
               <Panel title="A simple panel">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -35,8 +26,10 @@ export default function PanelPage() {
               </Panel>
             </Library.Demo>
           </Library.Example>
+        </Library.Pattern>
 
-          <Library.Example title="Scrolling long content">
+        <Library.Pattern title="Working with Panels">
+          <Library.Example title="Scrolling content">
             <p>
               If a <code>Panel</code> is a direct child of an element with a
               height constraint and the <code>scrollable</code> prop is set, its
@@ -44,7 +37,10 @@ export default function PanelPage() {
               buttons do not scroll.
             </p>
 
-            <Library.Demo withSource>
+            <Library.Demo
+              title="Scrolling content with `scrollable` prop"
+              withSource
+            >
               <div className="h-[350px]">
                 <Panel
                   title="Scrolling content"
@@ -61,15 +57,13 @@ export default function PanelPage() {
                 </Panel>
               </div>
             </Library.Demo>
-          </Library.Example>
 
-          <Library.Example title="Scrolling certain content">
             <p>
-              It is also possible to scroll some of the content of a Panel but
-              not all of it.
+              More control can be achieved by using <code>ScrollBox</code> or
+              other scrolling components instead.
             </p>
 
-            <Library.Demo withSource>
+            <Library.Demo title="Scrolling certain content" withSource>
               <div className="h-[350px]">
                 <Panel
                   title="Scrolling selected content"
@@ -91,42 +85,37 @@ export default function PanelPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="onClose">
-            <p>
-              Provide a function to <code>onClose</code> to render a close
-              button.
-            </p>
-            <Library.Demo title="Panel with close button" withSource>
-              <Panel
-                title="Panel title"
-                onClose={() => alert('you clicked it')}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Panel>
-            </Library.Demo>
+        <Library.Pattern title="Component API">
+          <code>Panel</code> accepts all standard{' '}
+          <Library.Link href="/using-components#composite-components-api">
+            composite component props
+          </Library.Link>
+          .
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Panel title
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`string`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
-
-          <Library.Example title="icon">
-            <p>
-              An <code>IconComponent</code> provided to the <code>icon</code>{' '}
-              prop will be rendered to the left of the title.
-            </p>
-            <Library.Demo withSource>
-              <Panel title="Panel title" icon={EditIcon}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Panel>
-            </Library.Demo>
-          </Library.Example>
-
           <Library.Example title="buttons">
-            <p>
-              <code>ComponentChildren</code> passed to the <code>buttons</code>{' '}
-              prop will be rendered as actions in the panel.
-            </p>
-            <Library.Demo withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>ComponentChildren</code> to render as available actions in
+                the panel.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`preact.ComponentChildren`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Panel with buttons" withSource>
               <Panel
                 title="Panel title"
                 buttons={
@@ -141,25 +130,90 @@ export default function PanelPage() {
               </Panel>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="fullWidthHeader">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Make the header and its bottom border stretch the full width of
+                the panel.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`false`}</code>
+              </Library.InfoItem>
+            </Library.Info>
 
+            <Library.Demo title="Panel with fullWidthHeader" withSource>
+              <Panel title="Panel with full-width header" fullWidthHeader>
+                <LoremIpsum size="xs" />
+              </Panel>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="icon">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                An <code>IconComponent</code> to render in the panel header.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`IconComponent`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Panel with icon" withSource>
+              <Panel title="Panel title" icon={EditIcon}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Panel>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="onClose">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Render a close button and invoke this callback function when it
+                is clicked.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`() => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Panel with close button" withSource>
+              <Panel
+                title="Panel title"
+                onClose={() => alert('you clicked it')}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Panel>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="paddingSize">
-            <p>
-              This sizing prop defines how much padding will be used around the
-              Panel content. Set to <code>none</code> to turn off padding
-              (background colors are set here to help show effect of padding).
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determine how much padding is used around the content in the
+                panel.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'sm' | 'md' | 'lg' | 'none'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
               <Panel title="paddingSize: 'sm'" paddingSize="sm">
                 <div className="bg-grey-1">
-                  <LoremIpsum size="sm" />
+                  <LoremIpsum size="xs" />
                 </div>
               </Panel>
             </Library.Demo>
 
             <Library.Demo withSource>
-              <Panel title="paddingSize: 'md' (default)" paddingSize="md">
+              <Panel title="paddingSize: 'md'" paddingSize="md">
                 <div className="bg-grey-1">
-                  <LoremIpsum size="sm" />
+                  <LoremIpsum size="xs" />
                 </div>
               </Panel>
             </Library.Demo>
@@ -167,7 +221,7 @@ export default function PanelPage() {
             <Library.Demo withSource>
               <Panel title="paddingSize: 'lg'" paddingSize="lg">
                 <div className="bg-grey-1">
-                  <LoremIpsum size="sm" />
+                  <LoremIpsum size="xs" />
                 </div>
               </Panel>
             </Library.Demo>
@@ -175,32 +229,26 @@ export default function PanelPage() {
             <Library.Demo withSource title="No padding">
               <Panel title="paddingSize: 'none'" paddingSize="none">
                 <div className="bg-grey-1">
-                  <LoremIpsum size="sm" />
+                  <LoremIpsum size="xs" />
                 </div>
               </Panel>
             </Library.Demo>
           </Library.Example>
-
-          <Library.Example title="fullWidthHeader">
-            <p>
-              This boolean prop (default <code>false</code>) determines whether
-              the header of the Panel and its bottom border stretches the full
-              width of the Panel.
-            </p>
-            <Library.Demo withSource>
-              <Panel title="Panel with full-width header" fullWidthHeader>
-                <LoremIpsum size="sm" />
-              </Panel>
-            </Library.Demo>
-          </Library.Example>
-
           <Library.Example title="scrollable">
-            <p>
-              This boolean prop (default <code>false</code>) determines whether
-              content will scroll if it exceeds height constraints. Scrollable
-              Panels have a full-width header so that scrolling shadow hints{' '}
-              {"don't"} look funky.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Make the content in the panel scroll if the panel exceeds height
+                constraints. All scrollable panels have a{' '}
+                <code>fullWidthHeader</code> to align with scroll-shadow hints.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`false`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
               <div className="h-[300px]">
                 <Panel
@@ -217,6 +265,16 @@ export default function PanelPage() {
                 </Panel>
               </div>
             </Library.Demo>
+          </Library.Example>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Panel</code> accepts HTML attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
