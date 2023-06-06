@@ -9,3 +9,5 @@ export type { ModalProps } from './Modal';
 export type { ModalDialogProps } from './ModalDialog';
 export type { SpinnerProps } from './Spinner';
 export type { SpinnerOverlayProps } from './SpinnerOverlay';
+export { default as Callout } from './Callout';
+export type { CalloutProps } from './Callout';

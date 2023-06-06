@@ -123,3 +123,5 @@ export type {
 
 // Deprecated
 export { useElementShouldClose } from './hooks/use-element-should-close';
+export { Callout } from './components/feedback';
+export type { CalloutProps } from './components/feedback';
