@@ -206,7 +206,7 @@ export default function UsingComponentsPage() {
           </Library.Link>
         </p>
 
-        <Library.Section title="API">
+        <Library.Section id="composite-components-api" title="API">
           <Library.Example title="children">
             <Library.Info>
               <Library.InfoItem label="description">
