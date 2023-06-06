@@ -32,15 +32,7 @@ export default function SelectPage() {
         </p>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>Select</code> styles <code>{'<select>'}</code> elements. Note
-            that <code>{'<option>'}</code> elements, with a few browser-specific
-            exceptions, cannot be styled with CSS.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="Select" />
 
@@ -55,13 +47,16 @@ export default function SelectPage() {
                 </SelectWrapper>
               </div>
             </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
 
-            <Library.Demo title="Setting Select width" withSource>
-              <div className="w-[250px]">
-                <SelectWrapper aria-label="Example input" />
-              </div>
-            </Library.Demo>
-
+        <Library.Pattern title="Working with Selects">
+          <p>
+            <code>Select</code> styles <code>{'<select>'}</code> elements. Note
+            that <code>{'<option>'}</code> elements, with a few browser-specific
+            exceptions, cannot be styled with CSS.
+          </p>
+          <Library.Example title="Composing and styling Selects">
             <Library.Demo title="Select in an InputGroup" withSource>
               <div className="w-[380px]">
                 <InputGroup>
@@ -79,28 +74,57 @@ export default function SelectPage() {
                 </InputGroup>
               </div>
             </Library.Demo>
+            <Library.Demo title="Setting Select width" withSource>
+              <div className="w-[250px]">
+                <SelectWrapper aria-label="Example input" />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Disabled Selects">
+            <Library.Demo title="disabled Select" withSource>
+              <div className="w-[350px]">
+                <SelectWrapper aria-label="Example input" disabled />
+              </div>
+            </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
+          <code>Select</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="hasError">
-            <p>
-              Set <code>hasError</code> to indicate that there is an associated
-              error.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set <code>hasError</code> to indicate that there is an
+                associated error for the <code>Select</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`false`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
               <div className="w-[350px]">
                 <SelectWrapper aria-label="Example input" hasError />
               </div>
             </Library.Demo>
           </Library.Example>
-
-          <Library.Example title="disabled">
-            <Library.Demo withSource>
-              <div className="w-[350px]">
-                <SelectWrapper aria-label="Example input" disabled />
-              </div>
-            </Library.Demo>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Select</code> accepts HTML attributes for select elements.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`JSX.HTMLAttributes<HTMLSelectElement>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
