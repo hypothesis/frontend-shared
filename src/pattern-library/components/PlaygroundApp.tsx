@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/preact';
 import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
@@ -133,7 +134,13 @@ export default function PlaygroundApp({
   const allRoutes = routes.concat(customRoutes);
 
   const pageRoutes = (
-    <>
+    <MDXProvider
+      components={{
+        h1: props => (
+          <h1 className="text-3xl text-slate-600 font-bold" {...props} />
+        ),
+      }}
+    >
       {allRoutes
         .filter(route => !!route.route)
         .map(aRoute => (
@@ -141,7 +148,7 @@ export default function PlaygroundApp({
             {aRoute.component ?? aRoute.title}
           </Route>
         ))}
-    </>
+    </MDXProvider>
   );
 
   const prototypeRoutes = getRoutes('prototype');

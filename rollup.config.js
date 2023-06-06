@@ -1,3 +1,4 @@
+import mdx from '@mdx-js/rollup';
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -22,10 +23,14 @@ function bundleConfig(name, entryFile) {
     context: 'void(0)',
 
     plugins: [
+      mdx({
+        providerImportSource: '@mdx-js/preact',
+        jsxImportSource: 'preact',
+      }),
       babel({
         babelHelpers: 'bundled',
         exclude: 'node_modules/**',
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.ts', '.tsx', '.mdx'],
       }),
       nodeResolve({ extensions: ['.js', '.ts', '.tsx'] }),
       commonjs({ include: 'node_modules/**' }),
