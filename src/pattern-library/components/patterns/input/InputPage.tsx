@@ -7,18 +7,12 @@ export default function InputPage() {
       title="Input"
       intro={
         <p>
-          <code>Input</code> styles text inputs.
+          <code>Input</code> is a presentational component for styling textual{' '}
+          <code>input</code> elements.
         </p>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>Input</code> is a presentational component for styling textual{' '}
-            <code>input</code> elements.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="Input" />
 
@@ -32,7 +26,9 @@ export default function InputPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+        </Library.Pattern>
 
+        <Library.Pattern title="Working with Inputs">
           <Library.Example title="Accessibility">
             <p>
               Hypothesis does not currently have a design pattern for labeling
@@ -50,35 +46,43 @@ export default function InputPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="Disabled inputs">
+            <p>
+              <code>Input</code>s can be disabled by applying the HTML{' '}
+              <code>disabled</code> attribute.
+            </p>
+            <Library.Demo withSource>
+              <div className="w-[350px]">
+                <Input
+                  aria-label="Example input"
+                  placeholder="Placeholder..."
+                  disabled
+                />
+              </div>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="type">
-            <p>
-              <code>Input</code> currently supports the following{' '}
-              <code>type</code> values:
-            </p>
-            <ul>
-              <li>
-                <code>text</code> (default)
-              </li>
-              <li>
-                <code>url</code>
-              </li>
-              <li>
-                <code>email</code>
-              </li>
-              <li>
-                <code>text</code>
-              </li>
-            </ul>
-          </Library.Example>
-
+        <Library.Pattern title="Component API">
+          <code>Input</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="hasError">
-            <p>
-              Set <code>hasError</code> to indicate that there is an associated
-              error for the <code>Input</code>.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set <code>hasError</code> to indicate that there is an
+                associated error for the <code>Input</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`false`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource>
               <div className="w-[350px]">
                 <Input
@@ -89,17 +93,28 @@ export default function InputPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-
-          <Library.Example title="disabled">
-            <Library.Demo withSource>
-              <div className="w-[350px]">
-                <Input
-                  aria-label="Example input"
-                  placeholder="Disabled..."
-                  disabled
-                />
-              </div>
-            </Library.Demo>
+          <Library.Example title="type">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Input</code> supports several input types
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'text' | 'url' | 'email' | 'search'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'text'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Input</code> accepts HTML attributes for input elements.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`JSX.HTMLAttributes<HTMLInputElement>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
