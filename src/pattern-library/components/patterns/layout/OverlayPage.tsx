@@ -18,20 +18,12 @@ export default function OverlayPage() {
       title="Overlay"
       intro={
         <p>
-          <code>Overlay</code> styles full-screen backdrops for use during
-          loading or as a modal backdrop.
+          <code>Overlay</code> is a presentational component that styles
+          full-screen backdrops for use during loading or as a modal backdrop.
         </p>
       }
     >
-      <Library.Section
-        title="Overlay"
-        intro={
-          <p>
-            <code>Overlay</code> is a presentational component to render a
-            backdrop.
-          </p>
-        }
-      >
+      <Library.Section title="Overlay">
         <Library.Pattern>
           <Library.Usage componentName="Overlay" />
           <Library.Example>
@@ -46,16 +38,32 @@ export default function OverlayPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
+          <code>Overlay</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="variant">
-            <Library.Demo title="variant: 'dark' (default)" withSource>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Define which theme to use for the <code>Overlay</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`{'dark' | 'light'}`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'dark'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="dark" withSource>
               <Button onClick={toggleDarkOpen}>Show Overlay</Button>
               <Overlay open={darkOpen} onClick={toggleDarkOpen} variant="dark">
                 <Spinner size="lg" color="text-inverted" />
               </Overlay>
             </Library.Demo>
 
-            <Library.Demo title="variant: 'light'" withSource>
+            <Library.Demo title="light" withSource>
               <Button onClick={toggleLightOpen}>Show Overlay</Button>
               <Overlay
                 open={lightOpen}
@@ -66,13 +74,28 @@ export default function OverlayPage() {
               </Overlay>
             </Library.Demo>
           </Library.Example>
-
           <Library.Example title="open">
-            <p>
-              Control whether an <code>Overlay</code> is rendered or not by
-              setting the <code>open</code> boolean prop (default{' '}
-              <code>true</code>). Reference other examples on this page.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set whether the overlay is open (visible) or not.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`boolean`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'true'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Overlay</code> accepts HTML attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
