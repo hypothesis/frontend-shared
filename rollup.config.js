@@ -11,8 +11,7 @@ function bundleConfig(name, entryFile) {
     output: {
       dir: 'build/scripts/',
       format: 'es',
-      chunkFileNames: '[name].bundle.js',
-      entryFileNames: '[name].bundle.js',
+      entryFileNames: '[name]-[hash].bundle.js',
     },
 
     // Suppress a warning (https://rollupjs.org/guide/en/#error-this-is-undefined)

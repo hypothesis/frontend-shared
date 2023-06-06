@@ -12,7 +12,10 @@ gulp.task('serve-pattern-library', () => {
 // during development. Bundled JS and CSS are not published with the package.
 
 gulp.task('bundle-css', () =>
-  buildCSS(['./styles/pattern-library.scss'], { tailwindConfig })
+  buildCSS(['./styles/pattern-library.scss'], {
+    tailwindConfig,
+    withHash: true,
+  })
 );
 
 gulp.task(
