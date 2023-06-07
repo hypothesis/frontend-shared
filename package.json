@@ -65,7 +65,7 @@
   "scripts": {
     "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
     "build": "yarn build-lib && tsc --build src/tsconfig.json",
-    "build-pattern-lib": "yarn gulp bundle-css && yarn rollup -c rollup.config.js",
+    "build-pattern-lib": "yarn gulp bundle-css && yarn rollup -c rollup.config.js && yarn gulp update-patterns-index",
     "typecheck": "tsc --build src/tsconfig.json",
     "lint": "eslint --cache .",
     "checkformatting": "prettier --cache --check '**/*.{js,scss,ts,tsx,md}'",

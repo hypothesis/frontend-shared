@@ -3,6 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { string } from 'rollup-plugin-string';
 
+// eslint-disable-next-line no-undef
+const isProd = process.env.NODE_ENV === 'production';
+
 function bundleConfig(name, entryFile) {
   return {
     input: {
@@ -11,7 +14,7 @@ function bundleConfig(name, entryFile) {
     output: {
       dir: 'build/scripts/',
       format: 'es',
-      entryFileNames: '[name]-[hash].bundle.js',
+      entryFileNames: isProd ? '[name]-[hash].bundle.js' : '[name].bundle.js',
     },
 
     // Suppress a warning (https://rollupjs.org/guide/en/#error-this-is-undefined)

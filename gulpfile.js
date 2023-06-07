@@ -1,4 +1,5 @@
 import { buildCSS, runTests, watchJS } from '@hypothesis/frontend-build';
+import * as fs from 'fs';
 import gulp from 'gulp';
 
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
@@ -12,10 +13,7 @@ gulp.task('serve-pattern-library', () => {
 // during development. Bundled JS and CSS are not published with the package.
 
 gulp.task('bundle-css', () =>
-  buildCSS(['./styles/pattern-library.scss'], {
-    tailwindConfig,
-    withHash: true,
-  })
+  buildCSS(['./styles/pattern-library.scss'], { tailwindConfig })
 );
 
 gulp.task(
@@ -63,3 +61,29 @@ gulp.task(
     })
   )
 );
+
+gulp.task('update-patterns-index', async () => {
+  // Determine the name of the JS/CSS bundles (in prod they could contain a hash)
+  const jsBundleName = fs
+    .readdirSync('build/scripts')
+    .find(file => file.startsWith('pattern-library'));
+  const cssBundleName = fs
+    .readdirSync('build/styles')
+    .find(file => file.startsWith('pattern-library'));
+
+  if (!jsBundleName || !cssBundleName) {
+    throw new Error(
+      'JS and/or CSS bundles missing. Make sure bundles are generated first'
+    );
+  }
+
+  // Replace references to the generic bundle names with the resolved ones
+  const indexContent = fs
+    .readFileSync('templates/index.html')
+    .toString()
+    .replace('pattern-library.bundle.js', jsBundleName)
+    .replace('pattern-library.css', cssBundleName);
+
+  // eslint-disable-next-line no-undef
+  fs.writeFileSync('templates/index.html', Buffer.from(indexContent));
+});
