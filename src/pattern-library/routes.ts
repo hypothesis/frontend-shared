@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'preact';
 import ColorsPage from './components/patterns/ColorsPage';
 import GettingStartedPage from './components/patterns/GettingStartedPage';
 import GettingStartedPageMdx from './components/patterns/GettingStartedPage.mdx';
+import GettingStartedPageMixed from './components/patterns/GettingStartedPageMixed.mdx';
 import StylingComponentsPage from './components/patterns/StylingComponentsPage';
 import UsingComponentsPage from './components/patterns/UsingComponentsPage';
 import UtilitiesPage from './components/patterns/UtilitiesPage';
@@ -82,6 +83,12 @@ const routes: PlaygroundRoute[] = [
     group: 'foundations',
     component: GettingStartedPageMdx,
     route: '/getting-started-mdx',
+  },
+  {
+    title: 'Getting started (MDX 2)',
+    group: 'foundations',
+    component: GettingStartedPageMixed,
+    route: '/getting-started-mdx-mixed',
   },
   {
     title: 'Using components',

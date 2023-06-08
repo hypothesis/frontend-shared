@@ -139,6 +139,8 @@ export default function PlaygroundApp({
         h1: props => (
           <h1 className="text-3xl text-slate-600 font-bold" {...props} />
         ),
+        code: ({ children }) => <Library.Code content={children} />,
+        a: props => <Link {...props} underline="always" />,
       }}
     >
       {allRoutes

@@ -1,0 +1,51 @@
+import Library from '../Library';
+
+<Library.Page
+  title="Getting started"
+  intro={
+    <>
+      <p>
+        The <code>@hypothesis/frontend-shared</code> package provides
+        reusable UI components, hooks and utilities for Hypothesis front-end
+        applications.
+      </p>
+    </>
+  }
+>
+  <Library.Section>
+    <Library.Pattern title="Installation">
+      Your application needs to install [tailwindcss](https://tailwindcss.com/)
+      to use this package's updated components.
+
+
+      ```shell
+      $ yarn add tailwindcss @hypothesis/frontend-shared
+      ```
+    </Library.Pattern>
+    <Library.Pattern title="Configuration">
+      <Library.Example title="Configure tailwindcss">
+        Configure your "project's" tailwind configuration object:
+
+        * Use this package's tailwind preset
+        * Add this package's source to the configuration's `content` globs
+
+        <Library.Code
+          size="sm"
+          title="Your project's tailwind config"
+          content={`import tailwindConfig from '@hypothesis/frontend-shared/lib/tailwind.preset.js';
+
+export default {
+  presets: [tailwindConfig],
+  content: [
+    './node_modules/@hypothesis/frontend-shared/lib/**/*.{js,ts,tsx}',
+    // ...
+  ],
+  // ...`}
+        />
+      </Library.Example>
+    </Library.Pattern>
+    <Library.Pattern title="Usage">
+      <Library.Usage componentName="Card, Link" />
+    </Library.Pattern>
+  </Library.Section>
+</Library.Page>
