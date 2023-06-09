@@ -14,7 +14,7 @@ export function servePatternLibrary(port = 4001) {
 
   // For any other path, serve the index.html file to allow client-side routing
   app.get('/:path?', (req, res) => {
-    res.sendFile(path.join(dirname, '../templates/index.html'));
+    res.sendFile(path.join(dirname, '../build/index.html'));
   });
 
   app.listen(port, () => {

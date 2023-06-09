@@ -1,18 +1,39 @@
-import { buildCSS, runTests, watchJS } from '@hypothesis/frontend-build';
+import {
+  buildCSS,
+  buildJS,
+  runTests,
+  watchJS,
+} from '@hypothesis/frontend-build';
 import gulp from 'gulp';
 
+import { buildPatternLibraryIndex } from './scripts/build-pattern-library-index.js';
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
 import tailwindConfig from './tailwind.config.js';
-
-gulp.task('serve-pattern-library', () => {
-  servePatternLibrary();
-});
 
 // The following tasks bundle assets for the pattern library for use locally
 // during development. Bundled JS and CSS are not published with the package.
 
+gulp.task('build-pattern-library-index', async () =>
+  buildPatternLibraryIndex()
+);
+
 gulp.task('bundle-css', () =>
   buildCSS(['./styles/pattern-library.scss'], { tailwindConfig })
+);
+
+gulp.task('bundle-js', () => buildJS('./rollup.config.js'));
+
+gulp.task(
+  'build-pattern-library',
+  gulp.series(
+    gulp.parallel('bundle-js', 'bundle-css'),
+    'build-pattern-library-index'
+  )
+);
+
+gulp.task(
+  'serve-pattern-library',
+  gulp.series('build-pattern-library', () => servePatternLibrary())
 );
 
 gulp.task(
