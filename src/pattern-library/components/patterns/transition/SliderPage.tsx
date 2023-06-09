@@ -44,10 +44,6 @@ const Slider_: FunctionComponent<Slider_Props> = ({
 };
 
 export default function SliderPage() {
-  const [transitionStatus, setTransitionStatus] = useState<
-    'in' | 'out' | undefined
-  >();
-
   return (
     <Library.Page
       title="Slider"
@@ -60,19 +56,11 @@ export default function SliderPage() {
         </>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>Slider</code> implements the <code>TransitionComponent</code>{' '}
-            API, so it can be used standalone, or together with any other
-            component which accepts a <code>TransitionComponent</code>.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="Slider" />
           <Library.Example>
-            <Library.Demo title="Basic example" withSource>
+            <Library.Demo title="Basic Slider" withSource>
               <Slider_ direction="out">
                 <Card>
                   <CardContent>This is the content of the Slider</CardContent>
@@ -82,27 +70,14 @@ export default function SliderPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <Library.Example title="direction">
-            This prop tells if the Slider is currently expanded (<code>in</code>
-            ) or collapsed (<code>out</code>). It is <code>in</code> by default.
-          </Library.Example>
-
-          <Library.Example title="onTransitionEnd">
-            Optionally, you can provide a callback that will be invoked once the{' '}
-            <code>in</code>/<code>out</code> transitions end.
-            <Library.Demo title="Slider with onTransitionEnd" withSource>
-              <Slider_
-                direction="out"
-                onTransitionEnd={direction => setTransitionStatus(direction)}
-                _transitionStatus={transitionStatus}
-              >
-                <Card>
-                  <CardContent>This is the content of the Slider</CardContent>
-                </Card>
-              </Slider_>
-            </Library.Demo>
-          </Library.Example>
+        <Library.Pattern title="Component API">
+          <p>
+            <code>Button</code> accepts{' '}
+            <Library.Link href="/using-components#transition-components-api">
+              transition component props
+            </Library.Link>
+            .
+          </p>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
