@@ -1,9 +1,9 @@
 import classnames from 'classnames';
-import type { JSX } from 'preact';
 
 import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import ButtonBase from '../input/ButtonBase';
+import Button from '../input/Button';
+import type { ButtonProps } from '../input/Button';
 
 type ComponentProps = {
   icon?: IconComponent;
@@ -17,19 +17,9 @@ type ComponentProps = {
   variant?: 'basic';
 };
 
-type HTMLAttributes = Omit<
-  JSX.HTMLAttributes<HTMLButtonElement>,
-  | 'size'
-  | 'icon'
-  | 'title'
-  | 'selected'
-  // Omitting these aria attributes, as they are set as `never` in ButtonBase
-  | 'aria-expanded'
-  | 'aria-pressed'
-  | 'aria-label'
->;
-
-export type TabProps = PresentationalProps & ComponentProps & HTMLAttributes;
+export type TabProps = PresentationalProps &
+  Omit<ButtonProps, 'variant' | 'size' | 'unstyled'> &
+  ComponentProps;
 
 /**
  * Render a button with appropriate ARIA tab affordances
@@ -47,7 +37,7 @@ const Tab = function Tab({
   ...htmlAttributes
 }: TabProps) {
   return (
-    <ButtonBase
+    <Button
       data-component="Tab"
       {...htmlAttributes}
       classes={classnames(
@@ -60,6 +50,8 @@ const Tab = function Tab({
       elementRef={downcastRef(elementRef)}
       aria-selected={selected}
       role="tab"
+      variant="custom"
+      size="custom"
     >
       {Icon && (
         <Icon
@@ -87,7 +79,7 @@ const Tab = function Tab({
       >
         {children}
       </span>
-    </ButtonBase>
+    </Button>
   );
 };
 
