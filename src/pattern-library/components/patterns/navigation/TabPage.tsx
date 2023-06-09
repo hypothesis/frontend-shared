@@ -39,7 +39,7 @@ export default function TabPage() {
         <Library.Pattern>
           <Library.Usage componentName="Tab" />
           <Library.Example>
-            <Library.Demo title="Basic (non-interactive) example" withSource>
+            <Library.Demo title="Basic Tabs in a tablist" withSource>
               <div role="tablist" className="gap-x-6 flex">
                 <Tab>
                   Annotations
@@ -62,54 +62,26 @@ export default function TabPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-
-          <ul>
-            <li>
-              <code>Tab</code>s <em>must</em> be direct children of an element
-              with <code>role={'"tablist"'}</code> (or use the{' '}
-              <code>TabList</code> component).
-            </li>
-            <li>
-              You <em>should</em> provide an{' '}
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls">
-                <code>aria-controls</code>
-              </a>{' '}
-              attribute to each <code>Tab</code>. This is not always feasible in
-              our applications.
-            </li>
-          </ul>
         </Library.Pattern>
-
-        <Library.Pattern title="Props">
-          <Library.Example title="aria-controls">
-            An element with <code>{'role="tab"'}</code> should set an{' '}
-            <code>aria-controls</code> attribute when possible. See the full{' '}
-            <code>TabList</code> example below.
+        <Library.Pattern title="Working with Tabs">
+          <Library.Example title="Accessibility">
+            <ul>
+              <li>
+                <code>Tab</code>s <em>must</em> be direct children of an element
+                with <code>role={'"tablist"'}</code> (or use the{' '}
+                <code>TabList</code> component).
+              </li>
+              <li>
+                You <em>should</em> provide an{' '}
+                <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls">
+                  <code>aria-controls</code>
+                </a>{' '}
+                attribute to each <code>Tab</code>. This is not always feasible
+                in our applications.
+              </li>
+            </ul>
           </Library.Example>
-
-          <Library.Example title="icon">
-            <code>Tab</code>s may have icons. The icon will be displayed on the
-            left and sized proportionally to the inherited font size.
-            <Library.Demo title="Tabs with icon" withSource>
-              <div role="tablist">
-                <Tab icon={ProfileIcon}>Profile</Tab>
-                <Tab classes="text-lg" icon={ProfileIcon}>
-                  Profile
-                </Tab>
-                <Tab classes="text-xl" icon={ProfileIcon}>
-                  Profile
-                </Tab>
-              </div>
-            </Library.Demo>
-          </Library.Example>
-
-          <Library.Example title="selected">
-            This boolean property asserts that the <code>Tab</code> is currently
-            selected and the <code>tabpanel</code> it controls (where relevant)
-            is active and visible.
-          </Library.Example>
-
-          <Library.Example title="textContent">
+          <Library.Example title="Preventing text jiggle with textContent">
             <p>
               Bolding is used in our design patterns to indicate a selected tab.
               Without any intervention, textual tabs will jiggle around when
@@ -117,8 +89,6 @@ export default function TabPage() {
               more room.
             </p>
             <p>
-              <code>textContent</code> is a string representing the text content
-              of the tab when selected.{' '}
               <strong>
                 Setting <code>textContent</code> can help prevent jiggle in
                 selected tabs
@@ -194,7 +164,7 @@ export default function TabPage() {
             <p>
               For tabs with styled or dynamic content, <code>textContent</code>{' '}
               can be set to an estimated {'"widest-possible-text-content"'}{' '}
-              value. A trial and error approach worked here:
+              value.
             </p>
             <Library.Demo
               title="Tabs with estimated widest-value textContent"
@@ -235,6 +205,67 @@ export default function TabPage() {
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
+
+        <Library.Pattern title="Component API">
+          <p>
+            <code>Tab</code> accepts all standard{' '}
+            <Library.Link href="/using-components#presentational-components-api">
+              presentational component props
+            </Library.Link>
+            .
+          </p>
+
+          <Library.Example title="icon">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Optional icon to display on the left, sized proportionally to
+                the inherited font size.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>IconComponent</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Tabs with icon" withSource>
+              <div role="tablist">
+                <Tab icon={ProfileIcon}>Profile</Tab>
+                <Tab classes="text-lg" icon={ProfileIcon}>
+                  Profile
+                </Tab>
+                <Tab classes="text-xl" icon={ProfileIcon}>
+                  Profile
+                </Tab>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="selected">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Asserts that the <code>Tab</code> is currently selected and the{' '}
+                <code>tabpanel</code> it controls (where relevant) is active and
+                visible.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="textContent">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                String representing the longest textual content expected for the
+                Tab. Used to prevent jiggle when selected.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+        </Library.Pattern>
       </Library.Section>
       <Library.Section
         title="TabList"
@@ -250,11 +281,6 @@ export default function TabPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <code>TabList</code> is a new component.
-          </p>
-        </Library.Pattern>
         <Library.Pattern>
           <Library.Usage componentName="TabList" />
           <Library.Example>
@@ -335,18 +361,28 @@ export default function TabPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
+        <Library.Pattern title="Component API">
+          <p>
+            <code>TabList</code> accepts all standard{' '}
+            <Library.Link href="/using-components#presentational-components-api">
+              presentational component props
+            </Library.Link>
+            .
+          </p>
           <Library.Example title="vertical">
-            <p>
-              By default, <code>TabList</code> layout is horizontal. Set the
-              boolean <code>vertical</code> prop for a vertical layout. This
-              will also enable arrow-key navigation using the up and down
-              arrows.
-            </p>
-            <p>
-              The following example demonstrates vertical layout and up/down
-              keyboard navigation.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Indicates that the tablist should be laid out vertically. When
+                set, arrow-key navigation using up and down arrows is enabled.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo withSource title="Vertical TabList">
               <TabList classes="gap-y-2" vertical>
                 <Tab
@@ -375,6 +411,17 @@ export default function TabPage() {
                 </Tab>
               </TabList>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>TabList</code> accepts HTML attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
