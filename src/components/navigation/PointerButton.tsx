@@ -2,11 +2,8 @@ import classnames from 'classnames';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import ButtonBase from '../input/ButtonBase';
-import type {
-  ButtonCommonProps,
-  HTMLButtonAttributes,
-} from '../input/ButtonBase';
+import Button from '../input/Button';
+import type { ButtonProps } from '../input/Button';
 
 type ComponentProps = {
   /**
@@ -17,9 +14,8 @@ type ComponentProps = {
 };
 
 export type PointerButtonProps = PresentationalProps &
-  ButtonCommonProps &
-  ComponentProps &
-  HTMLButtonAttributes;
+  Omit<ButtonProps, 'variant' | 'size' | 'unstyled'> &
+  ComponentProps;
 
 /**
  * A button for pointing toward a quantified set of items somewhere else in the
@@ -46,12 +42,12 @@ const PointerButton = function PointerButton({
 
   direction,
 
-  ...htmlAttributes
+  ...htmlAndButtonProps
 }: PointerButtonProps) {
   return (
-    <ButtonBase
+    <Button
       data-component="PointerButton"
-      {...htmlAttributes}
+      {...htmlAndButtonProps}
       elementRef={downcastRef(elementRef)}
       classes={classnames(
         // Establish relative positioning to allow absolute positioning of
@@ -125,9 +121,11 @@ const PointerButton = function PointerButton({
       expanded={expanded}
       pressed={pressed}
       title={title}
+      variant="custom"
+      size="custom"
     >
       {children}
-    </ButtonBase>
+    </Button>
   );
 };
 
