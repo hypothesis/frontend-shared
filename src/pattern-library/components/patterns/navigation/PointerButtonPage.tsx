@@ -8,9 +8,9 @@ export default function PointerButtonPage() {
       intro={
         <>
           <p>
-            <code>PointerButton</code> is a component for styling a button that
-            points towards a group of items elsewhere in the UI or off-screen.
-            They are specifically used to indicate and navigate to
+            <code>PointerButton</code> is a presentational component for styling
+            a button that points towards a group of items elsewhere in the UI or
+            off-screen. They are specifically used to indicate and navigate to
             &quot;buckets&quot; (groups of annotations that are near each other
             in document content) in the Hypothesis client.
           </p>
@@ -22,31 +22,24 @@ export default function PointerButtonPage() {
         </>
       }
     >
-      <Library.Section
-        intro={
-          <p>
-            <code>PointerButton</code> is a presentational component.
-          </p>
-        }
-      >
+      <Library.Section>
         <Library.Pattern>
           <Library.Usage componentName="PointerButton" />
           <Library.Example>
-            <Library.Demo
-              title="PointerButton directions 'up', 'down', 'left'"
-              withSource
-            >
+            <Library.Demo title="Basic PointerButtons" withSource>
               <PointerButton direction="up">3</PointerButton>
               <PointerButton direction="down">7</PointerButton>
               <PointerButton direction="left">5</PointerButton>
             </Library.Demo>
-
+          </Library.Example>
+        </Library.Pattern>
+        <Library.Pattern title="Working with PointerButtons">
+          <Library.Example title="PointerButtons in context">
             <p>
               The following example shows <code>PointerButtons</code> as they
               might appear in the client, positioned absolutely in a{' '}
               {'"bucket bar"'}.
             </p>
-
             <Library.Demo title="PointerButtons in visual context" withSource>
               <div className="w-[23px] h-[250px] bg-grey-2">
                 <ul className="relative h-full pointer-events-none">
@@ -83,21 +76,23 @@ export default function PointerButtonPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Props">
-          <p>
-            <code>PointerButton</code> also takes common{' '}
-            <a href="./input-button">
-              <code>ButtonBase</code>
-            </a>{' '}
-            props.
-          </p>
+        <Library.Pattern title="Component API">
+          <code>Button</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="direction">
-            <p>
-              The <code>direction</code> prop is not required. When not
-              provided, the button will not point in any direction but instead
-              will be lozenge-shaped. This pattern is not used anywhere
-              currently.
-            </p>
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Direction the button should point. If not provided, the button
+                will be a round lozenge.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'up' | 'down' | 'left'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
             <Library.Demo title="direction not set" withSource>
               <PointerButton>24</PointerButton>
             </Library.Demo>
@@ -125,6 +120,18 @@ export default function PointerButtonPage() {
             <Library.Demo title="direction: down" withSource>
               <PointerButton direction="down">6</PointerButton>
             </Library.Demo>
+          </Library.Example>
+          <Library.Example title="...buttonProps">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>PointerButton</code> props for{' '}
+                <Library.Link href="/input-button">Button</Library.Link> except
+                for styling API props. This includes HTML attributes.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<ButtonProps>, 'variant' | 'size' | 'unstyled'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
