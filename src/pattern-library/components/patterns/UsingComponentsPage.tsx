@@ -267,7 +267,7 @@ export default function UsingComponentsPage() {
             <code>Slider</code>
           </Library.Link>
         </p>
-        <Library.Section title="API">
+        <Library.Section title="API" id="transition-components-api">
           <Library.Example title="direction">
             <Library.Info>
               <Library.InfoItem label="description">
