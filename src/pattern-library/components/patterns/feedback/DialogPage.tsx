@@ -201,6 +201,20 @@ export default function DialogPage() {
             props.
           </p>
 
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A <code>title</code> is required for all dialogs.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
           <Library.Example title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -419,7 +433,7 @@ export default function DialogPage() {
                 <code>Dialog</code>).
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>TransitionComponent</code>
+                <code>{`Omit<PanelProps, 'fullWidthHeader'>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
@@ -685,6 +699,20 @@ export default function DialogPage() {
           </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="ComponentAPI">
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A <code>title</code> is required for all modal dialogs.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="required">
+                <code>true</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
           <Library.Example title="disableCloseOnEscape">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -812,7 +840,7 @@ export default function DialogPage() {
             </p>
           </Library.Example>
 
-          <Library.Example title="...dialogProps">
+          <Library.Example title="...dialogAndPanelProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 Props forwarded to <code>Dialog</code> and <code>Panel</code>.
@@ -834,6 +862,9 @@ export default function DialogPage() {
                     <code>true</code> for all dialogs
                   </li>
                 </ul>
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<DialogProps, 'restoreFocus' | 'closeOnEscape'>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
