@@ -84,8 +84,11 @@ export default function ThumbnailPage() {
 
         <Library.Pattern title="Component API">
           <p>
-            <code>Thumbnail</code> takes all standard props from the composite
-            component API.
+            <code>Thumbnail</code> accepts all standard{' '}
+            <Library.Link href="/using-components#composite-components-api">
+              composite component props
+            </Library.Link>
+            .
           </p>
 
           <Library.Example title="borderless">
@@ -270,6 +273,17 @@ export default function ThumbnailPage() {
                 </div>
               </div>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="...htmlAttributes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Thubmnail</code> accepts HTML element attributes
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'loading' | 'placeholder'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
         </Library.Pattern>
       </Library.Section>

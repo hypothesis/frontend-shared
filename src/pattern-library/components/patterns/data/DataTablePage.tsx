@@ -203,6 +203,13 @@ export default function DataTablePage() {
 
         <Library.Pattern title="Component API">
           <p>
+            <code>DataTable</code> accepts all standard{' '}
+            <Library.Link href="/using-components#composite-components-api">
+              composite component props
+            </Library.Link>
+            .
+          </p>
+          <p>
             <code>rows</code>, <code>columns</code> and <code>title</code> are
             required.
           </p>
@@ -481,16 +488,14 @@ export default function DataTablePage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="title">
+          <Library.Example title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
-                A title used for accessibility purposes.
+                <code>DataTable</code> accepts HTML element attributes except
+                those detailed below.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>string</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="required">
-                <code>true</code>
+                <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>

@@ -43,7 +43,7 @@ export default function IconsPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Component API">
-          <Library.Example title="...svgProps">
+          <Library.Example title="...htmlProps">
             <Library.Callout>
               Unlike other components in this package, Icon components take{' '}
               <code>className</code>, not <code>classes</code>.
