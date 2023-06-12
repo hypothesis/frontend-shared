@@ -195,10 +195,13 @@ export default function DialogPage() {
           </Library.Demo>
         </Library.Pattern>
 
-        <Library.Pattern title="ComponentAPI">
+        <Library.Pattern title="Component API">
           <p>
-            <code>Dialog</code> accepts all standard composite component API
-            props.
+            <code>Dialog</code> accepts all standard{' '}
+            <Library.Link href="/using-components#composite-components-api">
+              composite component props
+            </Library.Link>
+            .
           </p>
 
           <Library.Example title="title">

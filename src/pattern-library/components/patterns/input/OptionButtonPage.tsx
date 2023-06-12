@@ -119,22 +119,9 @@ export default function OptionButtonPage() {
                 </Library.Link>{' '}
                 component API props. Styling API props are not forwarded.
               </Library.InfoItem>
-              <Library.InfoItem label="props">
-                All <code>Button</code> props except styling API props:
-                <ul>
-                  <li>
-                    <code>classes</code>
-                  </li>
-                  <li>
-                    <code>unstyled</code>
-                  </li>
-                  <li>
-                    <code>variant</code>
-                  </li>
-                  <li>
-                    <code>size</code>
-                  </li>
-                </ul>
+
+              <Library.InfoItem label="type">
+                <code>{`Omit<ButtonProps, 'size' | 'unstyled' | 'classes' | 'variant'>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>

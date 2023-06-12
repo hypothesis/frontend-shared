@@ -265,6 +265,23 @@ export default function TabPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+
+          <Library.Example title="...buttonProps">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <code>Tab</code> forwards{' '}
+                <Library.Link href="/input-button">
+                  <code>Button</code>
+                </Library.Link>{' '}
+                component API props, including HTML attributes. Styling API
+                props are not forwarded.
+              </Library.InfoItem>
+
+              <Library.InfoItem label="type">
+                <code>{`Omit<ButtonProps, 'variant' | 'size' | 'unstyled'>`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
       <Library.Section

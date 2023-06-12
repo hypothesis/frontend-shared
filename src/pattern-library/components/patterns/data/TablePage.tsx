@@ -138,10 +138,11 @@ export default function TablePage() {
         </Library.Pattern>
 
         <Library.Pattern title="Component API">
-          <p>
-            <code>Table</code> takes all standard props from the presentational
-            component API.
-          </p>
+          <code>Table</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
+          .
           <Library.Example title="stickyHeader">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -222,7 +223,6 @@ export default function TablePage() {
               </div>
             </Library.Demo>
           </Library.Example>
-
           <Library.Example title="interactive">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -275,7 +275,6 @@ export default function TablePage() {
               </Table>
             </Library.Demo>
           </Library.Example>
-
           <Library.Example title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">

@@ -153,7 +153,7 @@ const handleControlledChange = e => {
             </Library.InfoItem>
           </Library.Info>
         </Library.Example>
-        <Library.Example title="...inputProps">
+        <Library.Example title="...htmlAttributes">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>Checkbox</code> accepts HTML attributes for input elements
