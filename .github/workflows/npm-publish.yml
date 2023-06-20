@@ -15,7 +15,7 @@ jobs:
         node-version: '16'
         registry-url: 'https://registry.npmjs.org'
     - name: Install
-      run: yarn install --frozen-lockfile
+      run: yarn install --immutable
     - name: Build lib files
       run: yarn build
     - name: Publish package
