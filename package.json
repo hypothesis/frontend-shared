@@ -93,5 +93,6 @@
   "dependencies": {
     "highlight.js": "^11.6.0",
     "wouter-preact": "^2.10.0-alpha.1"
-  }
+  },
+  "packageManager": "yarn@3.6.0"
 }
