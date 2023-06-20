@@ -107,7 +107,7 @@ function AnnotationPublishControl({
             />
             <MenuItem
               icon={GlobeIcon}
-              label="All course participants"
+              label="All assignment participants"
               isDisabled={noSharing}
             />
             {noSharing && (

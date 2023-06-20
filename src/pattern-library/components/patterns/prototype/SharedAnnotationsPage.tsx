@@ -158,32 +158,29 @@ export default function SharedAnnotationsPrototypePage() {
       intro={
         <p>
           Give instructors the ability to create and manage{' '}
-          <b className="font-semibold">course-shared content</b> that all
+          <b className="font-semibold">assignment-shared content</b> that all
           assignment participants can see regardless of section group
-          membership. Separately, provide instructors the ability to{' '}
-          <b className="font-semibold">pin content</b> such that it shows up at
-          the top of sidebar on every tab.
+          membership.
         </p>
       }
     >
-      <Library.Section>
+      <Library.Section title="Sharing annotations in an assignment">
         <Library.Callout>
           <strong>Note:</strong> The UI sketches here are intended as
           low-fidelity wireframes to demonstrate UX and flow intent. They are
           not intended to represent polished design.
         </Library.Callout>
-        <Library.Section title="Creating and managing content shared to all participants">
+        <Library.Pattern title="Creating and managing content shared to all participants">
           <p>
             An instructor may create top-level annotations that are visible to
             everyone in the assignment, regardless of which segment they belong
             to. An instructor may edit an annotation and change its sharing
             target.
           </p>
-          <Library.Section title="User interface: Creating or editing an annotation">
+          <Library.Section title="Proposed user interface: Creating or editing an annotation">
             <p>
-              We might be able to extend the existing annotation-publish
-              control. The annotation-publish control is available when creating{' '}
-              <i>or</i> editing an annotation.
+              A proposed approach is to extend the existing publish-annotation
+              interface.
             </p>
 
             <Library.Demo title="Extending the AnnotationPublishControl interface">
@@ -192,40 +189,24 @@ export default function SharedAnnotationsPrototypePage() {
               </div>
             </Library.Demo>
           </Library.Section>
+        </Library.Pattern>
 
-          <Library.Section title="User interface: Improving experience in the future">
-            <p>
-              In the future, we might provide both share/move and copy options
-              for a root-level annotation.
-            </p>
-            <p>
-              One option: it might be possible to consolidate some annotation
-              actions into a {'"manage-annotation menu"'} at the top right of a
-              top-level annotation card.
-            </p>
-            <Library.Demo title="Annotation card with context menu">
-              <FakeSidebar>
-                <FakeAnnotation isOwn withManageMenu />
-              </FakeSidebar>
-            </Library.Demo>
-          </Library.Section>
-        </Library.Section>
-
-        <Library.Section title="Displaying shared content">
+        <Library.Pattern title="Displaying shared content">
           <p>
             Content visible to all assignment participants should be{' '}
-            {'"merged into"'}
+            {'"merged into" '}
             the annotation threads for the active segment (section/reading group
             as indicated by the group selector in the top bar), but it should be
             easy to distinguish which annotation threads are shared to all
             participants.
           </p>
-          <Library.Section title="User interface: showing shared and non-shared annotations together">
+          <Library.Example title="User interface: showing shared and non-shared annotations together">
             <p>
               It should be easy to visually distinguish which annotations in the
-              sidebar are shared.
+              sidebar are shared. The treatment shown here is not proposed as a
+              design solution.
             </p>
-            <Library.Demo>
+            <Library.Demo title="Low-fidelity sketch of merged shared annotations">
               <FakeSidebar>
                 <TabList classes="gap-x-4">
                   <Tab selected>Annotations</Tab>
@@ -240,13 +221,25 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Section>
-        </Library.Section>
+          </Library.Example>
+        </Library.Pattern>
       </Library.Section>
 
       <Library.Section
-        title="Possible future feature: pinning content"
+        title="Possible future enhancements"
         intro={
+          <p>
+            Several proposed future features may have some interplay with
+            annotation assignment sharing.
+          </p>
+        }
+      >
+        <Library.Callout>
+          <strong>Note:</strong> None of the following features are scoped or
+          committed yet. These sketches merely posit some potential UX interplay
+          and may be useful as reference later.
+        </Library.Callout>
+        <Library.Pattern title="Pinned content">
           <p>
             A top-level annotation can be {'"pinned"'} by authorized users,
             which makes the annotation(s) show up at the top of the sidebar
@@ -255,14 +248,7 @@ export default function SharedAnnotationsPrototypePage() {
             front and center, or provide instructions or prompts for the
             assignment as a whole.{' '}
           </p>
-        }
-      >
-        <Library.Section title="Pinning and unpinning content">
-          <p>
-            Pinning is a “toggle” type of functionality. We could restrict its
-            availability to top-level annotations.
-          </p>
-          <Library.Section title="User interface: Toggling pinning">
+          <Library.Example title="User interface: Toggling pinning">
             <p>
               As pinning is a toggling function, we could add an additional icon
               to the annotation footer.
@@ -272,19 +258,19 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Section>
-        </Library.Section>
+          </Library.Example>
+        </Library.Pattern>
 
         <Library.Section title="Displaying pinned content">
-          <p>
-            Pinned content could be shown <i>above</i> all other content,
-            including tabs (i.e. a pinned Page Note would also show up on the
-            Annotations tab, but above the tabs). This could satisfy use cases
-            relating to creating prompts or instructions for assignments, or for
-            otherwise showing certain instructor content at the top.
-          </p>
-          <Library.Section title="User interface: Showing pinned, shared and non-shared annotations">
+          <Library.Example title="User interface: Showing pinned, shared and non-shared annotations">
             <p>An annotation may be both shared and pinned.</p>
+            <p>
+              Pinned content could be shown <i>above</i> all other content,
+              including tabs (i.e. a pinned Page Note would also show up on the
+              Annotations tab, but above the tabs). This could satisfy use cases
+              relating to creating prompts or instructions for assignments, or
+              for otherwise showing certain instructor content at the top.
+            </p>
             <Library.Demo>
               <FakeSidebar>
                 <FakeAnnotation isOwn isPinned />
@@ -301,7 +287,24 @@ export default function SharedAnnotationsPrototypePage() {
                 <FakeAnnotation isOwn isShared />
               </FakeSidebar>
             </Library.Demo>
-          </Library.Section>
+          </Library.Example>
+
+          <Library.Example title="User interface: Improving experience in the future">
+            <p>
+              In the future, we might provide both share/move and copy options
+              for a root-level annotation.
+            </p>
+            <p>
+              One option: it might be possible to consolidate some annotation
+              actions into a {'"manage-annotation menu"'} at the top right of a
+              top-level annotation card.
+            </p>
+            <Library.Demo title="Annotation card with context menu">
+              <FakeSidebar>
+                <FakeAnnotation isOwn withManageMenu />
+              </FakeSidebar>
+            </Library.Demo>
+          </Library.Example>
         </Library.Section>
       </Library.Section>
     </Library.Page>
