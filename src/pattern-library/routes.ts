@@ -33,6 +33,7 @@ import LMSContentButtonPage from './components/patterns/prototype/LMSContentButt
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 import TabbedDialogPage from './components/patterns/prototype/TabbedDialogPage';
+import TransitionComponentsExperimentsPage from './components/patterns/prototype/TransitionComponentExperimentsPage';
 import SliderPage from './components/patterns/transition/SliderPage';
 
 export const componentGroups = {
@@ -271,6 +272,12 @@ const routes: PlaygroundRoute[] = [
     group: 'prototype',
     component: LMSContentSelectionPage,
     route: '/lms-content-selection',
+  },
+  {
+    title: 'Transition components experiments',
+    group: 'prototype',
+    component: TransitionComponentsExperimentsPage,
+    route: '/transition-components-experiments',
   },
 ];
 

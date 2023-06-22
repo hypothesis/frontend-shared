@@ -1,5 +1,6 @@
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
+import { useEffect } from 'preact/hooks';
 
 import { delay } from '../../../test-util/wait.js';
 import { testPresentationalComponent } from '../../test/common-tests';
@@ -19,7 +20,14 @@ const createComponent = (Component, props = {}) => {
  */
 const ComponentWithTransition = ({ children, direction, onTransitionEnd }) => {
   // Fake a 50ms transition time
-  setTimeout(() => onTransitionEnd?.(direction), 50);
+  useEffect(() => {
+    const timeout = setTimeout(() => onTransitionEnd?.(direction), 50);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [direction, onTransitionEnd]);
+
   return <div>{children}</div>;
 };
 
@@ -178,26 +186,37 @@ describe('Dialog', () => {
       assert.equal(document.activeElement, document.body);
     });
 
-    it('should restore focus when unmounted when `restoreFocus` set', () => {
-      const button = document.getElementById('focus-button');
+    [
+      {
+        action: 'closed',
+        updateWrapper: wrapper => wrapper.setProps({ closed: true }),
+      },
+      {
+        action: 'unmounted',
+        updateWrapper: wrapper => wrapper.unmount(),
+      },
+    ].forEach(({ action, updateWrapper }) => {
+      it(`should restore focus when ${action} when \`restoreFocus\` set`, () => {
+        const button = document.getElementById('focus-button');
 
-      // Start with focus on a button
-      button.focus();
-      assert.equal(document.activeElement, button);
+        // Start with focus on a button
+        button.focus();
+        assert.equal(document.activeElement, button);
 
-      const wrapper = mount(
-        <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
-        {
-          attachTo: container,
-        },
-      );
-      const dialogElement = document.getElementById('focus-dialog');
-      // Focus moves to dialog by default when mounted
-      assert.equal(document.activeElement, dialogElement);
+        const wrapper = mount(
+          <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
+          {
+            attachTo: container,
+          },
+        );
+        const dialogElement = document.getElementById('focus-dialog');
+        // Focus moves to dialog by default when mounted
+        assert.equal(document.activeElement, dialogElement);
 
-      // Unmount cleanup should restore focus to the button
-      wrapper.unmount();
-      assert.equal(document.activeElement, button);
+        // Updating should restore focus to the button
+        updateWrapper(wrapper);
+        assert.equal(document.activeElement, button);
+      });
     });
   });
 
@@ -267,9 +286,7 @@ describe('Dialog', () => {
             onClose={onClose}
             transitionComponent={ComponentWithTransition}
           />,
-          {
-            attachTo: container,
-          },
+          { attachTo: container },
         );
 
         // We simulate closing the Dialog's Panel
@@ -281,7 +298,7 @@ describe('Dialog', () => {
         // The onClose callback is not immediately invoked
         assert.notCalled(onClose);
         // Once the transition has ended, the callback should have been called
-        await delay(60); // Transition finishes after 50ms
+        await delay(70); // Transition finishes after 50ms
         assert.called(onClose);
       });
     });
@@ -290,6 +307,32 @@ describe('Dialog', () => {
       it('does not render a close button', () => {
         const wrapper = mount(<Dialog title="My dialog" />);
         assert.isFalse(wrapper.find('CancelIcon').exists());
+      });
+    });
+
+    context('when `closed` prop is true', () => {
+      it('sets component as closed without TransitionComponent', () => {
+        const wrapper = mount(<Dialog closed title="My dialog" />);
+        assert.isFalse(wrapper.exists('div[data-component="Dialog"]'));
+      });
+
+      it('triggers `out` transition with transition component', async () => {
+        const wrapper = mount(
+          <Dialog
+            title="My dialog"
+            transitionComponent={ComponentWithTransition}
+          />,
+        );
+
+        wrapper.setProps({ closed: true });
+
+        // The dialog is still rendered, until the transition is finished
+        assert.isTrue(wrapper.exists('div[data-component="Dialog"]'));
+
+        await delay(60); // Transition finishes after 50ms
+        wrapper.update();
+
+        assert.isFalse(wrapper.exists('div[data-component="Dialog"]'));
       });
     });
   });

@@ -26,11 +26,19 @@ type ComponentProps = {
   closeOnClickAway?: boolean;
   closeOnEscape?: boolean;
   closeOnFocusAway?: boolean;
+
   /**
    * Dialog _should_ be provided with a close handler. We have a few edge use
    * cases, however, in which we need to render a "non-closeable" modal dialog.
    */
   onClose?: () => void;
+
+  /**
+   * This prop allows to control closing state from consuming code.
+   * If a TransitionComponent is also passed, changing this will trigger the
+   * corresponding `open`/`close` transition.
+   */
+  closed?: boolean;
 
   /**
    * Element that should take focus when the Dialog is first rendered. When not
@@ -74,6 +82,7 @@ const Dialog = function Dialog({
   restoreFocus = false,
   transitionComponent: TransitionComponent,
   variant = 'panel',
+  closed = false,
 
   classes,
   elementRef,
@@ -89,9 +98,12 @@ const Dialog = function Dialog({
   ...htmlAttributes
 }: DialogProps) {
   const modalRef = useSyncedRef(elementRef);
-  const restoreFocusEl = useRef<HTMLElement | null>(
-    document.activeElement as HTMLElement | null,
-  );
+  const restoreFocusEl = useRef<HTMLElement | null>(null);
+
+  // TODO To properly handle closing/opening with a TransitionComponent, these
+  //  two pieces of state need to be synced with the `closed` prop.
+  //  That makes the logic hard to follow. It would be good to revisit eventually
+  const [isClosed, setIsClosed] = useState(closed);
   const [transitionComponentVisible, setTransitionComponentVisible] =
     useState(false);
 
@@ -130,10 +142,17 @@ const Dialog = function Dialog({
     }
   }, [initialFocus, modalRef]);
 
+  const doRestoreFocus = useCallback(() => {
+    if (restoreFocus) {
+      restoreFocusEl.current?.focus();
+    }
+  }, [restoreFocus]);
+
   const onTransitionEnd = (direction: 'in' | 'out') => {
     if (direction === 'in') {
       initializeDialog();
     } else {
+      setIsClosed(true);
       onClose?.();
     }
   };
@@ -157,31 +176,40 @@ const Dialog = function Dialog({
   );
 
   useEffect(() => {
-    setTransitionComponentVisible(true);
-    if (!TransitionComponent) {
+    if (closed && TransitionComponent) {
+      setTransitionComponentVisible(false);
+    } else if (closed && !TransitionComponent) {
+      setIsClosed(true);
+    } else {
+      setIsClosed(false);
+    }
+
+    if (!closed && !TransitionComponent) {
       initializeDialog();
     }
 
-    // We only want to run this effect once when the dialog is mounted.
+    // We only want to run this effect when opened or closed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [closed]);
 
-  useLayoutEffect(
-    /**
-     * Restore focus when component is unmounted, if `restoreFocus` is set.
-     */
-    () => {
-      const restoreFocusTo = restoreFocusEl.current;
-      return () => {
-        if (restoreFocus && restoreFocusTo) {
-          restoreFocusTo.focus();
-        }
-      };
-    },
-    // We only want to run this effect once when the dialog is mounted.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  useEffect(() => {
+    if (!isClosed) {
+      setTransitionComponentVisible(true);
+    }
+  }, [isClosed]);
+
+  useLayoutEffect(() => {
+    if (isClosed) {
+      // Restore focus when the component is closed
+      doRestoreFocus();
+    } else {
+      // Determine active element when component is "opened"
+      restoreFocusEl.current = document.activeElement as HTMLElement | null;
+    }
+
+    // Also restore focus when the component is unmounted
+    return doRestoreFocus;
+  }, [isClosed, doRestoreFocus]);
 
   useLayoutEffect(
     /**
@@ -205,6 +233,10 @@ const Dialog = function Dialog({
   const closeableContext: CloseableInfo = {
     onClose: onClose ? closeHandler : undefined,
   };
+
+  if (isClosed) {
+    return null;
+  }
 
   return (
     <CloseableContext.Provider value={closeableContext}>
