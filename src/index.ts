@@ -23,6 +23,7 @@ export {
   Thumbnail,
 } from './components/data';
 export {
+  Callout,
   Dialog,
   Modal,
   ModalDialog,
@@ -84,6 +85,7 @@ export type {
 } from './components/data';
 
 export type {
+  CalloutProps,
   DialogProps,
   ModalProps,
   ModalDialogProps,
@@ -123,5 +125,3 @@ export type {
 
 // Deprecated
 export { useElementShouldClose } from './hooks/use-element-should-close';
-export { Callout } from './components/feedback';
-export type { CalloutProps } from './components/feedback';
