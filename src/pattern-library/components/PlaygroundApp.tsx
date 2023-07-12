@@ -65,7 +65,7 @@ function NavLink({ route }: { route: PlaygroundRoute }) {
         <RouteLink href={route.route ?? ''}>
           <Link
             classes={classnames(
-              'pl-4 w-full border-l-2 hover:border-l-brand',
+              'pl-4 rounded-l-none w-full border-l-2 hover:border-l-brand',
 
               {
                 'border-l-2 border-brand font-semibold': isActive,
