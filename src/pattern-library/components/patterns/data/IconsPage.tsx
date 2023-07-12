@@ -31,7 +31,7 @@ export default function IconsPage() {
               const IconComponent = Icons[iconName];
               return (
                 <div
-                  className="flex flex-col gap-y-4 border rounded-sm p-4 items-center justify-center"
+                  className="flex flex-col gap-y-4 border rounded p-4 items-center justify-center"
                   key={iconName}
                 >
                   <IconComponent />

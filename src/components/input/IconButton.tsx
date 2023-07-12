@@ -61,7 +61,7 @@ const IconButton = function IconButton({
       {...htmlAttributes}
       classes={classnames(
         {
-          'focus-visible-ring transition-colors rounded-sm whitespace-nowrap':
+          'focus-visible-ring transition-colors rounded whitespace-nowrap':
             styled,
           'flex items-center justify-center': styled,
         },

@@ -46,7 +46,7 @@ const Link = function Link({
       {...htmlAttributes}
       className={classnames(
         styled && {
-          'focus-visible-ring rounded-sm': true,
+          'focus-visible-ring rounded': true,
           // underline
           // TODO: Underline should be controlled by `variant` and should default
           // to `always`

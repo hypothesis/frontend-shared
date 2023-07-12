@@ -43,7 +43,7 @@ const InputRoot = function InputRoot({
       // @ts-ignore-next
       ref={downcastRef(elementRef)}
       className={classnames(
-        'focus-visible-ring ring-inset border rounded-sm w-full p-2',
+        'focus-visible-ring ring-inset border rounded w-full p-2',
         'bg-grey-0 focus:bg-white disabled:bg-grey-1',
         'placeholder:text-color-grey-5 disabled:placeholder:color-grey-6',
         { 'ring-inset ring-2 ring-red-error': hasError },

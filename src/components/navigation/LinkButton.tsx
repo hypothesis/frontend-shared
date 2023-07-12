@@ -50,7 +50,7 @@ const LinkButton = function LinkButton({
       elementRef={downcastRef(elementRef)}
       classes={classnames(
         styled && {
-          'focus-visible-ring transition-colors whitespace-nowrap rounded-sm':
+          'focus-visible-ring transition-colors whitespace-nowrap rounded':
             true,
           inline: inline,
           'flex items-center': !inline,
