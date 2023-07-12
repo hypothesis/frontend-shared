@@ -33,24 +33,24 @@ export default function StylingComponentsPage() {
         <Library.Section title="Component CSS layers and associated styling props">
           <div className="grid grid-cols-6 gap-2 my-8 items-center border py-4 px-2 rounded border-stone-400">
             <div />
-            <div className="col-span-4 border rounded p-3 text-center">
+            <div className="col-span-4 border rounded-md p-3 text-center">
               Functional and behavioral
             </div>
             <div />
             <div className="text-right">
               <code>unstyled</code>
             </div>
-            <div className="col-span-4 border rounded p-3 text-center">
+            <div className="col-span-4 border rounded-md p-3 text-center">
               Core and layout
             </div>
             <div />
             <div className="text-right">
               <code>variant</code>
             </div>
-            <div className="col-span-2 border rounded p-3 text-center">
+            <div className="col-span-2 border rounded-md p-3 text-center">
               Theming
             </div>
-            <div className="col-span-2 border rounded p-3 text-center">
+            <div className="col-span-2 border rounded-md p-3 text-center">
               Dimensions
             </div>
             <div>
@@ -226,7 +226,7 @@ export default function StylingComponentsPage() {
             <Link
               unstyled
               href="http://www.example.com"
-              classes="border rounded bg-slate-500 p-2 text-white hover:text-slate-100 hover:bg-slate-600"
+              classes="border rounded-md bg-slate-500 p-2 text-white hover:text-slate-100 hover:bg-slate-600"
             >
               Customized link
             </Link>
