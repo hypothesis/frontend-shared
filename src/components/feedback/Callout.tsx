@@ -110,7 +110,7 @@ const Callout = function Callout({
             'p-3': size === 'lg',
           },
           styled && 'grow',
-          themed && 'bg-white'
+          themed && 'bg-white rounded-r'
         )}
       >
         {children}
