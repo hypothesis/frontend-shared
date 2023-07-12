@@ -68,7 +68,7 @@ const Callout = function Callout({
       className={classnames(
         styled && 'flex items-center border',
         themed && {
-          'rounded-sm border': true,
+          'rounded border': true,
           'shadow hover:shadow-md cursor-pointer': variant === 'raised',
           'border-yellow-notice': status === 'notice',
           'border-green-success': status === 'success',

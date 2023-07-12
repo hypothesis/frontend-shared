@@ -23,7 +23,7 @@ import Library from '../../Library';
 function Button1({ children }: { children: ComponentChildren }) {
   return (
     <Button
-      classes="bg-slate-0 rounded-sm border border-slate-3 gap-x-1 p-2"
+      classes="bg-slate-0 rounded border border-slate-3 gap-x-1 p-2"
       variant="custom"
       size="custom"
     >
@@ -41,7 +41,7 @@ function Button2({
 }) {
   return (
     <Button
-      classes="w-[15em] bg-slate-0 rounded-sm border border-slate-3 gap-x-2 items-center"
+      classes="w-[15em] bg-slate-0 rounded border border-slate-3 gap-x-2 items-center"
       variant="custom"
       size="custom"
     >
@@ -64,7 +64,7 @@ function Button3({
 }) {
   return (
     <Button
-      classes="w-[15em] rounded-sm gap-x-2 p-2 border border-stone-300 bg-stone-50"
+      classes="w-[15em] rounded gap-x-2 p-2 border border-stone-300 bg-stone-50"
       size="custom"
       variant="custom"
     >
@@ -89,7 +89,7 @@ function Button4({
 }) {
   return (
     <Button
-      classes="w-full bg-stone-50 rounded-sm border border-stone-300 gap-x-2 items-center"
+      classes="w-full bg-stone-50 rounded border border-stone-300 gap-x-2 items-center"
       size="custom"
       variant="custom"
     >

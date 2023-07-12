@@ -10,7 +10,7 @@
     }
 
     :where(code):not(:where([class~='unstyled-text'] *)) {
-      @apply p-1 bg-stone-100 rounded-sm mx-0.5;
+      @apply p-1 bg-stone-100 rounded mx-0.5;
       font-size: 0.85em;
     }
 

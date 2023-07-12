@@ -42,7 +42,7 @@ const Card = function Card({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
-        'rounded-sm border bg-white',
+        'rounded border bg-white',
         {
           'shadow hover:shadow-md': variant === 'raised', // default
           'shadow-md': active && variant === 'raised',

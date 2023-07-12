@@ -100,7 +100,7 @@ const Button = function Button({
             styled,
         },
         themed && {
-          'font-semibold rounded-sm': true,
+          'font-semibold rounded': true,
           'text-grey-7 bg-grey-1 enabled:hover:text-grey-9 enabled:hover:bg-grey-2 aria-pressed:text-grey-9 aria-expanded:text-grey-9':
             variant === 'secondary', // default
           'text-grey-1 bg-grey-7 enabled:hover:bg-grey-8 disabled:text-grey-4':
