@@ -117,11 +117,11 @@ function Button5({
   const Icon = icon ?? FilePdfFilledIcon;
   return (
     <Button
-      classes="w-full bg-stone-50 hover:bg-stone-100 rounded border border-stone-300 hover:border-stone-400 items-center"
+      classes="w-full bg-stone-50 hover:bg-stone-100 rounded-[4px] border border-stone-300 hover:border-stone-400 items-center"
       size="custom"
       variant="custom"
     >
-      <div className="p-1.5 bg-stone-200 rounded-l">
+      <div className="p-1.5 bg-stone-200 rounded-l-[4px]">
         <Icon className="text-stone-500" />
       </div>
       <div className="grow text-start pl-1">
@@ -151,7 +151,7 @@ function Button6({
   return (
     <Button
       classes={classnames(
-        'group bg-stone-50 hover:bg-slate-100 shadow hover:shadow-lg rounded border border-stone-300 hover:border-stone-400 justify-center',
+        'group bg-stone-50 hover:bg-slate-100 shadow hover:shadow-lg rounded-[4px] border border-stone-300 hover:border-stone-400 justify-center',
         {
           'shadow-inner': selected,
         }
@@ -171,7 +171,7 @@ function Button6({
         </div>
         <div
           className={classnames(
-            'group-hover:bg-slate-500 w-full p-0.5 rounded-b',
+            'group-hover:bg-slate-500 w-full p-0.5 rounded-b-[4px]',
             {
               'bg-stone-200': !selected,
               'bg-slate-500': selected,

@@ -157,20 +157,20 @@ export default function ButtonPage() {
             </Library.Demo>
 
             <Library.Demo title="variant: 'custom' (custom theming)" withSource>
-              <Button variant="custom" classes="border rounded">
+              <Button variant="custom" classes="border rounded-md">
                 Default
               </Button>
-              <Button variant="custom" classes="border rounded">
+              <Button variant="custom" classes="border rounded-md">
                 <EditIcon />
                 Default
               </Button>
-              <Button variant="custom" pressed classes="border rounded">
+              <Button variant="custom" pressed classes="border rounded-md">
                 Pressed
               </Button>
-              <Button variant="custom" expanded classes="border rounded">
+              <Button variant="custom" expanded classes="border rounded-md">
                 Expanded
               </Button>
-              <Button variant="custom" disabled classes="border rounded">
+              <Button variant="custom" disabled classes="border rounded-md">
                 Disabled
               </Button>
             </Library.Demo>
@@ -229,7 +229,7 @@ export default function ButtonPage() {
             >
               <Button
                 unstyled
-                classes="border rounded p-2 bg-stone-100 font-normal color-slate-600 hover:bg-stone-50 hover:color-slate-700 hover:shadow-lg"
+                classes="border rounded-md p-2 bg-stone-100 font-normal color-slate-600 hover:bg-stone-50 hover:color-slate-700 hover:shadow-lg"
               >
                 Custom button
               </Button>
@@ -446,13 +446,13 @@ export default function ButtonPage() {
               withSource
             >
               <IconButton
-                classes="border rounded text-slate-600"
+                classes="border rounded-md text-slate-600"
                 variant="custom"
                 title="Watch out!"
                 icon={CautionIcon}
               />
               <IconButton
-                classes="border rounded text-slate-800 bg-stone-100 border-slate-400"
+                classes="border rounded-md text-slate-800 bg-stone-100 border-slate-400"
                 variant="custom"
                 title="Watch out!"
                 icon={CautionIcon}
@@ -460,13 +460,13 @@ export default function ButtonPage() {
               />
               <IconButton
                 variant="custom"
-                classes="border rounded text-slate-800 bg-stone-100 border-slate-400"
+                classes="border rounded-md text-slate-800 bg-stone-100 border-slate-400"
                 title="Watch out!"
                 icon={CautionIcon}
                 expanded
               />
               <IconButton
-                classes="border rounded text-slate-400"
+                classes="border rounded-md text-slate-400"
                 variant="custom"
                 title="Watch out!"
                 icon={CautionIcon}

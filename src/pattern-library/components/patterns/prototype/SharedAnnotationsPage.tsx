@@ -52,12 +52,12 @@ function FakeAnnotation({
     <Card classes="relative">
       <div className="absolute right-full space-y-1 pt-1">
         {isPinned && (
-          <div className="bg-brand p-1.5 rounded-l">
+          <div className="bg-brand p-1.5 rounded-l-[4px]">
             <PinIcon className="text-white" />
           </div>
         )}
         {isShared && (
-          <div className="bg-sky-600 p-1.5 rounded-l">
+          <div className="bg-sky-600 p-1.5 rounded-l-[4px]">
             <GroupsFilledIcon className="text-white" />
           </div>
         )}
