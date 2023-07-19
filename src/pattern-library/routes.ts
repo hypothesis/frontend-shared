@@ -31,6 +31,7 @@ import TabPage from './components/patterns/navigation/TabPage';
 import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
+import TabbedDialogPage from './components/patterns/prototype/TabbedDialogPage';
 import SliderPage from './components/patterns/transition/SliderPage';
 
 export const componentGroups = {
@@ -239,6 +240,12 @@ const routes: PlaygroundRoute[] = [
     group: 'transition',
     component: SliderPage,
     route: '/transitions-slider',
+  },
+  {
+    title: 'Import/Export Dialog',
+    group: 'prototype',
+    component: TabbedDialogPage,
+    route: '/tabbed-share-dialog',
   },
   {
     title: 'LMS: Content Button',
