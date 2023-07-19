@@ -312,11 +312,11 @@ export function testSimpleComponent(Component) {
  * Common tests for simple design components
  *
  * @param {TransitionComponent} Component
- * @param {CommonTestOpts} opts
+ * @param {CommonTestOpts & { event?: Partial<TransitionEvent> }} opts
  */
 export function testTransitionComponent(
   Component,
-  { componentName, createContent = createComponent } = {}
+  { componentName, createContent = createComponent, event = {} } = {}
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -334,7 +334,14 @@ export function testTransitionComponent(
           onTransitionEnd,
         });
 
-        wrapper.find('div').prop('ontransitionend')();
+        // Default to the main container as the `target` for the TransitionEvent,
+        // as that would be the actual behavior at runtime.
+        // Callers can still override it in case that's not desired.
+        const container = wrapper.find('div');
+        container.prop('ontransitionend')({
+          target: container.getDOMNode(),
+          ...event,
+        });
 
         assert.calledWith(onTransitionEnd, direction);
       });

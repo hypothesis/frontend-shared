@@ -15,6 +15,19 @@ describe('Slider', () => {
     );
   };
 
+  function triggerTransitionEnd(
+    wrapper,
+    target = undefined,
+    propertyName = 'height'
+  ) {
+    const container = wrapper.find('div').first();
+    container.prop('ontransitionend')({
+      target: target ?? container.getDOMNode(),
+      propertyName,
+    });
+    wrapper.update();
+  }
+
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -24,7 +37,9 @@ describe('Slider', () => {
     container.remove();
   });
 
-  testTransitionComponent(Slider);
+  testTransitionComponent(Slider, {
+    event: { propertyName: 'height' },
+  });
 
   it('should render collapsed if `direction` is `out` on mount', () => {
     const wrapper = createSlider({ direction: 'out' });
@@ -73,7 +88,7 @@ describe('Slider', () => {
     let containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.height, '200px');
 
-    wrapper.find('div').first().simulate('transitionend');
+    triggerTransitionEnd(wrapper);
 
     containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.height, 'auto');
@@ -91,7 +106,7 @@ describe('Slider', () => {
 
     // When fully expanded, we make overflow visible to make focus rings or
     // other content which extends beyond the bounds of the Slider visible.
-    wrapper.find('div').first().simulate('transitionend');
+    triggerTransitionEnd(wrapper);
     containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.overflow, 'visible');
   });
@@ -101,9 +116,24 @@ describe('Slider', () => {
 
     wrapper.setProps({ direction: 'out' });
 
-    wrapper.find('div').first().simulate('transitionend');
+    triggerTransitionEnd(wrapper);
 
     const containerStyle = wrapper.getDOMNode().style;
     assert.equal(containerStyle.display, 'none');
+  });
+
+  [
+    [undefined, 'width'],
+    ['foo', 'height'],
+    ['foo', 'width'],
+  ].forEach(([target, propertyName]) => {
+    it('ignores not relevant transitions', () => {
+      const onTransitionEnd = sinon.stub();
+      const wrapper = createSlider({ direction: 'in', onTransitionEnd });
+
+      triggerTransitionEnd(wrapper, target, propertyName);
+
+      assert.notCalled(onTransitionEnd);
+    });
   });
 });
