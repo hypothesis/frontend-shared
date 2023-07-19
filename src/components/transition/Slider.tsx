@@ -53,17 +53,26 @@ const Slider: TransitionComponent = ({
     }
   }, [containerHeight, visible]);
 
-  const handleTransitionEnd = useCallback(() => {
-    if (visible) {
-      setContainerHeight('auto');
-    } else {
-      // When the collapse animation completes, stop rendering the content so
-      // that the browser has fewer nodes to render and the content is removed
-      // from keyboard navigation.
-      setContentVisible(false);
-    }
-    onTransitionEnd?.(direction);
-  }, [setContainerHeight, visible, onTransitionEnd, direction]);
+  const handleTransitionEnd = useCallback(
+    (e: TransitionEvent) => {
+      // Only transitions on the actual component and for the "height" property
+      // are relevant "in"/"out" transitions.
+      if (e.target !== containerRef.current || e.propertyName !== 'height') {
+        return;
+      }
+
+      if (visible) {
+        setContainerHeight('auto');
+      } else {
+        // When the collapse animation completes, stop rendering the content so
+        // that the browser has fewer nodes to render and the content is removed
+        // from keyboard navigation.
+        setContentVisible(false);
+      }
+      onTransitionEnd?.(direction);
+    },
+    [setContainerHeight, visible, onTransitionEnd, direction]
+  );
 
   const isFullyVisible = containerHeight === 'auto';
 
