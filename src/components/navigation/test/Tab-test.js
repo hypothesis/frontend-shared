@@ -1,7 +1,10 @@
 import { mount } from 'enzyme';
 
 import { ProfileIcon } from '../../icons';
-import { testPresentationalComponent } from '../../test/common-tests';
+import {
+  testPresentationalComponent,
+  testStyledComponent,
+} from '../../test/common-tests';
 import Tab from '../Tab';
 
 const contentFn = (Component, props = {}) => {
@@ -17,6 +20,7 @@ describe('Tab', () => {
     createContent: contentFn,
     elementSelector: 'button[data-component="Tab"]',
   });
+  testStyledComponent(Tab);
 
   it('sets `aria-selected` when selected', () => {
     const tab1 = contentFn(Tab, { selected: true });
