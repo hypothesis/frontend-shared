@@ -283,6 +283,70 @@ export default function TabPage() {
             </Library.Info>
           </Library.Example>
         </Library.Pattern>
+
+        <Library.Pattern title="Styling API">
+          <p>
+            <code>Tab</code> accepts the following props from the{' '}
+            <Library.Link href="/using-components#presentational-components-styling-api">
+              presentational component styling API
+            </Library.Link>
+            .
+          </p>
+          <Library.Example title="variant">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set to <code>custom</code> to remove theming styles and provide
+                your own styling with <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'text' | 'tab' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'text'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="variant: 'tab'" withSource>
+              <div role="tablist" className="flex">
+                <Tab variant="tab">Share</Tab>
+                <Tab selected variant="tab">
+                  Import
+                </Tab>
+                <Tab variant="tab">Export</Tab>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="size">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set relative internal spacing and padding. Set to{' '}
+                <code>{`'custom'`}</code> to provide your own sizing styles with{' '}
+                <code>classes</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'md' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'md'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="unstyled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set to remove all styling.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+        </Library.Pattern>
       </Library.Section>
       <Library.Section
         title="TabList"

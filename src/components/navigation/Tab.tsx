@@ -14,7 +14,11 @@ type ComponentProps = {
    */
   textContent?: string;
   selected?: boolean;
-  variant?: 'basic';
+
+  // Styling API
+  size?: 'md' | 'custom';
+  variant?: 'text' | 'tab' | 'custom';
+  unstyled?: boolean;
 };
 
 export type TabProps = PresentationalProps &
@@ -32,18 +36,35 @@ const Tab = function Tab({
   icon: Icon,
   textContent,
   selected = false,
-  variant = 'basic',
+  size = 'md',
+  variant = 'text',
+  unstyled = false,
 
   ...htmlAttributes
 }: TabProps) {
+  const styled = !unstyled;
+  const themed = styled && variant !== 'custom';
+  const sized = styled && size !== 'custom';
+
   return (
     <Button
       data-component="Tab"
       {...htmlAttributes}
       classes={classnames(
-        'gap-x-1.5 enabled:hover:text-brand-dark',
-        {
-          'font-bold': selected && variant === 'basic',
+        // Buttons have a flex layout. Add a horizontal gap.
+        sized && 'gap-x-1.5',
+        themed && {
+          'px-4 py-2': variant === 'tab' && sized,
+          'font-semibold text-grey-7 rounded-t border border-transparent border-b-0':
+            variant === 'tab',
+          'aria-selected:text-color-text aria-selected:bg-white':
+            variant === 'tab',
+          'aria-selected:border aria-selected:border-grey-3 aria-selected:border-b-0':
+            variant === 'tab',
+          'enabled:hover:text-color-text disabled:text-grey-7/50':
+            variant === 'tab',
+          'enabled:hover:text-brand-dark': variant === 'text',
+          'aria-selected:font-bold': variant === 'text',
         },
         classes
       )}
@@ -52,6 +73,7 @@ const Tab = function Tab({
       role="tab"
       variant="custom"
       size="custom"
+      unstyled={unstyled}
     >
       {Icon && (
         <Icon
