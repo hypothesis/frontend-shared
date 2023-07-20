@@ -17,6 +17,7 @@ import ModalPage from './components/patterns/feedback/ModalPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 import ButtonsPage from './components/patterns/input/ButtonPage';
 import CheckboxPage from './components/patterns/input/CheckboxPage';
+import CloseButtonPage from './components/patterns/input/CloseButtonPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
@@ -168,6 +169,12 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: CheckboxPage,
     route: '/input-checkbox',
+  },
+  {
+    title: 'CloseButton',
+    group: 'input',
+    component: CloseButtonPage,
+    route: '/input-closebutton',
   },
   {
     title: 'Input',
