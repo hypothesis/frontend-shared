@@ -336,7 +336,8 @@ export function testTransitionComponent(
 
         // Default to the main container as the `target` for the TransitionEvent,
         // as that would be the actual behavior at runtime.
-        // Callers can still override it in case that's not desired.
+        // If that's not desired, callers can still override it by providing
+        // event.target explicitly.
         const container = wrapper.find('div');
         container.prop('ontransitionend')({
           target: container.getDOMNode(),
