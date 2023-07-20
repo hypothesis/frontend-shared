@@ -16,7 +16,7 @@ export type {{name}}Props = PresentationalProps & ComponentProps & HTMLAttribute
 /**
  * TODO
  */
-const {{name}} = function {{name}}({
+export default function {{name}}({
   children,
   classes,
   elementRef,
@@ -48,6 +48,4 @@ const {{name}} = function {{name}}({
       {children}
     </div>
   );
-};
-
-export default {{name}};
+}

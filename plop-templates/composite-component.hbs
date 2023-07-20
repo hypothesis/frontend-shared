@@ -18,7 +18,7 @@ export type {{name}}Props = CompositeProps &
 /**
  * TODO
  */
-const {{name}} = function {{name}}({
+export default function {{name}}({
   children,
   elementRef,
 
@@ -48,6 +48,4 @@ const {{name}} = function {{name}}({
       {children}
     </div>
   );
-};
-
-export default {{name}};
+}
