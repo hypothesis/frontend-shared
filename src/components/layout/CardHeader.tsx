@@ -5,8 +5,7 @@ import { useContext } from 'preact/hooks';
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import CloseableContext from '../CloseableContext';
-import { CancelIcon } from '../icons';
-import { IconButton } from '../input';
+import CloseButton from '../input/CloseButton';
 import CardTitle from './CardTitle';
 
 type ComponentProps = {
@@ -70,18 +69,14 @@ const CardHeader = function CardHeader({
       {children}
       <div className="grow" />
       {closeHandler && (
-        <IconButton
+        <CloseButton
           onClick={closeHandler}
-          data-testid="close-button"
-          title="Close"
           classes={classnames(
             // Pull button right such that its icon right-aligns with the
             // header's bottom border
             '-mr-2.5'
           )}
-        >
-          <CancelIcon />
-        </IconButton>
+        />
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import type { DialogProps } from '../../../../';
 import {
   ArrowRightIcon,
   Button,
+  CloseButton,
   DataTable,
   Dialog,
   EditIcon,
@@ -202,14 +203,25 @@ export default function DialogPage() {
               <code>Panel</code>. Set <code>variant</code> to{' '}
               <code>{`'custom'`}</code> to use a custom layout.
             </p>
+            <p>
+              Use{' '}
+              <Library.Link href="/input-closebutton">
+                <code>CloseButton</code>
+              </Library.Link>{' '}
+              in custom dialog layouts to ensure the proper close handler is
+              used.
+            </p>
             <Library.Demo title="Dialog with custom layout" withSource>
               <Dialog_
                 title="Custom layout"
                 onClose={() => {}}
                 variant="custom"
-                _alwaysShowButton
+                transitionComponent={Slider}
               >
-                <div className="border p-3 bg-white">Custom dialog content</div>
+                <div className="flex gap-x-3 items-center border p-3 bg-white">
+                  <div className="grow">Custom dialog content</div>
+                  <CloseButton />
+                </div>
               </Dialog_>
             </Library.Demo>
           </Library.Example>
