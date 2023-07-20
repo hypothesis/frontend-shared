@@ -291,6 +291,22 @@ describe('Dialog', () => {
     });
   });
 
+  describe('dialog layout', () => {
+    it('lays out content in a Panel by default', () => {
+      const wrapper = mount(<Dialog title="My dialog" />);
+      assert.isTrue(wrapper.find('Panel').exists());
+    });
+
+    it('allows custom layout', () => {
+      const wrapper = mount(
+        <Dialog title="My dialog" variant="custom">
+          This is my content
+        </Dialog>
+      );
+      assert.isFalse(wrapper.find('Panel').exists());
+    });
+  });
+
   describe('aria-describedby', () => {
     it("marks the first `<p>` in the dialog's content as the accessible description", () => {
       const wrapper = mount(

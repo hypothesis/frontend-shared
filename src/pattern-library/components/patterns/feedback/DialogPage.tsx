@@ -195,6 +195,26 @@ export default function DialogPage() {
           </Library.Demo>
         </Library.Pattern>
 
+        <Library.Pattern title="Working with Dialogs">
+          <Library.Example title="Laying out content">
+            <p>
+              By default, <code>Dialog</code> will lay out its children in a{' '}
+              <code>Panel</code>. Set <code>variant</code> to{' '}
+              <code>{`'custom'`}</code> to use a custom layout.
+            </p>
+            <Library.Demo title="Dialog with custom layout" withSource>
+              <Dialog_
+                title="Custom layout"
+                onClose={() => {}}
+                variant="custom"
+                _alwaysShowButton
+              >
+                <div className="border p-3 bg-white">Custom dialog content</div>
+              </Dialog_>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+
         <Library.Pattern title="Component API">
           <p>
             <code>Dialog</code> accepts all standard{' '}
@@ -424,6 +444,21 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="variant">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                By default, contents are laid out in a <code>Panel</code>. Set
+                to <code>{`'custom'`}</code> to lay out dialog content manually.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`'panel' | 'custom'`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'panel'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
 
           <Library.Example title="...panelProps">
