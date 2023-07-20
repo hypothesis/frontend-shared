@@ -8,15 +8,17 @@ import {
   Card,
   CardActions,
   CardTitle,
+  CloseButton,
+  Dialog,
   IconButton,
   Input,
   InputGroup,
   OptionButton,
+  Slider,
   TabList,
   Tab,
 } from '../../../../';
 import {
-  CancelIcon,
   CopyIcon,
   EmailIcon,
   SocialTwitterIcon,
@@ -24,7 +26,6 @@ import {
 } from '../../../../';
 import type { PresentationalProps } from '../../../../types';
 import Library from '../../Library';
-import Dialog from './import-export/Dialog';
 
 type DividerProps = PresentationalProps & {
   variant: 'full' | 'center' | 'custom';
@@ -49,11 +50,9 @@ function TabListHeader({ children, onClose }: TabListHeaderProps) {
     <div data-testid="tabbed-header" className="flex items-center">
       {onClose && (
         // This might be extractable as, say, a CloseButton component
-        <IconButton
+        <CloseButton
           classes="text-[16px] text-grey-6 hover:text-grey-7 hover:bg-grey-3/50 order-last"
           title="Close"
-          icon={CancelIcon}
-          onClick={onClose}
           variant="custom"
           size="sm"
         />
@@ -207,6 +206,7 @@ function TabbedSharePanel() {
             variant="custom"
             title="Share annotations"
             onClose={() => setPanelOpen(false)}
+            transitionComponent={Slider}
             restoreFocus
           >
             <TabListHeader onClose={() => setPanelOpen(false)}>
