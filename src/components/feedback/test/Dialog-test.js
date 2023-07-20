@@ -275,7 +275,7 @@ describe('Dialog', () => {
         // We simulate closing the Dialog's Panel
         wrapper
           .find('Panel')
-          .find('button[data-testid="close-button"]')
+          .find('button[data-component="CloseButton"]')
           .simulate('click');
 
         // The onClose callback is not immediately invoked
