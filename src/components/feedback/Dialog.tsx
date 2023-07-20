@@ -46,6 +46,12 @@ type ComponentProps = {
    * Optional TransitionComponent for open (mount) and close (unmount) transitions
    */
   transitionComponent?: TransitionComponent;
+
+  /**
+   * Dialog lays out its content in a Panel by default, but `custom` allows any
+   * layout of Dialog children
+   */
+  variant?: 'panel' | 'custom';
 };
 
 // This component forwards a number of props on to `Panel` but always sets the
@@ -65,6 +71,7 @@ const Dialog = function Dialog({
   initialFocus = 'auto',
   restoreFocus = false,
   transitionComponent: TransitionComponent,
+  variant = 'panel',
 
   classes,
   elementRef,
@@ -211,17 +218,20 @@ const Dialog = function Dialog({
         )}
         ref={downcastRef(modalRef)}
       >
-        <Panel
-          buttons={buttons}
-          fullWidthHeader={true}
-          icon={icon}
-          onClose={isClosableDialog ? closeHandler : undefined}
-          paddingSize={paddingSize}
-          title={title}
-          scrollable={scrollable}
-        >
-          {children}
-        </Panel>
+        {variant === 'panel' && (
+          <Panel
+            buttons={buttons}
+            fullWidthHeader={true}
+            icon={icon}
+            onClose={isClosableDialog ? closeHandler : undefined}
+            paddingSize={paddingSize}
+            title={title}
+            scrollable={scrollable}
+          >
+            {children}
+          </Panel>
+        )}
+        {variant === 'custom' && <>{children}</>}
       </div>
     </Wrapper>
   );
