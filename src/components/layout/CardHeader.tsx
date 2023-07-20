@@ -1,8 +1,10 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
+import { useContext } from 'preact/hooks';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
+import CloseableContext from '../CloseableContext';
 import { CancelIcon } from '../icons';
 import { IconButton } from '../input';
 import CardTitle from './CardTitle';
@@ -45,6 +47,10 @@ const CardHeader = function CardHeader({
 
   ...htmlAttributes
 }: CardHeaderProps) {
+  const closeableContext = useContext(CloseableContext);
+  // Provided `onClose` is prioritized, but also check to see if there is
+  // a close handler provided by a `CloseableContext`
+  const closeHandler = onClose ?? closeableContext?.onClose;
   return (
     <div
       data-component="CardHeader"
@@ -63,9 +69,10 @@ const CardHeader = function CardHeader({
       {title && <CardTitle variant={variant}>{title}</CardTitle>}
       {children}
       <div className="grow" />
-      {onClose && (
+      {closeHandler && (
         <IconButton
-          onClick={onClose}
+          onClick={closeHandler}
+          data-testid="close-button"
           title="Close"
           classes={classnames(
             // Pull button right such that its icon right-aligns with the

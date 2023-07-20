@@ -273,7 +273,10 @@ describe('Dialog', () => {
         );
 
         // We simulate closing the Dialog's Panel
-        wrapper.find('Panel').prop('onClose')();
+        wrapper
+          .find('Panel')
+          .find('button[data-testid="close-button"]')
+          .simulate('click');
 
         // The onClose callback is not immediately invoked
         assert.notCalled(onClose);

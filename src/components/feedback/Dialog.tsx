@@ -17,6 +17,8 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useUniqueId } from '../../hooks/use-unique-id';
 import type { PresentationalProps, TransitionComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
+import CloseableContext from '../CloseableContext';
+import type { CloseableInfo } from '../CloseableContext';
 import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';
 
@@ -92,7 +94,6 @@ const Dialog = function Dialog({
   );
   const [transitionComponentVisible, setTransitionComponentVisible] =
     useState(false);
-  const isClosableDialog = !!onClose;
 
   const closeHandler = useCallback(() => {
     if (TransitionComponent) {
@@ -200,40 +201,46 @@ const Dialog = function Dialog({
     [dialogDescriptionId, modalRef]
   );
 
+  // Provide a close handler to descendant components
+  const closeableContext: CloseableInfo = {
+    onClose: onClose ? closeHandler : undefined,
+  };
+
   return (
-    <Wrapper
-      direction={transitionComponentVisible ? 'in' : 'out'}
-      onTransitionEnd={onTransitionEnd}
-    >
-      <div
-        data-component="Dialog"
-        tabIndex={-1}
-        // NB: Role can be overridden with an HTML attribute; this is purposeful
-        role="dialog"
-        {...htmlAttributes}
-        className={classnames(
-          // Column-flex layout to constrain content to max-height
-          'flex flex-col',
-          classes
-        )}
-        ref={downcastRef(modalRef)}
+    <CloseableContext.Provider value={closeableContext}>
+      <Wrapper
+        direction={transitionComponentVisible ? 'in' : 'out'}
+        onTransitionEnd={onTransitionEnd}
       >
-        {variant === 'panel' && (
-          <Panel
-            buttons={buttons}
-            fullWidthHeader={true}
-            icon={icon}
-            onClose={isClosableDialog ? closeHandler : undefined}
-            paddingSize={paddingSize}
-            title={title}
-            scrollable={scrollable}
-          >
-            {children}
-          </Panel>
-        )}
-        {variant === 'custom' && <>{children}</>}
-      </div>
-    </Wrapper>
+        <div
+          data-component="Dialog"
+          tabIndex={-1}
+          // NB: Role can be overridden with an HTML attribute; this is purposeful
+          role="dialog"
+          {...htmlAttributes}
+          className={classnames(
+            // Column-flex layout to constrain content to max-height
+            'flex flex-col',
+            classes
+          )}
+          ref={downcastRef(modalRef)}
+        >
+          {variant === 'panel' && (
+            <Panel
+              buttons={buttons}
+              fullWidthHeader={true}
+              icon={icon}
+              paddingSize={paddingSize}
+              title={title}
+              scrollable={scrollable}
+            >
+              {children}
+            </Panel>
+          )}
+          {variant === 'custom' && <>{children}</>}
+        </div>
+      </Wrapper>
+    </CloseableContext.Provider>
   );
 };
 
