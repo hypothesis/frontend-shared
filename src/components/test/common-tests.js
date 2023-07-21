@@ -316,7 +316,12 @@ export function testSimpleComponent(Component) {
  */
 export function testTransitionComponent(
   Component,
-  { componentName, createContent = createComponent, event = {} } = {}
+  {
+    componentName,
+    createContent = createComponent,
+    event = {},
+    elementSelector = '[ontransitionend]',
+  } = {}
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -334,12 +339,12 @@ export function testTransitionComponent(
           onTransitionEnd,
         });
 
-        // Default to the main container as the `target` for the TransitionEvent,
-        // as that would be the actual behavior at runtime.
-        // If that's not desired, callers can still override it by providing
-        // event.target explicitly.
-        const container = wrapper.find('div');
+        const container = wrapper.find(elementSelector);
         container.prop('ontransitionend')({
+          // Default to the main container as the `target` for the TransitionEvent,
+          // as that would be the actual behavior at runtime.
+          // If that's not desired, callers can still override it by providing
+          // event.target explicitly.
           target: container.getDOMNode(),
           ...event,
         });
