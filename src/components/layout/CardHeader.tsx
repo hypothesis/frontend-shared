@@ -74,7 +74,11 @@ const CardHeader = function CardHeader({
           classes={classnames(
             // Pull button right such that its icon right-aligns with the
             // header's bottom border
-            '-mr-2.5'
+            '-mr-2.5',
+            // Button icons render at 1em square. In this context, the icon
+            // should always be exactly 16px square, so set font size to make
+            // this happen.
+            'text-[16px]'
           )}
         />
       )}
