@@ -353,6 +353,26 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
+
+            <Library.Demo title="Close button sizing" withSource>
+              <div className="text-[13px] w-full">
+                <Card>
+                  <CardHeader onClose={() => alert('you clicked it')}>
+                    <h3 className="text-brand font-semibold">
+                      Custom title styling
+                    </h3>
+                  </CardHeader>
+                  <CardContent>
+                    <div>
+                      The close button will always have the same size,
+                      regardless of local font size. Here, font size is{' '}
+                      <code>13px</code>, echoing the client application base
+                      font size, but the close button remains the same size.
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </Library.Demo>
           </Library.Example>
           <Library.Example title="fullWidth">
             <Library.Info>
