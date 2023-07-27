@@ -1,19 +1,12 @@
 import classnames from 'classnames';
 import type { RefObject } from 'preact';
-import { Fragment } from 'preact';
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'preact/hooks';
+import { useCallback, useLayoutEffect, useRef } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
+import { useTransitionComponent } from '../../hooks/use-transition-component';
 import { useUniqueId } from '../../hooks/use-unique-id';
 import type { PresentationalProps, TransitionComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -80,7 +73,7 @@ const Dialog = function Dialog({
   children,
   initialFocus = 'auto',
   restoreFocus = false,
-  transitionComponent: TransitionComponent,
+  transitionComponent,
   variant = 'panel',
   closed = false,
 
@@ -99,23 +92,6 @@ const Dialog = function Dialog({
 }: DialogProps) {
   const modalRef = useSyncedRef(elementRef);
   const restoreFocusEl = useRef<HTMLElement | null>(null);
-
-  // TODO To properly handle closing/opening with a TransitionComponent, these
-  //  two pieces of state need to be synced with the `closed` prop.
-  //  That makes the logic hard to follow. It would be good to revisit eventually
-  const [isClosed, setIsClosed] = useState(closed);
-  const [transitionComponentVisible, setTransitionComponentVisible] =
-    useState(false);
-
-  const closeHandler = useCallback(() => {
-    if (TransitionComponent) {
-      // When a TransitionComponent is provided, the actual "onClose" will be
-      // called by that component, once the "out" transition has finished
-      setTransitionComponentVisible(false);
-    } else {
-      onClose?.();
-    }
-  }, [onClose, TransitionComponent]);
 
   const initializeDialog = useCallback(() => {
     if (initialFocus === 'manual') {
@@ -142,20 +118,20 @@ const Dialog = function Dialog({
     }
   }, [initialFocus, modalRef]);
 
+  const { closeHandler, isClosed, wrapWithTransition } = useTransitionComponent(
+    {
+      closed,
+      transitionComponent,
+      onClose,
+      onOpen: initializeDialog,
+    },
+  );
+
   const doRestoreFocus = useCallback(() => {
     if (restoreFocus) {
       restoreFocusEl.current?.focus();
     }
   }, [restoreFocus]);
-
-  const onTransitionEnd = (direction: 'in' | 'out') => {
-    if (direction === 'in') {
-      initializeDialog();
-    } else {
-      setIsClosed(true);
-      onClose?.();
-    }
-  };
 
   useClickAway(modalRef, closeHandler, {
     enabled: closeOnClickAway,
@@ -170,33 +146,6 @@ const Dialog = function Dialog({
   });
 
   const dialogDescriptionId = useUniqueId('dialog-description');
-  const Wrapper = useMemo(
-    () => TransitionComponent ?? Fragment,
-    [TransitionComponent],
-  );
-
-  useEffect(() => {
-    if (closed && TransitionComponent) {
-      setTransitionComponentVisible(false);
-    } else if (closed && !TransitionComponent) {
-      setIsClosed(true);
-    } else {
-      setIsClosed(false);
-    }
-
-    if (!closed && !TransitionComponent) {
-      initializeDialog();
-    }
-
-    // We only want to run this effect when opened or closed.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [closed]);
-
-  useEffect(() => {
-    if (!isClosed) {
-      setTransitionComponentVisible(true);
-    }
-  }, [isClosed]);
 
   useLayoutEffect(() => {
     if (isClosed) {
@@ -240,10 +189,7 @@ const Dialog = function Dialog({
 
   return (
     <CloseableContext.Provider value={closeableContext}>
-      <Wrapper
-        direction={transitionComponentVisible ? 'in' : 'out'}
-        onTransitionEnd={onTransitionEnd}
-      >
+      {wrapWithTransition(
         <div
           data-component="Dialog"
           tabIndex={-1}
@@ -270,8 +216,8 @@ const Dialog = function Dialog({
             </Panel>
           )}
           {variant === 'custom' && <>{children}</>}
-        </div>
-      </Wrapper>
+        </div>,
+      )}
     </CloseableContext.Provider>
   );
 };

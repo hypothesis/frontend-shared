@@ -4,6 +4,7 @@ export { useClickAway } from './hooks/use-click-away';
 export { useFocusAway } from './hooks/use-focus-away';
 export { useKeyPress } from './hooks/use-key-press';
 export { useSyncedRef } from './hooks/use-synced-ref';
+export { useTransitionComponent } from './hooks/use-transition-component';
 
 // Components
 export * from './components/icons';
