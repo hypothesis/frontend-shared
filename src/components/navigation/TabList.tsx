@@ -49,7 +49,7 @@ const TabList = function TabList({
       className={classnames(
         'flex focus-visible-ring',
         { 'flex-col': vertical },
-        classes
+        classes,
       )}
       role="tablist"
       aria-orientation={vertical ? 'vertical' : 'horizontal'}

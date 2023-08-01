@@ -6,7 +6,9 @@ import OptionButton from '../OptionButton';
 describe('OptionButton', () => {
   const createComponent = (props = {}) => {
     return mount(
-      <OptionButton {...props}>This is content inside of a Button</OptionButton>
+      <OptionButton {...props}>
+        This is content inside of a Button
+      </OptionButton>,
     );
   };
 
@@ -18,11 +20,11 @@ describe('OptionButton', () => {
 
     assert.equal(
       pressed.find('button').getDOMNode().getAttribute('aria-pressed'),
-      'true'
+      'true',
     );
     assert.equal(
       selected.find('button').getDOMNode().getAttribute('aria-pressed'),
-      'true'
+      'true',
     );
   });
 

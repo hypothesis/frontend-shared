@@ -17,7 +17,7 @@ describe('TableBody', () => {
             </tr>
           </Component>
         </table>
-      </TableContext.Provider>
+      </TableContext.Provider>,
     );
   };
 
@@ -31,7 +31,7 @@ describe('TableBody', () => {
             <td>Cell content</td>
           </tr>
         </Component>
-      </table>
+      </table>,
     );
   };
 
@@ -52,7 +52,7 @@ describe('TableBody', () => {
     it('adds interactive cursor styling', () => {
       const wrapper = createComponent(TableBody);
       assert.isTrue(
-        wrapper.find('[data-component="TableBody"]').hasClass('cursor-pointer')
+        wrapper.find('[data-component="TableBody"]').hasClass('cursor-pointer'),
       );
     });
   });

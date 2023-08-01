@@ -224,12 +224,12 @@ function Demo({
                   'bg-slate-100 border border-slate-400 shadow-inner':
                     visibleTab === 'source',
                   'border-slate-100 shadow': visibleTab !== 'source',
-                }
+                },
               )}
               aria-pressed={visibleTab === 'source'}
               onClick={() =>
                 setVisibleTab(prevState =>
-                  prevState === 'source' ? 'demo' : 'source'
+                  prevState === 'source' ? 'demo' : 'source',
                 )
               }
               title="Toggle view-source panel"
@@ -248,7 +248,7 @@ function Demo({
             <div
               className={classnames(
                 'h-full flex flex-row items-center justify-center gap-2',
-                classes
+                classes,
               )}
             >
               {children}
@@ -283,7 +283,7 @@ function StatusChip({ status }: LibraryStatusChipProps) {
           'bg-red-error text-color-text-inverted': status === 'breaking',
           'bg-yellow-notice': status === 'deprecated' || status === 'changed',
           'bg-green-success text-color-text-inverted': status === 'added',
-        }
+        },
       )}
     >
       {status === 'breaking' && <span>Breaking</span>}
@@ -321,7 +321,7 @@ function ChangelogItem({ status, children }: LibraryChangelogItemProps) {
         // "Outdent": <ul>s are indented (for readability) by 2rem. In the
         // case of this particular <ul>, we want to regain left-hand space
         // because the status chips are aligned to the right.
-        '-ml-8 '
+        '-ml-8 ',
       )}
     >
       <div className="mt-2 min-w-[7rem] text-right">
@@ -356,7 +356,7 @@ function Code({ content, size, title }: LibraryCodeProps) {
         <div
           className={classnames(
             'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md min-h-0 h-full',
-            { 'text-sm': size === 'sm' }
+            { 'text-sm': size === 'sm' },
           )}
         >
           <Scroll variant="flat">

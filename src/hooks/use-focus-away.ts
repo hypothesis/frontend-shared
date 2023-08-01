@@ -19,7 +19,7 @@ type UseFocusAwayOptions = {
 export function useFocusAway(
   container: RefObject<HTMLElement | undefined>,
   callback: (e: FocusEvent) => void,
-  { enabled = true }: UseFocusAwayOptions = {}
+  { enabled = true }: UseFocusAwayOptions = {},
 ) {
   useEffect(() => {
     if (!enabled) {
@@ -42,7 +42,7 @@ export function useFocusAway(
       {
         // Focus events don't bubble; they need to be handled in the capture phase
         capture: true,
-      }
+      },
     );
 
     return () => {

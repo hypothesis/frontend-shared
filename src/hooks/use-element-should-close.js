@@ -13,11 +13,11 @@ import { useEffect } from 'preact/hooks';
  */
 function listen(element, events, listener, { useCapture = false } = {}) {
   events.forEach(event =>
-    element.addEventListener(event, listener, useCapture)
+    element.addEventListener(event, listener, useCapture),
   );
   return () => {
     events.forEach(event =>
-      element.removeEventListener(event, listener, useCapture)
+      element.removeEventListener(event, listener, useCapture),
     );
   };
 }
@@ -70,7 +70,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
           handleClose();
         }
       },
-      { useCapture: true }
+      { useCapture: true },
     );
 
     // Close element if user clicks outside of it, even if on an element which
@@ -86,7 +86,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
           handleClose();
         }
       },
-      { useCapture: true }
+      { useCapture: true },
     );
 
     return () => {

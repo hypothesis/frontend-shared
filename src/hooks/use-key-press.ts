@@ -16,7 +16,7 @@ type UseKeyPressOptions = {
 export function useKeyPress(
   keys: string[],
   callback: (e: KeyboardEvent) => void,
-  { enabled = true }: UseKeyPressOptions = {}
+  { enabled = true }: UseKeyPressOptions = {},
 ) {
   useEffect(() => {
     if (!enabled) {

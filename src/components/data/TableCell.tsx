@@ -46,7 +46,7 @@ const TableCell = function TableCell({
           'group-last/unselected:border-b group-last/unselected:border-grey-2 group-last/unselected:border-dotted':
             !isHeadCell,
         },
-        classes
+        classes,
       )}
       scope={isHeadCell ? 'col' : undefined}
     >

@@ -70,7 +70,7 @@ export function useArrowKeyNavigation(
     horizontal = true,
     vertical = true,
     selector = 'a,button',
-  }: UseArrowKeyNavigationOptions = {}
+  }: UseArrowKeyNavigationOptions = {},
 ) {
   // Keep track of the element that was last focused by this hook such that
   // navigation can be restored if focus moves outside of the container
@@ -85,10 +85,10 @@ export function useArrowKeyNavigation(
 
     const getNavigableElements = () => {
       const elements: HTMLElement[] = Array.from(
-        container.querySelectorAll(selector)
+        container.querySelectorAll(selector),
       );
       const filtered = elements.filter(
-        el => isElementVisible(el) && !isElementDisabled(el)
+        el => isElementVisible(el) && !isElementDisabled(el),
       );
       // Include the container itself in the set of navigable elements if it
       // is currently focused. It will not be part of the tab sequence once it
@@ -114,7 +114,7 @@ export function useArrowKeyNavigation(
     const updateTabIndexes = (
       elements = getNavigableElements(),
       currentIndex = -1,
-      setFocus = false
+      setFocus = false,
     ) => {
       if (currentIndex < 0) {
         currentIndex = elements.findIndex(el => el.tabIndex === 0);

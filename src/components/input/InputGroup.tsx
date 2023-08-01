@@ -12,7 +12,7 @@ export const inputGroupStyles = classnames(
   // Restore border-radius on the leftmost and rightmost components in the group
   'input-group:first:rounded-l-sm input-group:last:rounded-r-sm',
   // "Collapse" borders between input components
-  'input-group:border-l-0 input-group:first:border-l'
+  'input-group:border-l-0 input-group:first:border-l',
 );
 
 export type InputGroupProps = PresentationalProps &
@@ -38,7 +38,7 @@ const InputGroup = function InputGroup({
         // use the `input-group:` variant in their styles
         'input-group',
         'flex items-stretch w-full justify-center',
-        classes
+        classes,
       )}
     >
       {children}

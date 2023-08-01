@@ -112,7 +112,7 @@ const Button = function Button({
           'p-1.5 gap-x-1.5': size === 'sm',
           'p-2.5 gap-x-1.5': size === 'lg',
         },
-        classes
+        classes,
       )}
       ref={downcastRef(elementRef)}
       title={title}

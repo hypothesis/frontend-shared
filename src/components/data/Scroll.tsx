@@ -42,7 +42,7 @@ const Scroll = function Scroll({
           'min-h-0',
           'h-full w-full overflow-auto',
           { 'scroll-shadows': variant === 'raised' },
-          classes
+          classes,
         )}
       >
         {children}

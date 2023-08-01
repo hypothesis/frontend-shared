@@ -11,7 +11,7 @@ describe('DataTable', () => {
 
   const createComponent = (Component, props = {}) => {
     return mount(
-      <Component columns={fakeColumns} rows={fakeRows} {...props} />
+      <Component columns={fakeColumns} rows={fakeRows} {...props} />,
     );
   };
 
@@ -64,7 +64,7 @@ describe('DataTable', () => {
 
     assert.isTrue(interactiveWrapper.find('Table').props().interactive);
     assert.isTrue(
-      interactiveWrapper.find('[data-component="TableFoot"]').exists()
+      interactiveWrapper.find('[data-component="TableFoot"]').exists(),
     );
   });
 
@@ -92,7 +92,7 @@ describe('DataTable', () => {
       const wrapper = createComponent(DataTable);
       assert.equal(
         wrapper.find('TableBody').find('TableRow').length,
-        fakeRows.length
+        fakeRows.length,
       );
     });
 
@@ -262,10 +262,10 @@ describe('DataTable', () => {
       const lastRowEl = wrapper.find('tbody tr').at(4).getDOMNode();
       const scrollEl = wrapper.find('Scroll').getDOMNode();
       const selectedRowBottomOffset = Math.floor(
-        lastRowEl.offsetTop + lastRowEl.clientHeight
+        lastRowEl.offsetTop + lastRowEl.clientHeight,
       );
       const scrollBottomVisible = Math.floor(
-        scrollEl.scrollTop + scrollEl.clientHeight
+        scrollEl.scrollTop + scrollEl.clientHeight,
       );
 
       assert.equal(lastRowEl.getAttribute('aria-selected'), 'true');
@@ -274,7 +274,7 @@ describe('DataTable', () => {
       // the row would not be visible unless the scroll has been "scrolled"
       assert.isTrue(
         lastRowEl.offsetTop > scrollEl.clientHeight,
-        "The selected row's vertical offset is greater than the scroll height"
+        "The selected row's vertical offset is greater than the scroll height",
       );
 
       // The bottom of the selected row is approximately aligned with the bottom
@@ -285,7 +285,7 @@ describe('DataTable', () => {
         selectedRowBottomOffset,
         scrollBottomVisible,
         1,
-        'It scrolls to make the selected row visible'
+        'It scrolls to make the selected row visible',
       );
 
       // Now, select the second data row. This will trigger the component to
@@ -304,7 +304,7 @@ describe('DataTable', () => {
         stickyHeaderHeight,
         scrollEl.scrollTop,
         1,
-        'Scroll is adjusted to ensure selected row is visible below sticky header'
+        'Scroll is adjusted to ensure selected row is visible below sticky header',
       );
     });
   });

@@ -38,7 +38,7 @@ const CardTitle = function CardTitle({
           'text-lg text-brand font-semibold': variant === 'primary',
           'text-xl text-slate-7 font-normal': variant === 'secondary',
         },
-        classes
+        classes,
       )}
       ref={downcastRef(elementRef)}
     >

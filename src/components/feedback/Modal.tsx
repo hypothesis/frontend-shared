@@ -106,7 +106,7 @@ const Modal = function Modal({
         modalRef.current!.setAttribute('aria-describedby', dialogDescriptionId);
       }
     },
-    [dialogDescriptionId, modalRef]
+    [dialogDescriptionId, modalRef],
   );
 
   return (
@@ -136,7 +136,7 @@ const Modal = function Modal({
             'w-[42rem]': width === 'lg',
             // No width classes are added if width is 'custom'
           },
-          classes
+          classes,
         )}
         ref={downcastRef(modalRef)}
       >

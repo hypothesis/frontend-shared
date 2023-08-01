@@ -7,7 +7,7 @@ export type FileGenericFilledIconProps = JSX.SVGAttributes<SVGSVGElement>;
  * Icon generated from file-generic-filled.svg
  */
 export default function FileGenericFilledIcon(
-  props: FileGenericFilledIconProps
+  props: FileGenericFilledIconProps,
 ) {
   return (
     <svg

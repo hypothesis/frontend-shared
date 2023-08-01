@@ -11,7 +11,7 @@ const contentFn = (Component, props = {}) => {
   return mount(
     <div role="tablist">
       <Component {...props}>This is child content</Component>
-    </div>
+    </div>,
   );
 };
 
@@ -28,11 +28,11 @@ describe('Tab', () => {
 
     assert.equal(
       tab1.find('button').getDOMNode().getAttribute('aria-selected'),
-      'true'
+      'true',
     );
     assert.equal(
       tab2.find('button').getDOMNode().getAttribute('aria-selected'),
-      'false'
+      'false',
     );
   });
 
@@ -43,7 +43,7 @@ describe('Tab', () => {
         .find('[data-testid="sizing-wrapper"]')
         .getDOMNode()
         .getAttribute('data-content'),
-      'Tab Label'
+      'Tab Label',
     );
   });
 

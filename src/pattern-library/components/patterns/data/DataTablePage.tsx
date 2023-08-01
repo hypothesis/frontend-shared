@@ -14,7 +14,7 @@ const nabokovColumns = [
 
 export default function DataTablePage() {
   const [selectedRow, setSelectedRow] = useState<NabokovNovel | null>(
-    nabokovRows[nabokovRows.length - 1]
+    nabokovRows[nabokovRows.length - 1],
   );
 
   const [selectedRow2, setSelectedRow2] = useState<NabokovNovel | null>(null);

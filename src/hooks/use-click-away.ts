@@ -16,7 +16,7 @@ type UseClickAwayOptions = {
 export function useClickAway(
   container: RefObject<HTMLElement | undefined>,
   callback: (e: Event) => void,
-  { enabled = true }: UseClickAwayOptions = {}
+  { enabled = true }: UseClickAwayOptions = {},
 ) {
   useEffect(() => {
     if (!enabled) {

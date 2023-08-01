@@ -154,7 +154,7 @@ function Button6({
         'group bg-stone-50 hover:bg-slate-100 shadow hover:shadow-lg rounded-[4px] border border-stone-300 hover:border-stone-400 justify-center',
         {
           'shadow-inner': selected,
-        }
+        },
       )}
       size="custom"
       variant="custom"
@@ -175,7 +175,7 @@ function Button6({
             {
               'bg-stone-200': !selected,
               'bg-slate-500': selected,
-            }
+            },
           )}
         >
           <span
@@ -184,7 +184,7 @@ function Button6({
               {
                 'text-stone-500': !selected,
                 'text-stone-50': selected,
-              }
+              },
             )}
           >
             {contentType}

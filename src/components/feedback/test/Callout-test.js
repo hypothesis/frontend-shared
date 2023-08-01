@@ -73,7 +73,7 @@ describe('Callout', () => {
       assert.isFalse(unstyled.find(iconSelector).exists());
       assert.isFalse(withCustomIcon.find(iconSelector).exists());
       assert.isFalse(
-        withCustomIcon.find('[data-component="FakeIcon"]').exists()
+        withCustomIcon.find('[data-component="FakeIcon"]').exists(),
       );
     });
   });

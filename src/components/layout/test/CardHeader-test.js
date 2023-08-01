@@ -28,7 +28,7 @@ describe('CardHeader', () => {
       const wrapper = mount(
         <CloseableContext.Provider value={{ onClose }}>
           <CardHeader title="Test header" />
-        </CloseableContext.Provider>
+        </CloseableContext.Provider>,
       );
 
       wrapper.find('button').simulate('click');

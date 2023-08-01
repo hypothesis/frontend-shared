@@ -12,7 +12,7 @@ gulp.task('serve-pattern-library', () => {
 // during development. Bundled JS and CSS are not published with the package.
 
 gulp.task('bundle-css', () =>
-  buildCSS(['./styles/pattern-library.scss'], { tailwindConfig })
+  buildCSS(['./styles/pattern-library.scss'], { tailwindConfig }),
 );
 
 gulp.task(
@@ -26,16 +26,16 @@ gulp.task(
         './src/pattern-library/**/*.js',
         './src/pattern-library/**/*.ts*',
       ],
-      gulp.task('bundle-css')
-    )
-  )
+      gulp.task('bundle-css'),
+    ),
+  ),
 );
 
 gulp.task('watch-js', () => watchJS('./rollup.config.js'));
 
 gulp.task(
   'watch',
-  gulp.parallel('serve-pattern-library', 'watch-css', 'watch-js')
+  gulp.parallel('serve-pattern-library', 'watch-css', 'watch-js'),
 );
 
 /**
@@ -44,7 +44,7 @@ gulp.task(
  * nb. This is only used for unit tests that need CSS to verify accessibility requirements.
  */
 gulp.task('build-test-css', () =>
-  buildCSS(['styles/test.scss'], { tailwindConfig })
+  buildCSS(['styles/test.scss'], { tailwindConfig }),
 );
 
 // Some (eg. a11y) tests rely on CSS bundles. We assume that JS will always take
@@ -57,6 +57,6 @@ gulp.task(
       rollupConfig: 'rollup-tests.config.js',
       karmaConfig: 'src/karma.config.cjs',
       testsPattern: 'src/**/*-test.js',
-    })
-  )
+    }),
+  ),
 );

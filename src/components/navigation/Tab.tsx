@@ -66,7 +66,7 @@ const Tab = function Tab({
           'enabled:hover:text-brand-dark': variant === 'text',
           'aria-selected:font-bold': variant === 'text',
         },
-        classes
+        classes,
       )}
       elementRef={downcastRef(elementRef)}
       aria-selected={selected}
@@ -80,7 +80,7 @@ const Tab = function Tab({
           className={classnames(
             // A small padding value here sizes the icon down slightly in relation
             // to the tab text, which results in nicer proportions.
-            'p-[0.125em] w-em h-em'
+            'p-[0.125em] w-em h-em',
           )}
         />
       )}

@@ -34,7 +34,7 @@ const TableBody = function TableBody({
         ref={downcastRef(elementRef)}
         className={classnames(
           { 'cursor-pointer': tableContext?.interactive },
-          classes
+          classes,
         )}
       >
         {children}

@@ -13,7 +13,7 @@ describe('CloseButton', () => {
       const wrapper = mount(
         <CloseableContext.Provider value={{ onClose }}>
           <CloseButton />
-        </CloseableContext.Provider>
+        </CloseableContext.Provider>,
       );
 
       wrapper.find('button').simulate('click');
@@ -26,7 +26,7 @@ describe('CloseButton', () => {
       const wrapper = mount(
         <CloseableContext.Provider value={{ onClose }}>
           <CloseButton onClick={onClick} />
-        </CloseableContext.Provider>
+        </CloseableContext.Provider>,
       );
 
       wrapper.find('button').simulate('click');

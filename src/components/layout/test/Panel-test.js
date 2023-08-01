@@ -9,7 +9,7 @@ const createComponent = (Component, props = {}) => {
   return mount(
     <Component title="Test title" {...props}>
       This is child content
-    </Component>
+    </Component>,
   );
 };
 
@@ -37,7 +37,7 @@ describe('Panel', () => {
 
     assert.isTrue(wrapper.find('[data-testid="panel-buttons"]').exists());
     assert.isFalse(
-      noButtonWrapper.find('[data-testid="panel-buttons"]').exists()
+      noButtonWrapper.find('[data-testid="panel-buttons"]').exists(),
     );
   });
 
@@ -77,7 +77,7 @@ describe('Panel', () => {
         <Panel title="Constrained Panel" scrollable>
           <LoremIpsum />
         </Panel>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       // Lorem ipsum rendered without constraints will take up more than 200
@@ -88,7 +88,7 @@ describe('Panel', () => {
       assert.equal(
         wrapper.find('div[data-composite-component="Panel"]').getDOMNode()
           .clientHeight,
-        200
+        200,
       );
     });
 
@@ -97,13 +97,13 @@ describe('Panel', () => {
         <Panel title="Unconstrained Panel">
           <LoremIpsum />
         </Panel>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.isAbove(
         wrapper.find('div[data-component="CardContent"] p').first().getDOMNode()
           .clientHeight,
-        200
+        200,
       );
     });
 
@@ -112,10 +112,10 @@ describe('Panel', () => {
       const noPaddingWrapper = createComponent(Panel, { paddingSize: 'none' });
 
       assert.isTrue(
-        wrapper.find('[data-testid="panel-content-wrapper"]').exists()
+        wrapper.find('[data-testid="panel-content-wrapper"]').exists(),
       );
       assert.isFalse(
-        noPaddingWrapper.find('[data-testid="panel-content-wrapper"]').exists()
+        noPaddingWrapper.find('[data-testid="panel-content-wrapper"]').exists(),
       );
     });
   });

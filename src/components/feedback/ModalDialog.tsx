@@ -101,7 +101,7 @@ const ModalDialog = function ModalDialog({
             'w-[42rem]': modalSize === 'lg',
             // No width classes are added if width is 'custom'
           },
-          classes
+          classes,
         )}
         elementRef={downcastRef(modalRef)}
         // Testing affordance. TODO: Remove once deprecated `width` prop

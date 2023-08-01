@@ -34,7 +34,7 @@ describe('ListenerCollection', () => {
         listener3,
         {
           capture: true,
-        }
+        },
       );
       listeners.remove(listenerId);
       listeners.remove(capturePhaseListenerId);

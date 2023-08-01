@@ -53,7 +53,7 @@ function generateIcon(name, src, inputFileName) {
   // We assume the performance cost of this is very minor.
   const content = optimized.data.replace(
     /<svg ([^>]+)>/,
-    `<svg $1 data-component="${name}" {...props}>`
+    `<svg $1 data-component="${name}" {...props}>`,
   );
 
   const jsx = `
@@ -108,7 +108,7 @@ function generateIconFromFile(inputFile, outputDir) {
  */
 function generateIconIndex(componentDir) {
   const iconComponents = readdirSync(componentDir).filter(
-    file => file.endsWith('.tsx') && !file.includes('index')
+    file => file.endsWith('.tsx') && !file.includes('index'),
   );
   let outputSrc = `${AUTO_GENERATED_COMMENT}\n`;
   for (let componentFile of iconComponents) {

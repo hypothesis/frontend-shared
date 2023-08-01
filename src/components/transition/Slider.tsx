@@ -71,7 +71,7 @@ const Slider: TransitionComponent = ({
       }
       onTransitionEnd?.(direction);
     },
-    [setContainerHeight, visible, onTransitionEnd, direction]
+    [setContainerHeight, visible, onTransitionEnd, direction],
   );
 
   const isFullyVisible = containerHeight === 'auto';

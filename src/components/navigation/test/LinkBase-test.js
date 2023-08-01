@@ -8,7 +8,7 @@ describe('LinkBase', () => {
     return mount(
       <LinkBase href="http://www.example.com" {...props}>
         This is content inside of a Link
-      </LinkBase>
+      </LinkBase>,
     );
   };
 
@@ -20,7 +20,7 @@ describe('LinkBase', () => {
     const wrapper = createComponent();
     assert.equal(
       wrapper.find('a').first().getDOMNode().getAttribute('rel'),
-      'noopener noreferrer'
+      'noopener noreferrer',
     );
   });
 });

@@ -60,7 +60,7 @@ export function testCompositeComponent(
     createContent = createComponent,
     elementSelector,
     wrapperSelector,
-  } = {}
+  } = {},
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -89,7 +89,7 @@ export function testCompositeComponent(
       assert.isTrue(wrapperOuterEl.hasAttribute('data-composite-component'));
       assert.equal(
         wrapperOuterEl.getAttribute('data-composite-component'),
-        displayName
+        displayName,
       );
     });
 
@@ -97,7 +97,7 @@ export function testCompositeComponent(
       'should pass a11y checks',
       checkAccessibility({
         content: () => createContent(Component),
-      })
+      }),
     );
   });
 }
@@ -120,7 +120,7 @@ export function testStyledComponent(
     createContent = createComponent,
     elementSelector,
     supportedProps = ['size', 'unstyled', 'variant'],
-  } = {}
+  } = {},
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -151,7 +151,7 @@ export function testStyledComponent(
         const unStyled = createContent(Component, { variant: 'custom' });
         assert.isTrue(
           primaryElement(styled, elementSelector).classList.length >
-            primaryElement(unStyled, elementSelector).classList.length
+            primaryElement(unStyled, elementSelector).classList.length,
         );
       });
     }
@@ -164,7 +164,7 @@ export function testStyledComponent(
         const unStyled = createContent(Component, { size: 'custom' });
         assert.isTrue(
           primaryElement(styled, elementSelector).classList.length >
-            primaryElement(unStyled, elementSelector).classList.length
+            primaryElement(unStyled, elementSelector).classList.length,
         );
       });
     }
@@ -179,7 +179,7 @@ export function testStyledComponent(
  */
 export function testPresentationalComponent(
   Component,
-  { componentName, createContent = createComponent, elementSelector } = {}
+  { componentName, createContent = createComponent, elementSelector } = {},
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -229,7 +229,7 @@ export function testPresentationalComponent(
       'should pass a11y checks',
       checkAccessibility({
         content: () => createContent(Component),
-      })
+      }),
     );
   });
 }
@@ -242,7 +242,7 @@ export function testPresentationalComponent(
  */
 export function testBaseComponent(
   Component,
-  { componentName, createContent = createComponent, elementSelector } = {}
+  { componentName, createContent = createComponent, elementSelector } = {},
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
   describe(`Common base presentational functionality for ${displayName}`, () => {
@@ -289,7 +289,7 @@ export function testBaseComponent(
       'should pass a11y checks',
       checkAccessibility({
         content: () => createComponent(Component),
-      })
+      }),
     );
   });
 }
@@ -321,7 +321,7 @@ export function testTransitionComponent(
     createContent = createComponent,
     event = {},
     elementSelector = '[ontransitionend]',
-  } = {}
+  } = {},
 ) {
   const displayName = componentName ?? Component.displayName ?? Component.name;
 
@@ -359,7 +359,7 @@ export function testTransitionComponent(
         {
           content: () => createContent(Component),
         },
-      ])
+      ]),
     );
   });
 }

@@ -69,7 +69,7 @@ export function useTabKeyNavigation(
   {
     enabled = true,
     selector = defaultSelector,
-  }: UseTabKeyNavigationOptions = {}
+  }: UseTabKeyNavigationOptions = {},
 ) {
   const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
   useEffect(() => {
@@ -83,10 +83,10 @@ export function useTabKeyNavigation(
 
     const getNavigableElements = () => {
       const elements: HTMLElement[] = Array.from(
-        container.querySelectorAll(selector)
+        container.querySelectorAll(selector),
       );
       const filtered = elements.filter(
-        el => isElementVisible(el) && !isElementDisabled(el)
+        el => isElementVisible(el) && !isElementDisabled(el),
       );
       // Include the container itself in the set of navigable elements if it
       // is currently focused. It will not be part of the tab sequence once it
@@ -112,7 +112,7 @@ export function useTabKeyNavigation(
     const updateTabIndexes = (
       elements = getNavigableElements(),
       currentIndex = -1,
-      setFocus = false
+      setFocus = false,
     ) => {
       if (currentIndex < 0) {
         currentIndex = elements.findIndex(el => el.tabIndex === 0);
@@ -174,7 +174,7 @@ export function useTabKeyNavigation(
     const elements = getNavigableElements();
     // One of the navigable elements may already have focus
     const focusedIndex = elements.indexOf(
-      document.activeElement as HTMLElement
+      document.activeElement as HTMLElement,
     );
     updateTabIndexes(elements, focusedIndex);
 

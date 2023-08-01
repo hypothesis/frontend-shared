@@ -40,7 +40,7 @@ const TableHead = function TableHead({
           {
             'sticky top-0': tableContext?.stickyHeader,
           },
-          classes
+          classes,
         )}
       >
         {children}

@@ -35,7 +35,7 @@ const TableFoot = function TableFoot({
           // a Table has sparse data. This prevents <TableRow>s from stretching
           // vertically to fill extra space.
           'h-full',
-          classes
+          classes,
         )}
       >
         {children}

@@ -32,7 +32,7 @@ const InputRoot = function InputRoot({
 }: InputRootProps) {
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
-      '`Input` component should have either an `id` or an `aria-label` attribute'
+      '`Input` component should have either an `id` or an `aria-label` attribute',
     );
   }
 
@@ -49,7 +49,7 @@ const InputRoot = function InputRoot({
         { 'ring-inset ring-2 ring-red-error': hasError },
         // Adapt styles when this component is inside an InputGroup
         inputGroupStyles,
-        classes
+        classes,
       )}
     >
       {children}

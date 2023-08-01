@@ -14,7 +14,7 @@ describe('TableFoot', () => {
             <td>Cell content</td>
           </tr>
         </Component>
-      </table>
+      </table>,
     );
   };
 

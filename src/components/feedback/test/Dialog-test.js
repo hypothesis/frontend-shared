@@ -10,7 +10,7 @@ const createComponent = (Component, props = {}) => {
   return mount(
     <Component title="Test title" onClose={() => {}} {...props}>
       This is child content
-    </Component>
+    </Component>,
   );
 };
 
@@ -73,7 +73,7 @@ describe('Dialog', () => {
         <Dialog initialFocus={inputRef} title="My dialog">
           <input ref={inputRef} />
         </Dialog>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(document.activeElement, inputRef.current);
@@ -84,12 +84,12 @@ describe('Dialog', () => {
         <Dialog title="My dialog">
           <div>Test</div>
         </Dialog>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(
         document.activeElement,
-        wrapper.find('[role="dialog"]').getDOMNode()
+        wrapper.find('[role="dialog"]').getDOMNode(),
       );
     });
 
@@ -99,7 +99,7 @@ describe('Dialog', () => {
         <Dialog initialFocus={'manual'} title="My dialog">
           <div>Test</div>
         </Dialog>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(document.activeElement, focusedBefore);
@@ -112,12 +112,12 @@ describe('Dialog', () => {
         <Dialog initialFocus={inputRef} title="My dialog">
           <button ref={inputRef} disabled={true} />
         </Dialog>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(
         document.activeElement,
-        wrapper.find('[role="dialog"]').getDOMNode()
+        wrapper.find('[role="dialog"]').getDOMNode(),
       );
     });
 
@@ -128,19 +128,19 @@ describe('Dialog', () => {
             title="My dialog"
             transitionComponent={ComponentWithTransition}
           />,
-          { attachTo: container }
+          { attachTo: container },
         );
 
         // The Dialog is still not focused immediately after mounting it
         assert.notEqual(
           document.activeElement,
-          wrapper.find('[role="dialog"]').getDOMNode()
+          wrapper.find('[role="dialog"]').getDOMNode(),
         );
         // Once the transition has ended, the Dialog should be focused
         await delay(60); // Transition finishes after 6ms
         assert.equal(
           document.activeElement,
-          wrapper.find('[role="dialog"]').getDOMNode()
+          wrapper.find('[role="dialog"]').getDOMNode(),
         );
       });
     });
@@ -166,7 +166,7 @@ describe('Dialog', () => {
         <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
         {
           attachTo: container,
-        }
+        },
       );
       const dialogElement = document.getElementById('focus-dialog');
       // Focus moves to dialog by default when mounted
@@ -189,7 +189,7 @@ describe('Dialog', () => {
         <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
         {
           attachTo: container,
-        }
+        },
       );
       const dialogElement = document.getElementById('focus-dialog');
       // Focus moves to dialog by default when mounted
@@ -223,7 +223,7 @@ describe('Dialog', () => {
           </Dialog>,
           {
             attachTo: container,
-          }
+          },
         );
 
         assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
@@ -240,7 +240,7 @@ describe('Dialog', () => {
         </Dialog>,
         {
           attachTo: container,
-        }
+        },
       );
 
       assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: true });
@@ -253,7 +253,7 @@ describe('Dialog', () => {
         </Dialog>,
         {
           attachTo: container,
-        }
+        },
       );
 
       assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: true });
@@ -269,7 +269,7 @@ describe('Dialog', () => {
           />,
           {
             attachTo: container,
-          }
+          },
         );
 
         // We simulate closing the Dialog's Panel
@@ -304,7 +304,7 @@ describe('Dialog', () => {
       const wrapper = mount(
         <Dialog title="My dialog" variant="custom">
           This is my content
-        </Dialog>
+        </Dialog>,
       );
       assert.isFalse(wrapper.find('Panel').exists());
     });
@@ -315,7 +315,7 @@ describe('Dialog', () => {
       const wrapper = mount(
         <Dialog title="My dialog">
           <p>Enter a URL</p>
-        </Dialog>
+        </Dialog>,
       );
       const content = wrapper.find('[role="dialog"]').getDOMNode();
       const paragraphEl = wrapper.find('p').getDOMNode();
@@ -328,7 +328,7 @@ describe('Dialog', () => {
       const wrapper = mount(
         <Dialog title="My dialog">
           <button>Click me</button>
-        </Dialog>
+        </Dialog>,
       );
       const content = wrapper.find('[role="dialog"]').getDOMNode();
       assert.isNull(content.getAttribute('aria-describedby'));

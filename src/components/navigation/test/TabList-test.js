@@ -12,7 +12,7 @@ const contentFn = (Component, props = {}) => {
   return mount(
     <Component {...props}>
       <button role="tab">Tab 1</button>
-    </Component>
+    </Component>,
   );
 };
 
@@ -44,14 +44,14 @@ describe('TabList', () => {
           .find('[data-component="TabList"]')
           .getDOMNode()
           .getAttribute('aria-orientation'),
-        'horizontal'
+        'horizontal',
       );
       assert.equal(
         verticalTabList
           .find('[data-component="TabList"]')
           .getDOMNode()
           .getAttribute('aria-orientation'),
-        'vertical'
+        'vertical',
       );
     });
 

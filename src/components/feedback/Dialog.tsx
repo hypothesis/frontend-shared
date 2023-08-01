@@ -90,7 +90,7 @@ const Dialog = function Dialog({
 }: DialogProps) {
   const modalRef = useSyncedRef(elementRef);
   const restoreFocusEl = useRef<HTMLElement | null>(
-    document.activeElement as HTMLElement | null
+    document.activeElement as HTMLElement | null,
   );
   const [transitionComponentVisible, setTransitionComponentVisible] =
     useState(false);
@@ -153,7 +153,7 @@ const Dialog = function Dialog({
   const dialogDescriptionId = useUniqueId('dialog-description');
   const Wrapper = useMemo(
     () => TransitionComponent ?? Fragment,
-    [TransitionComponent]
+    [TransitionComponent],
   );
 
   useEffect(() => {
@@ -180,7 +180,7 @@ const Dialog = function Dialog({
     },
     // We only want to run this effect once when the dialog is mounted.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   useLayoutEffect(
@@ -198,7 +198,7 @@ const Dialog = function Dialog({
         modalRef.current!.setAttribute('aria-describedby', dialogDescriptionId);
       }
     },
-    [dialogDescriptionId, modalRef]
+    [dialogDescriptionId, modalRef],
   );
 
   // Provide a close handler to descendant components
@@ -221,7 +221,7 @@ const Dialog = function Dialog({
           className={classnames(
             // Column-flex layout to constrain content to max-height
             'flex flex-col',
-            classes
+            classes,
           )}
           ref={downcastRef(modalRef)}
         >

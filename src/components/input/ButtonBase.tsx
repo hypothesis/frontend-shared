@@ -95,7 +95,7 @@ const ButtonBase = function ButtonBase({
           // Set layout for button content
           'whitespace-nowrap flex items-center': !unstyled,
         },
-        classes
+        classes,
       )}
       title={title}
       ref={downcastRef(elementRef)}

@@ -8,7 +8,7 @@ const createComponent = (Component, props = {}) => {
   return mount(
     <Component title="Test title" onClose={() => {}} {...props}>
       This is child content
-    </Component>
+    </Component>,
   );
 };
 
@@ -39,7 +39,7 @@ describe('ModalDialog', () => {
   describe('closing the modal dialog', () => {
     it('closes on ESC by default, but not on away-focus or away-click', () => {
       const wrapper = mount(
-        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>,
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isTrue(dialogProps.closeOnEscape);
@@ -51,7 +51,7 @@ describe('ModalDialog', () => {
       const wrapper = mount(
         <ModalDialog title="Test modal dialog" disableCloseOnEscape>
           This is my dialog
-        </ModalDialog>
+        </ModalDialog>,
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isFalse(dialogProps.closeOnEscape);
@@ -61,7 +61,7 @@ describe('ModalDialog', () => {
   describe('restoring focus', () => {
     it('restores focus by default', () => {
       const wrapper = mount(
-        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>,
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isTrue(dialogProps.restoreFocus);
@@ -71,7 +71,7 @@ describe('ModalDialog', () => {
       const wrapper = mount(
         <ModalDialog title="Test modal dialog" disableRestoreFocus>
           This is my dialog
-        </ModalDialog>
+        </ModalDialog>,
       );
       const dialogProps = wrapper.find('Dialog').props();
       assert.isFalse(dialogProps.restoreFocus);
@@ -81,7 +81,7 @@ describe('ModalDialog', () => {
   describe('trapping focus', () => {
     it('traps focus by default', () => {
       mount(
-        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>,
       );
       assert.deepEqual(fakeUseTabKeyNavigation.lastCall.args[1], {
         enabled: true,
@@ -92,7 +92,7 @@ describe('ModalDialog', () => {
       mount(
         <ModalDialog title="Test modal dialog" disableFocusTrap>
           This is my dialog
-        </ModalDialog>
+        </ModalDialog>,
       );
       assert.deepEqual(fakeUseTabKeyNavigation.lastCall.args[1], {
         enabled: false,
@@ -105,7 +105,7 @@ describe('ModalDialog', () => {
       return mount(
         <ModalDialog title="Test modal dialog" {...props}>
           This is my dialog
-        </ModalDialog>
+        </ModalDialog>,
       );
     }
 
@@ -118,7 +118,7 @@ describe('ModalDialog', () => {
 
     it('sets a default size if neither `size` nor `width` provided', () => {
       const wrapper = mount(
-        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>
+        <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>,
       );
 
       assert.equal(modalSize(wrapper), 'md');

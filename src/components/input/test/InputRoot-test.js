@@ -17,7 +17,7 @@ describe('InputRoot', () => {
 
     assert.calledWith(
       console.warn,
-      '`Input` component should have either an `id` or an `aria-label` attribute'
+      '`Input` component should have either an `id` or an `aria-label` attribute',
     );
 
     console.warn.restore();
