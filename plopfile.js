@@ -91,10 +91,10 @@ ${
           - \`src/components/${data.group}/index.ts\` and
           - \`src/index.ts\`
       - [ ] ${chalk.bold(
-        'test'
+        'test',
       )} against an external application (client or lms)
       - [ ] add ${chalk.bold(
-        'documentation'
+        'documentation',
       )} to a new or existing pattern-library page`);
       if (data.addPatternLibraryPage) {
         actionList.push(`          - Add route to \`src/pattern-library/routes.js\`, e.g.:

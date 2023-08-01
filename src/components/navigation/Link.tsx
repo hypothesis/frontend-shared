@@ -60,7 +60,7 @@ const Link = function Link({
           'text-color-text-light hover:text-brand': theme === 'text-light',
           'text-color-text hover:text-brand-dark': theme === 'text',
         },
-        classes
+        classes,
       )}
       ref={downcastRef(elementRef)}
     >

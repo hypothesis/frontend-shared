@@ -34,7 +34,7 @@ const OptionButton = function OptionButton({
         'enabled:hover:border-slate-5 enabled:hover:bg-slate-0',
         'disabled:border-stone-200',
         'aria-pressed:border-slate-5 aria-pressed:bg-slate-0 aria-pressed:shadow-inner',
-        'aria-expanded:border-slate-5 aria-expanded:bg-slate-0 aria-expanded:shadow-inner'
+        'aria-expanded:border-slate-5 aria-expanded:bg-slate-0 aria-expanded:shadow-inner',
       )}
       size="custom"
       variant="custom"
@@ -61,7 +61,7 @@ const OptionButton = function OptionButton({
               'uppercase text-[0.8em] text-stone-500',
               'group-enabled:group-hover:text-stone-600',
               'group-disabled:text-stone-400',
-              'group-aria-pressed:text-slate-600 group-aria-expanded:text-slate-600'
+              'group-aria-pressed:text-slate-600 group-aria-expanded:text-slate-600',
             )}
             data-testid="option-button-details"
           >

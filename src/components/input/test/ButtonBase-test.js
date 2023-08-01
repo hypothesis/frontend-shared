@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 describe('ButtonBase', () => {
   const createComponent = (props = {}) => {
     return mount(
-      <ButtonBase {...props}>This is content inside of a Link</ButtonBase>
+      <ButtonBase {...props}>This is content inside of a Link</ButtonBase>,
     );
   };
 
@@ -26,11 +26,11 @@ describe('ButtonBase', () => {
 
     assert.equal(
       pressed.find('button').getDOMNode().getAttribute('aria-pressed'),
-      'true'
+      'true',
     );
     assert.equal(
       expanded.find('button').getDOMNode().getAttribute('aria-expanded'),
-      'true'
+      'true',
     );
   });
 
@@ -39,7 +39,7 @@ describe('ButtonBase', () => {
 
     assert.equal(
       wrapper.find('button').getDOMNode().getAttribute('role'),
-      'tab'
+      'tab',
     );
   });
 
@@ -48,7 +48,7 @@ describe('ButtonBase', () => {
 
     assert.equal(
       wrapper.find('button').getDOMNode().getAttribute('aria-label'),
-      'Click me'
+      'Click me',
     );
   });
 });

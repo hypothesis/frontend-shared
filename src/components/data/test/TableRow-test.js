@@ -19,7 +19,7 @@ describe('TableRow', () => {
             </Component>
           </TableSectionContext.Provider>
         </table>
-      </TableContext.Provider>
+      </TableContext.Provider>,
     );
   };
 
@@ -31,7 +31,7 @@ describe('TableRow', () => {
         <Component {...props}>
           <td>Cell content</td>
         </Component>
-      </table>
+      </table>,
     );
   };
 
@@ -50,12 +50,12 @@ describe('TableRow', () => {
     const unselectedWrapper = createComponent(TableRow, { selected: false });
 
     assert.isTrue(
-      selectedWrapper.find('[data-component="TableRow"]').prop('aria-selected')
+      selectedWrapper.find('[data-component="TableRow"]').prop('aria-selected'),
     );
     assert.isFalse(
       unselectedWrapper
         .find('[data-component="TableRow"]')
-        .prop('aria-selected')
+        .prop('aria-selected'),
     );
   });
 
@@ -68,7 +68,7 @@ describe('TableRow', () => {
       const wrapper = createComponent(TableRow);
       assert.equal(
         wrapper.find('[data-component="TableRow"]').prop('data-section'),
-        'head'
+        'head',
       );
     });
   });
@@ -82,7 +82,7 @@ describe('TableRow', () => {
       const wrapper = createComponent(TableRow);
       assert.equal(
         wrapper.find('[data-component="TableRow"]').prop('data-section'),
-        'body'
+        'body',
       );
     });
   });

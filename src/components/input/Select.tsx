@@ -36,7 +36,7 @@ const Select = function Select({
         // right edge by 0.5rem. Arrow image width (4 units) + horizontal
         // padding (3 units) = 7 units of right padding needed.
         'bg-no-repeat bg-[center_right_0.5rem] pr-7',
-        classes
+        classes,
       )}
       element="select"
       type={type}

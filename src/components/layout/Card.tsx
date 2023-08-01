@@ -52,7 +52,7 @@ const Card = function Card({
           'w-auto': width === 'auto',
           // No width is set if `width === 'custom'`
         },
-        classes
+        classes,
       )}
     >
       {children}

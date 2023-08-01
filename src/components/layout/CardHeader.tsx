@@ -61,7 +61,7 @@ const CardHeader = function CardHeader({
           'mx-3': !fullWidth && variant === 'primary',
           'px-3': fullWidth || variant === 'secondary',
         },
-        classes
+        classes,
       )}
       ref={downcastRef(elementRef)}
     >
@@ -78,7 +78,7 @@ const CardHeader = function CardHeader({
             // Button icons render at 1em square. In this context, the icon
             // should always be exactly 16px square, so set font size to make
             // this happen.
-            'text-[16px]'
+            'text-[16px]',
           )}
         />
       )}

@@ -181,7 +181,7 @@ describe('useArrowKeyNavigation', () => {
       assert.equal(
         event.defaultPrevented,
         shouldHandle,
-        `${key} defaultPrevented`
+        `${key} defaultPrevented`,
       );
       assert.equal(handleKeyDown.called, !shouldHandle, `${key} propagated`);
       handleKeyDown.resetHistory();
@@ -278,7 +278,7 @@ describe('useArrowKeyNavigation', () => {
     assert.equal(currentItem(), 'Italic');
 
     const outsideButton = container.querySelector(
-      '[data-testid="outside-button"]'
+      '[data-testid="outside-button"]',
     );
 
     // Place focus on an element entirely outside of the widget

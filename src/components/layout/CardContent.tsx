@@ -36,7 +36,7 @@ const CardContent = function CardContent({
           'p-2 space-y-3': size === 'sm',
           'p-4 space-y-6': size === 'lg',
         },
-        classes
+        classes,
       )}
     >
       {children}

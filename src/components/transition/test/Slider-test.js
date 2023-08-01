@@ -11,14 +11,14 @@ describe('Slider', () => {
       <Slider {...props}>
         <div style={{ width: 100, height: 200 }}>Test content</div>
       </Slider>,
-      { attachTo: container }
+      { attachTo: container },
     );
   };
 
   function triggerTransitionEnd(
     wrapper,
     target = undefined,
-    propertyName = 'height'
+    propertyName = 'height',
   ) {
     const container = wrapper.find('div').first();
     container.prop('ontransitionend')({

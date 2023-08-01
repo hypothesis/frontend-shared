@@ -65,7 +65,7 @@ describe('useTabKeyNavigation', () => {
           initialFocusIndex={initialFocusIndex}
           navigationOptions={options}
         />,
-        container
+        container,
       );
     });
     return findElementByTestId('toolbar');
@@ -163,7 +163,7 @@ describe('useTabKeyNavigation', () => {
       assert.equal(
         event.defaultPrevented,
         shouldHandle,
-        `${key} defaultPrevented`
+        `${key} defaultPrevented`,
       );
       assert.equal(handleKeyDown.called, !shouldHandle, `${key} propagated`);
       handleKeyDown.resetHistory();
@@ -277,7 +277,7 @@ describe('useTabKeyNavigation', () => {
     assert.equal(currentItem(), 'Italic');
 
     const outsideButton = container.querySelector(
-      '[data-testid="outside-button"]'
+      '[data-testid="outside-button"]',
     );
     outsideButton.focus();
 

@@ -69,7 +69,7 @@ const LinkButton = function LinkButton({
             theme === 'text-light',
         },
 
-        classes
+        classes,
       )}
       unstyled
     >

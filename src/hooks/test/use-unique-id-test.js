@@ -28,7 +28,7 @@ describe('useUniqueId', () => {
         .find('[data-testid="variety-label"]')
         .getDOMNode()
         .getAttribute('for'),
-      /^banana-variety-[0-9]/
+      /^banana-variety-[0-9]/,
     );
 
     assert.match(
@@ -36,7 +36,7 @@ describe('useUniqueId', () => {
         .find('[data-testid="variety-input"]')
         .getDOMNode()
         .getAttribute('id'),
-      /^banana-variety-[0-9]/
+      /^banana-variety-[0-9]/,
     );
 
     assert.match(
@@ -44,7 +44,7 @@ describe('useUniqueId', () => {
         .find('[data-testid="delicious-input"]')
         .getDOMNode()
         .getAttribute('id'),
-      /^delicious-[0-9]/
+      /^delicious-[0-9]/,
     );
   });
 

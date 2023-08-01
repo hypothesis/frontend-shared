@@ -70,7 +70,7 @@ function NavLink({ route }: { route: PlaygroundRoute }) {
               {
                 'border-l-2 border-brand font-semibold': isActive,
                 'border-transparent': !isActive,
-              }
+              },
             )}
           >
             {route.title}
@@ -115,7 +115,7 @@ export default function PlaygroundApp({
         window.scrollTo(0, 0);
       }
     },
-    [pathname]
+    [pathname],
   );
 
   // Update document title when `wouter` path changes.

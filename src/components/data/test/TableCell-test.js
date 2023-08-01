@@ -15,7 +15,7 @@ describe('TableCell', () => {
             <Component {...props} />
           </tr>
         </TableSectionContext.Provider>
-      </table>
+      </table>,
     );
   };
 
@@ -27,7 +27,7 @@ describe('TableCell', () => {
         <tr>
           <Component {...props} />
         </tr>
-      </table>
+      </table>,
     );
   };
 

@@ -18,12 +18,12 @@ describe('Thumbnail', () => {
     // padding size ("md" size) is `p-3`. The absence of padding means there
     // is no border.
     assert.isFalse(
-      withBorder.find('[data-composite-component="Thumbnail"]').hasClass('p-0')
+      withBorder.find('[data-composite-component="Thumbnail"]').hasClass('p-0'),
     );
     assert.isTrue(
       withoutBorder
         .find('[data-composite-component="Thumbnail"]')
-        .hasClass('p-0')
+        .hasClass('p-0'),
     );
   });
 

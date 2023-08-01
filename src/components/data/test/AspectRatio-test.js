@@ -25,7 +25,7 @@ describe('AspectRatio', () => {
         .find('[data-component="AspectRatio"]')
         .getDOMNode()
         .getAttribute('style'),
-      'padding-bottom: calc(56.25%)'
+      'padding-bottom: calc(56.25%)',
     );
 
     assert.include(
@@ -33,7 +33,7 @@ describe('AspectRatio', () => {
         .find('[data-component="AspectRatio"]')
         .getDOMNode()
         .getAttribute('style'),
-      'padding-bottom: calc(75%)'
+      'padding-bottom: calc(75%)',
     );
   });
 

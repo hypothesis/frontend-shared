@@ -54,7 +54,7 @@ const TableRow = function TableRow({
           'group/unselected': !selected,
           'group/selected': selected,
         },
-        classes
+        classes,
       )}
       data-section={isHeadRow ? 'head' : 'body'}
     >

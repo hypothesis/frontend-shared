@@ -26,7 +26,7 @@ const Spinner = function Spinner({
           'w-em h-em': size === 'sm', // default
           'w-2em h-2em': size === 'md',
           'w-4em h-4em': size === 'lg',
-        }
+        },
       )}
       data-component="Spinner"
     />

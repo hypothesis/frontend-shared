@@ -42,7 +42,7 @@ const Overlay = function Overlay({
           'bg-black/50': variant === 'dark', // default
           'bg-white/50': variant === 'light',
         },
-        classes
+        classes,
       )}
     >
       {children}

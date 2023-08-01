@@ -17,7 +17,7 @@ describe('TableHead', () => {
             </tr>
           </Component>
         </table>
-      </TableContext.Provider>
+      </TableContext.Provider>,
     );
   };
 
@@ -31,7 +31,7 @@ describe('TableHead', () => {
             <td>Cell content</td>
           </tr>
         </Component>
-      </table>
+      </table>,
     );
   };
 
@@ -52,7 +52,7 @@ describe('TableHead', () => {
     it('adds interactive cursor styling', () => {
       const wrapper = createComponent(TableHead);
       assert.isTrue(
-        wrapper.find('[data-component="TableHead"]').hasClass('sticky')
+        wrapper.find('[data-component="TableHead"]').hasClass('sticky'),
       );
     });
   });

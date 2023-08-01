@@ -116,7 +116,7 @@ const PointerButton = function PointerButton({
           'after:ml-[-12px] after:border-[12px] after:border-t-[5px] after:border-t-white':
             direction === 'down',
         },
-        classes
+        classes,
       )}
       expanded={expanded}
       pressed={pressed}

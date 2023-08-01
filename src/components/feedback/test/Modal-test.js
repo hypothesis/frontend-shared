@@ -8,7 +8,7 @@ const createComponent = (Component, props = {}) => {
   return mount(
     <Component title="Test title" onClose={() => {}} {...props}>
       This is child content
-    </Component>
+    </Component>,
   );
 };
 
@@ -37,7 +37,7 @@ describe('Modal', () => {
         <Modal initialFocus={inputRef} title="My modal">
           <input ref={inputRef} />
         </Modal>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(document.activeElement, inputRef.current);
@@ -48,12 +48,12 @@ describe('Modal', () => {
         <Modal title="My modal">
           <div>Test</div>
         </Modal>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(
         document.activeElement,
-        wrapper.find('[role="dialog"]').getDOMNode()
+        wrapper.find('[role="dialog"]').getDOMNode(),
       );
     });
 
@@ -63,7 +63,7 @@ describe('Modal', () => {
         <Modal initialFocus={'manual'} title="My modal">
           <div>Test</div>
         </Modal>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(document.activeElement, focusedBefore);
@@ -76,12 +76,12 @@ describe('Modal', () => {
         <Modal initialFocus={inputRef} title="My modal">
           <button ref={inputRef} disabled={true} />
         </Modal>,
-        { attachTo: container }
+        { attachTo: container },
       );
 
       assert.equal(
         document.activeElement,
-        wrapper.find('[role="dialog"]').getDOMNode()
+        wrapper.find('[role="dialog"]').getDOMNode(),
       );
     });
   });
@@ -97,7 +97,7 @@ describe('Modal', () => {
         </Modal>,
         {
           attachTo: container,
-        }
+        },
       );
 
       const event = new Event('keydown');
@@ -113,7 +113,7 @@ describe('Modal', () => {
       const wrapper = mount(
         <Modal title="My modal">
           <p>Enter a URL</p>
-        </Modal>
+        </Modal>,
       );
       const content = wrapper.find('[role="dialog"]').getDOMNode();
       const paragraphEl = wrapper.find('p').getDOMNode();
@@ -126,7 +126,7 @@ describe('Modal', () => {
       const wrapper = mount(
         <Modal title="My modal">
           <button>Click me</button>
-        </Modal>
+        </Modal>,
       );
       const content = wrapper.find('[role="dialog"]').getDOMNode();
       assert.isNull(content.getAttribute('aria-describedby'));

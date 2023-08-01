@@ -81,7 +81,7 @@ const Callout = function Callout({
           'bg-red-error': status === 'error' && withIcon,
           'bg-white': !withIcon,
         },
-        classes
+        classes,
       )}
     >
       {withIcon && (
@@ -110,7 +110,7 @@ const Callout = function Callout({
             'p-3': size === 'lg',
           },
           styled && 'grow',
-          themed && 'bg-white rounded-r'
+          themed && 'bg-white rounded-r',
         )}
       >
         {children}

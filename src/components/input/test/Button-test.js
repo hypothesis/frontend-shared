@@ -10,7 +10,7 @@ import Button from '../Button';
 describe('Button', () => {
   const createComponent = (props = {}) => {
     return mount(
-      <Button {...props}>This is content inside of a Button</Button>
+      <Button {...props}>This is content inside of a Button</Button>,
     );
   };
 
@@ -40,11 +40,11 @@ describe('Button', () => {
 
     assert.equal(
       pressed.find('button').getDOMNode().getAttribute('aria-pressed'),
-      'true'
+      'true',
     );
     assert.equal(
       expanded.find('button').getDOMNode().getAttribute('aria-expanded'),
-      'true'
+      'true',
     );
   });
 
@@ -53,7 +53,7 @@ describe('Button', () => {
 
     assert.equal(
       wrapper.find('button').getDOMNode().getAttribute('role'),
-      'tab'
+      'tab',
     );
   });
 
@@ -62,7 +62,7 @@ describe('Button', () => {
 
     assert.equal(
       wrapper.find('button').getDOMNode().getAttribute('aria-label'),
-      'Click me'
+      'Click me',
     );
   });
 });

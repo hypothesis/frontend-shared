@@ -57,7 +57,7 @@ const AspectRatio = function AspectRatio({
       'object-fill': objectFit === 'fill',
       'object-scale-down': objectFit === 'scale-down',
       'object-none': objectFit === 'none',
-    }
+    },
   );
 
   return (
@@ -71,7 +71,7 @@ const AspectRatio = function AspectRatio({
           class: classnames(
             mediaClasses,
             // Retain existing classes
-            firstChildNode.props.className
+            firstChildNode.props.className,
           ),
         })}
       {otherChildren}

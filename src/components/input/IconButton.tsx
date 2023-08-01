@@ -86,7 +86,7 @@ const IconButton = function IconButton({
           'touch:min-w-touch-minimum touch:min-h-touch-minimum':
             !disableTouchSizing,
         },
-        classes
+        classes,
       )}
       elementRef={downcastRef(elementRef)}
       title={title}

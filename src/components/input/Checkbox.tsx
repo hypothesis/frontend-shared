@@ -55,7 +55,7 @@ const Checkbox = function Checkbox({
 
   function handleChange(
     this: void,
-    event: JSX.TargetedEvent<HTMLInputElement>
+    event: JSX.TargetedEvent<HTMLInputElement>,
   ) {
     onChange?.call(this, event);
     if (!isControlled) {
@@ -89,7 +89,7 @@ const Checkbox = function Checkbox({
           'opacity-[.00001]',
           {
             'cursor-pointer': !disabled,
-          }
+          },
         )}
         checked={isChecked}
         disabled={disabled}
@@ -102,7 +102,7 @@ const Checkbox = function Checkbox({
           // The ring needs to be applied here because the `input` has an
           // effectively-0 opacity.
           'peer-focus-visible:ring',
-          'w-em h-em'
+          'w-em h-em',
         )}
       />
       {children}

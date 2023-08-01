@@ -35,7 +35,7 @@ const ScrollContainer = function ScrollContainer({
         // See https://stackoverflow.com/a/66689926/434243.
         'min-h-0',
         { border: !borderless },
-        classes
+        classes,
       )}
     >
       {children}
