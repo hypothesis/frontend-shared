@@ -69,11 +69,44 @@ export default function InputPage() {
             presentational component props
           </Library.Link>
           .
+          <Library.Example title="feedback">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set <code>feedback</code> to indicate that there is an
+                associated error or warning for the <code>Input</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {`"error"`} | {`"warning"`}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`undefined`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo withSource>
+              <div className="w-[350px]">
+                <Input
+                  aria-label="Input with error"
+                  feedback="error"
+                  value="something invalid"
+                />
+              </div>
+              <div className="w-[350px]">
+                <Input
+                  aria-label="Input with warning"
+                  feedback="warning"
+                  value="might be a problem"
+                />
+              </div>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="hasError">
             <Library.Info>
               <Library.InfoItem label="description">
-                Set <code>hasError</code> to indicate that there is an
-                associated error for the <code>Input</code>.
+                <Library.StatusChip status="deprecated" />
+                Use <code>{`feedback="error"`}</code> instead.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>{`boolean`}</code>

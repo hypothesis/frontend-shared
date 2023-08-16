@@ -7,6 +7,11 @@ import { inputGroupStyles } from './InputGroup';
 
 type RootComponentProps = {
   element?: 'input' | 'select';
+  feedback?: 'error' | 'warning';
+
+  /**
+   * @deprecated Use feedback="error" instead
+   */
   hasError?: boolean;
 };
 
@@ -27,9 +32,14 @@ const InputRoot = function InputRoot({
   classes,
   elementRef,
   hasError,
+  feedback,
 
   ...htmlAttributes
 }: InputRootProps) {
+  if (feedback === undefined && hasError) {
+    feedback = 'error';
+  }
+
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
       '`Input` component should have either an `id` or an `aria-label` attribute',
@@ -46,7 +56,11 @@ const InputRoot = function InputRoot({
         'focus-visible-ring ring-inset border rounded w-full p-2',
         'bg-grey-0 focus:bg-white disabled:bg-grey-1',
         'placeholder:text-color-grey-5 disabled:placeholder:color-grey-6',
-        { 'ring-inset ring-2 ring-red-error': hasError },
+        {
+          'ring-2': !!feedback,
+          'ring-red-error': feedback === 'error',
+          'ring-yellow-notice': feedback === 'warning',
+        },
         // Adapt styles when this component is inside an InputGroup
         inputGroupStyles,
         classes,
