@@ -5,8 +5,13 @@ import { downcastRef } from '../../util/typing';
 import InputRoot from './InputRoot';
 
 type ComponentProps = {
-  hasError?: boolean;
   type?: 'email' | 'search' | 'text' | 'url';
+  feedback?: 'error' | 'warning';
+
+  /**
+   * @deprecated Use feedback="error" instead
+   */
+  hasError?: boolean;
 };
 
 export type InputProps = PresentationalProps &
@@ -18,8 +23,9 @@ export type InputProps = PresentationalProps &
  */
 const Input = function Input({
   elementRef,
-  hasError,
   type = 'text',
+  feedback,
+  hasError,
 
   ...htmlAttributes
 }: InputProps) {
@@ -28,6 +34,7 @@ const Input = function Input({
       data-component="Input"
       elementRef={downcastRef(elementRef)}
       type={type}
+      feedback={feedback}
       hasError={hasError}
       {...htmlAttributes}
     />
