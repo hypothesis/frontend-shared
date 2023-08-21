@@ -22,6 +22,7 @@ import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
 import SelectPage from './components/patterns/input/SelectPage';
+import TextareaPage from './components/patterns/input/TextareaPage';
 import CardPage from './components/patterns/layout/CardPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
 import PanelPage from './components/patterns/layout/PanelPage';
@@ -199,6 +200,12 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: SelectPage,
     route: '/input-select',
+  },
+  {
+    title: 'Textarea',
+    group: 'input',
+    component: TextareaPage,
+    route: '/input-textarea',
   },
   {
     title: 'Card',

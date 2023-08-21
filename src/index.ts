@@ -40,6 +40,7 @@ export {
   InputGroup,
   OptionButton,
   Select,
+  Textarea,
 } from './components/input';
 export {
   Card,
@@ -104,6 +105,7 @@ export type {
   InputGroupProps,
   OptionButtonProps,
   SelectProps,
+  TextareaProps,
 } from './components/input';
 
 export type {

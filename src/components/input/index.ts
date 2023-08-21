@@ -7,6 +7,7 @@ export { default as Input } from './Input';
 export { default as InputGroup } from './InputGroup';
 export { default as OptionButton } from './OptionButton';
 export { default as Select } from './Select';
+export { default as Textarea } from './Textarea';
 
 export type { ButtonProps } from './Button';
 export type { ButtonBaseProps } from './ButtonBase';
@@ -17,3 +18,4 @@ export type { InputProps } from './Input';
 export type { InputGroupProps } from './InputGroup';
 export type { OptionButtonProps } from './OptionButton';
 export type { SelectProps } from './Select';
+export type { TextareaProps } from './Textarea';
