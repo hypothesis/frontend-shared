@@ -6,7 +6,7 @@ import { downcastRef } from '../../util/typing';
 import { inputGroupStyles } from './InputGroup';
 
 type RootComponentProps = {
-  element?: 'input' | 'select';
+  element?: 'input' | 'select' | 'textarea';
   feedback?: 'error' | 'warning';
 
   /**
@@ -20,6 +20,7 @@ export type InputRootProps = PresentationalProps &
   (
     | Omit<JSX.HTMLAttributes<HTMLInputElement>, 'size' | 'icon'>
     | Omit<JSX.HTMLAttributes<HTMLSelectElement>, 'size' | 'icon'>
+    | Omit<JSX.HTMLAttributes<HTMLTextAreaElement>, 'size' | 'icon'>
   );
 
 /**
