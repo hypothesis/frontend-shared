@@ -65,7 +65,7 @@ export default function SelectPage() {
                     title="Previous student"
                     variant="dark"
                   />
-                  <SelectWrapper aria-label="Example input" />
+                  <SelectWrapper aria-label="Example select" />
                   <IconButton
                     icon={ArrowRightIcon}
                     title="Next student"
@@ -76,7 +76,7 @@ export default function SelectPage() {
             </Library.Demo>
             <Library.Demo title="Setting Select width" withSource>
               <div className="w-[250px]">
-                <SelectWrapper aria-label="Example input" />
+                <SelectWrapper aria-label="Example select" />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -84,7 +84,7 @@ export default function SelectPage() {
           <Library.Example title="Disabled Selects">
             <Library.Demo title="disabled Select" withSource>
               <div className="w-[350px]">
-                <SelectWrapper aria-label="Example input" disabled />
+                <SelectWrapper aria-label="Example select" disabled />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -96,11 +96,42 @@ export default function SelectPage() {
             presentational component props
           </Library.Link>
           .
+          <Library.Example title="feedback">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set <code>feedback</code> to indicate that there is an
+                associated error or warning for the <code>Select</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {`"error"`} | {`"warning"`}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`undefined`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo withSource>
+              <div className="w-[350px]">
+                <SelectWrapper
+                  aria-label="Select with error"
+                  feedback="error"
+                />
+              </div>
+              <div className="w-[350px]">
+                <SelectWrapper
+                  aria-label="Select with warning"
+                  feedback="warning"
+                />
+              </div>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="hasError">
             <Library.Info>
               <Library.InfoItem label="description">
-                Set <code>hasError</code> to indicate that there is an
-                associated error for the <code>Select</code>.
+                <Library.StatusChip status="deprecated" />
+                Use <code>{`feedback="error"`}</code> instead.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>{`boolean`}</code>
@@ -112,7 +143,7 @@ export default function SelectPage() {
 
             <Library.Demo withSource>
               <div className="w-[350px]">
-                <SelectWrapper aria-label="Example input" hasError />
+                <SelectWrapper aria-label="Example select" hasError />
               </div>
             </Library.Demo>
           </Library.Example>
