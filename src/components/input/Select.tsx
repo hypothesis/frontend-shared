@@ -6,6 +6,11 @@ import InputRoot from './InputRoot';
 
 type ComponentProps = {
   children?: ComponentChildren;
+  feedback?: 'error' | 'warning';
+
+  /**
+   * @deprecated Use feedback="error" instead
+   */
   hasError?: boolean;
 };
 export type SelectProps = PresentationalProps &
@@ -22,8 +27,9 @@ const arrowImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 const Select = function Select({
   children,
   classes,
-  hasError,
   type = 'text',
+  feedback,
+  hasError,
 
   ...htmlAttributes
 }: SelectProps) {
@@ -40,6 +46,7 @@ const Select = function Select({
       )}
       element="select"
       type={type}
+      feedback={feedback}
       hasError={hasError}
       style={{
         backgroundImage: arrowImage,
