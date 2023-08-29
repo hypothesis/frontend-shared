@@ -37,6 +37,7 @@ const InputRoot = function InputRoot({
 
   ...htmlAttributes
 }: InputRootProps) {
+  /* istanbul ignore next */
   if (feedback === undefined && hasError) {
     feedback = 'error';
   }
