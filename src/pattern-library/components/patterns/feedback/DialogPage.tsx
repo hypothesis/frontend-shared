@@ -1,4 +1,4 @@
-import { useState, useRef } from 'preact/hooks';
+import { useState, useRef, useCallback } from 'preact/hooks';
 
 import type { DialogProps } from '../../../../';
 import {
@@ -19,6 +19,7 @@ import {
 } from '../../../../';
 import { ModalDialog } from '../../../../components/feedback';
 import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
+import { confirm } from '../../../../util/prompts';
 import Library from '../../Library';
 import { LoremIpsum, nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
@@ -95,6 +96,30 @@ function Dialog_({
         )}
       </div>
     </div>
+  );
+}
+
+function Confirm() {
+  const [result, setResult] = useState<boolean | null>(null);
+  const showConfirm = useCallback(async () => {
+    const answer = await confirm({
+      message: 'This is a confirm dialog',
+
+      // Optional options
+      title: 'Your title',
+      confirmAction: 'Yes please',
+      cancelAction: 'I changed my mind',
+    });
+    setResult(answer);
+  }, []);
+
+  return (
+    <>
+      <Button variant="primary" onClick={showConfirm}>
+        Show confirm
+      </Button>
+      {result !== null && <>You clicked {result ? 'Yes' : 'Cancel'}</>}
+    </>
   );
 }
 
@@ -918,6 +943,38 @@ export default function DialogPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+        </Library.Pattern>
+      </Library.Section>
+
+      <Library.Section
+        id="confirmprompt"
+        title="confirm"
+        intro={
+          <p>
+            <code>confirm</code> is a utility function that renders a{' '}
+            <code>ModalDialog</code> with two action buttons. It returns a{' '}
+            <code>Promise</code> resolving a <code>boolean</code>.
+          </p>
+        }
+      >
+        <Library.Pattern>
+          <Library.Usage componentName="confirm" />
+          <Library.Demo title="Basic confirm">
+            <Confirm />
+          </Library.Demo>
+
+          <Library.Demo title="Usage">
+            <Library.Code
+              content={`const answer = await confirm({
+  message: 'This is a confirm dialog',
+
+  // Optional options
+  title: 'Your title',
+  confirmAction: 'Yes please',
+  cancelAction: 'I changed my mind'
+});`}
+            />
+          </Library.Demo>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
