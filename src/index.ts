@@ -5,6 +5,9 @@ export { useFocusAway } from './hooks/use-focus-away';
 export { useKeyPress } from './hooks/use-key-press';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
+// Utils
+export { confirm } from './util/prompts';
+
 // Components
 export * from './components/icons';
 export {
@@ -126,6 +129,8 @@ export type {
   TabProps,
   TabListProps,
 } from './components/navigation/';
+
+export type { ConfirmModalProps } from './util/prompts';
 
 // Deprecated
 export { useElementShouldClose } from './hooks/use-element-should-close';
