@@ -1,6 +1,5 @@
 import { render } from 'preact';
 import { createRef } from 'preact';
-import type { RefObject } from 'preact';
 import type { ComponentChildren } from 'preact';
 
 import ModalDialog from '../components/feedback/ModalDialog';
@@ -11,6 +10,12 @@ export type ConfirmModalProps = {
   message: ComponentChildren;
   confirmAction?: string;
   cancelAction?: string;
+
+  /**
+   * Determines which of the two buttons should be initially focused.
+   * Defaults to 'cancel'
+   */
+  initialFocus?: 'cancel' | 'confirm';
 };
 
 /**
@@ -30,8 +35,13 @@ export async function confirm({
   message,
   confirmAction = 'Yes',
   cancelAction = 'Cancel',
+  initialFocus = 'cancel',
 }: ConfirmModalProps): Promise<boolean> {
-  const cancelButton = createRef<HTMLElement | undefined>();
+  const cancelButton = createRef<HTMLElement>();
+  const confirmButton = createRef<HTMLElement>();
+  const initialFocusRef =
+    initialFocus === 'cancel' ? cancelButton : confirmButton;
+
   const container = document.createElement('div');
   container.setAttribute('data-testid', 'confirm-container');
 
@@ -61,15 +71,16 @@ export async function confirm({
               {cancelAction}
             </Button>
             <Button
-              data-testid="confirm-button"
               variant="primary"
+              elementRef={confirmButton}
+              data-testid="confirm-button"
               onClick={() => close(true)}
             >
               {confirmAction}
             </Button>
           </>
         }
-        initialFocus={cancelButton as RefObject<HTMLElement>}
+        initialFocus={initialFocusRef}
         title={title}
         onClose={() => close(false)}
       >

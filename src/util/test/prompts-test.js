@@ -68,4 +68,23 @@ describe('confirm', () => {
     clickCancel();
     assert.isFalse(await result);
   });
+
+  [
+    [undefined, getCancelButton],
+    ['cancel', getCancelButton],
+    ['confirm', getConfirmButton],
+  ].forEach(([initialFocus, getButton]) => {
+    it('sets initial focus to proper button', async () => {
+      const result = confirm({ title: 'Confirm action?', initialFocus });
+
+      const waitForButtonToFocus = () =>
+        new Promise(resolve => getButton().addEventListener('focus', resolve));
+      await waitForButtonToFocus();
+
+      assert.equal(document.activeElement, getButton());
+
+      clickClose();
+      await result;
+    });
+  });
 });
