@@ -46,7 +46,7 @@
     "karma-source-map-support": "^1.4.0",
     "mocha": "10.2.0",
     "mustache": "^4.2.0",
-    "plop": "^3.1.1",
+    "plop": "^4.0.0",
     "postcss": "^8.3.9",
     "preact": "^10.5.6",
     "prettier": "^3.0.0",
