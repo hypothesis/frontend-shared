@@ -30,6 +30,7 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
+import EnhancedSelectPage from './components/patterns/prototype/EnhancedSelectPage';
 import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
@@ -278,6 +279,12 @@ const routes: PlaygroundRoute[] = [
     group: 'prototype',
     component: LMSContentSelectionPage,
     route: '/lms-content-selection',
+  },
+  {
+    title: 'Sketches: Enhanced select',
+    group: 'prototype',
+    component: EnhancedSelectPage,
+    route: '/sketches-enhanced-select',
   },
 ];
 
