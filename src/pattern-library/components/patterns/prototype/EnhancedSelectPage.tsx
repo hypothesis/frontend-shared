@@ -47,7 +47,7 @@ type SelectProps<T> = {
   disabled?: boolean;
 };
 
-function Select<T>({
+function SelectMain<T>({
   label,
   selected,
   onChange,
@@ -98,7 +98,10 @@ function Select<T>({
       <Provider value={{ selectValue, selected }}>
         {isDropdownOpen && (
           <div
-            className="absolute top-full w-full mt-1 rounded bg-grey-0 z-5 overflow-hidden border"
+            className={classnames(
+              'absolute z-5 top-full mt-1 w-full',
+              'rounded border bg-grey-0 overflow-hidden',
+            )}
             role="listbox"
           >
             {children}
@@ -151,7 +154,7 @@ function SelectOption<T>({
   );
 }
 
-Object.assign(Select, { Option: SelectOption });
+const Select = Object.assign(SelectMain, { Option: SelectOption });
 
 function Select_({ disabled }: { disabled?: boolean }) {
   const [selected, setSelected] = useState<(typeof items)[number]>();
