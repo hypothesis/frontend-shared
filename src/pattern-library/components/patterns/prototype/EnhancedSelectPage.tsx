@@ -1,9 +1,21 @@
 import classnames from 'classnames';
 import type { ComponentChildren, Context } from 'preact';
 import { createContext } from 'preact';
-import { useCallback, useContext, useRef, useState } from 'preact/hooks';
+import {
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from 'preact/hooks';
 
-import { MenuCollapseIcon, MenuExpandIcon } from '../../../../components/icons';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  MenuCollapseIcon,
+  MenuExpandIcon,
+} from '../../../../components/icons';
+import { IconButton, InputGroup } from '../../../../components/input';
 import Button from '../../../../components/input/Button';
 import { useArrowKeyNavigation } from '../../../../hooks/use-arrow-key-navigation';
 import { useClickAway } from '../../../../hooks/use-click-away';
@@ -68,7 +80,11 @@ function Select<T>({
   return (
     <div className="relative" ref={wrapperRef}>
       <Button
-        classes="w-full flex"
+        variant="custom"
+        classes={classnames(
+          'w-full flex border',
+          'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
+        )}
         onClick={() => setIsDropdownOpen(prev => !prev)}
         expanded={isDropdownOpen}
         pressed={isDropdownOpen}
@@ -82,7 +98,7 @@ function Select<T>({
       <Provider value={{ selectValue, selected }}>
         {isDropdownOpen && (
           <div
-            className="absolute top-full w-full mt-1 rounded bg-grey-1 z-5"
+            className="absolute top-full w-full mt-1 rounded bg-grey-0 z-5 overflow-hidden border"
             role="listbox"
           >
             {children}
@@ -107,9 +123,16 @@ function SelectOption<T>({
 
   return (
     <Button
-      classes={classnames('w-full ring-inset bg-', {
-        '!bg-brand !enabled:hover:text-white text-grey-2': isSelected,
-      })}
+      variant="custom"
+      classes={classnames(
+        'w-full ring-inset rounded-none',
+        'border-t first:border-t-0 border-l-4',
+        'bg-grey-0 hover:bg-grey-1',
+        {
+          'border-l-transparent': !isSelected,
+          'border-l-brand font-medium': isSelected,
+        },
+      )}
       onClick={() => selectValue(value)}
       role="option"
       pressed={isSelected}
@@ -131,27 +154,99 @@ function Select_({ disabled }: { disabled?: boolean }) {
     <Select
       selected={selected}
       onChange={setSelected}
-      label={selected?.name ?? 'Select one...'}
+      label={
+        selected ? (
+          <>
+            {selected.name}
+            <div className="rounded px-2 bg-grey-7 text-white">
+              {selected.id}
+            </div>
+          </>
+        ) : (
+          <>Select one...</>
+        )
+      }
       disabled={disabled}
     >
       {items.map(item => (
         <Select.Option value={item} key={item.id}>
-          {(isSelected: boolean) => (
+          {() => (
             <>
               {item.name}
-              <div
-                className={classnames('rounded px-2', {
-                  'bg-brand hover:text-white text-grey-2': !isSelected,
-                  'bg-white text-grey-7': isSelected,
-                })}
-              >
-                {item.id}
-              </div>
+              <div className="grow" />
+              <div className="rounded px-2 bg-grey-7 text-white">{item.id}</div>
             </>
           )}
         </Select.Option>
       ))}
     </Select>
+  );
+}
+
+function InputGroupSelect_() {
+  const [selected, setSelected] = useState<(typeof items)[number]>();
+  const selectedIndex = useMemo(
+    () => (!selected ? -1 : items.findIndex(item => item === selected)),
+    [selected],
+  );
+  const next = useCallback(() => {
+    const newIndex = selectedIndex + 1;
+    setSelected(items[newIndex] ?? selected);
+  }, [selected, selectedIndex]);
+  const previous = useCallback(() => {
+    const newIndex = selectedIndex - 1;
+    setSelected(items[newIndex] ?? selected);
+  }, [selected, selectedIndex]);
+
+  return (
+    <InputGroup>
+      <IconButton
+        icon={ArrowLeftIcon}
+        title="Previous student"
+        variant="dark"
+        onClick={previous}
+        disabled={selectedIndex <= 0}
+      />
+      <div className="w-[350px]">
+        <Select
+          selected={selected}
+          onChange={setSelected}
+          label={
+            selected ? (
+              <>
+                {selected.name}
+                <div className="rounded px-2 bg-grey-7 text-white">
+                  {selected.id}
+                </div>
+              </>
+            ) : (
+              <>Select one...</>
+            )
+          }
+        >
+          {items.map(item => (
+            <Select.Option value={item} key={item.id}>
+              {() => (
+                <>
+                  {item.name}
+                  <div className="grow" />
+                  <div className="rounded px-2 bg-grey-7 text-white">
+                    {item.id}
+                  </div>
+                </>
+              )}
+            </Select.Option>
+          ))}
+        </Select>
+      </div>
+      <IconButton
+        icon={ArrowRightIcon}
+        title="Next student"
+        variant="dark"
+        onClick={next}
+        disabled={selectedIndex >= items.length - 1}
+      />
+    </InputGroup>
   );
 }
 
@@ -170,8 +265,13 @@ export default function EnhancedSelectPage() {
         <Library.Pattern title="Select">
           <Select_ />
         </Library.Pattern>
+
         <Library.Pattern title="Disabled Select">
           <Select_ disabled />
+        </Library.Pattern>
+
+        <Library.Pattern title="Inside an InputGroup">
+          <InputGroupSelect_ />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
