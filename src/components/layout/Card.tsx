@@ -25,7 +25,7 @@ export type CardProps = PresentationalProps &
 /**
  * Render content in a card-like frame
  */
-const Card = function Card({
+export default function Card({
   children,
   classes,
   elementRef,
@@ -58,6 +58,4 @@ const Card = function Card({
       {children}
     </div>
   );
-};
-
-export default Card;
+}

@@ -34,7 +34,7 @@ export type CardHeaderProps = PresentationalProps &
 /**
  * Render a header area in a Card with optional title and/or close button
  */
-const CardHeader = function CardHeader({
+export default function CardHeader({
   children,
   classes,
   elementRef,
@@ -84,6 +84,4 @@ const CardHeader = function CardHeader({
       )}
     </div>
   );
-};
-
-export default CardHeader;
+}

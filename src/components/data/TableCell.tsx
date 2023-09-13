@@ -11,10 +11,8 @@ export type TableCellProps = PresentationalProps &
 
 /**
  * Render a single table cell
- *
- * @param {CommonProps & HTMLAttributes} props
  */
-const TableCell = function TableCell({
+export default function TableCell({
   children,
   classes,
   elementRef,
@@ -53,6 +51,4 @@ const TableCell = function TableCell({
       {children}
     </Cell>
   );
-};
-
-export default TableCell;
+}

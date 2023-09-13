@@ -11,7 +11,7 @@ export type SpinnerOverlayProps = Omit<
 /**
  * Render a full-screen spinner atop a light-colored overlay
  */
-const SpinnerOverlay = function SpinnerOverlay({
+export default function SpinnerOverlay({
   ...htmlAttributes
 }: SpinnerOverlayProps) {
   return (
@@ -23,6 +23,4 @@ const SpinnerOverlay = function SpinnerOverlay({
       <Spinner size="lg" />
     </Overlay>
   );
-};
-
-export default SpinnerOverlay;
+}

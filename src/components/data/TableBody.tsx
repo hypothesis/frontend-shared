@@ -14,7 +14,7 @@ export type TableBodyProps = PresentationalProps &
 /**
  * Render a table body
  */
-const TableBody = function TableBody({
+export default function TableBody({
   children,
   classes,
   elementRef,
@@ -41,6 +41,4 @@ const TableBody = function TableBody({
       </tbody>
     </TableSectionContext.Provider>
   );
-};
-
-export default TableBody;
+}

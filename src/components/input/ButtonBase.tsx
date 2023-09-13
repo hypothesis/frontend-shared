@@ -51,7 +51,7 @@ export type ButtonBaseProps = BaseProps &
  *
  * @deprecated Use `Button` or `IconButton` with `unstyled` set instead
  */
-const ButtonBase = function ButtonBase({
+export default function ButtonBase({
   elementRef,
   children,
   classes,
@@ -103,6 +103,4 @@ const ButtonBase = function ButtonBase({
       {children}
     </button>
   );
-};
-
-export default ButtonBase;
+}

@@ -26,7 +26,7 @@ export type AspectRatioProps = {
  *
  * See https://www.smashingmagazine.com/2013/09/responsive-images-performance-problem-case-study/#the-padding-bottom-hack
  */
-const AspectRatio = function AspectRatio({
+export default function AspectRatio({
   children,
   objectFit = 'cover',
   ratio = '16/9',
@@ -77,6 +77,4 @@ const AspectRatio = function AspectRatio({
       {otherChildren}
     </div>
   );
-};
-
-export default AspectRatio;
+}

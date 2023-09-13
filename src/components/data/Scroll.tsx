@@ -15,7 +15,7 @@ export type ScrollProps = PresentationalProps & {
 /**
  * Render a fluid container that scrolls on overflow.
  */
-const Scroll = function Scroll({
+export default function Scroll({
   children,
   classes,
   elementRef,
@@ -49,6 +49,4 @@ const Scroll = function Scroll({
       </div>
     </ScrollContext.Provider>
   );
-};
-
-export default Scroll;
+}

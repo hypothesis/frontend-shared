@@ -12,7 +12,7 @@ export type ScrollBoxProps = CompositeProps & {
  * Render an opinionated composition of Scroll components, making `children`
  * scrollable.
  */
-const ScrollBox = function ScrollBox({
+export default function ScrollBox({
   children,
   elementRef,
 
@@ -32,6 +32,4 @@ const ScrollBox = function ScrollBox({
       </Scroll>
     </ScrollContainer>
   );
-};
-
-export default ScrollBox;
+}

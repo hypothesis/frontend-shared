@@ -52,7 +52,7 @@ export type ButtonProps = PresentationalProps &
 /**
  * Render a button with optional icon
  */
-const Button = function Button({
+export default function Button({
   children,
   classes,
   elementRef,
@@ -121,6 +121,4 @@ const Button = function Button({
       {children}
     </button>
   );
-};
-
-export default Button;
+}

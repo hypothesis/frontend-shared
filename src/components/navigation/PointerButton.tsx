@@ -31,7 +31,7 @@ export type PointerButtonProps = PresentationalProps &
  * The arrow-points are created by the combination of borders and positioning.
  * See https://css-tricks.com/snippets/css/css-triangle/
  */
-const PointerButton = function PointerButton({
+export default function PointerButton({
   children,
   classes,
   elementRef,
@@ -127,6 +127,4 @@ const PointerButton = function PointerButton({
       {children}
     </Button>
   );
-};
-
-export default PointerButton;
+}

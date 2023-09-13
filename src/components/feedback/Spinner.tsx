@@ -10,7 +10,7 @@ export type SpinnerProps = {
 /**
  * Style a spinner icon.
  */
-const Spinner = function Spinner({
+export default function Spinner({
   size = 'sm',
   color = 'text-light',
 }: SpinnerProps) {
@@ -31,6 +31,4 @@ const Spinner = function Spinner({
       data-component="Spinner"
     />
   );
-};
-
-export default Spinner;
+}

@@ -18,7 +18,7 @@ export type CardTitleProps = PresentationalProps &
 /**
  * Style a title for a Card
  */
-const CardTitle = function CardTitle({
+export default function CardTitle({
   children,
   classes,
   elementRef,
@@ -47,6 +47,4 @@ const CardTitle = function CardTitle({
       </WrapperElement>
     </div>
   );
-};
-
-export default CardTitle;
+}

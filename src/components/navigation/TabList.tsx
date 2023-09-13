@@ -24,7 +24,7 @@ export type TabListProps = PresentationalProps &
  * Render a tablist container for a set of tabs, with arrow key navigation per
  * https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
-const TabList = function TabList({
+export default function TabList({
   children,
   classes,
   elementRef,
@@ -57,6 +57,4 @@ const TabList = function TabList({
       {children}
     </div>
   );
-};
-
-export default TabList;
+}
