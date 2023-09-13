@@ -112,35 +112,41 @@ function Select<T>({
 function SelectOption<T>({
   value,
   children,
+  disabled = false,
 }: {
   value: T;
-  children: (isSelected: boolean) => ComponentChildren;
+  disabled?: boolean;
+  children: (status: {
+    isSelected: boolean;
+    disabled: boolean;
+  }) => ComponentChildren;
 }) {
   const { selectValue, selected } = useContext(
     EnhancedSelectContext,
   ) as EnhancedSelectContextType<T>;
-  const isSelected = selected === value;
+  const isSelected = !disabled && selected === value;
 
   return (
     <Button
       variant="custom"
       classes={classnames(
         'w-full ring-inset rounded-none',
-        'border-t first:border-t-0 border-l-4',
-        'bg-grey-0 hover:bg-grey-1',
+        'border-t first:border-t-0 border-l-4 bg-grey-0',
         {
           'border-l-transparent': !isSelected,
           'border-l-brand font-medium': isSelected,
+          'hover:bg-grey-1': !disabled,
         },
       )}
       onClick={() => selectValue(value)}
       role="option"
       pressed={isSelected}
       aria-selected={isSelected}
+      disabled={disabled}
       // This is intended to be interacted with arrow keys
       tabIndex={-1}
     >
-      {children(isSelected)}
+      {children({ isSelected, disabled })}
     </Button>
   );
 }
@@ -225,12 +231,23 @@ function InputGroupSelect_() {
           }
         >
           {items.map(item => (
-            <Select.Option value={item} key={item.id}>
-              {() => (
+            <Select.Option value={item} key={item.id} disabled={item.id === 4}>
+              {({ disabled }: { disabled: boolean }) => (
                 <>
-                  {item.name}
+                  <span
+                    className={
+                      disabled ? 'line-through text-grey-6' : undefined
+                    }
+                  >
+                    {item.name}
+                  </span>
                   <div className="grow" />
-                  <div className="rounded px-2 bg-grey-7 text-white">
+                  <div
+                    className={classnames('rounded px-2 text-white', {
+                      'bg-grey-7': !disabled,
+                      'bg-grey-4': disabled,
+                    })}
+                  >
                     {item.id}
                   </div>
                 </>
