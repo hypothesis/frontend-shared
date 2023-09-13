@@ -13,7 +13,7 @@ export type TableFootProps = PresentationalProps & HTMLAttributes;
 /**
  * Render a table footer section
  */
-const TableFoot = function TableFoot({
+export default function TableFoot({
   children,
   classes,
   elementRef,
@@ -42,6 +42,4 @@ const TableFoot = function TableFoot({
       </tfoot>
     </TableSectionContext.Provider>
   );
-};
-
-export default TableFoot;
+}

@@ -21,7 +21,7 @@ export type InputProps = PresentationalProps &
 /**
  * Render a text field input
  */
-const Input = function Input({
+export default function Input({
   elementRef,
   type = 'text',
   feedback,
@@ -39,6 +39,4 @@ const Input = function Input({
       {...htmlAttributes}
     />
   );
-};
-
-export default Input;
+}

@@ -13,10 +13,8 @@ export type TableHeadProps = PresentationalProps &
 
 /**
  * Render a table head section
- *
- * @param {CommonProps & HTMLAttributes} props
  */
-const TableHead = function TableHead({
+export default function TableHead({
   children,
   classes,
   elementRef,
@@ -47,6 +45,4 @@ const TableHead = function TableHead({
       </thead>
     </TableSectionContext.Provider>
   );
-};
-
-export default TableHead;
+}

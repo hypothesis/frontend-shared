@@ -24,7 +24,7 @@ export type CalloutProps = PresentationalProps &
 /**
  * Render a banner-like alert message with corresponding icon and coloring
  */
-const Callout = function Callout({
+export default function Callout({
   children,
   classes,
   elementRef,
@@ -117,6 +117,4 @@ const Callout = function Callout({
       </div>
     </div>
   );
-};
-
-export default Callout;
+}

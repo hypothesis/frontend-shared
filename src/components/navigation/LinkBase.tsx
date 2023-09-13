@@ -10,7 +10,7 @@ export type LinkBaseProps = BaseProps & JSX.HTMLAttributes<HTMLAnchorElement>;
  * Base component for Link components. Applies common attributes and styles.
  * @deprecated Use Link with styling API props instead
  */
-const LinkBase = function LinkBase({
+export default function LinkBase({
   children,
   classes,
   elementRef,
@@ -31,6 +31,4 @@ const LinkBase = function LinkBase({
       {children}
     </a>
   );
-};
-
-export default LinkBase;
+}

@@ -24,7 +24,7 @@ const arrowImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 /**
  * Style a native `<select>` element.
  */
-const Select = function Select({
+export default function Select({
   children,
   classes,
   type = 'text',
@@ -56,6 +56,4 @@ const Select = function Select({
       {children}
     </InputRoot>
   );
-};
-
-export default Select;
+}

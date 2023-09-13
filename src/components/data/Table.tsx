@@ -18,7 +18,7 @@ export type TableProps = PresentationalProps & {
 /**
  * Render table content
  */
-const Table = function Table({
+export default function Table({
   children,
   classes,
   elementRef,
@@ -65,6 +65,4 @@ const Table = function Table({
       </table>
     </TableContext.Provider>
   );
-};
-
-export default Table;
+}

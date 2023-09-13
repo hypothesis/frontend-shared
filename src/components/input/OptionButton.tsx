@@ -16,7 +16,7 @@ export type OptionButtonProps = {
  * Render a button representing one of a set of options, with optional
  * right-aligned `details` content
  */
-const OptionButton = function OptionButton({
+export default function OptionButton({
   children,
   details,
   selected = false,
@@ -71,6 +71,4 @@ const OptionButton = function OptionButton({
       </div>
     </Button>
   );
-};
-
-export default OptionButton;
+}

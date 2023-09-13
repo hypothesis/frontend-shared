@@ -65,7 +65,7 @@ export type DialogProps = PresentationalProps &
 /**
  * Show a dialog
  */
-const Dialog = function Dialog({
+export default function Dialog({
   closeOnClickAway = false,
   closeOnEscape = false,
   closeOnFocusAway = false,
@@ -242,6 +242,4 @@ const Dialog = function Dialog({
       </Wrapper>
     </CloseableContext.Provider>
   );
-};
-
-export default Dialog;
+}

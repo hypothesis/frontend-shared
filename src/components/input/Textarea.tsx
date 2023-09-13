@@ -15,7 +15,7 @@ export type TextareaProps = PresentationalProps &
 /**
  * Render a textarea
  */
-const Textarea = function Textarea({
+export default function Textarea({
   elementRef,
   type = 'text',
   feedback,
@@ -32,6 +32,4 @@ const Textarea = function Textarea({
       {...htmlAttributes}
     />
   );
-};
-
-export default Textarea;
+}

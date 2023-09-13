@@ -28,7 +28,7 @@ export type TabProps = PresentationalProps &
 /**
  * Render a button with appropriate ARIA tab affordances
  */
-const Tab = function Tab({
+export default function Tab({
   children,
   classes,
   elementRef,
@@ -103,6 +103,4 @@ const Tab = function Tab({
       </span>
     </Button>
   );
-};
-
-export default Tab;
+}

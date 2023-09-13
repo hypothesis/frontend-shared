@@ -25,7 +25,7 @@ export type LinkButtonProps = PresentationalProps &
 /**
  * Style a button as a link
  */
-const LinkButton = function LinkButton({
+export default function LinkButton({
   children,
   classes,
   elementRef,
@@ -76,6 +76,4 @@ const LinkButton = function LinkButton({
       {children}
     </Button>
   );
-};
-
-export default LinkButton;
+}

@@ -18,10 +18,8 @@ export type TableRowProps = PresentationalProps &
 
 /**
  * Render a table row
- *
- * @param {CommonProps & TableRowProps & HTMLAttributes} props
  */
-const TableRow = function TableRow({
+export default function TableRow({
   children,
   classes,
   elementRef,
@@ -61,6 +59,4 @@ const TableRow = function TableRow({
       {children}
     </tr>
   );
-};
-
-export default TableRow;
+}

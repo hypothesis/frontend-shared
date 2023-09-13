@@ -12,10 +12,8 @@ export type ScrollContainerProps = PresentationalProps & {
 /**
  * Constrain children (which may include both scrollable and non-scrolling
  * content) to the dimensions of the immediate parent.
- *
- * @param {CommonProps & ScrollContainerProps & HTMLDivAttributes} props
  */
-const ScrollContainer = function ScrollContainer({
+export default function ScrollContainer({
   children,
   classes,
   elementRef,
@@ -41,6 +39,4 @@ const ScrollContainer = function ScrollContainer({
       {children}
     </div>
   );
-};
-
-export default ScrollContainer;
+}

@@ -21,7 +21,7 @@ export type InputGroupProps = PresentationalProps &
 /**
  * Render a container that lays out a group of input components
  */
-const InputGroup = function InputGroup({
+export default function InputGroup({
   children,
   classes,
   elementRef,
@@ -44,6 +44,4 @@ const InputGroup = function InputGroup({
       {children}
     </div>
   );
-};
-
-export default InputGroup;
+}

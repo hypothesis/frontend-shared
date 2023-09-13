@@ -16,7 +16,7 @@ export type CardContentProps = PresentationalProps &
 /**
  * Apply consistent spacing and padding for actions content inside a Card
  */
-const CardContent = function CardContent({
+export default function CardContent({
   children,
   classes,
   elementRef,
@@ -42,6 +42,4 @@ const CardContent = function CardContent({
       {children}
     </div>
   );
-};
-
-export default CardContent;
+}

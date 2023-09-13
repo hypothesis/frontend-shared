@@ -22,7 +22,7 @@ export type LinkProps = PresentationalProps &
 /**
  * Styled component for a link (`<a>` element).
  */
-const Link = function Link({
+export default function Link({
   children,
   classes,
   elementRef,
@@ -67,6 +67,4 @@ const Link = function Link({
       {children}
     </a>
   );
-};
-
-export default Link;
+}

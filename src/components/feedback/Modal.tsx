@@ -38,7 +38,7 @@ const noop = () => {};
  * Show a modal
  * @deprecated - Use `ModalDialog` instead
  */
-const Modal = function Modal({
+export default function Modal({
   children,
   width = 'md',
 
@@ -154,6 +154,4 @@ const Modal = function Modal({
       </div>
     </Overlay>
   );
-};
-
-export default Modal;
+}

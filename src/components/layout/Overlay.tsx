@@ -17,7 +17,7 @@ export type OverlayProps = PresentationalProps &
 /**
  * A full-screen fixed backdrop overlay
  */
-const Overlay = function Overlay({
+export default function Overlay({
   children,
   classes,
   elementRef,
@@ -48,6 +48,4 @@ const Overlay = function Overlay({
       {children}
     </div>
   );
-};
-
-export default Overlay;
+}
