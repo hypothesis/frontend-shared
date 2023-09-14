@@ -14,7 +14,7 @@ import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import Button from './Button';
-import EnhancedSelectContext from './EnhancedSelectContext';
+import SelectContext from './SelectContext';
 
 export type SelectProps<T> = {
   selected: T;
@@ -86,7 +86,7 @@ function SelectMain<T>({
         <div className="grow" />
         {isDropdownOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
       </Button>
-      <EnhancedSelectContext.Provider value={{ selectValue, selected }}>
+      <SelectContext.Provider value={{ selectValue, selected }}>
         {isDropdownOpen && (
           <div
             className={classnames(
@@ -101,7 +101,7 @@ function SelectMain<T>({
             {children}
           </div>
         )}
-      </EnhancedSelectContext.Provider>
+      </SelectContext.Provider>
     </div>
   );
 }
@@ -120,7 +120,7 @@ function SelectOption<T>({
   children,
   disabled = false,
 }: SelectOptionProps<T>) {
-  const selectContext = useContext(EnhancedSelectContext);
+  const selectContext = useContext(SelectContext);
   if (!selectContext) {
     throw new Error('Select.Option can only be used as Select child');
   }
@@ -141,11 +141,11 @@ function SelectOption<T>({
       disabled={disabled}
       pressed={isSelected}
       aria-selected={isSelected}
-      // This is intended to be interacted with arrow keys
+      // This is intended to be focused with arrow keys
       tabIndex={-1}
     >
       <div
-        className={classnames('flex w-full p-2 border-l-4', {
+        className={classnames('flex w-full p-1.5 border-l-4', {
           'border-l-transparent': !isSelected,
           'border-l-brand font-medium': isSelected,
         })}
@@ -156,6 +156,6 @@ function SelectOption<T>({
   );
 }
 
-const Select = Object.assign(SelectMain, { Option: SelectOption });
+const SelectNext = Object.assign(SelectMain, { Option: SelectOption });
 
-export default Select;
+export default SelectNext;

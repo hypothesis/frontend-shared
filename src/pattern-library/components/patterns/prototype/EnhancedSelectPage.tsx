@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
 import { IconButton, InputGroup } from '../../../../components/input';
-import Select from '../../../../components/input/EnhancedSelect';
+import Select from '../../../../components/input/SelectNext';
 import Library from '../../Library';
 
 const items = [
