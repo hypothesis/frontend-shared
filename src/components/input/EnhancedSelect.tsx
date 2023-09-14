@@ -1,6 +1,5 @@
 import classnames from 'classnames';
-import type { ComponentChildren, Context } from 'preact';
-import { createContext } from 'preact';
+import type { ComponentChildren } from 'preact';
 import { useCallback, useContext, useId, useRef, useState } from 'preact/hooks';
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
@@ -8,15 +7,7 @@ import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import Button from './Button';
-
-type EnhancedSelectContextType<T = unknown> = {
-  selectValue: (newValue: T) => void;
-  selected: T;
-};
-
-const EnhancedSelectContext = createContext<EnhancedSelectContextType | null>(
-  null,
-);
+import EnhancedSelectContext from './EnhancedSelectContext';
 
 export type SelectProps<T> = {
   selected: T;
@@ -33,14 +24,11 @@ function SelectMain<T>({
   children,
   disabled,
 }: SelectProps<T>) {
-  const { Provider } = EnhancedSelectContext as Context<
-    EnhancedSelectContextType<T>
-  >;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const closeDropdown = useCallback(() => setIsDropdownOpen(false), []);
   const selectValue = useCallback(
-    (newValue: T) => {
-      onChange(newValue);
+    (newValue: unknown) => {
+      onChange(newValue as T);
       setIsDropdownOpen(false);
     },
     [onChange],
@@ -78,7 +66,7 @@ function SelectMain<T>({
         <div className="grow" />
         {isDropdownOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
       </Button>
-      <Provider value={{ selectValue, selected }}>
+      <EnhancedSelectContext.Provider value={{ selectValue, selected }}>
         {isDropdownOpen && (
           <div
             className={classnames(
@@ -93,12 +81,12 @@ function SelectMain<T>({
             {children}
           </div>
         )}
-      </Provider>
+      </EnhancedSelectContext.Provider>
     </div>
   );
 }
 
-type SelectOptionProps<T> = {
+export type SelectOptionProps<T> = {
   value: T;
   disabled?: boolean;
   children: (status: {
@@ -107,14 +95,17 @@ type SelectOptionProps<T> = {
   }) => ComponentChildren;
 };
 
-function Option<T>({
+function SelectOption<T>({
   value,
   children,
   disabled = false,
 }: SelectOptionProps<T>) {
-  const { selectValue, selected } = useContext(
-    EnhancedSelectContext,
-  ) as EnhancedSelectContextType<T>;
+  const selectContext = useContext(EnhancedSelectContext);
+  if (!selectContext) {
+    throw new Error('Select.Option can only be used as Select child');
+  }
+
+  const { selectValue, selected } = selectContext;
   const isSelected = !disabled && selected === value;
 
   return (
@@ -131,9 +122,9 @@ function Option<T>({
       )}
       onClick={() => selectValue(value)}
       role="option"
+      disabled={disabled}
       pressed={isSelected}
       aria-selected={isSelected}
-      disabled={disabled}
       // This is intended to be interacted with arrow keys
       tabIndex={-1}
     >
@@ -142,6 +133,6 @@ function Option<T>({
   );
 }
 
-const Select = Object.assign(SelectMain, { Option });
+const Select = Object.assign(SelectMain, { Option: SelectOption });
 
 export default Select;
