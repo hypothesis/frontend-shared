@@ -14,8 +14,16 @@ const items = [
   { id: 5, name: 'Doris Evanescence' },
 ];
 
-function Select_({ disabled }: { disabled?: boolean }) {
-  const [selected, setSelected] = useState<(typeof items)[number]>();
+function Select_({
+  disabled,
+  textOnly,
+  theItems = items,
+}: {
+  disabled?: boolean;
+  textOnly?: boolean;
+  theItems?: typeof items;
+}) {
+  const [selected, setSelected] = useState<(typeof theItems)[number]>();
 
   return (
     <Select
@@ -35,15 +43,21 @@ function Select_({ disabled }: { disabled?: boolean }) {
       }
       disabled={disabled}
     >
-      {items.map(item => (
+      {theItems.map(item => (
         <Select.Option value={item} key={item.id}>
-          {() => (
-            <>
-              {item.name}
-              <div className="grow" />
-              <div className="rounded px-2 bg-grey-7 text-white">{item.id}</div>
-            </>
-          )}
+          {() =>
+            textOnly ? (
+              <>{item.name}</>
+            ) : (
+              <>
+                {item.name}
+                <div className="grow" />
+                <div className="rounded px-2 bg-grey-7 text-white">
+                  {item.id}
+                </div>
+              </>
+            )
+          }
         </Select.Option>
       ))}
     </Select>
@@ -144,8 +158,25 @@ export default function EnhancedSelectPage() {
           <Select_ />
         </Library.Pattern>
 
+        <Library.Pattern title="Plain text Select">
+          <Select_ textOnly />
+        </Library.Pattern>
+
         <Library.Pattern title="Disabled Select">
           <Select_ disabled />
+        </Library.Pattern>
+
+        <Library.Pattern title="Select with many options">
+          <Select_
+            theItems={[
+              ...items,
+              ...items,
+              ...items,
+              ...items,
+              ...items,
+              ...items,
+            ]}
+          />
         </Library.Pattern>
 
         <Library.Pattern title="Inside an InputGroup">

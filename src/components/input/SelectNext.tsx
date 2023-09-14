@@ -90,8 +90,8 @@ function SelectMain<T>({
         {isDropdownOpen && (
           <div
             className={classnames(
-              'absolute z-5 top-full mt-1 w-full',
-              'rounded border bg-grey-0 overflow-hidden',
+              'absolute z-5 top-full mt-1 w-full max-h-80',
+              'rounded border bg-grey-0 overflow-y-auto',
             )}
             role="listbox"
             id={listboxId}
