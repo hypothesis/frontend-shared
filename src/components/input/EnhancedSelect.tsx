@@ -1,6 +1,13 @@
 import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
-import { useCallback, useContext, useId, useRef, useState } from 'preact/hooks';
+import {
+  useCallback,
+  useContext,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'preact/hooks';
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useClickAway } from '../../hooks/use-click-away';
@@ -26,25 +33,32 @@ function SelectMain<T>({
 }: SelectProps<T>) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const closeDropdown = useCallback(() => setIsDropdownOpen(false), []);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const listboxId = useId();
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonId = useId();
+
   const selectValue = useCallback(
     (newValue: unknown) => {
       onChange(newValue as T);
-      setIsDropdownOpen(false);
+      closeDropdown();
     },
-    [onChange],
+    [closeDropdown, onChange],
   );
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const listboxId = useId();
-  const buttonId = useId();
 
   // When clicking away or pressing `Esc`, close the dropdown
   useClickAway(wrapperRef, closeDropdown);
   useKeyPress(['Escape'], closeDropdown);
 
   // Vertical arrow key for options in the dropdown
-  useArrowKeyNavigation(wrapperRef, {
-    horizontal: false,
-  });
+  useArrowKeyNavigation(wrapperRef, { horizontal: false });
+
+  // Focus button after closing dropdown
+  useLayoutEffect(() => {
+    if (!isDropdownOpen) {
+      buttonRef.current!.focus();
+    }
+  }, [isDropdownOpen]);
 
   return (
     <div className="relative" ref={wrapperRef}>
@@ -55,12 +69,18 @@ function SelectMain<T>({
           'w-full flex border',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
         )}
-        onClick={() => setIsDropdownOpen(prev => !prev)}
         expanded={isDropdownOpen}
         pressed={isDropdownOpen}
         disabled={disabled}
         aria-haspopup="listbox"
         aria-controls={listboxId}
+        elementRef={buttonRef}
+        onClick={() => setIsDropdownOpen(prev => !prev)}
+        onKeyDown={e => {
+          if (e.key === 'ArrowDown' && !isDropdownOpen) {
+            setIsDropdownOpen(true);
+          }
+        }}
       >
         {label}
         <div className="grow" />
@@ -112,13 +132,9 @@ function SelectOption<T>({
     <Button
       variant="custom"
       classes={classnames(
-        'w-full ring-inset rounded-none',
-        'border-t first:border-t-0 border-l-4 bg-grey-0',
-        {
-          'border-l-transparent': !isSelected,
-          'border-l-brand font-medium': isSelected,
-          'hover:bg-grey-1': !disabled,
-        },
+        'w-full ring-inset rounded-none !p-0',
+        'border-t first:border-t-0 bg-grey-0',
+        { 'hover:bg-grey-1': !disabled },
       )}
       onClick={() => selectValue(value)}
       role="option"
@@ -128,7 +144,14 @@ function SelectOption<T>({
       // This is intended to be interacted with arrow keys
       tabIndex={-1}
     >
-      {children({ isSelected, disabled })}
+      <div
+        className={classnames('flex w-full p-2 border-l-4', {
+          'border-l-transparent': !isSelected,
+          'border-l-brand font-medium': isSelected,
+        })}
+      >
+        {children({ isSelected, disabled })}
+      </div>
     </Button>
   );
 }
