@@ -72,11 +72,17 @@ function InputGroupSelect_() {
   );
   const next = useCallback(() => {
     const newIndex = selectedIndex + 1;
-    setSelected(items[newIndex] ?? selected);
+    setSelected(
+      (items[newIndex]?.id === 4 ? items[newIndex + 1] : items[newIndex]) ??
+        selected,
+    );
   }, [selected, selectedIndex]);
   const previous = useCallback(() => {
     const newIndex = selectedIndex - 1;
-    setSelected(items[newIndex] ?? selected);
+    setSelected(
+      (items[newIndex]?.id === 4 ? items[newIndex - 1] : items[newIndex]) ??
+        selected,
+    );
   }, [selected, selectedIndex]);
 
   return (
@@ -158,14 +164,6 @@ export default function EnhancedSelectPage() {
           <Select_ />
         </Library.Pattern>
 
-        <Library.Pattern title="Plain text Select">
-          <Select_ textOnly />
-        </Library.Pattern>
-
-        <Library.Pattern title="Disabled Select">
-          <Select_ disabled />
-        </Library.Pattern>
-
         <Library.Pattern title="Select with many options">
           <Select_
             theItems={[
@@ -179,8 +177,16 @@ export default function EnhancedSelectPage() {
           />
         </Library.Pattern>
 
+        <Library.Pattern title="Plain text Select">
+          <Select_ textOnly />
+        </Library.Pattern>
+
         <Library.Pattern title="Inside an InputGroup">
           <InputGroupSelect_ />
+        </Library.Pattern>
+
+        <Library.Pattern title="Disabled Select">
+          <Select_ disabled />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
