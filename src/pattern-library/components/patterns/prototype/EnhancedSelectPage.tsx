@@ -7,11 +7,11 @@ import Select from '../../../../components/input/SelectNext';
 import Library from '../../Library';
 
 const items = [
-  { id: 1, name: 'All students' },
-  { id: 2, name: 'Albert Banana' },
-  { id: 3, name: 'Bernard California' },
-  { id: 4, name: 'Cecelia Davenport' },
-  { id: 5, name: 'Doris Evanescence' },
+  { id: '1', name: 'All students' },
+  { id: '2', name: 'Albert Banana' },
+  { id: '3', name: 'Bernard California' },
+  { id: '4', name: 'Cecelia Davenport' },
+  { id: '5', name: 'Doris Evanescence' },
 ];
 
 function Select_({
@@ -33,9 +33,11 @@ function Select_({
         selected ? (
           <>
             {selected.name}
-            <div className="rounded px-2 bg-grey-7 text-white">
-              {selected.id}
-            </div>
+            {!textOnly && (
+              <div className="rounded px-2 bg-grey-7 text-white">
+                {selected.id}
+              </div>
+            )}
           </>
         ) : (
           <>Select one...</>
@@ -73,14 +75,14 @@ function InputGroupSelect_() {
   const next = useCallback(() => {
     const newIndex = selectedIndex + 1;
     setSelected(
-      (items[newIndex]?.id === 4 ? items[newIndex + 1] : items[newIndex]) ??
+      (items[newIndex]?.id === '4' ? items[newIndex + 1] : items[newIndex]) ??
         selected,
     );
   }, [selected, selectedIndex]);
   const previous = useCallback(() => {
     const newIndex = selectedIndex - 1;
     setSelected(
-      (items[newIndex]?.id === 4 ? items[newIndex - 1] : items[newIndex]) ??
+      (items[newIndex]?.id === '4' ? items[newIndex - 1] : items[newIndex]) ??
         selected,
     );
   }, [selected, selectedIndex]);
@@ -112,7 +114,11 @@ function InputGroupSelect_() {
           }
         >
           {items.map(item => (
-            <Select.Option value={item} key={item.id} disabled={item.id === 4}>
+            <Select.Option
+              value={item}
+              key={item.id}
+              disabled={item.id === '4'}
+            >
               {({ disabled }) => (
                 <>
                   <span
@@ -160,25 +166,34 @@ export default function EnhancedSelectPage() {
       }
     >
       <Library.Section>
+        <Library.Pattern title="Plain text Select">
+          <div className="w-[350px] mx-auto">
+            <Select_ textOnly />
+          </div>
+        </Library.Pattern>
+
         <Library.Pattern title="Select">
-          <Select_ />
+          <div className="w-[350px] mx-auto">
+            <Select_ />
+          </div>
         </Library.Pattern>
 
         <Library.Pattern title="Select with many options">
-          <Select_
-            theItems={[
-              ...items,
-              ...items,
-              ...items,
-              ...items,
-              ...items,
-              ...items,
-            ]}
-          />
-        </Library.Pattern>
-
-        <Library.Pattern title="Plain text Select">
-          <Select_ textOnly />
+          <div className="w-[350px] mx-auto">
+            <Select_
+              theItems={[
+                ...items,
+                ...items,
+                ...items,
+                ...items,
+                ...items,
+                ...items,
+              ].map((item, index) => ({
+                ...item,
+                id: `${index + 1}`.padStart(2, '0'),
+              }))}
+            />
+          </div>
         </Library.Pattern>
 
         <Library.Pattern title="Inside an InputGroup">
@@ -186,7 +201,9 @@ export default function EnhancedSelectPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Disabled Select">
-          <Select_ disabled />
+          <div className="w-[350px] mx-auto">
+            <Select_ disabled />
+          </div>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
