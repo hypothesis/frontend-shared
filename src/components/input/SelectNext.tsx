@@ -108,7 +108,7 @@ function SelectMain<T>({
           <div
             className={classnames(
               'absolute z-5 w-full max-h-80 overflow-y-auto',
-              'rounded border bg-grey-0 shadow hover:shadow-md focus-within:shadow-md',
+              'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
               {
                 'top-full mt-1': !shouldDropUp,
                 'bottom-full mb-1': shouldDropUp,
@@ -154,7 +154,7 @@ function SelectOption<T>({
       variant="custom"
       classes={classnames(
         'w-full ring-inset rounded-none !p-0',
-        'border-t first:border-t-0 bg-grey-0',
+        'border-t first:border-t-0 bg-transparent',
         { 'hover:bg-grey-1': !disabled },
       )}
       onClick={() => selectValue(value)}
