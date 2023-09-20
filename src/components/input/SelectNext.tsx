@@ -37,6 +37,7 @@ function SelectMain<T>({
   const listboxId = useId();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const buttonId = useId();
+  const [shouldDropUp, setShouldDropUp] = useState(false);
 
   const selectValue = useCallback(
     (newValue: unknown) => {
@@ -59,6 +60,22 @@ function SelectMain<T>({
       buttonRef.current!.focus();
     }
   }, [isDropdownOpen]);
+
+  if (isDropdownOpen) {
+    const viewportHeight = window.innerHeight;
+    const { top: buttonDistanceToTop, height } =
+      buttonRef.current!.getBoundingClientRect();
+    const buttonDistanceToBottom =
+      viewportHeight - (buttonDistanceToTop + height);
+
+    // The listbox should drop up only if there's not enough space below it for
+    // the listbox max height, and there's also more space above
+    setShouldDropUp(
+      // 320px is tailwind's h-80. e should try not to couple with this
+      buttonDistanceToBottom < 320 &&
+        buttonDistanceToTop > buttonDistanceToBottom,
+    );
+  }
 
   return (
     <div className="relative" ref={wrapperRef}>
@@ -90,8 +107,12 @@ function SelectMain<T>({
         {isDropdownOpen && (
           <div
             className={classnames(
-              'absolute z-5 top-full mt-1 w-full max-h-80 overflow-y-auto',
+              'absolute z-5 w-full max-h-80 overflow-y-auto',
               'rounded border bg-grey-0 shadow hover:shadow-md focus-within:shadow-md',
+              {
+                'top-full mt-1': !shouldDropUp,
+                'bottom-full mb-1': shouldDropUp,
+              },
             )}
             role="listbox"
             id={listboxId}
