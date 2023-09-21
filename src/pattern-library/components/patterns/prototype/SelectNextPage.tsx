@@ -39,6 +39,8 @@ function Select_({
               </div>
             )}
           </>
+        ) : disabled ? (
+          <>This is disabled</>
         ) : (
           <>Select one...</>
         )
@@ -243,6 +245,10 @@ export default function SelectNextPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Component API">
+          <code>SelectNext</code> accepts all standard{' '}
+          <Library.Link href="/using-components#presentational-components-api">
+            presentational component props
+          </Library.Link>
           <Library.Example title="label">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -253,7 +259,6 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-
           <Library.Example title="value">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -264,7 +269,6 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-
           <Library.Example title="onChange">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -275,7 +279,6 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-
           <Library.Example title="disabled">
             <Library.Info>
               <Library.InfoItem label="description">

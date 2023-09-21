@@ -12,6 +12,8 @@ import {
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
+import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { PresentationalProps } from '../../types';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import Button from './Button';
 import SelectContext from './SelectContext';
@@ -25,12 +27,14 @@ export type SelectOptionProps<T> = {
   value: T;
   disabled?: boolean;
   children: (status: SelectOptionStatus) => ComponentChildren;
+  classes?: string | string[];
 };
 
 function SelectOption<T>({
   value,
   children,
   disabled = false,
+  classes,
 }: SelectOptionProps<T>) {
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
@@ -47,6 +51,7 @@ function SelectOption<T>({
         'w-full ring-inset rounded-none !p-0',
         'border-t first:border-t-0 bg-transparent',
         { 'hover:bg-grey-1': !disabled },
+        classes,
       )}
       onClick={() => selectValue(value)}
       role="option"
@@ -68,11 +73,10 @@ function SelectOption<T>({
   );
 }
 
-export type SelectProps<T> = {
+export type SelectProps<T> = PresentationalProps & {
   value: T;
   onChange: (newValue: T) => void;
   label: ComponentChildren;
-  children?: ComponentChildren;
   disabled?: boolean;
 };
 
@@ -82,6 +86,8 @@ function SelectMain<T>({
   onChange,
   children,
   disabled,
+  classes,
+  elementRef,
 }: SelectProps<T>) {
   const [isListboxOpen, setIsListboxOpen] = useState(false);
   const [shouldListboxDropUp, setShouldListboxDropUp] = useState(false);
@@ -89,7 +95,7 @@ function SelectMain<T>({
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const listboxRef = useRef<HTMLDivElement | null>(null);
   const listboxId = useId();
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useSyncedRef(elementRef);
   const buttonId = useId();
 
   const selectValue = useCallback(
@@ -130,7 +136,7 @@ function SelectMain<T>({
           buttonDistanceToTop > buttonDistanceToBottom,
       );
     }
-  }, [isListboxOpen]);
+  }, [buttonRef, isListboxOpen]);
 
   return (
     <div className="relative" ref={wrapperRef}>
@@ -140,6 +146,7 @@ function SelectMain<T>({
         classes={classnames(
           'w-full flex border',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
+          classes,
         )}
         expanded={isListboxOpen}
         pressed={isListboxOpen}

@@ -26,10 +26,18 @@ export default function SelectPage() {
     <Library.Page
       title="Select"
       intro={
-        <p>
-          <code>Select</code> is a presentational component that styles native{' '}
-          <code>{'<select>'}</code> elements.
-        </p>
+        <>
+          <p>
+            <code>Select</code> is a presentational component that styles native{' '}
+            <code>{'<select>'}</code> elements.
+          </p>
+          <p>
+            <code>Select</code> is <Library.StatusChip status="deprecated" />,
+            use{' '}
+            <Library.Link href="/input-select-next">SelectNext</Library.Link>{' '}
+            instead.
+          </p>
+        </>
       }
     >
       <Library.Section>

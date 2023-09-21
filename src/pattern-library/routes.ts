@@ -197,16 +197,16 @@ const routes: PlaygroundRoute[] = [
     route: '/input-option-button',
   },
   {
-    title: 'Select',
-    group: 'input',
-    component: SelectPage,
-    route: '/input-select',
-  },
-  {
     title: 'SelectNext',
     group: 'input',
     component: SelectNextPage,
     route: '/input-select-next',
+  },
+  {
+    title: 'Select',
+    group: 'input',
+    component: SelectPage,
+    route: '/input-select',
   },
   {
     title: 'Textarea',
