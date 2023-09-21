@@ -43,6 +43,7 @@ export {
   InputGroup,
   OptionButton,
   Select,
+  SelectNext,
   Textarea,
 } from './components/input';
 export {
@@ -108,6 +109,7 @@ export type {
   InputGroupProps,
   OptionButtonProps,
   SelectProps,
+  SelectNextProps,
   TextareaProps,
 } from './components/input';
 
