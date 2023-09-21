@@ -32,6 +32,7 @@ import PointerButtonPage from './components/patterns/navigation/PointerButtonPag
 import TabPage from './components/patterns/navigation/TabPage';
 import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
+import SelectNextPage from './components/patterns/prototype/SelectNextPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 import TabbedDialogPage from './components/patterns/prototype/TabbedDialogPage';
 import SliderPage from './components/patterns/transition/SliderPage';
@@ -194,6 +195,12 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: OptionButtonPage,
     route: '/input-option-button',
+  },
+  {
+    title: 'SelectNext',
+    group: 'input',
+    component: SelectNextPage,
+    route: '/input-select-next',
   },
   {
     title: 'Select',
