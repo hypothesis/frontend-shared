@@ -2,7 +2,7 @@ import { createContext } from 'preact';
 
 export type SelectContextType<T = unknown> = {
   selectValue: (newValue: T) => void;
-  selected: T;
+  value: T;
 };
 
 const SelectContext = createContext<SelectContextType | null>(null);

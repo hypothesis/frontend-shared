@@ -17,7 +17,7 @@ import Button from './Button';
 import SelectContext from './SelectContext';
 
 export type SelectProps<T> = {
-  selected: T;
+  value: T;
   onChange: (newValue: T) => void;
   label: ComponentChildren;
   children: ComponentChildren;
@@ -26,14 +26,15 @@ export type SelectProps<T> = {
 
 function SelectMain<T>({
   label,
-  selected,
+  value,
   onChange,
   children,
   disabled,
 }: SelectProps<T>) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const closeDropdown = useCallback(() => setIsDropdownOpen(false), []);
+  const [isListboxOpen, setIsListboxOpen] = useState(false);
+  const closeListbox = useCallback(() => setIsListboxOpen(false), []);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const listboxRef = useRef<HTMLDivElement | null>(null);
   const listboxId = useId();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const buttonId = useId();
@@ -42,40 +43,42 @@ function SelectMain<T>({
   const selectValue = useCallback(
     (newValue: unknown) => {
       onChange(newValue as T);
-      closeDropdown();
+      closeListbox();
     },
-    [closeDropdown, onChange],
+    [closeListbox, onChange],
   );
 
-  // When clicking away or pressing `Esc`, close the dropdown
-  useClickAway(wrapperRef, closeDropdown);
-  useKeyPress(['Escape'], closeDropdown);
+  // When clicking away or pressing `Esc`, close the listbox
+  useClickAway(wrapperRef, closeListbox);
+  useKeyPress(['Escape'], closeListbox);
 
-  // Vertical arrow key for options in the dropdown
+  // Vertical arrow key for options in the listbox
   useArrowKeyNavigation(wrapperRef, { horizontal: false });
 
-  // Focus button after closing dropdown
   useLayoutEffect(() => {
-    if (!isDropdownOpen) {
+    if (!isListboxOpen) {
+      // Focus button after closing listbox
       buttonRef.current!.focus();
+      // Reset shouldDropUp so that it does not affect calculations next time
+      // it opens
+      setShouldDropUp(false);
+    } else {
+      const viewportHeight = window.innerHeight;
+      const { top: buttonDistanceToTop, bottom: buttonBottom } =
+        buttonRef.current!.getBoundingClientRect();
+      const buttonDistanceToBottom = viewportHeight - buttonBottom;
+      const { bottom: listboxBottom } =
+        listboxRef.current!.getBoundingClientRect();
+      const listboxDistanceToBottom = viewportHeight - listboxBottom;
+
+      // The listbox should drop up only if there's not enough space below it for
+      // the listbox max height, and there's also more space above
+      setShouldDropUp(
+        listboxDistanceToBottom < 0 &&
+          buttonDistanceToTop > buttonDistanceToBottom,
+      );
     }
-  }, [isDropdownOpen]);
-
-  if (isDropdownOpen) {
-    const viewportHeight = window.innerHeight;
-    const { top: buttonDistanceToTop, height } =
-      buttonRef.current!.getBoundingClientRect();
-    const buttonDistanceToBottom =
-      viewportHeight - (buttonDistanceToTop + height);
-
-    // The listbox should drop up only if there's not enough space below it for
-    // the listbox max height, and there's also more space above
-    setShouldDropUp(
-      // 320px is tailwind's h-80. e should try not to couple with this
-      buttonDistanceToBottom < 320 &&
-        buttonDistanceToTop > buttonDistanceToBottom,
-    );
-  }
+  }, [isListboxOpen]);
 
   return (
     <div className="relative" ref={wrapperRef}>
@@ -86,42 +89,42 @@ function SelectMain<T>({
           'w-full flex border',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
         )}
-        expanded={isDropdownOpen}
-        pressed={isDropdownOpen}
+        expanded={isListboxOpen}
+        pressed={isListboxOpen}
         disabled={disabled}
         aria-haspopup="listbox"
         aria-controls={listboxId}
         elementRef={buttonRef}
-        onClick={() => setIsDropdownOpen(prev => !prev)}
+        onClick={() => setIsListboxOpen(prev => !prev)}
         onKeyDown={e => {
-          if (e.key === 'ArrowDown' && !isDropdownOpen) {
-            setIsDropdownOpen(true);
+          if (e.key === 'ArrowDown' && !isListboxOpen) {
+            setIsListboxOpen(true);
           }
         }}
       >
         {label}
         <div className="grow" />
-        {isDropdownOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
+        {isListboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
       </Button>
-      <SelectContext.Provider value={{ selectValue, selected }}>
-        {isDropdownOpen && (
-          <div
-            className={classnames(
-              'absolute z-5 w-full max-h-80 overflow-y-auto',
-              'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
-              {
-                'top-full mt-1': !shouldDropUp,
-                'bottom-full mb-1': shouldDropUp,
-              },
-            )}
-            role="listbox"
-            id={listboxId}
-            aria-labelledby={buttonId}
-            aria-orientation="vertical"
-          >
-            {children}
-          </div>
-        )}
+      <SelectContext.Provider value={{ selectValue, value }}>
+        <div
+          className={classnames(
+            'absolute z-5 w-full max-h-80 overflow-y-auto',
+            'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
+            {
+              'top-full mt-1': !shouldDropUp,
+              'bottom-full mb-1': shouldDropUp,
+              hidden: !isListboxOpen,
+            },
+          )}
+          role="listbox"
+          ref={listboxRef}
+          id={listboxId}
+          aria-labelledby={buttonId}
+          aria-orientation="vertical"
+        >
+          {children}
+        </div>
       </SelectContext.Provider>
     </div>
   );
@@ -131,7 +134,7 @@ export type SelectOptionProps<T> = {
   value: T;
   disabled?: boolean;
   children: (status: {
-    isSelected: boolean;
+    selected: boolean;
     disabled: boolean;
   }) => ComponentChildren;
 };
@@ -146,8 +149,8 @@ function SelectOption<T>({
     throw new Error('Select.Option can only be used as Select child');
   }
 
-  const { selectValue, selected } = selectContext;
-  const isSelected = !disabled && selected === value;
+  const { selectValue, value: currentValue } = selectContext;
+  const selected = !disabled && currentValue === value;
 
   return (
     <Button
@@ -160,18 +163,18 @@ function SelectOption<T>({
       onClick={() => selectValue(value)}
       role="option"
       disabled={disabled}
-      pressed={isSelected}
-      aria-selected={isSelected}
+      pressed={selected}
+      aria-selected={selected}
       // This is intended to be focused with arrow keys
       tabIndex={-1}
     >
       <div
         className={classnames('flex w-full p-1.5 border-l-4', {
-          'border-l-transparent': !isSelected,
-          'border-l-brand font-medium': isSelected,
+          'border-l-transparent': !selected,
+          'border-l-brand font-medium': selected,
         })}
       >
-        {children({ isSelected, disabled })}
+        {children({ selected, disabled })}
       </div>
     </Button>
   );

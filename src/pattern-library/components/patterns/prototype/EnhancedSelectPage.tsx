@@ -27,7 +27,7 @@ function Select_({
 
   return (
     <Select
-      selected={selected}
+      value={selected}
       onChange={setSelected}
       label={
         selected ? (
@@ -98,7 +98,7 @@ function InputGroupSelect_() {
       />
       <div className="w-[350px]">
         <Select
-          selected={selected}
+          value={selected}
           onChange={setSelected}
           label={
             selected ? (
@@ -166,13 +166,13 @@ export default function EnhancedSelectPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern title="Plain text Select">
+        <Library.Pattern title="Select">
           <div className="w-[350px] mx-auto">
             <Select_ textOnly />
           </div>
         </Library.Pattern>
 
-        <Library.Pattern title="Select">
+        <Library.Pattern title="Select with custom items">
           <div className="w-[350px] mx-auto">
             <Select_ />
           </div>
@@ -182,16 +182,31 @@ export default function EnhancedSelectPage() {
           <div className="w-[350px] mx-auto">
             <Select_
               theItems={[
-                ...items,
-                ...items,
-                ...items,
-                ...items,
-                ...items,
-                ...items,
-              ].map((item, index) => ({
-                ...item,
-                id: `${index + 1}`.padStart(2, '0'),
-              }))}
+                ...items.map(({ id, name }) => ({
+                  id: `1${id}`,
+                  name: `1 ${name}`,
+                })),
+                ...items.map(({ id, name }) => ({
+                  id: `2${id}`,
+                  name: `2 ${name}`,
+                })),
+                ...items.map(({ id, name }) => ({
+                  id: `3${id}`,
+                  name: `3 ${name}`,
+                })),
+                ...items.map(({ id, name }) => ({
+                  id: `4${id}`,
+                  name: `4 ${name}`,
+                })),
+                ...items.map(({ id, name }) => ({
+                  id: `5${id}`,
+                  name: `5 ${name}`,
+                })),
+                ...items.map(({ id, name }) => ({
+                  id: `6${id}`,
+                  name: `6 ${name}`,
+                })),
+              ]}
             />
           </div>
         </Library.Pattern>
