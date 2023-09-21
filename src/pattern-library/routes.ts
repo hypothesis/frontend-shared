@@ -30,9 +30,9 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
-import EnhancedSelectPage from './components/patterns/prototype/EnhancedSelectPage';
 import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
+import SelectNextPage from './components/patterns/prototype/SelectNextPage';
 import SharedAnnotationsPage from './components/patterns/prototype/SharedAnnotationsPage';
 import TabbedDialogPage from './components/patterns/prototype/TabbedDialogPage';
 import SliderPage from './components/patterns/transition/SliderPage';
@@ -203,6 +203,12 @@ const routes: PlaygroundRoute[] = [
     route: '/input-select',
   },
   {
+    title: 'SelectNext',
+    group: 'input',
+    component: SelectNextPage,
+    route: '/input-select-next',
+  },
+  {
     title: 'Textarea',
     group: 'input',
     component: TextareaPage,
@@ -279,12 +285,6 @@ const routes: PlaygroundRoute[] = [
     group: 'prototype',
     component: LMSContentSelectionPage,
     route: '/lms-content-selection',
-  },
-  {
-    title: 'Sketches: Enhanced select',
-    group: 'prototype',
-    component: EnhancedSelectPage,
-    route: '/sketches-enhanced-select',
   },
 ];
 

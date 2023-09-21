@@ -72,7 +72,7 @@ export type SelectProps<T> = {
   value: T;
   onChange: (newValue: T) => void;
   label: ComponentChildren;
-  children: ComponentChildren;
+  children?: ComponentChildren;
   disabled?: boolean;
 };
 
