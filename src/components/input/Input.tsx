@@ -5,7 +5,7 @@ import { downcastRef } from '../../util/typing';
 import InputRoot from './InputRoot';
 
 type ComponentProps = {
-  type?: 'email' | 'search' | 'text' | 'url';
+  type?: 'text' | 'email' | 'search' | 'number' | 'password' | 'url';
   feedback?: 'error' | 'warning';
 
   /**
