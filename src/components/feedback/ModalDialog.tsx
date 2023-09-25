@@ -5,7 +5,7 @@ import { useTabKeyNavigation } from '../../hooks/use-tab-key-navigation';
 import { downcastRef } from '../../util/typing';
 import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
-import type { DialogProps } from './Dialog';
+import type { PanelDialogProps } from './Dialog';
 
 type ModalWidth = 'sm' | 'md' | 'lg' | 'custom';
 
@@ -39,7 +39,7 @@ type ComponentProps = {
 };
 
 export type ModalDialogProps = Omit<
-  DialogProps,
+  PanelDialogProps,
   'restoreFocus' | 'closeOnEscape'
 > &
   ComponentProps;

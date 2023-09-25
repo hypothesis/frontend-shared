@@ -302,9 +302,7 @@ describe('Dialog', () => {
 
     it('allows custom layout', () => {
       const wrapper = mount(
-        <Dialog title="My dialog" variant="custom">
-          This is my content
-        </Dialog>,
+        <Dialog variant="custom">This is my content</Dialog>,
       );
       assert.isFalse(wrapper.find('Panel').exists());
     });

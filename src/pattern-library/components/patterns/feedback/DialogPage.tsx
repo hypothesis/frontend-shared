@@ -59,7 +59,6 @@ type Dialog_Props = DialogProps & {
  * multiple examples plausible and convenient.
  */
 function Dialog_({
-  buttons,
   _alwaysShowButton = false,
   _nonCloseable,
   children,
@@ -67,13 +66,15 @@ function Dialog_({
 }: Dialog_Props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const closeDialog = () => setDialogOpen(false);
-
   const closeHandler = _nonCloseable ? undefined : closeDialog;
-  const forwardedButtons = buttons ? (
-    buttons
-  ) : (
-    <Button onClick={closeDialog}>Escape!</Button>
-  );
+  const panelProps =
+    dialogProps.variant !== 'custom'
+      ? {
+          buttons: dialogProps.buttons ?? (
+            <Button onClick={closeDialog}>Escape!</Button>
+          ),
+        }
+      : undefined;
 
   const openButton = (
     <Button onClick={() => setDialogOpen(!dialogOpen)} variant="primary">
@@ -86,11 +87,7 @@ function Dialog_({
       {(!dialogOpen || _alwaysShowButton) && <div>{openButton}</div>}
       <div className="grow">
         {dialogOpen && (
-          <Dialog
-            buttons={forwardedButtons}
-            {...dialogProps}
-            onClose={closeHandler}
-          >
+          <Dialog {...panelProps} {...dialogProps} onClose={closeHandler}>
             {children}
           </Dialog>
         )}
@@ -238,7 +235,6 @@ export default function DialogPage() {
             </p>
             <Library.Demo title="Dialog with custom layout" withSource>
               <Dialog_
-                title="Custom layout"
                 onClose={() => {}}
                 variant="custom"
                 transitionComponent={Slider}

@@ -69,7 +69,7 @@ export default function CloseButtonPage() {
               <code>onClick</code> prop in these cases.
             </p>
             <Library.Demo title="Dialog with CloseButton" withSource>
-              <Dialog_ variant="custom" title="Example Dialog">
+              <Dialog_ variant="custom">
                 <div className="flex gap-x-3">
                   <div className="grow">Example custom dialog</div>
                   <CloseButton />

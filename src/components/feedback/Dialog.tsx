@@ -26,6 +26,7 @@ type ComponentProps = {
   closeOnClickAway?: boolean;
   closeOnEscape?: boolean;
   closeOnFocusAway?: boolean;
+
   /**
    * Dialog _should_ be provided with a close handler. We have a few edge use
    * cases, however, in which we need to render a "non-closeable" modal dialog.
@@ -48,19 +49,30 @@ type ComponentProps = {
    * Optional TransitionComponent for open (mount) and close (unmount) transitions
    */
   transitionComponent?: TransitionComponent;
-
-  /**
-   * Dialog lays out its content in a Panel by default, but `custom` allows any
-   * layout of Dialog children
-   */
-  variant?: 'panel' | 'custom';
 };
 
 // This component forwards a number of props on to `Panel` but always sets the
 // `fullWidthHeader` prop to `true`.
-export type DialogProps = PresentationalProps &
+export type PanelDialogProps = PresentationalProps &
   ComponentProps &
-  Omit<PanelProps, 'fullWidthHeader'>;
+  Omit<PanelProps, 'fullWidthHeader'> & {
+    /** Dialog lays out its content in a Panel by default */
+    variant?: 'panel';
+  };
+
+type CustomDialogProps = PresentationalProps &
+  ComponentProps & {
+    /** `custom` allows any layout of Dialog children */
+    variant: 'custom';
+  };
+
+export type DialogProps = PanelDialogProps | CustomDialogProps;
+
+function isPanelProps(
+  props: DialogProps,
+): props is Omit<PanelProps, 'fullWidthHeader'> {
+  return props.variant !== 'custom';
+}
 
 /**
  * Show a dialog
@@ -73,21 +85,32 @@ export default function Dialog({
   initialFocus = 'auto',
   restoreFocus = false,
   transitionComponent: TransitionComponent,
-  variant = 'panel',
 
   classes,
   elementRef,
-
-  // Forwarded to Panel
-  buttons,
-  icon,
   onClose,
-  paddingSize = 'md',
-  scrollable = true,
-  title,
 
-  ...htmlAttributes
+  ...rest
 }: DialogProps) {
+  const isPanel = isPanelProps(rest);
+  const {
+    buttons,
+    icon,
+    paddingSize = 'md',
+    title = '',
+    scrollable = true,
+    ...htmlAttributes
+  } = isPanel
+    ? rest
+    : {
+        buttons: undefined,
+        icon: undefined,
+        paddingSize: undefined,
+        title: undefined,
+        scrollable: undefined,
+        ...rest,
+      };
+
   const modalRef = useSyncedRef(elementRef);
   const restoreFocusEl = useRef<HTMLElement | null>(
     document.activeElement as HTMLElement | null,
@@ -225,7 +248,7 @@ export default function Dialog({
           )}
           ref={downcastRef(modalRef)}
         >
-          {variant === 'panel' && (
+          {isPanel ? (
             <Panel
               buttons={buttons}
               fullWidthHeader={true}
@@ -236,8 +259,9 @@ export default function Dialog({
             >
               {children}
             </Panel>
+          ) : (
+            <>{children}</>
           )}
-          {variant === 'custom' && <>{children}</>}
         </div>
       </Wrapper>
     </CloseableContext.Provider>
