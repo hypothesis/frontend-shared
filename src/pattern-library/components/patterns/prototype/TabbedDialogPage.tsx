@@ -105,7 +105,6 @@ function TabbedDialog() {
         {panelOpen && (
           <Dialog
             variant="custom"
-            title="Panel with three tabs"
             onClose={() => setPanelOpen(false)}
             restoreFocus
           >
@@ -204,7 +203,6 @@ function TabbedSharePanel() {
         {panelOpen && (
           <Dialog
             variant="custom"
-            title="Share annotations"
             onClose={() => setPanelOpen(false)}
             transitionComponent={Slider}
             restoreFocus
