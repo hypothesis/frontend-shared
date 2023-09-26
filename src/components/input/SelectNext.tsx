@@ -162,7 +162,9 @@ function SelectMain<T>({
       >
         {label}
         <div className="grow" />
-        {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
+        <div className="text-grey-6">
+          {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
+        </div>
       </Button>
       <SelectContext.Provider value={{ selectValue, value }}>
         <div
