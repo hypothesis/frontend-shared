@@ -150,12 +150,35 @@ describe('SelectNext', () => {
     }
   });
 
+  it('closes listbox when focusing away', () => {
+    const wrapper = createComponent();
+    toggleListbox(wrapper);
+
+    // Focus an element which is outside the listbox itself
+    const outerButton = document.createElement('button');
+    document.body.append(outerButton);
+    outerButton.focus();
+    wrapper.update();
+
+    try {
+      assert.isTrue(isListboxClosed(wrapper));
+      // The button should still be focused after closing the listbox
+      assert.equal(document.activeElement, outerButton);
+    } finally {
+      outerButton.remove();
+    }
+  });
+
   it('restores focus to toggle button after closing listbox', () => {
     const wrapper = createComponent();
     toggleListbox(wrapper);
 
-    // Focus body before closing listbox
-    document.body.focus();
+    // Focus listbox option before closing listbox
+    wrapper
+      .find('[data-testid="option-3"]')
+      .getDOMNode()
+      .closest('button')
+      .focus();
     toggleListbox(wrapper);
     wrapper.update();
 

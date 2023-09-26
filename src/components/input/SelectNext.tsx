@@ -11,6 +11,7 @@ import {
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useClickAway } from '../../hooks/use-click-away';
+import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
@@ -105,8 +106,9 @@ function SelectMain<T>({
     [closeListbox, onChange],
   );
 
-  // When clicking away or pressing `Esc`, close the listbox
+  // When clicking away, focusing away or pressing `Esc`, close the listbox
   useClickAway(wrapperRef, closeListbox);
+  useFocusAway(wrapperRef, closeListbox);
   useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
@@ -114,8 +116,12 @@ function SelectMain<T>({
 
   useLayoutEffect(() => {
     if (!listboxOpen) {
-      // Focus button after closing listbox
-      buttonRef.current!.focus();
+      // Focus toggle button after closing listbox, only if previously focused
+      // element was inside the listbox itself
+      if (listboxRef.current!.contains(document.activeElement)) {
+        buttonRef.current!.focus();
+      }
+
       // Reset shouldDropUp so that it does not affect calculations next time
       // it opens
       setShouldListboxDropUp(false);
