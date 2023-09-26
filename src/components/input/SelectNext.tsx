@@ -143,7 +143,7 @@ function SelectMain<T>({
         id={buttonId}
         variant="custom"
         classes={classnames(
-          'w-full flex border',
+          'w-full flex border rounded',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           classes,
         )}
