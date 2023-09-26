@@ -18,6 +18,12 @@ export type UseArrowKeyNavigationOptions = {
    */
   autofocus?: boolean;
 
+  /**
+   * Whether focus should loop back to the first element once the end of the
+   * list is reached. Defaults to `true`.
+   */
+  loop?: boolean;
+
   /** Enable navigating elements using left/right arrow keys  */
   horizontal?: boolean;
   /** Enable navigating elements using up/down arrow keys */
@@ -67,6 +73,7 @@ export function useArrowKeyNavigation(
   containerRef: RefObject<HTMLElement | undefined>,
   {
     autofocus = false,
+    loop = true,
     horizontal = true,
     vertical = true,
     selector = 'a,button',
@@ -142,7 +149,7 @@ export function useArrowKeyNavigation(
         (vertical && event.key === 'ArrowUp')
       ) {
         if (currentIndex === 0) {
-          currentIndex = elements.length - 1;
+          currentIndex = loop ? elements.length - 1 : currentIndex;
         } else {
           --currentIndex;
         }
@@ -152,7 +159,7 @@ export function useArrowKeyNavigation(
         (vertical && event.key === 'ArrowDown')
       ) {
         if (currentIndex === elements.length - 1) {
-          currentIndex = 0;
+          currentIndex = loop ? 0 : currentIndex;
         } else {
           ++currentIndex;
         }
@@ -215,5 +222,5 @@ export function useArrowKeyNavigation(
       listeners.removeAll();
       mo.disconnect();
     };
-  }, [autofocus, containerRef, horizontal, selector, vertical]);
+  }, [autofocus, containerRef, horizontal, loop, selector, vertical]);
 }

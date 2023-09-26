@@ -329,4 +329,24 @@ describe('useArrowKeyNavigation', () => {
     // nb. tabIndex update is async because it uses MutationObserver
     await waitFor(() => italicButton.tabIndex === 0);
   });
+
+  it('should not loop if disabled', () => {
+    renderToolbar({ loop: false });
+
+    // Focus last element
+    findElementByTestId('help').focus();
+
+    // Clicking down or right should not move focus back to the first element
+    pressKey('ArrowDown');
+    pressKey('ArrowRight');
+    assert.equal(currentItem(), 'Help');
+
+    // Focus first element
+    findElementByTestId('bold').focus();
+
+    // Clicking up or left should not move focus back to the last element
+    pressKey('ArrowUp');
+    pressKey('ArrowLeft');
+    assert.equal(currentItem(), 'Bold');
+  });
 });
