@@ -112,7 +112,11 @@ function SelectMain<T>({
   useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
-  useArrowKeyNavigation(wrapperRef, { horizontal: false, loop: false });
+  useArrowKeyNavigation(wrapperRef, {
+    horizontal: false,
+    loop: false,
+    selector: '[role="option"]',
+  });
 
   useLayoutEffect(() => {
     if (!listboxOpen) {

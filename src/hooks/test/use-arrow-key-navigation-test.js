@@ -12,6 +12,9 @@ function Toolbar({ navigationOptions = {} }) {
 
   return (
     <div ref={containerRef} data-testid="toolbar" tabIndex={-1}>
+      <div>
+        <div data-testid="non-focusable-item" />
+      </div>
       <button data-testid="bold">Bold</button>
       <button data-testid="italic">Italic</button>
       <button data-testid="underline">Underline</button>
@@ -301,9 +304,9 @@ describe('useArrowKeyNavigation', () => {
   });
 
   it('should re-initialize tabindex attributes if current element is removed', async () => {
-    const toolbar = renderToolbar();
-    const boldButton = toolbar.querySelector('[data-testid=bold]');
-    const italicButton = toolbar.querySelector('[data-testid=italic]');
+    renderToolbar();
+    const boldButton = findElementByTestId('bold');
+    const italicButton = findElementByTestId('italic');
 
     boldButton.focus();
     assert.equal(boldButton.tabIndex, 0);
@@ -328,6 +331,35 @@ describe('useArrowKeyNavigation', () => {
 
     // nb. tabIndex update is async because it uses MutationObserver
     await waitFor(() => italicButton.tabIndex === 0);
+  });
+
+  it('should ignore mutations for elements not matching selector', async () => {
+    const toolbar = renderToolbar();
+    const boldButton = findElementByTestId('bold');
+    const italicButton = findElementByTestId('italic');
+
+    assert.equal(boldButton.tabIndex, 0);
+    assert.equal(italicButton.tabIndex, -1);
+
+    const waitForMutation = new Promise(resolve => {
+      const mo = new MutationObserver(resolve);
+      mo.observe(toolbar, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['disabled'],
+        childList: true,
+      });
+    });
+
+    // Remove an element which does not match selector
+    findElementByTestId('non-focusable-item').remove();
+
+    // nb. tabIndex update is async because it uses MutationObserver
+    await waitForMutation;
+
+    // Tab indexes did not change as mutation was not relevant
+    assert.equal(findElementByTestId('bold').tabIndex, 0);
+    assert.equal(findElementByTestId('italic').tabIndex, -1);
   });
 
   it('should not loop if disabled', () => {

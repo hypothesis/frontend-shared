@@ -80,8 +80,8 @@ export function useArrowKeyNavigation(
   }: UseArrowKeyNavigationOptions = {},
 ) {
   // Keep track of the element that was last focused by this hook such that
-  // navigation can be restored if focus moves outside of the container
-  // and then back to/into it.
+  // navigation can be restored if focus moves outside the container and then
+  // back to/into it.
   const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
 
   useEffect(() => {
@@ -208,8 +208,16 @@ export function useArrowKeyNavigation(
 
     // Update the tab indexes of elements as they are added, removed, enabled
     // or disabled.
-    const mo = new MutationObserver(() => {
-      updateTabIndexes();
+    const mo = new MutationObserver(mutations => {
+      const mutationsAreRelevant = mutations.some(mutation => {
+        const element = mutation.target as Element;
+        // Relevant mutations are those affecting elements matching selector or
+        // containing elements matching selector
+        return element.matches(selector) || !!element.querySelector(selector);
+      });
+      if (mutationsAreRelevant) {
+        updateTabIndexes();
+      }
     });
     mo.observe(container, {
       subtree: true,
