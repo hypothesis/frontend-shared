@@ -10,6 +10,10 @@ const minimumTouchDimension = '44px';
 export default /** @type {Partial<import('tailwindcss').Config>} */ ({
   theme: {
     extend: {
+      animation: {
+        'fade-in': 'fade-in 0.3s forwards',
+        'fade-out': 'fade-out 0.3s forwards',
+      },
       borderColor: {
         DEFAULT: '#dbdbdb',
       },
@@ -68,6 +72,24 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
           DEFAULT: '#202020',
           light: '#737373',
           inverted: '#f2f2f2',
+        },
+      },
+      keyframes: {
+        'fade-in': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        'fade-out': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
         },
       },
       minHeight: {
