@@ -15,6 +15,7 @@ import CalloutPage from './components/patterns/feedback/CalloutPage';
 import DialogPage from './components/patterns/feedback/DialogPage';
 import ModalPage from './components/patterns/feedback/ModalPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
+import ToastMessagesPage from './components/patterns/feedback/ToastMessagesPage';
 import ButtonsPage from './components/patterns/input/ButtonPage';
 import CheckboxPage from './components/patterns/input/CheckboxPage';
 import CloseButtonPage from './components/patterns/input/CloseButtonPage';
@@ -159,6 +160,12 @@ const routes: PlaygroundRoute[] = [
     group: 'feedback',
     component: SpinnerPage,
     route: '/feedback-spinner',
+  },
+  {
+    title: 'ToastMessages',
+    group: 'feedback',
+    component: ToastMessagesPage,
+    route: '/feedback-toast-messages',
   },
   {
     title: 'Button',
