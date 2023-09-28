@@ -1,5 +1,5 @@
 import { render } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useCallback, useMemo, useRef, useState } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
 import { waitFor } from '../../test-util/wait';
@@ -7,11 +7,17 @@ import { useArrowKeyNavigation } from '../use-arrow-key-navigation';
 
 function Toolbar({ navigationOptions = {} }) {
   const containerRef = useRef();
+  const visible = navigationOptions.containerVisible ?? true;
 
   useArrowKeyNavigation(containerRef, navigationOptions);
 
   return (
-    <div ref={containerRef} data-testid="toolbar" tabIndex={-1}>
+    <div
+      ref={containerRef}
+      data-testid="toolbar"
+      tabIndex={-1}
+      style={{ display: visible ? 'block' : 'none' }}
+    >
       <button data-testid="bold">Bold</button>
       <button data-testid="italic">Italic</button>
       <button data-testid="underline">Underline</button>
@@ -19,6 +25,24 @@ function Toolbar({ navigationOptions = {} }) {
         Help
       </a>
     </div>
+  );
+}
+
+function ToolbarWithToggle({ navigationOptions = {} }) {
+  const [visible, setVisible] = useState(false);
+  const toggleVisible = useCallback(() => setVisible(prev => !prev), []);
+  const options = useMemo(
+    () => ({ ...navigationOptions, containerVisible: visible }),
+    [navigationOptions, visible],
+  );
+
+  return (
+    <>
+      <button data-testid="toggle" onClick={toggleVisible}>
+        Toggle
+      </button>
+      <Toolbar navigationOptions={options} />
+    </>
   );
 }
 
@@ -348,5 +372,21 @@ describe('useArrowKeyNavigation', () => {
     pressKey('ArrowUp');
     pressKey('ArrowLeft');
     assert.equal(currentItem(), 'Bold');
+  });
+
+  it('should re-check focus sequence when container visibility changes', async () => {
+    await act(() =>
+      render(
+        <ToolbarWithToggle navigationOptions={{ autofocus: true }} />,
+        container,
+      ),
+    );
+
+    // No button should be initially focused
+    assert.equal(document.activeElement, document.body);
+
+    // Once we toggle the list open, the first item will be focused
+    findElementByTestId('toggle').click();
+    await waitFor(() => document.activeElement === findElementByTestId('bold'));
   });
 });

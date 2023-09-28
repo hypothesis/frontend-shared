@@ -33,6 +33,15 @@ export type UseArrowKeyNavigationOptions = {
    * CSS selector which specifies the elements that navigation moves between
    */
   selector?: string;
+
+  /**
+   * Indicates if the container element is currently visible.
+   * This information is used to focus the current element when the container
+   * transitions from hidden to visible.
+   *
+   * Defaults to `true`.
+   */
+  containerVisible?: boolean;
 };
 
 /**
@@ -77,11 +86,12 @@ export function useArrowKeyNavigation(
     horizontal = true,
     vertical = true,
     selector = 'a,button',
+    containerVisible = true,
   }: UseArrowKeyNavigationOptions = {},
 ) {
   // Keep track of the element that was last focused by this hook such that
-  // navigation can be restored if focus moves outside of the container
-  // and then back to/into it.
+  // navigation can be restored if focus moves outside the container and then
+  // back to/into it.
   const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
 
   useEffect(() => {
@@ -182,7 +192,7 @@ export function useArrowKeyNavigation(
       event.stopPropagation();
     };
 
-    updateTabIndexes(getNavigableElements(), 0, autofocus);
+    updateTabIndexes(getNavigableElements(), 0, containerVisible && autofocus);
 
     const listeners = new ListenerCollection();
 
@@ -222,5 +232,13 @@ export function useArrowKeyNavigation(
       listeners.removeAll();
       mo.disconnect();
     };
-  }, [autofocus, containerRef, horizontal, loop, selector, vertical]);
+  }, [
+    autofocus,
+    containerRef,
+    horizontal,
+    loop,
+    selector,
+    vertical,
+    containerVisible,
+  ]);
 }

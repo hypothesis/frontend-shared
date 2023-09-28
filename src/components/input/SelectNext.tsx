@@ -150,7 +150,12 @@ function SelectMain<T>({
   useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
-  useArrowKeyNavigation(wrapperRef, { horizontal: false, loop: false });
+  useArrowKeyNavigation(listboxRef, {
+    horizontal: false,
+    loop: false,
+    autofocus: true,
+    containerVisible: listboxOpen,
+  });
 
   useLayoutEffect(() => {
     // Focus toggle button after closing listbox, only if previously focused
