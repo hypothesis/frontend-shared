@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import type { ComponentChildren } from 'preact';
+import type { ComponentChildren, RefObject } from 'preact';
 import {
   useCallback,
   useContext,
@@ -73,6 +73,40 @@ function SelectOption<T>({
   );
 }
 
+function useShouldDropUp(
+  buttonRef: RefObject<HTMLElement | undefined>,
+  listboxRef: RefObject<HTMLElement | null>,
+  listboxOpen: boolean,
+): boolean {
+  const [shouldListboxDropUp, setShouldListboxDropUp] = useState(false);
+
+  useLayoutEffect(() => {
+    // Reset shouldListboxDropUp so that it does not affect calculations next
+    // time listbox opens
+    if (!buttonRef.current || !listboxRef.current || !listboxOpen) {
+      setShouldListboxDropUp(false);
+      return;
+    }
+
+    const viewportHeight = window.innerHeight;
+    const { top: buttonDistanceToTop, bottom: buttonBottom } =
+      buttonRef.current.getBoundingClientRect();
+    const buttonDistanceToBottom = viewportHeight - buttonBottom;
+    const { bottom: listboxBottom } =
+      listboxRef.current.getBoundingClientRect();
+    const listboxDistanceToBottom = viewportHeight - listboxBottom;
+
+    // The listbox should drop up only if there's not enough space below to
+    // fit it, and there's also more absolute space above than below
+    setShouldListboxDropUp(
+      listboxDistanceToBottom < 0 &&
+        buttonDistanceToTop > buttonDistanceToBottom,
+    );
+  }, [buttonRef, listboxRef, listboxOpen]);
+
+  return shouldListboxDropUp;
+}
+
 export type SelectProps<T> = PresentationalProps & {
   value: T;
   onChange: (newValue: T) => void;
@@ -90,13 +124,17 @@ function SelectMain<T>({
   elementRef,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
-  const [shouldListboxDropUp, setShouldListboxDropUp] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const listboxRef = useRef<HTMLDivElement | null>(null);
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
   const buttonId = useId();
+  const shouldListboxDropUp = useShouldDropUp(
+    buttonRef,
+    listboxRef,
+    listboxOpen,
+  );
 
   const selectValue = useCallback(
     (newValue: unknown) => {
@@ -115,31 +153,10 @@ function SelectMain<T>({
   useArrowKeyNavigation(wrapperRef, { horizontal: false, loop: false });
 
   useLayoutEffect(() => {
-    if (!listboxOpen) {
-      // Focus toggle button after closing listbox, only if previously focused
-      // element was inside the listbox itself
-      if (listboxRef.current!.contains(document.activeElement)) {
-        buttonRef.current!.focus();
-      }
-
-      // Reset shouldDropUp so that it does not affect calculations next time
-      // it opens
-      setShouldListboxDropUp(false);
-    } else {
-      const viewportHeight = window.innerHeight;
-      const { top: buttonDistanceToTop, bottom: buttonBottom } =
-        buttonRef.current!.getBoundingClientRect();
-      const buttonDistanceToBottom = viewportHeight - buttonBottom;
-      const { bottom: listboxBottom } =
-        listboxRef.current!.getBoundingClientRect();
-      const listboxDistanceToBottom = viewportHeight - listboxBottom;
-
-      // The listbox should drop up only if there's not enough space below to
-      // fit it, and there's also more absolute space above than below
-      setShouldListboxDropUp(
-        listboxDistanceToBottom < 0 &&
-          buttonDistanceToTop > buttonDistanceToBottom,
-      );
+    // Focus toggle button after closing listbox, only if previously focused
+    // element was inside the listbox itself
+    if (!listboxOpen && listboxRef.current!.contains(document.activeElement)) {
+      buttonRef.current!.focus();
     }
   }, [buttonRef, listboxOpen]);
 
