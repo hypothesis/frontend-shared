@@ -17,10 +17,6 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       borderColor: {
         DEFAULT: '#dbdbdb',
       },
-      borderRadius: {
-        // Equivalent to tailwind default `rounded-sm` size
-        DEFAULT: '0.125rem',
-      },
       boxShadow: {
         DEFAULT: '0 1px 1px rgba(0, 0, 0, 0.1)',
         md: '0px 2px 3px 0px rgba(0, 0, 0, 0.15)',

@@ -57,6 +57,8 @@ export default function Table({
           // If it is set here, there will be a 1-pixel wiggle in the sticky
           // header on scroll
           'border-x border-b',
+          // Making it feel more consistent with other UI
+          'rounded overflow-hidden',
           classes,
         )}
         ref={downcastRef(ref)}

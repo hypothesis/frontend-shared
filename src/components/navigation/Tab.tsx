@@ -55,7 +55,7 @@ export default function Tab({
         sized && 'gap-x-1.5',
         themed && {
           'px-4 py-2': variant === 'tab' && sized,
-          'font-semibold text-grey-7 rounded-t border border-transparent border-b-0':
+          'font-semibold text-grey-7 rounded-t-lg border border-transparent border-b-0':
             variant === 'tab',
           'aria-selected:text-color-text aria-selected:bg-white':
             variant === 'tab',

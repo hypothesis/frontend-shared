@@ -10,7 +10,7 @@ export const inputGroupStyles = classnames(
   // All inputs within an InputGroup should have a border. Turn off border-radius
   'input-group:border input-group:rounded-none',
   // Restore border-radius on the leftmost and rightmost components in the group
-  'input-group:first:rounded-l-sm input-group:last:rounded-r-sm',
+  'input-group:first:rounded-l input-group:last:rounded-r',
   // "Collapse" borders between input components
   'input-group:border-l-0 input-group:first:border-l',
 );

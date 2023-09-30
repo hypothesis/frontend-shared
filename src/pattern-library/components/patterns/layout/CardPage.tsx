@@ -50,7 +50,11 @@ export default function CardPage() {
             </p>
             <Library.Demo title="Card with full-width image" withSource>
               <Card>
-                <img src="https://placekitten.com/1000/250" alt="kitty" />
+                <img
+                  className="rounded-t-lg"
+                  src="https://placekitten.com/1000/250"
+                  alt="kitty"
+                />
                 <CardContent>
                   <LoremIpsum size="xs" />
                 </CardContent>
