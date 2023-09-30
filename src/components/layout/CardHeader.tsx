@@ -57,7 +57,8 @@ export default function CardHeader({
       className={classnames(
         'flex items-center gap-x-2 border-b py-2',
         {
-          'bg-slate-0 border-slate-5': variant === 'secondary',
+          'bg-slate-0 border-slate-5 rounded-t-[inherit]':
+            variant === 'secondary',
           'mx-3': !fullWidth && variant === 'primary',
           'px-3': fullWidth || variant === 'secondary',
         },

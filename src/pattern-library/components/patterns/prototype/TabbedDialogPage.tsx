@@ -141,7 +141,9 @@ function TabbedDialog() {
                 Three
               </Tab>
             </TabListHeader>
-            <Card>
+            <Card
+              classes={selectedTab === 'one' ? 'rounded-tl-none' : undefined}
+            >
               <TabPanel
                 id="one-panel"
                 active={selectedTab === 'one'}
@@ -229,7 +231,9 @@ function TabbedSharePanel() {
                 Export
               </Tab>
             </TabListHeader>
-            <Card>
+            <Card
+              classes={selectedTab === 'share' ? 'rounded-tl-none' : undefined}
+            >
               <TabPanel
                 id="share-panel"
                 active={selectedTab === 'share'}

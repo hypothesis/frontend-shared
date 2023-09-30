@@ -42,7 +42,7 @@ export default function Card({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
-        'rounded border bg-white',
+        'rounded-lg border bg-white',
         {
           'shadow hover:shadow-md': variant === 'raised', // default
           'shadow-md': active && variant === 'raised',
