@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
 import { IconButton, InputGroup } from '../../../../components/input';
-import Select from '../../../../components/input/SelectNext';
+import SelectNext from '../../../../components/input/SelectNext';
 import Library from '../../Library';
 
 const defaultItems = [
@@ -26,10 +26,10 @@ function SelectExample({
   const [value, setValue] = useState<(typeof items)[number]>();
 
   return (
-    <Select
+    <SelectNext
       value={value}
       onChange={setValue}
-      label={
+      buttonContent={
         value ? (
           <>
             {value.name}
@@ -48,7 +48,7 @@ function SelectExample({
       disabled={disabled}
     >
       {items.map(item => (
-        <Select.Option value={item} key={item.id}>
+        <SelectNext.Option value={item} key={item.id}>
           {() =>
             textOnly ? (
               <>{item.name}</>
@@ -62,9 +62,9 @@ function SelectExample({
               </>
             )
           }
-        </Select.Option>
+        </SelectNext.Option>
       ))}
-    </Select>
+    </SelectNext>
   );
 }
 
@@ -93,10 +93,10 @@ function InputGroupSelectExample() {
         disabled={selectedIndex <= 0}
       />
       <div className="w-full">
-        <Select
+        <SelectNext
           value={selected}
           onChange={setSelected}
-          label={
+          buttonContent={
             selected ? (
               <>
                 {selected.name}
@@ -110,7 +110,7 @@ function InputGroupSelectExample() {
           }
         >
           {defaultItems.map(item => (
-            <Select.Option value={item} key={item.id}>
+            <SelectNext.Option value={item} key={item.id}>
               {() => (
                 <>
                   {item.name}
@@ -122,9 +122,9 @@ function InputGroupSelectExample() {
                   </div>
                 </>
               )}
-            </Select.Option>
+            </SelectNext.Option>
           ))}
-        </Select>
+        </SelectNext>
       </div>
       <IconButton
         icon={ArrowRightIcon}
@@ -230,7 +230,7 @@ export default function SelectNextPage() {
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
-          <Library.Example title="label">
+          <Library.Example title="buttonContent">
             <Library.Info>
               <Library.InfoItem label="description">
                 The content to be displayed in the toggle button.
@@ -273,6 +273,19 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+          <Library.Example title="buttonId">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The toggle button{"'"}s <code>id</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
 
         <Library.Pattern title="How to use it">
@@ -288,7 +301,7 @@ export default function SelectNextPage() {
     <SelectNext
       value={value}
       onChange={setSelected}
-      label={
+      buttonContent={
         value ? (
           <>
             {value.name}
