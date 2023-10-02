@@ -32,6 +32,7 @@ export {
   ModalDialog,
   Spinner,
   SpinnerOverlay,
+  ToastMessages,
 } from './components/feedback';
 export {
   Button,
@@ -97,6 +98,9 @@ export type {
   ModalDialogProps,
   SpinnerProps,
   SpinnerOverlayProps,
+  ToastMessage,
+  ToastMessageTransitionClasses,
+  ToastMessagesProps,
 } from './components/feedback';
 
 export type {
