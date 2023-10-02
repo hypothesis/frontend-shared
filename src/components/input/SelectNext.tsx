@@ -110,18 +110,29 @@ function useShouldDropUp(
 export type SelectProps<T> = PresentationalProps & {
   value: T;
   onChange: (newValue: T) => void;
-  label: ComponentChildren;
+  buttonContent?: ComponentChildren;
   disabled?: boolean;
+
+  /**
+   * `id` attribute for the toggle button. This is useful to associate a label
+   * with the control.
+   */
+  buttonId?: string;
+
+  /** @deprecated Use buttonContent instead */
+  label?: ComponentChildren;
 };
 
 function SelectMain<T>({
+  buttonContent,
   label,
   value,
   onChange,
   children,
   disabled,
-  classes,
   elementRef,
+  classes,
+  buttonId,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
@@ -129,7 +140,7 @@ function SelectMain<T>({
   const listboxRef = useRef<HTMLDivElement | null>(null);
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
-  const buttonId = useId();
+  const defaultButtonId = useId();
   const shouldListboxDropUp = useShouldDropUp(
     buttonRef,
     listboxRef,
@@ -168,7 +179,7 @@ function SelectMain<T>({
   return (
     <div className="relative" ref={wrapperRef}>
       <Button
-        id={buttonId}
+        id={buttonId ?? defaultButtonId}
         variant="custom"
         classes={classnames(
           'w-full flex border rounded',
@@ -183,12 +194,13 @@ function SelectMain<T>({
         onClick={() => setListboxOpen(prev => !prev)}
         onKeyDown={e => {
           if (e.key === 'ArrowDown' && !listboxOpen) {
+            e.preventDefault();
             setListboxOpen(true);
           }
         }}
         data-testid="select-toggle-button"
       >
-        {label}
+        {buttonContent ?? label}
         <div className="grow" />
         <div className="text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
@@ -212,7 +224,7 @@ function SelectMain<T>({
           role="listbox"
           ref={listboxRef}
           id={listboxId}
-          aria-labelledby={buttonId}
+          aria-labelledby={buttonId ?? defaultButtonId}
           aria-orientation="vertical"
           data-testid="select-listbox"
         >

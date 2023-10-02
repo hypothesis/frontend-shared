@@ -19,7 +19,7 @@ describe('SelectNext', () => {
     document.body.append(container);
 
     const wrapper = mount(
-      <SelectNext value={undefined} onChange={sinon.stub()} label="" {...props}>
+      <SelectNext value={undefined} onChange={sinon.stub()} {...props}>
         {items.map(item => (
           <SelectNext.Option
             value={item}
@@ -225,12 +225,12 @@ describe('SelectNext', () => {
     checkAccessibility([
       {
         name: 'Closed Select listbox',
-        content: () => createComponent({ label: 'Select' }),
+        content: () => createComponent({ buttonContent: 'Select' }),
       },
       {
         name: 'Open Select listbox',
         content: () => {
-          const wrapper = createComponent({ label: 'Select' });
+          const wrapper = createComponent({ buttonContent: 'Select' });
           toggleListbox(wrapper);
 
           return wrapper;
