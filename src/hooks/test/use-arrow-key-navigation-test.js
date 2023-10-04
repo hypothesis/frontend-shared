@@ -380,21 +380,23 @@ describe('useArrowKeyNavigation', () => {
         container,
       ),
     );
-    const toggleToolbar = () => findElementByTestId('toggle').click();
+    const toggleToolbar = () =>
+      act(() => findElementByTestId('toggle').click());
 
     // No button should be initially focused
     assert.equal(document.activeElement, document.body);
 
     // Once we open the toolbar, the first item will be focused
-    toggleToolbar();
+    await toggleToolbar();
     await waitFor(() => document.activeElement === findElementByTestId('bold'));
 
     // If we then focus another toolbar item, then close the toolbar and open it
     // again, that same element should be focused again
     pressKey('ArrowDown'); // "italic" is focused
     pressKey('ArrowDown'); // "underline" is focused
-    toggleToolbar(); // Close toolbar
-    toggleToolbar(); // Open toolbar again
+    await toggleToolbar(); // Close toolbar
+    await toggleToolbar(); // Open toolbar again
+
     await waitFor(
       () => document.activeElement === findElementByTestId('underline'),
     );

@@ -68,15 +68,39 @@ describe('SelectNext', () => {
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
     const wrapper = createComponent({ onChange });
+    const clickOption = index =>
+      wrapper.find(`[data-testid="option-${index}"]`).simulate('click');
 
-    wrapper.find('[data-testid="option-3"]').simulate('click');
+    clickOption(3);
     assert.calledWith(onChange.lastCall, items[2]);
 
-    wrapper.find('[data-testid="option-5"]').simulate('click');
+    clickOption(5);
     assert.calledWith(onChange.lastCall, items[4]);
 
-    wrapper.find('[data-testid="option-1"]').simulate('click');
+    clickOption(1);
     assert.calledWith(onChange.lastCall, items[0]);
+  });
+
+  ['Enter', 'Space'].forEach(code => {
+    it(`changes selected value when ${code} is pressed in option`, () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({ onChange });
+      const pressKeyInOption = index =>
+        wrapper
+          .find(`[data-testid="option-${index}"]`)
+          .getDOMNode()
+          .closest('[role="option"]')
+          .dispatchEvent(new KeyboardEvent('keypress', { code }));
+
+      pressKeyInOption(3);
+      assert.calledWith(onChange.lastCall, items[2]);
+
+      pressKeyInOption(5);
+      assert.calledWith(onChange.lastCall, items[4]);
+
+      pressKeyInOption(1);
+      assert.calledWith(onChange.lastCall, items[0]);
+    });
   });
 
   it('marks the right item as selected', () => {
@@ -177,7 +201,7 @@ describe('SelectNext', () => {
     wrapper
       .find('[data-testid="option-3"]')
       .getDOMNode()
-      .closest('button')
+      .closest('[role="option"]')
       .focus();
     toggleListbox(wrapper);
     wrapper.update();

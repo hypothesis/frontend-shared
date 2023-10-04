@@ -46,15 +46,20 @@ function SelectOption<T>({
   const selected = !disabled && currentValue === value;
 
   return (
-    <Button
-      variant="custom"
-      classes={classnames(
-        'w-full ring-inset rounded-none !p-0',
-        'border-t first:border-t-0 bg-transparent',
+    <li
+      className={classnames(
+        'w-full ring-inset focus:ring outline-none rounded-none cursor-pointer',
+        'border-t first:border-t-0 transition-colors whitespace-nowrap',
         { 'hover:bg-grey-1': !disabled },
         classes,
       )}
       onClick={() => selectValue(value)}
+      onKeyPress={e => {
+        if (e.code === 'Enter' || e.code === 'Space') {
+          e.preventDefault();
+          selectValue(value);
+        }
+      }}
       role="option"
       disabled={disabled}
       aria-selected={selected}
@@ -69,7 +74,7 @@ function SelectOption<T>({
       >
         {children({ selected, disabled })}
       </div>
-    </Button>
+    </li>
   );
 }
 
@@ -139,7 +144,7 @@ function SelectMain<T>({
   const [listboxOpen, setListboxOpen] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const listboxRef = useRef<HTMLDivElement | null>(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
@@ -168,6 +173,7 @@ function SelectMain<T>({
     loop: false,
     autofocus: true,
     containerVisible: listboxOpen,
+    selector: '[role="option"]',
   });
 
   useLayoutEffect(() => {
@@ -209,7 +215,7 @@ function SelectMain<T>({
         </div>
       </Button>
       <SelectContext.Provider value={{ selectValue, value }}>
-        <div
+        <ul
           className={classnames(
             'absolute z-5 w-full max-h-80 overflow-y-auto',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
@@ -231,7 +237,7 @@ function SelectMain<T>({
           data-testid="select-listbox"
         >
           {children}
-        </div>
+        </ul>
       </SelectContext.Provider>
     </div>
   );
