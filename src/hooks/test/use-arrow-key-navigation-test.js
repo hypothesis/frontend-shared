@@ -48,7 +48,6 @@ function ToolbarWithToggle({ navigationOptions = {} }) {
 
 describe('useArrowKeyNavigation', () => {
   let container;
-  let toolbar;
 
   beforeEach(() => {
     container = document.createElement('div');
@@ -56,7 +55,6 @@ describe('useArrowKeyNavigation', () => {
     button.setAttribute('data-testid', 'outside-button');
     container.append(button);
     document.body.append(container);
-    toolbar = renderToolbar();
   });
 
   afterEach(() => {
@@ -98,6 +96,7 @@ describe('useArrowKeyNavigation', () => {
     { forwardKey: 'ArrowDown', backKey: 'ArrowUp' },
   ].forEach(({ forwardKey, backKey }) => {
     it('should move focus and tab stop between elements when arrow keys are pressed', () => {
+      const toolbar = renderToolbar();
       const steps = [
         // Test navigating forwards.
         [forwardKey, 'Italic'],
@@ -381,12 +380,23 @@ describe('useArrowKeyNavigation', () => {
         container,
       ),
     );
+    const toggleToolbar = () => findElementByTestId('toggle').click();
 
     // No button should be initially focused
     assert.equal(document.activeElement, document.body);
 
-    // Once we toggle the list open, the first item will be focused
-    findElementByTestId('toggle').click();
+    // Once we open the toolbar, the first item will be focused
+    toggleToolbar();
     await waitFor(() => document.activeElement === findElementByTestId('bold'));
+
+    // If we then focus another toolbar item, then close the toolbar and open it
+    // again, that same element should be focused again
+    pressKey('ArrowDown'); // "italic" is focused
+    pressKey('ArrowDown'); // "underline" is focused
+    toggleToolbar(); // Close toolbar
+    toggleToolbar(); // Open toolbar again
+    await waitFor(
+      () => document.activeElement === findElementByTestId('underline'),
+    );
   });
 });
