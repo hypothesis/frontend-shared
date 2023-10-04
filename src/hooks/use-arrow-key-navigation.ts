@@ -94,6 +94,10 @@ export function useArrowKeyNavigation(
   const lastFocusedItem = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (!containerVisible) {
+      return () => {};
+    }
+
     if (!containerRef.current) {
       throw new Error('Container ref not set');
     }
@@ -196,11 +200,7 @@ export function useArrowKeyNavigation(
     const initialIndex = lastFocusedItem.current
       ? navigableElements.indexOf(lastFocusedItem.current)
       : 0;
-    updateTabIndexes(
-      navigableElements,
-      initialIndex,
-      containerVisible && autofocus,
-    );
+    updateTabIndexes(navigableElements, initialIndex, autofocus);
 
     const listeners = new ListenerCollection();
 
@@ -215,10 +215,11 @@ export function useArrowKeyNavigation(
         lastFocusedItem.current.focus();
         return;
       }
+
       const elements = getNavigableElements();
       const targetIndex = elements.indexOf(event.target as HTMLElement);
       if (targetIndex >= 0) {
-        updateTabIndexes(elements, targetIndex);
+        updateTabIndexes(elements, targetIndex, autofocus);
       }
     });
 
