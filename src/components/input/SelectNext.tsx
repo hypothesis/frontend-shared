@@ -73,6 +73,8 @@ function SelectOption<T>({
   );
 }
 
+SelectOption.displayName = 'SelectNext.Option';
+
 function useShouldDropUp(
   buttonRef: RefObject<HTMLElement | undefined>,
   listboxRef: RefObject<HTMLElement | null>,
@@ -234,6 +236,8 @@ function SelectMain<T>({
     </div>
   );
 }
+
+SelectMain.displayName = 'SelectNext';
 
 const SelectNext = Object.assign(SelectMain, { Option: SelectOption });
 
