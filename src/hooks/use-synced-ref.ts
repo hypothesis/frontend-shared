@@ -1,42 +1,29 @@
+import type { Ref, RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 
 /**
- * @template T
- * @typedef {import('preact').RefObject<T>} RefObject
- */
-
-/**
- * @template T
- * @typedef {import('preact').Ref<T>} Ref
- */
-
-/**
  * Object ref which synchronizes its value to another ref.
- *
- * @template T
- * @implements {RefObject<T>}
  */
-class SyncedRef {
+class SyncedRef<T> implements RefObject<T> {
+  private _target?: Ref<T>;
+  private _value: T | null;
+
   /**
-   * @param {Ref<T>} [target] - Initial target for this ref to synchronize to.
+   * @param [target] - Initial target for this ref to synchronize to.
    *   This is not called/set until the {@link current} property of the
    *   SyncedRef is set. This makes the target behave close to how it would
    *   if used in place of the SyncedRef.
    */
-  constructor(target) {
-    /** @type {Ref<T>|undefined} */
+  constructor(target?: Ref<T>) {
     this._target = target;
-
-    /** @type {T|null} */
     this._value = null;
   }
 
-  get current() {
+  get current(): T | null {
     return this._value;
   }
 
-  /** @param {T|null} value */
-  set current(value) {
+  set current(value: null) {
     this._value = value;
     this._updateTarget();
   }
@@ -45,8 +32,7 @@ class SyncedRef {
     return this._target;
   }
 
-  /** @param {Ref<T>|undefined} target */
-  set target(target) {
+  set target(target: Ref<T> | undefined) {
     if (target === this._target) {
       return;
     }
@@ -88,12 +74,8 @@ class SyncedRef {
  *
  *     return <input ref={ref}>...</input>;
  *   }
- *
- * @template T
- * @param {import('preact').Ref<T>} [targetRef]
- * @return {import('preact').RefObject<T>}
  */
-export function useSyncedRef(targetRef) {
+export function useSyncedRef<T>(targetRef?: Ref<T>): RefObject<T> {
   const container = useRef(new SyncedRef(targetRef));
   container.current.target = targetRef;
   return container.current;
