@@ -77,7 +77,6 @@ export type UseArrowKeyNavigationOptions = {
  * [2] https://www.w3.org/TR/wai-aria-practices/#keyboard
  *
  */
-
 export function useArrowKeyNavigation(
   containerRef: RefObject<HTMLElement | undefined>,
   {
@@ -92,7 +91,7 @@ export function useArrowKeyNavigation(
   // Keep track of the element that was last focused by this hook such that
   // navigation can be restored if focus moves outside the container and then
   // back to/into it.
-  const lastFocusedItem = useRef<HTMLOrSVGElement | null>(null);
+  const lastFocusedItem = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -192,7 +191,16 @@ export function useArrowKeyNavigation(
       event.stopPropagation();
     };
 
-    updateTabIndexes(getNavigableElements(), 0, containerVisible && autofocus);
+    const navigableElements = getNavigableElements();
+    // Start focus sequence with previously focused element, if any
+    const initialIndex = lastFocusedItem.current
+      ? navigableElements.indexOf(lastFocusedItem.current)
+      : 0;
+    updateTabIndexes(
+      navigableElements,
+      initialIndex,
+      containerVisible && autofocus,
+    );
 
     const listeners = new ListenerCollection();
 
