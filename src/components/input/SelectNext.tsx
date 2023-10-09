@@ -17,8 +17,10 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import Button from './Button';
+import Input from './Input';
 import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
+import SelectFilterableContext from './SelectFilterableContext';
 
 export type SelectOptionStatus = {
   selected: boolean;
@@ -38,9 +40,14 @@ function SelectOption<T>({
   disabled = false,
   classes,
 }: SelectOptionProps<T>) {
+  const filterContext = useContext(SelectFilterableContext);
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
     throw new Error('Select.Option can only be used as Select child');
+  }
+
+  if (filterContext && !filterContext.shouldRender(value)) {
+    return null;
   }
 
   const { selectValue, value: currentValue } = selectContext;
@@ -78,6 +85,48 @@ function SelectOption<T>({
     </li>
   );
 }
+
+export type SelectFilterableProps<T> = {
+  children: ComponentChildren;
+
+  /** Placeholder to display in select box. Defaults to 'Search…' */
+  placeholder?: string;
+
+  /**
+   * Invoked when the filter query changes, for every value of the option this
+   * Filterable wraps
+   */
+  onFilter: (query: string, value: T) => boolean;
+};
+
+function SelectFilterable<T>({
+  placeholder = 'Search…',
+  onFilter,
+  children,
+}: SelectFilterableProps<T>) {
+  const [query, setQuery] = useState('');
+  const shouldRender = useCallback(
+    (value: unknown) => onFilter(query, value as T),
+    [onFilter, query],
+  );
+
+  return (
+    <SelectFilterableContext.Provider value={{ shouldRender }}>
+      <div className="p-2 bg-grey-2 sticky top-0">
+        <Input
+          type="search"
+          placeholder={placeholder}
+          aria-label={placeholder}
+          value={query}
+          onInput={e => setQuery((e.target as HTMLInputElement).value)}
+        />
+      </div>
+      {children}
+    </SelectFilterableContext.Provider>
+  );
+}
+
+SelectFilterable.displayName = 'SelectNext.Filterable';
 
 SelectOption.displayName = 'SelectNext.Option';
 
@@ -174,7 +223,7 @@ function SelectMain<T>({
     loop: false,
     autofocus: true,
     containerVisible: listboxOpen,
-    selector: '[role="option"]',
+    selector: '[role="option"],input[type="search"]',
   });
 
   useLayoutEffect(() => {
@@ -249,6 +298,9 @@ function SelectMain<T>({
 
 SelectMain.displayName = 'SelectNext';
 
-const SelectNext = Object.assign(SelectMain, { Option: SelectOption });
+const SelectNext = Object.assign(SelectMain, {
+  Option: SelectOption,
+  Filterable: SelectFilterable,
+});
 
 export default SelectNext;

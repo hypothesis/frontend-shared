@@ -13,17 +13,74 @@ const defaultItems = [
   { id: '4', name: 'Cecelia Davenport' },
   { id: '5', name: 'Doris Evanescence' },
 ];
+const longListOfItems = [
+  ...defaultItems.map(({ id, name }) => ({
+    id: `1${id}`,
+    name: `1 ${name}`,
+  })),
+  ...defaultItems.map(({ id, name }) => ({
+    id: `2${id}`,
+    name: `2 ${name}`,
+  })),
+  ...defaultItems.map(({ id, name }) => ({
+    id: `3${id}`,
+    name: `3 ${name}`,
+  })),
+  ...defaultItems.map(({ id, name }) => ({
+    id: `4${id}`,
+    name: `4 ${name}`,
+  })),
+  ...defaultItems.map(({ id, name }) => ({
+    id: `5${id}`,
+    name: `5 ${name}`,
+  })),
+  ...defaultItems.map(({ id, name }) => ({
+    id: `6${id}`,
+    name: `6 ${name}`,
+  })),
+];
+
+function SelectOptionExample({
+  item,
+  textOnly,
+}: {
+  item: (typeof defaultItems)[number];
+  textOnly: boolean;
+}) {
+  return (
+    <SelectNext.Option value={item}>
+      {() =>
+        textOnly ? (
+          <>{item.name}</>
+        ) : (
+          <>
+            {item.name}
+            <div className="grow" />
+            <div className="rounded px-2 bg-grey-7 text-white">{item.id}</div>
+          </>
+        )
+      }
+    </SelectNext.Option>
+  );
+}
 
 function SelectExample({
   disabled,
-  textOnly,
+  textOnly = false,
+  filterable,
   items = defaultItems,
 }: {
   disabled?: boolean;
   textOnly?: boolean;
+  filterable?: boolean;
   items?: typeof defaultItems;
 }) {
   const [value, setValue] = useState<(typeof items)[number]>();
+  const onFilter = useCallback(
+    (query: string, value: (typeof items)[number]) =>
+      value.name.toLowerCase().includes(query.toLowerCase()),
+    [],
+  );
 
   return (
     <SelectNext
@@ -47,23 +104,43 @@ function SelectExample({
       }
       disabled={disabled}
     >
-      {items.map(item => (
-        <SelectNext.Option value={item} key={item.id}>
-          {() =>
-            textOnly ? (
-              <>{item.name}</>
-            ) : (
-              <>
-                {item.name}
-                <div className="grow" />
-                <div className="rounded px-2 bg-grey-7 text-white">
-                  {item.id}
-                </div>
-              </>
-            )
-          }
-        </SelectNext.Option>
-      ))}
+      {!filterable &&
+        items.map(item => (
+          <SelectOptionExample item={item} textOnly={textOnly} key={item.id} />
+        ))}
+      {filterable && (
+        <>
+          {/* Render a couple options before filterable to demonstrate stickiness */}
+          <SelectOptionExample item={items[0]} textOnly={textOnly} />
+          <SelectOptionExample item={items[1]} textOnly={textOnly} />
+
+          {/* Render two filterable blocks to demonstrate sections filtering */}
+          <SelectNext.Filterable onFilter={onFilter}>
+            {items
+              .slice(2)
+              .splice(0, items.length / 2 - 2)
+              .map(item => (
+                <SelectOptionExample
+                  item={item}
+                  textOnly={textOnly}
+                  key={item.id}
+                />
+              ))}
+          </SelectNext.Filterable>
+          <SelectNext.Filterable onFilter={onFilter}>
+            {items
+              .slice(2)
+              .splice(items.length / 2 - 2 + 1)
+              .map(item => (
+                <SelectOptionExample
+                  item={item}
+                  textOnly={textOnly}
+                  key={item.id}
+                />
+              ))}
+          </SelectNext.Filterable>
+        </>
+      )}
     </SelectNext>
   );
 }
@@ -152,7 +229,7 @@ export default function SelectNextPage() {
 
           <Library.Example>
             <Library.Demo title="Basic Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample textOnly />
               </div>
             </Library.Demo>
@@ -181,42 +258,20 @@ export default function SelectNextPage() {
 
           <Library.Example title="Select with many options">
             <Library.Demo title="Select with many options">
-              <div className="w-[350px] mx-auto">
-                <SelectExample
-                  items={[
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `1${id}`,
-                      name: `1 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `2${id}`,
-                      name: `2 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `3${id}`,
-                      name: `3 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `4${id}`,
-                      name: `4 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `5${id}`,
-                      name: `5 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `6${id}`,
-                      name: `6 ${name}`,
-                    })),
-                  ]}
-                />
+              <div className="w-96 mx-auto">
+                <SelectExample items={longListOfItems} />
+              </div>
+            </Library.Demo>
+            <Library.Demo title="Select with filtering">
+              <div className="w-96 mx-auto">
+                <SelectExample items={longListOfItems} filterable />
               </div>
             </Library.Demo>
           </Library.Example>
 
           <Library.Example title="Disabled Select">
             <Library.Demo title="Disabled Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample disabled />
               </div>
             </Library.Demo>
