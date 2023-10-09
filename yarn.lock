@@ -12538,11 +12538,11 @@ __metadata:
   linkType: hard
 
 "wouter-preact@npm:^2.10.0-alpha.1":
-  version: 2.11.0
-  resolution: "wouter-preact@npm:2.11.0"
+  version: 2.12.0
+  resolution: "wouter-preact@npm:2.12.0"
   peerDependencies:
     preact: ^10.0.0
-  checksum: c4dd3f995dc664ecc2043a3ece6a415b85e88261a47f52a690354ee38a957eb8b03eac479a165dd464d867d1903774afa5c31b574c6fb0bfb991d191caea7243
+  checksum: e03cfed8fe8c46275bb2e3456d236ae43e12a5ae544bbb000197a6afc8e8e4639f2785e397415576d088d4e9231a481bd9ef5c06e3e0adf9cbf74a8dcf69ba8c
   languageName: node
   linkType: hard
 
