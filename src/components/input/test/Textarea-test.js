@@ -9,4 +9,17 @@ const contentFn = (Component, props = {}) => {
 
 describe('Textarea', () => {
   testPresentationalComponent(Textarea, { createContent: contentFn });
+
+  it('should warn in console if accessibility attributes are missing', () => {
+    sinon.stub(console, 'warn');
+
+    mount(<Textarea placeholder="..." />);
+
+    assert.calledWith(
+      console.warn,
+      '`Textarea` component should have either an `id` or an `aria-label` attribute',
+    );
+
+    console.warn.restore();
+  });
 });

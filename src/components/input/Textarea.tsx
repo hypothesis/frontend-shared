@@ -2,7 +2,7 @@ import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import InputRoot from './InputRoot';
+import { inputStyles } from './Input';
 
 type ComponentProps = {
   feedback?: 'error' | 'warning';
@@ -17,19 +17,23 @@ export type TextareaProps = PresentationalProps &
  */
 export default function Textarea({
   elementRef,
-  type = 'text',
   feedback,
+  classes,
 
   ...htmlAttributes
 }: TextareaProps) {
+  if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
+    console.warn(
+      '`Textarea` component should have either an `id` or an `aria-label` attribute',
+    );
+  }
+
   return (
-    <InputRoot
+    <textarea
       data-component="Textarea"
-      element="textarea"
-      elementRef={downcastRef(elementRef)}
-      type={type}
-      feedback={feedback}
       {...htmlAttributes}
+      ref={downcastRef(elementRef)}
+      className={inputStyles({ classes, feedback })}
     />
   );
 }

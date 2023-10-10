@@ -9,4 +9,17 @@ const contentFn = (Component, props = {}) => {
 
 describe('Input', () => {
   testPresentationalComponent(Input, { createContent: contentFn });
+
+  it('should warn in console if accessibility attributes are missing', () => {
+    sinon.stub(console, 'warn');
+
+    mount(<Input placeholder="..." />);
+
+    assert.calledWith(
+      console.warn,
+      '`Input` component should have either an `id` or an `aria-label` attribute',
+    );
+
+    console.warn.restore();
+  });
 });
