@@ -92,40 +92,38 @@ function InputGroupSelectExample() {
         onClick={previous}
         disabled={selectedIndex <= 0}
       />
-      <div className="w-full">
-        <SelectNext
-          value={selected}
-          onChange={setSelected}
-          buttonContent={
-            selected ? (
+      <SelectNext
+        value={selected}
+        onChange={setSelected}
+        buttonContent={
+          selected ? (
+            <>
+              {selected.name}
+              <div className="rounded px-2 bg-grey-7 text-white">
+                {selected.id}
+              </div>
+            </>
+          ) : (
+            <>Select one...</>
+          )
+        }
+      >
+        {defaultItems.map(item => (
+          <SelectNext.Option value={item} key={item.id}>
+            {() => (
               <>
-                {selected.name}
-                <div className="rounded px-2 bg-grey-7 text-white">
-                  {selected.id}
+                {item.name}
+                <div className="grow" />
+                <div
+                  className={classnames('rounded px-2 text-white bg-grey-7')}
+                >
+                  {item.id}
                 </div>
               </>
-            ) : (
-              <>Select one...</>
-            )
-          }
-        >
-          {defaultItems.map(item => (
-            <SelectNext.Option value={item} key={item.id}>
-              {() => (
-                <>
-                  {item.name}
-                  <div className="grow" />
-                  <div
-                    className={classnames('rounded px-2 text-white bg-grey-7')}
-                  >
-                    {item.id}
-                  </div>
-                </>
-              )}
-            </SelectNext.Option>
-          ))}
-        </SelectNext>
-      </div>
+            )}
+          </SelectNext.Option>
+        ))}
+      </SelectNext>
       <IconButton
         icon={ArrowRightIcon}
         title="Next student"

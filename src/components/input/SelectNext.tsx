@@ -17,6 +17,7 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import Button from './Button';
+import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
 
 export type SelectOptionStatus = {
@@ -185,12 +186,15 @@ function SelectMain<T>({
   }, [buttonRef, listboxOpen]);
 
   return (
-    <div className="relative" ref={wrapperRef}>
+    <div
+      className={classnames('relative w-full border rounded', inputGroupStyles)}
+      ref={wrapperRef}
+    >
       <Button
         id={buttonId ?? defaultButtonId}
         variant="custom"
         classes={classnames(
-          'w-full flex border rounded',
+          'w-full flex',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           classes,
         )}
