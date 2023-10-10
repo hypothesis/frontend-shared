@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import type { IconComponent, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import type { ButtonProps } from './Button';
-import Button from './ButtonBase';
+import Button from './Button';
 import { inputGroupStyles } from './InputGroup';
 
 type ComponentProps = {
