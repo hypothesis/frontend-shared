@@ -6,6 +6,8 @@ let idCounter = 0;
  * instance.
  *
  * This avoids different instances of a component re-using the same ID.
+ *
+ * @deprecated Use Preact's `useId()` instead.
  */
 export function useUniqueId(prefix: string) {
   const [id] = useState(() => {
