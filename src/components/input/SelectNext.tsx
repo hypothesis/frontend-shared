@@ -215,7 +215,14 @@ function SelectMain<T>({
         {buttonContent ?? label}
         <div className="grow" />
         <div className="text-grey-6">
-          {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
+          <MenuCollapseIcon
+            className={classnames({
+              // Hide instead of unmount to avoid `onClickAway` from thinking a
+              // foreign component was clicked and close the listbox
+              hidden: !listboxOpen,
+            })}
+          />
+          <MenuExpandIcon className={classnames({ hidden: listboxOpen })} />
         </div>
       </Button>
       <SelectContext.Provider value={{ selectValue, value }}>
