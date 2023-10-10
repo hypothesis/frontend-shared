@@ -1,9 +1,8 @@
-import classnames from 'classnames';
 import type { JSX } from 'preact';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import { inputGroupStyles } from './InputGroup';
+import { inputStyles } from './Input';
 
 type RootComponentProps = {
   element?: 'input' | 'select' | 'textarea';
@@ -26,6 +25,7 @@ export type InputRootProps = PresentationalProps &
 /**
  * Root component for various input types that applies a consistent design
  * pattern.
+ * @deprecated Only `Select` is using this component. Remove once it is deleted
  */
 export default function InputRoot({
   element: Element = 'input',
@@ -54,19 +54,7 @@ export default function InputRoot({
       {...htmlAttributes}
       // @ts-ignore-next
       ref={downcastRef(elementRef)}
-      className={classnames(
-        'focus-visible-ring ring-inset border rounded w-full p-2',
-        'bg-grey-0 focus:bg-white disabled:bg-grey-1',
-        'placeholder:text-color-grey-5 disabled:placeholder:color-grey-6',
-        {
-          'ring-2': !!feedback,
-          'ring-red-error': feedback === 'error',
-          'ring-yellow-notice': feedback === 'warning',
-        },
-        // Adapt styles when this component is inside an InputGroup
-        inputGroupStyles,
-        classes,
-      )}
+      className={inputStyles({ classes, feedback })}
     >
       {children}
     </Element>
