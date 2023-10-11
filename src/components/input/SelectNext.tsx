@@ -196,6 +196,11 @@ function SelectMain<T>({
         classes={classnames(
           'w-full flex',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
+          // Add inherited rounded corners so that the toggle is consistent with
+          // the wrapper, which is the element rendering borders.
+          // Using overflow-hidden in the parent is not an option here, because
+          // that would hide the listbox
+          'rounded-[inherit]',
           classes,
         )}
         expanded={listboxOpen}
