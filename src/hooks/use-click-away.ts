@@ -28,7 +28,12 @@ export function useClickAway(
     const handleAwayClick = (event: Event) => {
       if (
         container.current &&
-        !container.current.contains(event.target as Node)
+        // We test the composed path here to handle the case where the clicked
+        // element was in fact in the container, but is removed from the DOM
+        // (eg. by a re-render in a child component) before this callback is run.
+        // The composed path reflects the DOM hierarchy at the time the event was
+        // dispatched.
+        !event.composedPath().includes(container.current)
       ) {
         callback(event);
       }
