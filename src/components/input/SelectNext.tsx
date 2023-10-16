@@ -194,7 +194,7 @@ function SelectMain<T>({
         id={buttonId ?? defaultButtonId}
         variant="custom"
         classes={classnames(
-          'w-full flex',
+          'w-full flex justify-between',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           // Add inherited rounded corners so that the toggle is consistent with
           // the wrapper, which is the element rendering borders.
@@ -217,8 +217,7 @@ function SelectMain<T>({
         }}
         data-testid="select-toggle-button"
       >
-        {buttonContent ?? label}
-        <div className="grow" />
+        <div className="truncate">{buttonContent ?? label}</div>
         <div className="text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
         </div>
@@ -226,7 +225,7 @@ function SelectMain<T>({
       <SelectContext.Provider value={{ selectValue, value }}>
         <ul
           className={classnames(
-            'absolute z-5 w-full max-h-80 overflow-y-auto',
+            'absolute z-5 min-w-full max-h-80 overflow-y-auto',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
             {
               'top-full mt-1': !shouldListboxDropUp,
