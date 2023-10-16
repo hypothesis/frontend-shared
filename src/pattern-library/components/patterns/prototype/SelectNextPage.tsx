@@ -17,10 +17,16 @@ const defaultItems = [
 function SelectExample({
   disabled,
   textOnly,
+  classes,
+  buttonClasses,
+  listboxClasses,
   items = defaultItems,
 }: {
   disabled?: boolean;
   textOnly?: boolean;
+  classes?: string;
+  buttonClasses?: string;
+  listboxClasses?: string;
   items?: typeof defaultItems;
 }) {
   const [value, setValue] = useState<(typeof items)[number]>();
@@ -29,6 +35,9 @@ function SelectExample({
     <SelectNext
       value={value}
       onChange={setValue}
+      classes={classes}
+      buttonClasses={buttonClasses}
+      listboxClasses={listboxClasses}
       buttonContent={
         value ? (
           <>
@@ -152,7 +161,7 @@ export default function SelectNextPage() {
 
           <Library.Example>
             <Library.Demo title="Basic Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample textOnly />
               </div>
             </Library.Demo>
@@ -181,7 +190,7 @@ export default function SelectNextPage() {
 
           <Library.Example title="Select with many options">
             <Library.Demo title="Select with many options">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample
                   items={[
                     ...defaultItems.map(({ id, name }) => ({
@@ -216,8 +225,29 @@ export default function SelectNextPage() {
 
           <Library.Example title="Disabled Select">
             <Library.Demo title="Disabled Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample disabled />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Customized Select">
+            <Library.Demo title="Custom button">
+              <div className="mx-auto">
+                <SelectExample
+                  classes="border-brand"
+                  buttonClasses="text-brand !w-60"
+                />
+              </div>
+            </Library.Demo>
+            <Library.Demo title="Custom listbox">
+              <div className="w-96 mx-auto">
+                <SelectExample
+                  listboxClasses={classnames(
+                    'border-4 rounded-lg',
+                    'border-green-success text-green-success',
+                  )}
+                />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -228,16 +258,6 @@ export default function SelectNextPage() {
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
-          <Library.Example title="buttonContent">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                The content to be displayed in the toggle button.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>ComponentChildren</code>
-              </Library.InfoItem>
-            </Library.Info>
-          </Library.Example>
           <Library.Example title="value">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -271,6 +291,16 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+          <Library.Example title="buttonContent">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The content to be displayed in the toggle button.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>ComponentChildren</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
           <Library.Example title="buttonId">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -278,6 +308,32 @@ export default function SelectNextPage() {
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="buttonClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The classes to apply to the toggle button.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="listboxClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The classes to apply to the listbox.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
                 <code>undefined</code>

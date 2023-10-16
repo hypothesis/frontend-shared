@@ -118,14 +118,21 @@ function useShouldDropUp(
 export type SelectProps<T> = PresentationalProps & {
   value: T;
   onChange: (newValue: T) => void;
-  buttonContent?: ComponentChildren;
   disabled?: boolean;
+
+  /** The content to be displayed in the button */
+  buttonContent?: ComponentChildren;
 
   /**
    * `id` attribute for the toggle button. This is useful to associate a label
    * with the control.
    */
   buttonId?: string;
+
+  /** Classes to apply to the button */
+  buttonClasses?: string | string[];
+  /** Classes to apply to the listbox */
+  listboxClasses?: string | string[];
 
   /** @deprecated Use buttonContent instead */
   label?: ComponentChildren;
@@ -140,6 +147,8 @@ function SelectMain<T>({
   disabled,
   elementRef,
   classes,
+  buttonClasses,
+  listboxClasses,
   buttonId,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
@@ -187,7 +196,11 @@ function SelectMain<T>({
 
   return (
     <div
-      className={classnames('relative w-full border rounded', inputGroupStyles)}
+      className={classnames(
+        'relative w-full border rounded',
+        inputGroupStyles,
+        classes,
+      )}
       ref={wrapperRef}
     >
       <Button
@@ -201,7 +214,7 @@ function SelectMain<T>({
           // Using overflow-hidden in the parent is not an option here, because
           // that would hide the listbox
           'rounded-[inherit]',
-          classes,
+          buttonClasses,
         )}
         expanded={listboxOpen}
         disabled={disabled}
@@ -237,6 +250,7 @@ function SelectMain<T>({
               // * Listbox size can be computed to correctly drop up or down
               hidden: !listboxOpen,
             },
+            listboxClasses,
           )}
           role="listbox"
           ref={listboxRef}
