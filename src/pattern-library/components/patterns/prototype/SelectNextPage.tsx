@@ -17,10 +17,12 @@ const defaultItems = [
 function SelectExample({
   disabled,
   textOnly,
+  classes,
   items = defaultItems,
 }: {
   disabled?: boolean;
   textOnly?: boolean;
+  classes?: string;
   items?: typeof defaultItems;
 }) {
   const [value, setValue] = useState<(typeof items)[number]>();
@@ -29,13 +31,17 @@ function SelectExample({
     <SelectNext
       value={value}
       onChange={setValue}
+      classes={classes}
       buttonContent={
         value ? (
           <>
-            {value.name}
+            {textOnly && value.name}
             {!textOnly && (
-              <div className="rounded px-2 bg-grey-7 text-white">
-                {value.id}
+              <div className="flex">
+                <div className="truncate">{value.name}</div>
+                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+                  {value.id}
+                </div>
               </div>
             )}
           </>
@@ -56,7 +62,7 @@ function SelectExample({
               <>
                 {item.name}
                 <div className="grow" />
-                <div className="rounded px-2 bg-grey-7 text-white">
+                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
                   {item.id}
                 </div>
               </>
@@ -68,7 +74,7 @@ function SelectExample({
   );
 }
 
-function InputGroupSelectExample() {
+function InputGroupSelectExample({ classes }: { classes?: string }) {
   const [selected, setSelected] = useState<(typeof defaultItems)[number]>();
   const selectedIndex = useMemo(
     () => (!selected ? -1 : defaultItems.findIndex(item => item === selected)),
@@ -95,14 +101,15 @@ function InputGroupSelectExample() {
       <SelectNext
         value={selected}
         onChange={setSelected}
+        classes={classes}
         buttonContent={
           selected ? (
-            <>
-              {selected.name}
-              <div className="rounded px-2 bg-grey-7 text-white">
+            <div className="flex">
+              <div className="truncate">{selected.name}</div>
+              <div className="rounded px-2 ml-2 bg-grey-7 text-white">
                 {selected.id}
               </div>
-            </>
+            </div>
           ) : (
             <>Select one...</>
           )
@@ -115,7 +122,9 @@ function InputGroupSelectExample() {
                 {item.name}
                 <div className="grow" />
                 <div
-                  className={classnames('rounded px-2 text-white bg-grey-7')}
+                  className={classnames(
+                    'rounded px-2 ml-2 text-white bg-grey-7',
+                  )}
                 >
                   {item.id}
                 </div>
@@ -152,7 +161,7 @@ export default function SelectNextPage() {
 
           <Library.Example>
             <Library.Demo title="Basic Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample textOnly />
               </div>
             </Library.Demo>
@@ -181,7 +190,7 @@ export default function SelectNextPage() {
 
           <Library.Example title="Select with many options">
             <Library.Demo title="Select with many options">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample
                   items={[
                     ...defaultItems.map(({ id, name }) => ({
@@ -216,8 +225,43 @@ export default function SelectNextPage() {
 
           <Library.Example title="Disabled Select">
             <Library.Demo title="Disabled Select">
-              <div className="w-[350px] mx-auto">
+              <div className="w-96 mx-auto">
                 <SelectExample disabled />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Select with long content">
+            <p>
+              <code>SelectNext</code> makes sure the button content never
+              overflows, and applies <code>text-overflow: ellipsis</code>.
+            </p>
+            <p>
+              If you provide more complex children to <code>buttonContent</code>
+              , and the default hidden overflow logic does not work for your use
+              case, it is up to you to handle the overflow logic in your
+              components.
+            </p>
+            <p>
+              On the other hand, the listbox will always grow to fit its
+              options.
+            </p>
+
+            <Library.Demo title="Plain text">
+              <div className="mx-auto">
+                <SelectExample textOnly classes="!w-36" />
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="Custom options">
+              <div className="mx-auto">
+                <SelectExample classes="!w-36" />
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="Input group">
+              <div className="mx-auto">
+                <InputGroupSelectExample classes="!w-36" />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -303,7 +347,7 @@ export default function SelectNextPage() {
         value ? (
           <>
             {value.name}
-            <div className="rounded px-2 bg-grey-7 text-white">
+            <div className="rounded px-2 ml-2 bg-grey-7 text-white">
               {value.id}
             </div>
           </>
