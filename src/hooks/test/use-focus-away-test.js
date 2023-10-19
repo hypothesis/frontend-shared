@@ -7,16 +7,17 @@ import { useFocusAway } from '../use-focus-away';
 describe('useFocusAway', () => {
   let handler;
 
-  const events = [new Event('focus')];
-
   // Create a fake component to mount in tests that uses the hook
   function FakeComponent({ enabled = true }) {
     const myRef = useRef();
     const hookOpts = enabled === true ? undefined : { enabled };
     useFocusAway(myRef, handler, hookOpts);
     return (
-      <div ref={myRef}>
-        <button>Hi</button>
+      <div>
+        <button data-testid="outer-button">Hi</button>
+        <div ref={myRef} data-testid="container">
+          <button data-testid="inner-button">Hi</button>
+        </div>
       </div>
     );
   }
@@ -25,45 +26,62 @@ describe('useFocusAway', () => {
     return mount(<FakeComponent {...props} />);
   }
 
+  function getContainer(wrapper) {
+    return wrapper.find('[data-testid="container"]').getDOMNode();
+  }
+
+  function getOuterButton(wrapper) {
+    return wrapper.find('[data-testid="outer-button"]').getDOMNode();
+  }
+
+  function getInnerButton(wrapper) {
+    return wrapper.find('[data-testid="inner-button"]').getDOMNode();
+  }
+
   beforeEach(() => {
     handler = sinon.stub();
   });
 
-  events.forEach(event => {
-    it(`should invoke callback once for events outside of element (${event.type})`, () => {
-      const wrapper = createComponent();
-
+  it('should invoke callback when focus moves outside of container', () => {
+    const wrapper = createComponent();
+    const focusOut = () =>
       act(() => {
-        document.body.dispatchEvent(event);
-      });
-      wrapper.update();
-
-      assert.calledOnce(handler);
-
-      // Update the component to change it and re-execute the hook
-      wrapper.setProps({ enabled: false });
-
-      act(() => {
-        document.body.dispatchEvent(new Event('focus'));
+        getInnerButton(wrapper).dispatchEvent(
+          new FocusEvent('focusout', {
+            bubbles: true,
+            relatedTarget: getOuterButton(wrapper),
+          }),
+        );
       });
 
-      // Cleanup of hook should have removed eventListeners, so the callback
-      // is not called again
-      assert.calledOnce(handler);
-    });
+    focusOut();
+    wrapper.update();
+
+    assert.calledOnce(handler);
+
+    // Update the component to change it and re-execute the hook
+    wrapper.setProps({ enabled: false });
+
+    focusOut();
+
+    // Cleanup of hook should have removed eventListeners, so the callback
+    // is not called again
+    assert.calledOnce(handler);
   });
 
-  events.forEach(event => {
-    it(`should not invoke callback on events inside of container (${event.type})`, () => {
-      const wrapper = createComponent();
-      const button = wrapper.find('button');
+  it('should not invoke callback when focus moves inside of container', () => {
+    const wrapper = createComponent();
 
-      act(() => {
-        button.getDOMNode().dispatchEvent(event);
-      });
-      wrapper.update();
-
-      assert.equal(handler.callCount, 0);
+    act(() => {
+      getContainer(wrapper).dispatchEvent(
+        new FocusEvent('focusout', {
+          bubbles: true,
+          relatedTarget: getInnerButton(wrapper),
+        }),
+      );
     });
+    wrapper.update();
+
+    assert.notCalled(handler);
   });
 });

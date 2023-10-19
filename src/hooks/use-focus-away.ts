@@ -4,17 +4,14 @@ import { useEffect } from 'preact/hooks';
 import { ListenerCollection } from '../util/listener-collection';
 
 type UseFocusAwayOptions = {
-  /**
-   * Enable listening for focus events outside of `container`? Can be set to
-   * false to disable
-   */
+  /** Enable listening for focusout events in `container`? */
   enabled?: boolean;
 };
 
 /**
- * Listen on document.body for focus events. If a focus event's target
- * is outside of the `container` element, invoke the `callback`. Do not listen
- * if not `enabled`.
+ * Listen on container for focusout events. If a focusout event's relatedTarget
+ * is outside of the `container` element, invoke the `callback`.
+ * Do not listen if not `enabled`.
  */
 export function useFocusAway(
   container: RefObject<HTMLElement | undefined>,
@@ -22,28 +19,22 @@ export function useFocusAway(
   { enabled = true }: UseFocusAwayOptions = {},
 ) {
   useEffect(() => {
-    if (!enabled) {
+    if (!enabled || !container.current) {
       return () => {};
     }
-    const target = document.body;
     const listeners = new ListenerCollection();
 
-    listeners.add(
-      target,
-      'focus',
-      event => {
-        if (
-          container.current &&
-          !container.current.contains(event.target as Node)
-        ) {
-          callback(event);
-        }
-      },
-      {
-        // Focus events don't bubble; they need to be handled in the capture phase
-        capture: true,
-      },
-    );
+    listeners.add(container.current, 'focusout', e => {
+      // Event type is not being properly inferred as FocusEvent
+      const event = e as FocusEvent;
+
+      if (
+        container.current &&
+        !container.current.contains(event.relatedTarget as Node)
+      ) {
+        callback(event);
+      }
+    });
 
     return () => {
       listeners.removeAll();
