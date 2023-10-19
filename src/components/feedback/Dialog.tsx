@@ -4,6 +4,7 @@ import { Fragment } from 'preact';
 import {
   useCallback,
   useEffect,
+  useId,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -14,7 +15,6 @@ import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import { useUniqueId } from '../../hooks/use-unique-id';
 import type { PresentationalProps, TransitionComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
 import CloseableContext from '../CloseableContext';
@@ -173,7 +173,7 @@ export default function Dialog({
     enabled: closeOnFocusAway,
   });
 
-  const dialogDescriptionId = useUniqueId('dialog-description');
+  const dialogDescriptionId = useId();
   const Wrapper = useMemo(
     () => TransitionComponent ?? Fragment,
     [TransitionComponent],
