@@ -28,9 +28,24 @@ export type SelectOptionStatus = {
 export type SelectOptionProps<T> = {
   value: T;
   disabled?: boolean;
-  children: (status: SelectOptionStatus) => ComponentChildren;
+  children:
+    | ComponentChildren
+    | ((status: SelectOptionStatus) => ComponentChildren);
   classes?: string | string[];
 };
+
+function optionChildren(
+  children:
+    | ComponentChildren
+    | ((status: SelectOptionStatus) => ComponentChildren),
+  status: SelectOptionStatus,
+): ComponentChildren {
+  if (typeof children === 'function') {
+    return children(status);
+  }
+
+  return children;
+}
 
 function SelectOption<T>({
   value,
@@ -49,14 +64,18 @@ function SelectOption<T>({
   return (
     <li
       className={classnames(
-        'w-full ring-inset focus:ring outline-none rounded-none cursor-pointer',
+        'w-full ring-inset focus:ring outline-none rounded-none',
         'border-t first:border-t-0 transition-colors whitespace-nowrap',
-        { 'hover:bg-grey-1': !disabled },
+        { 'cursor-pointer hover:bg-grey-1': !disabled },
         classes,
       )}
-      onClick={() => selectValue(value)}
+      onClick={() => {
+        if (!disabled) {
+          selectValue(value);
+        }
+      }}
       onKeyPress={e => {
-        if (e.code === 'Enter' || e.code === 'Space') {
+        if (!disabled && ['Enter', 'Space'].includes(e.code)) {
           e.preventDefault();
           selectValue(value);
         }
@@ -73,7 +92,7 @@ function SelectOption<T>({
           'border-l-brand font-medium': selected,
         })}
       >
-        {children({ selected, disabled })}
+        {optionChildren(children, { selected, disabled })}
       </div>
     </li>
   );
