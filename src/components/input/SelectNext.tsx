@@ -64,9 +64,12 @@ function SelectOption<T>({
   return (
     <li
       className={classnames(
-        'w-full ring-inset focus:ring outline-none rounded-none',
+        'w-full ring-inset outline-none rounded-none',
         'border-t first:border-t-0 transition-colors whitespace-nowrap',
-        { 'cursor-pointer hover:bg-grey-1': !disabled },
+        {
+          'text-grey-4': disabled,
+          'cursor-pointer focus:ring hover:bg-grey-1': !disabled,
+        },
         classes,
       )}
       onClick={() => {
@@ -81,7 +84,7 @@ function SelectOption<T>({
         }
       }}
       role="option"
-      disabled={disabled}
+      aria-disabled={disabled}
       aria-selected={selected}
       // This is intended to be focused with arrow keys
       tabIndex={-1}
@@ -193,7 +196,7 @@ function SelectMain<T>({
     loop: false,
     autofocus: true,
     containerVisible: listboxOpen,
-    selector: '[role="option"]',
+    selector: '[role="option"]:not([aria-disabled="true"])',
   });
 
   useLayoutEffect(() => {

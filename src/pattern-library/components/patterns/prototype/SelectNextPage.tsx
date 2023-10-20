@@ -6,7 +6,13 @@ import { IconButton, InputGroup } from '../../../../components/input';
 import SelectNext from '../../../../components/input/SelectNext';
 import Library from '../../Library';
 
-const defaultItems = [
+type ItemType = {
+  id: string;
+  name: string;
+  disabled?: boolean;
+};
+
+const defaultItems: ItemType[] = [
   { id: '1', name: 'All students' },
   { id: '2', name: 'Albert Banana' },
   { id: '3', name: 'Bernard California' },
@@ -25,13 +31,14 @@ function SelectExample({
   classes?: string;
   items?: typeof defaultItems;
 }) {
-  const [value, setValue] = useState<(typeof items)[number]>();
+  const [value, setValue] = useState<ItemType>();
 
   return (
     <SelectNext
       value={value}
       onChange={setValue}
       classes={classes}
+      disabled={disabled}
       buttonContent={
         value ? (
           <>
@@ -51,21 +58,27 @@ function SelectExample({
           <>Select one...</>
         )
       }
-      disabled={disabled}
     >
       {items.map(item => (
-        <SelectNext.Option value={item} key={item.id}>
-          {textOnly ? (
-            item.name
-          ) : (
-            <>
-              {item.name}
-              <div className="grow" />
-              <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                {item.id}
-              </div>
-            </>
-          )}
+        <SelectNext.Option value={item} key={item.id} disabled={item.disabled}>
+          {({ disabled }) =>
+            textOnly ? (
+              item.name
+            ) : (
+              <>
+                {item.name}
+                <div className="grow" />
+                <div
+                  className={classnames('rounded px-2 ml-2 text-white', {
+                    'bg-grey-7': !disabled,
+                    'bg-grey-4': disabled,
+                  })}
+                >
+                  {item.id}
+                </div>
+              </>
+            )
+          }
         </SelectNext.Option>
       ))}
     </SelectNext>
@@ -215,14 +228,6 @@ export default function SelectNextPage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="Disabled Select">
-            <Library.Demo title="Disabled Select">
-              <div className="w-96 mx-auto">
-                <SelectExample disabled />
-              </div>
-            </Library.Demo>
-          </Library.Example>
-
           <Library.Example title="Select with long content">
             <p>
               <code>SelectNext</code> makes sure the button content never
@@ -259,21 +264,11 @@ export default function SelectNextPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Component API">
+        <Library.Pattern title="SelectNext component API">
           <code>SelectNext</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
-          <Library.Example title="buttonContent">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                The content to be displayed in the toggle button.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>ComponentChildren</code>
-              </Library.InfoItem>
-            </Library.Info>
-          </Library.Example>
           <Library.Example title="value">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -294,16 +289,13 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-          <Library.Example title="disabled">
+          <Library.Example title="buttonContent">
             <Library.Info>
               <Library.InfoItem label="description">
-                Whether the Select is disabled or not.
+                The content to be displayed in the toggle button.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>boolean</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>undefined</code>
+                <code>ComponentChildren</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
@@ -320,9 +312,27 @@ export default function SelectNextPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-          <p>
-            Every <code>SelectNext.Option</code> has its own set of props.
-          </p>
+          <Library.Example title="disabled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Whether the Select is disabled or not.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Disabled Select">
+              <div className="w-96 mx-auto">
+                <SelectExample disabled />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+
+        <Library.Pattern title="SelectNext.Option component API">
           <Library.Example title="children">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -359,6 +369,15 @@ export default function SelectNextPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
+            <Library.Demo title="Disabled options">
+              <div className="w-96 mx-auto">
+                <SelectExample
+                  items={defaultItems.map(item =>
+                    item.id !== '4' ? item : { ...item, disabled: true },
+                  )}
+                />
+              </div>
+            </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 

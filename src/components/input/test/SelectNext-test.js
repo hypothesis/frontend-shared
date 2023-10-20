@@ -13,7 +13,17 @@ describe('SelectNext', () => {
     { id: '5', name: 'Doris Evanescence' },
   ];
 
-  const createComponent = (props = {}, paddingTop = 0) => {
+  /**
+   * @param {Object} [options]
+   * @param {number} [options.paddingTop] - Extra padding top for the container.
+   *                                        Defaults to 0.
+   * @param {boolean} [options.optionsChildrenAsCallback] -
+   *        Whether to renders SelectNext.Option children with callback notation.
+   *        Used primarily to test and cover both branches.
+   *        Defaults to true.
+   */
+  const createComponent = (props = {}, options = {}) => {
+    const { paddingTop = 0, optionsChildrenAsCallback = true } = options;
     const container = document.createElement('div');
     container.style.paddingTop = `${paddingTop}px`;
     document.body.append(container);
@@ -26,12 +36,16 @@ describe('SelectNext', () => {
             disabled={item.id === '4'}
             key={item.id}
           >
-            {({ selected, disabled }) => (
-              <span data-testid={`option-${item.id}`}>
-                {item.name}
-                {selected && <span data-testid="selected-option" />}
-                {disabled && <span data-testid="disabled-option" />}
-              </span>
+            {!optionsChildrenAsCallback ? (
+              <span data-testid={`option-${item.id}`}>{item.name}</span>
+            ) : (
+              ({ selected, disabled }) => (
+                <span data-testid={`option-${item.id}`}>
+                  {item.name}
+                  {selected && <span data-testid="selected-option" />}
+                  {disabled && <span data-testid="disabled-option" />}
+                </span>
+              )
             )}
           </SelectNext.Option>
         ))}
@@ -251,7 +265,7 @@ describe('SelectNext', () => {
     { containerPaddingTop: 1000, shouldDropUp: true },
   ].forEach(({ containerPaddingTop, shouldDropUp }) => {
     it('makes listbox drop up or down based on available space below', () => {
-      const wrapper = createComponent({}, containerPaddingTop);
+      const wrapper = createComponent({}, { paddingTop: containerPaddingTop });
       toggleListbox(wrapper);
 
       assert.equal(listboxDidDropUp(wrapper), shouldDropUp);
@@ -273,12 +287,19 @@ describe('SelectNext', () => {
     checkAccessibility([
       {
         name: 'Closed Select listbox',
-        content: () => createComponent({ buttonContent: 'Select' }),
+        content: () =>
+          createComponent(
+            { buttonContent: 'Select' },
+            { optionsChildrenAsCallback: false },
+          ),
       },
       {
         name: 'Open Select listbox',
         content: () => {
-          const wrapper = createComponent({ buttonContent: 'Select' });
+          const wrapper = createComponent(
+            { buttonContent: 'Select' },
+            { optionsChildrenAsCallback: false },
+          );
           toggleListbox(wrapper);
 
           return wrapper;
