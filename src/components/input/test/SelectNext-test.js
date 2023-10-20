@@ -81,6 +81,16 @@ describe('SelectNext', () => {
     assert.calledWith(onChange.lastCall, items[0]);
   });
 
+  it('does not change selected value when a disabled option is clicked', () => {
+    const onChange = sinon.stub();
+    const wrapper = createComponent({ onChange });
+    const clickDisabledOption = () =>
+      wrapper.find(`[data-testid="option-4"]`).simulate('click');
+
+    clickDisabledOption();
+    assert.notCalled(onChange);
+  });
+
   ['Enter', 'Space'].forEach(code => {
     it(`changes selected value when ${code} is pressed in option`, () => {
       const onChange = sinon.stub();
@@ -100,6 +110,20 @@ describe('SelectNext', () => {
 
       pressKeyInOption(1);
       assert.calledWith(onChange.lastCall, items[0]);
+    });
+
+    it(`does not change selected value when ${code} is pressed in a disabled option`, () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({ onChange });
+      const pressKeyInDisabledOption = () =>
+        wrapper
+          .find(`[data-testid="option-4"]`)
+          .getDOMNode()
+          .closest('[role="option"]')
+          .dispatchEvent(new KeyboardEvent('keypress', { code }));
+
+      pressKeyInDisabledOption();
+      assert.notCalled(onChange);
     });
   });
 

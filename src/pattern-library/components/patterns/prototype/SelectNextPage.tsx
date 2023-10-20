@@ -55,19 +55,17 @@ function SelectExample({
     >
       {items.map(item => (
         <SelectNext.Option value={item} key={item.id}>
-          {() =>
-            textOnly ? (
-              <>{item.name}</>
-            ) : (
-              <>
-                {item.name}
-                <div className="grow" />
-                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                  {item.id}
-                </div>
-              </>
-            )
-          }
+          {textOnly ? (
+            item.name
+          ) : (
+            <>
+              {item.name}
+              <div className="grow" />
+              <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+                {item.id}
+              </div>
+            </>
+          )}
         </SelectNext.Option>
       ))}
     </SelectNext>
@@ -117,19 +115,13 @@ function InputGroupSelectExample({ classes }: { classes?: string }) {
       >
         {defaultItems.map(item => (
           <SelectNext.Option value={item} key={item.id}>
-            {() => (
-              <>
-                {item.name}
-                <div className="grow" />
-                <div
-                  className={classnames(
-                    'rounded px-2 ml-2 text-white bg-grey-7',
-                  )}
-                >
-                  {item.id}
-                </div>
-              </>
-            )}
+            {item.name}
+            <div className="grow" />
+            <div
+              className={classnames('rounded px-2 ml-2 text-white bg-grey-7')}
+            >
+              {item.id}
+            </div>
           </SelectNext.Option>
         ))}
       </SelectNext>
@@ -322,6 +314,46 @@ export default function SelectNextPage() {
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <p>
+            Every <code>SelectNext.Option</code> has its own set of props.
+          </p>
+          <Library.Example title="children">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Content of the option. You can pass a callback to receive the
+                option status (<code>disabled</code> and <code>selected</code>).
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  ComponentChildren | (({'{'} disabled, selected {'}'}) {'=>'}{' '}
+                  ComponentChildren)
+                </code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="value">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The value to set when this option is selected.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>T</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="disabled">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Whether the option is disabled or not.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
                 <code>undefined</code>
