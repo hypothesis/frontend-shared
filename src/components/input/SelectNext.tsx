@@ -15,8 +15,8 @@ import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
+import { downcastRef } from '../../util/typing';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
-import Button from './Button';
 import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
 
@@ -149,6 +149,9 @@ export type SelectProps<T> = PresentationalProps & {
    */
   buttonId?: string;
 
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+
   /** @deprecated Use buttonContent instead */
   label?: ComponentChildren;
 };
@@ -163,6 +166,8 @@ function SelectMain<T>({
   elementRef,
   classes,
   buttonId,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
@@ -212,11 +217,11 @@ function SelectMain<T>({
       className={classnames('relative w-full border rounded', inputGroupStyles)}
       ref={wrapperRef}
     >
-      <Button
+      <button
         id={buttonId ?? defaultButtonId}
-        variant="custom"
-        classes={classnames(
-          'w-full flex justify-between',
+        className={classnames(
+          'focus-visible-ring transition-colors whitespace-nowrap',
+          'w-full flex items-center justify-between gap-x-2 p-2',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           // Add inherited rounded corners so that the toggle is consistent with
           // the wrapper, which is the element rendering borders.
@@ -225,11 +230,15 @@ function SelectMain<T>({
           'rounded-[inherit]',
           classes,
         )}
-        expanded={listboxOpen}
+        type="button"
+        role="combobox"
         disabled={disabled}
+        aria-expanded={listboxOpen}
         aria-haspopup="listbox"
         aria-controls={listboxId}
-        elementRef={buttonRef}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        ref={downcastRef(buttonRef)}
         onClick={() => setListboxOpen(prev => !prev)}
         onKeyDown={e => {
           if (e.key === 'ArrowDown' && !listboxOpen) {
@@ -243,7 +252,7 @@ function SelectMain<T>({
         <div className="text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
         </div>
-      </Button>
+      </button>
       <SelectContext.Provider value={{ selectValue, value }}>
         <ul
           className={classnames(

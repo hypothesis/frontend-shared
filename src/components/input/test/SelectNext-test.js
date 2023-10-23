@@ -289,7 +289,7 @@ describe('SelectNext', () => {
         name: 'Closed Select listbox',
         content: () =>
           createComponent(
-            { buttonContent: 'Select' },
+            { buttonContent: 'Select', 'aria-label': 'Select' },
             { optionsChildrenAsCallback: false },
           ),
       },
@@ -297,7 +297,7 @@ describe('SelectNext', () => {
         name: 'Open Select listbox',
         content: () => {
           const wrapper = createComponent(
-            { buttonContent: 'Select' },
+            { buttonContent: 'Select', 'aria-label': 'Select' },
             { optionsChildrenAsCallback: false },
           );
           toggleListbox(wrapper);
