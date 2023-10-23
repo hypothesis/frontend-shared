@@ -171,7 +171,7 @@ export type LibraryDemoProps = {
   classes?: string | string[];
   /** Inline styles to apply to the demo container */
   style?: JSX.CSSProperties;
-  title?: string;
+  title?: ComponentChildren;
   /**
    * Should the demo also render the source? When true, a "Source" tab will be
    * rendered, which will display the JSX source of the Demo's children.

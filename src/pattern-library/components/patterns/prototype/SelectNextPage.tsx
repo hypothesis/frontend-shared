@@ -1,7 +1,8 @@
 import classnames from 'classnames';
-import { useCallback, useMemo, useState } from 'preact/hooks';
+import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
+import type { SelectNextProps } from '../../../../components/input';
 import { IconButton, InputGroup } from '../../../../components/input';
 import SelectNext from '../../../../components/input/SelectNext';
 import Library from '../../Library';
@@ -23,65 +24,77 @@ const defaultItems: ItemType[] = [
 function SelectExample({
   disabled,
   textOnly,
-  classes,
   items = defaultItems,
-}: {
-  disabled?: boolean;
+  ...rest
+}: Pick<
+  SelectNextProps<ItemType>,
+  'aria-label' | 'aria-labelledby' | 'classes' | 'disabled'
+> & {
   textOnly?: boolean;
-  classes?: string;
-  items?: typeof defaultItems;
+  items?: ItemType[];
 }) {
   const [value, setValue] = useState<ItemType>();
+  const buttonId = useId();
 
   return (
-    <SelectNext
-      value={value}
-      onChange={setValue}
-      classes={classes}
-      disabled={disabled}
-      buttonContent={
-        value ? (
-          <>
-            {textOnly && value.name}
-            {!textOnly && (
-              <div className="flex">
-                <div className="truncate">{value.name}</div>
-                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                  {value.id}
+    <>
+      {!rest['aria-label'] && !rest['aria-labelledby'] && (
+        <label htmlFor={buttonId}>Select a person</label>
+      )}
+      <SelectNext
+        {...rest}
+        buttonId={buttonId}
+        value={value}
+        onChange={setValue}
+        disabled={disabled}
+        buttonContent={
+          value ? (
+            <>
+              {textOnly && value.name}
+              {!textOnly && (
+                <div className="flex">
+                  <div className="truncate">{value.name}</div>
+                  <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+                    {value.id}
+                  </div>
                 </div>
-              </div>
-            )}
-          </>
-        ) : disabled ? (
-          <>This is disabled</>
-        ) : (
-          <>Select one...</>
-        )
-      }
-    >
-      {items.map(item => (
-        <SelectNext.Option value={item} key={item.id} disabled={item.disabled}>
-          {({ disabled }) =>
-            textOnly ? (
-              item.name
-            ) : (
-              <>
-                {item.name}
-                <div className="grow" />
-                <div
-                  className={classnames('rounded px-2 ml-2 text-white', {
-                    'bg-grey-7': !disabled,
-                    'bg-grey-4': disabled,
-                  })}
-                >
-                  {item.id}
-                </div>
-              </>
-            )
-          }
-        </SelectNext.Option>
-      ))}
-    </SelectNext>
+              )}
+            </>
+          ) : disabled ? (
+            <>This is disabled</>
+          ) : (
+            <>Select one…</>
+          )
+        }
+      >
+        {items.map(item => (
+          <SelectNext.Option
+            value={item}
+            key={item.id}
+            disabled={item.disabled}
+          >
+            {({ disabled }) =>
+              textOnly ? (
+                item.name
+              ) : (
+                <>
+                  {item.name}
+                  <div className="grow" />
+                  <div
+                    className={classnames('rounded px-2 ml-2 text-white', {
+                      'bg-grey-7': !disabled,
+                      'bg-grey-4': disabled,
+                    })}
+                  >
+                    {item.id}
+                  </div>
+                </>
+              )
+            }
+          </SelectNext.Option>
+        ))}
+      </SelectNext>
+    </>
   );
 }
 
@@ -99,53 +112,58 @@ function InputGroupSelectExample({ classes }: { classes?: string }) {
     const newIndex = selectedIndex - 1;
     setSelected(defaultItems[newIndex] ?? selected);
   }, [selected, selectedIndex]);
+  const buttonId = useId();
 
   return (
-    <InputGroup>
-      <IconButton
-        icon={ArrowLeftIcon}
-        title="Previous student"
-        variant="dark"
-        onClick={previous}
-        disabled={selectedIndex <= 0}
-      />
-      <SelectNext
-        value={selected}
-        onChange={setSelected}
-        classes={classes}
-        buttonContent={
-          selected ? (
-            <div className="flex">
-              <div className="truncate">{selected.name}</div>
-              <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                {selected.id}
+    <>
+      <label htmlFor={buttonId}>Select a person</label>
+      <InputGroup>
+        <IconButton
+          icon={ArrowLeftIcon}
+          title="Previous student"
+          variant="dark"
+          onClick={previous}
+          disabled={selectedIndex <= 0}
+        />
+        <SelectNext
+          buttonId={buttonId}
+          value={selected}
+          onChange={setSelected}
+          classes={classes}
+          buttonContent={
+            selected ? (
+              <div className="flex">
+                <div className="truncate">{selected.name}</div>
+                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+                  {selected.id}
+                </div>
               </div>
-            </div>
-          ) : (
-            <>Select one...</>
-          )
-        }
-      >
-        {defaultItems.map(item => (
-          <SelectNext.Option value={item} key={item.id}>
-            {item.name}
-            <div className="grow" />
-            <div
-              className={classnames('rounded px-2 ml-2 text-white bg-grey-7')}
-            >
-              {item.id}
-            </div>
-          </SelectNext.Option>
-        ))}
-      </SelectNext>
-      <IconButton
-        icon={ArrowRightIcon}
-        title="Next student"
-        variant="dark"
-        onClick={next}
-        disabled={selectedIndex >= defaultItems.length - 1}
-      />
-    </InputGroup>
+            ) : (
+              <>Select one…</>
+            )
+          }
+        >
+          {defaultItems.map(item => (
+            <SelectNext.Option value={item} key={item.id}>
+              {item.name}
+              <div className="grow" />
+              <div
+                className={classnames('rounded px-2 ml-2 text-white bg-grey-7')}
+              >
+                {item.id}
+              </div>
+            </SelectNext.Option>
+          ))}
+        </SelectNext>
+        <IconButton
+          icon={ArrowRightIcon}
+          title="Next student"
+          variant="dark"
+          onClick={next}
+          disabled={selectedIndex >= defaultItems.length - 1}
+        />
+      </InputGroup>
+    </>
   );
 }
 
@@ -224,6 +242,44 @@ export default function SelectNextPage() {
                     })),
                   ]}
                 />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="Labeling SelectNext">
+            <p>
+              There are three ways to label a <code>SelectNext</code>. Make sure
+              you always use one of them.
+            </p>
+
+            <Library.Demo
+              title={
+                <>
+                  Via{' '}
+                  <code>
+                    {'<'}label {'/>'}
+                  </code>{' '}
+                  linked to <code>buttonId</code>
+                </>
+              }
+            >
+              <div className="w-96 mx-auto">
+                <SelectExample />
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="Via aria-label">
+              <div className="w-96 mx-auto">
+                <SelectExample aria-label="Select a person with aria label" />
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="Via aria-labelledby">
+              <div className="w-96 mx-auto">
+                <p id="select-next-meta-label">
+                  Select a person with aria labelledby
+                </p>
+                <SelectExample aria-labelledby="select-next-meta-label" />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -403,7 +459,7 @@ export default function SelectNextPage() {
             </div>
           </>
         ) : (
-          <>Select one...</>
+          <>Select one…</>
         )
       }
     >
