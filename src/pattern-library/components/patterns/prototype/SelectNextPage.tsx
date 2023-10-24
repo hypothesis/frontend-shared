@@ -173,8 +173,7 @@ export default function SelectNextPage() {
       title="SelectNext"
       intro={
         <p>
-          <code>SelectNext</code> is a presentational component which behaves
-          like the native <code>{'<select>'}</code> element.
+          <code>SelectNext</code> is a component that behaves like a combobox.
         </p>
       }
     >
@@ -188,6 +187,27 @@ export default function SelectNextPage() {
                 <SelectExample textOnly />
               </div>
             </Library.Demo>
+
+            <Library.Code
+              title="Basic select usage"
+              content={`function App({ items }: { items: string[] }) {
+  const [value, setSelected] = useState<string>();
+
+  return (
+    <SelectNext
+      value={value}
+      onChange={setSelected}
+      buttonContent={value ?? 'Select one…'}
+    >
+      {items.map(item => (
+        <SelectNext.Option value={item} key={item}>
+          {item}
+        </SelectNext.Option>
+      ))}
+    </SelectNext>
+  );
+}`}
+            />
           </Library.Example>
         </Library.Pattern>
 
@@ -204,6 +224,43 @@ export default function SelectNextPage() {
               </div>
             </Library.Demo>
 
+            <Library.Code
+              title="Custom options usage"
+              content={`type ItemType = {
+  id: string;
+  name: string;
+};
+
+function ItemOption({ item }: { item: ItemType }) {
+  return (
+    <div className="flex">
+      <div className="truncate">{item.name}</div>
+      <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+        {item.id}
+      </div>
+    </div>
+  )
+}
+
+function App({ items }: { items: ItemType[] }) {
+  const [value, setSelected] = useState<ItemType>();
+
+  return (
+    <SelectNext
+      value={value}
+      onChange={setSelected}
+      buttonContent={!value ? 'Select one…' : <ItemOption item={value} />}
+    >
+      {items.map(item => (
+        <SelectNext.Option value={item} key={item}>
+          <ItemOption item={item} />
+        </SelectNext.Option>
+      ))}
+    </SelectNext>
+  );
+}`}
+            />
+
             <Library.Demo title="Select in InputGroup">
               <div className="w-96">
                 <InputGroupSelectExample />
@@ -212,6 +269,15 @@ export default function SelectNextPage() {
           </Library.Example>
 
           <Library.Example title="Select with many options">
+            <p>
+              <code>SelectNext</code> renders a scrollable listbox with a
+              limited height.
+            </p>
+            <p>
+              The listbox automatically drops up or down, depending on the
+              amount of available viewport space.
+            </p>
+
             <Library.Demo title="Select with many options">
               <div className="w-96 mx-auto">
                 <SelectExample
@@ -251,7 +317,6 @@ export default function SelectNextPage() {
               There are three ways to label a <code>SelectNext</code>. Make sure
               you always use one of them.
             </p>
-
             <Library.Demo
               title={
                 <>
@@ -267,12 +332,33 @@ export default function SelectNextPage() {
                 <SelectExample />
               </div>
             </Library.Demo>
+            <Library.Code
+              title={`Labeling with label[htmlFor="buttonId"]`}
+              content={`function App() {
+  const buttonId = useId();
+
+  return (
+    <>
+      <label htmlFor={buttonId}>Select a person</label>
+      <SelectNext buttonId={buttonId} ... />
+    </>
+  );
+}`}
+            />
 
             <Library.Demo title="Via aria-label">
               <div className="w-96 mx-auto">
                 <SelectExample aria-label="Select a person with aria label" />
               </div>
             </Library.Demo>
+            <Library.Code
+              title="Labeling with aria-label"
+              content={`function App() {
+  return (
+    <SelectNext aria-label="Select a person with aria label" ... />
+  );
+}`}
+            />
 
             <Library.Demo title="Via aria-labelledby">
               <div className="w-96 mx-auto">
@@ -282,6 +368,19 @@ export default function SelectNextPage() {
                 <SelectExample aria-labelledby="select-next-meta-label" />
               </div>
             </Library.Demo>
+            <Library.Code
+              title="Labeling with aria-labelledby"
+              content={`function App() {
+  const paragraphId = useId();
+
+  return (
+    <>
+      <p id={paragraphId}>Select a person with aria labelledby</p>
+      <SelectNext aria-labelledby={buttonId} ... />
+    </>
+  );
+}`}
+            />
           </Library.Example>
 
           <Library.Example title="Select with long content">
@@ -389,6 +488,16 @@ export default function SelectNextPage() {
         </Library.Pattern>
 
         <Library.Pattern title="SelectNext.Option component API">
+          <Library.Example title="value">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                The value to set when this option is selected.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>T</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
           <Library.Example title="children">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -402,16 +511,35 @@ export default function SelectNextPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="value">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                The value to set when this option is selected.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>T</code>
-              </Library.InfoItem>
-            </Library.Info>
+            <Library.Code
+              title="Children as callback"
+              content={`function App({ items }: { items: string[] }) {
+  const [value, setSelected] = useState<string>();
+
+  return (
+    <SelectNext
+      value={value}
+      onChange={setSelected}
+      buttonContent={value ?? 'Select one…'}
+    >
+      {items.map(item => (
+        <SelectNext.Option value={item} key={item}>
+          {({ selected, disabled }) => (
+            <span
+              className={classnames({
+                'font-bold': selected,
+                'line-through': disabled,
+              })}
+            >
+              {item}
+            </span>
+          )}
+        </SelectNext.Option>
+      ))}
+    </SelectNext>
+  );
+}`}
+            />
           </Library.Example>
           <Library.Example title="disabled">
             <Library.Info>
@@ -435,51 +563,6 @@ export default function SelectNextPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-        </Library.Pattern>
-
-        <Library.Pattern title="How to use it">
-          <p>
-            <code>SelectNext</code> is meant to be used as a controlled
-            component.
-          </p>
-
-          <Library.Code
-            content={`function App() {
-  const [value, setSelected] = useState<{ id: string; name: string }>();
-  return (
-    <SelectNext
-      value={value}
-      onChange={setSelected}
-      buttonContent={
-        value ? (
-          <>
-            {value.name}
-            <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-              {value.id}
-            </div>
-          </>
-        ) : (
-          <>Select one…</>
-        )
-      }
-    >
-      {items.map(item => (
-        <SelectNext.Option value={item} key={item.id}>
-          {() => (
-            <>
-              {item.name}
-              <div className="grow" />
-              <div className="rounded px-2 bg-grey-7 text-white">
-                {item.id}
-              </div>
-            </>
-          )}
-        </SelectNext.Option>
-      ))}
-    </SelectNext>
-  );
-}`}
-          />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
