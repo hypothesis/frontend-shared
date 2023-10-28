@@ -13,6 +13,7 @@ export default function CheckboxCheckedIcon(props: CheckboxCheckedIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="-4 -4 39 39"
+      className="text-grey-1"
       data-component="CheckboxCheckedIcon"
       {...props}
     >
@@ -21,18 +22,13 @@ export default function CheckboxCheckedIcon(props: CheckboxCheckedIconProps) {
         height="35"
         x="-2"
         y="-2"
-        fill="none"
+        fill="currentColor"
         stroke="currentColor"
         stroke-width="3"
         rx="5"
         ry="5"
       />
-      <path
-        fill="none"
-        stroke="currentColor"
-        stroke-width="5"
-        d="m4 14 8 9L28 5"
-      />
+      <path fill="none" stroke="white" stroke-width="5" d="m4 14 8 9L28 5" />
     </svg>
   );
 }
