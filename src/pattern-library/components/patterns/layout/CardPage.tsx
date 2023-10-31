@@ -51,7 +51,7 @@ export default function CardPage() {
             <Library.Demo title="Card with full-width image" withSource>
               <Card>
                 <img
-                  className="rounded-t-lg"
+                  className="rounded-t-[inherit]"
                   src="https://placekitten.com/1000/250"
                   alt="kitty"
                 />

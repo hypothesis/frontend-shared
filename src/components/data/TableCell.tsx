@@ -4,6 +4,7 @@ import { useContext } from 'preact/hooks';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
+import TableContext from './TableContext';
 import TableSectionContext from './TableSectionContext';
 
 export type TableCellProps = PresentationalProps &
@@ -20,6 +21,7 @@ export default function TableCell({
   ...htmlAttributes
 }: TableCellProps) {
   const sectionContext = useContext(TableSectionContext);
+  const { borderless } = useContext(TableContext);
   const isHeadCell = sectionContext && sectionContext.section === 'head';
   const Cell = isHeadCell ? 'th' : 'td';
 
@@ -34,7 +36,8 @@ export default function TableCell({
           // Set horizontal borders here for table headers. This needs to be
           // done here (versus on the row or table) to prevent a 1-pixel wiggle
           // on scroll with sticky headers.
-          'text-left border-t border-b border-b-grey-5': isHeadCell,
+          'text-left border-b border-b-grey-5': isHeadCell,
+          'border-t': isHeadCell && !borderless,
           'border-none': !isHeadCell,
           // Apply a very subtle bottom border to the last row in the table (not
           // in the head). This can help delineate the end of data in tables

@@ -6,6 +6,8 @@ import ScrollContent from './ScrollContent';
 export type ScrollBoxProps = CompositeProps & {
   /** Turn off borders on outer container */
   borderless?: boolean;
+  /** Add rounded corners to scrollable container */
+  rounded?: boolean;
 };
 
 /**
@@ -17,6 +19,7 @@ export default function ScrollBox({
   elementRef,
 
   borderless = false,
+  rounded = false,
 
   ...htmlAttributes
 }: ScrollBoxProps) {
@@ -25,6 +28,7 @@ export default function ScrollBox({
       data-composite-component="ScrollBox"
       {...htmlAttributes}
       borderless={borderless}
+      rounded={rounded}
       elementRef={elementRef}
     >
       <Scroll>

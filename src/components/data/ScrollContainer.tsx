@@ -7,6 +7,8 @@ import { downcastRef } from '../../util/typing';
 export type ScrollContainerProps = PresentationalProps & {
   /** Remove border around container */
   borderless?: boolean;
+  /** Add rounded corners to scrollable container */
+  rounded?: boolean;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
 /**
@@ -19,6 +21,7 @@ export default function ScrollContainer({
   elementRef,
 
   borderless = false,
+  rounded = false,
 
   ...htmlAttributes
 }: ScrollContainerProps) {
@@ -32,7 +35,10 @@ export default function ScrollContainer({
         // Prevent overflow by overriding `min-height: auto`.
         // See https://stackoverflow.com/a/66689926/434243.
         'min-h-0',
-        { border: !borderless },
+        {
+          border: !borderless,
+          'rounded-lg overflow-hidden': rounded,
+        },
         classes,
       )}
     >
