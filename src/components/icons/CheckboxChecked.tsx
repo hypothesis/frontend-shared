@@ -13,7 +13,6 @@ export default function CheckboxCheckedIcon(props: CheckboxCheckedIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="-4 -4 39 39"
-      className="text-grey-1"
       data-component="CheckboxCheckedIcon"
       {...props}
     >
