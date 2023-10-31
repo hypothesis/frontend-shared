@@ -13,6 +13,8 @@ export type TableProps = PresentationalProps & {
   title: string;
   /** This table has rows that can be selected */
   interactive?: boolean;
+  /** Turn off outer table borders */
+  borderless?: boolean;
 } & Omit<JSX.HTMLAttributes<HTMLElement>, 'rows'>;
 
 /**
@@ -23,9 +25,10 @@ export default function Table({
   classes,
   elementRef,
 
-  interactive = false,
   title,
+  interactive = false,
   stickyHeader = false,
+  borderless = false,
 
   ...htmlAttributes
 }: TableProps) {
@@ -34,6 +37,7 @@ export default function Table({
   const tableContext: TableInfo = {
     interactive,
     stickyHeader,
+    borderless,
     tableRef: ref,
   };
 
@@ -56,9 +60,7 @@ export default function Table({
           // No top border is set here: that border is set by `TableCell`.
           // If it is set here, there will be a 1-pixel wiggle in the sticky
           // header on scroll
-          'border-x border-b',
-          // Making it feel more consistent with other UI
-          'rounded overflow-hidden',
+          { 'border-x border-b': !borderless },
           classes,
         )}
         ref={downcastRef(ref)}

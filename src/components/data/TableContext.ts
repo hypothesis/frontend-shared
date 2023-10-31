@@ -6,6 +6,8 @@ export type TableInfo = {
   interactive: boolean;
   /** This table has a sticky header */
   stickyHeader: boolean;
+  /** Turn off outer table borders */
+  borderless: boolean;
   tableRef: RefObject<HTMLElement | undefined>;
 };
 
