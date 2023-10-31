@@ -285,7 +285,7 @@ export default function TablePage() {
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this boolean prop if you want to remove the table{"'"}s
-                outer borders, in case it is rendered on a container with its
+                outer borders, in case it is rendered in a container with its
                 own borders.
               </Library.InfoItem>
               <Library.InfoItem label="type">
