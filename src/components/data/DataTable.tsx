@@ -40,6 +40,9 @@ type ComponentProps<Row> = {
   /** Callback to render an individual table cell */
   renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
   title: string;
+
+  /** Turn off outer table borders */
+  borderless?: boolean;
 };
 
 export type DataTableProps<Row> = CompositeProps &
@@ -62,6 +65,9 @@ export default function DataTable<Row>({
   onSelectRow,
   onConfirmRow,
   emptyMessage,
+
+  // Forwarded to Table
+  borderless,
 
   ...htmlAttributes
 }: DataTableProps<Row>) {
@@ -133,7 +139,8 @@ export default function DataTable<Row>({
       title={title}
       elementRef={downcastRef(tableRef)}
       interactive={!!(onSelectRow || onConfirmRow)}
-      stickyHeader={true}
+      stickyHeader
+      borderless={borderless}
     >
       <TableHead>
         <TableRow>

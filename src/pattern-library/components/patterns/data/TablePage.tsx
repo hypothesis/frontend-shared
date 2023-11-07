@@ -281,7 +281,7 @@ export default function TablePage() {
               </Table>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="borderless">
+          <Library.Example id="table-props-borderless" title="borderless">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this boolean prop if you want to remove the table{"'"}s

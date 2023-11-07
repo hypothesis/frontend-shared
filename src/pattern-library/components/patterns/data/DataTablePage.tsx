@@ -488,6 +488,18 @@ export default function DataTablePage() {
             </Library.Demo>
           </Library.Example>
 
+          <Library.Example title="borderless">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                See{' '}
+                <Library.Link href="/data-table#table-props-borderless">
+                  borderless Table
+                </Library.Link>
+                .
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
           <Library.Example title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
