@@ -110,6 +110,34 @@ export default function OptionButtonPage() {
             </Library.Demo>
           </Library.Example>
 
+          <Library.Example title="rounded">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                <Library.StatusChip status="deprecated" />
+                Whether this button should render rounded corners.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Rounded OptionButton" withSource>
+              <div className="w-[250px]">
+                <OptionButton
+                  rounded
+                  details="PDF"
+                  title="Select a PDF from Google Drive"
+                  selected
+                >
+                  Google Drive
+                </OptionButton>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
           <Library.Example title="...buttonProps">
             <Library.Info>
               <Library.InfoItem label="description">
