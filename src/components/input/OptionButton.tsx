@@ -10,6 +10,12 @@ export type OptionButtonProps = {
   details?: ComponentChildren;
   /** alias for `pressed`: this option button is selected **/
   selected?: boolean;
+
+  /**
+   * Add rounded corners.
+   * @deprecated In next major version, OptionButtons will be rounded by default
+   */
+  rounded?: boolean;
 } & Omit<ButtonProps, 'size' | 'unstyled' | 'classes' | 'variant'>;
 
 /**
@@ -20,6 +26,7 @@ export default function OptionButton({
   children,
   details,
   selected = false,
+  rounded = false,
 
   pressed,
   ...buttonProps
@@ -35,6 +42,7 @@ export default function OptionButton({
         'disabled:border-stone-200',
         'aria-pressed:border-slate-5 aria-pressed:bg-slate-0 aria-pressed:shadow-inner',
         'aria-expanded:border-slate-5 aria-expanded:bg-slate-0 aria-expanded:shadow-inner',
+        { rounded },
       )}
       size="custom"
       variant="custom"
