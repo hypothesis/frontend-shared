@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
+import { useMemo } from 'preact/hooks';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
@@ -26,9 +27,12 @@ export default function Scroll({
 }: ScrollProps) {
   const ref = useSyncedRef(elementRef);
 
-  const scrollContext: ScrollInfo = {
-    scrollRef: ref,
-  };
+  const scrollContext: ScrollInfo = useMemo(
+    () => ({
+      scrollRef: ref,
+    }),
+    [ref],
+  );
 
   return (
     <ScrollContext.Provider value={scrollContext}>

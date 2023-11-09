@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useMemo } from 'preact/hooks';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -22,9 +22,12 @@ export default function TableBody({
   ...htmlAttributes
 }: TableBodyProps) {
   const tableContext = useContext(TableContext);
-  const sectionContext: TableSection = {
-    section: 'body',
-  };
+  const sectionContext: TableSection = useMemo(
+    () => ({
+      section: 'body',
+    }),
+    [],
+  );
 
   return (
     <TableSectionContext.Provider value={sectionContext}>
