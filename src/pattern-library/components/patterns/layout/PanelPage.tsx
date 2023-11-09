@@ -42,17 +42,7 @@ export default function PanelPage() {
               withSource
             >
               <div className="h-[350px]">
-                <Panel
-                  title="Scrolling content"
-                  buttons={
-                    <>
-                      <Button>Buttons</Button>
-                      <Button>do not</Button>
-                      <Button variant="primary">Scroll</Button>
-                    </>
-                  }
-                  scrollable
-                >
+                <Panel title="Scrolling content" scrollable>
                   <LoremIpsum />
                 </Panel>
               </div>
