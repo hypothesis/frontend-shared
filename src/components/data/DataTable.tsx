@@ -1,7 +1,8 @@
 import type { ComponentChildren, JSX } from 'preact';
-import { useContext, useEffect } from 'preact/hooks';
+import { useCallback, useContext, useEffect, useMemo } from 'preact/hooks';
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
+import { useStableCallback } from '../../hooks/use-stable-callback';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -49,6 +50,10 @@ export type DataTableProps<Row> = CompositeProps &
   ComponentProps<Row> &
   Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'>;
 
+function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
+  return r[field] as ComponentChildren;
+}
+
 /**
  * An interactive table of rows and columns with a sticky header.
  */
@@ -61,7 +66,7 @@ export default function DataTable<Row>({
   title,
   selectedRow,
   loading = false,
-  renderItem = (r: Row, field: keyof Row) => r[field] as ComponentChildren,
+  renderItem = defaultRenderItem,
   onSelectRow,
   onConfirmRow,
   emptyMessage,
@@ -81,23 +86,25 @@ export default function DataTable<Row>({
   });
 
   const noContent = loading || (!rows.length && emptyMessage);
-  const fields = columns.map(column => column.field);
+  const fields = useMemo(() => columns.map(column => column.field), [columns]);
 
-  function selectRow(row: Row) {
+  const selectRow = useStableCallback((row: Row) => {
     onSelectRow?.(row);
-  }
-
-  function confirmRow(row: Row) {
+  });
+  const confirmRow = useStableCallback((row: Row) => {
     onConfirmRow?.(row);
-  }
+  });
 
-  function handleKeyDown(event: KeyboardEvent, row: Row) {
-    if (event.key === 'Enter') {
-      confirmRow(row);
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent, row: Row) => {
+      if (event.key === 'Enter') {
+        confirmRow(row);
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    [confirmRow],
+  );
 
   // Ensure that a selected row is visible when this table is within
   // a scrolling context
@@ -131,6 +138,33 @@ export default function DataTable<Row>({
   // excess vertical space in tables with sparse rows data.
   const withFoot = !loading && rows.length > 0;
 
+  const tableRows = useMemo(() => {
+    return rows.map((row, idx) => (
+      <TableRow
+        key={idx}
+        selected={row === selectedRow}
+        onClick={() => selectRow(row)}
+        onFocus={() => selectRow(row)}
+        onDblClick={() => confirmRow(row)}
+        onKeyDown={event => handleKeyDown(event, row)}
+      >
+        {fields.map(field => (
+          <TableCell key={field}>
+            {renderItem(row, field as keyof Row)}
+          </TableCell>
+        ))}
+      </TableRow>
+    ));
+  }, [
+    confirmRow,
+    fields,
+    renderItem,
+    handleKeyDown,
+    rows,
+    selectRow,
+    selectedRow,
+  ]);
+
   return (
     <Table
       data-composite-component="DataTable"
@@ -152,23 +186,7 @@ export default function DataTable<Row>({
         </TableRow>
       </TableHead>
       <TableBody>
-        {!loading &&
-          rows.map((row, idx) => (
-            <TableRow
-              key={idx}
-              selected={row === selectedRow}
-              onClick={() => selectRow(row)}
-              onFocus={() => selectRow(row)}
-              onDblClick={() => confirmRow(row)}
-              onKeyDown={event => handleKeyDown(event, row)}
-            >
-              {fields.map(field => (
-                <TableCell key={field}>
-                  {renderItem(row, field as keyof Row)}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+        {!loading && tableRows}
         {noContent && (
           <tr>
             <td colSpan={columns.length} className="text-center p-3">

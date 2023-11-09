@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
+import { useMemo } from 'preact/hooks';
 
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -20,9 +21,12 @@ export default function TableFoot({
 
   ...htmlAttributes
 }: TableFootProps) {
-  const sectionContext: TableSection = {
-    section: 'foot',
-  };
+  const sectionContext: TableSection = useMemo(
+    () => ({
+      section: 'foot',
+    }),
+    [],
+  );
 
   return (
     <TableSectionContext.Provider value={sectionContext}>

@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
+import { useMemo } from 'preact/hooks';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
@@ -34,12 +35,15 @@ export default function Table({
 }: TableProps) {
   const ref = useSyncedRef(elementRef);
 
-  const tableContext: TableInfo = {
-    interactive,
-    stickyHeader,
-    borderless,
-    tableRef: ref,
-  };
+  const tableContext: TableInfo = useMemo(
+    () => ({
+      interactive,
+      stickyHeader,
+      borderless,
+      tableRef: ref,
+    }),
+    [borderless, interactive, stickyHeader, ref],
+  );
 
   return (
     <TableContext.Provider value={tableContext}>
