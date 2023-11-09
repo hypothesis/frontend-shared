@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import type { ComponentChildren, JSX } from 'preact';
 
 import type { IconComponent, CompositeProps } from '../../types';
@@ -96,7 +97,19 @@ export default function Panel({
         {Icon && <Icon className="w-em h-em" />}
         <CardTitle>{title}</CardTitle>
       </CardHeader>
-      {scrollable ? <Scroll>{panelContent}</Scroll> : <>{panelContent}</>}
+      {scrollable ? (
+        <Scroll
+          classes={classNames({
+            // When no buttons are provided (which means this is the last children),
+            // inherit the bottom border radius from Card.
+            'rounded-b-[inherit]': !buttons,
+          })}
+        >
+          {panelContent}
+        </Scroll>
+      ) : (
+        <>{panelContent}</>
+      )}
       {buttons && (
         <CardContent data-testid="panel-buttons">
           <CardActions>{buttons}</CardActions>
