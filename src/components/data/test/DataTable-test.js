@@ -8,12 +8,8 @@ import Scroll from '../Scroll';
 describe('DataTable', () => {
   let fakeRows;
   let fakeColumns;
-
-  const createComponent = (Component, props = {}) => {
-    return mount(
-      <Component columns={fakeColumns} rows={fakeRows} {...props} />,
-    );
-  };
+  let container;
+  let wrappers;
 
   beforeEach(() => {
     fakeColumns = [
@@ -49,7 +45,46 @@ describe('DataTable', () => {
         delicious: true,
       },
     ];
+
+    wrappers = [];
+    container = document.createElement('div');
+    document.body.append(container);
   });
+
+  afterEach(() => {
+    wrappers.forEach(w => w.unmount());
+    container.remove();
+  });
+
+  // DataTable test wrapper which supports selecting multiple rows.
+  function MultiSelectDataTable({ columns, rows, onSelectRows }) {
+    const [selectedRows, setSelectedRows] = useState([]);
+    const selectRows = rows => {
+      setSelectedRows(rows);
+      onSelectRows?.(rows);
+    };
+
+    return (
+      <DataTable
+        columns={columns}
+        rows={rows}
+        selectedRows={selectedRows}
+        onSelectRows={selectRows}
+      />
+    );
+  }
+
+  const createComponent = (Component, props = {}) => {
+    const wrapper = mount(
+      <Component columns={fakeColumns} rows={fakeRows} {...props} />,
+
+      // Mounting in a connected element is required for arrow key navigation
+      // to work, as `useArrowKeyNavigation` skips over hidden elements.
+      { attachTo: container },
+    );
+    wrappers.push(wrapper);
+    return wrapper;
+  };
 
   it('sets appropriate table attributes', () => {
     const wrapper = createComponent(DataTable);
@@ -140,20 +175,82 @@ describe('DataTable', () => {
   });
 
   describe('interacting with row data', () => {
-    ['click', 'focus'].forEach(event => {
-      it(`invokes provided onSelectRow callback when a row is ${event}ed`, () => {
-        const onSelectRow = sinon.stub();
-        const wrapper = createComponent(DataTable, {
-          onSelectRow,
-        });
-
-        wrapper.find('tbody tr').first().simulate(event);
-
-        assert.calledWith(onSelectRow, fakeRows[0]);
+    it('invokes `onSelectRow` callback when row is clicked', () => {
+      const onSelectRow = sinon.stub();
+      const wrapper = createComponent(DataTable, {
+        onSelectRow,
       });
+
+      wrapper.find('tbody tr').first().simulate('click');
+
+      assert.calledWith(onSelectRow, fakeRows[0]);
     });
 
-    it('invokes provided `onConfirmRow` callback when row is double-clicked', () => {
+    it('invokes `onSelectRows` callback when rows are clicked', () => {
+      const onSelectRows = sinon.stub();
+      const wrapper = createComponent(MultiSelectDataTable, {
+        onSelectRows,
+      });
+
+      // Select a single row
+      wrapper.find('tbody tr').at(0).simulate('click');
+      assert.calledWith(onSelectRows, [fakeRows[0]]);
+
+      // Select a different row
+      wrapper.find('tbody tr').at(1).simulate('click');
+      assert.calledWith(onSelectRows, [fakeRows[1]]);
+
+      // Shift + click a later row to select multiple rows
+      wrapper.find('tbody tr').at(2).simulate('click', { shiftKey: true });
+      assert.calledWith(onSelectRows, [fakeRows[1], fakeRows[2]]);
+
+      // Shift + click an earlier row to select multiple rows. Note that the
+      // first clicked row, the "anchor" row, is first in the list.
+      wrapper.find('tbody tr').at(0).simulate('click', { shiftKey: true });
+      assert.calledWith(onSelectRows, [fakeRows[1], fakeRows[0]]);
+    });
+
+    it('invokes `onSelectRow` when row is selected with arrow keys', () => {
+      const onSelectRow = sinon.stub();
+      const wrapper = createComponent(DataTable, {
+        onSelectRow,
+      });
+
+      wrapper.find('tbody').first().simulate('keydown', {
+        key: 'ArrowDown',
+      });
+      assert.calledWith(onSelectRow, fakeRows[1]);
+
+      wrapper.find('tbody').first().simulate('keydown', {
+        key: 'ArrowUp',
+      });
+      assert.calledWith(onSelectRow, fakeRows[0]);
+    });
+
+    it('invokes `onSelectRows` callback when rows are selected with arrow keys', () => {
+      const onSelectRows = sinon.stub();
+      const wrapper = createComponent(MultiSelectDataTable, {
+        onSelectRows,
+      });
+
+      wrapper.find('tbody').first().simulate('keydown', {
+        key: 'ArrowDown',
+      });
+      assert.calledWith(onSelectRows, [fakeRows[1]]);
+
+      wrapper.find('tbody').first().simulate('keydown', {
+        key: 'ArrowUp',
+      });
+      assert.calledWith(onSelectRows, [fakeRows[0]]);
+
+      wrapper.find('tbody').first().simulate('keydown', {
+        key: 'ArrowDown',
+        shiftKey: true,
+      });
+      assert.calledWith(onSelectRows, [fakeRows[0], fakeRows[1]]);
+    });
+
+    it('invokes `onConfirmRow` callback when row is double-clicked', () => {
       const onConfirmRow = sinon.stub();
       const wrapper = createComponent(DataTable, {
         onConfirmRow,
@@ -164,7 +261,7 @@ describe('DataTable', () => {
       assert.calledWith(onConfirmRow, fakeRows[0]);
     });
 
-    it('invokes provided `onConfirmRow` callback when `Enter` is pressed on a row', () => {
+    it('invokes `onConfirmRow` callback when `Enter` is pressed on a row', () => {
       const onConfirmRow = sinon.stub();
       const wrapper = createComponent(DataTable, {
         onConfirmRow,

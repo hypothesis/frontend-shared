@@ -13,12 +13,16 @@ const nabokovColumns = [
 ];
 
 export default function DataTablePage() {
+  // For examples that support single selection
   const [selectedRow, setSelectedRow] = useState<NabokovNovel | null>(
     nabokovRows[nabokovRows.length - 1],
   );
-
   const [selectedRow2, setSelectedRow2] = useState<NabokovNovel | null>(null);
   const [confirmedRow, setConfirmedRow] = useState<NabokovNovel | null>(null);
+
+  // For examples that support multi-selection
+  const [selectedRows, setSelectedRows] = useState<NabokovNovel[]>([]);
+
   return (
     <Library.Page
       title="DataTable"
@@ -126,9 +130,9 @@ export default function DataTablePage() {
           </Library.Example>
           <Library.Example title="Interactive DataTables">
             <p>
-              The presence of a <code>onSelectRow</code> and/or a{' '}
-              <code>onConfirmRow</code> callback prop will cause a{' '}
-              <code>DataTable</code> to be interactive.
+              The presence of a <code>onSelectRow</code>,{' '}
+              <code>onSelectRows</code> or <code>onConfirmRow</code> callback
+              prop will cause a <code>DataTable</code> to be interactive.
             </p>
             <p>
               Rows in interactive <code>DataTable</code>s can be{' '}
@@ -139,8 +143,11 @@ export default function DataTablePage() {
             </p>
             <p>
               <code>DataTable</code> does not maintain internal state and
-              expects a parent component to provide the current{' '}
-              <code>selectedRow</code>.
+              expects a parent component to provide the current selected rows.
+              If the user should be able to select a single row, this should be
+              passed via <code>selectedRow</code>. If the user should be allowed
+              to selected multiple rows, the selection should be passed via{' '}
+              <code>selectedRows</code>.
             </p>
 
             <Library.Demo
@@ -452,6 +459,44 @@ export default function DataTablePage() {
             </Library.Demo>
           </Library.Example>
 
+          <Library.Example title="onSelectRows">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when the selected rows are changed if multi-row
+                selections are enabled by passing the `selectedRows` prop.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`(r: Row[]) => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="DataTable with onSelectRows callback"
+              withSource
+            >
+              <div className="space-y-2 w-full">
+                <div>
+                  Selected rows:{' '}
+                  {selectedRows.length > 0 ? (
+                    <i>{selectedRows.map(r => r.title).join(', ')}</i>
+                  ) : (
+                    'None'
+                  )}
+                </div>
+                <div className="w-full h-[250px]">
+                  <Scroll>
+                    <DataTable
+                      title="Some of Nabokov's novels"
+                      rows={nabokovRows}
+                      columns={nabokovColumns}
+                      selectedRows={selectedRows}
+                      onSelectRows={rows => setSelectedRows(rows)}
+                    />
+                  </Scroll>
+                </div>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
           <Library.Example title="onConfirmRow">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -486,6 +531,18 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="selectedRows">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                This is like <code>selectedRow</code> except that it specifies
+                an array of rows, and enables the user to select multiple rows.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Row[]`}</code>
+              </Library.InfoItem>
+            </Library.Info>
           </Library.Example>
 
           <Library.Example title="borderless">
