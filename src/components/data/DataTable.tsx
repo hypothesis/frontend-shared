@@ -30,8 +30,29 @@ type ComponentProps<Row> = {
   loading?: boolean;
   selectedRow?: Row | null;
 
-  /** Callback when a row is "selected" by focus or click */
+  /**
+   * Callback when a row is "selected" by click or key press.
+   *
+   * If using multi-selection (see {@link ComponentProps.selectedRows}) this
+   * will be passed only the most recently selected row. Use
+   * {@link ComponentProps.onSelectRows} to receive the full selection.
+   */
   onSelectRow?: (r: Row) => void;
+
+  /**
+   * Selected rows. If this property is set it enables multi-selection. The
+   * user will be able to select a contiguous range of rows via shift+click or
+   * shift + arrow keys.
+   */
+  selectedRows?: Row[];
+
+  /**
+   * Callback when rows are selected by click or key press.
+   *
+   * If multi-selection is enabled, this may have multiple entries (see
+   * {@link ComponentProps.selectedRows} otherwise it will have one entry.
+   */
+  onSelectRows?: (r: Row[]) => void;
 
   /**
    * Callback when a row is "confirmed" by double-click or pressing "Enter"
@@ -65,9 +86,11 @@ export default function DataTable<Row>({
   rows = [],
   title,
   selectedRow,
+  selectedRows,
   loading = false,
   renderItem = defaultRenderItem,
   onSelectRow,
+  onSelectRows,
   onConfirmRow,
   emptyMessage,
 
@@ -79,18 +102,57 @@ export default function DataTable<Row>({
   const tableRef = useSyncedRef(elementRef);
   const scrollContext = useContext(ScrollContext);
 
+  const noContent = loading || (!rows.length && emptyMessage);
+  const fields = useMemo(() => columns.map(column => column.field), [columns]);
+
+  const selectRow = useStableCallback(
+    (row: Row, mode: 'replace' | 'extend' = 'replace') => {
+      onSelectRow?.(row);
+
+      // If multi-selection is enabled, and the user shift+clicked the new row,
+      // extend the selection from the "anchor" row (first entry in `selectedRows`)
+      // to the just-clicked row.
+      let newSelection = [row];
+      if (mode === 'extend' && selectedRows && selectedRows.length > 0) {
+        const startIdx = rows.indexOf(selectedRows[0]);
+        const endIdx = rows.indexOf(row);
+        if (endIdx >= startIdx) {
+          newSelection = rows.slice(startIdx, endIdx + 1);
+        } else {
+          // We reverse the selection here so that `startIdx` remains the first
+          // entry in the list, and is used as the 'anchor' row for future
+          // selections.
+          newSelection = rows.slice(endIdx, startIdx + 1).reverse();
+        }
+      }
+      onSelectRows?.(newSelection);
+    },
+  );
+
   useArrowKeyNavigation(tableRef, {
     selector: 'tbody tr',
     horizontal: true,
     vertical: true,
+    focusElement: (element, keyEvent) => {
+      // Simulate a click to update the selected row when arrow-key navigation
+      // happens. We do this instead of using an `onFocus` handler on the row
+      // itself because we need to know if the shift key was pressed, and
+      // `FocusEvent` doesn't provide that information.
+      if (keyEvent) {
+        element.dispatchEvent(
+          new MouseEvent('click', {
+            // Propagate shift key state so arrow key + shift can be used to
+            // create a multi-selection.
+            shiftKey: keyEvent.shiftKey,
+          }),
+        );
+      }
+
+      // Scroll selected row into view.
+      element.focus();
+    },
   });
 
-  const noContent = loading || (!rows.length && emptyMessage);
-  const fields = useMemo(() => columns.map(column => column.field), [columns]);
-
-  const selectRow = useStableCallback((row: Row) => {
-    onSelectRow?.(row);
-  });
   const confirmRow = useStableCallback((row: Row) => {
     onConfirmRow?.(row);
   });
@@ -138,13 +200,22 @@ export default function DataTable<Row>({
   // excess vertical space in tables with sparse rows data.
   const withFoot = !loading && rows.length > 0;
 
+  const selection = useMemo(() => {
+    if (selectedRows) {
+      return selectedRows;
+    } else if (selectedRow) {
+      return [selectedRow];
+    } else {
+      return [];
+    }
+  }, [selectedRows, selectedRow]);
+
   const tableRows = useMemo(() => {
     return rows.map((row, idx) => (
       <TableRow
         key={idx}
-        selected={row === selectedRow}
-        onClick={() => selectRow(row)}
-        onFocus={() => selectRow(row)}
+        selected={selection.includes(row)}
+        onClick={e => selectRow(row, e.shiftKey ? 'extend' : 'replace')}
         onDblClick={() => confirmRow(row)}
         onKeyDown={event => handleKeyDown(event, row)}
       >
@@ -162,8 +233,10 @@ export default function DataTable<Row>({
     handleKeyDown,
     rows,
     selectRow,
-    selectedRow,
+    selection,
   ]);
+
+  const interactive = Boolean(onSelectRow || onSelectRows || onConfirmRow);
 
   return (
     <Table
@@ -172,7 +245,7 @@ export default function DataTable<Row>({
       {...htmlAttributes}
       title={title}
       elementRef={downcastRef(tableRef)}
-      interactive={!!(onSelectRow || onConfirmRow)}
+      interactive={interactive}
       stickyHeader
       borderless={borderless}
     >
