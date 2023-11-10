@@ -3,6 +3,7 @@ export { useArrowKeyNavigation } from './hooks/use-arrow-key-navigation';
 export { useClickAway } from './hooks/use-click-away';
 export { useFocusAway } from './hooks/use-focus-away';
 export { useKeyPress } from './hooks/use-key-press';
+export { useStableCallback } from './hooks/use-stable-callback';
 export { useSyncedRef } from './hooks/use-synced-ref';
 
 // Utils
