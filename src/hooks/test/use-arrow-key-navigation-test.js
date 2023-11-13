@@ -211,6 +211,21 @@ describe('useArrowKeyNavigation', () => {
     });
   });
 
+  it('should invoke custom `focusElement` callback', () => {
+    const focusElement = sinon.spy(element => {
+      element.focus();
+    });
+    renderToolbar({ focusElement });
+    findElementByTestId('bold').focus();
+
+    pressKey('ArrowRight');
+    assert.calledWith(focusElement, findElementByTestId('italic'));
+    assert.instanceOf(focusElement.getCall(0).args[1], KeyboardEvent);
+
+    pressKey('ArrowLeft');
+    assert.calledWith(focusElement, findElementByTestId('bold'));
+  });
+
   it('should skip hidden elements', () => {
     renderToolbar();
     findElementByTestId('bold').focus();

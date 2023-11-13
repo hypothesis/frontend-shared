@@ -2,6 +2,7 @@ import type { RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
+import { useStableCallback } from './use-stable-callback';
 
 function isElementDisabled(element: HTMLElement & { disabled?: boolean }) {
   return typeof element.disabled === 'boolean' && element.disabled;
@@ -9,6 +10,10 @@ function isElementDisabled(element: HTMLElement & { disabled?: boolean }) {
 
 function isElementVisible(element: HTMLElement) {
   return element.offsetParent !== null;
+}
+
+function defaultSetFocus(element: HTMLElement) {
+  element.focus();
 }
 
 export type UseArrowKeyNavigationOptions = {
@@ -42,6 +47,19 @@ export type UseArrowKeyNavigationOptions = {
    * Defaults to `true`.
    */
   containerVisible?: boolean;
+
+  /**
+   * Callback that can be used to customize what happens when this hook wants
+   * to focus an element.
+   *
+   * The default implementation just calls {@link HTMLElement.focus}.
+   *
+   * @param {el} The element within the container to focus
+   * @param {event} The key event which triggered this focus change. May be
+   *   unset if the focus update is not happening due to an arrow key press
+   *   within the container. For example if tabbing into the container.
+   */
+  focusElement?: (el: HTMLElement, event?: KeyboardEvent) => void;
 };
 
 /**
@@ -86,12 +104,15 @@ export function useArrowKeyNavigation(
     vertical = true,
     selector = 'a,button',
     containerVisible = true,
+    focusElement: focusElement_ = defaultSetFocus,
   }: UseArrowKeyNavigationOptions = {},
 ) {
   // Keep track of the element that was last focused by this hook such that
   // navigation can be restored if focus moves outside the container and then
   // back to/into it.
   const lastFocusedItem = useRef<HTMLElement | null>(null);
+
+  const focusElement = useStableCallback(focusElement_);
 
   useEffect(() => {
     if (!containerVisible) {
@@ -135,6 +156,7 @@ export function useArrowKeyNavigation(
       elements = getNavigableElements(),
       currentIndex = -1,
       setFocus = false,
+      keyEvent?: KeyboardEvent,
     ) => {
       if (currentIndex < 0) {
         currentIndex = elements.findIndex(el => el.tabIndex === 0);
@@ -147,7 +169,7 @@ export function useArrowKeyNavigation(
         element.tabIndex = index === currentIndex ? 0 : -1;
         if (index === currentIndex && setFocus) {
           lastFocusedItem.current = element;
-          element.focus();
+          focusElement(element, keyEvent);
         }
       }
     };
@@ -189,7 +211,7 @@ export function useArrowKeyNavigation(
         return;
       }
 
-      updateTabIndexes(elements, currentIndex, true);
+      updateTabIndexes(elements, currentIndex, true /* setFocus */, event);
 
       event.preventDefault();
       event.stopPropagation();
@@ -212,7 +234,7 @@ export function useArrowKeyNavigation(
         // Focus is moving back to the container after having left. Restore the
         // last tabindex. This allows users to exit and re-enter the widget
         // without resetting the navigation sequence.
-        lastFocusedItem.current.focus();
+        focusElement(lastFocusedItem.current);
         return;
       }
 
@@ -244,6 +266,7 @@ export function useArrowKeyNavigation(
   }, [
     autofocus,
     containerRef,
+    focusElement,
     horizontal,
     loop,
     selector,
