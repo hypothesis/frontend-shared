@@ -14,7 +14,7 @@ import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import type { PresentationalProps } from '../../types';
+import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import { inputGroupStyles } from './InputGroup';
@@ -137,7 +137,7 @@ function useShouldDropUp(
   return shouldListboxDropUp;
 }
 
-export type SelectProps<T> = PresentationalProps & {
+export type SelectProps<T> = CompositeProps & {
   value: T;
   onChange: (newValue: T) => void;
   buttonContent?: ComponentChildren;
@@ -149,25 +149,37 @@ export type SelectProps<T> = PresentationalProps & {
    */
   buttonId?: string;
 
+  /** Additional classes to pass to container */
+  containerClasses?: string | string[];
+  /** Additional classes to pass to toggle button */
+  buttonClasses?: string | string[];
+  /** Additional classes to pass to listbox */
+  listboxClasses?: string | string[];
+
   'aria-label'?: string;
   'aria-labelledby'?: string;
 
   /** @deprecated Use buttonContent instead */
   label?: ComponentChildren;
+  /** @deprecated. Use buttonClasses instead */
+  classes?: string | string[];
 };
 
 function SelectMain<T>({
   buttonContent,
-  label,
   value,
   onChange,
   children,
   disabled,
   elementRef,
-  classes,
   buttonId,
+  buttonClasses,
+  listboxClasses,
+  containerClasses,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
+  label,
+  classes,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
@@ -214,7 +226,11 @@ function SelectMain<T>({
 
   return (
     <div
-      className={classnames('relative w-full border rounded', inputGroupStyles)}
+      className={classnames(
+        'relative w-full border rounded',
+        inputGroupStyles,
+        containerClasses,
+      )}
       ref={wrapperRef}
     >
       <button
@@ -228,7 +244,7 @@ function SelectMain<T>({
           // Using overflow-hidden in the parent is not an option here, because
           // that would hide the listbox
           'rounded-[inherit]',
-          classes,
+          buttonClasses ?? classes,
         )}
         type="button"
         role="combobox"
@@ -267,6 +283,7 @@ function SelectMain<T>({
               // * Listbox size can be computed to correctly drop up or down
               hidden: !listboxOpen,
             },
+            listboxClasses,
           )}
           role="listbox"
           ref={listboxRef}

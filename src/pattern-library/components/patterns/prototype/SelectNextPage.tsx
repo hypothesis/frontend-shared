@@ -28,7 +28,12 @@ function SelectExample({
   ...rest
 }: Pick<
   SelectNextProps<ItemType>,
-  'aria-label' | 'aria-labelledby' | 'classes' | 'disabled'
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'buttonClasses'
+  | 'containerClasses'
+  | 'listboxClasses'
+  | 'disabled'
 > & {
   textOnly?: boolean;
   items?: ItemType[];
@@ -98,7 +103,11 @@ function SelectExample({
   );
 }
 
-function InputGroupSelectExample({ classes }: { classes?: string }) {
+function InputGroupSelectExample({
+  buttonClasses,
+}: {
+  buttonClasses?: string;
+}) {
   const [selected, setSelected] = useState<(typeof defaultItems)[number]>();
   const selectedIndex = useMemo(
     () => (!selected ? -1 : defaultItems.findIndex(item => item === selected)),
@@ -129,7 +138,7 @@ function InputGroupSelectExample({ classes }: { classes?: string }) {
           buttonId={buttonId}
           value={selected}
           onChange={setSelected}
-          classes={classes}
+          buttonClasses={buttonClasses}
           buttonContent={
             selected ? (
               <div className="flex">
@@ -173,8 +182,8 @@ export default function SelectNextPage() {
       title="SelectNext"
       intro={
         <p>
-          <code>SelectNext</code> is a presentational component which behaves
-          like the native <code>{'<select>'}</code> element.
+          <code>SelectNext</code> is a composite component which behaves like
+          the native <code>{'<select>'}</code> element.
         </p>
       }
     >
@@ -302,19 +311,19 @@ export default function SelectNextPage() {
 
             <Library.Demo title="Plain text">
               <div className="mx-auto">
-                <SelectExample textOnly classes="!w-36" />
+                <SelectExample textOnly buttonClasses="!w-36" />
               </div>
             </Library.Demo>
 
             <Library.Demo title="Custom options">
               <div className="mx-auto">
-                <SelectExample classes="!w-36" />
+                <SelectExample buttonClasses="!w-36" />
               </div>
             </Library.Demo>
 
             <Library.Demo title="Input group">
               <div className="mx-auto">
-                <InputGroupSelectExample classes="!w-36" />
+                <InputGroupSelectExample buttonClasses="!w-36" />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -322,8 +331,8 @@ export default function SelectNextPage() {
 
         <Library.Pattern title="SelectNext component API">
           <code>SelectNext</code> accepts all standard{' '}
-          <Library.Link href="/using-components#presentational-components-api">
-            presentational component props
+          <Library.Link href="/using-components#composite-components-api">
+            composite component props
           </Library.Link>
           <Library.Example title="value">
             <Library.Info>
@@ -383,6 +392,60 @@ export default function SelectNextPage() {
             <Library.Demo title="Disabled Select">
               <div className="w-96 mx-auto">
                 <SelectExample disabled />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="buttonClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Additional classes to pass to toggle button.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Custom button">
+              <div className="w-96 mx-auto">
+                <SelectExample buttonClasses="!bg-yellow-notice" />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="containerClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Additional classes to pass to container.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Custom container">
+              <div className="w-96 mx-auto">
+                <SelectExample containerClasses="border-4 border-yellow-notice" />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="listboxClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Additional classes to pass to listbox.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Custom listbox">
+              <div className="w-96 mx-auto">
+                <SelectExample listboxClasses="border-4 border-yellow-notice" />
               </div>
             </Library.Demo>
           </Library.Example>
