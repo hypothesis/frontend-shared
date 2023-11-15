@@ -156,6 +156,14 @@ export type SelectProps<T> = CompositeProps & {
   /** Additional classes to pass to listbox */
   listboxClasses?: string | string[];
 
+  /**
+   * Align the listbox to the right.
+   * Useful when the listbox is bigger than the toggle button and this component
+   * is rendered next to the right side of the page/container.
+   * Defaults to false.
+   */
+  right?: boolean;
+
   'aria-label'?: string;
   'aria-labelledby'?: string;
 
@@ -176,6 +184,7 @@ function SelectMain<T>({
   buttonClasses,
   listboxClasses,
   containerClasses,
+  right = false,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   label,
@@ -277,6 +286,7 @@ function SelectMain<T>({
             {
               'top-full mt-1': !shouldListboxDropUp,
               'bottom-full mb-1': shouldListboxDropUp,
+              'right-0': right,
 
               // Hiding instead of unmounting to
               // * Ensure screen readers detect button as a listbox handler

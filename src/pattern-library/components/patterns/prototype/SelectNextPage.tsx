@@ -34,6 +34,7 @@ function SelectExample({
   | 'containerClasses'
   | 'listboxClasses'
   | 'disabled'
+  | 'right'
 > & {
   textOnly?: boolean;
   items?: ItemType[];
@@ -392,6 +393,25 @@ export default function SelectNextPage() {
             <Library.Demo title="Disabled Select">
               <div className="w-96 mx-auto">
                 <SelectExample disabled />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="right">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Whether the listbox should be aligned to the right when it grows
+                bigger than the toggle button.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Right listbox">
+              <div className="mx-auto">
+                <SelectExample right buttonClasses="!w-36" />
               </div>
             </Library.Demo>
           </Library.Example>
