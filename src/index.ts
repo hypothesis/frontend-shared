@@ -29,7 +29,6 @@ export {
 export {
   Callout,
   Dialog,
-  Modal,
   ModalDialog,
   Spinner,
   SpinnerOverlay,
@@ -93,7 +92,6 @@ export type {
 export type {
   CalloutProps,
   DialogProps,
-  ModalProps,
   ModalDialogProps,
   SpinnerProps,
   SpinnerOverlayProps,
