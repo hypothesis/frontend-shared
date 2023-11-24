@@ -37,7 +37,6 @@ export {
 } from './components/feedback';
 export {
   Button,
-  ButtonBase,
   Checkbox,
   CloseButton,
   IconButton,
@@ -106,7 +105,6 @@ export type {
 
 export type {
   ButtonProps,
-  ButtonBaseProps,
   CheckboxProps,
   CloseButtonProps,
   IconButtonProps,
