@@ -1,4 +1,4 @@
-import { Button, IconButton, ButtonBase } from '../../../../';
+import { Button, IconButton } from '../../../../';
 import {
   CancelIcon,
   CheckIcon,
@@ -518,42 +518,6 @@ export default function ButtonPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
-        </Library.Pattern>
-      </Library.Section>
-
-      <Library.Section
-        title="ButtonBase"
-        intro={
-          <>
-            <p>
-              <Library.StatusChip status="deprecated" /> Use the styling API of{' '}
-              <code>Button</code> or <code>IconButton</code> for customized
-              styling instead.
-            </p>
-            <p>
-              <code>ButtonBase</code> is a base presentational component that
-              allows style customization of buttons. <code>ButtonBase</code>{' '}
-              applies minimal common styling. Turn off all styling by setting
-              the <code>unstyled</code> prop.
-            </p>
-          </>
-        }
-      >
-        <Library.Pattern>
-          <Library.Usage componentName="ButtonBase" />
-
-          <Library.Demo
-            title="ButtonBase with some additional styles"
-            withSource
-          >
-            <ButtonBase
-              classes="border bg-grey-0 hover:bg-grey-1"
-              onClick={() => alert('You clicked the button')}
-            >
-              <CheckIcon />
-              Click me
-            </ButtonBase>
-          </Library.Demo>
         </Library.Pattern>
       </Library.Section>
     </Library.Page>
