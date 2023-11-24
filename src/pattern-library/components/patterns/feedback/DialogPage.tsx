@@ -522,46 +522,6 @@ export default function DialogPage() {
           </p>
         }
       >
-        <Library.Pattern title="Status">
-          <p>
-            <strong>
-              <code>ModalDialog</code> is intended to replace the existing,
-              deprecated <code>Modal</code> component.
-            </strong>
-          </p>
-          <Library.Example title="Migrating to this component from Modal">
-            <Library.Changelog>
-              <Library.ChangelogItem status="changed">
-                ModalDialogs trap focus and provide tab/shift-tab navigation
-                through navigable elements. Disable this behavior by setting the{' '}
-                <code>disableFocusTrap</code> prop.
-              </Library.ChangelogItem>
-              <Library.ChangelogItem status="changed">
-                ModalDialogs restore focus to the previously-focused element
-                when closed. Disable this behavior by setting the{' '}
-                <code>disableRestoreFocus</code> prop.
-              </Library.ChangelogItem>
-              <Library.ChangelogItem status="changed">
-                ModalDialogs do not close when the user clicks outside of them.
-                Re-enable this behavior if needed by setting the{' '}
-                <code>closeOnClickAway</code> prop.
-              </Library.ChangelogItem>
-              <Library.ChangelogItem status="changed">
-                ModalDialogs do not close if there are focus events outside of
-                their container. Re-enable this behavior if needed by setting
-                the <code>closeOnFocusAwayProp</code>.
-              </Library.ChangelogItem>
-              <Library.ChangelogItem status="changed">
-                ModalDialogs (still) close when the <kbd>Escape</kbd> key is
-                pressed, but you can disable this behavior by setting the{' '}
-                <code>disableCloseOnEscape</code> prop.
-              </Library.ChangelogItem>
-              <Library.ChangelogItem status="deprecated">
-                <code>width</code> prop → use <code>size</code> instead
-              </Library.ChangelogItem>
-            </Library.Changelog>
-          </Library.Example>
-        </Library.Pattern>
         <Library.Pattern>
           <Library.Usage componentName="ModalDialog" />
 
