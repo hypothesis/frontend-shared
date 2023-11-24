@@ -7,14 +7,9 @@ import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
 import type { PanelDialogProps } from './Dialog';
 
-type ModalWidth = 'sm' | 'md' | 'lg' | 'custom';
+type ModalSize = 'sm' | 'md' | 'lg' | 'custom';
 
 type ComponentProps = {
-  /**
-   * @deprecated  - use `size` instead
-   */
-  width?: ModalWidth;
-
   /**
    * Do not close the modal when the Escape key is pressed
    */
@@ -35,7 +30,7 @@ type ComponentProps = {
   /**
    * Relative size (width) of modal dialog
    */
-  size?: ModalWidth;
+  size?: ModalSize;
 };
 
 export type ModalDialogProps = Omit<
@@ -53,7 +48,6 @@ export default function ModalDialog({
   disableFocusTrap = false,
   disableRestoreFocus = false,
   size,
-  width,
 
   classes,
   elementRef,
@@ -66,7 +60,7 @@ export default function ModalDialog({
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
   // Prefer `size` prop but support deprecated `width` if present
-  const modalSize = size ?? width ?? 'md';
+  const modalSize = size ?? 'md';
   const modalRef = useSyncedRef(elementRef);
 
   useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
