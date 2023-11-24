@@ -303,19 +303,6 @@ export default function UsingComponentsPage() {
           components have a minimal, component-specific API.
         </p>
       </Library.Section>
-
-      <Library.Section title="Base components">
-        <p>
-          <Library.StatusChip status="deprecated" />
-          Base components are deprecated. Use the styling API on presentational
-          components instead.
-        </p>
-        <p>
-          <strong className="font-semibold">Base components</strong> are are
-          similar to presentational components but allow more styling
-          flexibility.
-        </p>
-      </Library.Section>
     </Library.Page>
   );
 }
