@@ -102,30 +102,6 @@ export default function InputPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="hasError">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                <Library.StatusChip status="deprecated" />
-                Use <code>{`feedback="error"`}</code> instead.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>{`boolean`}</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>{`false`}</code>
-              </Library.InfoItem>
-            </Library.Info>
-
-            <Library.Demo withSource>
-              <div className="w-[350px]">
-                <Input
-                  aria-label="Example input"
-                  hasError
-                  value="something invalid"
-                />
-              </div>
-            </Library.Demo>
-          </Library.Example>
           <Library.Example title="type">
             <Library.Info>
               <Library.InfoItem label="description">
