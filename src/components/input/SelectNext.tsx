@@ -166,11 +166,6 @@ export type SelectProps<T> = CompositeProps & {
 
   'aria-label'?: string;
   'aria-labelledby'?: string;
-
-  /** @deprecated Use buttonContent instead */
-  label?: ComponentChildren;
-  /** @deprecated. Use buttonClasses instead */
-  classes?: string | string[];
 };
 
 function SelectMain<T>({
@@ -187,8 +182,6 @@ function SelectMain<T>({
   right = false,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
-  label,
-  classes,
 }: SelectProps<T>) {
   const [listboxOpen, setListboxOpen] = useState(false);
   const closeListbox = useCallback(() => setListboxOpen(false), []);
@@ -253,7 +246,7 @@ function SelectMain<T>({
           // Using overflow-hidden in the parent is not an option here, because
           // that would hide the listbox
           'rounded-[inherit]',
-          buttonClasses ?? classes,
+          buttonClasses,
         )}
         type="button"
         role="combobox"
@@ -273,7 +266,7 @@ function SelectMain<T>({
         }}
         data-testid="select-toggle-button"
       >
-        <div className="truncate">{buttonContent ?? label}</div>
+        <div className="truncate">{buttonContent}</div>
         <div className="text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
         </div>
