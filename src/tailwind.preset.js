@@ -17,15 +17,6 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       borderColor: {
         DEFAULT: '#dbdbdb',
       },
-      borderRadius: {
-        // Equivalent to tailwind default `rounded-sm` size.
-        // These should be overwritten by downstream projects in order to
-        // "enable" rounded corners.
-        // Next major version will remove this config, effectively enabling
-        // rounded corners.
-        lg: 'var(--h-border-radius-lg, 0.125rem)',
-        DEFAULT: 'var(--h-border-radius, 0.125rem)',
-      },
       boxShadow: {
         DEFAULT: '0 1px 1px rgba(0, 0, 0, 0.1)',
         md: '0px 2px 3px 0px rgba(0, 0, 0, 0.15)',

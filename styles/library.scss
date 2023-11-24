@@ -2,15 +2,6 @@
  * This stylesheet contains styles for pattern-library components (only).
  */
 
-@layer base {
-  :root {
-    // This is the same as default tailwind values
-    // Once our overwrites have been removed from the preset, this can be dropped
-    --h-border-radius: 0.25rem;
-    --h-border-radius-lg: 0.5rem;
-  }
-}
-
 @layer components {
   // Support some basic text styling in Library components
   .styled-text {
