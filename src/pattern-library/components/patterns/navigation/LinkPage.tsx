@@ -28,24 +28,6 @@ export default function LinkPage() {
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="color">
-            <Library.Info>
-              <Library.InfoItem label="status">
-                <Library.StatusChip status="deprecated" /> Use{' '}
-                <code>variant</code> prop instead.
-              </Library.InfoItem>
-              <Library.InfoItem label="description">
-                Link <code>color</code> affects the color of link text
-                (including hover color).
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>{"'brand' | 'text' | 'text-light'"}</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>{"'brand'"}</code>
-              </Library.InfoItem>
-            </Library.Info>
-          </Library.Example>
           <Library.Example title="underline">
             <div className="m-4">
               <Library.Callout>
