@@ -7,9 +7,6 @@ import { downcastRef } from '../../util/typing';
 type ComponentProps = {
   underline?: 'always' | 'hover' | 'none';
 
-  /** @deprecated use `variant` instead */
-  color?: 'brand' | 'text-light' | 'text';
-
   // Styling API
   variant?: 'brand' | 'text-light' | 'text' | 'custom';
   unstyled?: boolean;
@@ -28,16 +25,13 @@ export default function Link({
   elementRef,
 
   underline = 'none',
-  color,
   unstyled = false,
   variant = 'brand',
 
   ...htmlAttributes
 }: LinkProps) {
-  // Map from deprecated `color` prop to `variant` if `color` is present
-  const theme = typeof color === 'string' ? color : variant;
   const styled = !unstyled;
-  const themed = styled && theme !== 'custom';
+  const themed = styled && variant !== 'custom';
 
   return (
     <a
@@ -56,9 +50,9 @@ export default function Link({
         },
         themed && {
           // color
-          'text-brand hover:text-brand-dark': theme === 'brand', // default
-          'text-color-text-light hover:text-brand': theme === 'text-light',
-          'text-color-text hover:text-brand-dark': theme === 'text',
+          'text-brand hover:text-brand-dark': variant === 'brand', // default
+          'text-color-text-light hover:text-brand': variant === 'text-light',
+          'text-color-text hover:text-brand-dark': variant === 'text',
         },
         classes,
       )}
