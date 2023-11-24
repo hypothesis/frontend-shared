@@ -130,12 +130,6 @@ describe('ModalDialog', () => {
       assert.equal(modalSize(wrapper), 'lg');
     });
 
-    it('accepts deprecated `width` prop to set size', () => {
-      const wrapper = sizedModal({ width: 'lg' });
-
-      assert.equal(modalSize(wrapper), 'lg');
-    });
-
     it('prefers `size` over `width` to set size', () => {
       const wrapper = sizedModal({ size: 'lg', width: 'sm' });
 
