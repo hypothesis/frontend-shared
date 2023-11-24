@@ -7,12 +7,8 @@ import Button from '../input/Button';
 import type { ButtonProps } from '../input/Button';
 
 type ComponentProps = {
-  /** @deprecated use `variant` instead */
-  color?: 'brand' | 'text' | 'text-light';
-
   inline?: boolean;
   underline?: 'always' | 'hover' | 'none';
-
   variant?: 'brand' | 'text-light' | 'text' | 'custom';
   unstyled?: boolean;
 };
@@ -30,7 +26,6 @@ export default function LinkButton({
   classes,
   elementRef,
 
-  color,
   inline = false,
   underline = 'none',
   variant = 'brand',
@@ -38,8 +33,6 @@ export default function LinkButton({
 
   ...htmlAttributes
 }: LinkButtonProps) {
-  // Map from deprecated `color` prop to `variant` if `color` is present
-  const theme = typeof color === 'string' ? color : variant;
   const styled = !unstyled;
   const themed = styled && variant !== 'custom';
 
@@ -63,10 +56,10 @@ export default function LinkButton({
         },
         themed && {
           'aria-pressed:font-semibold aria-expanded:font-semibold': true,
-          'text-brand enabled:hover:text-brand-dark': theme === 'brand', // default
-          'text-color-text enabled:hover:text-brand-dark': theme === 'text',
+          'text-brand enabled:hover:text-brand-dark': variant === 'brand', // default
+          'text-color-text enabled:hover:text-brand-dark': variant === 'text',
           'text-color-text-light enabled:hover:text-brand':
-            theme === 'text-light',
+            variant === 'text-light',
         },
 
         classes,
