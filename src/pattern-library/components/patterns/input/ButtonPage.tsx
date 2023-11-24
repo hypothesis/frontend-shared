@@ -292,27 +292,6 @@ export default function ButtonPage() {
             </Library.Info>
           </Library.Example>
 
-          <Library.Example title="disableTouchSizing">
-            <Library.Info>
-              <Library.InfoItem label="status">
-                <Library.StatusChip status="deprecated" /> Set <code>size</code>{' '}
-                to <code>{`'custom'`}</code> and set sizing classes manually
-                instead.
-              </Library.InfoItem>
-              <Library.InfoItem label="description">
-                Disable minimum sizing on touch devices (
-                <code>pointer: coarse</code>). Buttons will be at least 44px in
-                each dimension on these devices by default.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>boolean</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>false</code>
-              </Library.InfoItem>
-            </Library.Info>
-          </Library.Example>
-
           <Library.Example title="...buttonProps">
             <code>IconButton</code> accepts and forwards all props from the{' '}
             <code>Button</code> component API.
