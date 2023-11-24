@@ -9,15 +9,6 @@ import { inputGroupStyles } from './InputGroup';
 type ComponentProps = {
   icon?: IconComponent;
 
-  /**
-   * Disable minimum tap target sizing for touch devices. This may be necessary
-   * in legacy patterns where there isn't enough room in the interface for these
-   * larger dimensions.
-   *
-   * @deprecated Set `size` to `'custom'` instead
-   */
-  disableTouchSizing?: boolean;
-
   /** Required for `IconButton` as there is no text label */
   title: string;
 
@@ -43,7 +34,6 @@ export default function IconButton({
   expanded,
 
   icon: Icon,
-  disableTouchSizing = false,
   size = 'md',
   title,
   variant = 'secondary',
@@ -82,9 +72,6 @@ export default function IconButton({
           'p-1': size === 'xs',
           'p-1.5': size === 'sm',
           'p-2.5': size === 'lg',
-
-          'touch:min-w-touch-minimum touch:min-h-touch-minimum':
-            !disableTouchSizing,
         },
         classes,
       )}
