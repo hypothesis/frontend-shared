@@ -59,7 +59,6 @@ export {
 export {
   PointerButton,
   Link,
-  LinkBase,
   LinkButton,
   Tab,
   TabList,
@@ -129,7 +128,6 @@ export type {
 export type {
   PointerButtonProps,
   LinkProps,
-  LinkBaseProps,
   LinkButtonProps,
   TabProps,
   TabListProps,

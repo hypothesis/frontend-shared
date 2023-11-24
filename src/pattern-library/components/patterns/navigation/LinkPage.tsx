@@ -166,28 +166,6 @@ export default function LinkPage() {
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
-
-      <Library.Section
-        title="LinkBase"
-        intro={
-          <>
-            <p>
-              <Library.StatusChip status="deprecated" /> Use the styling API of{' '}
-              <code>Link</code> for customized styling instead.
-            </p>
-            <p>
-              <code>LinkBase</code> is a base presentational component that
-              allows style customization of links. <code>LinkBase</code> applies
-              minimal common styling. Turn off all styling by setting the{' '}
-              <code>unstyled</code> prop.
-            </p>
-          </>
-        }
-      >
-        <Library.Pattern>
-          <Library.Usage componentName="LinkBase" />
-        </Library.Pattern>
-      </Library.Section>
     </Library.Page>
   );
 }
