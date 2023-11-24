@@ -29,11 +29,6 @@ export function inputStyles({ classes, feedback }: InputStylesOptions) {
 type ComponentProps = {
   type?: 'text' | 'email' | 'search' | 'number' | 'password' | 'url';
   feedback?: 'error' | 'warning';
-
-  /**
-   * @deprecated Use feedback="error" instead
-   */
-  hasError?: boolean;
 };
 
 export type InputProps = PresentationalProps &
@@ -48,15 +43,9 @@ export default function Input({
   type = 'text',
   classes,
   feedback,
-  hasError,
 
   ...htmlAttributes
 }: InputProps) {
-  /* istanbul ignore next */
-  if (feedback === undefined && hasError) {
-    feedback = 'error';
-  }
-
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
       '`Input` component should have either an `id` or an `aria-label` attribute',
