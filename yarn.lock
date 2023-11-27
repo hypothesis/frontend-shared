@@ -12815,11 +12815,11 @@ __metadata:
   linkType: hard
 
 "wouter-preact@npm:^2.10.0-alpha.1":
-  version: 2.11.0
-  resolution: "wouter-preact@npm:2.11.0"
+  version: 2.12.2
+  resolution: "wouter-preact@npm:2.12.2"
   peerDependencies:
     preact: ^10.0.0
-  checksum: c4dd3f995dc664ecc2043a3ece6a415b85e88261a47f52a690354ee38a957eb8b03eac479a165dd464d867d1903774afa5c31b574c6fb0bfb991d191caea7243
+  checksum: 5a7c85ce2a8fc9f6e4641fb5b32c142450a144a056654737828f4a2fc47469977d31fb693cca3700bae22dfeb01b300b30b3f096d803f35f8f38e2ec5b195fdb
   languageName: node
   linkType: hard
 
