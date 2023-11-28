@@ -67,7 +67,7 @@ export default function IconButton({
             variant === 'dark',
         },
         sized && {
-          'gap-x-2': true,
+          'gap-x-2 touch:min-w-touch-minimum touch:min-h-touch-minimum': true,
           'p-2': size === 'md', // Default
           'p-1': size === 'xs',
           'p-1.5': size === 'sm',
