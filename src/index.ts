@@ -5,6 +5,7 @@ export { useFocusAway } from './hooks/use-focus-away';
 export { useKeyPress } from './hooks/use-key-press';
 export { useStableCallback } from './hooks/use-stable-callback';
 export { useSyncedRef } from './hooks/use-synced-ref';
+export { useToastMessages } from './hooks/use-toast-messages';
 
 // Utils
 export { confirm } from './util/prompts';
