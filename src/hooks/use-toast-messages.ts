@@ -4,11 +4,9 @@ import type { ToastMessage } from '../components/feedback';
 
 export type ToastMessageData = Omit<ToastMessage, 'id'>;
 
-export type ToastMessageAppender = (toastMessageData: ToastMessageData) => void;
-
-export type ToastMessages = {
+export type ToastMessagesState = {
   toastMessages: ToastMessage[];
-  appendToastMessage: ToastMessageAppender;
+  appendToastMessage: (toastMessageData: ToastMessageData) => void;
   dismissToastMessage: (id: string) => void;
 };
 
@@ -22,12 +20,11 @@ function dataToToastMessage(toastMessageData: ToastMessageData): ToastMessage {
 }
 
 /**
- * Hook providing a simple way to handle state for <ToastMessages />
- * {@link ToastMessages}
+ * Hook providing a simple way to handle state for {@link ToastMessages}
  */
 export function useToastMessages(
   initialToastMessages: ToastMessageData[] = [],
-): ToastMessages {
+): ToastMessagesState {
   const [toastMessages, setToastMessages] = useState<ToastMessage[]>(
     initialToastMessages.map(dataToToastMessage),
   );
