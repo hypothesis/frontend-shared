@@ -18,6 +18,8 @@
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@web/test-runner": "^0.18.0",
+    "@web/test-runner-chrome": "^0.15.0",
     "autoprefixer": "^10.3.7",
     "axe-core": "^4.0.0",
     "babel-plugin-istanbul": "^6.0.0",
@@ -71,6 +73,7 @@
     "checkformatting": "prettier --cache --check '**/*.{js,scss,ts,tsx,md}'",
     "format": "prettier --cache --list-different --write '**/*.{js,scss,ts,tsx,md}'",
     "test": "gulp test",
+    "test:wtr": "gulp test:wtr && web-test-runner --config src/web-test-runner.config.mjs",
     "plop": "plop",
     "push": "yarn build && yalc push"
   },
@@ -94,6 +97,7 @@
   "main": "./lib/index.js",
   "browserslist": "chrome 70, firefox 70, safari 11.1",
   "dependencies": {
+    "glob": "10.2",
     "highlight.js": "^11.6.0",
     "wouter-preact": "^2.10.0-alpha.1"
   },

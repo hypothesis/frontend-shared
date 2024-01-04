@@ -1,4 +1,11 @@
-import { buildCSS, runTests, watchJS } from '@hypothesis/frontend-build';
+import {
+  buildCSS,
+  runTests,
+  watchJS,
+  buildJS,
+} from '@hypothesis/frontend-build';
+import { mkdirSync, writeFileSync } from 'fs';
+import { globSync } from 'glob';
 import gulp from 'gulp';
 
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
@@ -59,4 +66,24 @@ gulp.task(
       testsPattern: 'src/**/*-test.js',
     }),
   ),
+);
+
+gulp.task(
+  'test:wtr',
+  gulp.parallel('build-test-css', () => {
+    const outputDir = 'build/scripts';
+    const testFiles = [
+      'test/bootstrap.js',
+      ...globSync('src/**/*-test.js').sort(),
+    ];
+
+    const testSource = testFiles
+      .map(path => `import "../../${path}";`)
+      .join('\n');
+
+    mkdirSync(outputDir, { recursive: true });
+    writeFileSync(`${outputDir}/test-inputs.js`, testSource);
+
+    return buildJS('./rollup-tests.config.js');
+  }),
 );
