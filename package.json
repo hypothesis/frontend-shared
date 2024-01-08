@@ -41,7 +41,6 @@
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-mocha": "^2.0.0",
     "karma-mocha-reporter": "^2.0.4",
-    "karma-sinon": "^1.0.5",
     "karma-source-map-support": "^1.4.0",
     "mocha": "10.2.0",
     "mustache": "^4.2.0",
