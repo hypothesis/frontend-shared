@@ -2024,7 +2024,6 @@ __metadata:
     karma-coverage-istanbul-reporter: ^3.0.3
     karma-mocha: ^2.0.0
     karma-mocha-reporter: ^2.0.4
-    karma-sinon: ^1.0.5
     karma-source-map-support: ^1.4.0
     mocha: 10.2.0
     mustache: ^4.2.0
@@ -8283,16 +8282,6 @@ __metadata:
   dependencies:
     minimist: ^1.2.3
   checksum: a09f4758758a899fb97836660624ccd1769325e05f6efca63c9132806cc8dfeb20eaf78b3bc4db7921dcb3c48384fbfd5cddfa3568ddaf00197c75852ec9b480
-  languageName: node
-  linkType: hard
-
-"karma-sinon@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "karma-sinon@npm:1.0.5"
-  peerDependencies:
-    karma: ">=0.10"
-    sinon: "*"
-  checksum: 86ee1ec40d5cb2c9c9ff6bc1cfd6aabd310e28d1a140d06322a2769e89d27eb699feab3610633d0cfabf4f302e14c48c332b588da3c0bab710a78f3d04138774
   languageName: node
   linkType: hard
 
