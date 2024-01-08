@@ -1,9 +1,13 @@
+import { assert } from 'chai';
 import { configure } from 'enzyme';
 import { Adapter } from 'enzyme-adapter-preact-pure';
 import 'preact/debug';
 
 // Expose the sinon assertions.
 sinon.assert.expose(assert, { prefix: null });
+
+// Define assert globally, to avoid dependency on outdated karma-chai plugin
+globalThis.assert = assert;
 
 // Configure Enzyme for UI tests.
 configure({ adapter: new Adapter() });

@@ -2020,7 +2020,6 @@ __metadata:
     gulp: ^4.0.0
     highlight.js: ^11.6.0
     karma: ^6.3.4
-    karma-chai: ^0.1.0
     karma-chrome-launcher: ^3.1.0
     karma-coverage-istanbul-reporter: ^3.0.3
     karma-mocha: ^2.0.0
@@ -8240,16 +8239,6 @@ __metadata:
   version: 4.1.1
   resolution: "just-extend@npm:4.1.1"
   checksum: 066808f9a4b8b87d4966d42eca4ed7ee3602791ac70bf4d55bc2f44b0a2214a9dd05976d9581877731f8536f6eae11fee28968a5fabea5e43df7c965966126f4
-  languageName: node
-  linkType: hard
-
-"karma-chai@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "karma-chai@npm:0.1.0"
-  peerDependencies:
-    chai: "*"
-    karma: ">=0.10.9"
-  checksum: 7fae0b4acea35121218c5284e49c7a0e4ad5806abca50ee1451e314e63b4e7b72aaccda90a78d0099cc3a02eb07ebea92cc8877b74cfd62db52fe7bb0907a287
   languageName: node
   linkType: hard
 
