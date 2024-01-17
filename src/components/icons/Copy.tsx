@@ -24,7 +24,7 @@ export default function CopyIcon(props: CopyIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M9 15H1V5h3m11-4v10H7V1h8z"
+          d="M9 15H1V5h3m11-4v10H7V1z"
         />
       </g>
     </svg>

@@ -24,7 +24,7 @@ export default function CollapseIcon(props: CollapseIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m5 11-4 4 4-4zm-3-1h4v4m9-13-4 4 4-4zm-1 5h-4V2"
+          d="m5 11-4 4zm-3-1h4v4m9-13-4 4zm-1 5h-4V2"
         />
       </g>
     </svg>

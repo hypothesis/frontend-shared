@@ -21,13 +21,18 @@ export default function CheckboxCheckedIcon(props: CheckboxCheckedIconProps) {
         height="35"
         x="-2"
         y="-2"
-        fill="currentColor"
+        fill="none"
         stroke="currentColor"
         stroke-width="3"
         rx="5"
         ry="5"
       />
-      <path fill="none" stroke="white" stroke-width="5" d="m4 14 8 9L28 5" />
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="5"
+        d="m4 14 8 9L28 5"
+      />
     </svg>
   );
 }

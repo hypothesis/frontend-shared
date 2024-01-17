@@ -24,7 +24,7 @@ export default function FilterIcon(props: FilterIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M1 3h14H1zm4 10h6-6zM3 8h10H3z"
+          d="M1 3h14zm4 10h6zM3 8h10z"
         />
       </g>
     </svg>

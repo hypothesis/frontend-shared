@@ -24,7 +24,7 @@ export default function HighlightIcon(props: HighlightIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M12 15H1h11zm-.5-6v2l-1 1v-2l1-1zm.5-7v6h-2V2h2zm0-1h-2 2zm0 8h-2 2z"
+          d="M12 15H1zm-.5-6v2l-1 1v-2zm.5-7v6h-2V2zm0-1h-2zm0 8h-2z"
         />
       </g>
     </svg>

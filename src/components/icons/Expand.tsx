@@ -24,7 +24,7 @@ export default function ExpandIcon(props: ExpandIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m2 14 4-4-4 4zm3 1H1v-4m13-9-4 4 4-4zm-3-1h4v4"
+          d="m2 14 4-4zm3 1H1v-4m13-9-4 4zm-3-1h4v4"
         />
       </g>
     </svg>

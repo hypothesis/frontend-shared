@@ -24,7 +24,7 @@ export default function ImageIcon(props: ImageIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M15 1v14H1V1h14zM1 15l3-8 4 6 3-4 4 6m-4-9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+          d="M15 1v14H1V1zM1 15l3-8 4 6 3-4 4 6m-4-9a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
         />
       </g>
     </svg>

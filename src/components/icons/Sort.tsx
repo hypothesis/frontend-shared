@@ -24,7 +24,7 @@ export default function SortIcon(props: SortIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M5 9V2v7zM1 5l4-4 4 4m2 2v7-7zm-4 4 4 4 4-4"
+          d="M5 9V2zM1 5l4-4 4 4m2 2v7zm-4 4 4 4 4-4"
         />
       </g>
     </svg>

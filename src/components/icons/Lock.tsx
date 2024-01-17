@@ -18,7 +18,7 @@ export default function LockIcon(props: LockIconProps) {
     >
       <g fill="currentColor" fill-rule="evenodd">
         <path d="M0 24h48v32H0z" />
-        <path d="M24 0S8 0 8 16v16h8V16c0-8 8-8 8-8s8 0 8 8v16h8V16C40 0 24 0 24 0Z" />
+        <path d="M24 0S8 0 8 16v16h8V16c0-8 8-8 8-8s8 0 8 8v16h8V16C40 0 24 0 24 0" />
       </g>
     </svg>
   );

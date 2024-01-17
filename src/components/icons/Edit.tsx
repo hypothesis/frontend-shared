@@ -24,7 +24,7 @@ export default function EditIcon(props: EditIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m11 4 1 1-9 9-2 1 1-2 9-9zm3-3 1 1-1 1-1-1 1-1z"
+          d="m11 4 1 1-9 9-2 1 1-2zm3-3 1 1-1 1-1-1z"
         />
       </g>
     </svg>

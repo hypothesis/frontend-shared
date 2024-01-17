@@ -24,7 +24,7 @@ export default function ProfileIcon(props: ProfileIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M1 15c0-2.761 3.134-5 7-5s7 2.239 7 5M8 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+          d="M1 15c0-2.761 3.134-5 7-5s7 2.239 7 5M8 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
         />
       </g>
     </svg>

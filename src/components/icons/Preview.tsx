@@ -19,7 +19,7 @@ export default function PreviewIcon(props: PreviewIconProps) {
     >
       <path
         fill="currentColor"
-        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2ZM6 5a1 1 0 0 1 1.508-.861L7.6 4.2l4 3a1 1 0 0 1 .1 1.515l-.1.085-4 3a1 1 0 0 1-1.594-.69L6 11V5Z"
+        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0m0 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2M6 5a1 1 0 0 1 1.508-.861L7.6 4.2l4 3a1 1 0 0 1 .1 1.515l-.1.085-4 3a1 1 0 0 1-1.594-.69L6 11z"
       />
     </svg>
   );
