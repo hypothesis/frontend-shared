@@ -71,7 +71,7 @@ export default function ${name}(props:${name}Props) {
 }
 `;
   return format(jsx, {
-    parser: 'babel',
+    parser: 'typescript',
     // Duplication of rules in package.json
     arrowParens: 'avoid',
     singleQuote: true,
