@@ -28,6 +28,7 @@ function kebabCaseToPascalCase(name) {
  * @param {string} src - SVG source
  * @param {string} inputFileName - Name of the file that `src` comes from.
  *   This is used in documentation only.
+ * @return {Promise<string>}
  */
 function generateIcon(name, src, inputFileName) {
   const optimized = optimize(src, {
@@ -86,7 +87,7 @@ export default function ${name}(props:${name}Props) {
  * @param {string} inputFile - Input SVG file path
  * @param {string} outputDir - Output directory
  */
-function generateIconFromFile(inputFile, outputDir) {
+async function generateIconFromFile(inputFile, outputDir) {
   const src = readFileSync(inputFile);
   const basename = path.basename(inputFile).replace(/\.svg/, '');
 
@@ -94,7 +95,7 @@ function generateIconFromFile(inputFile, outputDir) {
   const componentName = iconName + 'Icon';
 
   const outputFile = `${outputDir}/${iconName}.tsx`;
-  const outputSrc = generateIcon(componentName, src, basename + '.svg');
+  const outputSrc = await generateIcon(componentName, src, basename + '.svg');
 
   writeFileSync(outputFile, outputSrc);
 }
@@ -133,7 +134,7 @@ const outputDir = argv[3] ?? 'src/components/icons';
 
 const svgFiles = readdirSync(inputDir).filter(file => file.endsWith('.svg'));
 for (let file of svgFiles) {
-  generateIconFromFile(`${inputDir}/${file}`, outputDir);
+  await generateIconFromFile(`${inputDir}/${file}`, outputDir);
 }
 
 generateIconIndex(outputDir);
