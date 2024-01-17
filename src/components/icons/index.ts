@@ -76,6 +76,7 @@ export { default as LogoIcon } from './Logo';
 export { default as LogoutIcon } from './Logout';
 export { default as MenuCollapseIcon } from './MenuCollapse';
 export { default as MenuExpandIcon } from './MenuExpand';
+export { default as MinusIcon } from './Minus';
 export { default as NoteIcon } from './Note';
 export { default as NoteFilledIcon } from './NoteFilled';
 export { default as OneDriveIcon } from './OneDrive';

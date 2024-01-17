@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type TagAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
+export type MinusIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
- * Icon generated from tag-alt.svg
+ * Icon generated from minus.svg
  */
-export default function TagAltIcon(props: TagAltIconProps) {
+export default function MinusIcon(props: MinusIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,12 +14,12 @@ export default function TagAltIcon(props: TagAltIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
-      data-component="TagAltIcon"
+      data-component="MinusIcon"
       {...props}
     >
       <path
         fill="currentColor"
-        d="M5 3a5 5 0 1 1 0 10A5 5 0 0 1 5 3m6 0a5 5 0 0 1 0 10 1 1 0 0 1-.117-1.993L11 11a3 3 0 0 0 0-6 1 1 0 0 1 0-2M5 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6"
+        d="M2 8a1 1 0 0 1 1-1h10a1 1 0 0 1 0 2H3a1 1 0 0 1-1-1"
       />
     </svg>
   );

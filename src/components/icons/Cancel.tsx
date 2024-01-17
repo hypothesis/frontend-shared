@@ -24,7 +24,7 @@ export default function CancelIcon(props: CancelIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m8 8 3.536-3.536L8 8 4.464 4.464 8 8zm0 0-3.536 3.536L8 8l3.536 3.536L8 8z"
+          d="m8 8 3.536-3.536zL4.464 4.464zm0 0-3.536 3.536zl3.536 3.536z"
         />
       </g>
     </svg>

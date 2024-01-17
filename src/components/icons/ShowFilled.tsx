@@ -19,7 +19,7 @@ export default function ShowFilledIcon(props: ShowFilledIconProps) {
     >
       <path
         fill="currentColor"
-        d="M8 2c4.36 0 8 2.6 8 6s-3.64 6-8 6c-4.36 0-8-2.6-8-6s3.64-6 8-6Zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+        d="M8 2c4.36 0 8 2.6 8 6s-3.64 6-8 6c-4.36 0-8-2.6-8-6s3.64-6 8-6m0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6"
       />
     </svg>
   );

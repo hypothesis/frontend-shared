@@ -24,7 +24,7 @@ export default function HelpIcon(props: HelpIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M8 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM4 4.5C4 2.567 5.79 1 8 1s4 1.567 4 3.5S10.21 8 8 8m0 0v1.5V8z"
+          d="M8 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2M4 4.5C4 2.567 5.79 1 8 1s4 1.567 4 3.5S10.21 8 8 8m0 0v1.5z"
         />
       </g>
     </svg>

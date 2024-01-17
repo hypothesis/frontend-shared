@@ -24,7 +24,7 @@ export default function FlagIcon(props: FlagIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M3 9v6V1h12l-4 4 4 4H3z"
+          d="M3 9v6V1h12l-4 4 4 4z"
         />
       </g>
     </svg>

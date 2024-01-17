@@ -24,7 +24,7 @@ export default function EmailIcon(props: EmailIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M1 3v10h14V3H1zm0 0 7 6 7-6H1z"
+          d="M1 3v10h14V3zm0 0 7 6 7-6z"
         />
       </g>
     </svg>

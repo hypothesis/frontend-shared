@@ -24,7 +24,7 @@ export default function ExternalIcon(props: ExternalIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M7 3h6v6m-1-5-9 9 9-9z"
+          d="M7 3h6v6m-1-5-9 9z"
         />
       </g>
     </svg>

@@ -24,7 +24,7 @@ export default function ArrowDownIcon(props: ArrowDownIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m12 9-4 4-4-4m4 3V3v9z"
+          d="m12 9-4 4-4-4m4 3V3z"
         />
       </g>
     </svg>

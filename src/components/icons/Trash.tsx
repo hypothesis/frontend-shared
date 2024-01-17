@@ -24,7 +24,7 @@ export default function TrashIcon(props: TrashIconProps) {
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M2 4h12l-2 11H4L2 4zM1 1h14H1z"
+          d="M2 4h12l-2 11H4zM1 1h14z"
         />
       </g>
     </svg>
