@@ -116,7 +116,7 @@ describe('ModalDialog', () => {
         .getAttribute('data-modal-size');
     }
 
-    it('sets a default size if neither `size` nor `width` provided', () => {
+    it('sets a default size if `size` is not provided', () => {
       const wrapper = mount(
         <ModalDialog title="Test modal dialog">This is my dialog</ModalDialog>,
       );
@@ -126,12 +126,6 @@ describe('ModalDialog', () => {
 
     it('sets size from size prop', () => {
       const wrapper = sizedModal({ size: 'lg' });
-
-      assert.equal(modalSize(wrapper), 'lg');
-    });
-
-    it('prefers `size` over `width` to set size', () => {
-      const wrapper = sizedModal({ size: 'lg', width: 'sm' });
 
       assert.equal(modalSize(wrapper), 'lg');
     });

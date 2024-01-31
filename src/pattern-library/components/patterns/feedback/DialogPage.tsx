@@ -18,7 +18,10 @@ import {
   TabList,
 } from '../../../../';
 import { ModalDialog } from '../../../../components/feedback';
-import type { ModalDialogProps } from '../../../../components/feedback/ModalDialog';
+import type {
+  CustomModalDialogProps,
+  PanelModalDialogProps,
+} from '../../../../components/feedback/ModalDialog';
 import { confirm } from '../../../../util/prompts';
 import Library from '../../Library';
 import { LoremIpsum, nabokovNovels } from '../samples';
@@ -120,7 +123,7 @@ function Confirm() {
   );
 }
 
-type ModalDialog_Props = ModalDialogProps & {
+type ModalDialog_Props = PanelModalDialogProps & {
   /** Pattern-wrapping prop. Not visible in source view */
   _nonCloseable?: boolean;
   _alwaysShowButton?: boolean;
@@ -164,6 +167,25 @@ function ModalDialog_({
         >
           {children}
         </ModalDialog>
+      )}
+    </>
+  );
+}
+
+function CustomModalDialog_(dialogProps: CustomModalDialogProps) {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setDialogOpen(prev => !prev)} variant="primary">
+        {dialogOpen ? 'Hide' : 'Show'} dialog
+      </Button>
+      {dialogOpen && (
+        <ModalDialog
+          {...dialogProps}
+          onClose={() => setDialogOpen(false)}
+          closeOnClickAway
+        />
       )}
     </>
   );
@@ -726,6 +748,16 @@ export default function DialogPage() {
                   </p>
                 </div>
               </ModalDialog_>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="Custom layout">
+            <Library.Demo title="Modal dialog with custom layout" withSource>
+              <CustomModalDialog_ variant="custom">
+                <div className="flex gap-x-3 items-center border p-3 bg-white">
+                  <div className="grow">Custom dialog content</div>
+                  <CloseButton />
+                </div>
+              </CustomModalDialog_>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
