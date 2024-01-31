@@ -5,7 +5,7 @@ import { useTabKeyNavigation } from '../../hooks/use-tab-key-navigation';
 import { downcastRef } from '../../util/typing';
 import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
-import type { PanelDialogProps } from './Dialog';
+import type { CustomDialogProps, PanelDialogProps } from './Dialog';
 
 type ModalSize = 'sm' | 'md' | 'lg' | 'custom';
 
@@ -33,11 +33,19 @@ type ComponentProps = {
   size?: ModalSize;
 };
 
-export type ModalDialogProps = Omit<
+export type PanelModalDialogProps = Omit<
   PanelDialogProps,
   'restoreFocus' | 'closeOnEscape'
 > &
   ComponentProps;
+
+export type CustomModalDialogProps = Omit<
+  CustomDialogProps,
+  'restoreFocus' | 'closeOnEscape'
+> &
+  ComponentProps;
+
+export type ModalDialogProps = PanelModalDialogProps | CustomModalDialogProps;
 
 /**
  * Show a modal dialog
@@ -47,7 +55,7 @@ export default function ModalDialog({
   disableCloseOnEscape = false,
   disableFocusTrap = false,
   disableRestoreFocus = false,
-  size,
+  size = 'md',
 
   classes,
   elementRef,
@@ -59,8 +67,6 @@ export default function ModalDialog({
 
   ...htmlAndPanelAttributes
 }: ModalDialogProps) {
-  // Prefer `size` prop but support deprecated `width` if present
-  const modalSize = size ?? 'md';
   const modalRef = useSyncedRef(elementRef);
 
   useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
@@ -90,17 +96,15 @@ export default function ModalDialog({
           'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
           {
             // Max-width rules will ensure actual width never exceeds 90vw
-            'w-[30rem]': modalSize === 'sm',
-            'w-[36rem]': modalSize === 'md', // default
-            'w-[42rem]': modalSize === 'lg',
-            // No width classes are added if width is 'custom'
+            'w-[30rem]': size === 'sm',
+            'w-[36rem]': size === 'md', // default
+            'w-[42rem]': size === 'lg',
+            // No width classes are added if `size` is 'custom'
           },
           classes,
         )}
         elementRef={downcastRef(modalRef)}
-        // Testing affordance. TODO: Remove once deprecated `width` prop
-        // no longer supported.
-        data-modal-size={modalSize}
+        data-modal-size={size}
       >
         {children}
       </Dialog>

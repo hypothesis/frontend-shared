@@ -60,7 +60,7 @@ export type PanelDialogProps = PresentationalProps &
     variant?: 'panel';
   };
 
-type CustomDialogProps = PresentationalProps &
+export type CustomDialogProps = PresentationalProps &
   ComponentProps & {
     /** `custom` allows any layout of Dialog children */
     variant: 'custom';
