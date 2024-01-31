@@ -836,10 +836,13 @@ export default function DialogPage() {
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the relative width of the modal element. Set to {`'custom'`}{' '}
-                to customize width via <code>classes</code>.
+                to customize dimensions via <code>classes</code>.
+                <br />
+                Note that setting {`'custom'`} value will disable both
+                horizontal and vertical automatic sizing.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{`'sm' | 'md' | 'lg' | 'custom'`}]</code>
+                <code>{`'sm' | 'md' | 'lg' | 'custom'`}</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
                 <code>{`'md'`}</code>
@@ -860,7 +863,7 @@ export default function DialogPage() {
               <ModalDialog_
                 buttons={<DialogButtons />}
                 onClose={() => {}}
-                title="Medium-width modal"
+                title="Medium-size modal"
                 size="md"
               >
                 <LoremIpsum size="md" />
@@ -881,9 +884,9 @@ export default function DialogPage() {
             <Library.Demo title="size='custom'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
-                classes="w-[40em]"
+                classes="w-[40em] h-[80vh] top-[10vh]"
                 onClose={() => {}}
-                title="Custom-width modal"
+                title="Custom-size modal"
                 size="custom"
               >
                 <LoremIpsum size="md" />

@@ -86,14 +86,14 @@ export default function ModalDialog({
         classes={classnames(
           // Column-flex layout to constrain content to max-height
           'flex flex-col',
-          'max-w-[90vw] max-h-[90vh]',
+          size !== 'custom' && 'max-w-[90vw] max-h-[90vh]',
           // Overlay sets up a flex layout centered on both axes. For taller
           // viewports, remove this modal container from the flex flow with
           // fixed positioning and position it 10vh from the top of the
           // viewport. This feels more balanced on taller screens. Ensure an
           // equal 10vh gap at the bottom of the screen by adjusting max-height
           // to `80vh`.
-          'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
+          size !== 'custom' && 'tall:fixed tall:max-h-[80vh] tall:top-[10vh]',
           {
             // Max-width rules will ensure actual width never exceeds 90vw
             'w-[30rem]': size === 'sm',
