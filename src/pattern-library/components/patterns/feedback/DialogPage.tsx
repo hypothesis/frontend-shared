@@ -760,6 +760,17 @@ export default function DialogPage() {
               </CustomModalDialog_>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="Focus trap with iframe">
+            <Library.Demo title="Modal dialog with iframe" withSource>
+              <ModalDialog_ title="Modal dialog with iframe">
+                <iframe
+                  title="Example"
+                  src="https://example.com"
+                  className="border-0 w-full h-64"
+                />
+              </ModalDialog_>
+            </Library.Demo>
+          </Library.Example>
         </Library.Pattern>
         <Library.Pattern title="ComponentAPI">
           <Library.Example title="title">

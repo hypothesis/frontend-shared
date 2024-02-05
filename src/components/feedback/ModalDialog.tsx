@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 
+import { useFocusTrap } from '../../hooks/use-focus-trap';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useTabKeyNavigation } from '../../hooks/use-tab-key-navigation';
 import { downcastRef } from '../../util/typing';
@@ -69,7 +70,8 @@ export default function ModalDialog({
 }: ModalDialogProps) {
   const modalRef = useSyncedRef(elementRef);
 
-  useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
+  // useTabKeyNavigation(modalRef, { enabled: !disableFocusTrap });
+  useFocusTrap(modalRef, { enabled: !disableFocusTrap });
 
   return (
     <Overlay data-composite-component="ModalDialog">

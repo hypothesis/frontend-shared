@@ -61,7 +61,7 @@ export type UseTabKeyNavigationOptions = {
 // inputs). Also include the containers for ARIA interactive widgets `grid` and
 // `tablist`. Internal keyboard navigation for those widgets should be handled
 // separately: exclude `tab`-role buttons from this hook's navigation sequence.
-const defaultSelector =
+export const defaultSelector =
   'a,button:not([role="tab"]),input,select,textarea,[role="grid"],[role="tablist"]';
 
 export function useTabKeyNavigation(
