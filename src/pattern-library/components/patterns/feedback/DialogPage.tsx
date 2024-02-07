@@ -22,6 +22,7 @@ import type {
   CustomModalDialogProps,
   PanelModalDialogProps,
 } from '../../../../components/feedback/ModalDialog';
+import { NativeDialog } from '../../../../components/feedback/NativeDialog';
 import { confirm } from '../../../../util/prompts';
 import Library from '../../Library';
 import { LoremIpsum, nabokovNovels } from '../samples';
@@ -90,9 +91,9 @@ function Dialog_({
       {(!dialogOpen || _alwaysShowButton) && <div>{openButton}</div>}
       <div className="grow">
         {dialogOpen && (
-          <Dialog {...panelProps} {...dialogProps} onClose={closeHandler}>
+          <NativeDialog {...panelProps} {...dialogProps} onClose={closeHandler}>
             {children}
-          </Dialog>
+          </NativeDialog>
         )}
       </div>
     </div>
