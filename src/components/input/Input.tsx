@@ -1,6 +1,8 @@
 import classnames from 'classnames';
-import type { JSX } from 'preact';
+import type { JSX, RefObject } from 'preact';
+import { useEffect } from 'preact/hooks';
 
+import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { inputGroupStyles } from './InputGroup';
@@ -46,6 +48,17 @@ export default function Input({
 
   ...htmlAttributes
 }: InputProps) {
+  const inputRef = useSyncedRef(elementRef) as RefObject<
+    HTMLInputElement | undefined
+  >;
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (typeof input?.setCustomValidity === 'function') {
+      input.setCustomValidity(feedback === 'error' ? 'Invalid' : '');
+    }
+  }, [feedback, inputRef]);
+
   if (!htmlAttributes.id && !htmlAttributes['aria-label']) {
     console.warn(
       '`Input` component should have either an `id` or an `aria-label` attribute',
@@ -56,7 +69,7 @@ export default function Input({
     <input
       data-component="Input"
       {...htmlAttributes}
-      ref={downcastRef(elementRef)}
+      ref={downcastRef(inputRef)}
       type={type}
       className={inputStyles({ classes, feedback })}
     />
