@@ -22,4 +22,19 @@ describe('Input', () => {
 
     console.warn.restore();
   });
+
+  [
+    { feedback: undefined, expectedInvalid: false },
+    { feedback: 'error', expectedInvalid: true },
+    { feedback: 'warning', expectedInvalid: false },
+  ].forEach(({ feedback, expectedInvalid }) => {
+    it('sets aria-invalid based on feedback prop', () => {
+      const wrapper = mount(
+        <Input aria-label="Test input" feedback={feedback} />,
+      );
+      const input = wrapper.find('input');
+
+      assert.equal(input.prop('aria-invalid'), expectedInvalid);
+    });
+  });
 });

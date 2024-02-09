@@ -34,6 +34,7 @@ export default function Textarea({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={inputStyles({ classes, feedback })}
+      aria-invalid={feedback === 'error'}
     />
   );
 }

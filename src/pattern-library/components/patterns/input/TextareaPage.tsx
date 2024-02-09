@@ -77,6 +77,16 @@ export default function TextareaPage() {
               <Library.InfoItem label="description">
                 Set <code>feedback</code> to indicate that there is an
                 associated error or warning for the <code>Textarea</code>.
+                <br />
+                Notice that setting{' '}
+                <code>
+                  feedback={'"'}error{'"'}
+                </code>{' '}
+                will implicitly set{' '}
+                <code>
+                  aria-invalid={'"'}true{'"'}
+                </code>
+                .
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>

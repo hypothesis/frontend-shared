@@ -22,4 +22,19 @@ describe('Textarea', () => {
 
     console.warn.restore();
   });
+
+  [
+    { feedback: undefined, expectedInvalid: false },
+    { feedback: 'error', expectedInvalid: true },
+    { feedback: 'warning', expectedInvalid: false },
+  ].forEach(({ feedback, expectedInvalid }) => {
+    it('sets aria-invalid based on feedback prop', () => {
+      const wrapper = mount(
+        <Textarea aria-label="Test textarea" feedback={feedback} />,
+      );
+      const textarea = wrapper.find('textarea');
+
+      assert.equal(textarea.prop('aria-invalid'), expectedInvalid);
+    });
+  });
 });
