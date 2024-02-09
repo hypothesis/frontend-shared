@@ -59,6 +59,7 @@ export default function Input({
       ref={downcastRef(elementRef)}
       type={type}
       className={inputStyles({ classes, feedback })}
+      aria-invalid={feedback === 'error'}
     />
   );
 }
