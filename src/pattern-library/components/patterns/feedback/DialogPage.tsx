@@ -225,7 +225,6 @@ export default function DialogPage() {
               buttons={<DialogButtons />}
               icon={EditIcon}
               initialFocus={inputRef}
-              onClose={() => {}}
               title="Basic dialog"
             >
               <p>
@@ -256,11 +255,7 @@ export default function DialogPage() {
               used.
             </p>
             <Library.Demo title="Dialog with custom layout" withSource>
-              <Dialog_
-                onClose={() => {}}
-                variant="custom"
-                transitionComponent={Slider}
-              >
+              <Dialog_ variant="custom" transitionComponent={Slider}>
                 <div className="flex gap-x-3 items-center border p-3 bg-white">
                   <div className="grow">Custom dialog content</div>
                   <CloseButton />
@@ -327,7 +322,6 @@ export default function DialogPage() {
             >
               <Dialog_
                 closeOnClickAway
-                onClose={() => {}}
                 title="Dialog that closes when there are external clicks"
               >
                 <p>This dialog will close if you click outside of it</p>
@@ -354,7 +348,7 @@ export default function DialogPage() {
               title="Dialog with close-on-Escape behavior"
               withSource
             >
-              <Dialog_ closeOnEscape onClose={() => {}} title="Close on ESC">
+              <Dialog_ closeOnEscape title="Close on ESC">
                 <p>
                   This dialog will close if you press <kbd>Escape</kbd>.
                 </p>
@@ -380,11 +374,7 @@ export default function DialogPage() {
               title="Dialog that closes on external focus events"
               withSource
             >
-              <Dialog_
-                closeOnFocusAway
-                onClose={() => {}}
-                title="Close on Away Focus"
-              >
+              <Dialog_ closeOnFocusAway title="Close on Away Focus">
                 <p>This dialog will close if you focus outside of it</p>
               </Dialog_>
             </Library.Demo>
@@ -442,6 +432,29 @@ export default function DialogPage() {
             </Library.Demo>
           </Library.Example>
 
+          <Library.Example title="closeTitle">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determine the accessible title to be set on the close button
+                when <code>onClose</code> has also been provided.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{`'Close'`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Custom close title" withSource>
+              <Dialog_ title="Custom close title" closeTitle="Custom text here">
+                <p>
+                  This dialog has a custom title on the close button. Hover over
+                  it to see it.
+                </p>
+              </Dialog_>
+            </Library.Demo>
+          </Library.Example>
+
           <Library.Example title="restoreFocus">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -460,12 +473,7 @@ export default function DialogPage() {
               title="Dialog with focus restoration on close"
               withSource
             >
-              <Dialog_
-                _alwaysShowButton
-                restoreFocus
-                onClose={() => {}}
-                title="Restore focus"
-              >
+              <Dialog_ _alwaysShowButton restoreFocus title="Restore focus">
                 <p>
                   This dialog will restore focus to the previously-focused
                   element on close.
@@ -553,7 +561,6 @@ export default function DialogPage() {
               buttons={<DialogButtons />}
               icon={EditIcon}
               initialFocus={inputRef}
-              onClose={() => {}}
               title="Basic dialog"
             >
               <p>This is a basic ModalDialog.</p>
@@ -584,7 +591,6 @@ export default function DialogPage() {
             <Library.Demo title="Modal with overflowing content" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
-                onClose={() => {}}
                 title="Modal with long content"
               >
                 <LoremIpsum size="lg" />
@@ -602,7 +608,6 @@ export default function DialogPage() {
               <ModalDialog_
                 buttons={<DialogButtons />}
                 classes="h-[25rem]"
-                onClose={() => {}}
                 title="Modal with tabs and data table"
                 scrollable={false}
               >
@@ -684,7 +689,6 @@ export default function DialogPage() {
                 title="Modal with a fixed height"
                 buttons={<DialogButtons />}
                 classes="h-[25rem]"
-                onClose={() => {}}
               >
                 <p>
                   This ModalDialog has a height of <code>25rem</code>.
@@ -700,7 +704,6 @@ export default function DialogPage() {
                 title="ModalDialog with a fixed height"
                 buttons={<DialogButtons />}
                 classes="h-[25rem]"
-                onClose={() => {}}
               >
                 <p>
                   This ModalDialog has a height of <code>25rem</code> and long
@@ -717,7 +720,6 @@ export default function DialogPage() {
               <ModalDialog_
                 title="Modal with minimum height set on content"
                 buttons={<DialogButtons />}
-                onClose={() => {}}
               >
                 <div className="min-h-[15rem]">
                   <p>
@@ -735,7 +737,6 @@ export default function DialogPage() {
               <ModalDialog_
                 title="Modal with a minimum height and tall content"
                 buttons={<DialogButtons />}
-                onClose={() => {}}
               >
                 <div className="min-h-[15rem] space-y-3">
                   <p>
@@ -851,7 +852,6 @@ export default function DialogPage() {
             <Library.Demo title="size='sm'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
-                onClose={() => {}}
                 title="Small modal"
                 size="sm"
               >
@@ -862,7 +862,6 @@ export default function DialogPage() {
             <Library.Demo title="size='md' (default)" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
-                onClose={() => {}}
                 title="Medium-size modal"
                 size="md"
               >
@@ -873,7 +872,6 @@ export default function DialogPage() {
             <Library.Demo title="size='lg'" withSource>
               <ModalDialog_
                 buttons={<DialogButtons />}
-                onClose={() => {}}
                 title="Wide modal"
                 size="lg"
               >
@@ -885,7 +883,6 @@ export default function DialogPage() {
               <ModalDialog_
                 buttons={<DialogButtons />}
                 classes="w-[40em] h-[80vh] top-[10vh]"
-                onClose={() => {}}
                 title="Custom-size modal"
                 size="custom"
               >

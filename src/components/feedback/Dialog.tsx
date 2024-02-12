@@ -33,6 +33,9 @@ type ComponentProps = {
    */
   onClose?: () => void;
 
+  /** Accessible title for the close button */
+  closeTitle?: string;
+
   /**
    * Element that should take focus when the Dialog is first rendered. When not
    * provided ("auto"), the dialog's outer element will take focus. Setting this
@@ -89,6 +92,7 @@ export default function Dialog({
   classes,
   elementRef,
   onClose,
+  closeTitle,
 
   ...rest
 }: DialogProps) {
@@ -227,6 +231,7 @@ export default function Dialog({
   // Provide a close handler to descendant components
   const closeableContext: CloseableInfo = {
     onClose: onClose ? closeHandler : undefined,
+    title: closeTitle,
   };
 
   return (

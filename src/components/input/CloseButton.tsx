@@ -22,14 +22,14 @@ export default function CloseButton({
   classes,
   elementRef,
 
-  title = 'Close',
-
+  title,
   onClick,
   ...iconButtonProps
 }: CloseButtonProps) {
   const closeableContext = useContext(CloseableContext);
-  // Any provided `onClick` is prioritized, but also check to see if there is a
-  // close handler provided by a `CloseableContext`
+  // Provided `title` and `onClick` are prioritized, but fall back to values
+  // from the `CloseableContext`
+  const buttonTitle = title ?? closeableContext?.title ?? 'Close';
   const closeHandler = onClick ?? closeableContext?.onClose;
 
   return (
@@ -37,7 +37,7 @@ export default function CloseButton({
       data-component="CloseButton"
       elementRef={downcastRef(elementRef)}
       icon={CancelIcon}
-      title={title}
+      title={buttonTitle}
       classes={classes}
       {...iconButtonProps}
       onClick={closeHandler}
