@@ -165,4 +165,22 @@ describe('ToastMessages', () => {
 
     assert.notCalled(fakeOnMessageDismiss);
   });
+
+  it('adds the appropriate prefix to every message', () => {
+    const wrapper = createToastMessages([
+      ...toastMessages,
+      {
+        id: '4',
+        type: 'success',
+        message: 'Hello world',
+        visuallyHidden: true,
+      },
+    ]);
+    const callouts = wrapper.find('Callout');
+
+    assert.equal(callouts.at(0).text(), 'Success: Hello world');
+    assert.equal(callouts.at(1).text(), 'Foobar');
+    assert.equal(callouts.at(2).text(), 'Error: Something failed');
+    assert.equal(callouts.at(3).text(), 'Hello world');
+  });
 });

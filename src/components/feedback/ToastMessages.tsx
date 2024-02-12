@@ -52,9 +52,9 @@ type ToastMessageItemProps = {
  */
 function ToastMessageItem({ message, onDismiss }: ToastMessageItemProps) {
   // Capitalize the message type for prepending; Don't prepend a message
-  // type for "notice" messages
+  // type for "notice" or hidden messages
   const prefix =
-    message.type !== 'notice'
+    message.type !== 'notice' && !message.visuallyHidden
       ? `${message.type.charAt(0).toUpperCase() + message.type.slice(1)}: `
       : '';
 
