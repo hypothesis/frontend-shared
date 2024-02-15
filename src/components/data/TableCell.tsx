@@ -8,7 +8,10 @@ import TableContext from './TableContext';
 import TableSectionContext from './TableSectionContext';
 
 export type TableCellProps = PresentationalProps &
-  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'> & {
+    /** Remove default padding, allowing consuming code to control it */
+    unpadded?: boolean;
+  };
 
 /**
  * Render a single table cell
@@ -17,6 +20,7 @@ export default function TableCell({
   children,
   classes,
   elementRef,
+  unpadded = false,
 
   ...htmlAttributes
 }: TableCellProps) {
@@ -31,8 +35,8 @@ export default function TableCell({
       {...htmlAttributes}
       ref={downcastRef(elementRef)}
       className={classnames(
-        'p-3',
         {
+          'p-3': !unpadded,
           // Set horizontal borders here for table headers. This needs to be
           // done here (versus on the row or table) to prevent a 1-pixel wiggle
           // on scroll with sticky headers.

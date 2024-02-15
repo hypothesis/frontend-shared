@@ -1,16 +1,103 @@
-import { useState } from 'preact/hooks';
+import { useCallback, useMemo, useRef, useState } from 'preact/hooks';
 
-import { DataTable, Scroll } from '../../../../';
+import { DataTable, type DataTableProps, Scroll } from '../../../../';
+import type { Order } from '../../../../components/data/DataTable';
 import Library from '../../Library';
 import { nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
 
 const nabokovRows = nabokovNovels();
 const nabokovColumns = [
-  { field: 'title', label: 'Title' },
-  { field: 'year', label: 'Year' },
-  { field: 'language', label: 'Language' },
+  { field: 'title' as const, label: 'Title' },
+  { field: 'year' as const, label: 'Year' },
+  { field: 'language' as const, label: 'Language' },
 ];
+
+type SimpleNabokovNovel = Omit<NabokovNovel, 'translatedTitle'>;
+
+function useOrderedRows(
+  rows: SimpleNabokovNovel[],
+  order: Order<keyof SimpleNabokovNovel>,
+) {
+  return useMemo(() => {
+    if (!order) {
+      return rows;
+    }
+
+    return [...rows].sort((a, b) => {
+      if (a[order.field] === b[order.field]) {
+        return 0;
+      }
+
+      if (order.direction === 'ascending') {
+        return a[order.field] > b[order.field] ? 1 : -1;
+      }
+
+      return a[order.field] > b[order.field] ? -1 : 1;
+    });
+  }, [order, rows]);
+}
+
+function ClientOrderableDataTable({
+  rows,
+  // By default, all columns are orderable
+  orderableColumns = nabokovColumns.map(({ field }) => field),
+  ...rest
+}: Omit<DataTableProps<SimpleNabokovNovel>, 'order' | 'onOrderChange'>) {
+  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>(null);
+  const orderedRows = useOrderedRows(rows, order);
+
+  return (
+    <DataTable
+      {...rest}
+      rows={orderedRows}
+      order={order}
+      orderableColumns={orderableColumns}
+      onOrderChange={setOrder}
+    />
+  );
+}
+
+function AsyncOrderableDataTable({
+  rows,
+  // By default, all columns are orderable
+  orderableColumns = nabokovColumns.map(({ field }) => field),
+  ...rest
+}: Omit<DataTableProps<SimpleNabokovNovel>, 'order' | 'onOrderChange'>) {
+  const [loading, setLoading] = useState(false);
+  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>(null);
+  const activeTimeout = useRef<number | null>(null);
+
+  const changeOrder = useCallback(
+    (newOrder: Order<keyof SimpleNabokovNovel>) => {
+      if (activeTimeout.current) {
+        // Abort current ordering, if any
+        clearTimeout(activeTimeout.current);
+      }
+
+      setOrder(newOrder);
+      setLoading(true);
+
+      activeTimeout.current = setTimeout(() => {
+        setLoading(false);
+        activeTimeout.current = null;
+      }, 600);
+    },
+    [],
+  );
+  const orderedRows = useOrderedRows(rows, order);
+
+  return (
+    <DataTable
+      {...rest}
+      rows={orderedRows}
+      order={order}
+      orderableColumns={orderableColumns}
+      onOrderChange={changeOrder}
+      loading={loading}
+    />
+  );
+}
 
 export default function DataTablePage() {
   // For examples that support single selection
@@ -543,6 +630,95 @@ export default function DataTablePage() {
                 <code>{`Row[]`}</code>
               </Library.InfoItem>
             </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="order">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set the column from which <code>rows</code> are currently
+                ordered. It will cause an arrow icon to be displayed next to the
+                corresponding column name.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {`{ field: T; direction: 'ascending' | 'descending' } | null`}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+
+          <Library.Example title="onOrderChange">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Used together with <code>order</code>, can be used to know what
+                is the new order to apply when a column is clicked. It will
+                cause columns to have a pointer cursor.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {`(newOrder: { field: T; direction: 'ascending' | 'descending' } | null) => void`}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="DataTable with client-side ordering">
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <ClientOrderableDataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="DataTable with server-side ordering">
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <AsyncOrderableDataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
+          <Library.Example title="orderableColumns">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                If provided together with <code>onOrderChange</code>, it allows
+                to restrict which columns can be used to order the table.
+                Defaults to all columns.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`Field[] | undefined`}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Partially orderable DataTable">
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <ClientOrderableDataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    orderableColumns={['title', 'year']}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
           </Library.Example>
 
           <Library.Example title="borderless">

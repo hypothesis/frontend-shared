@@ -406,5 +406,83 @@ describe('DataTable', () => {
     });
   });
 
+  context('when table can be ordered', () => {
+    [
+      { direction: 'ascending', expectedArrow: 'ArrowUpIcon' },
+      { direction: 'descending', expectedArrow: 'ArrowDownIcon' },
+    ].forEach(({ direction, expectedArrow }) => {
+      it('shows initial active order', () => {
+        const wrapper = createComponent(DataTable, {
+          order: { field: 'color', direction },
+        });
+        const colorTableCell = wrapper.find('TableCell').at(1);
+
+        assert.equal(colorTableCell.prop('aria-sort'), direction);
+        assert.isTrue(colorTableCell.exists(expectedArrow));
+      });
+    });
+
+    [
+      // Clicking the same column when initially ascending, transitions to descending
+      {
+        initialOrder: { field: 'name', direction: 'ascending' },
+        clickedColumn: 'name',
+        expectedNewOrder: {
+          field: 'name',
+          direction: 'descending',
+        },
+      },
+      // Clicking the same column when initially descending, transitions to no order
+      {
+        initialOrder: { field: 'name', direction: 'descending' },
+        clickedColumn: 'name',
+        expectedNewOrder: null,
+      },
+      // Clicking another column sets direction as ascending
+      {
+        initialOrder: { field: 'name', direction: 'ascending' },
+        clickedColumn: 'consistency',
+        expectedNewOrder: {
+          field: 'consistency',
+          direction: 'ascending',
+        },
+      },
+    ].forEach(({ initialOrder, clickedColumn, expectedNewOrder }) => {
+      it('can update order by clicking columns', () => {
+        const onOrderChange = sinon.stub();
+        const wrapper = createComponent(DataTable, {
+          onOrderChange,
+          order: initialOrder,
+          orderableColumns: ['name', 'color', 'consistency'],
+        });
+
+        wrapper
+          .find(`button[data-testid="${clickedColumn}-order-button"]`)
+          .simulate('click');
+        assert.calledWith(onOrderChange, expectedNewOrder);
+      });
+    });
+
+    [
+      [],
+      ['name', 'consistency'],
+      ['color'],
+      ['name', 'color', 'consistency'],
+      undefined,
+    ].forEach(orderableColumns => {
+      it('can restrict which columns are orderable', () => {
+        const wrapper = createComponent(DataTable, {
+          onOrderChange: sinon.stub(),
+          orderableColumns,
+        });
+
+        assert.equal(
+          wrapper.find('TableHead').find('Button').length,
+          orderableColumns?.length ?? 0,
+        );
+      });
+    });
+  });
+
   testCompositeComponent(DataTable);
 });
