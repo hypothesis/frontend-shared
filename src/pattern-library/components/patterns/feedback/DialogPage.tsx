@@ -29,9 +29,9 @@ import type { NabokovNovel } from '../samples';
 
 const nabokovRows = nabokovNovels();
 const nabokovColumns = [
-  { field: 'title', label: 'Title' },
-  { field: 'year', label: 'Year' },
-  { field: 'language', label: 'Language' },
+  { field: 'title' as const, label: 'Title' },
+  { field: 'year' as const, label: 'Year' },
+  { field: 'language' as const, label: 'Language' },
 ];
 
 function DialogButtons() {

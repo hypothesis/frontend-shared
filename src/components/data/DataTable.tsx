@@ -6,7 +6,8 @@ import { useStableCallback } from '../../hooks/use-stable-callback';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
-import { SpinnerSpokesIcon } from '../icons';
+import { ArrowDownIcon, ArrowUpIcon, SpinnerSpokesIcon } from '../icons';
+import { Button } from '../input';
 import ScrollContext from './ScrollContext';
 import Table from './Table';
 import TableBody from './TableBody';
@@ -15,15 +16,20 @@ import TableFoot from './TableFoot';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
 
-export type TableColumn = {
-  field: string;
+export type TableColumn<Field> = {
+  field: Field;
   label: string;
   classes?: string;
 };
 
+export type Order<Field> = {
+  field: Field;
+  direction: 'ascending' | 'descending';
+} | null;
+
 type ComponentProps<Row> = {
   rows: Row[];
-  columns: TableColumn[];
+  columns: TableColumn<keyof Row>[];
 
   /** Content to render if rows is empty (and not in a loading state) */
   emptyMessage?: ComponentChildren;
@@ -59,6 +65,25 @@ type ComponentProps<Row> = {
    */
   onConfirmRow?: (r: Row) => void;
 
+  /** Current sort order */
+  order?: Order<keyof Row>;
+
+  /**
+   * Callback invoked when user clicks a column header to change the sort order.
+   * When a header is clicked, if that's not the active order, it is set with
+   * order='ascending'.
+   * If the active header is clicked consecutively, direction rotates from
+   * 'ascending' to 'descending', and from 'descending' to no-active-order.
+   */
+  onOrderChange?: (order: Order<keyof Row>) => void;
+
+  /**
+   * Columns that can be used to order the table. Ignored if `onOrderChange` is
+   * not provided.
+   * No columns will be orderable if this is not provided.
+   */
+  orderableColumns?: Array<keyof Row>;
+
   /** Callback to render an individual table cell */
   renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
   title: string;
@@ -73,6 +98,38 @@ export type DataTableProps<Row> = CompositeProps &
 
 function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
   return r[field] as ComponentChildren;
+}
+
+function calculateNewOrder<T>(newField: T, prevOrder: Order<T>): Order<T> {
+  if (newField !== prevOrder?.field) {
+    return { field: newField, direction: 'ascending' };
+  }
+
+  return prevOrder.direction === 'ascending'
+    ? { field: newField, direction: 'descending' }
+    : null;
+}
+
+type HeaderComponentProps = {
+  onClick?: () => void;
+  children: ComponentChildren;
+  field: string;
+};
+
+function HeaderComponent({ children, onClick, field }: HeaderComponentProps) {
+  const commonClasses = 'flex justify-between items-center';
+  return onClick ? (
+    <Button
+      classes={`${commonClasses} w-full !p-3`}
+      variant="custom"
+      onClick={onClick}
+      data-testid={`${field}-order-button`}
+    >
+      {children}
+    </Button>
+  ) : (
+    <div className={commonClasses}>{children}</div>
+  );
 }
 
 /**
@@ -94,6 +151,10 @@ export default function DataTable<Row>({
   onConfirmRow,
   emptyMessage,
 
+  order = null,
+  onOrderChange,
+  orderableColumns = [],
+
   // Forwarded to Table
   borderless,
 
@@ -101,6 +162,13 @@ export default function DataTable<Row>({
 }: DataTableProps<Row>) {
   const tableRef = useSyncedRef(elementRef);
   const scrollContext = useContext(ScrollContext);
+  const updateOrder = useCallback(
+    (newField: keyof Row) => {
+      const newOrder = calculateNewOrder(newField, order);
+      onOrderChange?.(newOrder);
+    },
+    [onOrderChange, order],
+  );
 
   const noContent = loading || (!rows.length && emptyMessage);
   const fields = useMemo(() => columns.map(column => column.field), [columns]);
@@ -251,11 +319,38 @@ export default function DataTable<Row>({
     >
       <TableHead>
         <TableRow>
-          {columns.map(column => (
-            <TableCell key={column.field} classes={column.classes}>
-              {column.label}
-            </TableCell>
-          ))}
+          {columns.map(column => {
+            const isOrderable =
+              !!onOrderChange && orderableColumns.includes(column.field);
+            const isActiveOrder = order?.field === column.field;
+
+            return (
+              <TableCell
+                key={column.field}
+                classes={column.classes}
+                unpadded={isOrderable}
+                aria-sort={isActiveOrder ? order.direction : undefined}
+              >
+                <HeaderComponent
+                  field={column.field.toString()}
+                  onClick={
+                    isOrderable ? () => updateOrder(column.field) : undefined
+                  }
+                >
+                  <div>{column.label}</div>
+                  {isActiveOrder && (
+                    <div className="bg-white rounded p-1" aria-hidden>
+                      {order.direction === 'ascending' ? (
+                        <ArrowUpIcon />
+                      ) : (
+                        <ArrowDownIcon />
+                      )}
+                    </div>
+                  )}
+                </HeaderComponent>
+              </TableCell>
+            );
+          })}
         </TableRow>
       </TableHead>
       <TableBody>
