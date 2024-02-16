@@ -7,11 +7,26 @@ import type { PresentationalProps } from '../../types';
 import type { CloseableInfo } from '../CloseableContext';
 import CloseableContext from '../CloseableContext';
 
+export type ModalSize = 'sm' | 'md' | 'lg';
+
 type ComponentProps = {
   open?: boolean;
   onClose?: () => void;
   closeTitle?: string;
-  modal?: boolean;
+
+  /**
+   * Determines if this dialog should be opened as a modal, ensuring proper
+   * focus trap.
+   * The modal size can be optionally provided too, otherwise it will adjust its
+   * contents.
+   * Defaults to `false`.
+   *
+   * <Dialog modal /> -> A modal dialog with automatic sizing.
+   * <Dialog modal="sm" /> -> A small-size modal dialog.
+   * <Dialog modal="md" /> -> A medium-size modal dialog.
+   * <Dialog modal="lg" /> -> A large-size modal dialog.
+   */
+  modal?: boolean | ModalSize;
 };
 
 export type DialogNextProps = PresentationalProps &
@@ -36,6 +51,7 @@ export default function DialogNext({
   children,
   ...htmlAttributes
 }: DialogNextProps) {
+  const size = typeof modal === 'boolean' ? 'custom' : modal;
   const dialogRef = useSyncedRef(elementRef) as RefObject<HTMLDialogElement>;
   const closeDialog = useCallback(
     () => dialogRef.current?.close(),
@@ -77,11 +93,20 @@ export default function DialogNext({
       <dialog
         data-component="DialogNext"
         {...htmlAttributes}
-        className={classnames(classes, {
-          'backdrop:bg-black/50': modal,
-          static: !modal,
-        })}
         ref={dialogRef}
+        className={classnames(classes, {
+          // We want to render non-modal dialogs inline. By default they are
+          // absolute-positioned
+          static: !modal,
+
+          'backdrop:bg-black/50': modal,
+
+          // Max-width rules will ensure actual width never exceeds 90vw
+          'w-[30rem]': size === 'sm',
+          'w-[36rem]': size === 'md',
+          'w-[42rem]': size === 'lg',
+          // No width classes are added if `size` is 'custom'
+        })}
       >
         {children}
       </dialog>
