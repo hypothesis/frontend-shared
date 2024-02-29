@@ -30,6 +30,7 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
+import DialogNextPage from './components/patterns/prototype/DialogNextPage';
 import LMSContentButtonPage from './components/patterns/prototype/LMSContentButtonPage';
 import LMSContentSelectionPage from './components/patterns/prototype/LMSContentSelectionPage';
 import SelectNextPage from './components/patterns/prototype/SelectNextPage';
@@ -285,6 +286,12 @@ const routes: PlaygroundRoute[] = [
     group: 'prototype',
     component: LMSContentSelectionPage,
     route: '/lms-content-selection',
+  },
+  {
+    title: 'Native Dialog',
+    group: 'prototype',
+    component: DialogNextPage,
+    route: '/dialog-next',
   },
 ];
 
