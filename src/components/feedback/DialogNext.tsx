@@ -1,17 +1,20 @@
 import classnames from 'classnames';
 import type { JSX, RefObject } from 'preact';
-import { useCallback, useEffect } from 'preact/hooks';
+import { useCallback, useEffect, useId, useLayoutEffect } from 'preact/hooks';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import type { PresentationalProps } from '../../types';
+import type { PresentationalProps, TransitionComponent } from '../../types';
 import type { CloseableInfo } from '../CloseableContext';
 import CloseableContext from '../CloseableContext';
 
 export type ModalSize = 'sm' | 'md' | 'lg';
 
 type ComponentProps = {
+  /** Determines if the dialog is open. Defaults to false */
   open?: boolean;
+  /** Invoked when the dialog transitions to the close state */
   onClose?: () => void;
+  /** Title to pass down via CloseableContext */
   closeTitle?: string;
 
   /**
@@ -27,6 +30,11 @@ type ComponentProps = {
    * <Dialog modal="lg" /> -> A large-size modal dialog.
    */
   modal?: boolean | ModalSize;
+
+  /**
+   * Optional TransitionComponent for open (mount) and close (unmount) transitions
+   */
+  transitionComponent?: TransitionComponent;
 };
 
 export type DialogNextProps = PresentationalProps &
@@ -44,7 +52,7 @@ export default function DialogNext({
   //   closeOnFocusAway,
   //   initialFocus,
   //   restoreFocus,
-  //   transitionComponent,
+  // transitionComponent: TransitionComponent,
 
   classes,
   elementRef,
@@ -82,6 +90,25 @@ export default function DialogNext({
       dialogElement?.removeEventListener('close', handler);
     };
   }, [onClose, dialogRef]);
+
+  const dialogDescriptionId = useId();
+  useLayoutEffect(
+    /**
+     * Try to assign the dialog an accessible label, using the content of
+     * the first paragraph of text within it.
+     *
+     * A limitation of this approach is that it doesn't update if the dialog's
+     * content changes after the initial render.
+     */
+    () => {
+      const description = dialogRef?.current?.querySelector('p');
+      if (description) {
+        description.id = dialogDescriptionId;
+        dialogRef.current?.setAttribute('aria-labelledby', dialogDescriptionId);
+      }
+    },
+    [dialogDescriptionId, dialogRef],
+  );
 
   const closeableContext: CloseableInfo = {
     onClose: onClose ? closeDialog : undefined,
