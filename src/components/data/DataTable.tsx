@@ -25,7 +25,7 @@ export type TableColumn<Field> = {
 export type Order<Field> = {
   field: Field;
   direction: 'ascending' | 'descending';
-} | null;
+};
 
 type ComponentProps<Row> = {
   rows: Row[];
@@ -72,8 +72,8 @@ type ComponentProps<Row> = {
    * Callback invoked when user clicks a column header to change the sort order.
    * When a header is clicked, if that's not the active order, it is set with
    * order='ascending'.
-   * If the active header is clicked consecutively, direction rotates from
-   * 'ascending' to 'descending', and from 'descending' to no-active-order.
+   * If the active header is clicked consecutively, direction toggles between
+   * 'ascending' and 'descending'.
    */
   onOrderChange?: (order: Order<keyof Row>) => void;
 
@@ -100,14 +100,14 @@ function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
   return r[field] as ComponentChildren;
 }
 
-function calculateNewOrder<T>(newField: T, prevOrder: Order<T>): Order<T> {
+function calculateNewOrder<T>(newField: T, prevOrder?: Order<T>): Order<T> {
   if (newField !== prevOrder?.field) {
     return { field: newField, direction: 'ascending' };
   }
 
-  return prevOrder.direction === 'ascending'
-    ? { field: newField, direction: 'descending' }
-    : null;
+  const newDirection =
+    prevOrder.direction === 'ascending' ? 'descending' : 'ascending';
+  return { field: newField, direction: newDirection };
 }
 
 type HeaderComponentProps = {
@@ -151,7 +151,7 @@ export default function DataTable<Row>({
   onConfirmRow,
   emptyMessage,
 
-  order = null,
+  order,
   onOrderChange,
   orderableColumns = [],
 
@@ -288,9 +288,7 @@ export default function DataTable<Row>({
         onKeyDown={event => handleKeyDown(event, row)}
       >
         {fields.map(field => (
-          <TableCell key={field}>
-            {renderItem(row, field as keyof Row)}
-          </TableCell>
+          <TableCell key={field}>{renderItem(row, field)}</TableCell>
         ))}
       </TableRow>
     ));

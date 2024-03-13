@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'preact/hooks';
 
-import { DataTable, type DataTableProps, Scroll } from '../../../../';
+import { Button, DataTable, type DataTableProps, Scroll } from '../../../../';
 import type { Order } from '../../../../components/data/DataTable';
 import Library from '../../Library';
 import { nabokovNovels } from '../samples';
@@ -17,7 +17,7 @@ type SimpleNabokovNovel = Omit<NabokovNovel, 'translatedTitle'>;
 
 function useOrderedRows(
   rows: SimpleNabokovNovel[],
-  order: Order<keyof SimpleNabokovNovel>,
+  order?: Order<keyof SimpleNabokovNovel>,
 ) {
   return useMemo(() => {
     if (!order) {
@@ -44,17 +44,26 @@ function ClientOrderableDataTable({
   orderableColumns = nabokovColumns.map(({ field }) => field),
   ...rest
 }: Omit<DataTableProps<SimpleNabokovNovel>, 'order' | 'onOrderChange'>) {
-  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>(null);
+  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>();
   const orderedRows = useOrderedRows(rows, order);
 
   return (
-    <DataTable
-      {...rest}
-      rows={orderedRows}
-      order={order}
-      orderableColumns={orderableColumns}
-      onOrderChange={setOrder}
-    />
+    <>
+      <Button classes="mb-2" onClick={() => setOrder(undefined)}>
+        Reset order
+      </Button>
+      <div className="h-[250px]">
+        <Scroll>
+          <DataTable
+            {...rest}
+            rows={orderedRows}
+            order={order}
+            orderableColumns={orderableColumns}
+            onOrderChange={setOrder}
+          />
+        </Scroll>
+      </div>
+    </>
   );
 }
 
@@ -65,11 +74,11 @@ function AsyncOrderableDataTable({
   ...rest
 }: Omit<DataTableProps<SimpleNabokovNovel>, 'order' | 'onOrderChange'>) {
   const [loading, setLoading] = useState(false);
-  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>(null);
+  const [order, setOrder] = useState<Order<keyof SimpleNabokovNovel>>();
   const activeTimeout = useRef<number | null>(null);
 
   const changeOrder = useCallback(
-    (newOrder: Order<keyof SimpleNabokovNovel>) => {
+    (newOrder?: Order<keyof SimpleNabokovNovel>) => {
       if (activeTimeout.current) {
         // Abort current ordering, if any
         clearTimeout(activeTimeout.current);
@@ -88,14 +97,23 @@ function AsyncOrderableDataTable({
   const orderedRows = useOrderedRows(rows, order);
 
   return (
-    <DataTable
-      {...rest}
-      rows={orderedRows}
-      order={order}
-      orderableColumns={orderableColumns}
-      onOrderChange={changeOrder}
-      loading={loading}
-    />
+    <>
+      <Button classes="mb-2" onClick={() => changeOrder(undefined)}>
+        Reset order
+      </Button>
+      <div className="h-[250px]">
+        <Scroll>
+          <DataTable
+            {...rest}
+            rows={orderedRows}
+            order={order}
+            orderableColumns={orderableColumns}
+            onOrderChange={changeOrder}
+            loading={loading}
+          />
+        </Scroll>
+      </div>
+    </>
   );
 }
 
@@ -668,26 +686,22 @@ export default function DataTablePage() {
             </Library.Info>
 
             <Library.Demo title="DataTable with client-side ordering">
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <ClientOrderableDataTable
-                    title="Some of Nabokov's novels"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                  />
-                </Scroll>
+              <div className="w-full">
+                <ClientOrderableDataTable
+                  title="Some of Nabokov's novels"
+                  rows={nabokovRows}
+                  columns={nabokovColumns}
+                />
               </div>
             </Library.Demo>
 
             <Library.Demo title="DataTable with server-side ordering">
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <AsyncOrderableDataTable
-                    title="Some of Nabokov's novels"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                  />
-                </Scroll>
+              <div className="w-full">
+                <AsyncOrderableDataTable
+                  title="Some of Nabokov's novels"
+                  rows={nabokovRows}
+                  columns={nabokovColumns}
+                />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -708,15 +722,13 @@ export default function DataTablePage() {
             </Library.Info>
 
             <Library.Demo title="Partially orderable DataTable">
-              <div className="w-full h-[250px]">
-                <Scroll>
-                  <ClientOrderableDataTable
-                    title="Some of Nabokov's novels"
-                    rows={nabokovRows}
-                    columns={nabokovColumns}
-                    orderableColumns={['title', 'year']}
-                  />
-                </Scroll>
+              <div className="w-full">
+                <ClientOrderableDataTable
+                  title="Some of Nabokov's novels"
+                  rows={nabokovRows}
+                  columns={nabokovColumns}
+                  orderableColumns={['title', 'year']}
+                />
               </div>
             </Library.Demo>
           </Library.Example>

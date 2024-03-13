@@ -432,11 +432,11 @@ describe('DataTable', () => {
           direction: 'descending',
         },
       },
-      // Clicking the same column when initially descending, transitions to no order
+      // Clicking the same column when initially descending, transitions to ascending
       {
         initialOrder: { field: 'name', direction: 'descending' },
         clickedColumn: 'name',
-        expectedNewOrder: null,
+        expectedNewOrder: { field: 'name', direction: 'ascending' },
       },
       // Clicking another column sets direction as ascending
       {
