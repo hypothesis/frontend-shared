@@ -35,7 +35,7 @@
     "eslint-plugin-react-hooks": "^4.0.4",
     "express": "^4.17.1",
     "fancy-log": "^2.0.0",
-    "gulp": "^4.0.0",
+    "gulp": "^5.0.0",
     "karma": "^6.3.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
