@@ -34,7 +34,7 @@ export default function CardContent({
         {
           'p-3 space-y-4': size === 'md', // Default
           'p-2 space-y-3': size === 'sm',
-          'p-4 space-y-6': size === 'lg',
+          'p-6 space-y-6': size === 'lg',
         },
         classes,
       )}

@@ -93,7 +93,11 @@ export default function Panel({
       classes={heightConstraintClasses}
       elementRef={downcastRef(elementRef)}
     >
-      <CardHeader onClose={onClose} fullWidth={scrollable || fullWidthHeader}>
+      <CardHeader
+        onClose={onClose}
+        fullWidth={scrollable || fullWidthHeader}
+        size={paddingSize !== 'none' ? paddingSize : undefined}
+      >
         {Icon && <Icon className="w-em h-em" />}
         <CardTitle>{title}</CardTitle>
       </CardHeader>
@@ -111,7 +115,11 @@ export default function Panel({
         <>{panelContent}</>
       )}
       {buttons && (
-        <CardContent data-testid="panel-buttons">
+        <CardContent
+          data-testid="panel-buttons"
+          size={paddingSize !== 'none' ? paddingSize : undefined}
+          style={{ paddingBlockStart: 'unset' }}
+        >
           <CardActions>{buttons}</CardActions>
         </CardContent>
       )}

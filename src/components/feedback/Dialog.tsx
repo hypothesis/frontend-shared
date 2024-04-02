@@ -100,7 +100,7 @@ export default function Dialog({
   const {
     buttons,
     icon,
-    paddingSize = 'md',
+    paddingSize = 'lg',
     title = '',
     scrollable = true,
     ...htmlAttributes

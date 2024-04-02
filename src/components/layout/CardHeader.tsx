@@ -10,7 +10,7 @@ import CardTitle from './CardTitle';
 
 type ComponentProps = {
   title?: string;
-
+  size?: 'sm' | 'md' | 'lg';
   /**
    * Optional callback for close-button click. When present, a close button
    * will be rendered.
@@ -25,11 +25,9 @@ type ComponentProps = {
   variant?: 'primary' | 'secondary';
 };
 
-type HTMLAttributes = JSX.HTMLAttributes<HTMLElement>;
-
 export type CardHeaderProps = PresentationalProps &
   ComponentProps &
-  HTMLAttributes;
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>;
 
 /**
  * Render a header area in a Card with optional title and/or close button
@@ -38,7 +36,7 @@ export default function CardHeader({
   children,
   classes,
   elementRef,
-
+  size,
   fullWidth = false,
   onClose,
   title,
@@ -60,7 +58,8 @@ export default function CardHeader({
           'bg-slate-0 border-slate-5 rounded-t-[inherit]':
             variant === 'secondary',
           'mx-3': !fullWidth && variant === 'primary',
-          'px-3': fullWidth || variant === 'secondary',
+          'px-3': fullWidth || (variant === 'secondary' && !size),
+          'px-6': fullWidth && size === 'lg',
         },
         classes,
       )}
