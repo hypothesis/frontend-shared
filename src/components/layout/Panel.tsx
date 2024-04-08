@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { ComponentChildren, JSX } from 'preact';
 
-import type { IconComponent, CompositeProps } from '../../types';
+import type { IconComponent, CompositeProps, Size } from '../../types';
 import { downcastRef } from '../../util/typing';
 import Scroll from '../data/Scroll';
 import Card from './Card';
@@ -9,6 +9,8 @@ import CardActions from './CardActions';
 import CardContent from './CardContent';
 import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
+
+export type PanelSize = Size | 'none';
 
 type ComponentProps = {
   /** Buttons are rendered at the bottom right of the Panel. */
@@ -24,7 +26,7 @@ type ComponentProps = {
    * `CardContent`. This allows content to span the full width and height of
    * the Panel's content area without any inset/padding.
    */
-  paddingSize?: 'sm' | 'md' | 'lg' | 'none';
+  paddingSize?: PanelSize;
 
   /** Optional icon to render in the header */
   icon?: IconComponent;
@@ -74,6 +76,11 @@ export default function Panel({
   // parent elements. This allows for control over scrolling content,
   // specifically.
   const heightConstraintClasses = 'flex flex-col min-h-0 h-full';
+  // To better correlate the relationship between `paddingSize` and `size`
+  // within the `Card` parts, we map all values except "none" to this prop,
+  // which now matches the context of the card sizes themselves.
+  const cardSize: undefined | Size =
+    paddingSize !== 'none' ? (paddingSize as Size) : undefined;
   const panelContent =
     paddingSize === 'none' ? (
       children
@@ -81,7 +88,7 @@ export default function Panel({
       <CardContent
         classes={heightConstraintClasses}
         data-testid="panel-content-wrapper"
-        size={paddingSize}
+        size={cardSize}
       >
         {children}
       </CardContent>
@@ -96,7 +103,7 @@ export default function Panel({
       <CardHeader
         onClose={onClose}
         fullWidth={scrollable || fullWidthHeader}
-        size={paddingSize !== 'none' ? paddingSize : undefined}
+        classes={cardSize === 'lg' ? 'px-6' : undefined}
       >
         {Icon && <Icon className="w-em h-em" />}
         <CardTitle>{title}</CardTitle>
@@ -117,7 +124,7 @@ export default function Panel({
       {buttons && (
         <CardContent
           data-testid="panel-buttons"
-          size={paddingSize !== 'none' ? paddingSize : undefined}
+          size={cardSize}
           style={{ paddingBlockStart: 'unset' }}
         >
           <CardActions>{buttons}</CardActions>

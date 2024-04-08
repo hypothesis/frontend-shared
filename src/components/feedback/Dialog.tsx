@@ -15,12 +15,17 @@ import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import type { PresentationalProps, TransitionComponent } from '../../types';
+import type {
+  PresentationalProps,
+  Size,
+  TransitionComponent,
+} from '../../types';
 import { downcastRef } from '../../util/typing';
 import CloseableContext from '../CloseableContext';
 import type { CloseableInfo } from '../CloseableContext';
 import Panel from '../layout/Panel';
 import type { PanelProps } from '../layout/Panel';
+import type { ModalSize } from './ModalDialog';
 
 type ComponentProps = {
   closeOnClickAway?: boolean;
@@ -100,7 +105,7 @@ export default function Dialog({
   const {
     buttons,
     icon,
-    paddingSize = 'lg',
+    paddingSize = 'md',
     title = '',
     scrollable = true,
     ...htmlAttributes
@@ -234,6 +239,14 @@ export default function Dialog({
     title: closeTitle,
   };
 
+  const modalSize: ModalSize = (htmlAttributes as any)[
+    'data-modal-size'
+  ] as ModalSize;
+  const modalSizeScoped: undefined | Size =
+    modalSize === 'sm' || modalSize === 'md' || modalSize === 'lg'
+      ? modalSize
+      : undefined;
+
   return (
     <CloseableContext.Provider value={closeableContext}>
       <Wrapper
@@ -258,7 +271,7 @@ export default function Dialog({
               buttons={buttons}
               fullWidthHeader={true}
               icon={icon}
-              paddingSize={paddingSize}
+              paddingSize={modalSizeScoped || paddingSize}
               title={title}
               scrollable={scrollable}
             >

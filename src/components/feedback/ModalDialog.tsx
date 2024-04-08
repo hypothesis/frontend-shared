@@ -2,12 +2,13 @@ import classnames from 'classnames';
 
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { useTabKeyNavigation } from '../../hooks/use-tab-key-navigation';
+import type { Size } from '../../types';
 import { downcastRef } from '../../util/typing';
 import Overlay from '../layout/Overlay';
 import Dialog from './Dialog';
 import type { CustomDialogProps, PanelDialogProps } from './Dialog';
 
-type ModalSize = 'sm' | 'md' | 'lg' | 'custom';
+export type ModalSize = Size | 'custom' | 'none';
 
 type ComponentProps = {
   /**

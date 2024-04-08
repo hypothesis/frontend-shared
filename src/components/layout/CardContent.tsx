@@ -1,12 +1,11 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
 
-import type { PresentationalProps } from '../../types';
+import type { PresentationalProps, Size } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 type ComponentProps = {
-  /** relative internal spacing */
-  size?: 'sm' | 'md' | 'lg';
+  size?: Size;
 };
 
 export type CardContentProps = PresentationalProps &

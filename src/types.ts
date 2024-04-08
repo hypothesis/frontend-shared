@@ -34,3 +34,5 @@ export type TransitionComponent = FunctionComponent<{
   direction?: 'in' | 'out';
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 }>;
+
+export type Size = 'sm' | 'md' | 'lg';
