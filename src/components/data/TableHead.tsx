@@ -37,6 +37,9 @@ export default function TableHead({
         {...htmlAttributes}
         ref={downcastRef(elementRef)}
         className={classnames(
+          // This ensures the header is drawn on top of positioned content
+          // in table cells.
+          'z-1',
           'bg-grey-2',
           {
             'sticky top-0': tableContext?.stickyHeader,
