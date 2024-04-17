@@ -34,3 +34,8 @@ export type TransitionComponent = FunctionComponent<{
   direction?: 'in' | 'out';
   onTransitionEnd?: (direction: 'in' | 'out') => void;
 }>;
+
+export type Order<Field extends string | number | symbol> = {
+  field: Field;
+  direction: 'ascending' | 'descending';
+};

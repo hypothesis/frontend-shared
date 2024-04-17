@@ -1,7 +1,8 @@
-import { useCallback, useMemo, useRef, useState } from 'preact/hooks';
+import { useCallback, useRef, useState } from 'preact/hooks';
 
-import { Button, DataTable, type DataTableProps, Scroll } from '../../../../';
-import type { Order } from '../../../../components/data/DataTable';
+import { Button, DataTable, Scroll } from '../../../../';
+import type { DataTableProps, Order } from '../../../../';
+import { useOrderedRows } from '../../../../hooks/use-ordered-rows';
 import Library from '../../Library';
 import { nabokovNovels } from '../samples';
 import type { NabokovNovel } from '../samples';
@@ -14,29 +15,6 @@ const nabokovColumns = [
 ];
 
 type SimpleNabokovNovel = Omit<NabokovNovel, 'translatedTitle'>;
-
-function useOrderedRows(
-  rows: SimpleNabokovNovel[],
-  order?: Order<keyof SimpleNabokovNovel>,
-) {
-  return useMemo(() => {
-    if (!order) {
-      return rows;
-    }
-
-    return [...rows].sort((a, b) => {
-      if (a[order.field] === b[order.field]) {
-        return 0;
-      }
-
-      if (order.direction === 'ascending') {
-        return a[order.field] > b[order.field] ? 1 : -1;
-      }
-
-      return a[order.field] > b[order.field] ? -1 : 1;
-    });
-  }, [order, rows]);
-}
 
 function ClientOrderableDataTable({
   rows,
