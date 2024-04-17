@@ -4,7 +4,7 @@ import { useCallback, useContext, useEffect, useMemo } from 'preact/hooks';
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useStableCallback } from '../../hooks/use-stable-callback';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import type { CompositeProps } from '../../types';
+import type { CompositeProps, Order } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { ArrowDownIcon, ArrowUpIcon, SpinnerSpokesIcon } from '../icons';
 import { Button } from '../input';
@@ -20,11 +20,6 @@ export type TableColumn<Field> = {
   field: Field;
   label: string;
   classes?: string;
-};
-
-export type Order<Field> = {
-  field: Field;
-  direction: 'ascending' | 'descending';
 };
 
 type ComponentProps<Row> = {
@@ -100,7 +95,10 @@ function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
   return r[field] as ComponentChildren;
 }
 
-function calculateNewOrder<T>(newField: T, prevOrder?: Order<T>): Order<T> {
+function calculateNewOrder<T extends string | number | symbol>(
+  newField: T,
+  prevOrder?: Order<T>,
+): Order<T> {
   if (newField !== prevOrder?.field) {
     return { field: newField, direction: 'ascending' };
   }
