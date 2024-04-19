@@ -211,6 +211,20 @@ export default function DataTablePage() {
 ];`}
             />
           </Library.Example>
+          <Library.Example title="Grid DataTables with scroll">
+            <Library.Demo title="Grid DataTables with scroll" withSource>
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="A subset of Nabokov's novels with publish date and original language"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    grid
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="Interactive DataTables">
             <p>
               The presence of a <code>onSelectRow</code>,{' '}
@@ -296,12 +310,12 @@ export default function DataTablePage() {
             <code>DataTable</code> accepts all standard{' '}
             <Library.Link href="/using-components#composite-components-api">
               composite component props
+            </Library.Link>{' '}
+            and some{' '}
+            <Library.Link href="/data-table#table-props">
+              <code>Table</code> presentational props
             </Library.Link>
             .
-          </p>
-          <p>
-            <code>rows</code>, <code>columns</code> and <code>title</code> are
-            required.
           </p>
           <Library.Example title="columns">
             <Library.Info>
@@ -709,18 +723,6 @@ export default function DataTablePage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-
-          <Library.Example title="borderless">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                See{' '}
-                <Library.Link href="/data-table#table-props-borderless">
-                  borderless Table
-                </Library.Link>
-                .
-              </Library.InfoItem>
-            </Library.Info>
           </Library.Example>
 
           <Library.Example title="...htmlAttributes">
