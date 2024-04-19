@@ -334,6 +334,70 @@ export default function TablePage() {
               </Table>
             </Library.Demo>
           </Library.Example>
+          <Library.Example id="table-props-borderless" title="variant">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Overall aspect of the table. When set to{' '}
+                <code>
+                  {"'"}striped{"'"}
+                </code>
+                , the table has not cell borders, and every odd row has a
+                slightly darker background color. When set to{' '}
+                <code>
+                  {"'"}grid{"'"}
+                </code>
+                , cell borders are rendered and all rows have no background.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  {"'"}striped{"'"} | {"'"}grid{"'"}
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>
+                  {"'"}striped{"'"}
+                </code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="Table with grid variant" withSource>
+              <Table title="Some sushi rolls" variant="grid">
+                <TableHead>
+                  <TableRow>
+                    <TableCell classes="w-[180px]">Sushi roll name</TableCell>
+                    <TableCell>Definition</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow onClick={() => alert('Yum, Alaska roll!')}>
+                    <TableCell>Alaskan roll</TableCell>
+                    <TableCell>
+                      A variant of the California roll with smoked salmon on the
+                      inside, or layered on the outside.
+                    </TableCell>
+                  </TableRow>
+                  <TableRow onClick={() => alert('This is a new one!')}>
+                    <TableCell>Boston roll</TableCell>
+                    <TableCell>
+                      An uramaki California roll with poached shrimp instead of
+                      imitation crab.
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    onClick={() => alert('I call this a salmon-skin roll')}
+                  >
+                    <TableCell>British Columbia roll</TableCell>
+                    <TableCell>
+                      A roll containing grilled or barbecued salmon skin,
+                      cucumber, sweet sauce, sometimes with roe. Also sometimes
+                      referred to as salmon skin rolls outside of British
+                      Columbia, Canada.
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Library.Demo>
+          </Library.Example>
           <Library.Example title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">

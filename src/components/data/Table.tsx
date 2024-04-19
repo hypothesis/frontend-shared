@@ -6,17 +6,14 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import TableContext from './TableContext';
+import type { CommonTableInfo } from './TableContext';
 import type { TableInfo } from './TableContext';
 
-export type TableProps = PresentationalProps & {
-  stickyHeader?: boolean;
-  /** Sets accessible aria-label */
-  title: string;
-  /** This table has rows that can be selected */
-  interactive?: boolean;
-  /** Turn off outer table borders */
-  borderless?: boolean;
-} & Omit<JSX.HTMLAttributes<HTMLElement>, 'rows'>;
+export type TableProps = PresentationalProps &
+  CommonTableInfo & {
+    /** Sets accessible aria-label */
+    title: string;
+  } & Omit<JSX.HTMLAttributes<HTMLElement>, 'rows'>;
 
 /**
  * Render table content
@@ -30,6 +27,7 @@ export default function Table({
   interactive = false,
   stickyHeader = false,
   borderless = false,
+  variant = 'striped',
 
   ...htmlAttributes
 }: TableProps) {
@@ -40,9 +38,10 @@ export default function Table({
       interactive,
       stickyHeader,
       borderless,
+      variant,
       tableRef: ref,
     }),
-    [borderless, interactive, stickyHeader, ref],
+    [borderless, interactive, stickyHeader, variant, ref],
   );
 
   return (
@@ -57,14 +56,18 @@ export default function Table({
           // Set the width of columns based on the width of the columns in the
           // first table row (typically headers)
           'table-fixed',
-          // `border-separate` is required to handle borders on sticky headers.
-          // A side effect is that borders need to be set primarily on table
-          // cells, not rows
-          'border-separate border-spacing-0',
-          // No top border is set here: that border is set by `TableCell`.
-          // If it is set here, there will be a 1-pixel wiggle in the sticky
-          // header on scroll
-          { 'border-x border-b': !borderless },
+          'border-spacing-0',
+          {
+            // No top border is set here: that border is set by `TableCell`.
+            // If it is set here, there will be a 1-pixel wiggle in the sticky
+            // header on scroll
+            'border-x border-b': !borderless,
+            // `border-separate` is required to handle borders on sticky headers.
+            // A side effect is that borders need to be set primarily on table
+            // cells, not rows
+            'border-separate': variant === 'striped',
+            'border-collapse': variant === 'grid',
+          },
           classes,
         )}
         ref={downcastRef(ref)}
