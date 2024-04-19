@@ -9,13 +9,18 @@ import TableContext from './TableContext';
 import type { TableInfo } from './TableContext';
 
 export type TableProps = PresentationalProps & {
+  /** This table has a sticky header */
   stickyHeader?: boolean;
   /** Sets accessible aria-label */
   title: string;
-  /** This table has rows that can be selected */
+  /** This table has click-able, focus-able rows */
   interactive?: boolean;
   /** Turn off outer table borders */
   borderless?: boolean;
+  /** Show a different background every other row */
+  striped?: boolean;
+  /** Show grid lines around table cells */
+  grid?: boolean;
 } & Omit<JSX.HTMLAttributes<HTMLElement>, 'rows'>;
 
 /**
@@ -30,6 +35,8 @@ export default function Table({
   interactive = false,
   stickyHeader = false,
   borderless = false,
+  striped = true,
+  grid = false,
 
   ...htmlAttributes
 }: TableProps) {
@@ -40,9 +47,11 @@ export default function Table({
       interactive,
       stickyHeader,
       borderless,
+      striped,
+      grid,
       tableRef: ref,
     }),
-    [borderless, interactive, stickyHeader, ref],
+    [interactive, stickyHeader, borderless, striped, grid, ref],
   );
 
   return (

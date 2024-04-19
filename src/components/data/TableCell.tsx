@@ -25,7 +25,7 @@ export default function TableCell({
   ...htmlAttributes
 }: TableCellProps) {
   const sectionContext = useContext(TableSectionContext);
-  const { borderless } = useContext(TableContext);
+  const { borderless, grid } = useContext(TableContext);
   const isHeadCell = sectionContext && sectionContext.section === 'head';
   const Cell = isHeadCell ? 'th' : 'td';
 
@@ -42,18 +42,25 @@ export default function TableCell({
           // on scroll with sticky headers.
           'text-left border-b border-b-grey-5': isHeadCell,
           'border-t': isHeadCell && !borderless,
-          'border-none': !isHeadCell,
+          'border-none': !grid && !isHeadCell,
           // Apply a very subtle bottom border to the last row in the table (not
           // in the head). This can help delineate the end of data in tables
           // with sparse row data. Only apply border if row is not selected.
           // This uses Tailwind's nested-group syntax. See
           // https://tailwindcss.com/docs/hover-focus-and-other-states#differentiating-nested-groups
           'group-last/unselected:border-b group-last/unselected:border-grey-2 group-last/unselected:border-dotted':
-            !isHeadCell,
+            !grid && !isHeadCell,
+          // We would typically set `border` in cells together with
+          // `border-collapse` in the parent table. However, that doesn't work
+          // for sticky headers, so we mimic the behavior by conditionally
+          // setting individual cell borders.
+          'group-[:not(:last-child)]:border-b': grid,
         },
         classes,
       )}
       scope={isHeadCell ? 'col' : undefined}
+      data-grid={grid}
+      data-borderless={borderless}
     >
       {children}
     </Cell>

@@ -2,20 +2,24 @@ import { mount } from 'enzyme';
 
 import { testPresentationalComponent } from '../../test/common-tests';
 import TableCell from '../TableCell';
+import TableContext from '../TableContext';
 import TableSectionContext from '../TableSectionContext';
 
 describe('TableCell', () => {
+  let tableContextValue;
   let contextValue;
 
-  const createComponent = (Component, props = {}) => {
+  const createComponent = (props = {}) => {
     return mount(
-      <table>
-        <TableSectionContext.Provider value={contextValue}>
-          <tr>
-            <Component {...props} />
-          </tr>
-        </TableSectionContext.Provider>
-      </table>,
+      <TableContext.Provider value={tableContextValue}>
+        <table>
+          <TableSectionContext.Provider value={contextValue}>
+            <tr>
+              <TableCell {...props}>{props.children ?? 'Content'}</TableCell>
+            </tr>
+          </TableSectionContext.Provider>
+        </table>
+      </TableContext.Provider>,
     );
   };
 
@@ -32,6 +36,7 @@ describe('TableCell', () => {
   };
 
   beforeEach(() => {
+    tableContextValue = {};
     contextValue = {};
   });
 
@@ -40,18 +45,38 @@ describe('TableCell', () => {
     elementSelector: '[data-component="TableCell"]',
   });
 
+  [true, false].forEach(flag => {
+    it('is set as grid', () => {
+      tableContextValue.grid = flag;
+      const wrapper = createComponent();
+      assert.equal(
+        wrapper.find('[data-component="TableCell"]').prop('data-grid'),
+        flag,
+      );
+    });
+
+    it('is set as borderless', () => {
+      tableContextValue.borderless = flag;
+      const wrapper = createComponent();
+      assert.equal(
+        wrapper.find('[data-component="TableCell"]').prop('data-borderless'),
+        flag,
+      );
+    });
+  });
+
   context('when in a table header', () => {
     beforeEach(() => {
       contextValue = { section: 'head' };
     });
 
     it('renders as a TH element', () => {
-      const wrapper = createComponent(TableCell, { children: 'Content' });
+      const wrapper = createComponent();
       assert.isTrue(wrapper.find('th').exists());
     });
 
     it('adds column scope to the TH', () => {
-      const wrapper = createComponent(TableCell, { children: 'Content' });
+      const wrapper = createComponent();
       assert.equal(wrapper.find('th').prop('scope'), 'col');
     });
   });
@@ -62,7 +87,7 @@ describe('TableCell', () => {
     });
 
     it('renders as a TD element', () => {
-      const wrapper = createComponent(TableCell, { children: 'Content' });
+      const wrapper = createComponent();
       assert.isTrue(wrapper.find('td').exists());
     });
   });

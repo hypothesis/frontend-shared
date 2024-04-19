@@ -10,6 +10,7 @@ import { ArrowDownIcon, ArrowUpIcon, SpinnerSpokesIcon } from '../icons';
 import { Button } from '../input';
 import ScrollContext from './ScrollContext';
 import Table from './Table';
+import type { TableProps } from './Table';
 import TableBody from './TableBody';
 import TableCell from './TableCell';
 import TableFoot from './TableFoot';
@@ -22,7 +23,10 @@ export type TableColumn<Field> = {
   classes?: string;
 };
 
-type ComponentProps<Row> = {
+type ComponentProps<Row> = Pick<
+  TableProps,
+  'borderless' | 'title' | 'striped' | 'grid'
+> & {
   rows: Row[];
   columns: TableColumn<keyof Row>[];
 
@@ -81,10 +85,6 @@ type ComponentProps<Row> = {
 
   /** Callback to render an individual table cell */
   renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
-  title: string;
-
-  /** Turn off outer table borders */
-  borderless?: boolean;
 };
 
 export type DataTableProps<Row> = CompositeProps &
@@ -139,7 +139,6 @@ export default function DataTable<Row>({
 
   columns = [],
   rows = [],
-  title,
   selectedRow,
   selectedRows,
   loading = false,
@@ -154,7 +153,10 @@ export default function DataTable<Row>({
   orderableColumns = [],
 
   // Forwarded to Table
+  title,
   borderless,
+  striped,
+  grid,
 
   ...htmlAttributes
 }: DataTableProps<Row>) {
@@ -307,11 +309,13 @@ export default function DataTable<Row>({
       data-composite-component="DataTable"
       role="grid"
       {...htmlAttributes}
-      title={title}
       elementRef={downcastRef(tableRef)}
       interactive={interactive}
       stickyHeader
+      title={title}
       borderless={borderless}
+      striped={striped}
+      grid={grid}
     >
       <TableHead>
         <TableRow>

@@ -9,14 +9,14 @@ describe('TableRow', () => {
   let tableContextValue;
   let sectionContextValue;
 
-  const createComponent = (Component, props = {}) => {
+  const createComponent = (props = {}) => {
     return mount(
       <TableContext.Provider value={tableContextValue}>
         <table>
           <TableSectionContext.Provider value={sectionContextValue}>
-            <Component {...props}>
+            <TableRow {...props}>
               <td>Cell content</td>
-            </Component>
+            </TableRow>
           </TableSectionContext.Provider>
         </table>
       </TableContext.Provider>,
@@ -46,8 +46,8 @@ describe('TableRow', () => {
   });
 
   it('sets aria-selected when selected', () => {
-    const selectedWrapper = createComponent(TableRow, { selected: true });
-    const unselectedWrapper = createComponent(TableRow, { selected: false });
+    const selectedWrapper = createComponent({ selected: true });
+    const unselectedWrapper = createComponent({ selected: false });
 
     assert.isTrue(
       selectedWrapper.find('[data-component="TableRow"]').prop('aria-selected'),
@@ -59,13 +59,33 @@ describe('TableRow', () => {
     );
   });
 
+  [true, false].forEach(flag => {
+    it('is set as striped', () => {
+      tableContextValue.striped = flag;
+      const wrapper = createComponent();
+      assert.equal(
+        wrapper.find('[data-component="TableRow"]').prop('data-striped'),
+        flag,
+      );
+    });
+
+    it('is set as grid', () => {
+      tableContextValue.grid = flag;
+      const wrapper = createComponent();
+      assert.equal(
+        wrapper.find('[data-component="TableRow"]').prop('data-grid'),
+        flag,
+      );
+    });
+  });
+
   context('when in a table header', () => {
     beforeEach(() => {
       sectionContextValue = { section: 'head' };
     });
 
     it('renders in a head context', () => {
-      const wrapper = createComponent(TableRow);
+      const wrapper = createComponent();
       assert.equal(
         wrapper.find('[data-component="TableRow"]').prop('data-section'),
         'head',
@@ -79,7 +99,7 @@ describe('TableRow', () => {
     });
 
     it('renders in a head context', () => {
-      const wrapper = createComponent(TableRow);
+      const wrapper = createComponent();
       assert.equal(
         wrapper.find('[data-component="TableRow"]').prop('data-section'),
         'body',

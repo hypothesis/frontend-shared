@@ -8,6 +8,10 @@ export type TableInfo = {
   stickyHeader: boolean;
   /** Turn off outer table borders */
   borderless: boolean;
+  /** Show a different background every other row */
+  striped: boolean;
+  /** Show grid lines around table cells */
+  grid: boolean;
   tableRef: RefObject<HTMLElement | undefined>;
 };
 
