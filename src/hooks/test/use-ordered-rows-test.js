@@ -3,10 +3,14 @@ import { useState } from 'preact/hooks';
 
 import { useOrderedRows } from '../use-ordered-rows';
 
+// Some start with lowercase to test case-insensitive ordering
 const starWarsCharacters = [
   { name: 'Luke Skywalker', age: 20 },
-  { name: 'Princess Leia Organa', age: 20 },
+  { name: 'leia Organa', age: 20 },
   { name: 'Han Solo', age: 25 },
+  { name: 'Baby Yoda', age: 2 },
+  { name: 'baby yöda The Second', age: 2 },
+  { name: 'young Anakin Skywalker', age: 10 },
 ];
 
 describe('useOrderedRows', () => {
@@ -81,24 +85,33 @@ describe('useOrderedRows', () => {
     {
       orderId: 'button-order-by-name-asc',
       expectedRows: [
+        { name: 'Baby Yoda', age: 2 },
+        { name: 'baby yöda The Second', age: 2 },
         { name: 'Han Solo', age: 25 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'young Anakin Skywalker', age: 10 },
       ],
     },
     {
       orderId: 'button-order-by-name-desc',
       expectedRows: [
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'young Anakin Skywalker', age: 10 },
         { name: 'Luke Skywalker', age: 20 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Han Solo', age: 25 },
+        { name: 'baby yöda The Second', age: 2 },
+        { name: 'Baby Yoda', age: 2 },
       ],
     },
     {
       orderId: 'button-order-by-age-asc',
       expectedRows: [
+        { name: 'Baby Yoda', age: 2 },
+        { name: 'baby yöda The Second', age: 2 },
+        { name: 'young Anakin Skywalker', age: 10 },
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Han Solo', age: 25 },
       ],
     },
@@ -107,7 +120,10 @@ describe('useOrderedRows', () => {
       expectedRows: [
         { name: 'Han Solo', age: 25 },
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'leia Organa', age: 20 },
+        { name: 'young Anakin Skywalker', age: 10 },
+        { name: 'Baby Yoda', age: 2 },
+        { name: 'baby yöda The Second', age: 2 },
       ],
     },
   ].forEach(({ orderId, expectedRows }) => {
