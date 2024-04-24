@@ -12,6 +12,30 @@ export type PresentationalProps = {
 };
 
 /**
+ * Common props for form controls.
+ */
+export type FormControlProps = {
+  /**
+   * The current validation error.
+   *
+   * If set, this will override `feedback` and set it to `error`. The validation
+   * error will be synced to the browser's native validation state via
+   * {@link HTMLInputElement.setCustomValidity}. This will prevent submission
+   * of the containing form.
+   */
+  error?: string;
+
+  /**
+   * Set the visual and semantic state (`aria-invalid`) of the control to
+   * indicate an error.
+   *
+   * Unlike {@link FormControlProps.error} this does not set a native validation
+   * error and as such, it won't prevent a containing form from being submitted.
+   */
+  feedback?: 'error' | 'warning';
+};
+
+/**
  * Props common to components that are opinionated compositions of other
  * components.
  */
