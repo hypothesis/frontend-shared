@@ -5,14 +5,15 @@ import { useOrderedRows } from '../use-ordered-rows';
 
 const starWarsCharacters = [
   { name: 'Luke Skywalker', age: 20 },
-  { name: 'Princess Leia Organa', age: 20 },
+  // Lowercased on purpose to test case-sensitivity capabilities
+  { name: 'leia Organa', age: 20 },
   { name: 'Han Solo', age: 25 },
 ];
 
 describe('useOrderedRows', () => {
-  function FakeComponent() {
+  function FakeComponent({ options }) {
     const [order, setOrder] = useState();
-    const orderedRows = useOrderedRows(starWarsCharacters, order);
+    const orderedRows = useOrderedRows(starWarsCharacters, order, options);
 
     return (
       <div>
@@ -56,8 +57,8 @@ describe('useOrderedRows', () => {
     );
   }
 
-  function createComponent() {
-    return mount(<FakeComponent />);
+  function createComponent(options) {
+    return mount(<FakeComponent options={options} />);
   }
 
   function assertDefaultOrder(wrapper) {
@@ -82,15 +83,24 @@ describe('useOrderedRows', () => {
       orderId: 'button-order-by-name-asc',
       expectedRows: [
         { name: 'Han Solo', age: 25 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+      ],
+    },
+    {
+      orderId: 'button-order-by-name-asc',
+      options: { caseSensitive: true },
+      expectedRows: [
+        { name: 'Han Solo', age: 25 },
+        { name: 'Luke Skywalker', age: 20 },
+        { name: 'leia Organa', age: 20 },
       ],
     },
     {
       orderId: 'button-order-by-name-desc',
       expectedRows: [
-        { name: 'Princess Leia Organa', age: 20 },
         { name: 'Luke Skywalker', age: 20 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Han Solo', age: 25 },
       ],
     },
@@ -98,7 +108,7 @@ describe('useOrderedRows', () => {
       orderId: 'button-order-by-age-asc',
       expectedRows: [
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'leia Organa', age: 20 },
         { name: 'Han Solo', age: 25 },
       ],
     },
@@ -107,12 +117,12 @@ describe('useOrderedRows', () => {
       expectedRows: [
         { name: 'Han Solo', age: 25 },
         { name: 'Luke Skywalker', age: 20 },
-        { name: 'Princess Leia Organa', age: 20 },
+        { name: 'leia Organa', age: 20 },
       ],
     },
-  ].forEach(({ orderId, expectedRows }) => {
+  ].forEach(({ orderId, options, expectedRows }) => {
     it('orders rows based on field and direction', () => {
-      const wrapper = createComponent();
+      const wrapper = createComponent(options);
 
       // Rows are initially not ordered
       assertDefaultOrder(wrapper);
