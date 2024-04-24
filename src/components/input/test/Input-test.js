@@ -24,6 +24,26 @@ describe('Input', () => {
   });
 
   [
+    {
+      error: undefined,
+      validationMessage: '',
+      invalid: false,
+    },
+    {
+      error: 'Not a valid URL',
+      validationMessage: 'Not a valid URL',
+      invalid: true,
+    },
+  ].forEach(({ error, validationMessage, invalid }) => {
+    it('should set custom validation error if `error` prop is provided', () => {
+      const wrapper = mount(<Input aria-label="Test" error={error} />);
+      const input = wrapper.find('input');
+      assert.equal(input.getDOMNode().validationMessage, validationMessage);
+      assert.equal(input.prop('aria-invalid'), invalid);
+    });
+  });
+
+  [
     { feedback: undefined, expectedInvalid: false },
     { feedback: 'error', expectedInvalid: true },
     { feedback: 'warning', expectedInvalid: false },

@@ -1,7 +1,9 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
 
-import type { PresentationalProps } from '../../types';
+import { useSyncedRef } from '../../hooks/use-synced-ref';
+import { useValidationError } from '../../hooks/use-validation-error';
+import type { FormControlProps, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { inputGroupStyles } from './InputGroup';
 
@@ -26,9 +28,8 @@ export function inputStyles({ classes, feedback }: InputStylesOptions) {
   );
 }
 
-type ComponentProps = {
+type ComponentProps = FormControlProps & {
   type?: 'text' | 'email' | 'search' | 'number' | 'password' | 'url';
-  feedback?: 'error' | 'warning';
 };
 
 export type InputProps = PresentationalProps &
@@ -42,6 +43,7 @@ export default function Input({
   elementRef,
   type = 'text',
   classes,
+  error,
   feedback,
 
   ...htmlAttributes
@@ -52,11 +54,21 @@ export default function Input({
     );
   }
 
+  const inputRef = downcastRef<HTMLElement | undefined, HTMLInputElement>(
+    elementRef,
+  );
+  const ref = useSyncedRef<HTMLInputElement>(inputRef);
+
+  if (error) {
+    feedback = 'error';
+  }
+  useValidationError(ref, error);
+
   return (
     <input
       data-component="Input"
       {...htmlAttributes}
-      ref={downcastRef(elementRef)}
+      ref={ref}
       type={type}
       className={inputStyles({ classes, feedback })}
       aria-invalid={feedback === 'error'}
