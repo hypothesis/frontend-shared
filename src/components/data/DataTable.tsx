@@ -118,7 +118,7 @@ function HeaderComponent({ children, onClick, field }: HeaderComponentProps) {
   const commonClasses = 'flex justify-between items-center';
   return onClick ? (
     <Button
-      classes={`${commonClasses} w-full !p-3`}
+      classes={`${commonClasses} w-full h-full !p-3`}
       variant="custom"
       onClick={onClick}
       data-testid={`${field}-order-button`}
