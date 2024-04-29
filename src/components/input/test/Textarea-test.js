@@ -24,6 +24,26 @@ describe('Textarea', () => {
   });
 
   [
+    {
+      error: undefined,
+      validationMessage: '',
+      invalid: false,
+    },
+    {
+      error: 'Not a valid URL',
+      validationMessage: 'Not a valid URL',
+      invalid: true,
+    },
+  ].forEach(({ error, validationMessage, invalid }) => {
+    it('should set custom validation error if `error` prop is provided', () => {
+      const wrapper = mount(<Textarea aria-label="Test" error={error} />);
+      const textarea = wrapper.find('textarea');
+      assert.equal(textarea.getDOMNode().validationMessage, validationMessage);
+      assert.equal(textarea.prop('aria-invalid'), invalid);
+    });
+  });
+
+  [
     { feedback: undefined, expectedInvalid: false },
     { feedback: 'error', expectedInvalid: true },
     { feedback: 'warning', expectedInvalid: false },

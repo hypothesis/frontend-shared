@@ -1,15 +1,13 @@
 import type { JSX } from 'preact';
 
-import type { PresentationalProps } from '../../types';
+import { useSyncedRef } from '../../hooks/use-synced-ref';
+import { useValidationError } from '../../hooks/use-validation-error';
+import type { FormControlProps, PresentationalProps } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { inputStyles } from './Input';
 
-type ComponentProps = {
-  feedback?: 'error' | 'warning';
-};
-
 export type TextareaProps = PresentationalProps &
-  ComponentProps &
+  FormControlProps &
   JSX.HTMLAttributes<HTMLTextAreaElement>;
 
 /**
@@ -17,6 +15,7 @@ export type TextareaProps = PresentationalProps &
  */
 export default function Textarea({
   elementRef,
+  error,
   feedback,
   classes,
 
@@ -28,11 +27,20 @@ export default function Textarea({
     );
   }
 
+  const textAreaRef = downcastRef<HTMLElement | undefined, HTMLTextAreaElement>(
+    elementRef,
+  );
+  const ref = useSyncedRef<HTMLTextAreaElement>(textAreaRef);
+  if (error) {
+    feedback = 'error';
+  }
+  useValidationError(ref, error);
+
   return (
     <textarea
       data-component="Textarea"
       {...htmlAttributes}
-      ref={downcastRef(elementRef)}
+      ref={ref}
       className={inputStyles({ classes, feedback })}
       aria-invalid={feedback === 'error'}
     />

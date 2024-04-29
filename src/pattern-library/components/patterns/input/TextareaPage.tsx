@@ -29,7 +29,7 @@ export default function TextareaPage() {
         </Library.Pattern>
 
         <Library.Pattern title="Working with Textareas">
-          <Library.Example title="Accessibility">
+          <Library.Example title="Labels">
             <p>
               Hypothesis does not currently have a design pattern for labeling
               textareas. However, for accessibility, it is critical that a{' '}
@@ -64,6 +64,26 @@ export default function TextareaPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="Validation errors">
+            <p>
+              Validation errors can be triggered as a result of standard HTML
+              attributes such as <code>required</code> or a custom error set
+              using the <code>error</code> prop. Errors set using{' '}
+              <code>error</code> are synced to the browser via{' '}
+              <code>HTMLTextAreaElement.setCustomValidity</code>. This allows
+              the browser to alert the user when they try to submit the
+              containing form.
+            </p>
+            <p>
+              If the text area has custom validation checks, they should be
+              performed in the element&apos;s <code>onChange</code> handler.
+            </p>
+            <p>
+              If the form is using custom UI to present validation errors,
+              inputs must link to the element displaying their validation error
+              using <code>aria-describedby</code>.
+            </p>
+          </Library.Example>
         </Library.Pattern>
 
         <Library.Pattern title="Component API">
@@ -72,6 +92,23 @@ export default function TextareaPage() {
             presentational component props
           </Library.Link>
           .
+          <Library.Example title="error">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Set <code>error</code> to indicate a validation error. This
+                implicitly sets{' '}
+                <code>
+                  feedback={'"'}error{'"'}
+                </code>
+                . In addition to visually and semantically indicating the error
+                state, this will set a custom validation error on the textarea
+                using <code>HTMLTextAreaElement.setCustomValidity</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
           <Library.Example title="feedback">
             <Library.Info>
               <Library.InfoItem label="description">
