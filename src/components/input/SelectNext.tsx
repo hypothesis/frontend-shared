@@ -5,6 +5,7 @@ import {
   useContext,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'preact/hooks';
@@ -15,6 +16,7 @@ import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
+import { ListenerCollection } from '../../util/listener-collection';
 import { downcastRef } from '../../util/typing';
 import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import { inputGroupStyles } from './InputGroup';
@@ -103,38 +105,108 @@ function SelectOption<T>({
 
 SelectOption.displayName = 'SelectNext.Option';
 
-function useShouldDropUp(
+const LISTBOX_TOGGLE_GAP = '.25rem';
+
+type ListboxCSSProps =
+  | 'top'
+  | 'left'
+  | 'minWidth'
+  | 'marginBottom'
+  | 'bottom'
+  | 'marginTop';
+
+function useListboxPositioning(
   buttonRef: RefObject<HTMLElement | undefined>,
   listboxRef: RefObject<HTMLElement | null>,
   listboxOpen: boolean,
-): boolean {
-  const [shouldListboxDropUp, setShouldListboxDropUp] = useState(false);
+  asPopover: boolean,
+  right: boolean,
+) {
+  const adjustListboxPositioning = useCallback(() => {
+    const listboxEl = listboxRef.current;
+    const buttonEl = buttonRef.current;
 
-  useLayoutEffect(() => {
-    // Reset shouldListboxDropUp so that it does not affect calculations next
-    // time listbox opens
-    if (!buttonRef.current || !listboxRef.current || !listboxOpen) {
-      setShouldListboxDropUp(false);
-      return;
+    if (!buttonEl || !listboxEl || !listboxOpen) {
+      return () => {};
     }
 
+    /**
+     * Sets some CSS props in the listbox, and returns a cleanup function that
+     * resets them to their default values.
+     */
+    const setListboxCSSProps = (
+      props: Partial<Record<ListboxCSSProps, string>>,
+    ) => {
+      const entries = Object.entries(props) as Array<[ListboxCSSProps, string]>;
+      entries.forEach(([prop, value]) => (listboxEl.style[prop] = value));
+
+      return () => entries.map(([prop]) => (listboxEl.style[prop] = ''));
+    };
+
     const viewportHeight = window.innerHeight;
-    const { top: buttonDistanceToTop, bottom: buttonBottom } =
-      buttonRef.current.getBoundingClientRect();
+    const {
+      top: buttonDistanceToTop,
+      bottom: buttonBottom,
+      left: buttonLeft,
+      height: buttonHeight,
+      width: buttonWidth,
+    } = buttonEl.getBoundingClientRect();
     const buttonDistanceToBottom = viewportHeight - buttonBottom;
-    const { bottom: listboxBottom } =
-      listboxRef.current.getBoundingClientRect();
-    const listboxDistanceToBottom = viewportHeight - listboxBottom;
+    const { height: listboxHeight, width: listboxWidth } =
+      listboxEl.getBoundingClientRect();
 
     // The listbox should drop up only if there's not enough space below to
-    // fit it, and there's also more absolute space above than below
-    setShouldListboxDropUp(
-      listboxDistanceToBottom < 0 &&
-        buttonDistanceToTop > buttonDistanceToBottom,
-    );
-  }, [buttonRef, listboxRef, listboxOpen]);
+    // fit it, and also, there's more absolute space above than below
+    const shouldListboxDropUp =
+      buttonDistanceToBottom < listboxHeight &&
+      buttonDistanceToTop > buttonDistanceToBottom;
 
-  return shouldListboxDropUp;
+    if (asPopover) {
+      const { top: bodyTop } = document.body.getBoundingClientRect();
+      const absBodyTop = Math.abs(bodyTop);
+
+      return setListboxCSSProps({
+        minWidth: `${buttonWidth}px`,
+        top: shouldListboxDropUp
+          ? `calc(${absBodyTop + buttonDistanceToTop - listboxHeight}px - ${LISTBOX_TOGGLE_GAP})`
+          : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${LISTBOX_TOGGLE_GAP})`,
+        left:
+          right && listboxWidth > buttonWidth
+            ? `${buttonLeft - (listboxWidth - buttonWidth)}px`
+            : `${buttonLeft}px`,
+      });
+    }
+
+    // Set styles for non-popover mode
+    if (shouldListboxDropUp) {
+      return setListboxCSSProps({
+        bottom: '100%',
+        marginBottom: LISTBOX_TOGGLE_GAP,
+      });
+    }
+
+    return setListboxCSSProps({ top: '100%', marginTop: LISTBOX_TOGGLE_GAP });
+  }, [asPopover, buttonRef, listboxOpen, listboxRef, right]);
+
+  useLayoutEffect(() => {
+    const cleanup = adjustListboxPositioning();
+
+    if (!asPopover) {
+      return cleanup;
+    }
+
+    // Readjust listbox position when any element scrolls, just in case that
+    // affected the toggle button position.
+    const listeners = new ListenerCollection();
+    listeners.add(document.body, 'scroll', adjustListboxPositioning, {
+      capture: true,
+    });
+
+    return () => {
+      cleanup();
+      listeners.removeAll();
+    };
+  }, [adjustListboxPositioning, asPopover]);
 }
 
 export type SelectProps<T> = CompositeProps & {
@@ -166,6 +238,13 @@ export type SelectProps<T> = CompositeProps & {
 
   'aria-label'?: string;
   'aria-labelledby'?: string;
+
+  /**
+   * Test seam.
+   * Used to determine if current browser supports native popovers.
+   * Defaults to `'popover' in document.body`
+   */
+  nativePopoverSupported?: boolean;
 };
 
 function SelectMain<T>({
@@ -182,18 +261,37 @@ function SelectMain<T>({
   right = false,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
+
+  /* istanbul ignore next - test seam */
+  nativePopoverSupported = 'popover' in document.body,
 }: SelectProps<T>) {
-  const [listboxOpen, setListboxOpen] = useState(false);
-  const closeListbox = useCallback(() => setListboxOpen(false), []);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const listboxRef = useRef<HTMLUListElement | null>(null);
+  const [listboxOpen, setListboxOpen] = useState(false);
+  const toggleListbox = useCallback(
+    (open: boolean) => {
+      setListboxOpen(open);
+      if (nativePopoverSupported) {
+        listboxRef.current?.togglePopover(open);
+      }
+    },
+    [nativePopoverSupported],
+  );
+  const closeListbox = useCallback(() => toggleListbox(false), [toggleListbox]);
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
-  const shouldListboxDropUp = useShouldDropUp(
+  const extraProps = useMemo(
+    () => (nativePopoverSupported ? { popover: true } : {}),
+    [nativePopoverSupported],
+  );
+
+  useListboxPositioning(
     buttonRef,
     listboxRef,
     listboxOpen,
+    nativePopoverSupported,
+    right,
   );
 
   const selectValue = useCallback(
@@ -257,11 +355,11 @@ function SelectMain<T>({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         ref={downcastRef(buttonRef)}
-        onClick={() => setListboxOpen(prev => !prev)}
+        onClick={() => toggleListbox(!listboxOpen)}
         onKeyDown={e => {
           if (e.key === 'ArrowDown' && !listboxOpen) {
             e.preventDefault();
-            setListboxOpen(true);
+            toggleListbox(true);
           }
         }}
         data-testid="select-toggle-button"
@@ -273,18 +371,17 @@ function SelectMain<T>({
       </button>
       <SelectContext.Provider value={{ selectValue, value }}>
         <ul
+          {...extraProps}
           className={classnames(
-            'absolute z-5 min-w-full max-h-80 overflow-y-auto',
+            'absolute z-5 max-h-80 overflow-y-auto',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
-            {
-              'top-full mt-1': !shouldListboxDropUp,
-              'bottom-full mb-1': shouldListboxDropUp,
-              'right-0': right,
-
+            !nativePopoverSupported && {
               // Hiding instead of unmounting to
               // * Ensure screen readers detect button as a listbox handler
               // * Listbox size can be computed to correctly drop up or down
               hidden: !listboxOpen,
+              'right-0': right,
+              'min-w-full': true,
             },
             listboxClasses,
           )}
@@ -294,6 +391,7 @@ function SelectMain<T>({
           aria-labelledby={buttonId ?? defaultButtonId}
           aria-orientation="vertical"
           data-testid="select-listbox"
+          data-listbox-open={listboxOpen}
         >
           {children}
         </ul>

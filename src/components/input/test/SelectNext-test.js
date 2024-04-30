@@ -1,3 +1,4 @@
+import { waitFor } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
 import { checkAccessibility } from '../../../../test/util/accessibility.js';
@@ -27,6 +28,8 @@ describe('SelectNext', () => {
     const container = document.createElement('div');
     container.style.paddingTop = `${paddingTop}px`;
     document.body.append(container);
+
+    props.nativePopoverSupported = props.nativePopoverSupported ?? false;
 
     const wrapper = mount(
       <SelectNext value={undefined} onChange={sinon.stub()} {...props}>
@@ -74,10 +77,18 @@ describe('SelectNext', () => {
   const getListbox = wrapper => wrapper.find('[data-testid="select-listbox"]');
 
   const isListboxClosed = wrapper =>
-    getListbox(wrapper).prop('className').includes('hidden');
+    getListbox(wrapper).prop('data-listbox-open') === false;
 
-  const listboxDidDropUp = wrapper =>
-    getListbox(wrapper).prop('className').includes('bottom-full');
+  const listboxDidDropUp = wrapper => {
+    const { top: listboxTop } = getListbox(wrapper)
+      .getDOMNode()
+      .getBoundingClientRect();
+    const { top: buttonTop } = getToggleButton(wrapper)
+      .getDOMNode()
+      .getBoundingClientRect();
+
+    return listboxTop < buttonTop;
+  };
 
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
@@ -261,11 +272,32 @@ describe('SelectNext', () => {
   });
 
   [
-    { containerPaddingTop: 0, shouldDropUp: false },
-    { containerPaddingTop: 1000, shouldDropUp: true },
-  ].forEach(({ containerPaddingTop, shouldDropUp }) => {
+    {
+      containerPaddingTop: 0,
+      shouldDropUp: false,
+      nativePopoverSupported: true,
+    },
+    {
+      containerPaddingTop: 0,
+      shouldDropUp: false,
+      nativePopoverSupported: false,
+    },
+    {
+      containerPaddingTop: 1000,
+      shouldDropUp: true,
+      nativePopoverSupported: true,
+    },
+    {
+      containerPaddingTop: 1000,
+      shouldDropUp: true,
+      nativePopoverSupported: false,
+    },
+  ].forEach(({ containerPaddingTop, shouldDropUp, nativePopoverSupported }) => {
     it('makes listbox drop up or down based on available space below', () => {
-      const wrapper = createComponent({}, { paddingTop: containerPaddingTop });
+      const wrapper = createComponent(
+        { nativePopoverSupported },
+        { paddingTop: containerPaddingTop },
+      );
       toggleListbox(wrapper);
 
       assert.equal(listboxDidDropUp(wrapper), shouldDropUp);
@@ -279,6 +311,57 @@ describe('SelectNext', () => {
           mount(<SelectNext.Option value="1">{() => '1'}</SelectNext.Option>),
         'Select.Option can only be used as Select child',
       );
+    });
+  });
+
+  context('when popover is supported', () => {
+    it('opens listbox via popover API', async () => {
+      const wrapper = createComponent({ nativePopoverSupported: true });
+      let resolve;
+      const promise = new Promise(res => (resolve = res));
+
+      getListbox(wrapper).getDOMNode().addEventListener('toggle', resolve);
+      toggleListbox(wrapper);
+
+      // This test will timeout if the toggle event is not dispatched
+      await promise;
+    });
+  });
+
+  context('when listbox is bigger than toggle button', () => {
+    [
+      {
+        nativePopoverSupported: true,
+        getListboxLeft: wrapper => {
+          const leftStyle = getListbox(wrapper).getDOMNode().style.left;
+          // Remove last 2 chars, which are the `px` unit indicator
+          return Number(leftStyle.slice(0, -2));
+        },
+      },
+      {
+        nativePopoverSupported: false,
+        getListboxLeft: wrapper =>
+          getListbox(wrapper).getDOMNode().getBoundingClientRect().left,
+      },
+    ].forEach(({ nativePopoverSupported, getListboxLeft }) => {
+      it('aligns listbox to the right if `right` prop is true', async () => {
+        const wrapper = createComponent({
+          nativePopoverSupported,
+          right: true,
+          buttonClasses: '!w-8', // Set a small width in the button
+        });
+        toggleListbox(wrapper);
+
+        // Wait for listbox to be open
+        await waitFor(() => !isListboxClosed(wrapper));
+
+        const { left: buttonLeft } = getToggleButton(wrapper)
+          .getDOMNode()
+          .getBoundingClientRect();
+        const listboxLeft = getListboxLeft(wrapper);
+
+        assert.isTrue(listboxLeft < buttonLeft);
+      });
     });
   });
 

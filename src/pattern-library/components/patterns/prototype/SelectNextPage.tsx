@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
+import { Link } from '../../../..';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
 import type { SelectNextProps } from '../../../../components/input';
 import { IconButton, InputGroup } from '../../../../components/input';
@@ -205,6 +206,23 @@ export default function SelectNextPage() {
           <p>
             <code>SelectNext</code> toggles a listbox where <code>Options</code>
             {"'"} UI can be customized and values can be objects.
+          </p>
+          <p>
+            In browsers that support it, the listbox uses the{' '}
+            <Link
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover"
+            >
+              <code>popover</code>
+            </Link>{' '}
+            attribute and gets toggled via{' '}
+            <Link
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+            >
+              popover API
+            </Link>
+            . Otherwise, it is rendered as an absolute-positioned element.
           </p>
 
           <Library.Example title="Composing and styling Selects">
