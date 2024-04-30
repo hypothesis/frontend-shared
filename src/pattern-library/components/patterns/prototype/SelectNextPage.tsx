@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
+import { Link } from '../../../..';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
 import type { SelectNextProps } from '../../../../components/input';
 import { IconButton, InputGroup } from '../../../../components/input';
@@ -35,6 +36,7 @@ function SelectExample({
   | 'listboxClasses'
   | 'disabled'
   | 'right'
+  | 'listboxAsPopover'
 > & {
   textOnly?: boolean;
   items?: ItemType[];
@@ -205,6 +207,23 @@ export default function SelectNextPage() {
           <p>
             <code>SelectNext</code> toggles a listbox where <code>Options</code>
             {"'"} UI can be customized and values can be objects.
+          </p>
+          <p>
+            In browsers that support it, the listbox uses the{' '}
+            <Link
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover"
+            >
+              <code>popover</code>
+            </Link>{' '}
+            attribute and gets toggled via{' '}
+            <Link
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+            >
+              popover API
+            </Link>
+            . Otherwise, it is rendered as an absolute-positioned element.
           </p>
 
           <Library.Example title="Composing and styling Selects">
@@ -466,6 +485,39 @@ export default function SelectNextPage() {
             <Library.Demo title="Custom listbox">
               <div className="w-96 mx-auto">
                 <SelectExample listboxClasses="border-4 border-yellow-notice" />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="listboxAsPopover">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determines if the listbox should be rendered using the{' '}
+                <Link
+                  target="_blank"
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+                >
+                  popover API
+                </Link>
+                . It{"'"}s mainly used as a test seam, but can help explicitly
+                disabling this behavior if needed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>true</code> if the browser supports <code>[popover]</code>
+                . Otherwise it is <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Non-popover listbox">
+              <div className="w-full">
+                <p>
+                  When not using the <code>popover</code> API, the listbox will
+                  be constrained by its container dimensions.
+                </p>
+                <div className="w-96 h-32 mx-auto overflow-auto">
+                  <SelectExample listboxAsPopover={false} />
+                </div>
               </div>
             </Library.Demo>
           </Library.Example>
