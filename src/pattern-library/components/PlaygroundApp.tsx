@@ -84,6 +84,33 @@ function NavLink({ route }: { route: PlaygroundRoute }) {
   );
 }
 
+function ExternalNavLink({
+  children,
+  href,
+}: {
+  children: ComponentChildren;
+  href: string;
+}) {
+  const isActive = false;
+  return (
+    <li className="-ml-[2px]">
+      <Link
+        classes={classnames(
+          'pl-4 rounded-l-none w-full border-l-2 hover:border-l-brand',
+
+          {
+            'border-l-2 border-brand font-semibold': isActive,
+            'border-transparent': !isActive,
+          },
+        )}
+        href={href}
+      >
+        {children}
+      </Link>
+    </li>
+  );
+}
+
 /**
  * Render web content for the playground application. This includes the "frame"
  * around the page and a navigation channel, as well as the content rendered
@@ -170,6 +197,12 @@ export default function PlaygroundApp({
                 <Scroll>
                   <ScrollContent classes="bg-stone-400/10">
                     <nav id="nav" className="pb-16 space-y-4 mr-4">
+                      <NavHeader>Reference</NavHeader>
+                      <NavList>
+                        <ExternalNavLink href={baseURL + '/api'}>
+                          API reference
+                        </ExternalNavLink>
+                      </NavList>
                       <NavHeader>Foundations</NavHeader>
                       <NavList>
                         {getRoutes('foundations').map(route => (
