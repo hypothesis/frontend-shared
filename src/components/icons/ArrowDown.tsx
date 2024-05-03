@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ArrowDownIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from arrow-down.svg
  */
-export default function ArrowDownIcon(props: ArrowDownIconProps) {
+export default function ArrowDownIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

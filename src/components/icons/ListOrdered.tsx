@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ListOrderedIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from list-ordered.svg
  */
-export default function ListOrderedIcon(props: ListOrderedIconProps) {
+export default function ListOrderedIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

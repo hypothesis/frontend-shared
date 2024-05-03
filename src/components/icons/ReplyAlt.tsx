@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ReplyAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from reply-alt.svg
  */
-export default function ReplyAltIcon(props: ReplyAltIconProps) {
+export default function ReplyAltIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

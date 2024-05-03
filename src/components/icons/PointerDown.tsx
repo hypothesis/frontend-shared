@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type PointerDownIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from pointer-down.svg
  */
-export default function PointerDownIcon(props: PointerDownIconProps) {
+export default function PointerDownIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

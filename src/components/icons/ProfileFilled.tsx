@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ProfileFilledIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from profile-filled.svg
  */
-export default function ProfileFilledIcon(props: ProfileFilledIconProps) {
+export default function ProfileFilledIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

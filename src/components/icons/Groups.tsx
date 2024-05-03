@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type GroupsIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from groups.svg
  */
-export default function GroupsIcon(props: GroupsIconProps) {
+export default function GroupsIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

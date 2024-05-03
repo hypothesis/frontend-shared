@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CheckboxIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from checkbox.svg
  */
-export default function CheckboxIcon(props: CheckboxIconProps) {
+export default function CheckboxIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="16"

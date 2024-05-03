@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type SortAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from sort-alt.svg
  */
-export default function SortAltIcon(props: SortAltIconProps) {
+export default function SortAltIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

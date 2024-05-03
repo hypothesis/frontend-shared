@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CaretUpIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from caret-up.svg
  */
-export default function CaretUpIcon(props: CaretUpIconProps) {
+export default function CaretUpIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

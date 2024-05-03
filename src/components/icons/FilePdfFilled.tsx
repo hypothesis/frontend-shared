@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type FilePdfFilledIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from file-pdf-filled.svg
  */
-export default function FilePdfFilledIcon(props: FilePdfFilledIconProps) {
+export default function FilePdfFilledIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

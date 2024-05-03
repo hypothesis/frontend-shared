@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type EllipsisIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from ellipsis.svg
  */
-export default function EllipsisIcon(props: EllipsisIconProps) {
+export default function EllipsisIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

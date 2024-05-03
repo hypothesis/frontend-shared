@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type InfoIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from info.svg
  */
-export default function InfoIcon(props: InfoIconProps) {
+export default function InfoIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

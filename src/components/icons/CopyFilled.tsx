@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CopyFilledIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from copy-filled.svg
  */
-export default function CopyFilledIcon(props: CopyFilledIconProps) {
+export default function CopyFilledIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CcZeroFilledIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from cc-zero-filled.svg
  */
-export default function CcZeroFilledIcon(props: CcZeroFilledIconProps) {
+export default function CcZeroFilledIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

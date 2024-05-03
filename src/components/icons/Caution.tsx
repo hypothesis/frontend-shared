@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CautionIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from caution.svg
  */
-export default function CautionIcon(props: CautionIconProps) {
+export default function CautionIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

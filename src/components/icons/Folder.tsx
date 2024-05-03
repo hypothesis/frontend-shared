@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type FolderIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from folder.svg
  */
-export default function FolderIcon(props: FolderIconProps) {
+export default function FolderIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

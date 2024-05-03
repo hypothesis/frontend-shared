@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type HelpIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from help.svg
  */
-export default function HelpIcon(props: HelpIconProps) {
+export default function HelpIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

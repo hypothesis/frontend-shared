@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type PinIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from pin.svg
  */
-export default function PinIcon(props: PinIconProps) {
+export default function PinIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

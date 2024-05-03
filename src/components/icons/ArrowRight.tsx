@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ArrowRightIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from arrow-right.svg
  */
-export default function ArrowRightIcon(props: ArrowRightIconProps) {
+export default function ArrowRightIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

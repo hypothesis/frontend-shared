@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ContrastIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from contrast.svg
  */
-export default function ContrastIcon(props: ContrastIconProps) {
+export default function ContrastIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

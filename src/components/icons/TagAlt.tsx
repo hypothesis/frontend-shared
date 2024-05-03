@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type TagAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from tag-alt.svg
  */
-export default function TagAltIcon(props: TagAltIconProps) {
+export default function TagAltIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
