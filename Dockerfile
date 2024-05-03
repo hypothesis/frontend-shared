@@ -3,7 +3,8 @@ FROM node:19.8.1-alpine as builder
 COPY . /frontend-shared
 RUN cd /frontend-shared && \
     yarn install --frozen-lockfile && \
-    yarn build-pattern-lib
+    yarn build-pattern-lib && \
+    yarn apidoc
 
 
 FROM nginx:1.24.0-alpine
