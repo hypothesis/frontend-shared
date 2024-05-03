@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
 
-type UseFocusAwayOptions = {
+export type UseFocusAwayOptions = {
   /** Enable listening for focusout events in `container`? */
   enabled?: boolean;
 };
@@ -16,8 +16,10 @@ type UseFocusAwayOptions = {
 export function useFocusAway(
   container: RefObject<HTMLElement | undefined>,
   callback: (e: FocusEvent) => void,
-  { enabled = true }: UseFocusAwayOptions = {},
+  options: UseFocusAwayOptions = {},
 ) {
+  const { enabled = true } = options;
+
   useEffect(() => {
     if (!enabled || !container.current) {
       return () => {};
