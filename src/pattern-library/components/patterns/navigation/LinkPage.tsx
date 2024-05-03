@@ -11,6 +11,7 @@ export default function LinkPage() {
           and common behavior for anchor (<code>a</code>) elements.
         </p>
       }
+      apiReference="functions/Link"
     >
       <Library.Section title="Link">
         <Library.Pattern>

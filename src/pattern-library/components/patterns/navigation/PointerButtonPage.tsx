@@ -21,6 +21,7 @@ export default function PointerButtonPage() {
           </p>
         </>
       }
+      apiReference="functions/PointerButton"
     >
       <Library.Section>
         <Library.Pattern>

@@ -16,6 +16,7 @@ export default function ThumbnailPage() {
           .
         </p>
       }
+      apiReference="functions/Thumbnail"
     >
       <Library.Section>
         <Library.Pattern>

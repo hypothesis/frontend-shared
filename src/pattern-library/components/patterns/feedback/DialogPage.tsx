@@ -207,6 +207,7 @@ export default function DialogPage() {
           <code>Panel</code> layout.
         </p>
       }
+      apiReference="functions/Dialog"
     >
       <Library.Section
         id="dialog"

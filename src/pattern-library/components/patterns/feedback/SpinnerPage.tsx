@@ -20,6 +20,7 @@ export default function SpinnerPage() {
           </p>
         </>
       }
+      apiReference="functions/Spinner"
     >
       <Library.Section
         title="Spinner"

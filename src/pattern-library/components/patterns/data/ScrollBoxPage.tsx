@@ -18,6 +18,7 @@ export default function ScrollBoxPage() {
           are available for additional customization if needed.
         </p>
       }
+      apiReference="functions/ScrollBox"
     >
       <Library.Section
         title="ScrollBox"

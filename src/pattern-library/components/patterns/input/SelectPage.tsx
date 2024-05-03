@@ -39,6 +39,7 @@ export default function SelectPage() {
           </p>
         </>
       }
+      apiReference="functions/Select"
     >
       <Library.Section>
         <Library.Pattern>

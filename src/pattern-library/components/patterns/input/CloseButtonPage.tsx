@@ -41,6 +41,7 @@ export default function CloseButtonPage() {
           context.
         </p>
       }
+      apiReference="functions/CloseButton"
     >
       <Library.Section>
         <Library.Pattern>

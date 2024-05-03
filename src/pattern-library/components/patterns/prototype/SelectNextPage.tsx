@@ -187,6 +187,7 @@ export default function SelectNextPage() {
           the native <code>{'<select>'}</code> element.
         </p>
       }
+      apiReference="functions/SelectNext"
     >
       <Library.Section>
         <Library.Pattern>

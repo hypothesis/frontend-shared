@@ -11,6 +11,7 @@ export default function InputPage() {
           <code>input</code> elements.
         </p>
       }
+      apiReference="functions/Input"
     >
       <Library.Section>
         <Library.Pattern>

@@ -11,6 +11,7 @@ export default function AspectRatioPage() {
           aspect ratio of its first direct child, with a default ratio of 16:9.
         </p>
       }
+      apiReference="functions/AspectRatio"
     >
       <Library.Section>
         <Library.Pattern>

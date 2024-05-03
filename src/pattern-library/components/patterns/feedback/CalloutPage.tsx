@@ -11,6 +11,7 @@ export default function CalloutPage() {
           banners or toast messages.
         </p>
       }
+      apiReference="functions/Callout"
     >
       <Library.Section>
         <Library.Pattern>

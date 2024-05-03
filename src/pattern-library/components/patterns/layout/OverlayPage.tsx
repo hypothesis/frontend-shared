@@ -22,6 +22,7 @@ export default function OverlayPage() {
           full-screen backdrops for use during loading or as a modal backdrop.
         </p>
       }
+      apiReference="functions/Overlay"
     >
       <Library.Section title="Overlay">
         <Library.Pattern>

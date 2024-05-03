@@ -18,6 +18,7 @@ export default function OptionButtonPage() {
           .
         </p>
       }
+      apiReference="functions/OptionButton"
     >
       <Library.Section>
         <Library.Pattern>
