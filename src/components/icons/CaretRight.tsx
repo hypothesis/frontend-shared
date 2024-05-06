@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CaretRightIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from caret-right.svg
  */
-export default function CaretRightIcon(props: CaretRightIconProps) {
+export default function CaretRightIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

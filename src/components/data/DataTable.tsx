@@ -23,73 +23,68 @@ export type TableColumn<Field> = {
   classes?: string;
 };
 
-type ComponentProps<Row> = Pick<
-  TableProps,
-  'borderless' | 'title' | 'striped' | 'grid'
-> & {
-  rows: Row[];
-  columns: TableColumn<keyof Row>[];
-
-  /** Content to render if rows is empty (and not in a loading state) */
-  emptyMessage?: ComponentChildren;
-  loading?: boolean;
-  selectedRow?: Row | null;
-
-  /**
-   * Callback when a row is "selected" by click or key press.
-   *
-   * If using multi-selection (see {@link ComponentProps.selectedRows}) this
-   * will be passed only the most recently selected row. Use
-   * {@link ComponentProps.onSelectRows} to receive the full selection.
-   */
-  onSelectRow?: (r: Row) => void;
-
-  /**
-   * Selected rows. If this property is set it enables multi-selection. The
-   * user will be able to select a contiguous range of rows via shift+click or
-   * shift + arrow keys.
-   */
-  selectedRows?: Row[];
-
-  /**
-   * Callback when rows are selected by click or key press.
-   *
-   * If multi-selection is enabled, this may have multiple entries (see
-   * {@link ComponentProps.selectedRows} otherwise it will have one entry.
-   */
-  onSelectRows?: (r: Row[]) => void;
-
-  /**
-   * Callback when a row is "confirmed" by double-click or pressing "Enter"
-   */
-  onConfirmRow?: (r: Row) => void;
-
-  /** Current sort order */
-  order?: Order<keyof Row>;
-
-  /**
-   * Callback invoked when user clicks a column header to change the sort order.
-   * When a header is clicked, if that's not the active order, it is set with
-   * order='ascending'.
-   * If the active header is clicked consecutively, direction toggles between
-   * 'ascending' and 'descending'.
-   */
-  onOrderChange?: (order: Order<keyof Row>) => void;
-
-  /**
-   * Columns that can be used to order the table. Ignored if `onOrderChange` is
-   * not provided.
-   * No columns will be orderable if this is not provided.
-   */
-  orderableColumns?: Array<keyof Row>;
-
-  /** Callback to render an individual table cell */
-  renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
-};
-
 export type DataTableProps<Row> = CompositeProps &
-  ComponentProps<Row> &
-  Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'>;
+  Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'> &
+  Pick<TableProps, 'borderless' | 'title' | 'striped' | 'grid'> & {
+    rows: Row[];
+    columns: TableColumn<keyof Row>[];
+
+    /** Content to render if rows is empty (and not in a loading state) */
+    emptyMessage?: ComponentChildren;
+    loading?: boolean;
+    selectedRow?: Row | null;
+
+    /**
+     * Callback when a row is "selected" by click or key press.
+     *
+     * If using multi-selection (see {@link DataTableProps.selectedRows}) this
+     * will be passed only the most recently selected row. Use
+     * {@link DataTableProps.onSelectRows} to receive the full selection.
+     */
+    onSelectRow?: (r: Row) => void;
+
+    /**
+     * Selected rows. If this property is set it enables multi-selection. The
+     * user will be able to select a contiguous range of rows via shift+click or
+     * shift + arrow keys.
+     */
+    selectedRows?: Row[];
+
+    /**
+     * Callback when rows are selected by click or key press.
+     *
+     * If multi-selection is enabled, this may have multiple entries (see
+     * {@link DataTableProps.selectedRows} otherwise it will have one entry.
+     */
+    onSelectRows?: (r: Row[]) => void;
+
+    /**
+     * Callback when a row is "confirmed" by double-click or pressing "Enter"
+     */
+    onConfirmRow?: (r: Row) => void;
+
+    /** Current sort order */
+    order?: Order<keyof Row>;
+
+    /**
+     * Callback invoked when user clicks a column header to change the sort order.
+     * When a header is clicked, if that's not the active order, it is set with
+     * order='ascending'.
+     * If the active header is clicked consecutively, direction toggles between
+     * 'ascending' and 'descending'.
+     */
+    onOrderChange?: (order: Order<keyof Row>) => void;
+
+    /**
+     * Columns that can be used to order the table. Ignored if `onOrderChange` is
+     * not provided.
+     * No columns will be orderable if this is not provided.
+     */
+    orderableColumns?: Array<keyof Row>;
+
+    /** Callback to render an individual table cell */
+    renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
+  };
 
 function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
   return r[field] as ComponentChildren;
@@ -132,6 +127,8 @@ function HeaderComponent({ children, onClick, field }: HeaderComponentProps) {
 
 /**
  * An interactive table of rows and columns with a sticky header.
+ *
+ * @param props
  */
 export default function DataTable<Row>({
   children,

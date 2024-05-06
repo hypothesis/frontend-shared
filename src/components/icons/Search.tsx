@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type SearchIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from search.svg
  */
-export default function SearchIcon(props: SearchIconProps) {
+export default function SearchIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

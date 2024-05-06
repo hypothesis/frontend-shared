@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
 
-type UseClickAwayOptions = {
+export type UseClickAwayOptions = {
   /** Enable listening for away-click events? Can be set to false to disable */
   enabled?: boolean;
 };
@@ -16,8 +16,10 @@ type UseClickAwayOptions = {
 export function useClickAway(
   container: RefObject<HTMLElement | undefined>,
   callback: (e: Event) => void,
-  { enabled = true }: UseClickAwayOptions = {},
+  options: UseClickAwayOptions = {},
 ) {
+  const { enabled = true } = options;
+
   useEffect(() => {
     if (!enabled) {
       return () => {};

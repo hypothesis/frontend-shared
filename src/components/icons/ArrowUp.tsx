@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type ArrowUpIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from arrow-up.svg
  */
-export default function ArrowUpIcon(props: ArrowUpIconProps) {
+export default function ArrowUpIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

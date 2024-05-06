@@ -20,6 +20,7 @@ export default function TablePage() {
           components for rendering table content.
         </p>
       }
+      apiReference="functions/Table"
     >
       <Library.Section title="Table">
         <Library.Pattern>

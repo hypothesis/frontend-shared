@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type FileCodeIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from file-code.svg
  */
-export default function FileCodeIcon(props: FileCodeIconProps) {
+export default function FileCodeIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CopyIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from copy.svg
  */
-export default function CopyIcon(props: CopyIconProps) {
+export default function CopyIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

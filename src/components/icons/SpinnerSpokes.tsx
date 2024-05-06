@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type SpinnerSpokesIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from spinner--spokes.svg
  */
-export default function SpinnerSpokesIcon(props: SpinnerSpokesIconProps) {
+export default function SpinnerSpokesIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       width="16"

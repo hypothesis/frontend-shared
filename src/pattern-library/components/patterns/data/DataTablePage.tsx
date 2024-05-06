@@ -116,6 +116,7 @@ export default function DataTablePage() {
           the <code>Table</code> family of presentational components.
         </p>
       }
+      apiReference="functions/DataTable"
     >
       <Library.Section>
         <Library.Pattern>

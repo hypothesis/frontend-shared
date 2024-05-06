@@ -54,6 +54,7 @@
     "sinon": "^17.0.0",
     "svgo": "^3.0.0",
     "tailwindcss": "3.4.3",
+    "typedoc": "^0.25.13",
     "typescript": "^5.0.2",
     "yalc": "^1.0.0-pre.50"
   },
@@ -61,6 +62,7 @@
     "preact": "^10.4.0"
   },
   "scripts": {
+    "apidoc": "typedoc --out build/api --tsconfig src/tsconfig.json src/index.ts",
     "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
     "build": "yarn build-lib && tsc --build src/tsconfig.json",
     "build-pattern-lib": "yarn gulp bundle-css && yarn rollup -c rollup.config.js",

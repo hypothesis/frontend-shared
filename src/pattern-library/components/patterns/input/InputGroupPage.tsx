@@ -19,6 +19,7 @@ export default function InputGroupPage() {
           layout and styling for groups of input components.
         </p>
       }
+      apiReference="functions/InputGroup"
     >
       <Library.Section>
         <Library.Pattern>

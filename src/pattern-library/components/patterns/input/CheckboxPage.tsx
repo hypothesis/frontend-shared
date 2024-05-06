@@ -18,6 +18,7 @@ export default function CheckboxPage() {
           checkbox input and label.
         </p>
       }
+      apiReference="functions/Checkbox"
     >
       <Library.Pattern>
         <Library.Usage componentName="Checkbox" />

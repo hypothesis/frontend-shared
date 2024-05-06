@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type EmailIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from email.svg
  */
-export default function EmailIcon(props: EmailIconProps) {
+export default function EmailIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

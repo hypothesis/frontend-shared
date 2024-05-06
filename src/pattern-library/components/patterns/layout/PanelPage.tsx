@@ -14,6 +14,7 @@ export default function PanelPage() {
           and its allies.
         </p>
       }
+      apiReference="functions/Panel"
     >
       <Library.Section>
         <Library.Pattern>

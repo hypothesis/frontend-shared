@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type TrashIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from trash.svg
  */
-export default function TrashIcon(props: TrashIconProps) {
+export default function TrashIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

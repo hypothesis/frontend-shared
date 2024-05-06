@@ -11,6 +11,7 @@ export default function LinkButtonPage() {
           to style a button to appear as a link.
         </p>
       }
+      apiReference="functions/LinkButton"
     >
       <Library.Section>
         <Library.Pattern>

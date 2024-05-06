@@ -21,6 +21,12 @@ import { jsxToHTML } from '../util/jsx-to-string';
 type LibraryElementAttributes = Omit<JSX.HTMLAttributes<HTMLElement>, 'title'>;
 
 export type LibraryPageProps = {
+  /**
+   * Link to the API reference for the main entity described on this page.
+   *
+   * This has the form `{symbolType}/{name}`, eg. `functions/Button`.
+   */
+  apiReference?: string;
   children?: ComponentChildren;
   intro?: ComponentChildren;
   title?: string;
@@ -29,16 +35,21 @@ export type LibraryPageProps = {
 /**
  * Render content for a pattern-library page
  */
-function Page({ children, intro, title }: LibraryPageProps) {
+function Page({ apiReference, children, intro, title }: LibraryPageProps) {
   return (
     <section className="styled-text text-stone-600">
       <div className="px-8 py-4">
         <h1 className="text-3xl text-slate-600 font-bold" id="page-header">
           {title}
         </h1>
-        {intro && (
+        {(intro || apiReference) && (
           <div className="my-8 pb-8 border-b space-y-4 font-light text-xl leading-relaxed">
             {intro}
+            {apiReference && (
+              <div>
+                <a href={`/api/${apiReference}.html`}>API reference</a>
+              </div>
+            )}
           </div>
         )}
         {children}

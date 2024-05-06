@@ -61,12 +61,10 @@ function generateIcon(name, src, inputFileName) {
 ${AUTO_GENERATED_COMMENT}
 import type { JSX } from 'preact';
 
-export type ${name}Props = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from ${inputFileName}
  */
-export default function ${name}(props:${name}Props) {
+export default function ${name}(props: JSX.SVGAttributes<SVGSVGElement>) {
   return ${content};
 }
 `;

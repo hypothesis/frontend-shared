@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 
 import { ListenerCollection } from '../util/listener-collection';
 
-type UseKeyPressOptions = {
+export type UseKeyPressOptions = {
   /** Enable listening for key events? Can be set to false to disable */
   enabled?: boolean;
 };
@@ -16,8 +16,10 @@ type UseKeyPressOptions = {
 export function useKeyPress(
   keys: string[],
   callback: (e: KeyboardEvent) => void,
-  { enabled = true }: UseKeyPressOptions = {},
+  options: UseKeyPressOptions = {},
 ) {
+  const { enabled = true } = options;
+
   useEffect(() => {
     if (!enabled) {
       return () => {};

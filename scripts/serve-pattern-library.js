@@ -8,6 +8,7 @@ export function servePatternLibrary(port = 4001) {
   const app = express();
 
   // Map paths from which we serve static files
+  app.use('/api', express.static(path.join(dirname, '../build/api')));
   app.use('/scripts', express.static(path.join(dirname, '../build/scripts')));
   app.use('/styles', express.static(path.join(dirname, '../build/styles')));
   app.use('/images', express.static(path.join(dirname, '../images')));

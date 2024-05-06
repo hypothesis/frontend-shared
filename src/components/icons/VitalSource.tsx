@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type VitalSourceIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from vital-source.svg
  */
-export default function VitalSourceIcon(props: VitalSourceIconProps) {
+export default function VitalSourceIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

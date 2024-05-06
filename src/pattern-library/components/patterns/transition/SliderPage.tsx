@@ -55,6 +55,7 @@ export default function SliderPage() {
           </p>
         </>
       }
+      apiReference="functions/Slider"
     >
       <Library.Section>
         <Library.Pattern>

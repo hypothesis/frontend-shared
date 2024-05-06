@@ -19,6 +19,7 @@ export default function ButtonPage() {
           <code>button</code> elements.
         </p>
       }
+      apiReference="functions/Button"
     >
       <Library.Section title="Button">
         <Library.Pattern>

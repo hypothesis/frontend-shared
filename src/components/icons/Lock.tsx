@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type LockIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from lock.svg
  */
-export default function LockIcon(props: LockIconProps) {
+export default function LockIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

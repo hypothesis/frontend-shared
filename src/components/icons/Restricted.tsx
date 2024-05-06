@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type RestrictedIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from restricted.svg
  */
-export default function RestrictedIcon(props: RestrictedIconProps) {
+export default function RestrictedIcon(
+  props: JSX.SVGAttributes<SVGSVGElement>,
+) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

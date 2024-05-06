@@ -11,6 +11,7 @@ export default function TextareaPage() {
           <code>textarea</code> elements.
         </p>
       }
+      apiReference="functions/Textarea"
     >
       <Library.Section>
         <Library.Pattern>

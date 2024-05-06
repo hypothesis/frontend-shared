@@ -125,6 +125,7 @@ export default function ToastMessagesPage() {
           transitions and message positioning.
         </p>
       }
+      apiReference="functions/ToastMessages"
     >
       <Library.Section>
         <Library.Pattern>

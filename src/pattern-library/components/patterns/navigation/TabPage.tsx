@@ -17,6 +17,7 @@ export default function TabPage() {
   const [sidebarPanel2, setSidebarPanel2] = useState('annotations');
   const [sidebarPanel3, setSidebarPanel3] = useState('annotations');
   const [verticalPanel, setVerticalPanel] = useState('notifications');
+
   return (
     <Library.Page
       title="Tabs"
@@ -26,6 +27,7 @@ export default function TabPage() {
           components for rendering accessible tabs.
         </p>
       }
+      apiReference="functions/Tab"
     >
       <Library.Section
         title="Tab"

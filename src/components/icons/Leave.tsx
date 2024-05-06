@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type LeaveIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from leave.svg
  */
-export default function LeaveIcon(props: LeaveIconProps) {
+export default function LeaveIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type CollapseIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from collapse.svg
  */
-export default function CollapseIcon(props: CollapseIconProps) {
+export default function CollapseIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

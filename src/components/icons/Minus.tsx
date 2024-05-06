@@ -1,12 +1,10 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type MinusIconProps = JSX.SVGAttributes<SVGSVGElement>;
-
 /**
  * Icon generated from minus.svg
  */
-export default function MinusIcon(props: MinusIconProps) {
+export default function MinusIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

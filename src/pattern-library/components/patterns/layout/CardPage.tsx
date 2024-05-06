@@ -19,6 +19,7 @@ export default function CardPage() {
           support for laying out content in a card-like interface.
         </p>
       }
+      apiReference="functions/Card"
     >
       <Library.Section
         title="Card"
