@@ -1,8 +1,8 @@
+import { waitFor } from '@hypothesis/frontend-testing';
 import { render } from 'preact';
 import { useCallback, useMemo, useRef, useState } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
-import { waitFor } from '../../test-util/wait';
 import { useArrowKeyNavigation } from '../use-arrow-key-navigation';
 
 function Toolbar({ navigationOptions = {} }) {

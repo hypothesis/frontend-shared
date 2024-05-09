@@ -1,7 +1,6 @@
-import { waitFor } from '@hypothesis/frontend-testing';
+import { checkAccessibility, waitFor } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
-import { checkAccessibility } from '../../../../test/util/accessibility.js';
 import SelectNext from '../SelectNext';
 
 describe('SelectNext', () => {
