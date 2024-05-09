@@ -2145,6 +2145,7 @@ __metadata:
     "@babel/preset-react": ^7.0.0
     "@babel/preset-typescript": ^7.18.6
     "@hypothesis/frontend-build": ^3.0.0
+    "@hypothesis/frontend-testing": ^1.2.2
     "@rollup/plugin-babel": ^6.0.0
     "@rollup/plugin-commonjs": ^25.0.0
     "@rollup/plugin-node-resolve": ^15.0.0
@@ -2196,6 +2197,17 @@ __metadata:
     preact: ^10.4.0
   languageName: unknown
   linkType: soft
+
+"@hypothesis/frontend-testing@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@hypothesis/frontend-testing@npm:1.2.2"
+  dependencies:
+    axe-core: ^4.8.2
+    enzyme: ^3.11.0
+    preact: ^10.18.1
+  checksum: b3892f6f1db87387aa60a420f0d2a7c89c5031a1375273cce6777aba335f5d01b223a5fee499f1fbf418044eea6c85684d8488647e8b353d9637c05ba29d15de
+  languageName: node
+  linkType: hard
 
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
@@ -3417,6 +3429,13 @@ __metadata:
   version: 4.9.0
   resolution: "axe-core@npm:4.9.0"
   checksum: cabaa07586a92510f4befc742744b548c30033dfda99dd439c21d736f51913d52022c8836180084b13f2098f06a01c716dc42d8e91599c43c9db25905ba5403f
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.8.2":
+  version: 4.9.1
+  resolution: "axe-core@npm:4.9.1"
+  checksum: 41d9227871781f96c2952e2a777fca73624959dd0e98864f6d82806a77602f82b4fc490852082a7e524d8cd864e50d8b4d9931819b4a150112981d8c932110c5
   languageName: node
   linkType: hard
 
@@ -4900,7 +4919,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enzyme@npm:^3.8.0":
+"enzyme@npm:^3.11.0, enzyme@npm:^3.8.0":
   version: 3.11.0
   resolution: "enzyme@npm:3.11.0"
   dependencies:
@@ -9421,7 +9440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.5.6":
+"preact@npm:^10.18.1, preact@npm:^10.5.6":
   version: 10.21.0
   resolution: "preact@npm:10.21.0"
   checksum: 04acdd300e779eec230256d043120e564ac76bb535b05a9b23949f8641bf8e135098d0bd12c008cc4316174469356d09a2326dde6acbd8f539d1b4bf2231cbaa

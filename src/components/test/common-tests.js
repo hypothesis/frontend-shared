@@ -1,7 +1,6 @@
+import { checkAccessibility } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
-
-import { checkAccessibility } from '../../../test/util/accessibility';
 
 /**
  * @typedef {import('preact').FunctionComponent} FunctionComponent
