@@ -1,7 +1,7 @@
+import { delay } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 import { createRef } from 'preact';
 
-import { delay } from '../../../test-util/wait.js';
 import { testPresentationalComponent } from '../../test/common-tests';
 import Dialog from '../Dialog';
 import { $imports } from '../Dialog';

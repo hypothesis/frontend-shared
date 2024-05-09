@@ -1,8 +1,8 @@
+import { waitFor } from '@hypothesis/frontend-testing';
 import { render } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
-import { waitFor } from '../../test-util/wait';
 import { useTabKeyNavigation } from '../use-tab-key-navigation';
 
 function Toolbar({
