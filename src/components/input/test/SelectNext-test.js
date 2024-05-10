@@ -21,25 +21,12 @@ describe('SelectNext', () => {
    *        Whether to renders SelectNext.Option children with callback notation.
    *        Used primarily to test and cover both branches.
    *        Defaults to true.
-   * @param {boolean} [options.defaultListboxAsPopover] -
-   *        Whether we should let the `listboxAsPopover` prop use default value
-   *        if not explicitly provided, or we should initialize it instead.
    */
   const createComponent = (props = {}, options = {}) => {
-    const {
-      paddingTop = 0,
-      optionsChildrenAsCallback = true,
-      defaultListboxAsPopover = false,
-    } = options;
+    const { paddingTop = 0, optionsChildrenAsCallback = true } = options;
     const container = document.createElement('div');
     container.style.paddingTop = `${paddingTop}px`;
     document.body.append(container);
-
-    // Explicitly disable listboxAsPopover, unless requested differently or a
-    // value has been provided
-    if (!defaultListboxAsPopover && !('listboxAsPopover' in props)) {
-      props.listboxAsPopover = false;
-    }
 
     const wrapper = mount(
       <SelectNext value={undefined} onChange={sinon.stub()} {...props}>
@@ -285,12 +272,22 @@ describe('SelectNext', () => {
     {
       containerPaddingTop: 0,
       shouldDropUp: false,
+      listboxAsPopover: undefined,
+    },
+    {
+      containerPaddingTop: 0,
+      shouldDropUp: false,
       listboxAsPopover: true,
     },
     {
       containerPaddingTop: 0,
       shouldDropUp: false,
       listboxAsPopover: false,
+    },
+    {
+      containerPaddingTop: 1000,
+      shouldDropUp: true,
+      listboxAsPopover: undefined,
     },
     {
       containerPaddingTop: 1000,
@@ -325,16 +322,18 @@ describe('SelectNext', () => {
   });
 
   context('when popover is supported', () => {
-    it('opens listbox via popover API', async () => {
-      const wrapper = createComponent({ listboxAsPopover: true });
-      let resolve;
-      const promise = new Promise(res => (resolve = res));
+    [undefined, true].forEach(listboxAsPopover => {
+      it('opens listbox via popover API', async () => {
+        const wrapper = createComponent({ listboxAsPopover });
+        let resolve;
+        const promise = new Promise(res => (resolve = res));
 
-      getListbox(wrapper).getDOMNode().addEventListener('toggle', resolve);
-      toggleListbox(wrapper);
+        getListbox(wrapper).getDOMNode().addEventListener('toggle', resolve);
+        toggleListbox(wrapper);
 
-      // This test will timeout if the toggle event is not dispatched
-      await promise;
+        // This test will timeout if the toggle event is not dispatched
+        await promise;
+      });
     });
   });
 
@@ -342,7 +341,7 @@ describe('SelectNext', () => {
     [
       // Inferring listboxAsPopover based on browser support
       {
-        listboxAsPopover: 'default',
+        listboxAsPopover: undefined,
         getListboxLeft: wrapper => {
           const leftStyle = getListbox(wrapper).getDOMNode().style.left;
           // Remove `px` unit indicator
@@ -366,17 +365,11 @@ describe('SelectNext', () => {
       },
     ].forEach(({ listboxAsPopover, getListboxLeft }) => {
       it('aligns listbox to the right if `right` prop is true', async () => {
-        const wrapper = createComponent(
-          {
-            listboxAsPopover:
-              typeof listboxAsPopover === 'boolean'
-                ? listboxAsPopover
-                : undefined,
-            right: true,
-            buttonClasses: '!w-8', // Set a small width in the button
-          },
-          { defaultListboxAsPopover: listboxAsPopover === 'default' },
-        );
+        const wrapper = createComponent({
+          listboxAsPopover,
+          right: true,
+          buttonClasses: '!w-8', // Set a small width in the button
+        });
         toggleListbox(wrapper);
 
         // Wait for listbox to be open
