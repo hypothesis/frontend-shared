@@ -287,7 +287,7 @@ function SelectMain<T>({
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
   const extraProps = useMemo(
-    () => (listboxAsPopover ? { popover: true } : {}),
+    () => (listboxAsPopover ? { popover: '' } : {}),
     [listboxAsPopover],
   );
 
