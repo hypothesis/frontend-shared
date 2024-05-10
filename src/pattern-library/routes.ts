@@ -21,7 +21,6 @@ import CloseButtonPage from './components/patterns/input/CloseButtonPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
-import SelectPage from './components/patterns/input/SelectPage';
 import TextareaPage from './components/patterns/input/TextareaPage';
 import CardPage from './components/patterns/layout/CardPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
@@ -201,12 +200,6 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: SelectNextPage,
     route: '/input-select-next',
-  },
-  {
-    title: 'Select',
-    group: 'input',
-    component: SelectPage,
-    route: '/input-select',
   },
   {
     title: 'Textarea',
