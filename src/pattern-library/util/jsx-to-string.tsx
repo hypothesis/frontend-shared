@@ -1,5 +1,5 @@
 import hljs from 'highlight.js/lib/core';
-import hljsJavascriptLang from 'highlight.js/lib/languages/javascript';
+import hljsTypeScriptLang from 'highlight.js/lib/languages/typescript';
 import hljsXMLLang from 'highlight.js/lib/languages/xml';
 import { Fragment } from 'preact';
 import type { ComponentChildren, VNode } from 'preact';
@@ -156,20 +156,34 @@ export function jsxToString(vnode: ComponentChildren): string {
 }
 
 /**
- * Render a JSX expression as syntax-highlighted HTML markup.
+ * Render a code snippet as syntax-highlighted HTML markup.
  *
  * For the syntax highlighting to be visible, a Highlight.js CSS stylesheet must be
  * loaded on the page.
+ *
+ * The content returned by this function is sanitized and safe to use as
+ * `dangerouslySetInnerHTML` prop.
  */
-export function jsxToHTML(vnode: ComponentChildren): string {
-  // JSX support in Highlight.js involves a combination of the JS and XML
+export function highlightCode(code: string): string {
+  // JSX support in Highlight.js involves a combination of the TS and XML
   // languages, so we need to load both.
-  if (!hljs.getLanguage('javascript')) {
-    hljs.registerLanguage('javascript', hljsJavascriptLang);
+  if (!hljs.getLanguage('typescript')) {
+    hljs.registerLanguage('typescript', hljsTypeScriptLang);
   }
   if (!hljs.getLanguage('xml')) {
     hljs.registerLanguage('xml', hljsXMLLang);
   }
-  const code = jsxToString(vnode);
+
   return hljs.highlightAuto(code).value;
+}
+
+/**
+ * Render a JSX expression as syntax-highlighted HTML markup.
+ *
+ * The content returned by this function is sanitized and safe to use as
+ * `dangerouslySetInnerHTML` prop.
+ */
+export function jsxToHTML(vnode: ComponentChildren): string {
+  const code = jsxToString(vnode);
+  return highlightCode(code);
 }

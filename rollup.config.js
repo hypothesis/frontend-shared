@@ -1,5 +1,6 @@
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { string } from 'rollup-plugin-string';
 
@@ -27,6 +28,7 @@ function bundleConfig(name, entryFile) {
         exclude: 'node_modules/**',
         extensions: ['.js', '.ts', '.tsx'],
       }),
+      dynamicImportVars(),
       nodeResolve({ extensions: ['.js', '.ts', '.tsx'] }),
       commonjs({ include: 'node_modules/**' }),
       string({

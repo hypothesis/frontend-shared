@@ -49,3 +49,4 @@ import { Link } from '@hypothesis/frontend-shared';
 
 - [Development guide](docs/developing.md)
 - [Release guide](docs/releases.md)
+- [Adding examples](docs/examples.md)

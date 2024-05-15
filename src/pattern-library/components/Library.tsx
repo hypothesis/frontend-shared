@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { toChildArray, createContext } from 'preact';
 import type { ComponentChildren, JSX } from 'preact';
-import { useMemo, useState, useContext } from 'preact/hooks';
+import { useState, useContext, useEffect } from 'preact/hooks';
 import { Link as RouteLink } from 'wouter-preact';
 
 import {
@@ -11,7 +11,7 @@ import {
   Scroll,
   ScrollContainer,
 } from '../../';
-import { jsxToHTML } from '../util/jsx-to-string';
+import { highlightCode, jsxToHTML } from '../util/jsx-to-string';
 
 /**
  * Components for rendering component documentation, examples and demos in the
@@ -165,8 +165,50 @@ function Example({ children, title, ...htmlAttributes }: LibraryExampleProps) {
   );
 }
 
+function SimpleError({ message }: { message: string }) {
+  return (
+    <div className="w-full text-red-600 p-2 border rounded border-red-600">
+      {message}
+    </div>
+  );
+}
+
+/**
+ * Fetches provided example file and returns its contents as text, excluding
+ * the import statements.
+ * An error is thrown if the file cannot be fetched for any reason.
+ */
+async function fetchCodeExample(
+  exampleFile: string,
+  signal: AbortSignal,
+): Promise<string> {
+  const res = await fetch(`/examples/${exampleFile}.tsx`, { signal });
+  if (res.status >= 400) {
+    throw new Error(`Failed loading ${exampleFile} example file`);
+  }
+
+  const text = await res.text();
+
+  // Remove import statements and trim trailing empty lines
+  return text.replace(/^import .*;\n/gm, '').replace(/^\s*\n*/, '');
+}
+
 export type LibraryDemoProps = {
-  children: ComponentChildren;
+  children?: ComponentChildren;
+
+  /**
+   * Example file to read and use as content (to be rendered with syntax
+   * highlighting).
+   * It should be relative to the `pattern-library/examples` dir, and include no
+   * file extension: `exampleFile="some-example"`.
+   *
+   * The file needs to have a default export, which will be used to render the
+   * interactive example.
+   *
+   * If provided together with `children`, `children` will take precedence.
+   */
+  exampleFile?: string;
+
   /** Extra CSS classes for the demo content's immediate parent container */
   classes?: string | string[];
   /** Inline styles to apply to the demo container */
@@ -179,6 +221,62 @@ export type LibraryDemoProps = {
   withSource?: boolean;
 };
 
+type DemoContentsResult =
+  | { children: ComponentChildren }
+  | {
+      code?: string;
+      example?: ComponentChildren;
+      codeError?: string;
+      exampleError?: string;
+    };
+
+function isStaticDemoContent(
+  contentResult: DemoContentsResult,
+): contentResult is { children: ComponentChildren } {
+  return 'children' in contentResult;
+}
+
+/**
+ * Determines what are the contents to be used for a Demo, which can be either
+ * an explicitly provided set of children, or the contents of an example file
+ * which is dynamically imported.
+ */
+function useDemoContents(
+  props: Pick<LibraryDemoProps, 'children' | 'exampleFile'>,
+): DemoContentsResult {
+  const [code, setCode] = useState<string>();
+  const [example, setExample] = useState<ComponentChildren>();
+  const [codeError, setCodeError] = useState<string>();
+  const [exampleError, setExampleError] = useState<string>();
+
+  useEffect(() => {
+    if (!props.exampleFile) {
+      return () => {};
+    }
+
+    import(`../examples/${props.exampleFile}.tsx`)
+      .then(({ default: Example }) => setExample(<Example />))
+      .catch(() =>
+        setExampleError(
+          `Failed loading ../examples/${props.exampleFile}.tsx module`,
+        ),
+      );
+
+    const controller = new AbortController();
+    fetchCodeExample(props.exampleFile, controller.signal)
+      .then(setCode)
+      .catch(e => setCodeError(e.message));
+
+    return () => controller.abort();
+  }, [props.exampleFile, props.children]);
+
+  if (props.children) {
+    return { children: props.children };
+  }
+
+  return { code, example, codeError, exampleError };
+}
+
 /**
  * Render a "Demo", with optional source. This will render the children as
  * provided in a tabbed container. If `withSource` is `true`, the JSX source
@@ -186,25 +284,16 @@ export type LibraryDemoProps = {
  * rendered Demo content.
  */
 function Demo({
-  children,
   classes,
   withSource = false,
   style = {},
   title,
+  ...rest
 }: LibraryDemoProps) {
   const [visibleTab, setVisibleTab] = useState('demo');
-  const source = toChildArray(children).map((child, idx) => {
-    return (
-      <li key={idx}>
-        <code>
-          <pre
-            className="font-pre whitespace-pre-wrap break-words text-sm"
-            dangerouslySetInnerHTML={{ __html: jsxToHTML(child) }}
-          />
-        </code>
-      </li>
-    );
-  });
+  const demoContents = useDemoContents(rest);
+  const isStaticContent = isStaticDemoContent(demoContents);
+
   return (
     <div className="my-8 p-2 space-y-1">
       <div className="flex items-center px-2">
@@ -251,14 +340,41 @@ function Demo({
                 classes,
               )}
             >
-              {children}
+              {!isStaticContent ? demoContents.example : demoContents.children}
+              {!isStaticContent && demoContents.exampleError && (
+                <SimpleError message={demoContents.exampleError} />
+              )}
             </div>
           </div>
         )}
         {visibleTab === 'source' && (
-          <div className="border w-full rounded-md bg-slate-7 text-color-text-inverted p-4">
-            <ul>{source}</ul>
-          </div>
+          <>
+            {!isStaticContent ? (
+              demoContents.code && <Code content={demoContents.code} />
+            ) : (
+              <div className="border w-full rounded-md bg-slate-7 text-color-text-inverted p-4">
+                <ul>
+                  {toChildArray(demoContents.children).map((child, idx) => {
+                    return (
+                      <li key={idx}>
+                        <code>
+                          <pre
+                            className="font-pre whitespace-pre-wrap break-words text-sm"
+                            dangerouslySetInnerHTML={{
+                              __html: jsxToHTML(child),
+                            }}
+                          />
+                        </code>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+            {!isStaticContent && demoContents.codeError && (
+              <SimpleError message={demoContents.codeError} />
+            )}
+          </>
         )}
       </div>
     </div>
@@ -332,14 +448,60 @@ function ChangelogItem({ status, children }: LibraryChangelogItemProps) {
   );
 }
 
+type CodeContentProps =
+  | {
+      /** Code content (to be rendered with syntax highlighting) */
+      content: ComponentChildren;
+    }
+  | {
+      /**
+       * Example file to read and use as content (to be rendered with syntax
+       * highlighting)
+       */
+      exampleFile: string;
+    };
+
 export type LibraryCodeProps = {
-  /** Code content (to be rendered with syntax highlighting) */
-  content: ComponentChildren;
   /** Controls relative code font size */
   size?: 'sm' | 'md';
   /** Caption (e.g. filename, description) of code block */
   title?: ComponentChildren;
-};
+} & CodeContentProps;
+
+function isCodeWithContent(
+  props: CodeContentProps,
+): props is { content: ComponentChildren } {
+  return 'content' in props;
+}
+
+/**
+ * Dynamically resolves the content based on provided props.
+ * An error is optionally returned in case loading the content failed.
+ */
+function useCodeContent(
+  props: CodeContentProps,
+): [string | undefined, Error | undefined] {
+  const hasStaticContent = isCodeWithContent(props);
+  const [codeMarkup, setCodeMarkup] = useState<string | undefined>(
+    hasStaticContent ? jsxToHTML(props.content) : undefined,
+  );
+  const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+    if (hasStaticContent) {
+      return () => {};
+    }
+
+    const controller = new AbortController();
+    fetchCodeExample(`/examples/${props.exampleFile}.tsx`, controller.signal)
+      .then(code => setCodeMarkup(highlightCode(code)))
+      .catch(setError);
+
+    return () => controller.abort();
+  }, [hasStaticContent, props]);
+
+  return [codeMarkup, error];
+}
 
 /**
  * Render provided `content` as a "code block" example.
@@ -347,33 +509,36 @@ export type LibraryCodeProps = {
  * Long code content will scroll if <Code /> is rendered inside a parent
  * element with constrained dimensions.
  */
-function Code({ content, size, title }: LibraryCodeProps) {
-  const codeMarkup = useMemo(() => jsxToHTML(content), [content]);
+function Code({ size, title, ...rest }: LibraryCodeProps) {
+  const [codeMarkup, error] = useCodeContent(rest);
 
   return (
     <figure className="space-y-2 min-h-0 h-full">
-      <ScrollContainer borderless>
-        <div
-          className={classnames(
-            'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md min-h-0 h-full',
-            { 'text-sm': size === 'sm' },
+      {codeMarkup && (
+        <ScrollContainer borderless>
+          <div
+            className={classnames(
+              'unstyled-text bg-slate-7 text-color-text-inverted p-4 rounded-md min-h-0 h-full',
+              { 'text-sm': size === 'sm' },
+            )}
+          >
+            <Scroll variant="flat">
+              <code className="text-color-text-inverted">
+                <pre
+                  className="whitespace-pre-wrap"
+                  dangerouslySetInnerHTML={{ __html: codeMarkup }}
+                />
+              </code>
+            </Scroll>
+          </div>
+          {title && (
+            <figcaption className="flex justify-end">
+              <span className="italic">{title}</span>
+            </figcaption>
           )}
-        >
-          <Scroll variant="flat">
-            <code className="text-color-text-inverted">
-              <pre
-                className="whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: codeMarkup }}
-              />
-            </code>
-          </Scroll>
-        </div>
-        {title && (
-          <figcaption className="flex justify-end">
-            <span className="italic">{title}</span>
-          </figcaption>
-        )}
-      </ScrollContainer>
+        </ScrollContainer>
+      )}
+      {error && <SimpleError message={error.message} />}
     </figure>
   );
 }
