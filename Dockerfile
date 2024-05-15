@@ -13,6 +13,7 @@ RUN rm -r /usr/share/nginx/html && rm /etc/nginx/conf.d/default.conf
 COPY --from=builder /frontend-shared/build /usr/share/nginx/html
 COPY ./templates/index.html /usr/share/nginx/html/index.html
 COPY ./images /usr/share/nginx/html/images
+COPY ./src/pattern-library/examples /usr/share/nginx/html/examples
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 5001

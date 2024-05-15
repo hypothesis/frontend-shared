@@ -195,11 +195,11 @@ export default function SelectNextPage() {
           <Library.Usage componentName="SelectNext" />
 
           <Library.Example>
-            <Library.Demo title="Basic Select">
-              <div className="w-96 mx-auto">
-                <SelectExample textOnly />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Basic Select"
+              exampleFile="select-next-basic"
+              withSource
+            />
           </Library.Example>
         </Library.Pattern>
 
@@ -509,17 +509,11 @@ export default function SelectNextPage() {
                 . Otherwise it is <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-            <Library.Demo title="Non-popover listbox">
-              <div className="w-full">
-                <p>
-                  When not using the <code>popover</code> API, the listbox will
-                  be constrained by its container dimensions.
-                </p>
-                <div className="w-96 h-32 mx-auto overflow-auto">
-                  <SelectExample listboxAsPopover={false} />
-                </div>
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Non-popover listbox"
+              exampleFile="select-next-non-popover-listbox"
+              withSource
+            />
           </Library.Example>
         </Library.Pattern>
 
@@ -570,51 +564,6 @@ export default function SelectNextPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-        </Library.Pattern>
-
-        <Library.Pattern title="How to use it">
-          <p>
-            <code>SelectNext</code> is meant to be used as a controlled
-            component.
-          </p>
-
-          <Library.Code
-            content={`function App() {
-  const [value, setSelected] = useState<{ id: string; name: string }>();
-  return (
-    <SelectNext
-      value={value}
-      onChange={setSelected}
-      buttonContent={
-        value ? (
-          <>
-            {value.name}
-            <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-              {value.id}
-            </div>
-          </>
-        ) : (
-          <>Select one…</>
-        )
-      }
-    >
-      {items.map(item => (
-        <SelectNext.Option value={item} key={item.id}>
-          {() => (
-            <>
-              {item.name}
-              <div className="grow" />
-              <div className="rounded px-2 bg-grey-7 text-white">
-                {item.id}
-              </div>
-            </>
-          )}
-        </SelectNext.Option>
-      ))}
-    </SelectNext>
-  );
-}`}
-          />
         </Library.Pattern>
       </Library.Section>
     </Library.Page>

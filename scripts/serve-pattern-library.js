@@ -11,6 +11,10 @@ export function servePatternLibrary(port = 4001) {
   app.use('/scripts', express.static(path.join(dirname, '../build/scripts')));
   app.use('/styles', express.static(path.join(dirname, '../build/styles')));
   app.use('/images', express.static(path.join(dirname, '../images')));
+  app.use(
+    '/examples',
+    express.static(path.join(dirname, '../src/pattern-library/examples')),
+  );
 
   // For any other path, serve the index.html file to allow client-side routing
   app.get('/:path?', (req, res) => {
