@@ -13,11 +13,13 @@ describe('TableCell', () => {
     return mount(
       <TableContext.Provider value={tableContextValue}>
         <table>
-          <TableSectionContext.Provider value={contextValue}>
-            <tr>
-              <TableCell {...props}>{props.children ?? 'Content'}</TableCell>
-            </tr>
-          </TableSectionContext.Provider>
+          <tbody>
+            <TableSectionContext.Provider value={contextValue}>
+              <tr>
+                <TableCell {...props}>{props.children ?? 'Content'}</TableCell>
+              </tr>
+            </TableSectionContext.Provider>
+          </tbody>
         </table>
       </TableContext.Provider>,
     );
@@ -28,9 +30,11 @@ describe('TableCell', () => {
   const contentFn = (Component, props = {}) => {
     return mount(
       <table>
-        <tr>
-          <Component {...props} />
-        </tr>
+        <tbody>
+          <tr>
+            <Component {...props} />
+          </tr>
+        </tbody>
       </table>,
     );
   };
