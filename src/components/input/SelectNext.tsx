@@ -5,7 +5,6 @@ import {
   useContext,
   useId,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
 } from 'preact/hooks';
@@ -286,10 +285,6 @@ function SelectMain<T>({
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
-  const extraProps = useMemo(
-    () => (listboxAsPopover ? { popover: '' } : {}),
-    [listboxAsPopover],
-  );
 
   useListboxPositioning(
     buttonRef,
@@ -376,7 +371,6 @@ function SelectMain<T>({
       </button>
       <SelectContext.Provider value={{ selectValue, value }}>
         <ul
-          {...extraProps}
           className={classnames(
             'absolute z-5 max-h-80 overflow-y-auto',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
@@ -397,6 +391,10 @@ function SelectMain<T>({
           aria-orientation="vertical"
           data-testid="select-listbox"
           data-listbox-open={listboxOpen}
+          // nb. Use `undefined` rather than `false` because Preact doesn't
+          // handle boolean values correctly for this attribute (it will set
+          // `popover="false"` instead of removing the attribute).
+          popover={listboxAsPopover ? 'auto' : undefined}
         >
           {children}
         </ul>
