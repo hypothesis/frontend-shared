@@ -1,11 +1,11 @@
 import classnames from 'classnames';
-import { useCallback, useId, useMemo, useState } from 'preact/hooks';
+import { useId, useState } from 'preact/hooks';
 
 import { Link } from '../../../..';
-import { ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons';
 import type { SelectNextProps } from '../../../../components/input';
-import { IconButton, InputGroup } from '../../../../components/input';
 import SelectNext from '../../../../components/input/SelectNext';
+import SelectNextInInputGroup from '../../../examples/select-next-in-input-group';
+import SelectNextWithManyOptions from '../../../examples/select-next-with-custom-options';
 import Library from '../../Library';
 
 type ItemType = {
@@ -23,20 +23,12 @@ const defaultItems: ItemType[] = [
 ];
 
 function SelectExample({
-  disabled,
   textOnly,
   items = defaultItems,
   ...rest
 }: Pick<
   SelectNextProps<ItemType>,
-  | 'aria-label'
-  | 'aria-labelledby'
-  | 'buttonClasses'
-  | 'containerClasses'
-  | 'listboxClasses'
-  | 'disabled'
-  | 'right'
-  | 'listboxAsPopover'
+  'buttonClasses' | 'containerClasses' | 'listboxClasses'
 > & {
   textOnly?: boolean;
   items?: ItemType[];
@@ -46,15 +38,12 @@ function SelectExample({
 
   return (
     <>
-      {!rest['aria-label'] && !rest['aria-labelledby'] && (
-        <label htmlFor={buttonId}>Select a person</label>
-      )}
+      <label htmlFor={buttonId}>Select a person</label>
       <SelectNext
         {...rest}
         buttonId={buttonId}
         value={value}
         onChange={setValue}
-        disabled={disabled}
         buttonContent={
           value ? (
             <>
@@ -68,8 +57,6 @@ function SelectExample({
                 </div>
               )}
             </>
-          ) : disabled ? (
-            <>This is disabled</>
           ) : (
             <>Select one…</>
           )
@@ -102,79 +89,6 @@ function SelectExample({
           </SelectNext.Option>
         ))}
       </SelectNext>
-    </>
-  );
-}
-
-function InputGroupSelectExample({
-  buttonClasses,
-}: {
-  buttonClasses?: string;
-}) {
-  const [selected, setSelected] = useState<(typeof defaultItems)[number]>();
-  const selectedIndex = useMemo(
-    () => (!selected ? -1 : defaultItems.findIndex(item => item === selected)),
-    [selected],
-  );
-  const next = useCallback(() => {
-    const newIndex = selectedIndex + 1;
-    setSelected(defaultItems[newIndex] ?? selected);
-  }, [selected, selectedIndex]);
-  const previous = useCallback(() => {
-    const newIndex = selectedIndex - 1;
-    setSelected(defaultItems[newIndex] ?? selected);
-  }, [selected, selectedIndex]);
-  const buttonId = useId();
-
-  return (
-    <>
-      <label htmlFor={buttonId}>Select a person</label>
-      <InputGroup>
-        <IconButton
-          icon={ArrowLeftIcon}
-          title="Previous student"
-          variant="dark"
-          onClick={previous}
-          disabled={selectedIndex <= 0}
-        />
-        <SelectNext
-          buttonId={buttonId}
-          value={selected}
-          onChange={setSelected}
-          buttonClasses={buttonClasses}
-          buttonContent={
-            selected ? (
-              <div className="flex">
-                <div className="truncate">{selected.name}</div>
-                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                  {selected.id}
-                </div>
-              </div>
-            ) : (
-              <>Select one…</>
-            )
-          }
-        >
-          {defaultItems.map(item => (
-            <SelectNext.Option value={item} key={item.id}>
-              {item.name}
-              <div className="grow" />
-              <div
-                className={classnames('rounded px-2 ml-2 text-white bg-grey-7')}
-              >
-                {item.id}
-              </div>
-            </SelectNext.Option>
-          ))}
-        </SelectNext>
-        <IconButton
-          icon={ArrowRightIcon}
-          title="Next student"
-          variant="dark"
-          onClick={next}
-          disabled={selectedIndex >= defaultItems.length - 1}
-        />
-      </InputGroup>
     </>
   );
 }
@@ -227,51 +141,49 @@ export default function SelectNextPage() {
           </p>
 
           <Library.Example title="Composing and styling Selects">
-            <Library.Demo title="Select with custom Options">
-              <div className="w-96">
-                <SelectExample />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Select with custom Options"
+              exampleFile="select-next-with-custom-options"
+              withSource
+            />
 
-            <Library.Demo title="Select in InputGroup">
-              <div className="w-96">
-                <InputGroupSelectExample />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Select in InputGroup"
+              exampleFile="select-next-in-input-group"
+              withSource
+            />
           </Library.Example>
 
           <Library.Example title="Select with many options">
             <Library.Demo title="Select with many options">
-              <div className="w-96 mx-auto">
-                <SelectExample
-                  items={[
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `1${id}`,
-                      name: `1 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `2${id}`,
-                      name: `2 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `3${id}`,
-                      name: `3 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `4${id}`,
-                      name: `4 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `5${id}`,
-                      name: `5 ${name}`,
-                    })),
-                    ...defaultItems.map(({ id, name }) => ({
-                      id: `6${id}`,
-                      name: `6 ${name}`,
-                    })),
-                  ]}
-                />
-              </div>
+              <SelectNextWithManyOptions
+                items={[
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `1${id}`,
+                    name: `1 ${name}`,
+                  })),
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `2${id}`,
+                    name: `2 ${name}`,
+                  })),
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `3${id}`,
+                    name: `3 ${name}`,
+                  })),
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `4${id}`,
+                    name: `4 ${name}`,
+                  })),
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `5${id}`,
+                    name: `5 ${name}`,
+                  })),
+                  ...defaultItems.map(({ id, name }) => ({
+                    id: `6${id}`,
+                    name: `6 ${name}`,
+                  })),
+                ]}
+              />
             </Library.Demo>
           </Library.Example>
 
@@ -291,26 +203,21 @@ export default function SelectNextPage() {
                   linked to <code>buttonId</code>
                 </>
               }
-            >
-              <div className="w-96 mx-auto">
-                <SelectExample />
-              </div>
-            </Library.Demo>
+              exampleFile="select-next-basic"
+              withSource
+            />
 
-            <Library.Demo title="Via aria-label">
-              <div className="w-96 mx-auto">
-                <SelectExample aria-label="Select a person with aria label" />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Via aria-label"
+              exampleFile="select-next-aria-label"
+              withSource
+            />
 
-            <Library.Demo title="Via aria-labelledby">
-              <div className="w-96 mx-auto">
-                <p id="select-next-meta-label">
-                  Select a person with aria labelledby
-                </p>
-                <SelectExample aria-labelledby="select-next-meta-label" />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Via aria-labelledby"
+              exampleFile="select-next-aria-labelledby"
+              withSource
+            />
           </Library.Example>
 
           <Library.Example title="Select with long content">
@@ -343,7 +250,10 @@ export default function SelectNextPage() {
 
             <Library.Demo title="Input group">
               <div className="mx-auto">
-                <InputGroupSelectExample buttonClasses="!w-36" />
+                <SelectNextInInputGroup
+                  buttonClasses="!w-36"
+                  wrapperClasses=""
+                />
               </div>
             </Library.Demo>
           </Library.Example>
@@ -409,11 +319,11 @@ export default function SelectNextPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-            <Library.Demo title="Disabled Select">
-              <div className="w-96 mx-auto">
-                <SelectExample disabled />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Disabled Select"
+              exampleFile="select-next-disabled"
+              withSource
+            />
           </Library.Example>
           <Library.Example title="right">
             <Library.Info>
@@ -428,11 +338,11 @@ export default function SelectNextPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-            <Library.Demo title="Right listbox">
-              <div className="mx-auto">
-                <SelectExample right buttonClasses="!w-36" />
-              </div>
-            </Library.Demo>
+            <Library.Demo
+              title="Right listbox"
+              exampleFile="select-next-right"
+              withSource
+            />
           </Library.Example>
           <Library.Example title="buttonClasses">
             <Library.Info>
