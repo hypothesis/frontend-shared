@@ -4,7 +4,7 @@ import { useCallback, useContext, useEffect, useMemo } from 'preact/hooks';
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
 import { useStableCallback } from '../../hooks/use-stable-callback';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
-import type { CompositeProps, Order } from '../../types';
+import type { CompositeProps, Order, OrderDirection } from '../../types';
 import { downcastRef } from '../../util/typing';
 import { ArrowDownIcon, ArrowUpIcon, SpinnerSpokesIcon } from '../icons';
 import { Button } from '../input';
@@ -80,8 +80,13 @@ type ComponentProps<Row> = Pick<
    * Columns that can be used to order the table. Ignored if `onOrderChange` is
    * not provided.
    * No columns will be orderable if this is not provided.
+   *
+   * This can be a map of columns and order directions, to indicate the initial
+   * direction to use when a column becomes the ordered one
    */
-  orderableColumns?: Array<keyof Row>;
+  orderableColumns?:
+    | Array<keyof Row>
+    | Partial<Record<keyof Row, OrderDirection>>;
 
   /** Callback to render an individual table cell */
   renderItem?: (r: Row, field: keyof Row) => ComponentChildren;
@@ -98,9 +103,13 @@ function defaultRenderItem<Row>(r: Row, field: keyof Row): ComponentChildren {
 function calculateNewOrder<T extends string | number | symbol>(
   newField: T,
   prevOrder?: Order<T>,
+  initialOrderForColumn?: Partial<Record<T, OrderDirection>>,
 ): Order<T> {
   if (newField !== prevOrder?.field) {
-    return { field: newField, direction: 'ascending' };
+    return {
+      field: newField,
+      direction: initialOrderForColumn?.[newField] ?? 'ascending',
+    };
   }
 
   const newDirection =
@@ -162,12 +171,23 @@ export default function DataTable<Row>({
 }: DataTableProps<Row>) {
   const tableRef = useSyncedRef(elementRef);
   const scrollContext = useContext(ScrollContext);
+  const [orderableColumnsList, initialOrderForColumn] = useMemo(
+    () =>
+      Array.isArray(orderableColumns)
+        ? [orderableColumns, {}]
+        : [Object.keys(orderableColumns) as Array<keyof Row>, orderableColumns],
+    [orderableColumns],
+  );
   const updateOrder = useCallback(
     (newField: keyof Row) => {
-      const newOrder = calculateNewOrder(newField, order);
+      const newOrder = calculateNewOrder(
+        newField,
+        order,
+        initialOrderForColumn,
+      );
       onOrderChange?.(newOrder);
     },
-    [onOrderChange, order],
+    [initialOrderForColumn, onOrderChange, order],
   );
 
   const noContent = loading || (!rows.length && emptyMessage);
@@ -321,7 +341,7 @@ export default function DataTable<Row>({
         <TableRow>
           {columns.map(column => {
             const isOrderable =
-              !!onOrderChange && orderableColumns.includes(column.field);
+              !!onOrderChange && orderableColumnsList.includes(column.field);
             const isActiveOrder = order?.field === column.field;
 
             return (

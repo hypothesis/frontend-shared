@@ -702,11 +702,12 @@ export default function DataTablePage() {
             <Library.Info>
               <Library.InfoItem label="description">
                 If provided together with <code>onOrderChange</code>, it allows
-                to restrict which columns can be used to order the table.
-                Defaults to all columns.
+                to restrict which columns can be used to order the table, or
+                define the initial ordering direction for every orderable
+                column. Defaults to no columns.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{`Field[] | undefined`}</code>
+                <code>{`Field[] | Partial<Record<Field, 'ascending' | 'descending'>> | undefined`}</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
                 <code>undefined</code>
@@ -720,6 +721,20 @@ export default function DataTablePage() {
                   rows={nabokovRows}
                   columns={nabokovColumns}
                   orderableColumns={['title', 'year']}
+                />
+              </div>
+            </Library.Demo>
+
+            <Library.Demo title="Year orders descending by default">
+              <div className="w-full">
+                <ClientOrderableDataTable
+                  title="Some of Nabokov's novels"
+                  rows={nabokovRows}
+                  columns={nabokovColumns}
+                  orderableColumns={{
+                    title: 'ascending',
+                    year: 'descending',
+                  }}
                 />
               </div>
             </Library.Demo>
