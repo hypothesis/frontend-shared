@@ -74,7 +74,7 @@ describe('DataTable', () => {
     );
   }
 
-  const createComponent = (Component, props = {}) => {
+  const createComponent = ({ Component = DataTable, ...props } = {}) => {
     const wrapper = mount(
       <Component columns={fakeColumns} rows={fakeRows} {...props} />,
 
@@ -87,8 +87,8 @@ describe('DataTable', () => {
   };
 
   it('sets appropriate table attributes', () => {
-    const wrapper = createComponent(DataTable);
-    const interactiveWrapper = createComponent(DataTable, {
+    const wrapper = createComponent();
+    const interactiveWrapper = createComponent({
       onSelectRow: sinon.stub(),
     });
     const outer = wrapper.find('Table');
@@ -105,7 +105,7 @@ describe('DataTable', () => {
 
   describe('table columns', () => {
     it('renders a column header for each column', () => {
-      const wrapper = createComponent(DataTable);
+      const wrapper = createComponent();
       const tableHead = wrapper.find('TableHead');
 
       assert.equal(tableHead.find('th').length, 3);
@@ -115,7 +115,7 @@ describe('DataTable', () => {
     });
 
     it('applies extra column classes', () => {
-      const wrapper = createComponent(DataTable);
+      const wrapper = createComponent();
       const tableHead = wrapper.find('TableHead');
 
       assert.isTrue(tableHead.find('th').at(0).hasClass('w-[50%]'));
@@ -124,7 +124,7 @@ describe('DataTable', () => {
 
   describe('table rows', () => {
     it('renders one table row per row provided', () => {
-      const wrapper = createComponent(DataTable);
+      const wrapper = createComponent();
       assert.equal(
         wrapper.find('TableBody').find('TableRow').length,
         fakeRows.length,
@@ -132,7 +132,7 @@ describe('DataTable', () => {
     });
 
     it('renders fields that are defined by columns', () => {
-      const wrapper = createComponent(DataTable);
+      const wrapper = createComponent();
       const firstRow = wrapper.find('TableBody').find('TableRow').first();
 
       assert.equal(firstRow.find('td').at(0).text(), 'Chocolate Cake');
@@ -157,7 +157,7 @@ describe('DataTable', () => {
 
       const rows = [fakeRows[3]];
 
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         renderItem: formatCell,
         rows,
         columns,
@@ -177,7 +177,7 @@ describe('DataTable', () => {
   describe('interacting with row data', () => {
     it('invokes `onSelectRow` callback when row is clicked', () => {
       const onSelectRow = sinon.stub();
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         onSelectRow,
       });
 
@@ -188,7 +188,8 @@ describe('DataTable', () => {
 
     it('invokes `onSelectRows` callback when rows are clicked', () => {
       const onSelectRows = sinon.stub();
-      const wrapper = createComponent(MultiSelectDataTable, {
+      const wrapper = createComponent({
+        Component: MultiSelectDataTable,
         onSelectRows,
       });
 
@@ -212,7 +213,7 @@ describe('DataTable', () => {
 
     it('invokes `onSelectRow` when row is selected with arrow keys', () => {
       const onSelectRow = sinon.stub();
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         onSelectRow,
       });
 
@@ -229,7 +230,8 @@ describe('DataTable', () => {
 
     it('invokes `onSelectRows` callback when rows are selected with arrow keys', () => {
       const onSelectRows = sinon.stub();
-      const wrapper = createComponent(MultiSelectDataTable, {
+      const wrapper = createComponent({
+        Component: MultiSelectDataTable,
         onSelectRows,
       });
 
@@ -252,7 +254,7 @@ describe('DataTable', () => {
 
     it('invokes `onConfirmRow` callback when row is double-clicked', () => {
       const onConfirmRow = sinon.stub();
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         onConfirmRow,
       });
 
@@ -263,7 +265,7 @@ describe('DataTable', () => {
 
     it('invokes `onConfirmRow` callback when `Enter` is pressed on a row', () => {
       const onConfirmRow = sinon.stub();
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         onConfirmRow,
       });
 
@@ -275,30 +277,30 @@ describe('DataTable', () => {
 
   context('when loading', () => {
     it('renders a loading spinner', () => {
-      const wrapper = createComponent(DataTable, { loading: true });
+      const wrapper = createComponent({ loading: true });
       assert.isTrue(wrapper.find('SpinnerSpokesIcon').exists());
     });
 
     it('does not render any data', () => {
-      const wrapper = createComponent(DataTable, { loading: true });
+      const wrapper = createComponent({ loading: true });
       // One row, which holds the spinner
       assert.equal(wrapper.find('tbody tr').length, 1);
     });
 
     it('still renders headings', () => {
-      const wrapper = createComponent(DataTable, { loading: true });
+      const wrapper = createComponent({ loading: true });
       assert.equal(wrapper.find('thead tr th').length, 3);
     });
 
     it('does not render a TableFoot', () => {
-      const wrapper = createComponent(DataTable, { loading: true });
+      const wrapper = createComponent({ loading: true });
       assert.isFalse(wrapper.find('[data-component="TableFoot"]').exists());
     });
   });
 
   context('when empty', () => {
     it('shows an empty message if provided', () => {
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         emptyMessage: <strong>Nope</strong>,
         rows: [],
       });
@@ -306,7 +308,7 @@ describe('DataTable', () => {
     });
 
     it('still renders headings', () => {
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         emptyMessage: <strong>Nope</strong>,
         rows: [],
       });
@@ -314,7 +316,7 @@ describe('DataTable', () => {
     });
 
     it('does not render a TableFoot', () => {
-      const wrapper = createComponent(DataTable, {
+      const wrapper = createComponent({
         rows: [],
       });
       assert.isFalse(wrapper.find('[data-component="TableFoot"]').exists());
@@ -412,7 +414,7 @@ describe('DataTable', () => {
       { direction: 'descending', expectedArrow: 'ArrowDownIcon' },
     ].forEach(({ direction, expectedArrow }) => {
       it('shows initial active order', () => {
-        const wrapper = createComponent(DataTable, {
+        const wrapper = createComponent({
           order: { field: 'color', direction },
         });
         const colorTableCell = wrapper.find('TableCell').at(1);
@@ -425,7 +427,7 @@ describe('DataTable', () => {
     [
       // Clicking the same column when initially ascending, transitions to descending
       {
-        initialOrder: { field: 'name', direction: 'ascending' },
+        startingOrder: { field: 'name', direction: 'ascending' },
         clickedColumn: 'name',
         expectedNewOrder: {
           field: 'name',
@@ -434,26 +436,57 @@ describe('DataTable', () => {
       },
       // Clicking the same column when initially descending, transitions to ascending
       {
-        initialOrder: { field: 'name', direction: 'descending' },
+        startingOrder: { field: 'name', direction: 'descending' },
         clickedColumn: 'name',
         expectedNewOrder: { field: 'name', direction: 'ascending' },
       },
       // Clicking another column sets direction as ascending
       {
-        initialOrder: { field: 'name', direction: 'ascending' },
+        startingOrder: { field: 'name', direction: 'ascending' },
         clickedColumn: 'consistency',
         expectedNewOrder: {
           field: 'consistency',
           direction: 'ascending',
         },
       },
-    ].forEach(({ initialOrder, clickedColumn, expectedNewOrder }) => {
+      // Change sort column to a column with no initial order specified
+      {
+        startingOrder: { field: 'name', direction: 'ascending' },
+        clickedColumn: 'color',
+        expectedNewOrder: {
+          field: 'color',
+          direction: 'descending',
+        },
+      },
+      // Change sort column to a column with no initial order specified
+      {
+        startingOrder: undefined,
+        clickedColumn: 'consistency',
+        expectedNewOrder: {
+          field: 'consistency',
+          direction: 'ascending',
+        },
+      },
+      // Change sort column to a column with an initial order specified
+      {
+        startingOrder: undefined,
+        clickedColumn: 'color',
+        expectedNewOrder: {
+          field: 'color',
+          direction: 'descending',
+        },
+      },
+    ].forEach(({ startingOrder, clickedColumn, expectedNewOrder }) => {
       it('can update order by clicking columns', () => {
         const onOrderChange = sinon.stub();
-        const wrapper = createComponent(DataTable, {
+        const wrapper = createComponent({
           onOrderChange,
-          order: initialOrder,
-          orderableColumns: ['name', 'color', 'consistency'],
+          order: startingOrder,
+          orderableColumns: {
+            name: 'ascending',
+            color: 'descending',
+            consistency: 'ascending',
+          },
         });
 
         wrapper
@@ -471,7 +504,7 @@ describe('DataTable', () => {
       undefined,
     ].forEach(orderableColumns => {
       it('can restrict which columns are orderable', () => {
-        const wrapper = createComponent(DataTable, {
+        const wrapper = createComponent({
           onOrderChange: sinon.stub(),
           orderableColumns,
         });
