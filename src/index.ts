@@ -76,6 +76,7 @@ export type {
   CompositeProps,
   IconComponent,
   Order,
+  OrderDirection,
   PresentationalProps,
   TransitionComponent,
 } from './types';
