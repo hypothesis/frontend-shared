@@ -247,7 +247,9 @@ export default function DataTable<Row>({
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent, row: Row) => {
-      if (event.key === 'Enter') {
+      // Avoid preventing Enter key interactions in children elements by
+      // ignoring events not triggered by the row element itself
+      if (event.key === 'Enter' && event.target === event.currentTarget) {
         confirmRow(row);
         event.preventDefault();
         event.stopPropagation();

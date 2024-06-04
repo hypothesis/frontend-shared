@@ -273,6 +273,18 @@ describe('DataTable', () => {
 
       assert.calledWith(onConfirmRow, fakeRows[0]);
     });
+
+    it("does not invoke `onConfirmRow` callback when `Enter` is pressed on a row's child", () => {
+      const onConfirmRow = sinon.stub();
+      const wrapper = createComponent({
+        onConfirmRow,
+        renderItem: (row, field) => <a href="/">{field}</a>,
+      });
+
+      wrapper.find('tbody tr a').first().simulate('keydown', { key: 'Enter' });
+
+      assert.notCalled(onConfirmRow);
+    });
   });
 
   context('when loading', () => {
