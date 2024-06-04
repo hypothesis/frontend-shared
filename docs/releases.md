@@ -22,5 +22,7 @@ Create a [new GitHub release](https://github.com/hypothesis/frontend-shared/rele
 - Check the contents of the package on UNPKG. The URL pattern is `https://unpkg.com/browse/@hypothesis/frontend-shared@<version>/`, e.g. https://unpkg.com/browse/@hypothesis/frontend-shared@5.2.0/
 
 [^1]: Unlike other PRs, a version-bump PR does not require review. But do wait for CI to complete first.
+
 [^2]: You can create a tag manually as a separate step if you want to tag a non-tip commit.
+
 [^3]: You can look at release notes for [other recent releases](https://github.com/hypothesis/frontend-shared/releases) as exemplars. You don't need to include every change (especially, e.g., dependency updates).
