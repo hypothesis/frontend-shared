@@ -64,6 +64,9 @@ type ComponentProps<Row> = Pick<
    */
   onConfirmRow?: (r: Row) => void;
 
+  /** Callback when a row is clicked */
+  onClickRow?: (r: Row) => void;
+
   /** Current sort order */
   order?: Order<keyof Row>;
 
@@ -155,6 +158,7 @@ export default function DataTable<Row>({
   onSelectRow,
   onSelectRows,
   onConfirmRow,
+  onClickRow,
   emptyMessage,
 
   order,
@@ -222,16 +226,18 @@ export default function DataTable<Row>({
     horizontal: true,
     vertical: true,
     focusElement: (element, keyEvent) => {
-      // Simulate a click to update the selected row when arrow-key navigation
+      // Use a custom event to update the selected row when arrow-key navigation
       // happens. We do this instead of using an `onFocus` handler on the row
       // itself because we need to know if the shift key was pressed, and
       // `FocusEvent` doesn't provide that information.
       if (keyEvent) {
         element.dispatchEvent(
-          new MouseEvent('click', {
-            // Propagate shift key state so arrow key + shift can be used to
-            // create a multi-selection.
-            shiftKey: keyEvent.shiftKey,
+          new CustomEvent('select-row', {
+            detail: {
+              // Propagate shift key state so arrow key + shift can be used to
+              // create a multi-selection.
+              shiftKey: keyEvent.shiftKey,
+            },
           }),
         );
       }
@@ -305,9 +311,20 @@ export default function DataTable<Row>({
       <TableRow
         key={idx}
         selected={selection.includes(row)}
-        onClick={e => selectRow(row, e.shiftKey ? 'extend' : 'replace')}
+        onClick={e => {
+          selectRow(row, e.shiftKey ? 'extend' : 'replace');
+          onClickRow?.(row);
+        }}
         onDblClick={() => confirmRow(row)}
         onKeyDown={event => handleKeyDown(event, row)}
+        elementRef={el => {
+          el?.addEventListener('select-row', e => {
+            selectRow(
+              row,
+              (e as CustomEvent).detail.shiftKey ? 'extend' : 'replace',
+            );
+          });
+        }}
       >
         {fields.map(field => (
           <TableCell key={field}>{renderItem(row, field)}</TableCell>
@@ -315,16 +332,19 @@ export default function DataTable<Row>({
       </TableRow>
     ));
   }, [
-    confirmRow,
-    fields,
-    renderItem,
-    handleKeyDown,
     rows,
-    selectRow,
     selection,
+    fields,
+    selectRow,
+    onClickRow,
+    confirmRow,
+    handleKeyDown,
+    renderItem,
   ]);
 
-  const interactive = Boolean(onSelectRow || onSelectRows || onConfirmRow);
+  const interactive = Boolean(
+    onSelectRow || onSelectRows || onConfirmRow || onClickRow,
+  );
 
   return (
     <Table

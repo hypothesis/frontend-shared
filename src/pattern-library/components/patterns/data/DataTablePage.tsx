@@ -606,6 +606,30 @@ export default function DataTablePage() {
             </Library.Info>
           </Library.Example>
 
+          <Library.Example title="onClickRow">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when a row is clicked
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{`(r: Row) => void`}</code>
+              </Library.InfoItem>
+            </Library.Info>
+
+            <Library.Demo title="DataTable with clickable rows" withSource>
+              <div className="w-full h-[250px]">
+                <Scroll>
+                  <DataTable
+                    title="Some of Nabokov's novels"
+                    rows={nabokovRows}
+                    columns={nabokovColumns}
+                    onClickRow={console.log}
+                  />
+                </Scroll>
+              </div>
+            </Library.Demo>
+          </Library.Example>
+
           <Library.Example title="selectedRow">
             <Library.Info>
               <Library.InfoItem label="description">
