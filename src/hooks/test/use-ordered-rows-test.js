@@ -14,9 +14,9 @@ const starWarsCharacters = [
 ];
 
 describe('useOrderedRows', () => {
-  function FakeComponent() {
-    const [order, setOrder] = useState();
-    const orderedRows = useOrderedRows(starWarsCharacters, order);
+  function FakeComponent({ rows, initialOrder }) {
+    const [order, setOrder] = useState(initialOrder);
+    const orderedRows = useOrderedRows(rows, order);
 
     return (
       <div>
@@ -60,8 +60,11 @@ describe('useOrderedRows', () => {
     );
   }
 
-  function createComponent() {
-    return mount(<FakeComponent />);
+  function createComponent(
+    rows = starWarsCharacters,
+    initialOrder = undefined,
+  ) {
+    return mount(<FakeComponent rows={rows} initialOrder={initialOrder} />);
   }
 
   function assertDefaultOrder(wrapper) {
@@ -72,7 +75,7 @@ describe('useOrderedRows', () => {
     expectedRows.forEach((character, index) => {
       assert.equal(
         wrapper.find(`[data-testid="name-${index}"]`).text(),
-        character.name,
+        character.name ?? '',
       );
       assert.equal(
         wrapper.find(`[data-testid="age-${index}"]`).text(),
@@ -140,6 +143,90 @@ describe('useOrderedRows', () => {
       // Order can be reset
       wrapper.find('[data-testid="button-reset-order"]').simulate('click');
       assertDefaultOrder(wrapper);
+    });
+  });
+
+  [
+    // Null/undefined element is initially last
+    [...starWarsCharacters, { name: null, age: 20 }],
+    [...starWarsCharacters, { name: undefined, age: 20 }],
+
+    // Null/undefined element is initially first
+    [{ name: null, age: 20 }, ...starWarsCharacters],
+    [{ name: undefined, age: 20 }, ...starWarsCharacters],
+
+    // Null/undefined element is initially somewhere in between
+    [
+      starWarsCharacters[0],
+      starWarsCharacters[1],
+      { name: null, age: 20 },
+      starWarsCharacters[2],
+      starWarsCharacters[3],
+      starWarsCharacters[4],
+      starWarsCharacters[5],
+    ],
+    [
+      starWarsCharacters[0],
+      starWarsCharacters[1],
+      starWarsCharacters[2],
+      starWarsCharacters[3],
+      { name: undefined, age: 20 },
+      starWarsCharacters[4],
+      starWarsCharacters[5],
+    ],
+  ].forEach(rows => {
+    it('orders null values last when initial order is ascending', () => {
+      const wrapper = createComponent(rows, {
+        field: 'name',
+        direction: 'ascending',
+      });
+
+      // All items are ordered ascending, with nulls at the bottom
+      assertOrder(wrapper, [
+        { name: 'Baby Yoda', age: 2 },
+        { name: 'baby yöda The Second', age: 2 },
+        { name: 'Han Solo', age: 25 },
+        { name: 'leia Organa', age: 20 },
+        { name: 'Luke Skywalker', age: 20 },
+        { name: 'young Anakin Skywalker', age: 10 },
+        { name: null, age: 20 },
+      ]);
+    });
+
+    it('orders null values last when initial order is descending', () => {
+      const wrapper = createComponent(rows, {
+        field: 'name',
+        direction: 'descending',
+      });
+
+      // All items are ordered descending, with nulls at the bottom
+      assertOrder(wrapper, [
+        { name: 'young Anakin Skywalker', age: 10 },
+        { name: 'Luke Skywalker', age: 20 },
+        { name: 'leia Organa', age: 20 },
+        { name: 'Han Solo', age: 25 },
+        { name: 'baby yöda The Second', age: 2 },
+        { name: 'Baby Yoda', age: 2 },
+        { name: null, age: 20 },
+      ]);
+    });
+
+    it('orders null values first when nullsLast is false', () => {
+      const wrapper = createComponent(rows, {
+        field: 'name',
+        direction: 'descending',
+        nullsLast: false,
+      });
+
+      assertOrder(wrapper, [
+        { name: null, age: 20 },
+        { name: 'young Anakin Skywalker', age: 10 },
+        { name: 'Luke Skywalker', age: 20 },
+        { name: 'leia Organa', age: 20 },
+        { name: 'Han Solo', age: 25 },
+        { name: 'baby yöda The Second', age: 2 },
+        { name: 'Baby Yoda', age: 2 },
+      ]);
     });
   });
 });

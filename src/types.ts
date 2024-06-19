@@ -64,4 +64,11 @@ export type OrderDirection = 'ascending' | 'descending';
 export type Order<Field extends string | number | symbol> = {
   field: Field;
   direction: OrderDirection;
+
+  /**
+   * Indicates whether entries where the value for `field` is null/undefined
+   * should go last. Otherwise, they will go first.
+   * Defaults to true.
+   */
+  nullsLast?: boolean;
 };

@@ -19,6 +19,9 @@ export function useOrderedRows<Row>(
       return rows;
     }
 
+    // Order nulls last by default
+    const { nullsLast = true } = order;
+
     return [...rows].sort(({ [order.field]: a }, { [order.field]: b }) => {
       const [x, y] = order.direction === 'ascending' ? [a, b] : [b, a];
 
@@ -28,6 +31,15 @@ export function useOrderedRows<Row>(
 
       if (x === y) {
         return 0;
+      }
+
+      // We check a/b instead of x/y because nulls should not be affected by the
+      // regular order direction.
+      if (a === null || a === undefined) {
+        return nullsLast ? 1 : -1;
+      }
+      if (b === null || b === undefined) {
+        return nullsLast ? -1 : 1;
       }
 
       return x > y ? 1 : -1;
