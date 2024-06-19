@@ -15,7 +15,7 @@ export default function PointerUpIcon(props: PointerUpIconProps) {
       data-component="PointerUpIcon"
       {...props}
     >
-      <path stroke="currentColor" d="m.5 9 7-8 8 8" />
+      <path fill="currentColor" stroke="currentColor" d="m.5 9 7-8 8 8" />
     </svg>
   );
 }
