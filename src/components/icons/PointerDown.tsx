@@ -15,7 +15,7 @@ export default function PointerDownIcon(props: PointerDownIconProps) {
       data-component="PointerDownIcon"
       {...props}
     >
-      <path fill="currentColor" stroke="currentColor" d="m15.5 0-7 8-8-8" />
+      <path stroke="currentColor" d="m15.5 0-7 8-8-8" />
     </svg>
   );
 }
