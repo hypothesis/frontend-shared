@@ -1,17 +1,22 @@
+import type { RefObject } from 'preact';
 import { useEffect } from 'preact/hooks';
+
+type ListenOptions = {
+  useCapture?: boolean;
+};
 
 /**
  * Attach listeners for one or multiple events to an element and return a
  * function that removes the listeners.
  *
- * @param {HTMLElement} element
- * @param {string[]} events
- * @param {EventListener} listener
- * @param {object} options
- *   @param {boolean} [options.useCapture]
- * @return {() => void} Function which removes the event listeners.
+ * @return Function which removes the event listeners.
  */
-function listen(element, events, listener, { useCapture = false } = {}) {
+function listen(
+  element: HTMLElement,
+  events: string[],
+  listener: EventListener,
+  { useCapture = false }: ListenOptions = {},
+): () => void {
   events.forEach(event =>
     element.addEventListener(event, listener, useCapture),
   );
@@ -21,11 +26,6 @@ function listen(element, events, listener, { useCapture = false } = {}) {
     );
   };
 }
-
-/**
- * @template T
- * @typedef {import("preact").RefObject<T>} Ref
- */
 
 /**
  * This hook provides a way to close or hide an element when a user interacts
@@ -39,11 +39,15 @@ function listen(element, events, listener, { useCapture = false } = {}) {
  *
  * @deprecated Use `useKeyPress`, `useClickAway` and/or `useFocusAway` instead
  *
- * @param {Ref<HTMLElement | undefined>} closeableEl - Outer DOM element for the popup
- * @param {boolean} isOpen - Whether the popup is currently visible/open
- * @param {() => void} handleClose - Callback invoked to close the popup
+ * @param closeableEl - Outer DOM element for the popup
+ * @param isOpen - Whether the popup is currently visible/open
+ * @param handleClose - Callback invoked to close the popup
  */
-export function useElementShouldClose(closeableEl, isOpen, handleClose) {
+export function useElementShouldClose(
+  closeableEl: RefObject<HTMLElement | undefined>,
+  isOpen: boolean,
+  handleClose: () => void,
+) {
   useEffect(() => {
     if (!isOpen) {
       return () => {};
@@ -51,7 +55,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
 
     // Close element when user presses Escape key, regardless of focus.
     const removeKeyDownListener = listen(document.body, ['keydown'], event => {
-      const keyEvent = /** @type {KeyboardEvent} */ (event);
+      const keyEvent = event as KeyboardEvent;
       if (keyEvent.key === 'Escape') {
         handleClose();
       }
@@ -65,7 +69,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
       event => {
         if (
           closeableEl.current &&
-          !closeableEl.current.contains(/** @type {Node} */ (event.target))
+          !closeableEl.current.contains(event.target as Node)
         ) {
           handleClose();
         }
@@ -81,7 +85,7 @@ export function useElementShouldClose(closeableEl, isOpen, handleClose) {
       event => {
         if (
           closeableEl.current &&
-          !closeableEl.current.contains(/** @type {Node} */ (event.target))
+          !closeableEl.current.contains(event.target as Node)
         ) {
           handleClose();
         }
