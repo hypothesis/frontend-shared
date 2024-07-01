@@ -24,7 +24,7 @@ function listen(element, events, listener, { useCapture = false } = {}) {
 
 /**
  * @template T
- * @typedef {import("preact/hooks").Ref<T>} Ref
+ * @typedef {import("preact").RefObject<T>} Ref
  */
 
 /**
