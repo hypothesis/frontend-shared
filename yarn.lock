@@ -11602,14 +11602,14 @@ __metadata:
   linkType: hard
 
 "wouter-preact@npm:^3.0.0":
-  version: 3.2.1
-  resolution: "wouter-preact@npm:3.2.1"
+  version: 3.3.0
+  resolution: "wouter-preact@npm:3.3.0"
   dependencies:
     mitt: ^3.0.1
     regexparam: ^3.0.0
   peerDependencies:
     preact: ^10.0.0
-  checksum: a4e0f4004ec77e385ea7dd7fe53c9d85b4a2e78e0ca413c4291fe7f2b3b0d476ead28816db42e7ff2333334c006a16812e1fff28c8a5466bcf29a5cd0c1cbada
+  checksum: e23804152a953b89bdda3f04f31f60d2d5a3934e951da3a50a81fdd3aa2fd1de338778e99b249c2f80cd951c2cc9eb278afa5b650678f4a87a9f02a0310e2dc2
   languageName: node
   linkType: hard
 
