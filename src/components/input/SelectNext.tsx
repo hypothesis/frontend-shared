@@ -60,7 +60,35 @@ function SelectOption<T>({
   }
 
   const { selectValue, value: currentValue } = selectContext;
-  const selected = !disabled && currentValue === value;
+  const valueIsArray = Array.isArray(currentValue);
+
+  const selected =
+    !disabled &&
+    ((valueIsArray && currentValue.includes(value)) || currentValue === value);
+
+  const selectOrToggle = useCallback(() => {
+    // In single-select, just set current value
+    if (!valueIsArray) {
+      selectValue(value);
+      return;
+    }
+
+    // In multi-select, clear selection for nullish values
+    if (!value) {
+      selectValue([]);
+      return;
+    }
+
+    // In multi-select, toggle clicked items
+    const index = currentValue.indexOf(value);
+    if (index === -1) {
+      selectValue([...currentValue, value]);
+    } else {
+      const copy = [...currentValue];
+      copy.splice(index, 1);
+      selectValue(copy);
+    }
+  }, [currentValue, selectValue, value, valueIsArray]);
 
   return (
     <li
@@ -75,13 +103,13 @@ function SelectOption<T>({
       )}
       onClick={() => {
         if (!disabled) {
-          selectValue(value);
+          selectOrToggle();
         }
       }}
       onKeyPress={e => {
         if (!disabled && ['Enter', 'Space'].includes(e.code)) {
           e.preventDefault();
-          selectValue(value);
+          selectOrToggle();
         }
       }}
       role="option"
@@ -215,42 +243,58 @@ function useListboxPositioning(
   }, [adjustListboxPositioning, asPopover]);
 }
 
-export type SelectProps<T> = CompositeProps & {
+type SingleValueProps<T> = {
   value: T;
   onChange: (newValue: T) => void;
-  buttonContent?: ComponentChildren;
-  disabled?: boolean;
-
-  /**
-   * `id` attribute for the toggle button. This is useful to associate a label
-   * with the control.
-   */
-  buttonId?: string;
-
-  /** Additional classes to pass to container */
-  containerClasses?: string | string[];
-  /** Additional classes to pass to toggle button */
-  buttonClasses?: string | string[];
-  /** Additional classes to pass to listbox */
-  listboxClasses?: string | string[];
-
-  /**
-   * Align the listbox to the right.
-   * Useful when the listbox is bigger than the toggle button and this component
-   * is rendered next to the right side of the page/container.
-   * Defaults to false.
-   */
-  right?: boolean;
-
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-
-  /**
-   * Used to determine if the listbox should use the popover API.
-   * Defaults to true, as long as the browser supports it.
-   */
-  listboxAsPopover?: boolean;
 };
+
+type MultiValueProps<T> = {
+  value: T[];
+  onChange: (newValue: T[]) => void;
+};
+
+export type SelectProps<T> = CompositeProps &
+  (SingleValueProps<T> | MultiValueProps<T>) & {
+    buttonContent?: ComponentChildren;
+    disabled?: boolean;
+
+    /**
+     * Whether this select should allow multi-selection or not.
+     * When this is true, the listbox is kept open when an option is selected.
+     * Defaults to false.
+     */
+    multiple?: boolean;
+
+    /**
+     * `id` attribute for the toggle button. This is useful to associate a label
+     * with the control.
+     */
+    buttonId?: string;
+
+    /** Additional classes to pass to container */
+    containerClasses?: string | string[];
+    /** Additional classes to pass to toggle button */
+    buttonClasses?: string | string[];
+    /** Additional classes to pass to listbox */
+    listboxClasses?: string | string[];
+
+    /**
+     * Align the listbox to the right.
+     * Useful when the listbox is bigger than the toggle button and this component
+     * is rendered next to the right side of the page/container.
+     * Defaults to false.
+     */
+    right?: boolean;
+
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+
+    /**
+     * Used to determine if the listbox should use the popover API.
+     * Defaults to true, as long as the browser supports it.
+     */
+    listboxAsPopover?: boolean;
+  };
 
 function SelectMain<T>({
   buttonContent,
@@ -264,6 +308,7 @@ function SelectMain<T>({
   listboxClasses,
   containerClasses,
   right = false,
+  multiple = false,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   /* eslint-disable-next-line no-prototype-builtins */
@@ -295,11 +340,14 @@ function SelectMain<T>({
   );
 
   const selectValue = useCallback(
-    (newValue: unknown) => {
-      onChange(newValue as T);
-      closeListbox();
+    (value: unknown) => {
+      onChange(value as any);
+      // In multi-select mode, keep list open when selecting values
+      if (!multiple) {
+        closeListbox();
+      }
     },
-    [closeListbox, onChange],
+    [onChange, multiple, closeListbox],
   );
 
   // When clicking away, focusing away or pressing `Esc`, close the listbox
