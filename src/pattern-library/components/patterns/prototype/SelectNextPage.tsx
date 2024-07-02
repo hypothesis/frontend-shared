@@ -425,6 +425,25 @@ export default function SelectNextPage() {
               withSource
             />
           </Library.Example>
+          <Library.Example title="multiple">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determines if the listbox allows more than one item to be
+                selected at once.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>false</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Multi-select listbox"
+              exampleFile="select-next-multiple"
+              withSource
+            />
+          </Library.Example>
         </Library.Pattern>
 
         <Library.Pattern title="SelectNext.Option component API">
