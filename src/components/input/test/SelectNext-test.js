@@ -30,6 +30,9 @@ describe('SelectNext', () => {
 
     const wrapper = mount(
       <SelectNext value={undefined} onChange={sinon.stub()} {...props}>
+        <SelectNext.Option value={undefined}>
+          <span data-testid="reset-option">Reset</span>
+        </SelectNext.Option>
         {items.map(item => (
           <SelectNext.Option
             value={item}
@@ -87,19 +90,20 @@ describe('SelectNext', () => {
     return listboxTop < buttonTop;
   };
 
+  const clickOption = (wrapper, id) =>
+    wrapper.find(`[data-testid="option-${id}"]`).simulate('click');
+
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
     const wrapper = createComponent({ onChange });
-    const clickOption = index =>
-      wrapper.find(`[data-testid="option-${index}"]`).simulate('click');
 
-    clickOption(3);
+    clickOption(wrapper, 3);
     assert.calledWith(onChange.lastCall, items[2]);
 
-    clickOption(5);
+    clickOption(wrapper, 5);
     assert.calledWith(onChange.lastCall, items[4]);
 
-    clickOption(1);
+    clickOption(wrapper, 1);
     assert.calledWith(onChange.lastCall, items[0]);
   });
 
@@ -385,6 +389,71 @@ describe('SelectNext', () => {
     });
   });
 
+  context('when multi-selection is enabled', () => {
+    it('throws if multiple is true and the value is not an array', async () => {
+      assert.throws(
+        () => createComponent({ multiple: true }),
+        'When `multiple` is true, the value must be an array',
+      );
+    });
+
+    it('keeps listbox open when an option is selected if multiple is true', async () => {
+      const wrapper = createComponent({ multiple: true, value: [] });
+
+      toggleListbox(wrapper);
+      assert.isFalse(isListboxClosed(wrapper));
+
+      clickOption(wrapper, 1);
+
+      // After clicking an option, the listbox is still open
+      assert.isFalse(isListboxClosed(wrapper));
+    });
+
+    it('allows multiple items to be selected when the value is an array', () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({
+        multiple: true,
+        value: [items[0], items[2]],
+        onChange,
+      });
+
+      toggleListbox(wrapper);
+      clickOption(wrapper, 2);
+
+      // When a not-yet-selected item is clicked, it will be selected
+      assert.calledWith(onChange, [items[0], items[2], items[1]]);
+    });
+
+    it('allows deselecting already selected options', () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({
+        multiple: true,
+        value: [items[0], items[2]],
+        onChange,
+      });
+
+      toggleListbox(wrapper);
+      clickOption(wrapper, 3);
+
+      // When an already selected item is clicked, it will be de-selected
+      assert.calledWith(onChange, [items[0]]);
+    });
+
+    it('resets selection when option value is nullish and select value is an array', () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({
+        multiple: true,
+        value: [items[0], items[2]],
+        onChange,
+      });
+
+      toggleListbox(wrapper);
+      wrapper.find(`[data-testid="reset-option"]`).simulate('click');
+
+      assert.calledWith(onChange, []);
+    });
+  });
+
   it(
     'should pass a11y checks',
     checkAccessibility([
@@ -401,6 +470,23 @@ describe('SelectNext', () => {
         content: () => {
           const wrapper = createComponent(
             { buttonContent: 'Select', 'aria-label': 'Select' },
+            { optionsChildrenAsCallback: false },
+          );
+          toggleListbox(wrapper);
+
+          return wrapper;
+        },
+      },
+      {
+        name: 'Open Multi-Select listbox',
+        content: () => {
+          const wrapper = createComponent(
+            {
+              buttonContent: 'Select',
+              'aria-label': 'Select',
+              value: [items[1], items[3]],
+              multiple: true,
+            },
             { optionsChildrenAsCallback: false },
           );
           toggleListbox(wrapper);
