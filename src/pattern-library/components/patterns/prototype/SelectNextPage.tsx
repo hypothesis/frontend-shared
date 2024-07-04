@@ -450,6 +450,21 @@ export default function SelectNextPage() {
               withSource
             />
           </Library.Example>
+          <Library.Example title="onListboxScroll">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A callback passed to the listbox <code>onScroll</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  () {'=>'} void {'|'} undefined
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
 
         <Library.Pattern title="SelectNext.Option component API">

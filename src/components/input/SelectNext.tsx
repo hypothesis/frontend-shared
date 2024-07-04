@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import type { ComponentChildren, RefObject } from 'preact';
+import type { ComponentChildren, JSX, RefObject } from 'preact';
 import {
   useCallback,
   useContext,
@@ -298,6 +298,9 @@ export type SelectProps<T> = CompositeProps &
      * Defaults to true, as long as the browser supports it.
      */
     listboxAsPopover?: boolean;
+
+    /** A callback passed to the listbox onScroll */
+    onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
   };
 
 function SelectMain<T>({
@@ -311,6 +314,7 @@ function SelectMain<T>({
   buttonClasses,
   listboxClasses,
   containerClasses,
+  onListboxScroll,
   right = false,
   multiple = false,
   'aria-label': ariaLabel,
@@ -460,6 +464,7 @@ function SelectMain<T>({
           // handle boolean values correctly for this attribute (it will set
           // `popover="false"` instead of removing the attribute).
           popover={listboxAsPopover ? 'auto' : undefined}
+          onScroll={onListboxScroll}
         >
           {children}
         </ul>
