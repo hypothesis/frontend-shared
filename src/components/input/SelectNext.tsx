@@ -97,10 +97,11 @@ function SelectOption<T>({
     <li
       className={classnames(
         'w-full ring-inset outline-none rounded-none',
-        'border-t first:border-t-0 transition-colors whitespace-nowrap',
+        'border-t first:border-t-0 whitespace-nowrap',
         {
           'text-grey-4': disabled,
           'cursor-pointer focus-visible-ring hover:bg-grey-1': !disabled,
+          'bg-grey-1 hover:bg-grey-2': selected,
         },
         classes,
       )}
