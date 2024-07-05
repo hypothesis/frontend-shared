@@ -100,7 +100,7 @@ function SelectOption<T>({
         'border-t first:border-t-0 transition-colors whitespace-nowrap',
         {
           'text-grey-4': disabled,
-          'cursor-pointer focus:ring hover:bg-grey-1': !disabled,
+          'cursor-pointer focus-visible-ring hover:bg-grey-1': !disabled,
         },
         classes,
       )}
