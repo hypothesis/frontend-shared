@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "^7.0.1",
     "autoprefixer": "^10.3.7",
     "axe-core": "^4.0.0",
-    "babel-plugin-istanbul": "^6.0.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-mockable-imports": "^2.0.1",
     "chai": "^5.0.0",
     "chalk": "^5.0.1",
