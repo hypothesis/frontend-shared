@@ -15,7 +15,7 @@ function escapeQuotes(str: string) {
  * Format a component's name for display
  */
 function componentName(type: any) {
-  let name = typeof type === 'string' ? type : type.displayName ?? type.name;
+  let name = typeof type === 'string' ? type : (type.displayName ?? type.name);
 
   // Handle (display)name conflicts if there are two components with the same
   // name. e.g. if there are two components named `Foo`, the second of those
