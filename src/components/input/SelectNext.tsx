@@ -257,52 +257,57 @@ type MultiValueProps<T> = {
   onChange: (newValue: T[]) => void;
 };
 
-export type SelectProps<T> = CompositeProps &
-  (SingleValueProps<T> | MultiValueProps<T>) & {
-    buttonContent?: ComponentChildren;
-    disabled?: boolean;
+type BaseSelectProps = CompositeProps & {
+  buttonContent?: ComponentChildren;
+  disabled?: boolean;
 
-    /**
-     * Whether this select should allow multi-selection or not.
-     * When this is true, the listbox is kept open when an option is selected
-     * and the value must be an array.
-     * Defaults to false.
-     */
-    multiple?: boolean;
+  /**
+   * `id` attribute for the toggle button. This is useful to associate a label
+   * with the control.
+   */
+  buttonId?: string;
 
-    /**
-     * `id` attribute for the toggle button. This is useful to associate a label
-     * with the control.
-     */
-    buttonId?: string;
+  /** Additional classes to pass to container */
+  containerClasses?: string | string[];
+  /** Additional classes to pass to toggle button */
+  buttonClasses?: string | string[];
+  /** Additional classes to pass to listbox */
+  listboxClasses?: string | string[];
 
-    /** Additional classes to pass to container */
-    containerClasses?: string | string[];
-    /** Additional classes to pass to toggle button */
-    buttonClasses?: string | string[];
-    /** Additional classes to pass to listbox */
-    listboxClasses?: string | string[];
+  /**
+   * Align the listbox to the right.
+   * Useful when the listbox is bigger than the toggle button and this component
+   * is rendered next to the right side of the page/container.
+   * Defaults to false.
+   */
+  right?: boolean;
 
-    /**
-     * Align the listbox to the right.
-     * Useful when the listbox is bigger than the toggle button and this component
-     * is rendered next to the right side of the page/container.
-     * Defaults to false.
-     */
-    right?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
 
-    'aria-label'?: string;
-    'aria-labelledby'?: string;
+  /**
+   * Used to determine if the listbox should use the popover API.
+   * Defaults to true, as long as the browser supports it.
+   */
+  listboxAsPopover?: boolean;
 
-    /**
-     * Used to determine if the listbox should use the popover API.
-     * Defaults to true, as long as the browser supports it.
-     */
-    listboxAsPopover?: boolean;
+  /** A callback passed to the listbox onScroll */
+  onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
+};
 
-    /** A callback passed to the listbox onScroll */
-    onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
-  };
+export type SelectProps<T> = BaseSelectProps & SingleValueProps<T>;
+
+export type MultiSelectProps<T> = BaseSelectProps & MultiValueProps<T>;
+
+export type SelectNextProps<T> = (SelectProps<T> | MultiSelectProps<T>) & {
+  /**
+   * Whether this select should allow multi-selection or not.
+   * When this is true, the listbox is kept open when an option is selected
+   * and the value must be an array.
+   * Defaults to false.
+   */
+  multiple?: boolean;
+};
 
 function SelectMain<T>({
   buttonContent,
@@ -322,7 +327,7 @@ function SelectMain<T>({
   'aria-labelledby': ariaLabelledBy,
   /* eslint-disable-next-line no-prototype-builtins */
   listboxAsPopover = HTMLElement.prototype.hasOwnProperty('popover'),
-}: SelectProps<T>) {
+}: SelectNextProps<T>) {
   if (multiple && !Array.isArray(value)) {
     throw new Error('When `multiple` is true, the value must be an array');
   }
@@ -474,8 +479,27 @@ function SelectMain<T>({
   );
 }
 
-SelectMain.displayName = 'SelectNext';
+export const SelectNext = Object.assign(SelectMain, {
+  Option: SelectOption,
+  displayName: 'SelectNext',
+});
 
-const SelectNext = Object.assign(SelectMain, { Option: SelectOption });
+export const Select = Object.assign(
+  function <T>(props: SelectProps<T>) {
+    // Calling the function directly instead of returning a JSX element, to
+    // avoid an unnecessary extra layer in the component tree
+    // eslint-disable-next-line new-cap
+    return SelectNext({ ...props, multiple: false });
+  },
+  { Option: SelectOption, displayName: 'Select' },
+);
 
-export default SelectNext;
+export const MultiSelect = Object.assign(
+  function <T>(props: MultiSelectProps<T>) {
+    // Calling the function directly instead of returning a JSX element, to
+    // avoid an unnecessary extra layer in the component tree
+    // eslint-disable-next-line new-cap
+    return SelectNext({ ...props, multiple: true });
+  },
+  { Option: SelectOption, displayName: 'MultiSelect' },
+);

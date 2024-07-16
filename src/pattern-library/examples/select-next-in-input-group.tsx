@@ -3,7 +3,7 @@ import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../components/icons';
 import { IconButton, InputGroup } from '../../components/input';
-import SelectNext from '../../components/input/SelectNext';
+import { SelectNext } from '../../components/input/SelectNext';
 
 const students = [
   { id: '1', name: 'All students' },
