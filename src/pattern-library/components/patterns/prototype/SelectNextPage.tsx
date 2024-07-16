@@ -3,7 +3,7 @@ import { useId, useState } from 'preact/hooks';
 
 import { Link } from '../../../..';
 import type { SelectNextProps } from '../../../../components/input';
-import SelectNext from '../../../../components/input/SelectNext';
+import { SelectNext } from '../../../../components/input/SelectNext';
 import SelectNextInInputGroup from '../../../examples/select-next-in-input-group';
 import SelectNextWithManyOptions from '../../../examples/select-next-with-custom-options';
 import Library from '../../Library';
@@ -99,14 +99,15 @@ export default function SelectNextPage() {
       title="SelectNext"
       intro={
         <p>
-          <code>SelectNext</code> is a composite component which behaves like
+          <code>SelectNext</code> (and its aliases <code>Select</code> and{' '}
+          <code>MultiSelect</code>) are composite components which behave like
           the native <code>{'<select>'}</code> element.
         </p>
       }
     >
       <Library.Section>
         <Library.Pattern>
-          <Library.Usage componentName="SelectNext" />
+          <Library.Usage componentName="MultiSelect, Select, SelectNext" />
 
           <Library.Example>
             <Library.Demo
@@ -436,6 +437,11 @@ export default function SelectNextPage() {
                   be an array and <code>onChange</code> will receive an array as
                   an argument.
                 </p>
+                <p>
+                  This prop cannot be provided to the <code>Select</code> and{' '}
+                  <code>MultiSelect</code> aliases, where it is implicitly{' '}
+                  <code>false</code> and <code>true</code> respectively.
+                </p>
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>boolean</code>
@@ -447,6 +453,11 @@ export default function SelectNextPage() {
             <Library.Demo
               title="Multi-select listbox"
               exampleFile="select-next-multiple"
+              withSource
+            />
+            <Library.Demo
+              title="Using MultiSelect component"
+              exampleFile="select-next-multi-select"
               withSource
             />
           </Library.Example>

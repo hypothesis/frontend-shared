@@ -48,7 +48,9 @@ export {
   IconButton,
   Input,
   InputGroup,
+  MultiSelect,
   OptionButton,
+  Select,
   SelectNext,
   Textarea,
 } from './components/input';
@@ -115,7 +117,9 @@ export type {
   IconButtonProps,
   InputProps,
   InputGroupProps,
+  MultiSelectProps,
   OptionButtonProps,
+  SelectProps,
   SelectNextProps,
   TextareaProps,
 } from './components/input';

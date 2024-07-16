@@ -1,7 +1,7 @@
 import { checkAccessibility, waitFor } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
-import SelectNext from '../SelectNext';
+import { MultiSelect, Select, SelectNext } from '../SelectNext';
 
 describe('SelectNext', () => {
   let wrappers;
@@ -21,20 +21,26 @@ describe('SelectNext', () => {
    *        Whether to renders SelectNext.Option children with callback notation.
    *        Used primarily to test and cover both branches.
    *        Defaults to true.
+   * @param {MultiSelect | Select | SelectNext} [options.Component] -
+   *        The actual "select" component to use. Defaults to `SelectNext`.
    */
   const createComponent = (props = {}, options = {}) => {
-    const { paddingTop = 0, optionsChildrenAsCallback = true } = options;
+    const {
+      paddingTop = 0,
+      optionsChildrenAsCallback = true,
+      Component = SelectNext,
+    } = options;
     const container = document.createElement('div');
     container.style.paddingTop = `${paddingTop}px`;
     document.body.append(container);
 
     const wrapper = mount(
-      <SelectNext value={undefined} onChange={sinon.stub()} {...props}>
-        <SelectNext.Option value={undefined}>
+      <Component value={undefined} onChange={sinon.stub()} {...props}>
+        <Component.Option value={undefined}>
           <span data-testid="reset-option">Reset</span>
-        </SelectNext.Option>
+        </Component.Option>
         {items.map(item => (
-          <SelectNext.Option
+          <Component.Option
             value={item}
             disabled={item.id === '4'}
             key={item.id}
@@ -50,9 +56,9 @@ describe('SelectNext', () => {
                 </span>
               )
             )}
-          </SelectNext.Option>
+          </Component.Option>
         ))}
-      </SelectNext>,
+      </Component>,
       { attachTo: container },
     );
 
@@ -93,18 +99,29 @@ describe('SelectNext', () => {
   const clickOption = (wrapper, id) =>
     wrapper.find(`[data-testid="option-${id}"]`).simulate('click');
 
-  it('changes selected value when an option is clicked', () => {
-    const onChange = sinon.stub();
-    const wrapper = createComponent({ onChange });
+  [
+    {
+      title: 'changes selected value when an option is clicked',
+    },
+    {
+      title:
+        'changes selected value when an option is clicked, via Select alias',
+      options: { Component: Select },
+    },
+  ].forEach(({ title, options = {} }) => {
+    it(title, () => {
+      const onChange = sinon.stub();
+      const wrapper = createComponent({ onChange }, options);
 
-    clickOption(wrapper, 3);
-    assert.calledWith(onChange.lastCall, items[2]);
+      clickOption(wrapper, 3);
+      assert.calledWith(onChange.lastCall, items[2]);
 
-    clickOption(wrapper, 5);
-    assert.calledWith(onChange.lastCall, items[4]);
+      clickOption(wrapper, 5);
+      assert.calledWith(onChange.lastCall, items[4]);
 
-    clickOption(wrapper, 1);
-    assert.calledWith(onChange.lastCall, items[0]);
+      clickOption(wrapper, 1);
+      assert.calledWith(onChange.lastCall, items[0]);
+    });
   });
 
   it('does not change selected value when a disabled option is clicked', () => {
@@ -409,19 +426,34 @@ describe('SelectNext', () => {
       assert.isFalse(isListboxClosed(wrapper));
     });
 
-    it('allows multiple items to be selected when the value is an array', () => {
-      const onChange = sinon.stub();
-      const wrapper = createComponent({
-        multiple: true,
-        value: [items[0], items[2]],
-        onChange,
+    [
+      {
+        title:
+          'allows multiple items to be selected when the value is an array',
+        extraProps: { multiple: true },
+      },
+      {
+        title: 'allows same behavior via MultiSelect alias',
+        options: { Component: MultiSelect },
+      },
+    ].forEach(({ title, extraProps = {}, options = {} }) => {
+      it(title, () => {
+        const onChange = sinon.stub();
+        const wrapper = createComponent(
+          {
+            value: [items[0], items[2]],
+            onChange,
+            ...extraProps,
+          },
+          options,
+        );
+
+        toggleListbox(wrapper);
+        clickOption(wrapper, 2);
+
+        // When a not-yet-selected item is clicked, it will be selected
+        assert.calledWith(onChange, [items[0], items[2], items[1]]);
       });
-
-      toggleListbox(wrapper);
-      clickOption(wrapper, 2);
-
-      // When a not-yet-selected item is clicked, it will be selected
-      assert.calledWith(onChange, [items[0], items[2], items[1]]);
     });
 
     it('allows deselecting already selected options', () => {
