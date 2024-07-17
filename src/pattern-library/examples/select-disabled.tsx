@@ -1,6 +1,6 @@
 import { useId, useState } from 'preact/hooks';
 
-import { SelectNext } from '../..';
+import { Select } from '../..';
 
 const items = [{ id: '1', name: 'All students' }];
 
@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div className="w-96 mx-auto">
       <label htmlFor={selectId}>Select a person</label>
-      <SelectNext
+      <Select
         value={value}
         onChange={setSelected}
         buttonId={selectId}
@@ -19,11 +19,11 @@ export default function App() {
         disabled
       >
         {items.map(item => (
-          <SelectNext.Option value={item} key={item.id}>
+          <Select.Option value={item} key={item.id}>
             {item.name}
-          </SelectNext.Option>
+          </Select.Option>
         ))}
-      </SelectNext>
+      </Select>
     </div>
   );
 }

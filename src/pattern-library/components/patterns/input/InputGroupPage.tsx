@@ -5,7 +5,7 @@ import {
   CopyIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  SelectNext,
+  Select,
 } from '../../../../';
 import Library from '../../Library';
 
@@ -52,7 +52,10 @@ export default function InputGroupPage() {
                 <code>IconButton</code>
               </li>
               <li>
-                <code>SelectNext</code>
+                <code>Select</code>
+              </li>
+              <li>
+                <code>MultiSelect</code>
               </li>
             </ul>
             <Library.Demo
@@ -66,15 +69,11 @@ export default function InputGroupPage() {
                     title="Previous"
                     variant="dark"
                   />
-                  <SelectNext
-                    value="1"
-                    buttonContent="Apple"
-                    onChange={() => {}}
-                  >
-                    <SelectNext.Option value="1">Apple</SelectNext.Option>
-                    <SelectNext.Option value="2">Banana</SelectNext.Option>
-                    <SelectNext.Option value="3">Cherries</SelectNext.Option>
-                  </SelectNext>
+                  <Select value="1" buttonContent="Apple" onChange={() => {}}>
+                    <Select.Option value="1">Apple</Select.Option>
+                    <Select.Option value="2">Banana</Select.Option>
+                    <Select.Option value="3">Cherries</Select.Option>
+                  </Select>
                   <IconButton
                     icon={ArrowRightIcon}
                     title="Next"

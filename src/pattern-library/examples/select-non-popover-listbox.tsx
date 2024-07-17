@@ -1,6 +1,6 @@
 import { useId, useState } from 'preact/hooks';
 
-import { SelectNext } from '../..';
+import { Select } from '../..';
 
 type ItemType = {
   id: string;
@@ -29,7 +29,7 @@ export default function App() {
       <div className="w-96 h-32 mx-auto overflow-auto">
         <>
           <label htmlFor={buttonId}>Select a person</label>
-          <SelectNext
+          <Select
             listboxAsPopover={false}
             buttonId={buttonId}
             value={value}
@@ -50,7 +50,7 @@ export default function App() {
             }
           >
             {items.map(item => (
-              <SelectNext.Option
+              <Select.Option
                 value={item}
                 key={item.id}
                 disabled={item.disabled}
@@ -60,9 +60,9 @@ export default function App() {
                 <div className="rounded px-2 ml-2 text-white bg-grey-7">
                   {item.id}
                 </div>
-              </SelectNext.Option>
+              </Select.Option>
             ))}
-          </SelectNext>
+          </Select>
         </>
       </div>
     </div>

@@ -5,7 +5,7 @@ export { default as IconButton } from './IconButton';
 export { default as Input } from './Input';
 export { default as InputGroup } from './InputGroup';
 export { default as OptionButton } from './OptionButton';
-export { SelectNext, Select, MultiSelect } from './SelectNext';
+export { SelectNext, Select, MultiSelect } from './Select';
 export { default as Textarea } from './Textarea';
 
 export type { ButtonProps } from './Button';
@@ -15,9 +15,5 @@ export type { IconButtonProps } from './IconButton';
 export type { InputProps } from './Input';
 export type { InputGroupProps } from './InputGroup';
 export type { OptionButtonProps } from './OptionButton';
-export type {
-  MultiSelectProps,
-  SelectNextProps,
-  SelectProps,
-} from './SelectNext';
+export type { MultiSelectProps, SelectNextProps, SelectProps } from './Select';
 export type { TextareaProps } from './Textarea';

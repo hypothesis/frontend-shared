@@ -1,7 +1,7 @@
 import type { ComponentChildren } from 'preact';
 import { useId, useState } from 'preact/hooks';
 
-import { SelectNext } from '../..';
+import { Select } from '../..';
 
 const items = [
   { id: '1', name: 'All students' },
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <div className="mx-auto">
       <label htmlFor={selectId}>Select a person</label>
-      <SelectNext
+      <Select
         right
         value={value}
         onChange={setSelected}
@@ -42,13 +42,13 @@ export default function App() {
         buttonClasses="!w-36"
       >
         {items.map(item => (
-          <SelectNext.Option value={item} key={item.id}>
+          <Select.Option value={item} key={item.id}>
             {item.name}
             <div className="grow" />
             <Bullet>{item.id}</Bullet>
-          </SelectNext.Option>
+          </Select.Option>
         ))}
-      </SelectNext>
+      </Select>
     </div>
   );
 }
