@@ -61,7 +61,9 @@ function SelectOption<T>({
 }: SelectOptionProps<T>) {
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
-    throw new Error('Select.Option can only be used as Select child');
+    throw new Error(
+      'Select.Option can only be used as Select or MultiSelect child',
+    );
   }
 
   const { selectValue, value: currentValue, multiple } = selectContext;
@@ -134,7 +136,7 @@ function SelectOption<T>({
   );
 }
 
-SelectOption.displayName = 'SelectNext.Option';
+SelectOption.displayName = 'Select.Option';
 
 /** Small space to apply between the toggle button and the listbox */
 const LISTBOX_TOGGLE_GAP = '.25rem';
@@ -299,6 +301,9 @@ export type SelectProps<T> = BaseSelectProps & SingleValueProps<T>;
 
 export type MultiSelectProps<T> = BaseSelectProps & MultiValueProps<T>;
 
+/**
+ * @deprecated Use `Select` or `MultiSelect` components instead
+ */
 export type SelectNextProps<T> = (SelectProps<T> | MultiSelectProps<T>) & {
   /**
    * Whether this select should allow multi-selection or not.
@@ -479,6 +484,9 @@ function SelectMain<T>({
   );
 }
 
+/**
+ * @deprecated Use `Select` or `MultiSelect` components instead
+ */
 export const SelectNext = Object.assign(SelectMain, {
   Option: SelectOption,
   displayName: 'SelectNext',
@@ -489,7 +497,7 @@ export const Select = Object.assign(
     // Calling the function directly instead of returning a JSX element, to
     // avoid an unnecessary extra layer in the component tree
     // eslint-disable-next-line new-cap
-    return SelectNext({ ...props, multiple: false });
+    return SelectMain({ ...props, multiple: false });
   },
   { Option: SelectOption, displayName: 'Select' },
 );
@@ -499,7 +507,7 @@ export const MultiSelect = Object.assign(
     // Calling the function directly instead of returning a JSX element, to
     // avoid an unnecessary extra layer in the component tree
     // eslint-disable-next-line new-cap
-    return SelectNext({ ...props, multiple: true });
+    return SelectMain({ ...props, multiple: true });
   },
   { Option: SelectOption, displayName: 'MultiSelect' },
 );

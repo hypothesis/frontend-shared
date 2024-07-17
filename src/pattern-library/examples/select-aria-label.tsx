@@ -1,6 +1,6 @@
-import { useId, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
-import { SelectNext } from '../..';
+import { Select } from '../..';
 
 const items = [
   { id: '1', name: 'All students' },
@@ -12,23 +12,21 @@ const items = [
 
 export default function App() {
   const [value, setSelected] = useState<{ id: string; name: string }>();
-  const labelId = useId();
 
   return (
     <div className="w-96 mx-auto">
-      <p id={labelId}>Select a person with aria labelledby</p>
-      <SelectNext
-        aria-labelledby={labelId}
+      <Select
+        aria-label="Select a person with aria label"
         value={value}
         onChange={setSelected}
         buttonContent={value ? value.name : <>Select one…</>}
       >
         {items.map(item => (
-          <SelectNext.Option value={item} key={item.id}>
+          <Select.Option value={item} key={item.id}>
             {item.name}
-          </SelectNext.Option>
+          </Select.Option>
         ))}
-      </SelectNext>
+      </Select>
     </div>
   );
 }

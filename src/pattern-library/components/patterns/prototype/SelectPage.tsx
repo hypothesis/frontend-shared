@@ -2,10 +2,10 @@ import classnames from 'classnames';
 import { useId, useState } from 'preact/hooks';
 
 import { Link } from '../../../..';
-import type { SelectNextProps } from '../../../../components/input';
-import { SelectNext } from '../../../../components/input/SelectNext';
-import SelectNextInInputGroup from '../../../examples/select-next-in-input-group';
-import SelectNextWithManyOptions from '../../../examples/select-next-with-custom-options';
+import type { SelectProps } from '../../../../components/input';
+import { Select } from '../../../../components/input/Select';
+import SelectInInputGroup from '../../../examples/select-in-input-group';
+import SelectWithManyOptions from '../../../examples/select-with-custom-options';
 import Library from '../../Library';
 
 type ItemType = {
@@ -27,7 +27,7 @@ function SelectExample({
   items = defaultItems,
   ...rest
 }: Pick<
-  SelectNextProps<ItemType>,
+  SelectProps<ItemType>,
   'buttonClasses' | 'containerClasses' | 'listboxClasses'
 > & {
   textOnly?: boolean;
@@ -39,7 +39,7 @@ function SelectExample({
   return (
     <>
       <label htmlFor={buttonId}>Select a person</label>
-      <SelectNext
+      <Select
         {...rest}
         buttonId={buttonId}
         value={value}
@@ -63,11 +63,7 @@ function SelectExample({
         }
       >
         {items.map(item => (
-          <SelectNext.Option
-            value={item}
-            key={item.id}
-            disabled={item.disabled}
-          >
+          <Select.Option value={item} key={item.id} disabled={item.disabled}>
             {({ disabled }) =>
               textOnly ? (
                 item.name
@@ -86,41 +82,48 @@ function SelectExample({
                 </>
               )
             }
-          </SelectNext.Option>
+          </Select.Option>
         ))}
-      </SelectNext>
+      </Select>
     </>
   );
 }
 
-export default function SelectNextPage() {
+export default function SelectPage() {
   return (
     <Library.Page
-      title="SelectNext"
+      title="Selects"
       intro={
         <p>
-          <code>SelectNext</code> (and its aliases <code>Select</code> and{' '}
-          <code>MultiSelect</code>) are composite components which behave like
-          the native <code>{'<select>'}</code> element.
+          <code>Select</code> and <code>MultiSelect</code> are composite
+          components which behave like the native <code>{'<select>'}</code>{' '}
+          element.
         </p>
       }
     >
-      <Library.Section>
+      <Library.Section
+        title="Select"
+        intro={
+          <p>
+            <code>Select</code> renders a single-selection drop-down control.
+          </p>
+        }
+      >
         <Library.Pattern>
-          <Library.Usage componentName="MultiSelect, Select, SelectNext" />
+          <Library.Usage componentName="Select" />
 
           <Library.Example>
             <Library.Demo
               title="Basic Select"
-              exampleFile="select-next-basic"
+              exampleFile="select-basic"
               withSource
             />
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="Working with SelectNext">
+        <Library.Pattern title="Working with Select">
           <p>
-            <code>SelectNext</code> toggles a listbox where <code>Options</code>
+            <code>Select</code> toggles a listbox where <code>Options</code>
             {"'"} UI can be customized and values can be objects.
           </p>
           <p>
@@ -144,20 +147,20 @@ export default function SelectNextPage() {
           <Library.Example title="Composing and styling Selects">
             <Library.Demo
               title="Select with custom Options"
-              exampleFile="select-next-with-custom-options"
+              exampleFile="select-with-custom-options"
               withSource
             />
 
             <Library.Demo
               title="Select in InputGroup"
-              exampleFile="select-next-in-input-group"
+              exampleFile="select-in-input-group"
               withSource
             />
           </Library.Example>
 
           <Library.Example title="Select with many options">
             <Library.Demo title="Select with many options">
-              <SelectNextWithManyOptions
+              <SelectWithManyOptions
                 items={[
                   ...defaultItems.map(({ id, name }) => ({
                     id: `1${id}`,
@@ -188,10 +191,10 @@ export default function SelectNextPage() {
             </Library.Demo>
           </Library.Example>
 
-          <Library.Example title="Labeling SelectNext">
+          <Library.Example title="Labeling Select">
             <p>
-              There are three ways to label a <code>SelectNext</code>. Make sure
-              you always use one of them.
+              There are three ways to label a <code>Select</code>. Make sure you
+              always use one of them.
             </p>
 
             <Library.Demo
@@ -204,27 +207,27 @@ export default function SelectNextPage() {
                   linked to <code>buttonId</code>
                 </>
               }
-              exampleFile="select-next-basic"
+              exampleFile="select-basic"
               withSource
             />
 
             <Library.Demo
               title="Via aria-label"
-              exampleFile="select-next-aria-label"
+              exampleFile="select-aria-label"
               withSource
             />
 
             <Library.Demo
               title="Via aria-labelledby"
-              exampleFile="select-next-aria-labelledby"
+              exampleFile="select-aria-labelledby"
               withSource
             />
           </Library.Example>
 
           <Library.Example title="Select with long content">
             <p>
-              <code>SelectNext</code> makes sure the button content never
-              overflows, and applies <code>text-overflow: ellipsis</code>.
+              <code>Select</code> makes sure the button content never overflows,
+              and applies <code>text-overflow: ellipsis</code>.
             </p>
             <p>
               If you provide more complex children to <code>buttonContent</code>
@@ -251,17 +254,14 @@ export default function SelectNextPage() {
 
             <Library.Demo title="Input group">
               <div className="mx-auto">
-                <SelectNextInInputGroup
-                  buttonClasses="!w-36"
-                  wrapperClasses=""
-                />
+                <SelectInInputGroup buttonClasses="!w-36" wrapperClasses="" />
               </div>
             </Library.Demo>
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="SelectNext component API">
-          <code>SelectNext</code> accepts all standard{' '}
+        <Library.Pattern title="Select component API">
+          <code>Select</code> accepts all standard{' '}
           <Library.Link href="/using-components#composite-components-api">
             composite component props
           </Library.Link>
@@ -322,7 +322,7 @@ export default function SelectNextPage() {
             </Library.Info>
             <Library.Demo
               title="Disabled Select"
-              exampleFile="select-next-disabled"
+              exampleFile="select-disabled"
               withSource
             />
           </Library.Example>
@@ -341,7 +341,7 @@ export default function SelectNextPage() {
             </Library.Info>
             <Library.Demo
               title="Right listbox"
-              exampleFile="select-next-right"
+              exampleFile="select-right"
               withSource
             />
           </Library.Example>
@@ -422,42 +422,7 @@ export default function SelectNextPage() {
             </Library.Info>
             <Library.Demo
               title="Non-popover listbox"
-              exampleFile="select-next-non-popover-listbox"
-              withSource
-            />
-          </Library.Example>
-          <Library.Example title="multiple">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                Determines if more than one item can be selected at once,
-                causing the listbox to stay open when an option is selected on
-                it.
-                <p>
-                  When multi-selection is enabled, the <code>value</code> must
-                  be an array and <code>onChange</code> will receive an array as
-                  an argument.
-                </p>
-                <p>
-                  This prop cannot be provided to the <code>Select</code> and{' '}
-                  <code>MultiSelect</code> aliases, where it is implicitly{' '}
-                  <code>false</code> and <code>true</code> respectively.
-                </p>
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>boolean</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>false</code>
-              </Library.InfoItem>
-            </Library.Info>
-            <Library.Demo
-              title="Multi-select listbox"
-              exampleFile="select-next-multiple"
-              withSource
-            />
-            <Library.Demo
-              title="Using MultiSelect component"
-              exampleFile="select-next-multi-select"
+              exampleFile="select-non-popover-listbox"
               withSource
             />
           </Library.Example>
@@ -478,7 +443,7 @@ export default function SelectNextPage() {
           </Library.Example>
         </Library.Pattern>
 
-        <Library.Pattern title="SelectNext.Option component API">
+        <Library.Pattern title="Select.Option component API">
           <Library.Example title="children">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -524,6 +489,30 @@ export default function SelectNextPage() {
                 />
               </div>
             </Library.Demo>
+          </Library.Example>
+        </Library.Pattern>
+      </Library.Section>
+
+      <Library.Section
+        title="MultiSelect"
+        intro={
+          <p>
+            <code>MultiSelect</code> is a variant of <code>Select</code> that
+            allows multiple options to be selected at once. It has the same API
+            except that <code>value</code> accepts, and <code>onChange</code>{' '}
+            receives receive, arrays rather than a single item.
+          </p>
+        }
+      >
+        <Library.Pattern>
+          <Library.Usage componentName="MultiSelect" />
+
+          <Library.Example>
+            <Library.Demo
+              title="Basic MultiSelect"
+              exampleFile="select-multi-select"
+              withSource
+            />
           </Library.Example>
         </Library.Pattern>
       </Library.Section>

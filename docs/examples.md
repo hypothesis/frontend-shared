@@ -23,6 +23,6 @@ You can then reference this file from the web-based pattern library, passing the
 There are some considerations and limitations when working with example files.
 
 - They all need to have the `tsx` extension.
-- Nested directories are not supported, so it's a good idea to add contextual prefixes to example files. For example, all files related with `SelectNext` can be prefixed with `select-next` to make sure they are all grouped together.
+- Nested directories are not supported, so it's a good idea to add contextual prefixes to example files. For example, all files related with `Select` can be prefixed with `select` to make sure they are all grouped together.
 - Example files need to have a Preact component as their default export.
 - When generating the source code snippet, import statements are stripped out, to avoid internal module references which are not relevant for the library consumers.

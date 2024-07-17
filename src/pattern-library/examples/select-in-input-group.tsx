@@ -3,7 +3,7 @@ import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../components/icons';
 import { IconButton, InputGroup } from '../../components/input';
-import { SelectNext } from '../../components/input/SelectNext';
+import { Select } from '../../components/input/Select';
 
 const students = [
   { id: '1', name: 'All students' },
@@ -46,7 +46,7 @@ export default function App({
           onClick={previous}
           disabled={selectedIndex <= 0}
         />
-        <SelectNext
+        <Select
           buttonId={buttonId}
           value={selected}
           onChange={setSelected}
@@ -65,7 +65,7 @@ export default function App({
           }
         >
           {students.map(item => (
-            <SelectNext.Option value={item} key={item.id}>
+            <Select.Option value={item} key={item.id}>
               {item.name}
               <div className="grow" />
               <div
@@ -73,9 +73,9 @@ export default function App({
               >
                 {item.id}
               </div>
-            </SelectNext.Option>
+            </Select.Option>
           ))}
-        </SelectNext>
+        </Select>
         <IconButton
           icon={ArrowRightIcon}
           title="Next student"
