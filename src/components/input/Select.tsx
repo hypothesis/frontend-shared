@@ -301,17 +301,14 @@ export type SelectProps<T> = BaseSelectProps & SingleValueProps<T>;
 
 export type MultiSelectProps<T> = BaseSelectProps & MultiValueProps<T>;
 
-/**
- * @deprecated Use `Select` or `MultiSelect` components instead
- */
-export type SelectNextProps<T> = (SelectProps<T> | MultiSelectProps<T>) & {
+type SelectMainProps<T> = (SelectProps<T> | MultiSelectProps<T>) & {
   /**
    * Whether this select should allow multi-selection or not.
    * When this is true, the listbox is kept open when an option is selected
    * and the value must be an array.
    * Defaults to false.
    */
-  multiple?: boolean;
+  multiple: boolean;
 };
 
 function SelectMain<T>({
@@ -327,16 +324,12 @@ function SelectMain<T>({
   containerClasses,
   onListboxScroll,
   right = false,
-  multiple = false,
+  multiple,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   /* eslint-disable-next-line no-prototype-builtins */
   listboxAsPopover = HTMLElement.prototype.hasOwnProperty('popover'),
-}: SelectNextProps<T>) {
-  if (multiple && !Array.isArray(value)) {
-    throw new Error('When `multiple` is true, the value must be an array');
-  }
-
+}: SelectMainProps<T>) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const listboxRef = useRef<HTMLUListElement | null>(null);
   const [listboxOpen, setListboxOpen] = useState(false);
@@ -483,14 +476,6 @@ function SelectMain<T>({
     </div>
   );
 }
-
-/**
- * @deprecated Use `Select` or `MultiSelect` components instead
- */
-export const SelectNext = Object.assign(SelectMain, {
-  Option: SelectOption,
-  displayName: 'SelectNext',
-});
 
 export const Select = Object.assign(
   function <T>(props: SelectProps<T>) {

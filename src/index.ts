@@ -52,7 +52,6 @@ export {
   MultiSelect,
   OptionButton,
   Select,
-  SelectNext,
   Textarea,
 } from './components/input';
 export {
@@ -121,7 +120,6 @@ export type {
   MultiSelectProps,
   OptionButtonProps,
   SelectProps,
-  SelectNextProps,
   TextareaProps,
 } from './components/input';
 

@@ -1,7 +1,7 @@
 import { checkAccessibility, waitFor } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
-import { MultiSelect, Select, SelectNext } from '../Select';
+import { MultiSelect, Select } from '../Select';
 
 describe('Select', () => {
   let wrappers;
@@ -21,7 +21,7 @@ describe('Select', () => {
    *        Whether to render Select.Option children with callback notation.
    *        Used primarily to test and cover both branches.
    *        Defaults to true.
-   * @param {MultiSelect | Select | SelectNext} [options.Component] -
+   * @param {MultiSelect | Select} [options.Component] -
    *        The actual "select" component to use. Defaults to `Select`.
    */
   const createComponent = (props = {}, options = {}) => {
@@ -391,16 +391,6 @@ describe('Select', () => {
 
         assert.isTrue(listboxLeft < buttonLeft);
       });
-    });
-  });
-
-  context('SelectNext', () => {
-    // This path can only be tested via SelectNext
-    it('throws if multiple is true and the value is not an array', async () => {
-      assert.throws(
-        () => createComponent({ multiple: true }, { Component: SelectNext }),
-        'When `multiple` is true, the value must be an array',
-      );
     });
   });
 
