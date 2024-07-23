@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import { useRef } from 'preact/hooks';
 
-import usePopoverShouldClose, { $imports } from '../use-popover-should-close';
+import { usePopoverShouldClose, $imports } from '../use-popover-should-close';
 
 describe('usePopoverShouldClose', () => {
   function FakeComponent({ closeHandler, options }) {
