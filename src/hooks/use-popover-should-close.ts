@@ -20,7 +20,7 @@ export type UsePopoverShouldCloseOptions = {
  * @param handleClose - Callback invoked to close the popover
  * @param options
  */
-export default function usePopoverShouldClose(
+export function usePopoverShouldClose(
   popoverEl: RefObject<HTMLElement | undefined>,
   handleClose: () => void,
   options: UsePopoverShouldCloseOptions = {},
