@@ -144,6 +144,3 @@ export type {
 } from './components/navigation/';
 
 export type { ConfirmModalProps } from './util/prompts';
-
-// Deprecated
-export { useElementShouldClose } from './hooks/use-element-should-close';
