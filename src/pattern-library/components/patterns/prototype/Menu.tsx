@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 
-import { useElementShouldClose } from '../../../../';
+import { usePopoverShouldClose } from '../../../../';
 import { MenuExpandIcon } from '../../../../';
 import MenuArrow from './MenuArrow';
 
@@ -150,7 +150,7 @@ export default function Menu({
 
   // Menu element should close via `closeMenu` whenever it's open and there
   // are user interactions outside of it (e.g. clicks) in the document
-  useElementShouldClose(menuRef, isOpen, closeMenu);
+  usePopoverShouldClose(menuRef, closeMenu, { enabled: isOpen });
 
   const stopPropagation = (e: Event) => e.stopPropagation();
 
