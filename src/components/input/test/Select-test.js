@@ -394,22 +394,58 @@ describe('Select', () => {
     });
   });
 
-  context('MultiSelect', () => {
-    it('keeps listbox open when an option is selected if multiple is true', async () => {
-      const wrapper = createComponent(
-        { value: [] },
-        { Component: MultiSelect },
-      );
+  describe('autoCloseListbox', () => {
+    [
+      {
+        autoCloseListbox: undefined,
+        component: MultiSelect,
+        shouldCloseListbox: false,
+      },
+      {
+        autoCloseListbox: undefined,
+        component: Select,
+        shouldCloseListbox: true,
+      },
+      {
+        autoCloseListbox: true,
+        component: MultiSelect,
+        shouldCloseListbox: true,
+      },
+      {
+        autoCloseListbox: true,
+        component: Select,
+        shouldCloseListbox: true,
+      },
+      {
+        autoCloseListbox: false,
+        component: MultiSelect,
+        shouldCloseListbox: false,
+      },
+      {
+        autoCloseListbox: false,
+        component: Select,
+        shouldCloseListbox: false,
+      },
+    ].forEach(({ autoCloseListbox, component, shouldCloseListbox }) => {
+      it('keeps listbox open when an option is selected if autoCloseListbox is false', async () => {
+        const wrapper = createComponent(
+          { value: [], autoCloseListbox },
+          { Component: component },
+        );
 
-      toggleListbox(wrapper);
-      assert.isFalse(isListboxClosed(wrapper));
+        toggleListbox(wrapper);
+        assert.isFalse(isListboxClosed(wrapper));
 
-      clickOption(wrapper, 1);
+        clickOption(wrapper, 1);
 
-      // After clicking an option, the listbox is still open
-      assert.isFalse(isListboxClosed(wrapper));
+        // After clicking an option, the listbox is still open if
+        // autoCloseListbox is false
+        assert.equal(isListboxClosed(wrapper), shouldCloseListbox);
+      });
     });
+  });
 
+  context('MultiSelect', () => {
     it('allows multiple items to be selected', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(

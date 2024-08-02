@@ -426,6 +426,31 @@ export default function SelectPage() {
               withSource
             />
           </Library.Example>
+          <Library.Example title="autoCloseListbox">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Whether the listbox should automatically close after an option
+                is selected
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>boolean | undefined</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>true</code> for <code>Select</code> and <code>false</code>
+                for <code>MultiSelect</code>.
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Select - keep-open listbox"
+              exampleFile="select-keep-open-listbox"
+              withSource
+            />
+            <Library.Demo
+              title="MultiSelect - auto-close listbox"
+              exampleFile="select-multi-auto-close-listbox"
+              withSource
+            />
+          </Library.Example>
           <Library.Example title="onListboxScroll">
             <Library.Info>
               <Library.InfoItem label="description">

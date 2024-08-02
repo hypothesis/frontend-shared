@@ -293,6 +293,12 @@ type BaseSelectProps = CompositeProps & {
    */
   listboxAsPopover?: boolean;
 
+  /**
+   * Whether the listbox should automatically close after an option is selected.
+   * Defaults to true for Select and false for MultiSelect.
+   */
+  autoCloseListbox?: boolean;
+
   /** A callback passed to the listbox onScroll */
   onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
 };
@@ -325,6 +331,7 @@ function SelectMain<T>({
   onListboxScroll,
   right = false,
   multiple,
+  autoCloseListbox = !multiple,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   /* eslint-disable-next-line no-prototype-builtins */
@@ -358,12 +365,11 @@ function SelectMain<T>({
   const selectValue = useCallback(
     (value: unknown) => {
       onChange(value as any);
-      // In multi-select mode, keep list open when selecting values
-      if (!multiple) {
+      if (autoCloseListbox) {
         closeListbox();
       }
     },
-    [onChange, multiple, closeListbox],
+    [onChange, autoCloseListbox, closeListbox],
   );
 
   // When clicking away, focusing away or pressing `Esc`, close the listbox
