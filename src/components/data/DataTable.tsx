@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import type { ComponentChildren, JSX } from 'preact';
 import { useCallback, useContext, useEffect, useMemo } from 'preact/hooks';
 
@@ -6,7 +7,12 @@ import { useStableCallback } from '../../hooks/use-stable-callback';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps, Order, OrderDirection } from '../../types';
 import { downcastRef } from '../../util/typing';
-import { ArrowDownIcon, ArrowUpIcon, SpinnerSpokesIcon } from '../icons';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  OrderableIcon,
+  SpinnerSpokesIcon,
+} from '../icons';
 import { Button } from '../input';
 import ScrollContext from './ScrollContext';
 import Table from './Table';
@@ -360,12 +366,21 @@ export default function DataTable<Row>({
                   }
                 >
                   <div>{column.label}</div>
-                  {isActiveOrder && (
-                    <div className="bg-white rounded p-1" aria-hidden>
-                      {order.direction === 'ascending' ? (
-                        <ArrowUpIcon />
-                      ) : (
-                        <ArrowDownIcon />
+                  {isOrderable && (
+                    <div
+                      className={classnames('rounded p-1', {
+                        'bg-white': isActiveOrder,
+                      })}
+                      aria-hidden
+                    >
+                      {isActiveOrder &&
+                        (order.direction === 'ascending' ? (
+                          <ArrowUpIcon />
+                        ) : (
+                          <ArrowDownIcon />
+                        ))}
+                      {!isActiveOrder && (
+                        <OrderableIcon className="text-grey-5" />
                       )}
                     </div>
                   )}

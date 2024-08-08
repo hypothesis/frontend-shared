@@ -427,13 +427,34 @@ describe('DataTable', () => {
     ].forEach(({ direction, expectedArrow }) => {
       it('shows initial active order', () => {
         const wrapper = createComponent({
+          onOrderChange: sinon.stub(),
           order: { field: 'color', direction },
+          orderableColumns: { color: 'descending' },
         });
         const colorTableCell = wrapper.find('TableCell').at(1);
 
         assert.equal(colorTableCell.prop('aria-sort'), direction);
         assert.isTrue(colorTableCell.exists(expectedArrow));
       });
+    });
+
+    it('shows orderable indicator in non-actively ordered columns', () => {
+      const wrapper = createComponent({
+        onOrderChange: sinon.stub(),
+        order: { field: 'color', direction: 'ascending' },
+        orderableColumns: {
+          name: 'ascending',
+          color: 'descending',
+        },
+      });
+      const getColumnAt = index => wrapper.find('TableCell').at(index);
+
+      // First column is orderable, but not actively ordered
+      assert.isTrue(getColumnAt(0).exists('OrderableIcon'));
+      // Second column is orderable and actively ordered
+      assert.isFalse(getColumnAt(1).exists('OrderableIcon'));
+      // Third column is not orderable
+      assert.isFalse(getColumnAt(2).exists('OrderableIcon'));
     });
 
     [
