@@ -380,7 +380,15 @@ export default function DataTable<Row>({
                           <ArrowDownIcon />
                         ))}
                       {!isActiveOrder && (
-                        <OrderableIcon className="text-grey-5" />
+                        <OrderableIcon
+                          className={classnames('text-grey-5', {
+                            // Interactive rows set a darker background color on
+                            // hover.
+                            // Setting a darker color on the icon when hovering
+                            // the row will ensure enough contrast.
+                            'group-hover:text-grey-7': interactive,
+                          })}
+                        />
                       )}
                     </div>
                   )}
