@@ -81,6 +81,7 @@ export { default as MinusIcon } from './Minus';
 export { default as NoteIcon } from './Note';
 export { default as NoteFilledIcon } from './NoteFilled';
 export { default as OneDriveIcon } from './OneDrive';
+export { default as OrderableIcon } from './Orderable';
 export { default as PinIcon } from './Pin';
 export { default as PlusIcon } from './Plus';
 export { default as PointerDownIcon } from './PointerDown';
