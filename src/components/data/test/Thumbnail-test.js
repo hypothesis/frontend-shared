@@ -43,7 +43,7 @@ describe('Thumbnail', () => {
 
   it('sets ratio on content', () => {
     const wrapper = createComponent(Thumbnail, {
-      children: <img src="https://placekitten.com/300/300" alt="kitty" />,
+      children: <img src="https://placehold.co/300x300" alt="placeholder" />,
       ratio: '4/3',
     });
 

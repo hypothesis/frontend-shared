@@ -52,8 +52,8 @@ export default function CardPage() {
               <Card>
                 <img
                   className="rounded-t-[inherit]"
-                  src="https://placekitten.com/1000/250"
-                  alt="kitty"
+                  src="https://placehold.co/1000/250"
+                  alt="placeholder"
                 />
                 <CardContent>
                   <LoremIpsum size="xs" />

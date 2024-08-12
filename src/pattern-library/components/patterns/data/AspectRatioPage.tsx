@@ -19,7 +19,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="Basic AspectRatio" withSource>
               <div className="w-[350px]">
                 <AspectRatio>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>
@@ -75,8 +75,8 @@ export default function AspectRatioPage() {
               <div className="w-[350px]">
                 <AspectRatio>
                   <img
-                    src="https://placekitten.com/400/400"
-                    alt="kitty"
+                    src="https://placehold.co/400x400"
+                    alt="placeholder"
                     className="object-top"
                   />
                 </AspectRatio>
@@ -137,7 +137,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="objectFit:'cover' (default)" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="cover">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>
@@ -145,7 +145,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="objectFit:'contain'" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="contain">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>
@@ -153,7 +153,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="objectFit:'fill'" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="fill">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>
@@ -161,7 +161,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="objectFit:'scale-down'" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="scale-down">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>
@@ -169,7 +169,7 @@ export default function AspectRatioPage() {
             <Library.Demo title="objectFit:'none'" withSource>
               <div className="w-[350px] border rounded-md">
                 <AspectRatio objectFit="none">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </AspectRatio>
               </div>
             </Library.Demo>

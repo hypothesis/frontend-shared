@@ -12,11 +12,11 @@ describe('AspectRatio', () => {
 
   it('applies bottom-padding to container based on `ratio` value', () => {
     const wrapper16_9 = createComponent(AspectRatio, {
-      children: <img src="https://placekitten.com/400/400" alt="kitty" />,
+      children: <img src="https://placehold.co/400x400" alt="placeholder" />,
     });
 
     const wrapper4_3 = createComponent(AspectRatio, {
-      children: <img src="https://placekitten.com/400/400" alt="kitty" />,
+      children: <img src="https://placehold.co/400x400" alt="placeholder" />,
       ratio: '4/3',
     });
 
@@ -41,8 +41,8 @@ describe('AspectRatio', () => {
     const wrapper = createComponent(AspectRatio, {
       children: (
         <img
-          src="https://placekitten.com/400/400"
-          alt="kitty"
+          src="https://placehold.co/400x400"
+          alt="placeholder"
           className="object-top"
         />
       ),
