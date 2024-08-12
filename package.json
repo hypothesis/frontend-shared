@@ -44,7 +44,7 @@
     "karma-mocha": "^2.0.0",
     "karma-mocha-reporter": "^2.0.4",
     "karma-source-map-support": "^1.4.0",
-    "mocha": "10.7.0",
+    "mocha": "10.7.3",
     "mustache": "^4.2.0",
     "plop": "^4.0.0",
     "postcss": "^8.3.9",
