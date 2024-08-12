@@ -24,7 +24,7 @@ export default function ThumbnailPage() {
           <Library.Demo title="Basic Thumbnail" withSource>
             <div className="w-[250px]">
               <Thumbnail>
-                <img src="https://placekitten.com/400/400" alt="kitty" />
+                <img src="https://placehold.co/400x400" alt="placeholder" />
               </Thumbnail>
             </div>
           </Library.Demo>
@@ -35,7 +35,7 @@ export default function ThumbnailPage() {
             <Library.Demo withSource title="Loading state">
               <div className="w-[250px]">
                 <Thumbnail loading>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </Thumbnail>
               </div>
             </Library.Demo>
@@ -57,7 +57,7 @@ export default function ThumbnailPage() {
             <Library.Demo title="Extra available vertical space" withSource>
               <div className="w-[250px] h-[300px]">
                 <Thumbnail>
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </Thumbnail>
               </div>
             </Library.Demo>
@@ -72,9 +72,9 @@ export default function ThumbnailPage() {
               <div className="w-[350px] h-[150px]">
                 <Thumbnail>
                   <img
-                    src="https://placekitten.com/400/400"
+                    src="https://placehold.co/400x400"
                     className="object-top"
-                    alt="kitty"
+                    alt="placeholder"
                   />
                 </Thumbnail>
               </div>
@@ -110,7 +110,7 @@ export default function ThumbnailPage() {
               <div className="space-y-4">
                 <div className="w-[200px]">
                   <Thumbnail borderless>
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                    <img src="https://placehold.co/400x400" alt="placeholder" />
                   </Thumbnail>
                 </div>
                 <div className="w-[200px]">
@@ -195,7 +195,7 @@ export default function ThumbnailPage() {
             <Library.Demo title="ratio: '4/3'" withSource>
               <div className="w-[250px]">
                 <Thumbnail ratio="4/3">
-                  <img src="https://placekitten.com/400/400" alt="kitty" />
+                  <img src="https://placehold.co/400x400" alt="placeholder" />
                 </Thumbnail>
               </div>
             </Library.Demo>
@@ -224,7 +224,7 @@ export default function ThumbnailPage() {
               <div className="flex gap-x-4">
                 <div className="w-[200px]">
                   <Thumbnail size="sm">
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                    <img src="https://placehold.co/400x400" alt="placeholder" />
                   </Thumbnail>
                 </div>
 
@@ -242,7 +242,7 @@ export default function ThumbnailPage() {
               <div className="flex gap-x-4">
                 <div className="w-[200px]">
                   <Thumbnail size="md">
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                    <img src="https://placehold.co/400x400" alt="placeholder" />
                   </Thumbnail>
                 </div>
 
@@ -260,7 +260,7 @@ export default function ThumbnailPage() {
               <div className="flex gap-x-4">
                 <div className="w-[200px]">
                   <Thumbnail size="lg">
-                    <img src="https://placekitten.com/400/400" alt="kitty" />
+                    <img src="https://placehold.co/400x400" alt="placeholder" />
                   </Thumbnail>
                 </div>
 
