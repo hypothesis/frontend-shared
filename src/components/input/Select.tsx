@@ -98,7 +98,7 @@ function SelectOption<T>({
   return (
     <li
       className={classnames(
-        'w-full ring-inset outline-none rounded-none',
+        'w-full ring-inset outline-none rounded-none select-none',
         'border-t first:border-t-0 whitespace-nowrap',
         {
           'text-grey-4': disabled,
