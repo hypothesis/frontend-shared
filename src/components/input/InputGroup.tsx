@@ -12,7 +12,9 @@ export const inputGroupStyles = classnames(
   // Restore border-radius on the leftmost and rightmost components in the group
   'input-group:first:rounded-l input-group:last:rounded-r',
   // "Collapse" borders between input components
-  'input-group:border-l-0 input-group:first:border-l',
+  'input-group:ml-[-1px] input-group:first:ml-0',
+  // Make sure focused element appears on top, preventing a cropped focus ring
+  'focus:z-1',
 );
 
 export type InputGroupProps = PresentationalProps &
