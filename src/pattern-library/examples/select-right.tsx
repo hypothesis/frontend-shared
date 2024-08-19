@@ -1,4 +1,3 @@
-import type { ComponentChildren } from 'preact';
 import { useId, useState } from 'preact/hooks';
 
 import { Select } from '../..';
@@ -11,14 +10,19 @@ const items = [
   { id: '5', name: 'Doris Evanescence' },
 ];
 
-function Bullet({ children }: { children: ComponentChildren }) {
+type Item = (typeof items)[number];
+
+function ItemContainer({ item }: { item: Item }) {
   return (
-    <div className="rounded px-2 ml-2 bg-grey-7 text-white">{children}</div>
+    <div className="flex">
+      <div className="rounded px-2 mr-2 bg-grey-7 text-white">{item.id}</div>
+      <div className="truncate">{item.name}</div>
+    </div>
   );
 }
 
 export default function App() {
-  const [value, setSelected] = useState<{ id: string; name: string }>();
+  const [value, setSelected] = useState<Item>();
   const selectId = useId();
 
   return (
@@ -30,22 +34,13 @@ export default function App() {
         onChange={setSelected}
         buttonId={selectId}
         buttonContent={
-          value ? (
-            <div className="flex">
-              <div className="truncate">{value.name}</div>
-              <Bullet>{value.id}</Bullet>
-            </div>
-          ) : (
-            <>Select one…</>
-          )
+          value ? <ItemContainer item={value} /> : <>Select one…</>
         }
         buttonClasses="!w-36"
       >
         {items.map(item => (
           <Select.Option value={item} key={item.id}>
-            {item.name}
-            <div className="grow" />
-            <Bullet>{item.id}</Bullet>
+            <ItemContainer item={item} />
           </Select.Option>
         ))}
       </Select>

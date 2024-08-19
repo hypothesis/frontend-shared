@@ -50,10 +50,10 @@ function SelectExample({
               {textOnly && value.name}
               {!textOnly && (
                 <div className="flex">
-                  <div className="truncate">{value.name}</div>
-                  <div className="rounded px-2 ml-2 bg-grey-7 text-white">
+                  <div className="rounded px-2 mr-2 bg-grey-7 text-white">
                     {value.id}
                   </div>
+                  <div className="truncate">{value.name}</div>
                 </div>
               )}
             </>
@@ -68,18 +68,17 @@ function SelectExample({
               textOnly ? (
                 item.name
               ) : (
-                <>
-                  {item.name}
-                  <div className="grow" />
+                <div className="flex">
                   <div
-                    className={classnames('rounded px-2 ml-2 text-white', {
+                    className={classnames('rounded px-2 mr-2 text-white', {
                       'bg-grey-7': !disabled,
                       'bg-grey-4': disabled,
                     })}
                   >
                     {item.id}
                   </div>
-                </>
+                  <div className="truncate">{item.name}</div>
+                </div>
               )
             }
           </Select.Option>
