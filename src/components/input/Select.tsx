@@ -23,9 +23,9 @@ import {
   MenuCollapseIcon,
   MenuExpandIcon,
 } from '../icons';
+import Checkbox from './Checkbox';
 import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
-import { Checkbox } from './index';
 
 export type SelectOptionStatus = {
   selected: boolean;
