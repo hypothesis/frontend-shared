@@ -37,7 +37,7 @@ describe('Select', () => {
     const wrapper = mount(
       <Component value={undefined} onChange={sinon.stub()} {...props}>
         <Component.Option value={undefined}>
-          <span data-testid="reset-option">Reset</span>
+          <span data-testid="option-reset">Reset</span>
         </Component.Option>
         {items.map(item => (
           <Component.Option
@@ -99,6 +99,43 @@ describe('Select', () => {
   const clickOption = (wrapper, id) =>
     wrapper.find(`[data-testid="option-${id}"]`).simulate('click');
 
+  function clickOptionCheckbox(wrapper, id) {
+    const checkbox = wrapper
+      .find(`[data-testid="option-${id}"]`)
+      .closest('[role="option"]')
+      .find('[type="checkbox"]');
+
+    if (!checkbox.exists()) {
+      throw new Error(
+        `There is no checkbox in option ${id}. Make sure you are testing a MultiSelect`,
+      );
+    }
+
+    checkbox.simulate('change');
+  }
+
+  const pressKeyInOption = (wrapper, id, key) =>
+    wrapper
+      .find(`[data-testid="option-${id}"]`)
+      .closest('[role="option"]')
+      .getDOMNode()
+      .dispatchEvent(new KeyboardEvent('keydown', { key }));
+
+  function pressKeyInOptionCheckbox(wrapper, id, key) {
+    const checkbox = wrapper
+      .find(`[data-testid="option-${id}"]`)
+      .closest('[role="option"]')
+      .find('[type="checkbox"]');
+
+    if (!checkbox.exists()) {
+      throw new Error(
+        `There is no checkbox in option ${id}. Make sure you are testing a MultiSelect`,
+      );
+    }
+
+    checkbox.getDOMNode().dispatchEvent(new KeyboardEvent('keydown', { key }));
+  }
+
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
     const wrapper = createComponent({ onChange });
@@ -123,38 +160,26 @@ describe('Select', () => {
     assert.notCalled(onChange);
   });
 
-  ['Enter', 'Space'].forEach(code => {
-    it(`changes selected value when ${code} is pressed in option`, () => {
+  ['Enter', ' '].forEach(key => {
+    it(`changes selected value when ${key} is pressed in option`, () => {
       const onChange = sinon.stub();
       const wrapper = createComponent({ onChange });
-      const pressKeyInOption = index =>
-        wrapper
-          .find(`[data-testid="option-${index}"]`)
-          .getDOMNode()
-          .closest('[role="option"]')
-          .dispatchEvent(new KeyboardEvent('keypress', { code }));
 
-      pressKeyInOption(3);
+      pressKeyInOption(wrapper, 3, key);
       assert.calledWith(onChange.lastCall, items[2]);
 
-      pressKeyInOption(5);
+      pressKeyInOption(wrapper, 5, key);
       assert.calledWith(onChange.lastCall, items[4]);
 
-      pressKeyInOption(1);
+      pressKeyInOption(wrapper, 1, key);
       assert.calledWith(onChange.lastCall, items[0]);
     });
 
-    it(`does not change selected value when ${code} is pressed in a disabled option`, () => {
+    it(`does not change selected value when ${key} is pressed in a disabled option`, () => {
       const onChange = sinon.stub();
       const wrapper = createComponent({ onChange });
-      const pressKeyInDisabledOption = () =>
-        wrapper
-          .find(`[data-testid="option-4"]`)
-          .getDOMNode()
-          .closest('[role="option"]')
-          .dispatchEvent(new KeyboardEvent('keypress', { code }));
 
-      pressKeyInDisabledOption();
+      pressKeyInOption(wrapper, 4, key); // Option 4 is disabled
       assert.notCalled(onChange);
     });
   });
@@ -395,22 +420,7 @@ describe('Select', () => {
   });
 
   context('MultiSelect', () => {
-    it('keeps listbox open when an option is selected if multiple is true', async () => {
-      const wrapper = createComponent(
-        { value: [] },
-        { Component: MultiSelect },
-      );
-
-      toggleListbox(wrapper);
-      assert.isFalse(isListboxClosed(wrapper));
-
-      clickOption(wrapper, 1);
-
-      // After clicking an option, the listbox is still open
-      assert.isFalse(isListboxClosed(wrapper));
-    });
-
-    it('allows multiple items to be selected', () => {
+    it('allows multiple items to be selected via checkboxes', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
@@ -421,13 +431,16 @@ describe('Select', () => {
       );
 
       toggleListbox(wrapper);
-      clickOption(wrapper, 2);
+      clickOptionCheckbox(wrapper, 2);
 
       // When a not-yet-selected item is clicked, it will be selected
       assert.calledWith(onChange, [items[0], items[2], items[1]]);
+
+      // After clicking a checkbox, the listbox is still open
+      assert.isFalse(isListboxClosed(wrapper));
     });
 
-    it('allows deselecting already selected options', () => {
+    it('allows deselecting already selected options via checkboxes', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
@@ -438,26 +451,86 @@ describe('Select', () => {
       );
 
       toggleListbox(wrapper);
-      clickOption(wrapper, 3);
+      clickOptionCheckbox(wrapper, 3);
 
       // When an already selected item is clicked, it will be de-selected
       assert.calledWith(onChange, [items[0]]);
     });
 
-    it('resets selection when option value is nullish and select value is an array', () => {
-      const onChange = sinon.stub();
+    [
+      { doReset: wrapper => clickOption(wrapper, 'reset') },
+      { doReset: wrapper => clickOptionCheckbox(wrapper, 'reset') },
+    ].forEach(({ doReset }) => {
+      it('resets selection when option value is nullish and select value is an array', () => {
+        const onChange = sinon.stub();
+        const wrapper = createComponent(
+          {
+            value: [items[0], items[2]],
+            onChange,
+          },
+          { Component: MultiSelect },
+        );
+
+        toggleListbox(wrapper);
+        doReset(wrapper);
+
+        assert.calledWith(onChange, []);
+      });
+    });
+
+    ['Enter', ' '].forEach(key => {
+      it(`does not change selected value when ${key} is pressed in an option's checkbox`, () => {
+        const onChange = sinon.stub();
+        const wrapper = createComponent(
+          { onChange, value: [] },
+          { Component: MultiSelect },
+        );
+
+        pressKeyInOptionCheckbox(wrapper, 3, key);
+        assert.notCalled(onChange);
+
+        pressKeyInOptionCheckbox(wrapper, 5, key);
+        assert.notCalled(onChange);
+
+        pressKeyInOptionCheckbox(wrapper, 1, key);
+        assert.notCalled(onChange);
+      });
+    });
+
+    it('focuses checkbox when right arrow is pressed in option', () => {
+      const optionId = 3;
       const wrapper = createComponent(
-        {
-          value: [items[0], items[2]],
-          onChange,
-        },
+        { value: [] },
         { Component: MultiSelect },
       );
 
-      toggleListbox(wrapper);
-      wrapper.find(`[data-testid="reset-option"]`).simulate('click');
+      // Spy on checkbox focus
+      const checkbox = wrapper
+        .find(`[data-testid="option-${optionId}"]`)
+        .closest('[role="option"]')
+        .find('[type="checkbox"]')
+        .getDOMNode();
+      const focusStub = sinon.stub(checkbox, 'focus');
 
-      assert.calledWith(onChange, []);
+      pressKeyInOption(wrapper, optionId, 'ArrowRight');
+      assert.called(focusStub);
+    });
+
+    it('focuses option when left arrow is pressed in checkbox', () => {
+      const optionId = 3;
+      const wrapper = createComponent(
+        { value: [] },
+        { Component: MultiSelect },
+      );
+
+      const option = wrapper
+        .find(`[data-testid="option-${optionId}"]`)
+        .closest('[role="option"]')
+        .getDOMNode();
+      const focusStub = sinon.stub(option, 'focus');
+
+      pressKeyInOptionCheckbox(wrapper, optionId, 'ArrowLeft');
+      assert.called(focusStub);
     });
   });
 

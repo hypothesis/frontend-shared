@@ -1,13 +1,17 @@
 import { createContext } from 'preact';
 
+export type SelectValueOptions = {
+  closeListbox: boolean;
+};
+
 type SingleSelectContext<T> = {
-  selectValue: (newValue: T) => void;
+  selectValue: (newValue: T, options: SelectValueOptions) => void;
   value: T;
   multiple: false;
 };
 
 type MultiSelectContext<T> = {
-  selectValue: (newValue: T[]) => void;
+  selectValue: (newValue: T[], options: SelectValueOptions) => void;
   value: T[];
   multiple: true;
 };

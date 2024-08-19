@@ -25,6 +25,7 @@ import {
 } from '../icons';
 import Checkbox from './Checkbox';
 import { inputGroupStyles } from './InputGroup';
+import type { SelectValueOptions } from './SelectContext';
 import SelectContext from './SelectContext';
 
 export type SelectOptionStatus = {
@@ -65,6 +66,9 @@ function SelectOption<T>({
   disabled = false,
   classes,
 }: SelectOptionProps<T>) {
+  const checkboxRef = useRef<HTMLElement | null>(null);
+  const optionRef = useRef<HTMLLIElement | null>(null);
+
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
     throw new Error(
@@ -77,27 +81,37 @@ function SelectOption<T>({
     !disabled &&
     ((multiple && currentValue.includes(value)) || currentValue === value);
 
-  const selectOrToggle = useCallback(() => {
-    // In single-select, just set current value
+  const selectOneValue = useCallback(() => {
+    const options: SelectValueOptions = { closeListbox: true };
+
     if (!multiple) {
-      selectValue(value);
+      selectValue(value, options);
+    } else {
+      selectValue(value !== undefined ? [value] : [], options);
+    }
+  }, [multiple, selectValue, value]);
+  const toggleValue = useCallback(() => {
+    /* istanbul ignore next - This will never be invoked in single-select, but TS doesn't know it */
+    if (!multiple) {
       return;
     }
 
+    const options: SelectValueOptions = { closeListbox: false };
+
     // In multi-select, clear selection for nullish values
     if (!value) {
-      selectValue([]);
+      selectValue([], options);
       return;
     }
 
     // In multi-select, toggle clicked items
     const index = currentValue.indexOf(value);
     if (index === -1) {
-      selectValue([...currentValue, value]);
+      selectValue([...currentValue, value], options);
     } else {
       const copy = [...currentValue];
       copy.splice(index, 1);
-      selectValue(copy);
+      selectValue(copy, options);
     }
   }, [currentValue, multiple, selectValue, value]);
 
@@ -112,15 +126,29 @@ function SelectOption<T>({
         },
         classes,
       )}
-      onClick={() => {
-        if (!disabled) {
-          selectOrToggle();
+      onClick={e => {
+        // Do not invoke callback if clicked element is the checkbox, as it has
+        // its own event handler.
+        if (!disabled && e.target !== checkboxRef.current) {
+          selectOneValue();
         }
       }}
-      onKeyPress={e => {
-        if (!disabled && ['Enter', 'Space'].includes(e.code)) {
+      onKeyDown={e => {
+        if (disabled) {
+          return;
+        }
+
+        if (
+          ['Enter', ' '].includes(e.key) &&
+          // Do not invoke callback if event triggers in checkbox, as it has its
+          // own event handler.
+          e.target !== checkboxRef.current
+        ) {
           e.preventDefault();
-          selectOrToggle();
+          selectOneValue();
+        } else if (checkboxRef.current && e.key === 'ArrowRight') {
+          e.preventDefault();
+          checkboxRef.current.focus();
         }
       }}
       role="option"
@@ -128,6 +156,7 @@ function SelectOption<T>({
       aria-selected={selected}
       // This is intended to be focused with arrow keys
       tabIndex={-1}
+      ref={optionRef}
     >
       <div
         className={classnames(
@@ -154,12 +183,20 @@ function SelectOption<T>({
           <div
             className={classnames('scale-125', {
               'text-grey-6': selected,
-              'text-grey-3': !selected,
+              'text-grey-3 hover:text-grey-6': !selected,
             })}
           >
             <Checkbox
               checked={selected}
               checkedIcon={CheckboxCheckedFilledIcon}
+              elementRef={checkboxRef}
+              onChange={toggleValue}
+              onKeyDown={e => {
+                if (e.key === 'ArrowLeft') {
+                  e.preventDefault();
+                  optionRef.current?.focus();
+                }
+              }}
             />
           </div>
         )}
@@ -388,14 +425,13 @@ function SelectMain<T>({
   );
 
   const selectValue = useCallback(
-    (value: unknown) => {
+    (value: unknown, options: SelectValueOptions) => {
       onChange(value as any);
-      // In multi-select mode, keep list open when selecting values
-      if (!multiple) {
+      if (options.closeListbox) {
         closeListbox();
       }
     },
-    [onChange, multiple, closeListbox],
+    [onChange, closeListbox],
   );
 
   // When clicking away, focusing away or pressing `Esc`, close the listbox
