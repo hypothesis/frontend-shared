@@ -17,9 +17,15 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { ListenerCollection } from '../../util/listener-collection';
 import { downcastRef } from '../../util/typing';
-import { CheckIcon, MenuCollapseIcon, MenuExpandIcon } from '../icons';
+import {
+  CheckboxCheckedFilledIcon,
+  CheckIcon,
+  MenuCollapseIcon,
+  MenuExpandIcon,
+} from '../icons';
 import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
+import { Checkbox } from './index';
 
 export type SelectOptionStatus = {
   selected: boolean;
@@ -134,14 +140,29 @@ function SelectOption<T>({
         )}
       >
         {optionChildren(children, { selected, disabled })}
-        <CheckIcon
-          className={classnames('text-grey-6 scale-125', {
-            // Make the icon visible/invisible, instead of conditionally
-            // rendering it, to ensure consistent spacing among selected and
-            // non-selected options
-            'opacity-0': !selected,
-          })}
-        />
+        {!multiple && (
+          <CheckIcon
+            className={classnames('text-grey-6 scale-125', {
+              // Make the icon visible/invisible, instead of conditionally
+              // rendering it, to ensure consistent spacing among selected and
+              // non-selected options
+              'opacity-0': !selected,
+            })}
+          />
+        )}
+        {multiple && (
+          <div
+            className={classnames('scale-125', {
+              'text-grey-6': selected,
+              'text-grey-3': !selected,
+            })}
+          >
+            <Checkbox
+              checked={selected}
+              checkedIcon={CheckboxCheckedFilledIcon}
+            />
+          </div>
+        )}
       </div>
     </li>
   );
