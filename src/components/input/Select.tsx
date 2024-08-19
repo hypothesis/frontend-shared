@@ -17,7 +17,7 @@ import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { ListenerCollection } from '../../util/listener-collection';
 import { downcastRef } from '../../util/typing';
-import { MenuCollapseIcon, MenuExpandIcon } from '../icons';
+import { CheckIcon, MenuCollapseIcon, MenuExpandIcon } from '../icons';
 import { inputGroupStyles } from './InputGroup';
 import SelectContext from './SelectContext';
 
@@ -99,11 +99,10 @@ function SelectOption<T>({
     <li
       className={classnames(
         'w-full ring-inset outline-none rounded-none select-none',
-        'border-t first:border-t-0 whitespace-nowrap',
+        'px-1 mb-1 first:mt-1 whitespace-nowrap group',
         {
           'text-grey-4': disabled,
-          'cursor-pointer focus-visible-ring hover:bg-grey-1': !disabled,
-          'bg-grey-1 hover:bg-grey-2': selected,
+          'cursor-pointer': !disabled,
         },
         classes,
       )}
@@ -125,12 +124,24 @@ function SelectOption<T>({
       tabIndex={-1}
     >
       <div
-        className={classnames('flex w-full p-1.5 border-l-4', {
-          'border-l-transparent': !selected,
-          'border-l-brand font-medium': selected,
-        })}
+        className={classnames(
+          'w-full flex justify-between items-center gap-2',
+          'rounded py-2 px-3',
+          {
+            'hover:bg-grey-1 group-focus-visible:ring': !disabled,
+            'bg-grey-1 hover:bg-grey-2': selected,
+          },
+        )}
       >
         {optionChildren(children, { selected, disabled })}
+        <CheckIcon
+          className={classnames('text-grey-6 scale-125', {
+            // Make the icon visible/invisible, instead of conditionally
+            // rendering it, to ensure consistent spacing among selected and
+            // non-selected options
+            'opacity-0': !selected,
+          })}
+        />
       </div>
     </li>
   );
