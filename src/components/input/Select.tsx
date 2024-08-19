@@ -403,6 +403,7 @@ function SelectMain<T>({
     <div
       className={classnames(
         'relative w-full border rounded',
+        { 'border-grey-5': listboxOpen },
         inputGroupStyles,
         containerClasses,
       )}
