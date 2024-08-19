@@ -34,20 +34,7 @@ export default function App() {
             buttonId={buttonId}
             value={value}
             onChange={setValue}
-            buttonContent={
-              value ? (
-                <>
-                  <div className="flex">
-                    <div className="truncate">{value.name}</div>
-                    <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                      {value.id}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>Select one…</>
-              )
-            }
+            buttonContent={value ? value.name : <>Select one…</>}
           >
             {items.map(item => (
               <Select.Option
@@ -56,10 +43,6 @@ export default function App() {
                 disabled={item.disabled}
               >
                 {item.name}
-                <div className="grow" />
-                <div className="rounded px-2 ml-2 text-white bg-grey-7">
-                  {item.id}
-                </div>
               </Select.Option>
             ))}
           </Select>

@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import { useCallback, useId, useMemo, useState } from 'preact/hooks';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../components/icons';
@@ -13,6 +12,17 @@ const students = [
   { id: '5', name: 'Doris Evanescence' },
 ];
 
+type Student = (typeof students)[number];
+
+function StudentContainer({ student }: { student: Student }) {
+  return (
+    <div className="flex">
+      <div className="rounded px-2 mr-2 bg-grey-7 text-white">{student.id}</div>
+      <div className="truncate">{student.name}</div>
+    </div>
+  );
+}
+
 export default function App({
   buttonClasses,
   wrapperClasses = 'w-96',
@@ -20,7 +30,7 @@ export default function App({
   buttonClasses?: string;
   wrapperClasses?: string;
 }) {
-  const [selected, setSelected] = useState<(typeof students)[number]>();
+  const [selected, setSelected] = useState<Student>();
   const selectedIndex = useMemo(
     () => (!selected ? -1 : students.findIndex(item => item === selected)),
     [selected],
@@ -53,12 +63,7 @@ export default function App({
           buttonClasses={buttonClasses}
           buttonContent={
             selected ? (
-              <div className="flex">
-                <div className="truncate">{selected.name}</div>
-                <div className="rounded px-2 ml-2 bg-grey-7 text-white">
-                  {selected.id}
-                </div>
-              </div>
+              <StudentContainer student={selected} />
             ) : (
               <>Select one…</>
             )
@@ -66,13 +71,7 @@ export default function App({
         >
           {students.map(item => (
             <Select.Option value={item} key={item.id}>
-              {item.name}
-              <div className="grow" />
-              <div
-                className={classnames('rounded px-2 ml-2 text-white bg-grey-7')}
-              >
-                {item.id}
-              </div>
+              <StudentContainer student={item} />
             </Select.Option>
           ))}
         </Select>
