@@ -5,6 +5,7 @@ import {
   useContext,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'preact/hooks';
@@ -33,13 +34,20 @@ export type SelectOptionStatus = {
   disabled: boolean;
 };
 
-export type SelectOptionProps<T> = {
-  /**
-   * An undefined value in a multiple select will cause the selection to reset
-   * to an empty array.
-   */
-  value: T | undefined;
-
+export type SelectOptionProps<T> = (
+  | {
+      value: T;
+    }
+  | {
+      /**
+       * It will cause the option to be considered selected if current value is
+       * `undefined` for `Select` or `[]` for `MultiSelect`.
+       * The option will clear the value to `undefined` for `Select` or `[]`
+       * for `MultiSelect`.
+       */
+      clear: true;
+    }
+) & {
   disabled?: boolean;
   children:
     | ComponentChildren
@@ -61,10 +69,10 @@ function optionChildren(
 }
 
 function SelectOption<T>({
-  value,
   children,
   disabled = false,
   classes,
+  ...rest
 }: SelectOptionProps<T>) {
   const checkboxRef = useRef<HTMLElement | null>(null);
   const optionRef = useRef<HTMLLIElement | null>(null);
@@ -77,9 +85,22 @@ function SelectOption<T>({
   }
 
   const { selectValue, value: currentValue, multiple } = selectContext;
-  const selected =
-    !disabled &&
-    ((multiple && currentValue.includes(value)) || currentValue === value);
+  const isClearOption = 'clear' in rest;
+  const value = useMemo(
+    () => (!isClearOption ? rest.value : multiple ? [] : undefined),
+    [isClearOption, rest, multiple],
+  );
+  const selected = useMemo(() => {
+    if (disabled) {
+      return false;
+    }
+
+    if (isClearOption) {
+      return multiple ? currentValue.length === 0 : currentValue === undefined;
+    }
+
+    return multiple ? currentValue.includes(value) : currentValue === value;
+  }, [currentValue, disabled, isClearOption, multiple, value]);
 
   const selectOneValue = useCallback(() => {
     const options: SelectValueOptions = { closeListbox: true };
@@ -87,9 +108,9 @@ function SelectOption<T>({
     if (!multiple) {
       selectValue(value, options);
     } else {
-      selectValue(value !== undefined ? [value] : [], options);
+      selectValue(isClearOption ? [] : [value], options);
     }
-  }, [multiple, selectValue, value]);
+  }, [isClearOption, multiple, selectValue, value]);
   const toggleValue = useCallback(() => {
     /* istanbul ignore next - This will never be invoked in single-select, but TS doesn't know it */
     if (!multiple) {
@@ -99,7 +120,7 @@ function SelectOption<T>({
     const options: SelectValueOptions = { closeListbox: false };
 
     // In multi-select, clear selection for nullish values
-    if (!value) {
+    if (isClearOption) {
       selectValue([], options);
       return;
     }
@@ -113,7 +134,7 @@ function SelectOption<T>({
       copy.splice(index, 1);
       selectValue(copy, options);
     }
-  }, [currentValue, multiple, selectValue, value]);
+  }, [currentValue, isClearOption, multiple, selectValue, value]);
 
   return (
     <li

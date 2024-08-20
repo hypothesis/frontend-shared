@@ -36,9 +36,15 @@ describe('Select', () => {
 
     const wrapper = mount(
       <Component value={undefined} onChange={sinon.stub()} {...props}>
-        <Component.Option value={undefined}>
-          <span data-testid="option-reset">Reset</span>
-        </Component.Option>
+        {Component === MultiSelect ? (
+          <Component.Option clear>
+            <span data-testid="option-reset">Reset</span>
+          </Component.Option>
+        ) : (
+          <Component.Option value={undefined}>
+            <span data-testid="option-reset">Reset</span>
+          </Component.Option>
+        )}
         {items.map(item => (
           <Component.Option
             value={item}
