@@ -573,7 +573,7 @@ export type LinkProps = {
  */
 function Link({ children, href }: LinkProps) {
   return (
-    <RouteLink href={href}>
+    <RouteLink href={href} asChild>
       <UILink underline="always">{children}</UILink>
     </RouteLink>
   );

@@ -62,7 +62,7 @@ function NavLink({ route }: { route: PlaygroundRoute }) {
   return (
     <li className="-ml-[2px]">
       {route.route && (
-        <RouteLink href={route.route ?? ''}>
+        <RouteLink href={route.route ?? ''} asChild>
           <Link
             classes={classnames(
               'pl-4 rounded-l-none w-full border-l-2 hover:border-l-brand',
