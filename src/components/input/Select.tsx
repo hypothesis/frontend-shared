@@ -5,6 +5,7 @@ import {
   useContext,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'preact/hooks';
@@ -33,18 +34,28 @@ export type SelectOptionStatus = {
   disabled: boolean;
 };
 
-export type SelectOptionProps<T> = {
-  /**
-   * An undefined value in a multiple select will cause the selection to reset
-   * to an empty array.
-   */
-  value: T | undefined;
-
+export type SelectClearOptionProps = {
   disabled?: boolean;
   children:
     | ComponentChildren
     | ((status: SelectOptionStatus) => ComponentChildren);
   classes?: string | string[];
+};
+
+export type SelectOptionProps<T> = SelectClearOptionProps & {
+  value: T;
+};
+
+type BaseSelectOptionProps<T> = SelectClearOptionProps & {
+  value?: T;
+
+  /**
+   * It will cause the option to be considered selected if current value is
+   * `undefined` for `Select` or `[]` for `MultiSelect`.
+   * The option will clear the value to `undefined` for `Select` or `[]`
+   * for `MultiSelect`.
+   */
+  isClearOption: boolean;
 };
 
 function optionChildren(
@@ -60,12 +71,13 @@ function optionChildren(
   return children;
 }
 
-function SelectOption<T>({
-  value,
+function BaseSelectOption<T>({
+  value: optionValue,
   children,
   disabled = false,
   classes,
-}: SelectOptionProps<T>) {
+  isClearOption,
+}: BaseSelectOptionProps<T>) {
   const checkboxRef = useRef<HTMLElement | null>(null);
   const optionRef = useRef<HTMLLIElement | null>(null);
 
@@ -77,9 +89,21 @@ function SelectOption<T>({
   }
 
   const { selectValue, value: currentValue, multiple } = selectContext;
-  const selected =
-    !disabled &&
-    ((multiple && currentValue.includes(value)) || currentValue === value);
+  const value = useMemo(
+    () => (!isClearOption ? optionValue : multiple ? [] : undefined),
+    [isClearOption, optionValue, multiple],
+  );
+  const selected = useMemo(() => {
+    if (disabled) {
+      return false;
+    }
+
+    if (isClearOption) {
+      return multiple ? currentValue.length === 0 : currentValue === undefined;
+    }
+
+    return multiple ? currentValue.includes(value) : currentValue === value;
+  }, [currentValue, disabled, isClearOption, multiple, value]);
 
   const selectOneValue = useCallback(() => {
     const options: SelectValueOptions = { closeListbox: true };
@@ -87,19 +111,23 @@ function SelectOption<T>({
     if (!multiple) {
       selectValue(value, options);
     } else {
-      selectValue(value !== undefined ? [value] : [], options);
+      selectValue(isClearOption ? [] : [value], options);
     }
-  }, [multiple, selectValue, value]);
+  }, [isClearOption, multiple, selectValue, value]);
   const toggleValue = useCallback(() => {
     /* istanbul ignore next - This will never be invoked in single-select, but TS doesn't know it */
     if (!multiple) {
       return;
     }
 
-    const options: SelectValueOptions = { closeListbox: false };
+    const options: SelectValueOptions = {
+      // The clear option should always close the listbox, as it's effectively
+      // replacing the selected value with another one.
+      closeListbox: isClearOption,
+    };
 
     // In multi-select, clear selection for nullish values
-    if (!value) {
+    if (isClearOption) {
       selectValue([], options);
       return;
     }
@@ -113,7 +141,7 @@ function SelectOption<T>({
       copy.splice(index, 1);
       selectValue(copy, options);
     }
-  }, [currentValue, multiple, selectValue, value]);
+  }, [currentValue, isClearOption, multiple, selectValue, value]);
 
   return (
     <li
@@ -205,7 +233,25 @@ function SelectOption<T>({
   );
 }
 
-SelectOption.displayName = 'Select.Option';
+const SelectOption = Object.assign(
+  function <T>(props: SelectOptionProps<T>) {
+    // Calling the function directly instead of returning a JSX element, to
+    // avoid an unnecessary extra layer in the component tree
+    // eslint-disable-next-line new-cap
+    return BaseSelectOption({ ...props, isClearOption: false });
+  },
+  { displayName: 'Select.Option' },
+);
+
+const SelectClearOption = Object.assign(
+  function (props: SelectClearOptionProps) {
+    // Calling the function directly instead of returning a JSX element, to
+    // avoid an unnecessary extra layer in the component tree
+    // eslint-disable-next-line new-cap
+    return BaseSelectOption({ ...props, isClearOption: true });
+  },
+  { displayName: 'MultiSelect.ClearOption' },
+);
 
 /** Small space to apply between the toggle button and the listbox */
 const LISTBOX_TOGGLE_GAP = '.25rem';
@@ -553,7 +599,11 @@ export const Select = Object.assign(
     // eslint-disable-next-line new-cap
     return SelectMain({ ...props, multiple: false });
   },
-  { Option: SelectOption, displayName: 'Select' },
+  {
+    Option: SelectOption,
+    ClearOption: SelectClearOption,
+    displayName: 'Select',
+  },
 );
 
 export const MultiSelect = Object.assign(
@@ -563,5 +613,9 @@ export const MultiSelect = Object.assign(
     // eslint-disable-next-line new-cap
     return SelectMain({ ...props, multiple: true });
   },
-  { Option: SelectOption, displayName: 'MultiSelect' },
+  {
+    Option: SelectOption,
+    ClearOption: SelectClearOption,
+    displayName: 'MultiSelect',
+  },
 );

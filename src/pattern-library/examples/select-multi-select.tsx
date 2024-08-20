@@ -36,7 +36,7 @@ export default function App() {
           )
         }
       >
-        <MultiSelect.Option value={undefined}>All students</MultiSelect.Option>
+        <MultiSelect.ClearOption>All students</MultiSelect.ClearOption>
         {items.map(item => (
           <MultiSelect.Option value={item} key={item.id}>
             {item.name}
