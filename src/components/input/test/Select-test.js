@@ -37,7 +37,12 @@ describe('Select', () => {
     const wrapper = mount(
       <Component value={undefined} onChange={sinon.stub()} {...props}>
         <Component.Option value={undefined}>
-          <span data-testid="option-reset">Reset</span>
+          {({ selected }) => (
+            <span data-testid="option-reset">
+              Reset
+              {selected && <span data-testid="selected-option" />}
+            </span>
+          )}
         </Component.Option>
         {items.map(item => (
           <Component.Option
@@ -136,6 +141,11 @@ describe('Select', () => {
     checkbox.getDOMNode().dispatchEvent(new KeyboardEvent('keydown', { key }));
   }
 
+  const isOptionSelected = (wrapper, id) =>
+    wrapper
+      .find(`[data-testid="option-${id}"]`)
+      .exists('[data-testid="selected-option"]');
+
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
     const wrapper = createComponent({ onChange });
@@ -186,16 +196,12 @@ describe('Select', () => {
 
   it('marks the right item as selected', () => {
     const wrapper = createComponent({ value: items[2] });
-    const isOptionSelected = id =>
-      wrapper
-        .find(`[data-testid="option-${id}"]`)
-        .exists('[data-testid="selected-option"]');
 
-    assert.isFalse(isOptionSelected(1));
-    assert.isFalse(isOptionSelected(2));
-    assert.isTrue(isOptionSelected(3));
-    assert.isFalse(isOptionSelected(4));
-    assert.isFalse(isOptionSelected(5));
+    assert.isFalse(isOptionSelected(wrapper, 1));
+    assert.isFalse(isOptionSelected(wrapper, 2));
+    assert.isTrue(isOptionSelected(wrapper, 3));
+    assert.isFalse(isOptionSelected(wrapper, 4));
+    assert.isFalse(isOptionSelected(wrapper, 5));
   });
 
   it('marks the right item as disabled', () => {
@@ -475,6 +481,16 @@ describe('Select', () => {
         doReset(wrapper);
 
         assert.calledWith(onChange, []);
+      });
+    });
+
+    [
+      { value: [], isResetSelected: true },
+      { value: [items[0], items[2]], isResetSelected: false },
+    ].forEach(({ value, isResetSelected }) => {
+      it('marks reset option as selected when value is empty', () => {
+        const wrapper = createComponent({ value }, { Component: MultiSelect });
+        assert.equal(isOptionSelected(wrapper, 'reset'), isResetSelected);
       });
     });
 
