@@ -179,7 +179,7 @@ function SelectOption<T>({
     >
       <div
         className={classnames(
-          'w-full flex justify-between items-center gap-2',
+          'w-full flex justify-between items-center gap-3',
           'rounded py-2 px-3',
           {
             'hover:bg-grey-1 group-focus-visible:ring': !disabled,
