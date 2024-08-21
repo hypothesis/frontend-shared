@@ -5,6 +5,7 @@ import {
   useContext,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'preact/hooks';
@@ -77,9 +78,23 @@ function SelectOption<T>({
   }
 
   const { selectValue, value: currentValue, multiple } = selectContext;
-  const selected =
-    !disabled &&
-    ((multiple && currentValue.includes(value)) || currentValue === value);
+  const selected = useMemo(() => {
+    if (disabled) {
+      return false;
+    }
+
+    if (!multiple) {
+      return currentValue === value;
+    }
+
+    // In multi-select, the option should be marked as selected for values
+    // which are explicitly part of the array, or for `undefined` values if the
+    // array is empty
+    return (
+      currentValue.includes(value) ||
+      (currentValue.length === 0 && value === undefined)
+    );
+  }, [currentValue, disabled, multiple, value]);
 
   const selectOneValue = useCallback(() => {
     const options: SelectValueOptions = { closeListbox: true };
@@ -96,10 +111,14 @@ function SelectOption<T>({
       return;
     }
 
-    const options: SelectValueOptions = { closeListbox: false };
+    const options: SelectValueOptions = {
+      // Close listbox only if selected value is a "clear" option. Clear options
+      // are those with `undefined` value
+      closeListbox: value === undefined,
+    };
 
-    // In multi-select, clear selection for nullish values
-    if (!value) {
+    // In multi-select, clear selection for `undefined` values
+    if (value === undefined) {
       selectValue([], options);
       return;
     }
