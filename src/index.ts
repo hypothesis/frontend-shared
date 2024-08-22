@@ -9,6 +9,7 @@ export { useStableCallback } from './hooks/use-stable-callback';
 export { useSyncedRef } from './hooks/use-synced-ref';
 export { useToastMessages } from './hooks/use-toast-messages';
 export { useValidateOnSubmit } from './hooks/use-validate-on-submit';
+export { useWarnOnPageUnload } from './hooks/use-warn-on-page-unload';
 export type {
   ToastMessagesState,
   ToastMessageData,
