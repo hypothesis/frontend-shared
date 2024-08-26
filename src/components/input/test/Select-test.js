@@ -108,7 +108,7 @@ describe('Select', () => {
     const checkbox = wrapper
       .find(`[data-testid="option-${id}"]`)
       .closest('[role="option"]')
-      .find('[type="checkbox"]');
+      .find('input[type="checkbox"]');
 
     if (!checkbox.exists()) {
       throw new Error(
@@ -130,7 +130,7 @@ describe('Select', () => {
     const checkbox = wrapper
       .find(`[data-testid="option-${id}"]`)
       .closest('[role="option"]')
-      .find('[type="checkbox"]');
+      .find('input[type="checkbox"]');
 
     if (!checkbox.exists()) {
       throw new Error(
@@ -524,7 +524,7 @@ describe('Select', () => {
       const checkbox = wrapper
         .find(`[data-testid="option-${optionId}"]`)
         .closest('[role="option"]')
-        .find('[type="checkbox"]')
+        .find('input[type="checkbox"]')
         .getDOMNode();
       const focusStub = sinon.stub(checkbox, 'focus');
 
