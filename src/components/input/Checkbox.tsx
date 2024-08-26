@@ -14,6 +14,7 @@ type ComponentProps = {
    * controlled.
    */
   defaultChecked?: boolean;
+
   /** Custom icon to show when input is unchecked */
   icon?: IconComponent;
   /** Custom icon to show when input is checked */
