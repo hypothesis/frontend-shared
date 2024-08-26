@@ -33,6 +33,15 @@ export default function RadioButtonPage() {
             state for all of them, as <code>RadioButton</code>s do not know
             about each other.
           </p>
+          <p>
+            A convenient <code>RadioButtonGroup</code> is provided to fulfil
+            this task.
+          </p>
+          <Library.Demo
+            withSource
+            title="Grouping RadioButtons"
+            exampleFile="radio-button-group"
+          />
         </Library.Example>
 
         <Library.Example title="Customizing RadioButton icons">
