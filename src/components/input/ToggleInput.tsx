@@ -1,19 +1,12 @@
 import classnames from 'classnames';
 import type { JSX } from 'preact';
-import { useState } from 'preact/hooks';
 
 import type { CompositeProps, IconComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
 
 type ComponentProps = {
-  /** Current checked state. Used when the input is controlled. */
   checked?: boolean;
 
-  /**
-   * Default checked state. Used to set initial state when the input is not
-   * controlled.
-   */
-  defaultChecked?: boolean;
   /** Custom icon to show when input is unchecked */
   icon: IconComponent;
   /** Custom icon to show when input is checked */
@@ -36,7 +29,6 @@ export default function ToggleInput({
   elementRef,
 
   checked,
-  defaultChecked = false,
   icon: UncheckedIcon,
   checkedIcon: CheckedIcon,
 
@@ -46,24 +38,7 @@ export default function ToggleInput({
   type,
   ...htmlAttributes
 }: ToggleInputProps) {
-  // If `checked` is present, treat this as a controlled component
-  const isControlled = typeof checked === 'boolean';
-  // Only use this local state if checkbox is uncontrolled
-  const [uncontrolledChecked, setUncontrolledChecked] =
-    useState(defaultChecked);
-  const isChecked = isControlled ? checked : uncontrolledChecked;
-
-  function handleChange(
-    this: void,
-    event: JSX.TargetedEvent<HTMLInputElement>,
-  ) {
-    onChange?.call(this, event);
-    if (!isControlled) {
-      setUncontrolledChecked((event.target as HTMLInputElement).checked);
-    }
-  }
-
-  const Icon = isChecked ? CheckedIcon : UncheckedIcon;
+  const Icon = checked ? CheckedIcon : UncheckedIcon;
 
   return (
     <label
@@ -93,10 +68,10 @@ export default function ToggleInput({
             'cursor-pointer': !disabled,
           },
         )}
-        checked={isChecked}
+        checked={checked}
         disabled={disabled}
         id={id}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <Icon
         className={classnames(
