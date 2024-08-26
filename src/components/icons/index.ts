@@ -91,6 +91,8 @@ export { default as PreviewIcon } from './Preview';
 export { default as PreviewFilledIcon } from './PreviewFilled';
 export { default as ProfileIcon } from './Profile';
 export { default as ProfileFilledIcon } from './ProfileFilled';
+export { default as RadioIcon } from './Radio';
+export { default as RadioCheckedIcon } from './RadioChecked';
 export { default as RefreshIcon } from './Refresh';
 export { default as ReplyIcon } from './Reply';
 export { default as ReplyAltIcon } from './ReplyAlt';
