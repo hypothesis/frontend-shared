@@ -6,7 +6,6 @@ import { downcastRef } from '../../util/typing';
 
 type ComponentProps = {
   checked?: boolean;
-
   /** Custom icon to show when input is unchecked */
   icon: IconComponent;
   /** Custom icon to show when input is checked */
