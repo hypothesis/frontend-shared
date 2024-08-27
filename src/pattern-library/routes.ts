@@ -15,6 +15,7 @@ import CalloutPage from './components/patterns/feedback/CalloutPage';
 import DialogPage from './components/patterns/feedback/DialogPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 import ToastMessagesPage from './components/patterns/feedback/ToastMessagesPage';
+import UseClickAwayPage from './components/patterns/hooks/UseClickAwayPage';
 import ButtonsPage from './components/patterns/input/ButtonPage';
 import CheckboxPage from './components/patterns/input/CheckboxPage';
 import CloseButtonPage from './components/patterns/input/CloseButtonPage';
@@ -53,6 +54,7 @@ export type PlaygroundRouteGroup =
   | 'home'
   | 'foundations'
   | 'components'
+  | 'hooks'
   | 'prototype'
   | 'custom';
 
@@ -261,6 +263,12 @@ const routes: PlaygroundRoute[] = [
     group: 'transition',
     component: SliderPage,
     route: '/transitions-slider',
+  },
+  {
+    title: 'useClickAway',
+    group: 'hooks',
+    component: UseClickAwayPage,
+    route: '/hooks-use-click-away',
   },
   {
     title: 'Import/Export Dialog',
