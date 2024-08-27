@@ -544,18 +544,24 @@ function Code({ size, title, ...rest }: LibraryCodeProps) {
 }
 
 export type LibraryUsageProps = {
-  componentName: string;
+  /** @deprecated. Use symbolName instead */
+  componentName?: string;
+  symbolName?: string;
   size?: 'sm' | 'md';
 };
 
 /**
  * Render import "usage" of a given `componentName`
  */
-function Usage({ componentName, size = 'md' }: LibraryUsageProps) {
+function Usage({
+  componentName,
+  symbolName = componentName,
+  size = 'md',
+}: LibraryUsageProps) {
   const importPath = '@hypothesis/frontend-shared';
   return (
     <Code
-      content={`import { ${componentName} } from '${importPath}';
+      content={`import { ${symbolName} } from '${importPath}';
 `}
       size={size}
     />

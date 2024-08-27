@@ -146,9 +146,12 @@ export default function PlaygroundApp({
 
   const prototypeRoutes = getRoutes('prototype');
 
+  const hookRoutes = getRoutes('hooks');
+
   const groupKeys = Object.keys(componentGroups) as Array<
     keyof typeof componentGroups
   >;
+
   return (
     <Router base={baseURL}>
       <div className="w-full bg-stone-200">
@@ -193,6 +196,13 @@ export default function PlaygroundApp({
                           </NavSection>
                         );
                       })}
+
+                      <NavHeader>Hooks</NavHeader>
+                      <NavList>
+                        {hookRoutes.map(route => (
+                          <NavLink key={route.title} route={route} />
+                        ))}
+                      </NavList>
 
                       {prototypeRoutes.length > 0 && (
                         <>

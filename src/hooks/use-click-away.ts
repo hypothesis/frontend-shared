@@ -10,7 +10,7 @@ type UseClickAwayOptions = {
 
 /**
  * Listen on document.body for click events. If a click event's target is
- * outside of the `container` element, invoke the `callback`. Do not listen if
+ * outside the `container` element, invoke the `callback`. Do not listen if
  * not `enabled`.
  */
 export function useClickAway(
