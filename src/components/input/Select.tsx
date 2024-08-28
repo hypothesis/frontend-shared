@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import type { ComponentChildren, JSX, RefObject } from 'preact';
+import type { ComponentChildren, JSX, RefObject, Ref } from 'preact';
 import {
   useCallback,
   useContext,
@@ -46,6 +46,9 @@ export type SelectOptionProps<T> = {
     | ComponentChildren
     | ((status: SelectOptionStatus) => ComponentChildren);
   classes?: string | string[];
+
+  /** Ref associated with the option's container element */
+  elementRef?: Ref<HTMLElement | undefined>;
 };
 
 function optionChildren(
@@ -66,9 +69,10 @@ function SelectOption<T>({
   children,
   disabled = false,
   classes,
+  elementRef,
 }: SelectOptionProps<T>) {
   const checkboxRef = useRef<HTMLElement | null>(null);
-  const optionRef = useRef<HTMLLIElement | null>(null);
+  const optionRef = useSyncedRef(elementRef);
 
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
@@ -175,7 +179,7 @@ function SelectOption<T>({
       aria-selected={selected}
       // This is intended to be focused with arrow keys
       tabIndex={-1}
-      ref={optionRef}
+      ref={downcastRef(optionRef)}
     >
       <div
         className={classnames(
