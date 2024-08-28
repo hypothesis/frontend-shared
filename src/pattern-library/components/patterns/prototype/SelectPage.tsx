@@ -489,6 +489,36 @@ export default function SelectPage() {
               </div>
             </Library.Demo>
           </Library.Example>
+          <Library.Example title="classes">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                CSS class(es) that will be appended to the CSS classes applied
+                to the options{"'"}s outermost element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[] | undefined</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
+          <Library.Example title="elementRef">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                A <code>Ref</code> applied to the option{"'"}s outermost
+                element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  MutableRef{'<'}HTMLElement | undefined{'>'} | undefined
+                </code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 
