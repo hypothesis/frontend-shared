@@ -23,6 +23,11 @@ export type RadioButtonProps = CompositeProps &
  * Render a labeled radio input. The radio is styled with two icons: one for the
  * unchecked state and one for the checked state. The input itself is positioned
  * exactly on top of the icon, but is non-visible.
+ *
+ * Note:
+ * This component was created with the intention to make it the foundation for
+ * RadioGroup, but we finally found it easier to implement something from scratch.
+ * If we don't find a use case for this component, we'll remove it eventually.
  */
 export default function RadioButton({
   icon = RadioIcon,
