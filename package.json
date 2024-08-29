@@ -1,6 +1,6 @@
 {
   "name": "@hypothesis/frontend-shared",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
   "repository": "hypothesis/frontend-shared",
