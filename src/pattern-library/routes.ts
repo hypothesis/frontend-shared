@@ -21,7 +21,6 @@ import CloseButtonPage from './components/patterns/input/CloseButtonPage';
 import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
-import RadioButtonPage from './components/patterns/input/RadioButtonPage';
 import RadioGroupPage from './components/patterns/input/RadioGroupPage';
 import TextareaPage from './components/patterns/input/TextareaPage';
 import CardPage from './components/patterns/layout/CardPage';
@@ -196,12 +195,6 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: OptionButtonPage,
     route: '/input-option-button',
-  },
-  {
-    title: 'RadioButton',
-    group: 'input',
-    component: RadioButtonPage,
-    route: '/input-radio-button',
   },
   {
     title: 'RadioGroup',
