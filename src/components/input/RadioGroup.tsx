@@ -74,7 +74,7 @@ function Radio<T extends RadioValue>({
 
 Radio.displayName = 'RadioGroup.Radio';
 
-export type RadioGroup<T extends RadioValue> = {
+export type RadioGroupProps<T extends RadioValue> = {
   children: ComponentChildren;
   selected?: T;
   onChange: (newSelected: T) => void;
@@ -105,7 +105,7 @@ function RadioGroupMain<T extends RadioValue>({
   'aria-label': label,
   'aria-labelledby': labelledBy,
   name,
-}: RadioGroup<T>) {
+}: RadioGroupProps<T>) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useArrowKeyNavigation(containerRef, {

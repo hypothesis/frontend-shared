@@ -53,6 +53,7 @@ export {
   MultiSelect,
   OptionButton,
   RadioButton,
+  RadioGroup,
   Select,
   Textarea,
 } from './components/input';
@@ -122,6 +123,7 @@ export type {
   MultiSelectProps,
   OptionButtonProps,
   RadioButtonProps,
+  RadioGroupProps,
   SelectProps,
   TextareaProps,
 } from './components/input';
