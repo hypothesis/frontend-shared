@@ -41,12 +41,15 @@ function Radio<T extends RadioValue>({
       role="radio"
       aria-checked={isSelected}
       aria-disabled={disabled}
-      className={classnames('focus-visible-ring rounded-lg px-3 py-2 grow', {
-        'bg-grey-2': isSelected,
-        'hover:bg-grey-1': !isSelected && !disabled,
-        'opacity-70': disabled,
-        'cursor-pointer': !disabled,
-      })}
+      className={classnames(
+        'focus-visible-ring rounded-lg px-3 py-2 grow group',
+        {
+          'bg-grey-3/50': isSelected,
+          'hover:bg-grey-3/25': !isSelected && !disabled,
+          'opacity-70': disabled,
+          'cursor-pointer': !disabled,
+        },
+      )}
       data-value={value}
       onClick={!disabled ? () => onChange(value) : undefined}
       onKeyDown={
@@ -66,7 +69,14 @@ function Radio<T extends RadioValue>({
         {children}
       </div>
       {subtitle && (
-        <div className="pl-4 ml-1.5 mt-1 text-grey-6 text-sm">{subtitle}</div>
+        <div
+          className={classnames('pl-4 ml-1.5 mt-1 text-sm', {
+            'text-grey-7': isSelected,
+            'text-grey-6 group-hover:text-grey-7': !isSelected && !disabled,
+          })}
+        >
+          {subtitle}
+        </div>
       )}
     </div>
   );

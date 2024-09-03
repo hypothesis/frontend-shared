@@ -183,6 +183,19 @@ describe('RadioGroup', () => {
 
   it(
     'should pass a11y checks',
-    checkAccessibility({ content: createComponent }),
+    checkAccessibility([
+      {
+        name: 'no selected item',
+        content: createComponent,
+      },
+      {
+        name: 'selected item',
+        content: () => createComponent({ selected: 'one' }),
+      },
+      {
+        name: 'selected item with subtitle',
+        content: () => createComponent({ selected: 'four' }),
+      },
+    ]),
   );
 });
