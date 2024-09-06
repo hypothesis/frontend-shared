@@ -47,6 +47,7 @@ export { default as FileImageFilledIcon } from './FileImageFilled';
 export { default as FilePdfIcon } from './FilePdf';
 export { default as FilePdfFilledIcon } from './FilePdfFilled';
 export { default as FilterIcon } from './Filter';
+export { default as FilterClearIcon } from './FilterClear';
 export { default as FlagIcon } from './Flag';
 export { default as FlagFilledIcon } from './FlagFilled';
 export { default as FolderIcon } from './Folder';
