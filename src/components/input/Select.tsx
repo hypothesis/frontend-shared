@@ -72,7 +72,11 @@ function SelectOption<T>({
   elementRef,
 }: SelectOptionProps<T>) {
   const checkboxRef = useRef<HTMLElement | null>(null);
+  const checkboxContainerRef = useRef<HTMLLabelElement | null>(null);
   const optionRef = useSyncedRef(elementRef);
+  const eventTriggeredInCheckbox = (e: Event) =>
+    e.target === checkboxRef.current ||
+    e.target === checkboxContainerRef.current;
 
   const selectContext = useContext(SelectContext);
   if (!selectContext) {
@@ -150,9 +154,12 @@ function SelectOption<T>({
         classes,
       )}
       onClick={e => {
-        // Do not invoke callback if clicked element is the checkbox, as it has
-        // its own event handler.
-        if (!disabled && e.target !== checkboxRef.current) {
+        if (
+          !disabled &&
+          // Do not invoke callback if clicked element is the checkbox or its
+          // container, as it has its own event handler.
+          !eventTriggeredInCheckbox(e)
+        ) {
           selectOneValue();
         }
       }}
@@ -163,9 +170,9 @@ function SelectOption<T>({
 
         if (
           ['Enter', ' '].includes(e.key) &&
-          // Do not invoke callback if event triggers in checkbox, as it has its
-          // own event handler.
-          e.target !== checkboxRef.current
+          // Do not invoke callback if event triggered in the checkbox or its
+          // container, as it has its own event handler.
+          !eventTriggeredInCheckbox(e)
         ) {
           e.preventDefault();
           selectOneValue();
@@ -183,45 +190,59 @@ function SelectOption<T>({
     >
       <div
         className={classnames(
-          'w-full flex justify-between items-center gap-3',
-          'rounded py-2 px-3',
+          // Make items stretch so that all have the same height. This is
+          // important for multi-selects, where the checkbox actionable surface
+          // should span to the very edges of the option containing it.
+          'flex justify-between items-stretch gap-3',
+          'w-full relative rounded py-2 px-3',
           {
             'hover:bg-grey-1 group-focus-visible:ring': !disabled,
             'bg-grey-1 hover:bg-grey-2': selected,
           },
         )}
       >
-        {optionChildren(children, { selected, disabled })}
+        <div className="flex items-center">
+          {optionChildren(children, { selected, disabled })}
+        </div>
         {!multiple && (
-          <CheckIcon
-            className={classnames('text-grey-6 scale-125', {
-              // Make the icon visible/invisible, instead of conditionally
-              // rendering it, to ensure consistent spacing among selected and
-              // non-selected options
-              'opacity-0': !selected,
-            })}
-          />
-        )}
-        {multiple && (
-          <div
-            className={classnames('scale-125', {
-              'text-grey-6': selected,
-              'text-grey-3 hover:text-grey-6': !selected,
-            })}
-          >
-            <Checkbox
-              checked={selected}
-              checkedIcon={CheckboxCheckedFilledIcon}
-              elementRef={checkboxRef}
-              onChange={toggleValue}
-              onKeyDown={e => {
-                if (e.key === 'ArrowLeft') {
-                  e.preventDefault();
-                  optionRef.current?.focus();
-                }
-              }}
+          <div className="flex items-center">
+            <CheckIcon
+              className={classnames('text-grey-6 scale-125', {
+                // Make the icon visible/invisible, instead of conditionally
+                // rendering it, to ensure consistent spacing among selected and
+                // non-selected options
+                'opacity-0': !selected,
+              })}
             />
           </div>
+        )}
+        {multiple && (
+          <Checkbox
+            containerClasses={classnames(
+              // Match container's padding via negative margin and padding of
+              // its own, preventing accidental miss-clicks outside the checkbox
+              // that mess the whole selection.
+              '-my-2 -mx-3 py-2 px-3',
+              // The checkbox is sized based on the container's font size. Make
+              // it a bit larger.
+              'text-lg',
+              {
+                'text-grey-6': selected,
+                'text-grey-3 hover:text-grey-6': !selected,
+              },
+            )}
+            checked={selected}
+            checkedIcon={CheckboxCheckedFilledIcon}
+            elementRef={checkboxRef}
+            containerRef={checkboxContainerRef}
+            onChange={toggleValue}
+            onKeyDown={e => {
+              if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                optionRef.current?.focus();
+              }
+            }}
+          />
         )}
       </div>
     </li>
