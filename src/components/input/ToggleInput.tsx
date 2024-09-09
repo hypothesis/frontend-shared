@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import type { JSX } from 'preact';
+import type { JSX, Ref } from 'preact';
 
 import type { CompositeProps, IconComponent } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -13,6 +13,11 @@ type ComponentProps = {
   checkedIcon: IconComponent;
 
   type: 'checkbox' | 'radio';
+
+  /** Optional extra CSS classes appended to the container's className */
+  containerClasses?: string | string[];
+  /** Ref associated with the component's container */
+  containerRef?: Ref<HTMLLabelElement | undefined>;
 };
 
 export type ToggleInputProps = CompositeProps &
@@ -27,6 +32,7 @@ export type ToggleInputProps = CompositeProps &
 export default function ToggleInput({
   children,
   elementRef,
+  containerRef,
 
   checked,
   icon: UncheckedIcon,
@@ -36,20 +42,26 @@ export default function ToggleInput({
   onChange,
   id,
   type,
+  containerClasses,
   ...htmlAttributes
 }: ToggleInputProps) {
   const Icon = checked ? CheckedIcon : UncheckedIcon;
 
   return (
     <label
-      className={classnames('relative flex items-center gap-x-1.5', {
-        'cursor-pointer': !disabled,
-        'opacity-70': disabled,
-      })}
+      className={classnames(
+        'relative flex items-center gap-x-1.5',
+        {
+          'cursor-pointer': !disabled,
+          'opacity-70': disabled,
+        },
+        containerClasses,
+      )}
       htmlFor={id}
       data-composite-component={
         type === 'checkbox' ? 'Checkbox' : 'RadioButton'
       }
+      ref={downcastRef(containerRef)}
     >
       <input
         {...htmlAttributes}
