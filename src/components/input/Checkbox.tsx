@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { JSX, Ref } from 'preact';
 import { useState } from 'preact/hooks';
 
 import type { CompositeProps, IconComponent } from '../../types';
@@ -20,6 +20,11 @@ type ComponentProps = {
   checkedIcon?: IconComponent;
   /** type is always `checkbox` */
   type?: never;
+
+  /** Optional extra CSS classes appended to the container's className */
+  containerClasses?: string | string[];
+  /** Ref associated with the component's container */
+  containerRef?: Ref<HTMLLabelElement | undefined>;
 };
 
 export type CheckboxProps = CompositeProps &

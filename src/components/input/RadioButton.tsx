@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { JSX, Ref } from 'preact';
 
 import type { CompositeProps, IconComponent } from '../../types';
 import { RadioCheckedIcon, RadioIcon } from '../icons';
@@ -13,6 +13,11 @@ type ComponentProps = {
   checkedIcon?: IconComponent;
   /** type is always `radio` */
   type?: never;
+
+  /** Optional extra CSS classes appended to the container's className */
+  containerClasses?: string | string[];
+  /** Ref associated with the component's container */
+  containerRef?: Ref<HTMLLabelElement | undefined>;
 };
 
 export type RadioButtonProps = CompositeProps &
