@@ -22,6 +22,7 @@ export { default as CheckboxIcon } from './Checkbox';
 export { default as CheckboxCheckedIcon } from './CheckboxChecked';
 export { default as CheckboxCheckedFilledIcon } from './CheckboxCheckedFilled';
 export { default as CheckboxOutlineIcon } from './CheckboxOutline';
+export { default as ClockIcon } from './Clock';
 export { default as CodeIcon } from './Code';
 export { default as CollapseIcon } from './Collapse';
 export { default as ContrastIcon } from './Contrast';
