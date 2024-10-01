@@ -16,6 +16,12 @@ export type {
 } from './hooks/use-toast-messages';
 
 // Utils
+export {
+  nextFuzzyUpdate,
+  decayingInterval,
+  formatRelativeDate,
+  formatDateTime,
+} from './util/date-and-time';
 export { confirm } from './util/prompts';
 
 // Components
@@ -146,4 +152,9 @@ export type {
   TabListProps,
 } from './components/navigation/';
 
+export type {
+  Breakpoint,
+  DateFormatter,
+  FormatDateTimeOptions,
+} from './util/date-and-time';
 export type { ConfirmModalProps } from './util/prompts';
