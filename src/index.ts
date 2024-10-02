@@ -17,7 +17,6 @@ export type {
 
 // Utils
 export {
-  nextFuzzyUpdate,
   decayingInterval,
   formatRelativeDate,
   formatDateTime,
