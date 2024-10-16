@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* global module __dirname */
 
 module.exports = function (config) {
   config.set({

@@ -1,3 +1,4 @@
+/* eslint-disable mocha/no-exports */
 import { checkAccessibility } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 import { createRef } from 'preact';

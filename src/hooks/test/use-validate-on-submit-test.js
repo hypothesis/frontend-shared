@@ -121,7 +121,6 @@ describe('useValidateOnSubmit', () => {
     function InvalidUsage() {
       const onSubmit = useValidateOnSubmit(() => {});
 
-      // eslint-disable-next-line
       return <button onSubmit={onSubmit} type="button" />;
     }
     const wrapper = mount(<InvalidUsage />);
