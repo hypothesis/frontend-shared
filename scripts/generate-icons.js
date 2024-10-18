@@ -112,7 +112,7 @@ function generateIconIndex(componentDir) {
     file => file.endsWith('.tsx') && !file.includes('index'),
   );
   let outputSrc = `${AUTO_GENERATED_COMMENT}\n`;
-  for (let componentFile of iconComponents) {
+  for (const componentFile of iconComponents) {
     const componentModule = path.basename(componentFile, '.tsx');
     const componentName = `${componentModule}Icon`;
     outputSrc += `export { default as ${componentName} } from './${componentModule}';\n`;
@@ -133,7 +133,7 @@ const inputDir = argv[2] ?? 'images/icons';
 const outputDir = argv[3] ?? 'src/components/icons';
 
 const svgFiles = readdirSync(inputDir).filter(file => file.endsWith('.svg'));
-for (let file of svgFiles) {
+for (const file of svgFiles) {
   await generateIconFromFile(`${inputDir}/${file}`, outputDir);
 }
 
