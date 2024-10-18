@@ -119,14 +119,14 @@ describe('useArrowKeyNavigation', () => {
         ['Home', 'Bold'],
       ];
 
-      for (let [key, expectedItem] of steps) {
+      for (const [key, expectedItem] of steps) {
         pressKey(key);
 
         const currentElement = document.activeElement;
         assert.equal(currentElement.innerText, expectedItem);
 
         const toolbarButtons = toolbar.querySelectorAll('a,button');
-        for (let element of toolbarButtons) {
+        for (const element of toolbarButtons) {
           if (element === currentElement) {
             assert.equal(element.tabIndex, 0);
           } else {

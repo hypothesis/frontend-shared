@@ -588,6 +588,7 @@ function SelectMain<T>({
 }
 
 export const Select = Object.assign(
+  // eslint-disable-next-line prefer-arrow-callback
   function <T>(props: SelectProps<T>) {
     // Calling the function directly instead of returning a JSX element, to
     // avoid an unnecessary extra layer in the component tree
@@ -598,6 +599,7 @@ export const Select = Object.assign(
 );
 
 export const MultiSelect = Object.assign(
+  // eslint-disable-next-line prefer-arrow-callback
   function <T>(props: MultiSelectProps<T>) {
     // Calling the function directly instead of returning a JSX element, to
     // avoid an unnecessary extra layer in the component tree
