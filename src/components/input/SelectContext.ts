@@ -1,5 +1,7 @@
 import { createContext } from 'preact';
 
+export type ListboxOverflow = 'truncate' | 'wrap';
+
 export type SelectValueOptions = {
   closeListbox: boolean;
 };
@@ -16,9 +18,12 @@ type MultiSelectContext<T> = {
   multiple: true;
 };
 
-export type SelectContextType<T = unknown> =
+export type SelectContextType<T = unknown> = (
   | SingleSelectContext<T>
-  | MultiSelectContext<T>;
+  | MultiSelectContext<T>
+) & {
+  listboxOverflow: ListboxOverflow;
+};
 
 const SelectContext = createContext<SelectContextType | null>(null);
 

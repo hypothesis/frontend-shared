@@ -3,11 +3,11 @@ import { useId, useState } from 'preact/hooks';
 import { Select } from '../..';
 
 const items = [
-  { id: '1', name: 'All students' },
-  { id: '2', name: 'Albert Banana' },
-  { id: '3', name: 'Bernard California' },
-  { id: '4', name: 'Cecelia Davenport' },
-  { id: '5', name: 'Doris Evanescence' },
+  { id: '1', name: 'All students (this item has very long text)' },
+  { id: '2', name: 'Albert Banana (this item has very long text)' },
+  { id: '3', name: 'Bernard California (this item has very long text)' },
+  { id: '4', name: 'Cecelia Davenport (this item has very long text)' },
+  { id: '5', name: 'Doris Evanescence (this item has very long text)' },
 ];
 
 type Item = (typeof items)[number];
