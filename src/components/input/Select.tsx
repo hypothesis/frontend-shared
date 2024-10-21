@@ -26,7 +26,7 @@ import {
 } from '../icons';
 import Checkbox from './Checkbox';
 import { inputGroupStyles } from './InputGroup';
-import type { SelectValueOptions } from './SelectContext';
+import type { ListboxOverflow, SelectValueOptions } from './SelectContext';
 import SelectContext from './SelectContext';
 
 export type SelectOptionStatus = {
@@ -190,10 +190,7 @@ function SelectOption<T>({
     >
       <div
         className={classnames(
-          // Make items stretch so that all have the same height. This is
-          // important for multi-selects, where the checkbox actionable surface
-          // should span to the very edges of the option containing it.
-          'flex justify-between items-stretch',
+          'flex justify-between items-center',
           'w-full rounded',
           {
             'hover:bg-grey-1 group-focus-visible:ring': !disabled,
@@ -201,11 +198,16 @@ function SelectOption<T>({
           },
         )}
       >
-        <div className="flex items-center py-2 pl-3">
+        <div
+          className={classnames('py-2 pl-3', {
+            truncate: selectContext.listboxOverflow === 'truncate',
+            'whitespace-normal': selectContext.listboxOverflow === 'wrap',
+          })}
+        >
           {optionChildren(children, { selected, disabled })}
         </div>
         {!multiple && (
-          <div className="flex items-center py-2 px-3">
+          <div className="px-3">
             <CheckIcon
               className={classnames('text-grey-6 scale-125', {
                 // Make the icon visible/invisible, instead of conditionally
@@ -219,7 +221,9 @@ function SelectOption<T>({
         {multiple && (
           <Checkbox
             containerClasses={classnames(
-              'flex items-center py-2 px-3',
+              // Make the checkbox stretch, so that its actionable surface spans
+              // to the very edges of the option containing it.
+              'self-stretch px-3',
               // The checkbox is sized based on the container's font size. Make
               // it a bit larger.
               'text-lg',
@@ -250,6 +254,12 @@ SelectOption.displayName = 'Select.Option';
 
 /** Small space to apply between the toggle button and the listbox */
 const LISTBOX_TOGGLE_GAP = '.25rem';
+
+/**
+ * Space in pixels to apply between the listbox and the viewport sides to
+ * prevent the listbox from growing to the very edges.
+ */
+export const LISTBOX_VIEWPORT_HORIZONTAL_GAP = 8;
 
 type ListboxCSSProps =
   | 'top'
@@ -311,31 +321,52 @@ function useListboxPositioning(
       buttonDistanceToBottom < listboxHeight &&
       buttonDistanceToTop > buttonDistanceToBottom;
 
-    if (asPopover) {
-      const { top: bodyTop } = document.body.getBoundingClientRect();
-      const absBodyTop = Math.abs(bodyTop);
+    if (!asPopover) {
+      // Set styles for non-popover mode
+      if (shouldListboxDropUp) {
+        return setListboxCSSProps({
+          bottom: '100%',
+          marginBottom: LISTBOX_TOGGLE_GAP,
+        });
+      }
 
-      return setListboxCSSProps({
-        minWidth: `${buttonWidth}px`,
-        top: shouldListboxDropUp
-          ? `calc(${absBodyTop + buttonDistanceToTop - listboxHeight}px - ${LISTBOX_TOGGLE_GAP})`
-          : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${LISTBOX_TOGGLE_GAP})`,
-        left:
-          right && listboxWidth > buttonWidth
-            ? `${buttonLeft - (listboxWidth - buttonWidth)}px`
-            : `${buttonLeft}px`,
-      });
+      return setListboxCSSProps({ top: '100%', marginTop: LISTBOX_TOGGLE_GAP });
     }
 
-    // Set styles for non-popover mode
-    if (shouldListboxDropUp) {
-      return setListboxCSSProps({
-        bottom: '100%',
-        marginBottom: LISTBOX_TOGGLE_GAP,
-      });
+    const { top: bodyTop, width: bodyWidth } =
+      document.body.getBoundingClientRect();
+    const absBodyTop = Math.abs(bodyTop);
+
+    // The available space is:
+    // - left-aligned Selects: distance from left side of toggle button to right
+    //   side of viewport
+    // - right-aligned Selects: distance from right side of toggle button to
+    //   left side of viewport
+    const availableSpace =
+      (right ? buttonLeft + buttonWidth : bodyWidth - buttonLeft) -
+      LISTBOX_VIEWPORT_HORIZONTAL_GAP;
+
+    let left = buttonLeft;
+    if (listboxWidth > availableSpace) {
+      // If the listbox is not going to fit the available space, let it "grow"
+      // in the opposite direction
+      left = right
+        ? LISTBOX_VIEWPORT_HORIZONTAL_GAP
+        : left - (listboxWidth - availableSpace);
+    } else if (right && listboxWidth > buttonWidth) {
+      // If a right-aligned listbox fits the available space, but it's bigger
+      // than the button, move it to the left so that it is aligned with the
+      // right side of the button
+      left -= listboxWidth - buttonWidth;
     }
 
-    return setListboxCSSProps({ top: '100%', marginTop: LISTBOX_TOGGLE_GAP });
+    return setListboxCSSProps({
+      minWidth: `${buttonWidth}px`,
+      top: shouldListboxDropUp
+        ? `calc(${absBodyTop + buttonDistanceToTop - listboxHeight}px - ${LISTBOX_TOGGLE_GAP})`
+        : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${LISTBOX_TOGGLE_GAP})`,
+      left: `${Math.max(LISTBOX_VIEWPORT_HORIZONTAL_GAP, left)}px`,
+    });
   }, [asPopover, buttonRef, listboxOpen, listboxRef, right]);
 
   useLayoutEffect(() => {
@@ -405,6 +436,19 @@ type BaseSelectProps = CompositeProps & {
 
   /** A callback passed to the listbox onScroll */
   onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
+
+  /**
+   * Indicates how overflowing content should be handled in the listbox.
+   *
+   * - `truncate`: Truncate the options via `text-overflow: ellipsis`, so that
+   *               they all fit in one line. This is the default value.
+   * - `wrap`: Let options content wrap onto multiple lines via
+   *           `white-space: normal`
+   *
+   * Complex content may still need to provide its own styling to handle content
+   * overflow.
+   */
+  listboxOverflow?: ListboxOverflow;
 };
 
 export type SelectProps<T> = BaseSelectProps & SingleValueProps<T>;
@@ -435,6 +479,7 @@ function SelectMain<T>({
   onListboxScroll,
   right = false,
   multiple,
+  listboxOverflow = 'truncate',
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
   /* eslint-disable-next-line no-prototype-builtins */
@@ -550,11 +595,15 @@ function SelectMain<T>({
           value: value as typeof multiple extends false ? T : T[],
           selectValue,
           multiple,
+          listboxOverflow,
         }}
       >
         <ul
           className={classnames(
-            'absolute z-5 max-h-80 overflow-y-auto',
+            'absolute z-5 max-h-80 overflow-y-auto overflow-x-hidden',
+            // We don't want the listbox to ever render outside the viewport,
+            // and we give it a 16px gap
+            'max-w-[calc(100%-16px)]',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
             !listboxAsPopover && {
               // Hiding instead of unmounting to

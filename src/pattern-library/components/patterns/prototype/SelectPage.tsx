@@ -241,7 +241,14 @@ export default function SelectPage() {
 
             <Library.Demo title="Plain text">
               <div className="mx-auto">
-                <SelectExample textOnly buttonClasses="!w-36" />
+                <SelectExample
+                  textOnly
+                  buttonClasses="!w-36"
+                  items={defaultItems.map(({ name, ...rest }) => ({
+                    ...rest,
+                    name: `${name} (this item has very long text)`,
+                  }))}
+                />
               </div>
             </Library.Demo>
 
