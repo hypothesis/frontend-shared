@@ -5,7 +5,7 @@ import { MultiSelect, Select } from '../Select';
 
 describe('Select', () => {
   let wrappers;
-  const items = [
+  const defaultItems = [
     { id: '1', name: 'All students' },
     { id: '2', name: 'Albert Banana' },
     { id: '3', name: 'Bernard California' },
@@ -18,20 +18,27 @@ describe('Select', () => {
    * @param {number} [options.paddingTop] - Extra padding top for the container.
    *                                        Defaults to 0.
    * @param {boolean} [options.optionsChildrenAsCallback] -
-   *        Whether to render Select.Option children with callback notation.
+   *        Whether to render `Select.Option` children with callback notation.
    *        Used primarily to test and cover both branches.
    *        Defaults to true.
    * @param {MultiSelect | Select} [options.Component] -
    *        The actual "select" component to use. Defaults to `Select`.
+   * @param {Array<{ id: string; name: string }>} [options.items] -
+   *        Alternative list of items to render.
    */
   const createComponent = (props = {}, options = {}) => {
     const {
       paddingTop = 0,
       optionsChildrenAsCallback = true,
       Component = Select,
+      items = defaultItems,
     } = options;
     const container = document.createElement('div');
     container.style.paddingTop = `${paddingTop}px`;
+    // Add horizontal paddings to the container, so that there's room for the
+    // listbox to grow if needed
+    container.style.paddingLeft = '200px';
+    container.style.paddingRight = '200px';
     document.body.append(container);
 
     const wrapper = mount(
@@ -151,13 +158,13 @@ describe('Select', () => {
     const wrapper = createComponent({ onChange });
 
     clickOption(wrapper, 3);
-    assert.calledWith(onChange.lastCall, items[2]);
+    assert.calledWith(onChange.lastCall, defaultItems[2]);
 
     clickOption(wrapper, 5);
-    assert.calledWith(onChange.lastCall, items[4]);
+    assert.calledWith(onChange.lastCall, defaultItems[4]);
 
     clickOption(wrapper, 1);
-    assert.calledWith(onChange.lastCall, items[0]);
+    assert.calledWith(onChange.lastCall, defaultItems[0]);
   });
 
   it('does not change selected value when a disabled option is clicked', () => {
@@ -176,13 +183,13 @@ describe('Select', () => {
       const wrapper = createComponent({ onChange });
 
       pressKeyInOption(wrapper, 3, key);
-      assert.calledWith(onChange.lastCall, items[2]);
+      assert.calledWith(onChange.lastCall, defaultItems[2]);
 
       pressKeyInOption(wrapper, 5, key);
-      assert.calledWith(onChange.lastCall, items[4]);
+      assert.calledWith(onChange.lastCall, defaultItems[4]);
 
       pressKeyInOption(wrapper, 1, key);
-      assert.calledWith(onChange.lastCall, items[0]);
+      assert.calledWith(onChange.lastCall, defaultItems[0]);
     });
 
     it(`does not change selected value when ${key} is pressed in a disabled option`, () => {
@@ -195,7 +202,7 @@ describe('Select', () => {
   });
 
   it('marks the right item as selected', () => {
-    const wrapper = createComponent({ value: items[2] });
+    const wrapper = createComponent({ value: defaultItems[2] });
 
     assert.isFalse(isOptionSelected(wrapper, 1));
     assert.isFalse(isOptionSelected(wrapper, 2));
@@ -371,7 +378,7 @@ describe('Select', () => {
         getListbox(wrapper).getDOMNode().addEventListener('toggle', resolve);
         toggleListbox(wrapper);
 
-        // This test will timeout if the toggle event is not dispatched
+        // This test will time out if the toggle event is not dispatched
         await promise;
       });
     });
@@ -425,12 +432,83 @@ describe('Select', () => {
     });
   });
 
+  context('when listbox does not fit in available space', () => {
+    async function getOpenListbox(wrapper) {
+      toggleListbox(wrapper);
+      // Wait for listbox to be open
+      await waitFor(() => !isListboxClosed(wrapper));
+
+      return getListbox(wrapper);
+    }
+
+    it('never renders a listbox bigger than the viewport', async () => {
+      const name = 'name'.repeat(1000);
+      const wrapper = createComponent(
+        { buttonContent: 'Select a value' },
+        {
+          items: ['1', '2', '3'].map(id => ({ id, name })),
+        },
+      );
+
+      const listbox = await getOpenListbox(wrapper);
+      const { width: listboxWidth } = listbox
+        .getDOMNode()
+        .getBoundingClientRect();
+
+      assert.isTrue(listboxWidth < window.window.innerWidth);
+    });
+
+    [
+      { name: 'long name'.repeat(50), shouldGrow: true },
+      { name: 'short name', shouldGrow: false },
+    ].forEach(({ name, shouldGrow }) => {
+      it('makes listbox grow to the left if there is space', async () => {
+        const wrapper = createComponent(
+          { buttonContent: 'Select a value' },
+          {
+            items: ['1', '2', '3'].map(id => ({ id, name })),
+          },
+        );
+
+        const listbox = await getOpenListbox(wrapper);
+        const listboxStyleLeft = listbox.getDOMNode().style.left;
+        const listboxLeft = Number(listboxStyleLeft.replace('px', ''));
+        const { left: buttonLeft } = getToggleButton(wrapper)
+          .getDOMNode()
+          .getBoundingClientRect();
+
+        assert.equal(listboxLeft < buttonLeft, shouldGrow);
+      });
+    });
+    [
+      { name: 'long name'.repeat(50), shouldGrow: true },
+      { name: 'short name', shouldGrow: false },
+    ].forEach(({ name, shouldGrow }) => {
+      it('makes right Select listbox grow to the right if there is space', async () => {
+        const wrapper = createComponent(
+          { right: true, buttonContent: 'Select a value' },
+          {
+            items: ['1', '2', '3'].map(id => ({ id, name })),
+          },
+        );
+
+        const listbox = await getOpenListbox(wrapper);
+        const listboxStyleLeft = listbox.getDOMNode().style.left;
+        const listboxLeft = Number(listboxStyleLeft.replace('px', ''));
+
+        // 8 is the minimum `left` value that acts as a gap with the edge of the
+        // viewport
+        assert.equal(listboxLeft === 8, shouldGrow);
+      });
+    });
+  });
+
   context('MultiSelect', () => {
     it('allows multiple items to be selected via checkboxes', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
-          value: [items[0], items[2]],
+          value: [defaultItems[0], defaultItems[2]],
           onChange,
         },
         { Component: MultiSelect },
@@ -440,7 +518,11 @@ describe('Select', () => {
       clickOptionCheckbox(wrapper, 2);
 
       // When a not-yet-selected item is clicked, it will be selected
-      assert.calledWith(onChange, [items[0], items[2], items[1]]);
+      assert.calledWith(onChange, [
+        defaultItems[0],
+        defaultItems[2],
+        defaultItems[1],
+      ]);
 
       // After clicking a checkbox, the listbox is still open
       assert.isFalse(isListboxClosed(wrapper));
@@ -450,7 +532,7 @@ describe('Select', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
-          value: [items[0], items[2]],
+          value: [defaultItems[0], defaultItems[2]],
           onChange,
         },
         { Component: MultiSelect },
@@ -460,7 +542,7 @@ describe('Select', () => {
       clickOptionCheckbox(wrapper, 3);
 
       // When an already selected item is clicked, it will be de-selected
-      assert.calledWith(onChange, [items[0]]);
+      assert.calledWith(onChange, [defaultItems[0]]);
     });
 
     [
@@ -471,7 +553,7 @@ describe('Select', () => {
         const onChange = sinon.stub();
         const wrapper = createComponent(
           {
-            value: [items[0], items[2]],
+            value: [defaultItems[0], defaultItems[2]],
             onChange,
           },
           { Component: MultiSelect },
@@ -486,7 +568,7 @@ describe('Select', () => {
 
     [
       { value: [], isResetSelected: true },
-      { value: [items[0], items[2]], isResetSelected: false },
+      { value: [defaultItems[0], defaultItems[2]], isResetSelected: false },
     ].forEach(({ value, isResetSelected }) => {
       it('marks reset option as selected when value is empty', () => {
         const wrapper = createComponent({ value }, { Component: MultiSelect });
@@ -580,7 +662,7 @@ describe('Select', () => {
             {
               buttonContent: 'Select',
               'aria-label': 'Select',
-              value: [items[1], items[3]],
+              value: [defaultItems[1], defaultItems[3]],
             },
             { optionsChildrenAsCallback: false, Component: MultiSelect },
           );
