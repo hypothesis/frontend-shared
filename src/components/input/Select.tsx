@@ -446,7 +446,6 @@ type BaseSelectProps = CompositeProps & {
   /**
    * Indicates how overflowing content should be handled in the listbox.
    *
-<<<<<<< HEAD
    * - `truncate`: Truncate the options via `text-overflow: ellipsis`, so that
    *               they all fit in one line. This is the default value.
    * - `wrap`: Let options content wrap onto multiple lines via
@@ -454,16 +453,6 @@ type BaseSelectProps = CompositeProps & {
    *
    * Complex content may still need to provide its own styling to handle content
    * overflow.
-=======
-   * - `truncate`: Truncate the options so that they all fit in one line. An
-   *               ellipsis will be rendered where needed.
-   *               This is the default value.
-   * - `wrap`: Let options content wrap multiple lines so that all content is
-   *           visible.
-   *
-   * This behavior can be also overwritten by providing more complex options
-   * content.
->>>>>>> 51ceff5 (Prevent Select listbox to grow out of viewport)
    */
   listboxOverflow?: ListboxOverflow;
 };

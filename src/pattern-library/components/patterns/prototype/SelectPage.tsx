@@ -387,24 +387,6 @@ export default function SelectPage() {
               </div>
             </Library.Demo>
           </Library.Example>
-          <Library.Example title="listboxClasses">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                Additional classes to pass to listbox.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>string | string[]</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>undefined</code>
-              </Library.InfoItem>
-            </Library.Info>
-            <Library.Demo title="Custom listbox">
-              <div className="w-96 mx-auto">
-                <SelectExample listboxClasses="border-4 border-yellow-notice" />
-              </div>
-            </Library.Demo>
-          </Library.Example>
           <Library.Example title="listboxAsPopover">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -429,6 +411,58 @@ export default function SelectPage() {
             <Library.Demo
               title="Non-popover listbox"
               exampleFile="select-non-popover-listbox"
+              withSource
+            />
+          </Library.Example>
+          <Library.Example title="listboxClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Additional classes to pass to listbox.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo title="Custom listbox">
+              <div className="w-96 mx-auto">
+                <SelectExample listboxClasses="border-4 border-yellow-notice" />
+              </div>
+            </Library.Demo>
+          </Library.Example>
+          <Library.Example title="listboxOverflow">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determines the behavior of the listbox options when their
+                content is larger than the listbox.
+                <ul className="list-disc">
+                  <li>
+                    <code>{"'truncate'"}</code>: Text will use one line and be
+                    truncated with an ellipsis.
+                  </li>
+                  <li>
+                    <code>{"'wrap'"}</code>: Text will span multiple lines if
+                    needed, ensuring all content is visible.
+                  </li>
+                </ul>
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'truncate' | 'wrap'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'truncate'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Truncate listbox options"
+              exampleFile="select-truncate-listbox"
+              withSource
+            />
+            <Library.Demo
+              title="Wrap listbox options"
+              exampleFile="select-wrap-listbox"
               withSource
             />
           </Library.Example>
