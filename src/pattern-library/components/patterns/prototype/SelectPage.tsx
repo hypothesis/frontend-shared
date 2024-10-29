@@ -332,21 +332,21 @@ export default function SelectPage() {
               withSource
             />
           </Library.Example>
-          <Library.Example title="right">
+          <Library.Example title="alignListbox">
             <Library.Info>
               <Library.InfoItem label="description">
-                Whether the listbox should be aligned to the right when it grows
-                bigger than the toggle button.
+                Whether the listbox should be aligned to the right or left side
+                of the toggle button.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>boolean</code>
+                <code>{"'left' | 'right'"}</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
-                <code>false</code>
+                <code>{"'left'"}</code>
               </Library.InfoItem>
             </Library.Info>
             <Library.Demo
-              title="Right listbox"
+              title="Right-aligned listbox"
               exampleFile="select-right"
               withSource
             />

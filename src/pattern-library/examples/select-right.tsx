@@ -29,7 +29,7 @@ export default function App() {
     <div className="mx-auto">
       <label htmlFor={selectId}>Select a person</label>
       <Select
-        right
+        alignListbox="right"
         value={value}
         onChange={setSelected}
         buttonId={selectId}

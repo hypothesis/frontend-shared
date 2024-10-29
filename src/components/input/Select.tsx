@@ -280,7 +280,7 @@ function useListboxPositioning(
   listboxRef: RefObject<HTMLElement | null>,
   listboxOpen: boolean,
   asPopover: boolean,
-  right: boolean,
+  alignListboxToRight: boolean,
 ) {
   const adjustListboxPositioning = useCallback(() => {
     const listboxEl = listboxRef.current;
@@ -343,17 +343,18 @@ function useListboxPositioning(
     // - right-aligned Selects: distance from right side of toggle button to
     //   left side of viewport
     const availableSpace =
-      (right ? buttonLeft + buttonWidth : bodyWidth - buttonLeft) -
-      LISTBOX_VIEWPORT_HORIZONTAL_GAP;
+      (alignListboxToRight
+        ? buttonLeft + buttonWidth
+        : bodyWidth - buttonLeft) - LISTBOX_VIEWPORT_HORIZONTAL_GAP;
 
     let left = buttonLeft;
     if (listboxWidth > availableSpace) {
       // If the listbox is not going to fit the available space, let it "grow"
       // in the opposite direction
-      left = right
+      left = alignListboxToRight
         ? LISTBOX_VIEWPORT_HORIZONTAL_GAP
         : left - (listboxWidth - availableSpace);
-    } else if (right && listboxWidth > buttonWidth) {
+    } else if (alignListboxToRight && listboxWidth > buttonWidth) {
       // If a right-aligned listbox fits the available space, but it's bigger
       // than the button, move it to the left so that it is aligned with the
       // right side of the button
@@ -367,7 +368,7 @@ function useListboxPositioning(
         : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${LISTBOX_TOGGLE_GAP})`,
       left: `${Math.max(LISTBOX_VIEWPORT_HORIZONTAL_GAP, left)}px`,
     });
-  }, [asPopover, buttonRef, listboxOpen, listboxRef, right]);
+  }, [asPopover, buttonRef, listboxOpen, listboxRef, alignListboxToRight]);
 
   useLayoutEffect(() => {
     const cleanup = adjustListboxPositioning();
@@ -417,13 +418,18 @@ type BaseSelectProps = CompositeProps & {
   /** Additional classes to pass to listbox */
   listboxClasses?: string | string[];
 
-  /**
-   * Align the listbox to the right.
-   * Useful when the listbox is bigger than the toggle button and this component
-   * is rendered next to the right side of the page/container.
-   * Defaults to false.
-   */
+  /** @deprecated Use `alignListbox="right"` instead */
   right?: boolean;
+
+  /**
+   * How to align the listbox relative to the toggle button.
+   *
+   * Useful when rendering a Select with a big listbox, close to the right side
+   * of the viewport. In that case it looks nicer if the listbox aligns with the
+   * right side of the toggle button and extends to the left.
+   * Defaults to 'left'.
+   */
+  alignListbox?: 'left' | 'right';
 
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -478,6 +484,7 @@ function SelectMain<T>({
   containerClasses,
   onListboxScroll,
   right = false,
+  alignListbox = right ? 'right' : 'left',
   multiple,
   listboxOverflow = 'truncate',
   'aria-label': ariaLabel,
@@ -507,7 +514,7 @@ function SelectMain<T>({
     listboxRef,
     listboxOpen,
     listboxAsPopover,
-    right,
+    alignListbox === 'right',
   );
 
   const selectValue = useCallback(
@@ -610,7 +617,7 @@ function SelectMain<T>({
               // * Ensure screen readers detect button as a listbox handler
               // * Listbox size can be computed to correctly drop up or down
               hidden: !listboxOpen,
-              'right-0': right,
+              'right-0': alignListbox === 'right',
               'min-w-full': true,
             },
             listboxClasses,
