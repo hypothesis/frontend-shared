@@ -415,10 +415,10 @@ describe('Select', () => {
           getListbox(wrapper).getDOMNode().getBoundingClientRect().left,
       },
     ].forEach(({ listboxAsPopover, getListboxLeft }) => {
-      it('aligns listbox to the right if `right` prop is true', async () => {
+      it('aligns listbox to the right if `alignListbox="right"` is provided', async () => {
         const wrapper = createComponent({
           listboxAsPopover,
-          right: true,
+          alignListbox: 'right',
           buttonClasses: '!w-8', // Set a small width in the button
         });
         toggleListbox(wrapper);
@@ -464,9 +464,9 @@ describe('Select', () => {
     [
       // Content is small. The listbox matches the toggle button size regardless
       // the orientation.
-      ...[true, false].map(right => ({
+      ...['right', 'left'].map(alignListbox => ({
         name: 'short name',
-        right,
+        alignListbox,
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
           const buttonLeft = buttonDOMNode.getBoundingClientRect().left;
@@ -482,7 +482,7 @@ describe('Select', () => {
       // sides but spans further to the opposite one
       {
         name: 'slightly longer name'.repeat(3),
-        right: false,
+        alignListbox: 'left',
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
           const buttonRect = buttonDOMNode.getBoundingClientRect();
@@ -497,7 +497,7 @@ describe('Select', () => {
       },
       {
         name: 'slightly longer name'.repeat(3),
-        right: true,
+        alignListbox: 'right',
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
           const buttonRect = buttonDOMNode.getBoundingClientRect();
@@ -515,7 +515,7 @@ describe('Select', () => {
       // further than the opposite side of the toggle button
       {
         name: 'very long name'.repeat(6),
-        right: false,
+        alignListbox: 'left',
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const listboxRect = listboxDOMNode.getBoundingClientRect();
           const bodyWidth = document.body.getBoundingClientRect().width;
@@ -529,7 +529,7 @@ describe('Select', () => {
       },
       {
         name: 'very long name'.repeat(6),
-        right: true,
+        alignListbox: 'right',
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const listboxRect = listboxDOMNode.getBoundingClientRect();
           return {
@@ -538,10 +538,10 @@ describe('Select', () => {
           };
         },
       },
-    ].forEach(({ name, right, getExpectedCoordinates }) => {
+    ].forEach(({ name, alignListbox, getExpectedCoordinates }) => {
       it('displays listbox in expected coordinates', async () => {
         const wrapper = createComponent(
-          { right, buttonContent: 'Select a value' },
+          { alignListbox, buttonContent: 'Select a value' },
           {
             items: ['1', '2', '3'].map(id => ({ id, name })),
           },
