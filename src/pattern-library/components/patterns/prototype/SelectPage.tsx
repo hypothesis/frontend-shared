@@ -560,6 +560,20 @@ export default function SelectPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+          <Library.Example title="title">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                If provided, it is set as the option{"'"}s <code>title</code>{' '}
+                attribute.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | undefined</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
         </Library.Pattern>
       </Library.Section>
 

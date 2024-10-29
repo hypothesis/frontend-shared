@@ -49,6 +49,8 @@ export type SelectOptionProps<T> = {
 
   /** Ref associated with the option's container element */
   elementRef?: Ref<HTMLElement | undefined>;
+  /** Value to be passed to the option's `title` attribute */
+  title?: string;
 };
 
 function optionChildren(
@@ -70,6 +72,7 @@ function SelectOption<T>({
   disabled = false,
   classes,
   elementRef,
+  title,
 }: SelectOptionProps<T>) {
   const checkboxRef = useRef<HTMLElement | null>(null);
   const checkboxContainerRef = useRef<HTMLLabelElement | null>(null);
@@ -187,6 +190,7 @@ function SelectOption<T>({
       // This is intended to be focused with arrow keys
       tabIndex={-1}
       ref={downcastRef(optionRef)}
+      title={title}
     >
       <div
         className={classnames(
