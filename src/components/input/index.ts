@@ -10,6 +10,8 @@ export { default as RadioGroup } from './RadioGroup';
 export { Select, MultiSelect } from './Select';
 export { default as Textarea } from './Textarea';
 
+export { useSelectContext } from './SelectContext';
+
 export type { ButtonProps } from './Button';
 export type { CheckboxProps } from './Checkbox';
 export type { CloseButtonProps } from './CloseButton';

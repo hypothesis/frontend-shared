@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import type { ComponentChildren, JSX, RefObject, Ref } from 'preact';
 import {
   useCallback,
-  useContext,
   useId,
   useLayoutEffect,
   useMemo,
@@ -27,6 +26,7 @@ import {
 import Checkbox from './Checkbox';
 import { inputGroupStyles } from './InputGroup';
 import type { ListboxOverflow, SelectValueOptions } from './SelectContext';
+import { useSelectContext } from './SelectContext';
 import SelectContext from './SelectContext';
 
 export type SelectOptionStatus = {
@@ -81,7 +81,7 @@ function SelectOption<T>({
     e.target === checkboxRef.current ||
     e.target === checkboxContainerRef.current;
 
-  const selectContext = useContext(SelectContext);
+  const selectContext = useSelectContext();
   if (!selectContext) {
     throw new Error(
       'Select.Option can only be used as Select or MultiSelect child',
@@ -607,6 +607,7 @@ function SelectMain<T>({
           selectValue,
           multiple,
           listboxOverflow,
+          listboxOpen,
         }}
       >
         <ul

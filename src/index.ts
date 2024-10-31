@@ -61,6 +61,7 @@ export {
   RadioGroup,
   Select,
   Textarea,
+  useSelectContext,
 } from './components/input';
 export {
   Card,
