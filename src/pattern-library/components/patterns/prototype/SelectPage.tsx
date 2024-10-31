@@ -600,6 +600,29 @@ export default function SelectPage() {
           </Library.Example>
         </Library.Pattern>
       </Library.Section>
+
+      <Library.Section
+        title="useSelectContext"
+        intro={
+          <p>
+            <code>useSelectContext()</code> is hook that can be used in custom{' '}
+            <code>Option</code> wrappers to know the state of the closest{' '}
+            <code>Select</code> or <code>MultiSelect</code>.
+          </p>
+        }
+      >
+        <Library.Pattern>
+          <Library.Usage symbolName="useSelectContext" />
+
+          <Library.Example>
+            <Library.Demo
+              title="useSelectContext usage"
+              exampleFile="select-use-select-context"
+              withSource
+            />
+          </Library.Example>
+        </Library.Pattern>
+      </Library.Section>
     </Library.Page>
   );
 }
