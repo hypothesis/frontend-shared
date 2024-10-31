@@ -23,6 +23,7 @@ import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
 import RadioGroupPage from './components/patterns/input/RadioGroupPage';
+import SelectPage from './components/patterns/input/SelectPage';
 import TextareaPage from './components/patterns/input/TextareaPage';
 import CardPage from './components/patterns/layout/CardPage';
 import OverlayPage from './components/patterns/layout/OverlayPage';
@@ -31,7 +32,6 @@ import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
-import SelectPage from './components/patterns/prototype/SelectPage';
 import SliderPage from './components/patterns/transition/SliderPage';
 
 export const componentGroups = {
