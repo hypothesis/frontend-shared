@@ -545,14 +545,6 @@ function SelectMain<T>({
     selector: '[role="option"]:not([aria-disabled="true"])',
   });
 
-  useLayoutEffect(() => {
-    // Focus toggle button after closing listbox, only if previously focused
-    // element was inside the listbox itself
-    if (!listboxOpen && listboxRef.current!.contains(document.activeElement)) {
-      buttonRef.current!.focus();
-    }
-  }, [buttonRef, listboxOpen]);
-
   return (
     <div
       className={classnames(
@@ -640,7 +632,7 @@ function SelectMain<T>({
           popover={listboxAsPopover ? 'auto' : undefined}
           onScroll={onListboxScroll}
         >
-          {children}
+          {listboxOpen && children}
         </ul>
       </SelectContext.Provider>
     </div>
