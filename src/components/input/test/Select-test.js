@@ -101,6 +101,12 @@ describe('Select', () => {
   const isListboxClosed = wrapper =>
     getListbox(wrapper).prop('data-listbox-open') === false;
 
+  const openListbox = wrapper => {
+    if (isListboxClosed(wrapper)) {
+      toggleListbox(wrapper);
+    }
+  };
+
   const listboxDidDropUp = wrapper => {
     const { top: listboxTop } = getListbox(wrapper)
       .getDOMNode()
@@ -112,10 +118,14 @@ describe('Select', () => {
     return listboxTop < buttonTop;
   };
 
-  const clickOption = (wrapper, id) =>
+  const clickOption = (wrapper, id) => {
+    openListbox(wrapper);
     wrapper.find(`[data-testid="option-${id}"]`).simulate('click');
+  };
 
   function clickOptionCheckbox(wrapper, id) {
+    openListbox(wrapper);
+
     const checkbox = wrapper
       .find(`[data-testid="option-${id}"]`)
       .closest('[role="option"]')
@@ -130,14 +140,19 @@ describe('Select', () => {
     checkbox.simulate('change');
   }
 
-  const pressKeyInOption = (wrapper, id, key) =>
+  const pressKeyInOption = (wrapper, id, key) => {
+    openListbox(wrapper);
+
     wrapper
       .find(`[data-testid="option-${id}"]`)
       .closest('[role="option"]')
       .getDOMNode()
       .dispatchEvent(new KeyboardEvent('keydown', { key }));
+  };
 
   function pressKeyInOptionCheckbox(wrapper, id, key) {
+    openListbox(wrapper);
+
     const checkbox = wrapper
       .find(`[data-testid="option-${id}"]`)
       .closest('[role="option"]')
@@ -152,10 +167,12 @@ describe('Select', () => {
     checkbox.getDOMNode().dispatchEvent(new KeyboardEvent('keydown', { key }));
   }
 
-  const isOptionSelected = (wrapper, id) =>
-    wrapper
+  const isOptionSelected = (wrapper, id) => {
+    openListbox(wrapper);
+    return wrapper
       .find(`[data-testid="option-${id}"]`)
       .exists('[data-testid="selected-option"]');
+  };
 
   it('changes selected value when an option is clicked', () => {
     const onChange = sinon.stub();
@@ -177,6 +194,7 @@ describe('Select', () => {
     const clickDisabledOption = () =>
       wrapper.find(`[data-testid="option-4"]`).simulate('click');
 
+    openListbox(wrapper);
     clickDisabledOption();
     assert.notCalled(onChange);
   });
@@ -221,6 +239,8 @@ describe('Select', () => {
       wrapper
         .find(`[data-testid="option-${id}"]`)
         .exists('[data-testid="disabled-option"]');
+
+    openListbox(wrapper);
 
     assert.isFalse(isOptionDisabled(1));
     assert.isFalse(isOptionDisabled(2));
@@ -293,6 +313,10 @@ describe('Select', () => {
 
   it('restores focus to toggle button after closing listbox', () => {
     const wrapper = createComponent();
+    const toggleButtonDOMNode = getToggleButton(wrapper).getDOMNode();
+
+    // Focus toggle button before opening listbox
+    toggleButtonDOMNode.focus();
     toggleListbox(wrapper);
 
     // Focus listbox option before closing listbox
@@ -301,10 +325,14 @@ describe('Select', () => {
       .getDOMNode()
       .closest('[role="option"]')
       .focus();
+
     toggleListbox(wrapper);
     wrapper.update();
 
-    assert.equal(document.activeElement, getToggleButton(wrapper).getDOMNode());
+    // After closing listbox, the focus should have returned to the toggle
+    // button, which was the last focused element before all children were
+    // removed
+    assert.equal(document.activeElement, toggleButtonDOMNode);
   });
 
   it('displays listbox when ArrowDown is pressed on toggle', () => {
@@ -582,7 +610,6 @@ describe('Select', () => {
         { Component: MultiSelect },
       );
 
-      toggleListbox(wrapper);
       clickOptionCheckbox(wrapper, 2);
 
       // When a not-yet-selected item is clicked, it will be selected
@@ -606,7 +633,6 @@ describe('Select', () => {
         { Component: MultiSelect },
       );
 
-      toggleListbox(wrapper);
       clickOptionCheckbox(wrapper, 3);
 
       // When an already selected item is clicked, it will be de-selected
@@ -669,6 +695,7 @@ describe('Select', () => {
         { value: [] },
         { Component: MultiSelect },
       );
+      openListbox(wrapper);
 
       // Spy on checkbox focus
       const checkbox = wrapper
@@ -688,6 +715,7 @@ describe('Select', () => {
         { value: [] },
         { Component: MultiSelect },
       );
+      openListbox(wrapper);
 
       const option = wrapper
         .find(`[data-testid="option-${optionId}"]`)
