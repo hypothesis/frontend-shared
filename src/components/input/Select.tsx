@@ -561,6 +561,8 @@ function SelectMain<T>({
           'focus-visible-ring transition-colors whitespace-nowrap',
           'w-full flex items-center justify-between gap-x-2 p-2',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
+          // Buttons are center-aligned by default. Overwrite it.
+          'text-left',
           // Add inherited rounded corners so that the toggle is consistent with
           // the wrapper, which is the element rendering borders.
           // Using overflow-hidden in the parent is not an option here, because
@@ -586,7 +588,7 @@ function SelectMain<T>({
         }}
         data-testid="select-toggle-button"
       >
-        <div className="truncate">{buttonContent}</div>
+        <div className="truncate grow">{buttonContent}</div>
         <div className="text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
         </div>
