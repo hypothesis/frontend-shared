@@ -118,18 +118,18 @@ describe('Select', () => {
     return listboxTop < buttonTop;
   };
 
+  const getOption = (wrapper, id) =>
+    wrapper.find(`[data-testid="option-${id}"]`).closest('[role="option"]');
+
   const clickOption = (wrapper, id) => {
     openListbox(wrapper);
-    wrapper.find(`[data-testid="option-${id}"]`).simulate('click');
+    getOption(wrapper, id).simulate('click');
   };
 
   function clickOptionCheckbox(wrapper, id) {
     openListbox(wrapper);
 
-    const checkbox = wrapper
-      .find(`[data-testid="option-${id}"]`)
-      .closest('[role="option"]')
-      .find('input[type="checkbox"]');
+    const checkbox = getOption(wrapper, id).find('input[type="checkbox"]');
 
     if (!checkbox.exists()) {
       throw new Error(
@@ -143,9 +143,7 @@ describe('Select', () => {
   const pressKeyInOption = (wrapper, id, key) => {
     openListbox(wrapper);
 
-    wrapper
-      .find(`[data-testid="option-${id}"]`)
-      .closest('[role="option"]')
+    getOption(wrapper, id)
       .getDOMNode()
       .dispatchEvent(new KeyboardEvent('keydown', { key }));
   };
@@ -153,10 +151,7 @@ describe('Select', () => {
   function pressKeyInOptionCheckbox(wrapper, id, key) {
     openListbox(wrapper);
 
-    const checkbox = wrapper
-      .find(`[data-testid="option-${id}"]`)
-      .closest('[role="option"]')
-      .find('input[type="checkbox"]');
+    const checkbox = getOption(wrapper, id).find('input[type="checkbox"]');
 
     if (!checkbox.exists()) {
       throw new Error(
@@ -320,11 +315,7 @@ describe('Select', () => {
     toggleListbox(wrapper);
 
     // Focus listbox option before closing listbox
-    wrapper
-      .find('[data-testid="option-3"]')
-      .getDOMNode()
-      .closest('[role="option"]')
-      .focus();
+    getOption(wrapper, '3').getDOMNode().focus();
 
     toggleListbox(wrapper);
     wrapper.update();
@@ -389,6 +380,19 @@ describe('Select', () => {
 
       assert.equal(listboxDidDropUp(wrapper), shouldDropUp);
     });
+  });
+
+  it('sets tabIndex=0 for the selected option', () => {
+    const wrapper = createComponent({ value: defaultItems[2] });
+    const getTabIndex = id => getOption(wrapper, id).prop('tabIndex');
+
+    openListbox(wrapper);
+
+    assert.equal(getTabIndex(1), -1);
+    assert.equal(getTabIndex(2), -1);
+    assert.equal(getTabIndex(3), 0);
+    assert.equal(getTabIndex(4), -1);
+    assert.equal(getTabIndex(5), -1);
   });
 
   context('when Option is rendered outside of Select', () => {
@@ -698,9 +702,7 @@ describe('Select', () => {
       openListbox(wrapper);
 
       // Spy on checkbox focus
-      const checkbox = wrapper
-        .find(`[data-testid="option-${optionId}"]`)
-        .closest('[role="option"]')
+      const checkbox = getOption(wrapper, optionId)
         .find('input[type="checkbox"]')
         .getDOMNode();
       const focusStub = sinon.stub(checkbox, 'focus');
@@ -717,10 +719,7 @@ describe('Select', () => {
       );
       openListbox(wrapper);
 
-      const option = wrapper
-        .find(`[data-testid="option-${optionId}"]`)
-        .closest('[role="option"]')
-        .getDOMNode();
+      const option = getOption(wrapper, optionId).getDOMNode();
       const focusStub = sinon.stub(option, 'focus');
 
       pressKeyInOptionCheckbox(wrapper, optionId, 'ArrowLeft');

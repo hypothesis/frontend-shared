@@ -187,8 +187,9 @@ function SelectOption<T>({
       role="option"
       aria-disabled={disabled}
       aria-selected={selected}
-      // This is intended to be focused with arrow keys
-      tabIndex={-1}
+      // Set tabIndex to 0 for selected option, so that useArrowKeyNavigation
+      // initially focuses it
+      tabIndex={selected ? 0 : -1}
       ref={downcastRef(optionRef)}
       title={title}
     >
