@@ -57,6 +57,7 @@ export { default as FolderOpenIcon } from './FolderOpen';
 export { default as FolderOpenFilledIcon } from './FolderOpenFilled';
 export { default as GlobeIcon } from './Globe';
 export { default as GlobeAltIcon } from './GlobeAlt';
+export { default as GlobeAltLockIcon } from './GlobeAltLock';
 export { default as GoogleDriveIcon } from './GoogleDrive';
 export { default as GroupsIcon } from './Groups';
 export { default as GroupsFilledIcon } from './GroupsFilled';
