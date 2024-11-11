@@ -5,6 +5,7 @@ export type LockAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
  * Icon generated from lock-alt.svg
+ * @deprecated
  */
 export default function LockAltIcon(props: LockAltIconProps) {
   return (
