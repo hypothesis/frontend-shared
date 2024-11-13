@@ -560,7 +560,7 @@ function SelectMain<T>({
         id={buttonId ?? defaultButtonId}
         className={classnames(
           'focus-visible-ring transition-colors whitespace-nowrap',
-          'w-full flex items-center justify-between gap-x-2 p-2',
+          'w-full flex items-center justify-between gap-x-2',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           // Buttons are center-aligned by default. Overwrite it.
           'text-left',
@@ -589,8 +589,8 @@ function SelectMain<T>({
         }}
         data-testid="select-toggle-button"
       >
-        <div className="truncate grow">{buttonContent}</div>
-        <div className="text-grey-6">
+        <div className="pl-2 py-2 truncate grow">{buttonContent}</div>
+        <div className="pr-2 py-2 text-grey-6">
           {listboxOpen ? <MenuCollapseIcon /> : <MenuExpandIcon />}
         </div>
       </button>
