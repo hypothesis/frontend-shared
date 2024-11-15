@@ -10,9 +10,9 @@ export default function LockIcon(props: LockIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 8 12"
+      width="16"
+      height="16"
+      viewBox="0 0.5 8 11"
       data-component="LockIcon"
       {...props}
     >
