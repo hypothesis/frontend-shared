@@ -2,7 +2,7 @@ import { checkAccessibility, waitFor } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
 import {
-  LISTBOX_VIEWPORT_HORIZONTAL_GAP,
+  POPOVER_VIEWPORT_HORIZONTAL_GAP,
   MultiSelect,
   Select,
 } from '../Select';
@@ -96,10 +96,10 @@ describe('Select', () => {
 
   const toggleListbox = wrapper => getToggleButton(wrapper).simulate('click');
 
-  const getListbox = wrapper => wrapper.find('[data-testid="select-listbox"]');
+  const getPopover = wrapper => wrapper.find('[data-testid="select-popover"]');
 
   const isListboxClosed = wrapper =>
-    getListbox(wrapper).prop('data-listbox-open') === false;
+    wrapper.find('[role="listbox"]').prop('data-listbox-open') === false;
 
   const openListbox = wrapper => {
     if (isListboxClosed(wrapper)) {
@@ -108,14 +108,14 @@ describe('Select', () => {
   };
 
   const listboxDidDropUp = wrapper => {
-    const { top: listboxTop } = getListbox(wrapper)
+    const { top: popoverTop } = getPopover(wrapper)
       .getDOMNode()
       .getBoundingClientRect();
     const { top: buttonTop } = getToggleButton(wrapper)
       .getDOMNode()
       .getBoundingClientRect();
 
-    return listboxTop < buttonTop;
+    return popoverTop < buttonTop;
   };
 
   const getOption = (wrapper, id) =>
@@ -411,7 +411,7 @@ describe('Select', () => {
         let resolve;
         const promise = new Promise(res => (resolve = res));
 
-        getListbox(wrapper).getDOMNode().addEventListener('toggle', resolve);
+        getPopover(wrapper).getDOMNode().addEventListener('toggle', resolve);
         toggleListbox(wrapper);
 
         // This test will time out if the toggle event is not dispatched
@@ -425,8 +425,8 @@ describe('Select', () => {
       // Inferring listboxAsPopover based on browser support
       {
         listboxAsPopover: undefined,
-        getListboxLeft: wrapper => {
-          const leftStyle = getListbox(wrapper).getDOMNode().style.left;
+        getPopoverLeft: wrapper => {
+          const leftStyle = getPopover(wrapper).getDOMNode().style.left;
           // Remove `px` unit indicator
           return Number(leftStyle.replace('px', ''));
         },
@@ -434,8 +434,8 @@ describe('Select', () => {
       // Explicitly enabling listboxAsPopover
       {
         listboxAsPopover: true,
-        getListboxLeft: wrapper => {
-          const leftStyle = getListbox(wrapper).getDOMNode().style.left;
+        getPopoverLeft: wrapper => {
+          const leftStyle = getPopover(wrapper).getDOMNode().style.left;
           // Remove `px` unit indicator
           return Number(leftStyle.replace('px', ''));
         },
@@ -443,40 +443,41 @@ describe('Select', () => {
       // Explicitly disabling listboxAsPopover
       {
         listboxAsPopover: false,
-        getListboxLeft: wrapper =>
-          getListbox(wrapper).getDOMNode().getBoundingClientRect().left,
+        getPopoverLeft: wrapper =>
+          getPopover(wrapper).getDOMNode().getBoundingClientRect().left,
       },
-    ].forEach(({ listboxAsPopover, getListboxLeft }) => {
+    ].forEach(({ listboxAsPopover, getPopoverLeft }) => {
       it('aligns listbox to the right if `alignListbox="right"` is provided', async () => {
-        const wrapper = createComponent({
-          listboxAsPopover,
-          alignListbox: 'right',
-          buttonClasses: '!w-8', // Set a small width in the button
-        });
-        toggleListbox(wrapper);
+        // Make sure there's space for a non-popover listbox
+        const originalBodyWidth = document.body.style.width;
+        document.body.style.width = '500px';
 
-        // Wait for listbox to be open
-        await waitFor(() => !isListboxClosed(wrapper));
+        try {
+          const wrapper = createComponent({
+            listboxAsPopover,
+            alignListbox: 'right',
+            buttonClasses: '!w-8', // Set a small width in the button
+          });
+          toggleListbox(wrapper);
 
-        const { left: buttonLeft } = getToggleButton(wrapper)
-          .getDOMNode()
-          .getBoundingClientRect();
-        const listboxLeft = getListboxLeft(wrapper);
+          // Wait for listbox to be open
+          await waitFor(() => !isListboxClosed(wrapper));
 
-        assert.isTrue(listboxLeft < buttonLeft);
+          const { left: buttonLeft } = getToggleButton(wrapper)
+            .getDOMNode()
+            .getBoundingClientRect();
+          const popoverLeft = getPopoverLeft(wrapper);
+
+          assert.isBelow(popoverLeft, buttonLeft);
+        } finally {
+          document.body.style.width = originalBodyWidth;
+        }
       });
     });
   });
 
   context('when listbox does not fit in available space', () => {
-    async function getOpenListbox(wrapper) {
-      toggleListbox(wrapper);
-      await waitFor(() => !isListboxClosed(wrapper));
-
-      return getListbox(wrapper);
-    }
-
-    it('never renders a listbox bigger than the viewport', async () => {
+    it('never renders a listbox bigger than the viewport', () => {
       const name = 'name'.repeat(1000);
       const wrapper = createComponent(
         { buttonContent: 'Select a value' },
@@ -485,12 +486,13 @@ describe('Select', () => {
         },
       );
 
-      const listbox = await getOpenListbox(wrapper);
-      const { width: listboxWidth } = listbox
+      openListbox(wrapper);
+
+      const { width: popoverWidth } = getPopover(wrapper)
         .getDOMNode()
         .getBoundingClientRect();
 
-      assert.isTrue(listboxWidth < window.innerWidth);
+      assert.isBelow(popoverWidth, window.innerWidth);
     });
 
     [
@@ -554,8 +556,8 @@ describe('Select', () => {
 
           return {
             left:
-              bodyWidth - listboxRect.width - LISTBOX_VIEWPORT_HORIZONTAL_GAP,
-            right: bodyWidth - LISTBOX_VIEWPORT_HORIZONTAL_GAP,
+              bodyWidth - listboxRect.width - POPOVER_VIEWPORT_HORIZONTAL_GAP,
+            right: bodyWidth - POPOVER_VIEWPORT_HORIZONTAL_GAP,
           };
         },
       },
@@ -565,13 +567,13 @@ describe('Select', () => {
         getExpectedCoordinates: (wrapper, listboxDOMNode) => {
           const listboxRect = listboxDOMNode.getBoundingClientRect();
           return {
-            left: LISTBOX_VIEWPORT_HORIZONTAL_GAP,
-            right: listboxRect.width + LISTBOX_VIEWPORT_HORIZONTAL_GAP,
+            left: POPOVER_VIEWPORT_HORIZONTAL_GAP,
+            right: listboxRect.width + POPOVER_VIEWPORT_HORIZONTAL_GAP,
           };
         },
       },
     ].forEach(({ name, alignListbox, getExpectedCoordinates }) => {
-      it('displays listbox in expected coordinates', async () => {
+      it('displays listbox in expected coordinates', () => {
         const wrapper = createComponent(
           { alignListbox, buttonContent: 'Select a value' },
           {
@@ -579,24 +581,25 @@ describe('Select', () => {
           },
         );
 
-        const listbox = await getOpenListbox(wrapper);
-        const listboxDOMNode = listbox.getDOMNode();
-        const listboxStyleLeft = listboxDOMNode.style.left;
-        const listboxLeft = Number(listboxStyleLeft.replace('px', ''));
-        const listboxRight =
-          listboxDOMNode.getBoundingClientRect().width + listboxLeft;
+        openListbox(wrapper);
+
+        const popoverDOMNode = getPopover(wrapper).getDOMNode();
+        const popoverStyleLeft = popoverDOMNode.style.left;
+        const popoverLeft = Number(popoverStyleLeft.replace('px', ''));
+        const popoverRight =
+          popoverDOMNode.getBoundingClientRect().width + popoverLeft;
 
         const expectedCoordinates = getExpectedCoordinates(
           wrapper,
-          listboxDOMNode,
+          popoverDOMNode,
         );
 
         assert.equal(
-          listboxLeft.toFixed(0),
+          popoverLeft.toFixed(0),
           expectedCoordinates.left.toFixed(0),
         );
         assert.equal(
-          listboxRight.toFixed(0),
+          popoverRight.toFixed(0),
           expectedCoordinates.right.toFixed(0),
         );
       });
