@@ -257,16 +257,16 @@ function SelectOption<T>({
 
 SelectOption.displayName = 'Select.Option';
 
-/** Small space to apply between the toggle button and the listbox */
-const LISTBOX_TOGGLE_GAP = '.25rem';
+/** Small space to apply between the toggle button and the popover */
+const POPOVER_TOGGLE_GAP = '.25rem';
 
 /**
- * Space in pixels to apply between the listbox and the viewport sides to
- * prevent the listbox from growing to the very edges.
+ * Space in pixels to apply between the popover and the viewport sides to
+ * prevent it from growing to the very edges.
  */
-export const LISTBOX_VIEWPORT_HORIZONTAL_GAP = 8;
+export const POPOVER_VIEWPORT_HORIZONTAL_GAP = 8;
 
-type ListboxCSSProps =
+type PopoverCSSProps =
   | 'top'
   | 'left'
   | 'minWidth'
@@ -275,23 +275,27 @@ type ListboxCSSProps =
   | 'marginTop';
 
 /**
- * Manages the listbox position manually to make sure it renders "next" to the
+ * Manages the popover position manually to make sure it renders "next" to the
  * toggle button (below or over). This is mainly needed when the listbox is used
  * as a popover, as that makes it render in the top layer, making it impossible
  * to position it relative to the toggle button via regular CSS.
+ *
+ * @param asNativePopover - Native popover API is used to toggle the popover
+ * @param alignToRight - Whether the popover should be aligned to the right side
+ *                       of the button or not
  */
-function useListboxPositioning(
+function usePopoverPositioning(
   buttonRef: RefObject<HTMLElement | undefined>,
-  listboxRef: RefObject<HTMLElement | null>,
-  listboxOpen: boolean,
-  asPopover: boolean,
-  alignListboxToRight: boolean,
+  popoverRef: RefObject<HTMLElement | null>,
+  popoverOpen: boolean,
+  asNativePopover: boolean,
+  alignToRight: boolean,
 ) {
-  const adjustListboxPositioning = useCallback(() => {
-    const listboxEl = listboxRef.current;
+  const adjustPopoverPositioning = useCallback(() => {
+    const popoverEl = popoverRef.current;
     const buttonEl = buttonRef.current;
 
-    if (!buttonEl || !listboxEl || !listboxOpen) {
+    if (!buttonEl || !popoverEl || !popoverOpen) {
       return () => {};
     }
 
@@ -300,12 +304,12 @@ function useListboxPositioning(
      * prop and a piece of state), to make sure positioning happens before
      * `useArrowKeyNavigation` runs, focusing the first option in the listbox.
      */
-    const setListboxCSSProps = (
-      props: Partial<Record<ListboxCSSProps, string>>,
+    const setPopoverCSSProps = (
+      props: Partial<Record<PopoverCSSProps, string>>,
     ) => {
-      Object.assign(listboxEl.style, props);
-      const keys = Object.keys(props) as ListboxCSSProps[];
-      return () => keys.map(prop => (listboxEl.style[prop] = ''));
+      Object.assign(popoverEl.style, props);
+      const keys = Object.keys(props) as PopoverCSSProps[];
+      return () => keys.map(prop => (popoverEl.style[prop] = ''));
     };
 
     const viewportHeight = window.innerHeight;
@@ -317,25 +321,25 @@ function useListboxPositioning(
       width: buttonWidth,
     } = buttonEl.getBoundingClientRect();
     const buttonDistanceToBottom = viewportHeight - buttonBottom;
-    const { height: listboxHeight, width: listboxWidth } =
-      listboxEl.getBoundingClientRect();
+    const { height: popoverHeight, width: popoverWidth } =
+      popoverEl.getBoundingClientRect();
 
-    // The listbox should drop up only if there's not enough space below to
+    // The popover should drop up only if there's not enough space below to
     // fit it, and also, there's more absolute space above than below
-    const shouldListboxDropUp =
-      buttonDistanceToBottom < listboxHeight &&
+    const shouldPopoverDropUp =
+      buttonDistanceToBottom < popoverHeight &&
       buttonDistanceToTop > buttonDistanceToBottom;
 
-    if (!asPopover) {
+    if (!asNativePopover) {
       // Set styles for non-popover mode
-      if (shouldListboxDropUp) {
-        return setListboxCSSProps({
+      if (shouldPopoverDropUp) {
+        return setPopoverCSSProps({
           bottom: '100%',
-          marginBottom: LISTBOX_TOGGLE_GAP,
+          marginBottom: POPOVER_TOGGLE_GAP,
         });
       }
 
-      return setListboxCSSProps({ top: '100%', marginTop: LISTBOX_TOGGLE_GAP });
+      return setPopoverCSSProps({ top: '100%', marginTop: POPOVER_TOGGLE_GAP });
     }
 
     const { top: bodyTop, width: bodyWidth } =
@@ -348,44 +352,43 @@ function useListboxPositioning(
     // - right-aligned Selects: distance from right side of toggle button to
     //   left side of viewport
     const availableSpace =
-      (alignListboxToRight
-        ? buttonLeft + buttonWidth
-        : bodyWidth - buttonLeft) - LISTBOX_VIEWPORT_HORIZONTAL_GAP;
+      (alignToRight ? buttonLeft + buttonWidth : bodyWidth - buttonLeft) -
+      POPOVER_VIEWPORT_HORIZONTAL_GAP;
 
     let left = buttonLeft;
-    if (listboxWidth > availableSpace) {
-      // If the listbox is not going to fit the available space, let it "grow"
+    if (popoverWidth > availableSpace) {
+      // If the popover is not going to fit the available space, let it "grow"
       // in the opposite direction
-      left = alignListboxToRight
-        ? LISTBOX_VIEWPORT_HORIZONTAL_GAP
-        : left - (listboxWidth - availableSpace);
-    } else if (alignListboxToRight && listboxWidth > buttonWidth) {
-      // If a right-aligned listbox fits the available space, but it's bigger
+      left = alignToRight
+        ? POPOVER_VIEWPORT_HORIZONTAL_GAP
+        : left - (popoverWidth - availableSpace);
+    } else if (alignToRight && popoverWidth > buttonWidth) {
+      // If a right-aligned popover fits the available space, but it's bigger
       // than the button, move it to the left so that it is aligned with the
       // right side of the button
-      left -= listboxWidth - buttonWidth;
+      left -= popoverWidth - buttonWidth;
     }
 
-    return setListboxCSSProps({
+    return setPopoverCSSProps({
       minWidth: `${buttonWidth}px`,
-      top: shouldListboxDropUp
-        ? `calc(${absBodyTop + buttonDistanceToTop - listboxHeight}px - ${LISTBOX_TOGGLE_GAP})`
-        : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${LISTBOX_TOGGLE_GAP})`,
-      left: `${Math.max(LISTBOX_VIEWPORT_HORIZONTAL_GAP, left)}px`,
+      top: shouldPopoverDropUp
+        ? `calc(${absBodyTop + buttonDistanceToTop - popoverHeight}px - ${POPOVER_TOGGLE_GAP})`
+        : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${POPOVER_TOGGLE_GAP})`,
+      left: `${Math.max(POPOVER_VIEWPORT_HORIZONTAL_GAP, left)}px`,
     });
-  }, [asPopover, buttonRef, listboxOpen, listboxRef, alignListboxToRight]);
+  }, [asNativePopover, buttonRef, popoverOpen, popoverRef, alignToRight]);
 
   useLayoutEffect(() => {
-    const cleanup = adjustListboxPositioning();
+    const cleanup = adjustPopoverPositioning();
 
-    if (!asPopover) {
+    if (!asNativePopover) {
       return cleanup;
     }
 
-    // Readjust listbox position when any element scrolls, just in case that
+    // Readjust popover position when any element scrolls, just in case that
     // affected the toggle button position.
     const listeners = new ListenerCollection();
-    listeners.add(document.body, 'scroll', adjustListboxPositioning, {
+    listeners.add(document.body, 'scroll', adjustPopoverPositioning, {
       capture: true,
     });
 
@@ -393,7 +396,7 @@ function useListboxPositioning(
       cleanup();
       listeners.removeAll();
     };
-  }, [adjustListboxPositioning, asPopover]);
+  }, [adjustPopoverPositioning, asNativePopover]);
 }
 
 type SingleValueProps<T> = {
@@ -498,13 +501,13 @@ function SelectMain<T>({
   listboxAsPopover = HTMLElement.prototype.hasOwnProperty('popover'),
 }: SelectMainProps<T>) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const listboxRef = useRef<HTMLUListElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
   const [listboxOpen, setListboxOpen] = useState(false);
   const toggleListbox = useCallback(
     (open: boolean) => {
       setListboxOpen(open);
       if (listboxAsPopover) {
-        listboxRef.current?.togglePopover(open);
+        popoverRef.current?.togglePopover(open);
       }
     },
     [listboxAsPopover],
@@ -514,9 +517,9 @@ function SelectMain<T>({
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
 
-  useListboxPositioning(
+  usePopoverPositioning(
     buttonRef,
-    listboxRef,
+    popoverRef,
     listboxOpen,
     listboxAsPopover,
     alignListbox === 'right',
@@ -538,7 +541,7 @@ function SelectMain<T>({
   useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
-  useArrowKeyNavigation(listboxRef, {
+  useArrowKeyNavigation(popoverRef, {
     horizontal: false,
     loop: false,
     autofocus: true,
@@ -604,13 +607,17 @@ function SelectMain<T>({
           listboxOverflow,
         }}
       >
-        <ul
+        <div
           className={classnames(
             'absolute z-5 max-h-80 overflow-y-auto overflow-x-hidden',
-            // We don't want the listbox to ever render outside the viewport,
-            // and we give it a 16px gap
-            'max-w-[calc(100%-16px)]',
             'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
+            listboxAsPopover && [
+              // We don't want the listbox to ever render outside the viewport,
+              // and we give it a 16px gap
+              'max-w-[calc(100%-16px)]',
+              // Overwrite [popover] default styles
+              'p-0 m-0',
+            ],
             !listboxAsPopover && {
               // Hiding instead of unmounting to
               // * Ensure screen readers detect button as a listbox handler
@@ -621,22 +628,25 @@ function SelectMain<T>({
             },
             listboxClasses,
           )}
-          role="listbox"
-          ref={listboxRef}
-          id={listboxId}
-          aria-multiselectable={multiple}
-          aria-labelledby={buttonId ?? defaultButtonId}
-          aria-orientation="vertical"
-          data-testid="select-listbox"
-          data-listbox-open={listboxOpen}
+          ref={popoverRef}
           // nb. Use `undefined` rather than `false` because Preact doesn't
           // handle boolean values correctly for this attribute (it will set
           // `popover="false"` instead of removing the attribute).
           popover={listboxAsPopover ? 'auto' : undefined}
-          onScroll={onListboxScroll}
+          data-testid="select-popover"
         >
-          {listboxOpen && children}
-        </ul>
+          <ul
+            role="listbox"
+            id={listboxId}
+            aria-multiselectable={multiple}
+            aria-labelledby={buttonId ?? defaultButtonId}
+            aria-orientation="vertical"
+            data-listbox-open={listboxOpen}
+            onScroll={onListboxScroll}
+          >
+            {listboxOpen && children}
+          </ul>
+        </div>
       </SelectContext.Provider>
     </div>
   );
