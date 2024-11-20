@@ -1,6 +1,7 @@
 export { default as Callout } from './Callout';
 export { default as Dialog } from './Dialog';
 export { default as ModalDialog } from './ModalDialog';
+export { default as Popover } from './Popover';
 export { default as Spinner } from './Spinner';
 export { default as SpinnerOverlay } from './SpinnerOverlay';
 export { default as ToastMessages } from './ToastMessages';

@@ -44,6 +44,7 @@ export {
   Callout,
   Dialog,
   ModalDialog,
+  Popover,
   Spinner,
   SpinnerOverlay,
   ToastMessages,
