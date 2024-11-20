@@ -1,15 +1,11 @@
-import { checkAccessibility, waitFor } from '@hypothesis/frontend-testing';
+import { checkAccessibility } from '@hypothesis/frontend-testing';
 import { mount } from 'enzyme';
 
-import {
-  POPOVER_VIEWPORT_HORIZONTAL_GAP,
-  MultiSelect,
-  Select,
-} from '../Select';
+import { MultiSelect, Select } from '../Select';
 
 describe('Select', () => {
   let wrappers;
-  const defaultItems = [
+  const items = [
     { id: '1', name: 'All students' },
     { id: '2', name: 'Albert Banana' },
     { id: '3', name: 'Bernard California' },
@@ -19,30 +15,16 @@ describe('Select', () => {
 
   /**
    * @param {Object} [options]
-   * @param {number} [options.paddingTop] - Extra padding top for the container.
-   *                                        Defaults to 0.
    * @param {boolean} [options.optionsChildrenAsCallback] -
    *        Whether to render `Select.Option` children with callback notation.
    *        Used primarily to test and cover both branches.
    *        Defaults to true.
    * @param {MultiSelect | Select} [options.Component] -
    *        The actual "select" component to use. Defaults to `Select`.
-   * @param {Array<{ id: string; name: string }>} [options.items] -
-   *        Alternative list of items to render.
    */
   const createComponent = (props = {}, options = {}) => {
-    const {
-      paddingTop = 0,
-      optionsChildrenAsCallback = true,
-      Component = Select,
-      items = defaultItems,
-    } = options;
+    const { optionsChildrenAsCallback = true, Component = Select } = options;
     const container = document.createElement('div');
-    container.style.paddingTop = `${paddingTop}px`;
-    // Add horizontal paddings to the container, so that there's room for the
-    // listbox to grow if needed
-    container.style.paddingLeft = '200px';
-    container.style.paddingRight = '200px';
     document.body.append(container);
 
     const wrapper = mount(
@@ -96,8 +78,6 @@ describe('Select', () => {
 
   const toggleListbox = wrapper => getToggleButton(wrapper).simulate('click');
 
-  const getPopover = wrapper => wrapper.find('[data-testid="select-popover"]');
-
   const isListboxClosed = wrapper =>
     wrapper.find('[role="listbox"]').prop('data-listbox-open') === false;
 
@@ -105,17 +85,6 @@ describe('Select', () => {
     if (isListboxClosed(wrapper)) {
       toggleListbox(wrapper);
     }
-  };
-
-  const listboxDidDropUp = wrapper => {
-    const { top: popoverTop } = getPopover(wrapper)
-      .getDOMNode()
-      .getBoundingClientRect();
-    const { top: buttonTop } = getToggleButton(wrapper)
-      .getDOMNode()
-      .getBoundingClientRect();
-
-    return popoverTop < buttonTop;
   };
 
   const getOption = (wrapper, id) =>
@@ -174,13 +143,13 @@ describe('Select', () => {
     const wrapper = createComponent({ onChange });
 
     clickOption(wrapper, 3);
-    assert.calledWith(onChange.lastCall, defaultItems[2]);
+    assert.calledWith(onChange.lastCall, items[2]);
 
     clickOption(wrapper, 5);
-    assert.calledWith(onChange.lastCall, defaultItems[4]);
+    assert.calledWith(onChange.lastCall, items[4]);
 
     clickOption(wrapper, 1);
-    assert.calledWith(onChange.lastCall, defaultItems[0]);
+    assert.calledWith(onChange.lastCall, items[0]);
   });
 
   it('does not change selected value when a disabled option is clicked', () => {
@@ -200,13 +169,13 @@ describe('Select', () => {
       const wrapper = createComponent({ onChange });
 
       pressKeyInOption(wrapper, 3, key);
-      assert.calledWith(onChange.lastCall, defaultItems[2]);
+      assert.calledWith(onChange.lastCall, items[2]);
 
       pressKeyInOption(wrapper, 5, key);
-      assert.calledWith(onChange.lastCall, defaultItems[4]);
+      assert.calledWith(onChange.lastCall, items[4]);
 
       pressKeyInOption(wrapper, 1, key);
-      assert.calledWith(onChange.lastCall, defaultItems[0]);
+      assert.calledWith(onChange.lastCall, items[0]);
     });
 
     it(`does not change selected value when ${key} is pressed in a disabled option`, () => {
@@ -219,7 +188,7 @@ describe('Select', () => {
   });
 
   it('marks the right item as selected', () => {
-    const wrapper = createComponent({ value: defaultItems[2] });
+    const wrapper = createComponent({ value: items[2] });
 
     assert.isFalse(isOptionSelected(wrapper, 1));
     assert.isFalse(isOptionSelected(wrapper, 2));
@@ -339,51 +308,8 @@ describe('Select', () => {
     assert.isFalse(isListboxClosed(wrapper));
   });
 
-  [
-    {
-      containerPaddingTop: 0,
-      shouldDropUp: false,
-      listboxAsPopover: undefined,
-    },
-    {
-      containerPaddingTop: 0,
-      shouldDropUp: false,
-      listboxAsPopover: true,
-    },
-    {
-      containerPaddingTop: 0,
-      shouldDropUp: false,
-      listboxAsPopover: false,
-    },
-    {
-      containerPaddingTop: 1000,
-      shouldDropUp: true,
-      listboxAsPopover: undefined,
-    },
-    {
-      containerPaddingTop: 1000,
-      shouldDropUp: true,
-      listboxAsPopover: true,
-    },
-    {
-      containerPaddingTop: 1000,
-      shouldDropUp: true,
-      listboxAsPopover: false,
-    },
-  ].forEach(({ containerPaddingTop, shouldDropUp, listboxAsPopover }) => {
-    it('makes listbox drop up or down based on available space below', () => {
-      const wrapper = createComponent(
-        { listboxAsPopover },
-        { paddingTop: containerPaddingTop },
-      );
-      toggleListbox(wrapper);
-
-      assert.equal(listboxDidDropUp(wrapper), shouldDropUp);
-    });
-  });
-
   it('sets tabIndex=0 for the selected option', () => {
-    const wrapper = createComponent({ value: defaultItems[2] });
+    const wrapper = createComponent({ value: items[2] });
     const getTabIndex = id => getOption(wrapper, id).prop('tabIndex');
 
     openListbox(wrapper);
@@ -404,214 +330,12 @@ describe('Select', () => {
     });
   });
 
-  context('when popover is supported', () => {
-    [undefined, true].forEach(listboxAsPopover => {
-      it('opens listbox via popover API', async () => {
-        const wrapper = createComponent({ listboxAsPopover });
-        let resolve;
-        const promise = new Promise(res => (resolve = res));
-
-        getPopover(wrapper).getDOMNode().addEventListener('toggle', resolve);
-        toggleListbox(wrapper);
-
-        // This test will time out if the toggle event is not dispatched
-        await promise;
-      });
-    });
-  });
-
-  context('when listbox is bigger than toggle button', () => {
-    [
-      // Inferring listboxAsPopover based on browser support
-      {
-        listboxAsPopover: undefined,
-        getPopoverLeft: wrapper => {
-          const leftStyle = getPopover(wrapper).getDOMNode().style.left;
-          // Remove `px` unit indicator
-          return Number(leftStyle.replace('px', ''));
-        },
-      },
-      // Explicitly enabling listboxAsPopover
-      {
-        listboxAsPopover: true,
-        getPopoverLeft: wrapper => {
-          const leftStyle = getPopover(wrapper).getDOMNode().style.left;
-          // Remove `px` unit indicator
-          return Number(leftStyle.replace('px', ''));
-        },
-      },
-      // Explicitly disabling listboxAsPopover
-      {
-        listboxAsPopover: false,
-        getPopoverLeft: wrapper =>
-          getPopover(wrapper).getDOMNode().getBoundingClientRect().left,
-      },
-    ].forEach(({ listboxAsPopover, getPopoverLeft }) => {
-      it('aligns listbox to the right if `alignListbox="right"` is provided', async () => {
-        // Make sure there's space for a non-popover listbox
-        const originalBodyWidth = document.body.style.width;
-        document.body.style.width = '500px';
-
-        try {
-          const wrapper = createComponent({
-            listboxAsPopover,
-            alignListbox: 'right',
-            buttonClasses: '!w-8', // Set a small width in the button
-          });
-          toggleListbox(wrapper);
-
-          // Wait for listbox to be open
-          await waitFor(() => !isListboxClosed(wrapper));
-
-          const { left: buttonLeft } = getToggleButton(wrapper)
-            .getDOMNode()
-            .getBoundingClientRect();
-          const popoverLeft = getPopoverLeft(wrapper);
-
-          assert.isBelow(popoverLeft, buttonLeft);
-        } finally {
-          document.body.style.width = originalBodyWidth;
-        }
-      });
-    });
-  });
-
-  context('when listbox does not fit in available space', () => {
-    it('never renders a listbox bigger than the viewport', () => {
-      const name = 'name'.repeat(1000);
-      const wrapper = createComponent(
-        { buttonContent: 'Select a value' },
-        {
-          items: ['1', '2', '3'].map(id => ({ id, name })),
-        },
-      );
-
-      openListbox(wrapper);
-
-      const { width: popoverWidth } = getPopover(wrapper)
-        .getDOMNode()
-        .getBoundingClientRect();
-
-      assert.isBelow(popoverWidth, window.innerWidth);
-    });
-
-    [
-      // Content is small. The listbox matches the toggle button size regardless
-      // the orientation.
-      ...['right', 'left'].map(alignListbox => ({
-        name: 'short name',
-        alignListbox,
-        getExpectedCoordinates: (wrapper, listboxDOMNode) => {
-          const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
-          const buttonLeft = buttonDOMNode.getBoundingClientRect().left;
-
-          return {
-            left: buttonLeft,
-            right: listboxDOMNode.getBoundingClientRect().width + buttonLeft,
-          };
-        },
-      })),
-
-      // Content is slightly longer. The listbox matches one of the toggle's
-      // sides but spans further to the opposite one
-      {
-        name: 'slightly longer name'.repeat(3),
-        alignListbox: 'left',
-        getExpectedCoordinates: (wrapper, listboxDOMNode) => {
-          const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
-          const buttonRect = buttonDOMNode.getBoundingClientRect();
-          const listboxRect = listboxDOMNode.getBoundingClientRect();
-          const listboxRightIncrement = listboxRect.width - buttonRect.width;
-
-          return {
-            left: buttonRect.left,
-            right: buttonRect.right + listboxRightIncrement,
-          };
-        },
-      },
-      {
-        name: 'slightly longer name'.repeat(3),
-        alignListbox: 'right',
-        getExpectedCoordinates: (wrapper, listboxDOMNode) => {
-          const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
-          const buttonRect = buttonDOMNode.getBoundingClientRect();
-          const listboxRect = listboxDOMNode.getBoundingClientRect();
-          const listboxLeftIncrement = listboxRect.width - buttonRect.width;
-
-          return {
-            left: buttonRect.left - listboxLeftIncrement,
-            right: buttonRect.right,
-          };
-        },
-      },
-
-      // Content is very big, so listbox spans to the edge of the viewport grows
-      // further than the opposite side of the toggle button
-      {
-        name: 'very long name'.repeat(6),
-        alignListbox: 'left',
-        getExpectedCoordinates: (wrapper, listboxDOMNode) => {
-          const listboxRect = listboxDOMNode.getBoundingClientRect();
-          const bodyWidth = document.body.getBoundingClientRect().width;
-
-          return {
-            left:
-              bodyWidth - listboxRect.width - POPOVER_VIEWPORT_HORIZONTAL_GAP,
-            right: bodyWidth - POPOVER_VIEWPORT_HORIZONTAL_GAP,
-          };
-        },
-      },
-      {
-        name: 'very long name'.repeat(6),
-        alignListbox: 'right',
-        getExpectedCoordinates: (wrapper, listboxDOMNode) => {
-          const listboxRect = listboxDOMNode.getBoundingClientRect();
-          return {
-            left: POPOVER_VIEWPORT_HORIZONTAL_GAP,
-            right: listboxRect.width + POPOVER_VIEWPORT_HORIZONTAL_GAP,
-          };
-        },
-      },
-    ].forEach(({ name, alignListbox, getExpectedCoordinates }) => {
-      it('displays listbox in expected coordinates', () => {
-        const wrapper = createComponent(
-          { alignListbox, buttonContent: 'Select a value' },
-          {
-            items: ['1', '2', '3'].map(id => ({ id, name })),
-          },
-        );
-
-        openListbox(wrapper);
-
-        const popoverDOMNode = getPopover(wrapper).getDOMNode();
-        const popoverStyleLeft = popoverDOMNode.style.left;
-        const popoverLeft = Number(popoverStyleLeft.replace('px', ''));
-        const popoverRight =
-          popoverDOMNode.getBoundingClientRect().width + popoverLeft;
-
-        const expectedCoordinates = getExpectedCoordinates(
-          wrapper,
-          popoverDOMNode,
-        );
-
-        assert.equal(
-          popoverLeft.toFixed(0),
-          expectedCoordinates.left.toFixed(0),
-        );
-        assert.equal(
-          popoverRight.toFixed(0),
-          expectedCoordinates.right.toFixed(0),
-        );
-      });
-    });
-  });
-
   context('MultiSelect', () => {
     it('allows multiple items to be selected via checkboxes', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
-          value: [defaultItems[0], defaultItems[2]],
+          value: [items[0], items[2]],
           onChange,
         },
         { Component: MultiSelect },
@@ -620,11 +344,7 @@ describe('Select', () => {
       clickOptionCheckbox(wrapper, 2);
 
       // When a not-yet-selected item is clicked, it will be selected
-      assert.calledWith(onChange, [
-        defaultItems[0],
-        defaultItems[2],
-        defaultItems[1],
-      ]);
+      assert.calledWith(onChange, [items[0], items[2], items[1]]);
 
       // After clicking a checkbox, the listbox is still open
       assert.isFalse(isListboxClosed(wrapper));
@@ -634,7 +354,7 @@ describe('Select', () => {
       const onChange = sinon.stub();
       const wrapper = createComponent(
         {
-          value: [defaultItems[0], defaultItems[2]],
+          value: [items[0], items[2]],
           onChange,
         },
         { Component: MultiSelect },
@@ -643,7 +363,7 @@ describe('Select', () => {
       clickOptionCheckbox(wrapper, 3);
 
       // When an already selected item is clicked, it will be de-selected
-      assert.calledWith(onChange, [defaultItems[0]]);
+      assert.calledWith(onChange, [items[0]]);
     });
 
     [
@@ -654,7 +374,7 @@ describe('Select', () => {
         const onChange = sinon.stub();
         const wrapper = createComponent(
           {
-            value: [defaultItems[0], defaultItems[2]],
+            value: [items[0], items[2]],
             onChange,
           },
           { Component: MultiSelect },
@@ -669,7 +389,7 @@ describe('Select', () => {
 
     [
       { value: [], isResetSelected: true },
-      { value: [defaultItems[0], defaultItems[2]], isResetSelected: false },
+      { value: [items[0], items[2]], isResetSelected: false },
     ].forEach(({ value, isResetSelected }) => {
       it('marks reset option as selected when value is empty', () => {
         const wrapper = createComponent({ value }, { Component: MultiSelect });
@@ -760,7 +480,7 @@ describe('Select', () => {
             {
               buttonContent: 'Select',
               'aria-label': 'Select',
-              value: [defaultItems[1], defaultItems[3]],
+              value: [items[1], items[3]],
             },
             { optionsChildrenAsCallback: false, Component: MultiSelect },
           );

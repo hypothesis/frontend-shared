@@ -1,10 +1,9 @@
 import classnames from 'classnames';
-import type { ComponentChildren, JSX, RefObject, Ref } from 'preact';
+import type { ComponentChildren, JSX, Ref } from 'preact';
 import {
   useCallback,
   useContext,
   useId,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -16,8 +15,8 @@ import { useFocusAway } from '../../hooks/use-focus-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
-import { ListenerCollection } from '../../util/listener-collection';
 import { downcastRef } from '../../util/typing';
+import Popover from '../feedback/Popover';
 import {
   CheckboxCheckedFilledIcon,
   CheckIcon,
@@ -257,148 +256,6 @@ function SelectOption<T>({
 
 SelectOption.displayName = 'Select.Option';
 
-/** Small space to apply between the toggle button and the popover */
-const POPOVER_TOGGLE_GAP = '.25rem';
-
-/**
- * Space in pixels to apply between the popover and the viewport sides to
- * prevent it from growing to the very edges.
- */
-export const POPOVER_VIEWPORT_HORIZONTAL_GAP = 8;
-
-type PopoverCSSProps =
-  | 'top'
-  | 'left'
-  | 'minWidth'
-  | 'marginBottom'
-  | 'bottom'
-  | 'marginTop';
-
-/**
- * Manages the popover position manually to make sure it renders "next" to the
- * toggle button (below or over). This is mainly needed when the listbox is used
- * as a popover, as that makes it render in the top layer, making it impossible
- * to position it relative to the toggle button via regular CSS.
- *
- * @param asNativePopover - Native popover API is used to toggle the popover
- * @param alignToRight - Whether the popover should be aligned to the right side
- *                       of the button or not
- */
-function usePopoverPositioning(
-  buttonRef: RefObject<HTMLElement | undefined>,
-  popoverRef: RefObject<HTMLElement | null>,
-  popoverOpen: boolean,
-  asNativePopover: boolean,
-  alignToRight: boolean,
-) {
-  const adjustPopoverPositioning = useCallback(() => {
-    const popoverEl = popoverRef.current;
-    const buttonEl = buttonRef.current;
-
-    if (!buttonEl || !popoverEl || !popoverOpen) {
-      return () => {};
-    }
-
-    /**
-     * We need to set the positioning styles synchronously (not via `style`
-     * prop and a piece of state), to make sure positioning happens before
-     * `useArrowKeyNavigation` runs, focusing the first option in the listbox.
-     */
-    const setPopoverCSSProps = (
-      props: Partial<Record<PopoverCSSProps, string>>,
-    ) => {
-      Object.assign(popoverEl.style, props);
-      const keys = Object.keys(props) as PopoverCSSProps[];
-      return () => keys.map(prop => (popoverEl.style[prop] = ''));
-    };
-
-    const viewportHeight = window.innerHeight;
-    const {
-      top: buttonDistanceToTop,
-      bottom: buttonBottom,
-      left: buttonLeft,
-      height: buttonHeight,
-      width: buttonWidth,
-    } = buttonEl.getBoundingClientRect();
-    const buttonDistanceToBottom = viewportHeight - buttonBottom;
-    const { height: popoverHeight, width: popoverWidth } =
-      popoverEl.getBoundingClientRect();
-
-    // The popover should drop up only if there's not enough space below to
-    // fit it, and also, there's more absolute space above than below
-    const shouldPopoverDropUp =
-      buttonDistanceToBottom < popoverHeight &&
-      buttonDistanceToTop > buttonDistanceToBottom;
-
-    if (!asNativePopover) {
-      // Set styles for non-popover mode
-      if (shouldPopoverDropUp) {
-        return setPopoverCSSProps({
-          bottom: '100%',
-          marginBottom: POPOVER_TOGGLE_GAP,
-        });
-      }
-
-      return setPopoverCSSProps({ top: '100%', marginTop: POPOVER_TOGGLE_GAP });
-    }
-
-    const { top: bodyTop, width: bodyWidth } =
-      document.body.getBoundingClientRect();
-    const absBodyTop = Math.abs(bodyTop);
-
-    // The available space is:
-    // - left-aligned Selects: distance from left side of toggle button to right
-    //   side of viewport
-    // - right-aligned Selects: distance from right side of toggle button to
-    //   left side of viewport
-    const availableSpace =
-      (alignToRight ? buttonLeft + buttonWidth : bodyWidth - buttonLeft) -
-      POPOVER_VIEWPORT_HORIZONTAL_GAP;
-
-    let left = buttonLeft;
-    if (popoverWidth > availableSpace) {
-      // If the popover is not going to fit the available space, let it "grow"
-      // in the opposite direction
-      left = alignToRight
-        ? POPOVER_VIEWPORT_HORIZONTAL_GAP
-        : left - (popoverWidth - availableSpace);
-    } else if (alignToRight && popoverWidth > buttonWidth) {
-      // If a right-aligned popover fits the available space, but it's bigger
-      // than the button, move it to the left so that it is aligned with the
-      // right side of the button
-      left -= popoverWidth - buttonWidth;
-    }
-
-    return setPopoverCSSProps({
-      minWidth: `${buttonWidth}px`,
-      top: shouldPopoverDropUp
-        ? `calc(${absBodyTop + buttonDistanceToTop - popoverHeight}px - ${POPOVER_TOGGLE_GAP})`
-        : `calc(${absBodyTop + buttonDistanceToTop + buttonHeight}px + ${POPOVER_TOGGLE_GAP})`,
-      left: `${Math.max(POPOVER_VIEWPORT_HORIZONTAL_GAP, left)}px`,
-    });
-  }, [asNativePopover, buttonRef, popoverOpen, popoverRef, alignToRight]);
-
-  useLayoutEffect(() => {
-    const cleanup = adjustPopoverPositioning();
-
-    if (!asNativePopover) {
-      return cleanup;
-    }
-
-    // Readjust popover position when any element scrolls, just in case that
-    // affected the toggle button position.
-    const listeners = new ListenerCollection();
-    listeners.add(document.body, 'scroll', adjustPopoverPositioning, {
-      capture: true,
-    });
-
-    return () => {
-      cleanup();
-      listeners.removeAll();
-    };
-  }, [adjustPopoverPositioning, asNativePopover]);
-}
-
 type SingleValueProps<T> = {
   value: T;
   onChange: (newValue: T) => void;
@@ -423,8 +280,10 @@ type BaseSelectProps = CompositeProps & {
   containerClasses?: string | string[];
   /** Additional classes to pass to toggle button */
   buttonClasses?: string | string[];
-  /** Additional classes to pass to listbox */
+  /** @deprecated. Use popoverClasses instead */
   listboxClasses?: string | string[];
+  /** Additional classes to pass to the popover */
+  popoverClasses?: string | string[];
 
   /** @deprecated Use `alignListbox="right"` instead */
   right?: boolean;
@@ -489,6 +348,7 @@ function SelectMain<T>({
   buttonId,
   buttonClasses,
   listboxClasses,
+  popoverClasses = listboxClasses,
   containerClasses,
   onListboxScroll,
   right = false,
@@ -501,29 +361,15 @@ function SelectMain<T>({
   listboxAsPopover = HTMLElement.prototype.hasOwnProperty('popover'),
 }: SelectMainProps<T>) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
   const [listboxOpen, setListboxOpen] = useState(false);
-  const toggleListbox = useCallback(
-    (open: boolean) => {
-      setListboxOpen(open);
-      if (listboxAsPopover) {
-        popoverRef.current?.togglePopover(open);
-      }
-    },
-    [listboxAsPopover],
+  const closeListbox = useCallback(
+    () => setListboxOpen(false),
+    [setListboxOpen],
   );
-  const closeListbox = useCallback(() => toggleListbox(false), [toggleListbox]);
   const listboxId = useId();
   const buttonRef = useSyncedRef(elementRef);
   const defaultButtonId = useId();
-
-  usePopoverPositioning(
-    buttonRef,
-    popoverRef,
-    listboxOpen,
-    listboxAsPopover,
-    alignListbox === 'right',
-  );
 
   const selectValue = useCallback(
     (value: unknown, options: SelectValueOptions) => {
@@ -541,7 +387,7 @@ function SelectMain<T>({
   useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
-  useArrowKeyNavigation(popoverRef, {
+  useArrowKeyNavigation(listboxRef, {
     horizontal: false,
     loop: false,
     autofocus: true,
@@ -583,11 +429,11 @@ function SelectMain<T>({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         ref={downcastRef(buttonRef)}
-        onClick={() => toggleListbox(!listboxOpen)}
+        onClick={() => setListboxOpen(prev => !prev)}
         onKeyDown={e => {
           if (e.key === 'ArrowDown' && !listboxOpen) {
             e.preventDefault();
-            toggleListbox(true);
+            setListboxOpen(true);
           }
         }}
         data-testid="select-toggle-button"
@@ -607,37 +453,17 @@ function SelectMain<T>({
           listboxOverflow,
         }}
       >
-        <div
-          className={classnames(
-            'absolute z-5 max-h-80 overflow-y-auto overflow-x-hidden',
-            'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
-            listboxAsPopover && [
-              // We don't want the listbox to ever render outside the viewport,
-              // and we give it a 16px gap
-              'max-w-[calc(100%-16px)]',
-              // Overwrite [popover] default styles
-              'p-0 m-0',
-            ],
-            !listboxAsPopover && {
-              // Hiding instead of unmounting to
-              // * Ensure screen readers detect button as a listbox handler
-              // * Listbox size can be computed to correctly drop up or down
-              hidden: !listboxOpen,
-              'right-0': alignListbox === 'right',
-              'min-w-full': true,
-            },
-            listboxClasses,
-          )}
-          ref={popoverRef}
-          // nb. Use `undefined` rather than `false` because Preact doesn't
-          // handle boolean values correctly for this attribute (it will set
-          // `popover="false"` instead of removing the attribute).
-          popover={listboxAsPopover ? 'auto' : undefined}
-          data-testid="select-popover"
+        <Popover
+          anchorElementRef={wrapperRef}
+          open={listboxOpen}
+          asNativePopover={listboxAsPopover}
+          align={alignListbox}
+          classes={popoverClasses}
         >
           <ul
             role="listbox"
             id={listboxId}
+            ref={listboxRef}
             aria-multiselectable={multiple}
             aria-labelledby={buttonId ?? defaultButtonId}
             aria-orientation="vertical"
@@ -646,7 +472,7 @@ function SelectMain<T>({
           >
             {listboxOpen && children}
           </ul>
-        </div>
+        </Popover>
       </SelectContext.Provider>
     </div>
   );

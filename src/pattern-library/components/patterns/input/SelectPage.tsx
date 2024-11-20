@@ -28,7 +28,7 @@ function SelectExample({
   ...rest
 }: Pick<
   SelectProps<ItemType>,
-  'buttonClasses' | 'containerClasses' | 'listboxClasses'
+  'buttonClasses' | 'containerClasses' | 'popoverClasses'
 > & {
   textOnly?: boolean;
   items?: ItemType[];
@@ -414,10 +414,10 @@ export default function SelectPage() {
               withSource
             />
           </Library.Example>
-          <Library.Example title="listboxClasses">
+          <Library.Example title="popoverClasses">
             <Library.Info>
               <Library.InfoItem label="description">
-                Additional classes to pass to listbox.
+                Additional classes to pass to the popover.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>string | string[]</code>
@@ -426,9 +426,9 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-            <Library.Demo title="Custom listbox">
+            <Library.Demo title="Custom popover">
               <div className="w-96 mx-auto">
-                <SelectExample listboxClasses="border-4 border-yellow-notice" />
+                <SelectExample popoverClasses="border-4 border-yellow-notice" />
               </div>
             </Library.Demo>
           </Library.Example>
