@@ -18,18 +18,17 @@ function TestComponent({ children, ...rest }) {
         Anchor element
       </button>
       <Popover open={open} anchorElementRef={buttonRef} {...rest}>
-        {open &&
-          (children ?? (
-            <>
-              Content of popover
-              <button
-                data-testid="inner-button"
-                onClick={() => setOpen(prev => !prev)}
-              >
-                Focusable element inside popover
-              </button>
-            </>
-          ))}
+        {children ?? (
+          <>
+            Content of popover
+            <button
+              data-testid="inner-button"
+              onClick={() => setOpen(prev => !prev)}
+            >
+              Focusable element inside popover
+            </button>
+          </>
+        )}
       </Popover>
     </div>
   );
