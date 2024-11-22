@@ -79,7 +79,7 @@ describe('Select', () => {
   const toggleListbox = wrapper => getToggleButton(wrapper).simulate('click');
 
   const isListboxClosed = wrapper =>
-    wrapper.find('[role="listbox"]').prop('data-listbox-open') === false;
+    wrapper.find('Popover').prop('open') === false;
 
   const openListbox = wrapper => {
     if (isListboxClosed(wrapper)) {

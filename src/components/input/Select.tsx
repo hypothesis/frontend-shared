@@ -467,10 +467,9 @@ function SelectMain<T>({
             aria-multiselectable={multiple}
             aria-labelledby={buttonId ?? defaultButtonId}
             aria-orientation="vertical"
-            data-listbox-open={listboxOpen}
             onScroll={onListboxScroll}
           >
-            {listboxOpen && children}
+            {children}
           </ul>
         </Popover>
       </SelectContext.Provider>

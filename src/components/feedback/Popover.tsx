@@ -255,7 +255,7 @@ export default function Popover({
       data-testid="popover"
       data-component="Popover"
     >
-      {children}
+      {open && children}
     </div>
   );
 }
