@@ -126,21 +126,9 @@ export default function SelectPage() {
             {"'"} UI can be customized and values can be objects.
           </p>
           <p>
-            In browsers that support it, the listbox uses the{' '}
-            <Link
-              target="_blank"
-              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover"
-            >
-              <code>popover</code>
-            </Link>{' '}
-            attribute and gets toggled via{' '}
-            <Link
-              target="_blank"
-              href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
-            >
-              popover API
-            </Link>
-            . Otherwise, it is rendered as an absolute-positioned element.
+            A <Library.Link href="/feedback-popover">Popover</Library.Link>{' '}
+            component is used to wrap the listbox and ensure it is always
+            correctly positioned.
           </p>
 
           <Library.Example title="Composing and styling Selects">
