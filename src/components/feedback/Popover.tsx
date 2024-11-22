@@ -164,13 +164,13 @@ export type PopoverProps = {
   classes?: string | string[];
   variant?: 'panel' | 'custom';
 
-  /** Whether the popover is currently open or not. Defaults to false */
+  /** Whether the popover is currently open or not */
   open: boolean;
   /** The element relative to which the popover should be positioned */
   anchorElementRef: RefObject<HTMLElement | undefined>;
 
   /**
-   * Determines to what side of the anchor element should the popover be
+   * Determines to which side of the anchor element the popover should be
    * aligned.
    *
    * Defaults to `left`

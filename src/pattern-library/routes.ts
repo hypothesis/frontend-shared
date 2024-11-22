@@ -13,6 +13,7 @@ import TablePage from './components/patterns/data/TablePage';
 import ThumbnailPage from './components/patterns/data/ThumbnailPage';
 import CalloutPage from './components/patterns/feedback/CalloutPage';
 import DialogPage from './components/patterns/feedback/DialogPage';
+import PopoverPage from './components/patterns/feedback/PopoverPage';
 import SpinnerPage from './components/patterns/feedback/SpinnerPage';
 import ToastMessagesPage from './components/patterns/feedback/ToastMessagesPage';
 import UseClickAwayPage from './components/patterns/hooks/UseClickAwayPage';
@@ -145,6 +146,12 @@ const routes: PlaygroundRoute[] = [
     group: 'feedback',
     component: DialogPage,
     route: '/feedback-dialog',
+  },
+  {
+    title: 'Popover',
+    group: 'feedback',
+    component: PopoverPage,
+    route: '/feedback-popover',
   },
   {
     title: 'Spinner',
