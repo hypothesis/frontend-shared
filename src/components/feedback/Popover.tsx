@@ -248,10 +248,7 @@ export default function Popover({
         classes,
       )}
       ref={popoverRef}
-      // nb. Use `undefined` rather than `false` because Preact doesn't
-      // handle boolean values correctly for this attribute (it will set
-      // `popover="false"` instead of removing the attribute).
-      popover={asNativePopover ? 'auto' : undefined}
+      popover={asNativePopover && 'auto'}
       data-testid="popover"
       data-component="Popover"
     >
