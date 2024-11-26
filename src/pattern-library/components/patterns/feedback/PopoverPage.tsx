@@ -147,7 +147,7 @@ export default function PopoverPage() {
                 <code>boolean</code>
               </Library.InfoItem>
               <Library.InfoItem label="default">
-                <code>false</code>
+                <code>true</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
