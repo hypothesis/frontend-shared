@@ -221,41 +221,6 @@ describe('Select', () => {
     assert.isFalse(isListboxClosed(wrapper));
   });
 
-  it('closes listbox when Escape is pressed', () => {
-    const wrapper = createComponent();
-
-    toggleListbox(wrapper);
-    assert.isFalse(isListboxClosed(wrapper));
-
-    document.body.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Escape' }),
-    );
-    wrapper.update();
-
-    // Listbox is closed after `Escape` is pressed
-    assert.isTrue(isListboxClosed(wrapper));
-  });
-
-  it('closes listbox when clicking away', () => {
-    const wrapper = createComponent();
-
-    toggleListbox(wrapper);
-    assert.isFalse(isListboxClosed(wrapper));
-
-    const externalButton = document.createElement('button');
-    document.body.append(externalButton);
-
-    externalButton.click();
-    wrapper.update();
-
-    try {
-      // Listbox is closed after other element is clicked
-      assert.isTrue(isListboxClosed(wrapper));
-    } finally {
-      externalButton.remove();
-    }
-  });
-
   it('closes listbox when focusing away', () => {
     const wrapper = createComponent();
     toggleListbox(wrapper);

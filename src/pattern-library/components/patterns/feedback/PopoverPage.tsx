@@ -127,6 +127,21 @@ export default function PopoverPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
+          <Library.Example title="onClose">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Callback invoked when the popover is automatically closed by
+                clicking away or pressing <code>Escape</code>.
+                <br />
+                The caller should use this callback to keep local state in sync,
+                so that the popover is re-rendered with <code>open</code> set to{' '}
+                <code>false</code>.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'() => void'}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.Example>
           <Library.Example title="open">
             <Library.Info>
               <Library.InfoItem label="description">
