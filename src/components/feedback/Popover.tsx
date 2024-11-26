@@ -1,7 +1,9 @@
 import classnames from 'classnames';
 import type { ComponentChildren, RefObject } from 'preact';
-import { useCallback, useLayoutEffect, useRef } from 'preact/hooks';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 
+import { useClickAway } from '../../hooks/use-click-away';
+import { useKeyPress } from '../../hooks/use-key-press';
 import { ListenerCollection } from '../../util/listener-collection';
 
 /** Small space to apply between the anchor element and the popover */
@@ -159,6 +161,41 @@ function usePopoverPositioning(
   }, [adjustPopoverPositioning, asNativePopover, popoverOpen, popoverRef]);
 }
 
+/**
+ * Add the right listeners to the popover so that `onClose` is called when
+ * clicking away or pressing `Escape`.
+ */
+function useOnClose(
+  popoverRef: RefObject<HTMLElement | undefined>,
+  onClose: () => void,
+  popoverOpen: boolean,
+  asNativePopover: boolean,
+) {
+  // When the popover API is used, listen for the `toggle` event and call
+  // onClose() when transitioning from `open` to `closed`.
+  // This happens when clicking away or pressing `Escape` key.
+  useEffect(() => {
+    if (!asNativePopover) {
+      return () => {};
+    }
+
+    const popover = popoverRef.current!;
+    const toggleListener = (e: ToggleEvent) => {
+      if (e.oldState === 'open' && e.newState === 'closed') {
+        onClose();
+      }
+    };
+
+    popover.addEventListener('toggle', toggleListener as any);
+    return () => popover.removeEventListener('toggle', toggleListener as any);
+  }, [asNativePopover, onClose, popoverRef]);
+
+  // When the popover API is not used, manually add listeners for Escape key
+  // press and click away, to mimic the native popover behavior.
+  useClickAway(popoverRef, onClose, { enabled: !asNativePopover });
+  useKeyPress(['Escape'], onClose, { enabled: !asNativePopover });
+}
+
 export type PopoverProps = {
   children?: ComponentChildren;
   classes?: string | string[];
@@ -166,6 +203,13 @@ export type PopoverProps = {
 
   /** Whether the popover is currently open or not */
   open: boolean;
+
+  /**
+   * Callback invoked when the popover is automatically closed.
+   * Use this callback to sync local state.
+   */
+  onClose: () => void;
+
   /** The element relative to which the popover should be positioned */
   anchorElementRef: RefObject<HTMLElement | undefined>;
 
@@ -194,6 +238,7 @@ export default function Popover({
   anchorElementRef,
   children,
   open,
+  onClose,
   align = 'left',
   classes,
   variant = 'panel',
@@ -210,6 +255,8 @@ export default function Popover({
     asNativePopover,
     align === 'right',
   );
+
+  useOnClose(popoverRef, onClose, open, asNativePopover);
 
   useLayoutEffect(() => {
     const restoreFocusTo = open

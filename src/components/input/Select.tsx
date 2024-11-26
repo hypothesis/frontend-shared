@@ -10,9 +10,7 @@ import {
 } from 'preact/hooks';
 
 import { useArrowKeyNavigation } from '../../hooks/use-arrow-key-navigation';
-import { useClickAway } from '../../hooks/use-click-away';
 import { useFocusAway } from '../../hooks/use-focus-away';
-import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { CompositeProps } from '../../types';
 import { downcastRef } from '../../util/typing';
@@ -381,10 +379,8 @@ function SelectMain<T>({
     [onChange, closeListbox],
   );
 
-  // When clicking away, focusing away or pressing `Esc`, close the listbox
-  useClickAway(wrapperRef, closeListbox);
+  // Close the listbox when focusing away
   useFocusAway(wrapperRef, closeListbox);
-  useKeyPress(['Escape'], closeListbox);
 
   // Vertical arrow key for options in the listbox
   useArrowKeyNavigation(listboxRef, {
@@ -456,6 +452,7 @@ function SelectMain<T>({
         <Popover
           anchorElementRef={wrapperRef}
           open={listboxOpen}
+          onClose={closeListbox}
           asNativePopover={listboxAsPopover}
           align={alignListbox}
           classes={popoverClasses}

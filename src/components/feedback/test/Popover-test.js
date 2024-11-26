@@ -17,7 +17,12 @@ function TestComponent({ children, ...rest }) {
       >
         Anchor element
       </button>
-      <Popover open={open} anchorElementRef={buttonRef} {...rest}>
+      <Popover
+        open={open}
+        onClose={sinon.stub()}
+        anchorElementRef={buttonRef}
+        {...rest}
+      >
         {children ?? (
           <>
             Content of popover
@@ -194,6 +199,52 @@ describe('Popover', () => {
 
         assert.isBelow(popoverLeft, buttonLeft);
       });
+    });
+
+    [
+      { oldState: 'open', newState: 'closed', shouldCallOnClose: true },
+      { oldState: 'open', newState: 'open', shouldCallOnClose: false },
+      { oldState: 'closed', newState: 'open', shouldCallOnClose: false },
+      { oldState: 'closed', newState: 'closed', shouldCallOnClose: false },
+    ].forEach(({ shouldCallOnClose, ...eventInit }) => {
+      it('closes popover when toggle event is dispatched transitioning from open to closed', () => {
+        const onClose = sinon.stub();
+        const wrapper = createComponent({ onClose });
+
+        getPopover(wrapper)
+          .getDOMNode()
+          .dispatchEvent(new ToggleEvent('toggle', eventInit));
+
+        assert.equal(onClose.called, shouldCallOnClose);
+      });
+    });
+  });
+
+  context('when popover is not supported', () => {
+    it('closes popover when Escape is pressed', () => {
+      const onClose = sinon.stub();
+      createComponent({ onClose, asNativePopover: false });
+
+      document.body.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape' }),
+      );
+
+      assert.called(onClose);
+    });
+
+    it('closes popover when clicking away', () => {
+      const onClose = sinon.stub();
+      createComponent({ onClose, asNativePopover: false });
+
+      const externalButton = document.createElement('button');
+      document.body.append(externalButton);
+      externalButton.click();
+
+      try {
+        assert.called(onClose);
+      } finally {
+        externalButton.remove();
+      }
     });
   });
 

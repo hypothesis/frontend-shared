@@ -21,6 +21,7 @@ export default function App() {
       </Button>
       <Popover
         open={open}
+        onClose={() => setOpen(false)}
         align="right"
         anchorElementRef={buttonRef}
         classes="p-2"

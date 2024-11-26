@@ -21,6 +21,7 @@ export default function App() {
       </Button>
       <Popover
         open={open}
+        onClose={() => setOpen(false)}
         anchorElementRef={buttonRef}
         variant="custom"
         classes="p-3 border-4 border-slate-7 bg-green-success text-white font-bold rounded-tr-lg rounded-bl-lg"
