@@ -96,7 +96,7 @@ export default function RadioButtonPage() {
               elements
             </Library.InfoItem>
             <Library.InfoItem label="type">
-              <code>{`JSX.HTMLAttributes<HTMLInputElement>`}</code>
+              <code>{`JSX.InputHTMLAttributes<HTMLInputElement>`}</code>
             </Library.InfoItem>
           </Library.Info>
         </Library.Example>

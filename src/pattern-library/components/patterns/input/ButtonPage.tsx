@@ -94,7 +94,7 @@ export default function ButtonPage() {
                 <code>HTMLButtonElement</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{`Omit<preact.JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
+                <code>{`Omit<preact.JSX.ButtonHTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>

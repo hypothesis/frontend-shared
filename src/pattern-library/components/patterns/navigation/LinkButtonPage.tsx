@@ -131,7 +131,7 @@ export default function LinkButtonPage() {
                 to <code>HTMLButtonElement</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{'preact.JSX.HTMLAttributes<HTMLButtonElement>'}</code>
+                <code>{'preact.JSX.ButtonHTMLAttributes<HTMLButtonElement>'}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
