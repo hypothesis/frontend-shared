@@ -16,7 +16,7 @@ type ComponentProps = {
 export type LinkButtonProps = PresentationalProps &
   Omit<ButtonProps, 'variant'> &
   ComponentProps &
-  JSX.HTMLAttributes<HTMLButtonElement>;
+  JSX.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * Style a button as a link

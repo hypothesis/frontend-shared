@@ -8,7 +8,7 @@ import { inputStyles } from './Input';
 
 export type TextareaProps = PresentationalProps &
   FormControlProps &
-  JSX.HTMLAttributes<HTMLTextAreaElement>;
+  JSX.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 /**
  * Render a textarea
