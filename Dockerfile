@@ -1,5 +1,7 @@
 FROM node:19.8.1-alpine as builder
 
+ENV NODE_ENV production
+
 COPY . /frontend-shared
 RUN cd /frontend-shared && \
     yarn install --frozen-lockfile && \
