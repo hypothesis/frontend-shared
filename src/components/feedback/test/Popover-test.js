@@ -223,7 +223,10 @@ describe('Popover', () => {
   context('when popover is not supported', () => {
     it('closes popover when Escape is pressed', () => {
       const onClose = sinon.stub();
-      createComponent({ onClose, asNativePopover: false });
+      const wrapper = createComponent({ onClose, asNativePopover: false });
+
+      // The popover needs to be open for the event handler to be attached
+      togglePopover(wrapper);
 
       document.body.dispatchEvent(
         new KeyboardEvent('keydown', { key: 'Escape' }),
@@ -234,7 +237,10 @@ describe('Popover', () => {
 
     it('closes popover when clicking away', () => {
       const onClose = sinon.stub();
-      createComponent({ onClose, asNativePopover: false });
+      const wrapper = createComponent({ onClose, asNativePopover: false });
+
+      // The popover needs to be open for the event handler to be attached
+      togglePopover(wrapper);
 
       const externalButton = document.createElement('button');
       document.body.append(externalButton);

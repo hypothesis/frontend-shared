@@ -167,6 +167,7 @@ function usePopoverPositioning(
  */
 function useOnClose(
   popoverRef: RefObject<HTMLElement | undefined>,
+  anchorElementRef: RefObject<HTMLElement | undefined>,
   onClose: () => void,
   popoverOpen: boolean,
   asNativePopover: boolean,
@@ -194,13 +195,23 @@ function useOnClose(
   // press and click away, to mimic the native popover behavior.
   // Disable these while the popover is closed, otherwise trying to open it
   // by interacting with some other element will trigger a click-away and
-  // immediately close it
-  useClickAway(popoverRef, onClose, {
-    enabled: popoverOpen && !asNativePopover,
-  });
-  useKeyPress(['Escape'], onClose, {
-    enabled: popoverOpen && !asNativePopover,
-  });
+  // immediately close the popover after it opens..
+  const enabled = popoverOpen && !asNativePopover;
+  useClickAway(
+    popoverRef,
+    e => {
+      // Ignore clicking "away" when the target is the anchor element.
+      // In most cases, popovers will be anchored to a "toggle" which is
+      // supposed to open/close the popover on click, so closing-on-click-away
+      // when they are the target will cause the popover to close and
+      // immediately open again.
+      if (!e.composedPath().includes(anchorElementRef.current!)) {
+        onClose();
+      }
+    },
+    { enabled },
+  );
+  useKeyPress(['Escape'], onClose, { enabled });
 }
 
 export type PopoverProps = {
@@ -263,7 +274,7 @@ export default function Popover({
     align === 'right',
   );
 
-  useOnClose(popoverRef, onClose, open, asNativePopover);
+  useOnClose(popoverRef, anchorElementRef, onClose, open, asNativePopover);
 
   useLayoutEffect(() => {
     const restoreFocusTo = open
