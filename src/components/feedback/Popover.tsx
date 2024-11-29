@@ -192,8 +192,15 @@ function useOnClose(
 
   // When the popover API is not used, manually add listeners for Escape key
   // press and click away, to mimic the native popover behavior.
-  useClickAway(popoverRef, onClose, { enabled: !asNativePopover });
-  useKeyPress(['Escape'], onClose, { enabled: !asNativePopover });
+  // Disable these while the popover is closed, otherwise trying to open it
+  // by interacting with some other element will trigger a click-away and
+  // immediately close it
+  useClickAway(popoverRef, onClose, {
+    enabled: popoverOpen && !asNativePopover,
+  });
+  useKeyPress(['Escape'], onClose, {
+    enabled: popoverOpen && !asNativePopover,
+  });
 }
 
 export type PopoverProps = {

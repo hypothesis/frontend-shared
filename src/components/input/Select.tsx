@@ -355,8 +355,7 @@ function SelectMain<T>({
   listboxOverflow = 'truncate',
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
-  /* eslint-disable-next-line no-prototype-builtins */
-  listboxAsPopover = HTMLElement.prototype.hasOwnProperty('popover'),
+  listboxAsPopover,
 }: SelectMainProps<T>) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const listboxRef = useRef<HTMLUListElement | null>(null);
