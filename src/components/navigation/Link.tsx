@@ -14,7 +14,7 @@ type ComponentProps = {
 
 export type LinkProps = PresentationalProps &
   ComponentProps &
-  JSX.HTMLAttributes<HTMLAnchorElement>;
+  JSX.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 /**
  * Styled component for a link (`<a>` element).

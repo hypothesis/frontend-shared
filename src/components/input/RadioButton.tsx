@@ -22,7 +22,7 @@ type ComponentProps = {
 
 export type RadioButtonProps = CompositeProps &
   ComponentProps &
-  Omit<JSX.HTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
+  Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
 
 /**
  * Render a labeled radio input. The radio is styled with two icons: one for the

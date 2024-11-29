@@ -29,7 +29,7 @@ type ComponentProps = {
 
 export type CheckboxProps = CompositeProps &
   ComponentProps &
-  Omit<JSX.HTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
+  Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
 
 /**
  * Render a labeled checkbox input. The checkbox is styled with two icons:

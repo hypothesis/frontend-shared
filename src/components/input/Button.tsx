@@ -41,7 +41,7 @@ type ComponentProps = {
 };
 
 export type HTMLButtonAttributes = Omit<
-  JSX.HTMLAttributes<HTMLButtonElement>,
+  JSX.ButtonHTMLAttributes<HTMLButtonElement>,
   'icon' | 'size'
 >;
 

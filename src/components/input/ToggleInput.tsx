@@ -22,7 +22,7 @@ type ComponentProps = {
 
 export type ToggleInputProps = CompositeProps &
   ComponentProps &
-  Omit<JSX.HTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
+  Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'size' | 'icon'>;
 
 /**
  * Render a labeled checkbox or radio input. The input is styled with two icons:

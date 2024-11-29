@@ -34,7 +34,7 @@ type ComponentProps = FormControlProps & {
 
 export type InputProps = PresentationalProps &
   ComponentProps &
-  JSX.HTMLAttributes<HTMLInputElement>;
+  JSX.InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Render a text field input
