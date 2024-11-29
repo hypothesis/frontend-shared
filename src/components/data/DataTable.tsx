@@ -401,15 +401,15 @@ export default function DataTable<Row>({
       <TableBody>
         {!loading && tableRows}
         {noContent && (
-          <tr>
-            <td colSpan={columns.length} className="text-center p-3">
+          <TableRow>
+            <TableCell colSpan={columns.length} classes="text-center p-3">
               {loading ? (
-                <SpinnerSpokesIcon className="inline w-4em h-4em" />
+                <SpinnerSpokesIcon className="inline w-2em h-2em" />
               ) : (
                 <>{emptyMessage}</>
               )}
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         )}
       </TableBody>
       {children}
