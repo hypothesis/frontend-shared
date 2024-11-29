@@ -74,7 +74,7 @@ export default function LinkPage() {
                 <code>HTMLAnchorElement</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{'preact.JSX.HTMLAttributes<HTMLAnchorElement>'}</code>
+                <code>{'preact.JSX.AnchorHTMLAttributes<HTMLAnchorElement>'}</code>
               </Library.InfoItem>
               <Library.InfoItem label="example">
                 <Library.Code

@@ -159,7 +159,7 @@ export default function TextareaPage() {
                 elements.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{`JSX.HTMLAttributes<HTMLTextareaElement>`}</code>
+                <code>{`JSX.TextareaHTMLAttributes<HTMLTextareaElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
