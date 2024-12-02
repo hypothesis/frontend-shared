@@ -9414,9 +9414,9 @@ __metadata:
   linkType: hard
 
 "preact@npm:^10.18.1, preact@npm:^10.5.6":
-  version: 10.25.0
-  resolution: "preact@npm:10.25.0"
-  checksum: f7ec537a2e21dfc5b9e0704af7c5b85388a2b675dbf49710261d85708bdc980e5d0b8f8601ba5c4d7cbd1295d3c6aaee9f5c70ad005d872ae89b22e7c46a17ed
+  version: 10.25.1
+  resolution: "preact@npm:10.25.1"
+  checksum: 7b31f82acfc5eaccc70c19b55ff2bc8edb3d636dfb84e254c9258871c69e1652876efe4bb3a5f21bf521386b001bc6c8831e535d41eecbe0f31c13a0e2a062a3
   languageName: node
   linkType: hard
 
