@@ -1795,7 +1795,7 @@ __metadata:
     mustache: ^4.2.0
     plop: ^4.0.0
     postcss: ^8.3.9
-    preact: ^10.5.6
+    preact: ^10.25.1
     prettier: ^3.0.0
     rollup: ^4.0.2
     rollup-plugin-string: ^3.0.0
@@ -1808,7 +1808,7 @@ __metadata:
     wouter-preact: ^3.0.0
     yalc: ^1.0.0-pre.50
   peerDependencies:
-    preact: ^10.4.0
+    preact: ^10.25.1
   languageName: unknown
   linkType: soft
 
@@ -9413,7 +9413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.18.1, preact@npm:^10.5.6":
+"preact@npm:^10.18.1, preact@npm:^10.25.1":
   version: 10.25.1
   resolution: "preact@npm:10.25.1"
   checksum: 7b31f82acfc5eaccc70c19b55ff2bc8edb3d636dfb84e254c9258871c69e1652876efe4bb3a5f21bf521386b001bc6c8831e535d41eecbe0f31c13a0e2a062a3

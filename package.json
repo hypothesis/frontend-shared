@@ -47,7 +47,7 @@
     "mustache": "^4.2.0",
     "plop": "^4.0.0",
     "postcss": "^8.3.9",
-    "preact": "^10.5.6",
+    "preact": "^10.25.1",
     "prettier": "^3.0.0",
     "rollup": "^4.0.2",
     "rollup-plugin-string": "^3.0.0",
@@ -60,7 +60,7 @@
     "yalc": "^1.0.0-pre.50"
   },
   "peerDependencies": {
-    "preact": "^10.4.0"
+    "preact": "^10.25.1"
   },
   "scripts": {
     "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
