@@ -106,13 +106,9 @@ export default function LinkButtonPage() {
                   Underline: none (default)
                 </LinkButton>
 
-                <LinkButton href="https://www.example.com" underline="hover">
-                  Underline: hover
-                </LinkButton>
+                <LinkButton underline="hover">Underline: hover</LinkButton>
 
-                <LinkButton href="https://www.example.com" underline="always">
-                  Underline: always
-                </LinkButton>
+                <LinkButton underline="always">Underline: always</LinkButton>
                 <p>
                   LinkButtons should be{' '}
                   <LinkButton underline="always" inline>
@@ -131,7 +127,9 @@ export default function LinkButtonPage() {
                 to <code>HTMLButtonElement</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
-                <code>{'preact.JSX.ButtonHTMLAttributes<HTMLButtonElement>'}</code>
+                <code>
+                  {'preact.JSX.ButtonHTMLAttributes<HTMLButtonElement>'}
+                </code>
               </Library.InfoItem>
             </Library.Info>
           </Library.Example>
