@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useRef, useState } from 'preact/hooks';
 
 import Popover, { POPOVER_VIEWPORT_HORIZONTAL_GAP } from '../Popover';
@@ -40,37 +40,19 @@ function TestComponent({ children, ...rest }) {
 }
 
 describe('Popover', () => {
-  let wrappers;
-  let containers;
-
-  beforeEach(() => {
-    wrappers = [];
-    containers = [];
-  });
-
-  afterEach(() => {
-    wrappers.forEach(w => w.unmount());
-    containers.forEach(c => c.remove());
-  });
-
   function createComponent(props = {}, options = {}) {
     const { paddingTop = 0 } = options;
 
-    const container = document.createElement('div');
-    container.style.paddingTop = `${paddingTop}px`;
-    // Add horizontal paddings to the container, so that there's room for the
-    // popover to grow if needed
-    container.style.paddingLeft = '200px';
-    container.style.paddingRight = '200px';
-    containers.push(container);
-    document.body.append(container);
-
-    const wrapper = mount(<TestComponent {...props} />, {
-      attachTo: container,
+    return mount(<TestComponent {...props} />, {
+      connected: true,
+      prepareContainer: container => {
+        container.style.paddingTop = `${paddingTop}px`;
+        // Add horizontal paddings to the container, so that there's room for the
+        // popover to grow if needed
+        container.style.paddingLeft = '200px';
+        container.style.paddingRight = '200px';
+      },
     });
-    wrappers.push(wrapper);
-
-    return wrapper;
   }
 
   const getPopover = wrapper => wrapper.find('Popover');

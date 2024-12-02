@@ -1,10 +1,8 @@
-import { checkAccessibility } from '@hypothesis/frontend-testing';
-import { mount } from 'enzyme';
+import { checkAccessibility, mount } from '@hypothesis/frontend-testing';
 
 import { MultiSelect, Select } from '../Select';
 
 describe('Select', () => {
-  let wrappers;
   const items = [
     { id: '1', name: 'All students' },
     { id: '2', name: 'Albert Banana' },
@@ -24,10 +22,8 @@ describe('Select', () => {
    */
   const createComponent = (props = {}, options = {}) => {
     const { optionsChildrenAsCallback = true, Component = Select } = options;
-    const container = document.createElement('div');
-    document.body.append(container);
 
-    const wrapper = mount(
+    return mount(
       <Component value={undefined} onChange={sinon.stub()} {...props}>
         <Component.Option value={undefined}>
           {({ selected }) => (
@@ -57,21 +53,9 @@ describe('Select', () => {
           </Component.Option>
         ))}
       </Component>,
-      { attachTo: container },
+      { connected: true },
     );
-
-    wrappers.push(wrapper);
-
-    return wrapper;
   };
-
-  beforeEach(() => {
-    wrappers = [];
-  });
-
-  afterEach(() => {
-    wrappers.forEach(wrapper => wrapper.unmount());
-  });
 
   const getToggleButton = wrapper =>
     wrapper.find('button[data-testid="select-toggle-button"]');

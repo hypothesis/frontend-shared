@@ -1,9 +1,8 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 
 import ToastMessages from '../ToastMessages';
 
 describe('ToastMessages', () => {
-  let wrappers;
   const toastMessages = [
     {
       id: '1',
@@ -24,29 +23,18 @@ describe('ToastMessages', () => {
   let fakeOnMessageDismiss;
 
   beforeEach(() => {
-    wrappers = [];
     fakeOnMessageDismiss = sinon.stub();
   });
 
-  afterEach(() => {
-    wrappers.forEach(wrapper => wrapper.unmount());
-  });
-
   function createToastMessages(toastMessages, setTimeout) {
-    const container = document.createElement('div');
-    document.body.appendChild(container);
-
-    const wrapper = mount(
+    return mount(
       <ToastMessages
         messages={toastMessages}
         onMessageDismiss={fakeOnMessageDismiss}
         setTimeout_={setTimeout}
       />,
-      { attachTo: container },
+      { connected: true },
     );
-    wrappers.push(wrapper);
-
-    return wrapper;
   }
 
   function triggerAnimationEnd(wrapper, index, direction = 'out') {

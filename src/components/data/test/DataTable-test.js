@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useState } from 'preact/hooks';
 
 import { testCompositeComponent } from '../../test/common-tests';
@@ -8,8 +8,6 @@ import Scroll from '../Scroll';
 describe('DataTable', () => {
   let fakeRows;
   let fakeColumns;
-  let container;
-  let wrappers;
 
   beforeEach(() => {
     fakeColumns = [
@@ -45,15 +43,6 @@ describe('DataTable', () => {
         delicious: true,
       },
     ];
-
-    wrappers = [];
-    container = document.createElement('div');
-    document.body.append(container);
-  });
-
-  afterEach(() => {
-    wrappers.forEach(w => w.unmount());
-    container.remove();
   });
 
   // DataTable test wrapper which supports selecting multiple rows.
@@ -75,15 +64,13 @@ describe('DataTable', () => {
   }
 
   const createComponent = ({ Component = DataTable, ...props } = {}) => {
-    const wrapper = mount(
+    return mount(
       <Component columns={fakeColumns} rows={fakeRows} {...props} />,
 
       // Mounting in a connected element is required for arrow key navigation
       // to work, as `useArrowKeyNavigation` skips over hidden elements.
-      { attachTo: container },
+      { connected: true },
     );
-    wrappers.push(wrapper);
-    return wrapper;
   };
 
   it('sets appropriate table attributes', () => {
@@ -336,8 +323,6 @@ describe('DataTable', () => {
   });
 
   context('when in a Scroll context', () => {
-    let constrainedContainer;
-
     function TestTableWithScroll() {
       // Initially select the last data row
       const [selectedRow, setSelectedRow] = useState(fakeRows[4]);
@@ -354,20 +339,13 @@ describe('DataTable', () => {
       );
     }
 
-    beforeEach(() => {
-      constrainedContainer = document.createElement('div');
-      constrainedContainer.style.height = '150px';
-      constrainedContainer.style.maxHeight = '200px';
-      document.body.appendChild(constrainedContainer);
-    });
-
-    afterEach(() => {
-      constrainedContainer.remove();
-    });
-
     it('ensures selected row is visible in scrollable area', async () => {
       const wrapper = mount(<TestTableWithScroll />, {
-        attachTo: constrainedContainer,
+        connected: true,
+        prepareContainer: container => {
+          container.style.height = '150px';
+          container.style.maxHeight = '200px';
+        },
       });
 
       const lastRowEl = wrapper.find('tbody tr').at(4).getDOMNode();
