@@ -3,5 +3,3 @@ build/
 lib/
 lib-cjs/
 coverage/
-# Don't prettify plop templates (Handlebars) lest unwanted line breaks sneak in
-plop-templates/

@@ -45,7 +45,6 @@
     "karma-source-map-support": "^1.4.0",
     "mocha": "10.8.2",
     "mustache": "^4.2.0",
-    "plop": "^4.0.0",
     "postcss": "^8.3.9",
     "preact": "^10.25.1",
     "prettier": "^3.0.0",
@@ -71,7 +70,6 @@
     "checkformatting": "prettier --cache --check '**/*.{js,scss,ts,tsx,md}'",
     "format": "prettier --cache --list-different --write '**/*.{js,scss,ts,tsx,md}'",
     "test": "gulp test",
-    "plop": "plop",
     "push": "yarn build && yalc push"
   },
   "prettier": {

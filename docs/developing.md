@@ -76,16 +76,6 @@ Each component in this package should have:
 3. Pattern-library documentation, typically in `src/pattern-library/components/patterns/{group}/{ComponentName}Page.js`
 4. Exports from its module directory and the project's entrypoint
 
-### Generating component module files
-
-You may create modules manually, or you can use [`plop`](https://plopjs.com/) to scaffold out some starter files. Run:
-
-```sh
-$ yarn run plop
-```
-
-and follow the prompts.
-
 ### New component checklist
 
 Before opening a PR with a new component:
