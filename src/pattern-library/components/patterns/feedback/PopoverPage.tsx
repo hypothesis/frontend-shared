@@ -134,8 +134,9 @@ export default function PopoverPage() {
                 clicking away or pressing <code>Escape</code>.
                 <br />
                 The caller should use this callback to keep local state in sync,
-                so that the popover is re-rendered with <code>open</code> set to{' '}
-                <code>false</code>.
+                so that the popover is re-rendered with <code>
+                  open
+                </code> set to <code>false</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>{'() => void'}</code>
