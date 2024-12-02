@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useRef } from 'preact/hooks';
 
 import { usePopoverShouldClose, $imports } from '../use-popover-should-close';

@@ -1,5 +1,4 @@
-import { delay } from '@hypothesis/frontend-testing';
-import { mount } from 'enzyme';
+import { delay, mount } from '@hypothesis/frontend-testing';
 import { createRef } from 'preact';
 
 import { testPresentationalComponent } from '../../test/common-tests';
@@ -55,17 +54,6 @@ describe('Dialog', () => {
   });
 
   describe('initial focus', () => {
-    let container;
-
-    beforeEach(() => {
-      container = document.createElement('div');
-      document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-      container.remove();
-    });
-
     it('focuses the element referred to by `initialFocus`', () => {
       const inputRef = createRef();
 
@@ -73,7 +61,7 @@ describe('Dialog', () => {
         <Dialog initialFocus={inputRef} title="My dialog">
           <input ref={inputRef} />
         </Dialog>,
-        { attachTo: container },
+        { connected: true },
       );
 
       assert.equal(document.activeElement, inputRef.current);
@@ -84,7 +72,7 @@ describe('Dialog', () => {
         <Dialog title="My dialog">
           <div>Test</div>
         </Dialog>,
-        { attachTo: container },
+        { connected: true },
       );
 
       assert.equal(
@@ -99,7 +87,7 @@ describe('Dialog', () => {
         <Dialog initialFocus={'manual'} title="My dialog">
           <div>Test</div>
         </Dialog>,
-        { attachTo: container },
+        { connected: true },
       );
 
       assert.equal(document.activeElement, focusedBefore);
@@ -112,7 +100,7 @@ describe('Dialog', () => {
         <Dialog initialFocus={inputRef} title="My dialog">
           <button ref={inputRef} disabled={true} />
         </Dialog>,
-        { attachTo: container },
+        { connected: true },
       );
 
       assert.equal(
@@ -128,7 +116,7 @@ describe('Dialog', () => {
             title="My dialog"
             transitionComponent={ComponentWithTransition}
           />,
-          { attachTo: container },
+          { connected: true },
         );
 
         // The Dialog is still not focused immediately after mounting it
@@ -147,26 +135,16 @@ describe('Dialog', () => {
   });
 
   describe('restoring focus', () => {
-    let container;
-
     beforeEach(() => {
-      container = document.createElement('div');
       const button = document.createElement('button');
       button.id = 'focus-button';
       document.body.appendChild(button);
-      document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-      container.remove();
     });
 
     it('should not restore focus by default', () => {
       const wrapper = mount(
         <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
-        {
-          attachTo: container,
-        },
+        { connected: true },
       );
       const dialogElement = document.getElementById('focus-dialog');
       // Focus moves to dialog by default when mounted
@@ -187,9 +165,7 @@ describe('Dialog', () => {
 
       const wrapper = mount(
         <Dialog id="focus-dialog" title="My dialog" restoreFocus />,
-        {
-          attachTo: container,
-        },
+        { connected: true },
       );
       const dialogElement = document.getElementById('focus-dialog');
       // Focus moves to dialog by default when mounted
@@ -221,9 +197,7 @@ describe('Dialog', () => {
           <Dialog title="Test dialog" onClose={onClose}>
             This is my dialog
           </Dialog>,
-          {
-            attachTo: container,
-          },
+          { connected: true },
         );
 
         assert.deepEqual(fakeUseKeyPress.lastCall.args[0], ['Escape']);
@@ -238,9 +212,7 @@ describe('Dialog', () => {
         <Dialog title="Test dialog" closeOnClickAway onClose={onClose}>
           This is my dialog
         </Dialog>,
-        {
-          attachTo: container,
-        },
+        { connected: true },
       );
 
       assert.deepEqual(fakeUseClickAway.lastCall.args[2], { enabled: true });
@@ -251,9 +223,7 @@ describe('Dialog', () => {
         <Dialog title="Test dialog" closeOnFocusAway onClose={onClose}>
           This is my dialog
         </Dialog>,
-        {
-          attachTo: container,
-        },
+        { connected: true },
       );
 
       assert.deepEqual(fakeUseFocusAway.lastCall.args[2], { enabled: true });
@@ -267,9 +237,7 @@ describe('Dialog', () => {
             onClose={onClose}
             transitionComponent={ComponentWithTransition}
           />,
-          {
-            attachTo: container,
-          },
+          { connected: true },
         );
 
         // We simulate closing the Dialog's Panel

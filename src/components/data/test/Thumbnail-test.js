@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 
 import { testCompositeComponent } from '../../test/common-tests';
 import Thumbnail from '../Thumbnail';

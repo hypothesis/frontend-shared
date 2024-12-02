@@ -1,25 +1,10 @@
-import { checkAccessibility } from '@hypothesis/frontend-testing';
-import { mount } from 'enzyme';
+import { checkAccessibility, mount } from '@hypothesis/frontend-testing';
 
 import RadioGroup from '../RadioGroup';
 
 describe('RadioGroup', () => {
-  let container;
-  let wrappers;
-
-  beforeEach(() => {
-    wrappers = [];
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    wrappers.forEach(wrapper => wrapper.unmount());
-    container.remove();
-  });
-
   const createComponent = (props = {}) => {
-    const wrapper = mount(
+    return mount(
       <RadioGroup aria-label="Radio group" onChange={sinon.stub()} {...props}>
         <RadioGroup.Radio value="one">One</RadioGroup.Radio>
         <RadioGroup.Radio value="two">Two</RadioGroup.Radio>
@@ -30,11 +15,8 @@ describe('RadioGroup', () => {
           Four
         </RadioGroup.Radio>
       </RadioGroup>,
-      { attachTo: container },
+      { connected: true },
     );
-    wrappers.push(wrapper);
-
-    return wrapper;
   };
 
   function getRadio(wrapper, index) {

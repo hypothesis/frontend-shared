@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useEffect } from 'preact/hooks';
 
 import { useSyncedRef } from '../use-synced-ref';

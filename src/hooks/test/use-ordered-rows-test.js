@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useState } from 'preact/hooks';
 
 import { useOrderedRows } from '../use-ordered-rows';

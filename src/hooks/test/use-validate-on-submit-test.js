@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useState, useId } from 'preact/hooks';
 
 import { Input } from '../../components/input';

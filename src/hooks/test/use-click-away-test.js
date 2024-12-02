@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 import { useRef } from 'preact/hooks';
 import { act } from 'preact/test-utils';
 
@@ -6,7 +6,6 @@ import { useClickAway } from '../use-click-away';
 
 describe('useClickAway', () => {
   let handler;
-  let wrapper;
 
   const event = name => new Event(name, { bubbles: true });
   const events = [event('mousedown'), event('click')];
@@ -24,19 +23,11 @@ describe('useClickAway', () => {
   }
 
   function createComponent(props) {
-    const container = document.createElement('div');
-    document.body.append(container);
-
-    wrapper = mount(<FakeComponent {...props} />, { attachTo: container });
-    return wrapper;
+    return mount(<FakeComponent {...props} />, { connected: true });
   }
 
   beforeEach(() => {
     handler = sinon.stub();
-  });
-
-  afterEach(() => {
-    wrapper.unmount();
   });
 
   events.forEach(event => {

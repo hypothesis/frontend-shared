@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 
 import CloseableContext from '../../CloseableContext';
 import { testPresentationalComponent } from '../../test/common-tests';

@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 
 import { LoremIpsum } from '../../../pattern-library/components/patterns/samples';
 import { EditIcon } from '../../icons';
@@ -50,26 +50,12 @@ describe('Panel', () => {
   });
 
   context('when rendered in an element with constrained dimensions', () => {
-    let container;
-    let unboundedContainer;
-
-    beforeEach(() => {
-      container = document.createElement('div');
-      unboundedContainer = document.createElement('div');
+    const prepareContainer = container => {
       container.style.height = '200px';
-      document.body.append(container);
-      document.body.append(unboundedContainer);
-    });
-
-    afterEach(() => {
-      container.remove();
-      unboundedContainer.remove();
-    });
+    };
 
     it('should not exceed height of parent container if `scrollable` is set', () => {
-      const loremWrapper = mount(<LoremIpsum />, {
-        attachTo: unboundedContainer,
-      });
+      const loremWrapper = mount(<LoremIpsum />, { connected: true });
 
       // The lorem ipsum content in the Panel will be constrained and will scroll
       // within the allotted 200px height
@@ -77,7 +63,7 @@ describe('Panel', () => {
         <Panel title="Constrained Panel" scrollable>
           <LoremIpsum />
         </Panel>,
-        { attachTo: container },
+        { connected: true, prepareContainer },
       );
 
       // Lorem ipsum rendered without constraints will take up more than 200
@@ -97,7 +83,7 @@ describe('Panel', () => {
         <Panel title="Unconstrained Panel">
           <LoremIpsum />
         </Panel>,
-        { attachTo: container },
+        { connected: true, prepareContainer },
       );
 
       assert.isAbove(

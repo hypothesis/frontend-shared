@@ -1,6 +1,5 @@
 /* eslint-disable mocha/no-exports */
-import { checkAccessibility } from '@hypothesis/frontend-testing';
-import { mount } from 'enzyme';
+import { checkAccessibility, mount } from '@hypothesis/frontend-testing';
 import { createRef } from 'preact';
 
 /**

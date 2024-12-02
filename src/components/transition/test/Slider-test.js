@@ -1,17 +1,15 @@
-import { mount } from 'enzyme';
+import { mount } from '@hypothesis/frontend-testing';
 
 import { testTransitionComponent } from '../../test/common-tests';
 import Slider from '../Slider';
 
 describe('Slider', () => {
-  let container;
-
   const createSlider = (props = {}) => {
     return mount(
       <Slider {...props}>
         <div style={{ width: 100, height: 200 }}>Test content</div>
       </Slider>,
-      { attachTo: container },
+      { connected: true },
     );
   };
 
@@ -27,15 +25,6 @@ describe('Slider', () => {
     });
     wrapper.update();
   }
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
-  afterEach(() => {
-    container.remove();
-  });
 
   testTransitionComponent(Slider, {
     event: { propertyName: 'height' },
