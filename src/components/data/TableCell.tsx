@@ -8,7 +8,7 @@ import TableContext from './TableContext';
 import TableSectionContext from './TableSectionContext';
 
 export type TableCellProps = PresentationalProps &
-  Omit<JSX.HTMLAttributes<HTMLElement>, 'size'> & {
+  Omit<JSX.TdHTMLAttributes<HTMLElement>, 'size'> & {
     /** Remove default padding, allowing consuming code to control it */
     unpadded?: boolean;
   };
