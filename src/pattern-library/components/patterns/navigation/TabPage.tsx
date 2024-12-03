@@ -36,9 +36,9 @@ export default function TabPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Tab" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Tabs in a tablist" withSource>
               <div role="tablist" className="gap-x-6 flex">
                 <Tab>
@@ -61,10 +61,10 @@ export default function TabPage() {
                 </Tab>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Working with Tabs">
-          <Library.Example title="Accessibility">
+          </Library.SectionL3>
+        </Library.SectionL2>
+        <Library.SectionL2 title="Working with Tabs">
+          <Library.SectionL3 title="Accessibility">
             <ul>
               <li>
                 <code>Tab</code>s <em>must</em> be direct children of an element
@@ -80,8 +80,8 @@ export default function TabPage() {
                 in our applications.
               </li>
             </ul>
-          </Library.Example>
-          <Library.Example title="Preventing text jiggle with textContent">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Preventing text jiggle with textContent">
             <p>
               Bolding is used in our design patterns to indicate a selected tab.
               Without any intervention, textual tabs will jiggle around when
@@ -203,10 +203,10 @@ export default function TabPage() {
                 </Tab>
               </TabList>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Tab</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -215,7 +215,7 @@ export default function TabPage() {
             .
           </p>
 
-          <Library.Example title="icon">
+          <Library.SectionL3 title="icon">
             <Library.Info>
               <Library.InfoItem label="description">
                 Optional icon to display on the left, sized proportionally to
@@ -236,9 +236,9 @@ export default function TabPage() {
                 </Tab>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="selected">
+          <Library.SectionL3 title="selected">
             <Library.Info>
               <Library.InfoItem label="description">
                 Asserts that the <code>Tab</code> is currently selected and the{' '}
@@ -252,9 +252,9 @@ export default function TabPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="textContent">
+          <Library.SectionL3 title="textContent">
             <Library.Info>
               <Library.InfoItem label="description">
                 String representing the longest textual content expected for the
@@ -264,9 +264,9 @@ export default function TabPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...buttonProps">
+          <Library.SectionL3 title="...buttonProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Tab</code> forwards{' '}
@@ -281,10 +281,10 @@ export default function TabPage() {
                 <code>{`Omit<ButtonProps, 'variant' | 'size' | 'unstyled'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>Tab</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -292,7 +292,7 @@ export default function TabPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set to <code>custom</code> to remove theming styles and provide
@@ -315,9 +315,9 @@ export default function TabPage() {
                 <Tab variant="tab">Export</Tab>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set relative internal spacing and padding. Set to{' '}
@@ -331,9 +331,9 @@ export default function TabPage() {
                 <code>{`'md'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set to remove all styling.
@@ -345,8 +345,8 @@ export default function TabPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
       <Library.Section
         title="TabList"
@@ -362,9 +362,9 @@ export default function TabPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="TabList" />
-          <Library.Example>
+          <Library.SectionL3>
             <p>
               This example demonstrates a full Tab pattern with{' '}
               <code>TabList</code>, <code>Tab</code> and some tabpanels. The
@@ -439,10 +439,10 @@ export default function TabPage() {
                 </Card>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>TabList</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -450,7 +450,7 @@ export default function TabPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="vertical">
+          <Library.SectionL3 title="vertical">
             <Library.Info>
               <Library.InfoItem label="description">
                 Indicates that the tablist should be laid out vertically. When
@@ -492,9 +492,9 @@ export default function TabPage() {
                 </Tab>
               </TabList>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>TabList</code> accepts HTML attributes.
@@ -503,8 +503,8 @@ export default function TabPage() {
                 <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

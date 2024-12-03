@@ -16,20 +16,20 @@ export default function PanelPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Panel" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Panel" withSource>
               <Panel title="A simple panel">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Panel>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Panels">
-          <Library.Example title="Scrolling content">
+        <Library.SectionL2 title="Working with Panels">
+          <Library.SectionL3 title="Scrolling content">
             <p>
               If a <code>Panel</code> is a direct child of an element with a
               height constraint and the <code>scrollable</code> prop is set, its
@@ -72,16 +72,16 @@ export default function PanelPage() {
                 </Panel>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Panel</code> accepts all standard{' '}
           <Library.Link href="/using-components#composite-components-api">
             composite component props
           </Library.Link>
           .
-          <Library.Example title="title">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 Panel title
@@ -93,8 +93,8 @@ export default function PanelPage() {
                 <code>true</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="buttons">
+          </Library.SectionL3>
+          <Library.SectionL3 title="buttons">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>ComponentChildren</code> to render as available actions in
@@ -119,8 +119,8 @@ export default function PanelPage() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Panel>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="fullWidthHeader">
+          </Library.SectionL3>
+          <Library.SectionL3 title="fullWidthHeader">
             <Library.Info>
               <Library.InfoItem label="description">
                 Make the header and its bottom border stretch the full width of
@@ -139,8 +139,8 @@ export default function PanelPage() {
                 <LoremIpsum size="xs" />
               </Panel>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="icon">
+          </Library.SectionL3>
+          <Library.SectionL3 title="icon">
             <Library.Info>
               <Library.InfoItem label="description">
                 An <code>IconComponent</code> to render in the panel header.
@@ -156,8 +156,8 @@ export default function PanelPage() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Panel>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="onClose">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onClose">
             <Library.Info>
               <Library.InfoItem label="description">
                 Render a close button and invoke this callback function when it
@@ -177,8 +177,8 @@ export default function PanelPage() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Panel>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="paddingSize">
+          </Library.SectionL3>
+          <Library.SectionL3 title="paddingSize">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determine how much padding is used around the content in the
@@ -223,8 +223,8 @@ export default function PanelPage() {
                 </div>
               </Panel>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="scrollable">
+          </Library.SectionL3>
+          <Library.SectionL3 title="scrollable">
             <Library.Info>
               <Library.InfoItem label="description">
                 Make the content in the panel scroll if the panel exceeds height
@@ -255,8 +255,8 @@ export default function PanelPage() {
                 </Panel>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Panel</code> accepts HTML attributes.
@@ -265,8 +265,8 @@ export default function PanelPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

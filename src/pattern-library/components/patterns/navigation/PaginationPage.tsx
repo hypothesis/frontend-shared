@@ -17,9 +17,9 @@ export default function PaginationPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage symbolName="Pagination" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic usage" withSource>
               <Pagination
                 currentPage={currentPage}
@@ -27,11 +27,11 @@ export default function PaginationPage() {
                 onChangePage={page => setCurrentPage(page)}
               />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="currentPage">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="currentPage">
             <Library.Info>
               <Library.InfoItem label="description">
                 The 1-based number of the currently visible page.
@@ -40,9 +40,9 @@ export default function PaginationPage() {
                 <code>number</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onChangePage">
+          <Library.SectionL3 title="onChangePage">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked with the new page number when the user clicks a
@@ -52,9 +52,9 @@ export default function PaginationPage() {
                 <code>(newPage: number) {'=>'} void</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="totalPages">
+          <Library.SectionL3 title="totalPages">
             <Library.Info>
               <Library.InfoItem label="description">
                 The total number of pages available.
@@ -63,8 +63,8 @@ export default function PaginationPage() {
                 <code>number</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

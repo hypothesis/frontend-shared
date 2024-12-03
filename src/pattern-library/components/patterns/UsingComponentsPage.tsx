@@ -35,14 +35,14 @@ export default function UsingComponentsPage() {
             All presentational components provide this API unless documented
             otherwise.
           </p>
-          <Library.Example title="children">
+          <Library.SectionL3 title="children">
             <Library.Info>
               <Library.InfoItem label="type">
                 <code>preact.ComponentChildren</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="classes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
                 CSS class(es) that will be appended to the CSS classes applied
@@ -54,8 +54,8 @@ export default function UsingComponentsPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="elementRef">
+          </Library.SectionL3>
+          <Library.SectionL3 title="elementRef">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>Ref</code> applied to the {"component's"} outermost or
@@ -65,8 +65,8 @@ export default function UsingComponentsPage() {
                 <code>{'preact.Ref<HTMLElement | undefined>'}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 Presentational components accept HTML attributes applicable to
@@ -85,7 +85,7 @@ export default function UsingComponentsPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
 
         <Library.Section
@@ -108,7 +108,7 @@ export default function UsingComponentsPage() {
             that details how to use these props to customize components.
           </p>
 
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Many presentational components have multiple variants. Variants{' '}
@@ -132,9 +132,9 @@ export default function UsingComponentsPage() {
                 />
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Many, but not all, presentational components provide multiple
@@ -158,9 +158,9 @@ export default function UsingComponentsPage() {
                 />
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this to disable all styling. This is a {'"master switch"'}{' '}
@@ -183,7 +183,7 @@ export default function UsingComponentsPage() {
                 />
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
       </Library.Section>
 
@@ -207,7 +207,7 @@ export default function UsingComponentsPage() {
         </p>
 
         <Library.Section id="composite-components-api" title="API">
-          <Library.Example title="children">
+          <Library.SectionL3 title="children">
             <Library.Info>
               <Library.InfoItem label="description">
                 Some, but not all, composite components accept{' '}
@@ -217,9 +217,9 @@ export default function UsingComponentsPage() {
                 <code>preact.ComponentChildren</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="elementRef">
+          <Library.SectionL3 title="elementRef">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>Ref</code> applied to the {"component's"} outermost or
@@ -229,9 +229,9 @@ export default function UsingComponentsPage() {
                 <code>{'preact.Ref<HTMLElement | undefined>'}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 Some, but not all, composite components accept HTML attributes
@@ -250,7 +250,7 @@ export default function UsingComponentsPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
       </Library.Section>
 
@@ -268,7 +268,7 @@ export default function UsingComponentsPage() {
           </Library.Link>
         </p>
         <Library.Section title="API" id="transition-components-api">
-          <Library.Example title="direction">
+          <Library.SectionL3 title="direction">
             <Library.Info>
               <Library.InfoItem label="description">
                 Sets the current direction of the component transition.
@@ -280,9 +280,9 @@ export default function UsingComponentsPage() {
                 <code>{"'in'"}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onTransitionEnd">
+          <Library.SectionL3 title="onTransitionEnd">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked when the {"component's"} transition has
@@ -292,7 +292,7 @@ export default function UsingComponentsPage() {
                 <code>{`(direction: 'in' | 'out') => void`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
       </Library.Section>
 

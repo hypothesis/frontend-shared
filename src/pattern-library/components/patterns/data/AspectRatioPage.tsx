@@ -13,9 +13,9 @@ export default function AspectRatioPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="AspectRatio" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic AspectRatio" withSource>
               <div className="w-[350px]">
                 <AspectRatio>
@@ -23,10 +23,10 @@ export default function AspectRatioPage() {
                 </AspectRatio>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
         <Library.Section title="Working with AspectRatio">
-          <Library.Example title="Placeholder content">
+          <Library.SectionL3 title="Placeholder content">
             <p>
               Placeholder content can be put in a container that is the first
               direct child of the <code>AspectRatio</code>.
@@ -40,8 +40,8 @@ export default function AspectRatioPage() {
                 </AspectRatio>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Fitting and positioning content">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Fitting and positioning content">
             <p>
               The way the content is resized and fitted (
               <Link
@@ -82,10 +82,10 @@ export default function AspectRatioPage() {
                 </AspectRatio>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
         <Library.Section title="Component API">
-          <Library.Example title="children">
+          <Library.SectionL3 title="children">
             <Library.Info>
               <Library.InfoItem label="description">
                 Either the{' '}
@@ -98,8 +98,8 @@ export default function AspectRatioPage() {
                 <code>preact.ComponentChildren</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="ratio">
+          </Library.SectionL3>
+          <Library.SectionL3 title="ratio">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the aspect ratio for the content
@@ -112,8 +112,8 @@ export default function AspectRatioPage() {
                 <code>{"'16/9'"}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="objectFit">
+          </Library.SectionL3>
+          <Library.SectionL3 title="objectFit">
             <Library.Info>
               <Library.InfoItem label="description">
                 Control the way the content is resized and fitted (
@@ -173,7 +173,7 @@ export default function AspectRatioPage() {
                 </AspectRatio>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
         </Library.Section>
       </Library.Section>
     </Library.Page>

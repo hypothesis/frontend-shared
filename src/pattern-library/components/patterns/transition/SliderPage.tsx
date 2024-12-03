@@ -57,9 +57,9 @@ export default function SliderPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Slider" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Slider" withSource>
               <Slider_ direction="out">
                 <Card>
@@ -67,10 +67,10 @@ export default function SliderPage() {
                 </Card>
               </Slider_>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Button</code> accepts{' '}
             <Library.Link href="/using-components#transition-components-api">
@@ -78,7 +78,7 @@ export default function SliderPage() {
             </Library.Link>
             .
           </p>
-        </Library.Pattern>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

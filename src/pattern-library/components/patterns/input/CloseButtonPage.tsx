@@ -43,17 +43,17 @@ export default function CloseButtonPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="CloseButton" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource title="Basic CloseButton">
               <CloseButton />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with CloseButton">
-          <Library.Example title="Click handlers for close buttons">
+        <Library.SectionL2 title="Working with CloseButton">
+          <Library.SectionL3 title="Click handlers for close buttons">
             <p>
               You can pass an <code>onClick</code> prop to{' '}
               <code>CloseButton</code> like any button and that will be used. If
@@ -76,10 +76,10 @@ export default function CloseButtonPage() {
                 </div>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>CloseButton</code> provides the same API as{' '}
             <code>
@@ -87,7 +87,7 @@ export default function CloseButtonPage() {
             </code>
             .
           </p>
-          <Library.Example title="title">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 This is an optional prop for <code>CloseButton</code> (it is
@@ -100,8 +100,8 @@ export default function CloseButtonPage() {
                 <code>{`'Close'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

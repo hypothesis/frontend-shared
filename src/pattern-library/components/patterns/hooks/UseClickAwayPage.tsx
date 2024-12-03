@@ -13,19 +13,19 @@ export default function UseClickAwayPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage symbolName="useClickAway" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               withSource
               title="Basic useClickAway"
               exampleFile="use-click-away-basic"
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Hook arguments">
-          <Library.Example title="container">
+        <Library.SectionL2 title="Hook arguments">
+          <Library.SectionL3 title="container">
             <Library.Info>
               <Library.InfoItem label="description">
                 A Ref to the DOM element used to evaluate if clicking happened{' '}
@@ -36,8 +36,8 @@ export default function UseClickAwayPage() {
                 <code>{`RefObject<HTMLElement | undefined>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="callback">
+          </Library.SectionL3>
+          <Library.SectionL3 title="callback">
             <Library.Info>
               <Library.InfoItem label="description">
                 The callback to be invoked when clicking away. The click event
@@ -47,8 +47,8 @@ export default function UseClickAwayPage() {
                 <code>{`(e: Event) => void`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="options">
+          </Library.SectionL3>
+          <Library.SectionL3 title="options">
             <Library.Info>
               <Library.InfoItem label="description">
                 Options to configure the hook{"'"}s behavior.
@@ -59,11 +59,11 @@ export default function UseClickAwayPage() {
                 below for details.
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Hook options" id="hook-options">
-          <Library.Example title="enabled">
+        <Library.SectionL2 title="Hook options" id="hook-options">
+          <Library.SectionL3 title="enabled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Allows the hook to be conditionally enabled or disabled, for
@@ -80,8 +80,8 @@ export default function UseClickAwayPage() {
             <Library.Code
               content={`useClickAway(containerRef, callback, { enabled: false })`}
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

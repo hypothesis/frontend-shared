@@ -19,20 +19,20 @@ export default function CheckboxPage() {
         </p>
       }
     >
-      <Library.Pattern>
+      <Library.SectionL2>
         <Library.Usage componentName="Checkbox" />
-        <Library.Example>
+        <Library.SectionL3>
           <Library.Demo title="Basic Checkbox" withSource>
             <div className="flex flex-col">
               <Checkbox>Click me</Checkbox>
               <Checkbox disabled>Disabled</Checkbox>
             </div>
           </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Working with Checkboxes">
-        <Library.Example title="Controlled Checkboxes">
+      <Library.SectionL2 title="Working with Checkboxes">
+        <Library.SectionL3 title="Controlled Checkboxes">
           <p>
             The presence of a <code>checked</code> prop will make the{' '}
             <code>Checkbox</code> behave as a controlled component. Consuming
@@ -75,9 +75,9 @@ const handleControlledChange = e => {
               </div>
             </Checkbox>
           </Library.Demo>
-        </Library.Example>
+        </Library.SectionL3>
 
-        <Library.Example title="Customizing Checkbox icons">
+        <Library.SectionL3 title="Customizing Checkbox icons">
           <p>
             <code>Checkbox</code> uses icons to style the checkbox, in unchecked
             and checked states. Custom icons may be provided if desired.
@@ -88,16 +88,16 @@ const handleControlledChange = e => {
           >
             <Checkbox icon={HideIcon} checkedIcon={ShowIcon} defaultChecked />
           </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Component API">
+      <Library.SectionL2 title="Component API">
         <code>Checkbox</code> accepts all standard{' '}
         <Library.Link href="/using-components#presentational-components-api">
           presentational component props
         </Library.Link>
         .
-        <Library.Example title="checked">
+        <Library.SectionL3 title="checked">
           <Library.Info>
             <Library.InfoItem label="description">
               Set whether the <code>Checkbox</code> is checked. The presence of
@@ -111,8 +111,8 @@ const handleControlledChange = e => {
               <code>{`undefined`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="defaultChecked">
+        </Library.SectionL3>
+        <Library.SectionL3 title="defaultChecked">
           <Library.Info>
             <Library.InfoItem label="description">
               Whether the <code>Checkbox</code> is initially checked. For use
@@ -132,8 +132,8 @@ const handleControlledChange = e => {
           >
             <Checkbox defaultChecked>Default checked</Checkbox>
           </Library.Demo>
-        </Library.Example>
-        <Library.Example title="icon">
+        </Library.SectionL3>
+        <Library.SectionL3 title="icon">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>IconComponent</code> to use as the (unchecked) checkbox icon
@@ -142,8 +142,8 @@ const handleControlledChange = e => {
               <code>{`IconComponent`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="checkedIcon">
+        </Library.SectionL3>
+        <Library.SectionL3 title="checkedIcon">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>IconComponent</code> to use as the (checked) checkbox icon
@@ -152,8 +152,8 @@ const handleControlledChange = e => {
               <code>{`IconComponent`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="...htmlAttributes">
+        </Library.SectionL3>
+        <Library.SectionL3 title="...htmlAttributes">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>Checkbox</code> accepts HTML attributes for input elements
@@ -162,8 +162,8 @@ const handleControlledChange = e => {
               <code>{`JSX.InputHTMLAttributes<HTMLInputElement>`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
     </Library.Page>
   );
 }

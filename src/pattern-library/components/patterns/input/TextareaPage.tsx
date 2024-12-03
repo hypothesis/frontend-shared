@@ -13,10 +13,10 @@ export default function TextareaPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Textarea" />
 
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Textarea" withSource>
               <div className="w-[350px]">
                 <Textarea
@@ -25,11 +25,11 @@ export default function TextareaPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Textareas">
-          <Library.Example title="Labels">
+        <Library.SectionL2 title="Working with Textareas">
+          <Library.SectionL3 title="Labels">
             <p>
               Hypothesis does not currently have a design pattern for labeling
               textareas. However, for accessibility, it is critical that a{' '}
@@ -48,8 +48,8 @@ export default function TextareaPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Disabled Textareas">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Disabled Textareas">
             <p>
               <code>Textarea</code>s can be disabled by applying the HTML{' '}
               <code>disabled</code> attribute.
@@ -63,8 +63,8 @@ export default function TextareaPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Validation errors">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Validation errors">
             <p>
               Validation errors can be triggered as a result of standard HTML
               attributes such as <code>required</code> or a custom error set
@@ -83,16 +83,16 @@ export default function TextareaPage() {
               inputs must link to the element displaying their validation error
               using <code>aria-describedby</code>.
             </p>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Textarea</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="error">
+          <Library.SectionL3 title="error">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set <code>error</code> to indicate a validation error. This
@@ -108,8 +108,8 @@ export default function TextareaPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="feedback">
+          </Library.SectionL3>
+          <Library.SectionL3 title="feedback">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set <code>feedback</code> to indicate that there is an
@@ -151,8 +151,8 @@ export default function TextareaPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Textarea</code> accepts HTML attributes for textarea
@@ -162,8 +162,8 @@ export default function TextareaPage() {
                 <code>{`JSX.TextareaHTMLAttributes<HTMLTextareaElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

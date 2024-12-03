@@ -13,22 +13,22 @@ export default function LinkPage() {
       }
     >
       <Library.Section title="Link">
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Link" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Link" withSource>
               <Link href="https://www.example.com">A link to a website</Link>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Link</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="underline">
+          <Library.SectionL3 title="underline">
             <div className="m-4">
               <Library.Callout>
                 <strong>Note</strong> The <code>underline</code> prop is likely
@@ -66,8 +66,8 @@ export default function LinkPage() {
                 </Link>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Link</code> accepts HTML attribute props applicable to{' '}
@@ -85,10 +85,10 @@ export default function LinkPage() {
                 />
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>Link</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -96,7 +96,7 @@ export default function LinkPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant" id="styling-api-variant">
+          <Library.SectionL3 title="variant" id="styling-api-variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Link <code>variant</code>s affect the color of link text
@@ -127,9 +127,9 @@ export default function LinkPage() {
                 </Link>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set to remove all styling.
@@ -147,8 +147,8 @@ export default function LinkPage() {
                 Unstyled Link
               </Link>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

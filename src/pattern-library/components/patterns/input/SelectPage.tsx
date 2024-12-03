@@ -108,19 +108,19 @@ export default function SelectPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Select" />
 
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               title="Basic Select"
               exampleFile="select-basic"
               withSource
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Select">
+        <Library.SectionL2 title="Working with Select">
           <p>
             <code>Select</code> toggles a listbox where <code>Options</code>
             {"'"} UI can be customized and values can be objects.
@@ -131,7 +131,7 @@ export default function SelectPage() {
             correctly positioned.
           </p>
 
-          <Library.Example title="Composing and styling Selects">
+          <Library.SectionL3 title="Composing and styling Selects">
             <Library.Demo
               title="Select with custom Options"
               exampleFile="select-with-custom-options"
@@ -143,9 +143,9 @@ export default function SelectPage() {
               exampleFile="select-in-input-group"
               withSource
             />
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="Select with many options">
+          <Library.SectionL3 title="Select with many options">
             <Library.Demo title="Select with many options">
               <SelectWithManyOptions
                 items={[
@@ -176,9 +176,9 @@ export default function SelectPage() {
                 ]}
               />
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="Labeling Select">
+          <Library.SectionL3 title="Labeling Select">
             <p>
               There are three ways to label a <code>Select</code>. Make sure you
               always use one of them.
@@ -209,9 +209,9 @@ export default function SelectPage() {
               exampleFile="select-aria-labelledby"
               withSource
             />
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="Select with long content">
+          <Library.SectionL3 title="Select with long content">
             <p>
               <code>Select</code> makes sure the button content never overflows,
               and applies <code>text-overflow: ellipsis</code>.
@@ -251,15 +251,15 @@ export default function SelectPage() {
                 <SelectInInputGroup buttonClasses="!w-36" wrapperClasses="" />
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Select component API">
+        <Library.SectionL2 title="Select component API">
           <code>Select</code> accepts all standard{' '}
           <Library.Link href="/using-components#composite-components-api">
             composite component props
           </Library.Link>
-          <Library.Example title="value">
+          <Library.SectionL3 title="value">
             <Library.Info>
               <Library.InfoItem label="description">
                 Represents currently selected Option.
@@ -268,8 +268,8 @@ export default function SelectPage() {
                 <code>T</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="onChange">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onChange">
             <Library.Info>
               <Library.InfoItem label="description">
                 A callback invoked every time selected value changes.
@@ -278,8 +278,8 @@ export default function SelectPage() {
                 <code>(newValue: T) =&gt; void</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="buttonContent">
+          </Library.SectionL3>
+          <Library.SectionL3 title="buttonContent">
             <Library.Info>
               <Library.InfoItem label="description">
                 The content to be displayed in the toggle button.
@@ -288,8 +288,8 @@ export default function SelectPage() {
                 <code>ComponentChildren</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="buttonId">
+          </Library.SectionL3>
+          <Library.SectionL3 title="buttonId">
             <Library.Info>
               <Library.InfoItem label="description">
                 The toggle button{"'"}s <code>id</code>.
@@ -301,8 +301,8 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="disabled">
+          </Library.SectionL3>
+          <Library.SectionL3 title="disabled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Whether the Select is disabled or not.
@@ -319,8 +319,8 @@ export default function SelectPage() {
               exampleFile="select-disabled"
               withSource
             />
-          </Library.Example>
-          <Library.Example title="alignListbox">
+          </Library.SectionL3>
+          <Library.SectionL3 title="alignListbox">
             <Library.Info>
               <Library.InfoItem label="description">
                 Whether the listbox should be aligned to the right or left side
@@ -338,8 +338,8 @@ export default function SelectPage() {
               exampleFile="select-right"
               withSource
             />
-          </Library.Example>
-          <Library.Example title="buttonClasses">
+          </Library.SectionL3>
+          <Library.SectionL3 title="buttonClasses">
             <Library.Info>
               <Library.InfoItem label="description">
                 Additional classes to pass to toggle button.
@@ -356,8 +356,8 @@ export default function SelectPage() {
                 <SelectExample buttonClasses="!bg-yellow-notice" />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="containerClasses">
+          </Library.SectionL3>
+          <Library.SectionL3 title="containerClasses">
             <Library.Info>
               <Library.InfoItem label="description">
                 Additional classes to pass to container.
@@ -374,8 +374,8 @@ export default function SelectPage() {
                 <SelectExample containerClasses="border-4 border-yellow-notice" />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="listboxAsPopover">
+          </Library.SectionL3>
+          <Library.SectionL3 title="listboxAsPopover">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determines if the listbox should be rendered using the{' '}
@@ -401,8 +401,8 @@ export default function SelectPage() {
               exampleFile="select-non-popover-listbox"
               withSource
             />
-          </Library.Example>
-          <Library.Example title="popoverClasses">
+          </Library.SectionL3>
+          <Library.SectionL3 title="popoverClasses">
             <Library.Info>
               <Library.InfoItem label="description">
                 Additional classes to pass to the popover.
@@ -419,8 +419,8 @@ export default function SelectPage() {
                 <SelectExample popoverClasses="border-4 border-yellow-notice" />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="listboxOverflow">
+          </Library.SectionL3>
+          <Library.SectionL3 title="listboxOverflow">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determines the behavior of the listbox options when their
@@ -453,8 +453,8 @@ export default function SelectPage() {
               exampleFile="select-wrap-listbox"
               withSource
             />
-          </Library.Example>
-          <Library.Example title="onListboxScroll">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onListboxScroll">
             <Library.Info>
               <Library.InfoItem label="description">
                 A callback passed to the listbox <code>onScroll</code>.
@@ -468,11 +468,11 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Select.Option component API">
-          <Library.Example title="children">
+        <Library.SectionL2 title="Select.Option component API">
+          <Library.SectionL3 title="children">
             <Library.Info>
               <Library.InfoItem label="description">
                 Content of the option. You can pass a callback to receive the
@@ -485,8 +485,8 @@ export default function SelectPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="value">
+          </Library.SectionL3>
+          <Library.SectionL3 title="value">
             <Library.Info>
               <Library.InfoItem label="description">
                 The value to set when this option is selected.
@@ -495,8 +495,8 @@ export default function SelectPage() {
                 <code>T</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="disabled">
+          </Library.SectionL3>
+          <Library.SectionL3 title="disabled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Whether the option is disabled or not.
@@ -517,8 +517,8 @@ export default function SelectPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="classes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
                 CSS class(es) that will be appended to the CSS classes applied
@@ -531,8 +531,8 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="elementRef">
+          </Library.SectionL3>
+          <Library.SectionL3 title="elementRef">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>Ref</code> applied to the option{"'"}s outermost
@@ -547,8 +547,8 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="title">
+          </Library.SectionL3>
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 If provided, it is set as the option{"'"}s <code>title</code>{' '}
@@ -561,8 +561,8 @@ export default function SelectPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -576,17 +576,17 @@ export default function SelectPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="MultiSelect" />
 
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               title="Basic MultiSelect"
               exampleFile="select-multi-select"
               withSource
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

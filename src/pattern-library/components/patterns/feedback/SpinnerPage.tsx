@@ -30,17 +30,17 @@ export default function SpinnerPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Spinner" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource>
               <Spinner />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="color">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="color">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the foreground color of the spinner icon.
@@ -63,9 +63,9 @@ export default function SpinnerPage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set relative size of the spinner.
@@ -84,8 +84,8 @@ export default function SpinnerPage() {
                 <Spinner size="lg" />
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
       <Library.Section
         title="SpinnerOverlay"
@@ -100,9 +100,9 @@ export default function SpinnerPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="SpinnerOverlay" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic SpinnerOverlay">
               <Button onClick={toggleOverlayOpen}>Show overlay</Button>
               {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}
@@ -112,11 +112,11 @@ export default function SpinnerPage() {
 {overlayOpen && <SpinnerOverlay onClick={toggleOverlayOpen} />}`}
               title="Source for spinner-overlay example"
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="...htmlAttributes">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 HTML attributes applied to the outermost full-screen element.
@@ -128,8 +128,8 @@ export default function SpinnerPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

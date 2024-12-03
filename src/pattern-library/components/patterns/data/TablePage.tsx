@@ -22,7 +22,7 @@ export default function TablePage() {
       }
     >
       <Library.Section title="Table">
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage
             componentName="Table, TableHead, TableBody, TableRow, TableCell"
             size="sm"
@@ -71,10 +71,10 @@ export default function TablePage() {
               </TableBody>
             </Table>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Tables">
-          <Library.Example title="Composing Table components">
+        <Library.SectionL2 title="Working with Tables">
+          <Library.SectionL3 title="Composing Table components">
             <p>
               All <code>Table*</code> (<code>TableHead</code>,{' '}
               <code>TableFoot</code>, <code>TableRow</code>,{' '}
@@ -83,9 +83,9 @@ export default function TablePage() {
               component API. All also accept HTML attributes for their
               associated element.
             </p>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="Sizing Tables">
+          <Library.SectionL3 title="Sizing Tables">
             <p>
               Table column width is established by the first row, which are
               typically headers.
@@ -135,16 +135,16 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern id="table-props" title="Component API">
+        <Library.SectionL2 id="table-props" title="Component API">
           <code>Table</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="stickyHeader">
+          <Library.SectionL3 title="stickyHeader">
             <Library.Info>
               <Library.InfoItem label="description">
                 Make the table headers sticky in scrolling contexts
@@ -228,8 +228,8 @@ export default function TablePage() {
                 </ScrollContainer>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="interactive">
+          </Library.SectionL3>
+          <Library.SectionL3 title="interactive">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this boolean prop if rows in the table are select-able or
@@ -280,8 +280,8 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example id="table-props-borderless" title="borderless">
+          </Library.SectionL3>
+          <Library.SectionL3 id="table-props-borderless" title="borderless">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this boolean prop if you want to remove the table{"'"}s
@@ -333,8 +333,8 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="striped">
+          </Library.SectionL3>
+          <Library.SectionL3 title="striped">
             <Library.Info>
               <Library.InfoItem label="description">
                 Renders a different background for odd rows.
@@ -384,8 +384,8 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="grid">
+          </Library.SectionL3>
+          <Library.SectionL3 title="grid">
             <Library.Info>
               <Library.InfoItem label="description">
                 Renders borders for table cells.
@@ -472,8 +472,8 @@ export default function TablePage() {
                 </TableBody>
               </Table>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Link</code> accepts HTML attribute props applicable to{' '}
@@ -483,8 +483,8 @@ export default function TablePage() {
                 <code>{'preact.JSX.HTMLAttributes<HTMLTableElement>'}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

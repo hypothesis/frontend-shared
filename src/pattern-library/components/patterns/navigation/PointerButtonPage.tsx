@@ -23,18 +23,18 @@ export default function PointerButtonPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="PointerButton" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic PointerButtons" withSource>
               <PointerButton direction="up">3</PointerButton>
               <PointerButton direction="down">7</PointerButton>
               <PointerButton direction="left">5</PointerButton>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Working with PointerButtons">
-          <Library.Example title="PointerButtons in context">
+          </Library.SectionL3>
+        </Library.SectionL2>
+        <Library.SectionL2 title="Working with PointerButtons">
+          <Library.SectionL3 title="PointerButtons in context">
             <p>
               The following example shows <code>PointerButtons</code> as they
               might appear in the client, positioned absolutely in a{' '}
@@ -73,16 +73,16 @@ export default function PointerButtonPage() {
                 </ul>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Button</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="direction">
+          <Library.SectionL3 title="direction">
             <Library.Info>
               <Library.InfoItem label="description">
                 Direction the button should point. If not provided, the button
@@ -120,8 +120,8 @@ export default function PointerButtonPage() {
             <Library.Demo title="direction: down" withSource>
               <PointerButton direction="down">6</PointerButton>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...buttonProps">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...buttonProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>PointerButton</code> props for{' '}
@@ -132,8 +132,8 @@ export default function PointerButtonPage() {
                 <code>{`Omit<ButtonProps>, 'variant' | 'size' | 'unstyled'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

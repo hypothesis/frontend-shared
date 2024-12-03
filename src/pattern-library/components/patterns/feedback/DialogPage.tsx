@@ -218,7 +218,7 @@ export default function DialogPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Dialog" />
           <Library.Demo title="Basic Dialog" withSource>
             <Dialog_
@@ -237,10 +237,10 @@ export default function DialogPage() {
               </InputGroup>
             </Dialog_>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Dialogs">
-          <Library.Example title="Laying out content">
+        <Library.SectionL2 title="Working with Dialogs">
+          <Library.SectionL3 title="Laying out content">
             <p>
               By default, <code>Dialog</code> will lay out its children in a{' '}
               <code>Panel</code>. Set <code>variant</code> to{' '}
@@ -262,10 +262,10 @@ export default function DialogPage() {
                 </div>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Dialog</code> accepts all standard{' '}
             <Library.Link href="/using-components#composite-components-api">
@@ -274,7 +274,7 @@ export default function DialogPage() {
             .
           </p>
 
-          <Library.Example title="title">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>title</code> is required for all dialogs.
@@ -286,9 +286,9 @@ export default function DialogPage() {
                 <code>true</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="classes">
+          <Library.SectionL3 title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
                 Atypically for a composite component, <code>Dialog</code>{' '}
@@ -300,9 +300,9 @@ export default function DialogPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="closeOnClickAway">
+          <Library.SectionL3 title="closeOnClickAway">
             <Library.Info>
               <Library.InfoItem label="description">
                 The <code>Dialog</code> should close (invoke its{' '}
@@ -327,9 +327,9 @@ export default function DialogPage() {
                 <p>This dialog will close if you click outside of it</p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="closeOnEscape">
+          <Library.SectionL3 title="closeOnEscape">
             <Library.Info>
               <Library.InfoItem label="description">
                 The <code>Dialog</code> should close (invoke its{' '}
@@ -354,9 +354,9 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="closeOnFocusAway">
+          <Library.SectionL3 title="closeOnFocusAway">
             <Library.Info>
               <Library.InfoItem label="description">
                 The <code>Dialog</code> should close (invoke its{' '}
@@ -378,9 +378,9 @@ export default function DialogPage() {
                 <p>This dialog will close if you focus outside of it</p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="initialFocus">
+          <Library.SectionL3 title="initialFocus">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determine how initial focus is routed when the{' '}
@@ -397,9 +397,9 @@ export default function DialogPage() {
                 <code>{`'auto'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onClose">
+          <Library.SectionL3 title="onClose">
             <Library.Callout>
               The <code>onClose</code> prop is optional, but should be
               considered required for all new <code>Dialog</code>s. This
@@ -430,9 +430,9 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="closeTitle">
+          <Library.SectionL3 title="closeTitle">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determine the accessible title to be set on the close button
@@ -453,9 +453,9 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="restoreFocus">
+          <Library.SectionL3 title="restoreFocus">
             <Library.Info>
               <Library.InfoItem label="description">
                 Upon closing (unmounting), restore focus to the element that had
@@ -480,9 +480,9 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="transitionComponent">
+          <Library.SectionL3 title="transitionComponent">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>TransitionComponent</code> to use when this{' '}
@@ -507,9 +507,9 @@ export default function DialogPage() {
                 </p>
               </Dialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 By default, contents are laid out in a <code>Panel</code>. Set
@@ -522,9 +522,9 @@ export default function DialogPage() {
                 <code>{`'panel'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...panelProps">
+          <Library.SectionL3 title="...panelProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Dialog</code> uses <code>Panel</code> for layout. All{' '}
@@ -537,8 +537,8 @@ export default function DialogPage() {
                 <code>{`Omit<PanelProps, 'fullWidthHeader'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -552,7 +552,7 @@ export default function DialogPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="ModalDialog" />
 
           <Library.Demo title="Basic ModalDialog" withSource>
@@ -580,9 +580,9 @@ export default function DialogPage() {
               </InputGroup>
             </ModalDialog_>
           </Library.Demo>
-        </Library.Pattern>
-        <Library.Pattern title="Working with ModalDialogs">
-          <Library.Example title="Handling long content">
+        </Library.SectionL2>
+        <Library.SectionL2 title="Working with ModalDialogs">
+          <Library.SectionL3 title="Handling long content">
             <p>
               By default, content in a <code>Dialog</code> or{' '}
               <code>ModalDialog</code> will scroll as needed to keep the modal
@@ -596,8 +596,8 @@ export default function DialogPage() {
                 <LoremIpsum size="lg" />
               </ModalDialog_>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Handling complex modals">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Handling complex modals">
             <p>
               Modal dialogs should provide appropriate keyboard navigation even
               when there are multiple or complex embedded widgts, like data
@@ -656,8 +656,8 @@ export default function DialogPage() {
                 )}
               </ModalDialog_>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Managing modal height">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Managing modal height">
             <p>
               By default, the height of a modal is dependent on the content
               inside of it. It will grow in height as needed for the content
@@ -750,8 +750,8 @@ export default function DialogPage() {
                 </div>
               </ModalDialog_>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Custom layout">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Custom layout">
             <Library.Demo title="Modal dialog with custom layout" withSource>
               <CustomModalDialog_ variant="custom">
                 <div className="flex gap-x-3 items-center border p-3 bg-white">
@@ -760,10 +760,10 @@ export default function DialogPage() {
                 </div>
               </CustomModalDialog_>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="ComponentAPI">
-          <Library.Example title="title">
+          </Library.SectionL3>
+        </Library.SectionL2>
+        <Library.SectionL2 title="ComponentAPI">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>title</code> is required for all modal dialogs.
@@ -775,9 +775,9 @@ export default function DialogPage() {
                 <code>true</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="disableCloseOnEscape">
+          <Library.SectionL3 title="disableCloseOnEscape">
             <Library.Info>
               <Library.InfoItem label="description">
                 Do not close the <code>ModalDialog</code> when <kbd>ESC</kbd> is
@@ -790,9 +790,9 @@ export default function DialogPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="disableFocusTrap">
+          <Library.SectionL3 title="disableFocusTrap">
             <Library.Info>
               <Library.InfoItem label="description">
                 Do not trap focus in the modal.
@@ -816,9 +816,9 @@ export default function DialogPage() {
               . Disabling this prop is not recommended and could raise issues of
               accessibility.
             </Library.Callout>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="disableRestoreFocus">
+          <Library.SectionL3 title="disableRestoreFocus">
             <Library.Info>
               <Library.InfoItem label="description">
                 Do not restore focus to previously-focused element when the
@@ -831,9 +831,9 @@ export default function DialogPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the relative width of the modal element. Set to {`'custom'`}{' '}
@@ -889,9 +889,9 @@ export default function DialogPage() {
                 <LoremIpsum size="md" />
               </ModalDialog_>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="scrollable (default true)">
+          <Library.SectionL3 title="scrollable (default true)">
             <p>
               By default, dialogs will scroll overflowing content. In some
               cases, it is desireable to scroll only a portion of the content,
@@ -901,9 +901,9 @@ export default function DialogPage() {
               The <i>Handling Complex Modals</i> example above disables
               scrolling with the <code>scrollable</code> prop.
             </p>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...dialogAndPanelProps">
+          <Library.SectionL3 title="...dialogAndPanelProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 Props forwarded to <code>Dialog</code> and <code>Panel</code>.
@@ -930,8 +930,8 @@ export default function DialogPage() {
                 <code>{`Omit<DialogProps, 'restoreFocus' | 'closeOnEscape'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -945,7 +945,7 @@ export default function DialogPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="confirm" />
           <Library.Demo title="Basic confirm">
             <Confirm />
@@ -963,7 +963,7 @@ export default function DialogPage() {
 });`}
             />
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

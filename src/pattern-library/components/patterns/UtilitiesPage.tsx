@@ -13,8 +13,8 @@ export default function UtilitiesPage() {
         </p>
       }
     >
-      <Library.Pattern title="Utility classes">
-        <Library.Example title=".focus-visible-ring">
+      <Library.SectionL2 title="Utility classes">
+        <Library.SectionL3 title=".focus-visible-ring">
           <p>
             The <code>.focus-visible-ring</code> utility class customizes an
             interactive element&apos;s focus ring such that it is only visible
@@ -43,16 +43,16 @@ export default function UtilitiesPage() {
               Inset ring
             </button>
           </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Modifiers (variants)">
+      <Library.SectionL2 title="Modifiers (variants)">
         <p>
           This package also provides some tailwind variants (modifiers) that can
           be combined with other tailwind utility classes.
         </p>
 
-        <Library.Example title="Styling groups of inputs">
+        <Library.SectionL3 title="Styling groups of inputs">
           <p>
             The <code>input-group</code> modifier allows adaptation of styling
             on inputs when they are part of a group of inputs. This is identical
@@ -116,8 +116,8 @@ export default function UtilitiesPage() {
               </button>
             </div>
           </Library.Demo>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
     </Library.Page>
   );
 }

@@ -13,17 +13,17 @@ export default function LinkButtonPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="LinkButton" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic LinkButton" withSource>
               <LinkButton>Example of LinkButton</LinkButton>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="color">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="color">
             <Library.Info>
               <Library.InfoItem label="status">
                 <Library.StatusChip status="deprecated" /> Use{' '}
@@ -40,9 +40,9 @@ export default function LinkButtonPage() {
                 <code>{"'brand'"}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="inline">
+          <Library.SectionL3 title="inline">
             <Library.Info>
               <Library.InfoItem label="description">
                 Style a <code>LinkButton</code> to lay out inline. Ignored if{' '}
@@ -73,9 +73,9 @@ export default function LinkButtonPage() {
                 </p>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="underline">
+          <Library.SectionL3 title="underline">
             <div className="m-4">
               <Library.Callout>
                 <strong>Note</strong> The <code>underline</code> prop is likely
@@ -118,9 +118,9 @@ export default function LinkButtonPage() {
                 </p>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>LinkButton</code> accepts HTML attribute props applicable
@@ -132,10 +132,10 @@ export default function LinkButtonPage() {
                 </code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>LinkButton</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -143,7 +143,7 @@ export default function LinkButtonPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set to <code>custom</code> to remove theming styles.
@@ -218,9 +218,9 @@ export default function LinkButtonPage() {
                 Link text
               </LinkButton>
             </div>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set to remove all styling.
@@ -236,8 +236,8 @@ export default function LinkButtonPage() {
             <Library.Demo withSource>
               <LinkButton unstyled>Unstyled LinkButton</LinkButton>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

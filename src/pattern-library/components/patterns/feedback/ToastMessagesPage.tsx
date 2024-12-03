@@ -127,20 +127,20 @@ export default function ToastMessagesPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="ToastMessages" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource title="Basic ToastMessages">
               <ToastMessages_
                 messages={toastMessages}
                 onMessageDismiss={() => {}}
               />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with ToastMessages">
-          <Library.Example title="Accessibility">
+        <Library.SectionL2 title="Working with ToastMessages">
+          <Library.SectionL3 title="Accessibility">
             <p>
               <code>ToastMessages</code> includes an{' '}
               <Link href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions">
@@ -156,32 +156,32 @@ export default function ToastMessagesPage() {
               only announced by screen readers, via{' '}
               <code>{'{ visuallyHidden: true }'}</code>
             </p>
-          </Library.Example>
-          <Library.Example title="Positioning">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Positioning">
             <p>
               By default, every message rendered by <code>ToastMessages</code>{' '}
               will be relative positioned. It{"'"}s up to consumers to wrap it
               in an absolute-positioned container if desired.
             </p>
-          </Library.Example>
-          <Library.Example title="Auto-dismiss">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Auto-dismiss">
             <p>
               All messages will be auto-dismissed after 5 seconds. Pass
               <code>{'{ autoDismiss: false }'}</code> for those messages where
               you want this to be prevented.
             </p>
-          </Library.Example>
-          <Library.Example title="Transitions">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Transitions">
             <p>
               All messages will fade-in when appended and fade-out when
               dismissed, but you can provide your own transition classes via{' '}
               <code>transitionClasses</code> prop.
             </p>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="messages">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="messages">
             <Library.Info>
               <Library.InfoItem label="description">
                 The list of toast messages to display at a given point.
@@ -197,8 +197,8 @@ export default function ToastMessagesPage() {
                 onMessageDismiss={() => {}}
               />
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="onMessageDismiss">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onMessageDismiss">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked with the toast message id, when it ends its
@@ -217,8 +217,8 @@ export default function ToastMessagesPage() {
                 _printOnDismiss
               />
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="transitionClasses">
+          </Library.SectionL3>
+          <Library.SectionL3 title="transitionClasses">
             <Library.Info>
               <Library.InfoItem label="description">
                 Custom CSS classes to apply to toast messages when appended
@@ -241,8 +241,8 @@ export default function ToastMessagesPage() {
                 _allowAppending
               />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

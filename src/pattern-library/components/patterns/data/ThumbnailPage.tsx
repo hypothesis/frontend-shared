@@ -18,7 +18,7 @@ export default function ThumbnailPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Thumbnail" />
 
           <Library.Demo title="Basic Thumbnail" withSource>
@@ -28,10 +28,10 @@ export default function ThumbnailPage() {
               </Thumbnail>
             </div>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Thumbnails">
-          <Library.Example title="Loading and placeholder content">
+        <Library.SectionL2 title="Working with Thumbnails">
+          <Library.SectionL3 title="Loading and placeholder content">
             <Library.Demo withSource title="Loading state">
               <div className="w-[250px]">
                 <Thumbnail loading>
@@ -45,9 +45,9 @@ export default function ThumbnailPage() {
                 <Thumbnail />
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="Height and width constraints">
+          <Library.SectionL3 title="Height and width constraints">
             <p>
               <code>Thumbnail</code> will constrain content to within the height
               and width constraints of the containing element. If the parent
@@ -79,10 +79,10 @@ export default function ThumbnailPage() {
                 </Thumbnail>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Thumbnail</code> accepts all standard{' '}
             <Library.Link href="/using-components#composite-components-api">
@@ -91,7 +91,7 @@ export default function ThumbnailPage() {
             .
           </p>
 
-          <Library.Example title="borderless">
+          <Library.SectionL3 title="borderless">
             <Library.Info>
               <Library.InfoItem label="description">
                 Render the <code>Thumbnail</code> with no visual border.
@@ -118,9 +118,9 @@ export default function ThumbnailPage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="loading">
+          <Library.SectionL3 title="loading">
             <Library.Info>
               <Library.InfoItem label="description">
                 Display a loading indicator.
@@ -132,9 +132,9 @@ export default function ThumbnailPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="objectFit">
+          <Library.SectionL3 title="objectFit">
             <Library.Info>
               <Library.InfoItem label="description">
                 Control the way the content is resized and fitted (
@@ -155,9 +155,9 @@ export default function ThumbnailPage() {
                 <code>{"'cover'"}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="placeholder">
+          <Library.SectionL3 title="placeholder">
             <Library.Info>
               <Library.InfoItem label="description">
                 Custom placeholder content to use when the{' '}
@@ -176,9 +176,9 @@ export default function ThumbnailPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="ratio">
+          <Library.SectionL3 title="ratio">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the aspect ratio for the content.
@@ -199,9 +199,9 @@ export default function ThumbnailPage() {
                 </Thumbnail>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the relative proportions of the <code>Thumbnail</code>, its
@@ -273,9 +273,9 @@ export default function ThumbnailPage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Thubmnail</code> accepts HTML element attributes
@@ -284,8 +284,8 @@ export default function ThumbnailPage() {
                 <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'loading' | 'placeholder'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

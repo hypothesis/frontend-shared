@@ -16,7 +16,7 @@ export default function GettingStartedPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern title="Installation">
+        <Library.SectionL2 title="Installation">
           <p>
             Your application needs to install{' '}
             <Link href="https://tailwindcss.com/" underline="always">
@@ -27,9 +27,9 @@ export default function GettingStartedPage() {
           <Library.Code
             content={`$ yarn add tailwindcss @hypothesis/frontend-shared`}
           />
-        </Library.Pattern>
-        <Library.Pattern title="Configuration">
-          <Library.Example title="Configure tailwindcss">
+        </Library.SectionL2>
+        <Library.SectionL2 title="Configuration">
+          <Library.SectionL3 title="Configure tailwindcss">
             <p>Configure your {"project's"} tailwind configuration object:</p>
             <ul>
               <li>Use this {"package's"} tailwind preset</li>
@@ -51,11 +51,11 @@ export default {
   ],
   // ...`}
             />
-          </Library.Example>
-        </Library.Pattern>
-        <Library.Pattern title="Usage">
+          </Library.SectionL3>
+        </Library.SectionL2>
+        <Library.SectionL2 title="Usage">
           <Library.Usage componentName="Card, Link" />
-        </Library.Pattern>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );
