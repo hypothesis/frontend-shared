@@ -31,6 +31,7 @@ import OverlayPage from './components/patterns/layout/OverlayPage';
 import PanelPage from './components/patterns/layout/PanelPage';
 import LinkButtonPage from './components/patterns/navigation/LinkButtonPage';
 import LinkPage from './components/patterns/navigation/LinkPage';
+import PaginationPage from './components/patterns/navigation/PaginationPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
 import SliderPage from './components/patterns/transition/SliderPage';
@@ -248,6 +249,12 @@ const routes: PlaygroundRoute[] = [
     group: 'navigation',
     component: LinkButtonPage,
     route: '/navigation-linkbutton',
+  },
+  {
+    title: 'Pagination',
+    group: 'navigation',
+    component: PaginationPage,
+    route: '/navigation-pagination',
   },
   {
     title: 'PointerButton',
