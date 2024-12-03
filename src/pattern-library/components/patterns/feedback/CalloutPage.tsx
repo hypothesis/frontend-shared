@@ -13,9 +13,9 @@ export default function CalloutPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Callout" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource title="Basic Callout">
               <div className="flex flex-col gap-y-4">
                 <Callout status="notice">
@@ -29,10 +29,10 @@ export default function CalloutPage() {
                 </Callout>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Callout</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -41,7 +41,7 @@ export default function CalloutPage() {
             .
           </p>
 
-          <Library.Example title="icon">
+          <Library.SectionL3 title="icon">
             <Library.Info>
               <Library.InfoItem label="description">
                 Custom icon to display in callout.
@@ -56,9 +56,9 @@ export default function CalloutPage() {
                 This callout has a custom icon
               </Callout>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="status">
+          <Library.SectionL3 title="status">
             <Library.Info>
               <Library.InfoItem label="description">
                 Will theme the callout with an appropriate icon and coloring
@@ -72,9 +72,9 @@ export default function CalloutPage() {
                 <code>{`'notice'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Callout</code> accepts HTML attribute props applicable to{' '}
@@ -84,10 +84,10 @@ export default function CalloutPage() {
                 <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'icon'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>Callout</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -96,7 +96,7 @@ export default function CalloutPage() {
             .
           </p>
 
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the <code>Callout</code> theming.
@@ -126,9 +126,9 @@ export default function CalloutPage() {
                 <code>{`'custom'`}</code>.
               </Callout>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the relative internal sizing of the callout. Set to{' '}
@@ -161,9 +161,9 @@ export default function CalloutPage() {
                 </Callout>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this to disable all styling and provide your own styling
@@ -176,8 +176,8 @@ export default function CalloutPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

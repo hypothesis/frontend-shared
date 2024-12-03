@@ -20,19 +20,19 @@ export default function OptionButtonPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="OptionButton" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource title="Basic OptionButton">
               <div className="w-[250px]">
                 <OptionButton>Option Alpha</OptionButton>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with OptionButton">
-          <Library.Example title="Multiple OptionButtons">
+        <Library.SectionL2 title="Working with OptionButton">
+          <Library.SectionL3 title="Multiple OptionButtons">
             <p>
               <code>OptionButton</code> is designed for use in a set, similar to
               an <code>option</code> element or a radio button. While not
@@ -53,11 +53,11 @@ export default function OptionButtonPage() {
                 <OptionButton>Option Golf</OptionButton>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="details">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="details">
             <Library.Info>
               <Library.InfoItem label="description">
                 Optional content to display at right side of button. Be sure to
@@ -79,9 +79,9 @@ export default function OptionButtonPage() {
                 </OptionButton>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="selected">
+          <Library.SectionL3 title="selected">
             <Library.Info>
               <Library.InfoItem label="description">
                 The option represented by the button is selected. A maximum of
@@ -108,9 +108,9 @@ export default function OptionButtonPage() {
                 </OptionButton>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...buttonProps">
+          <Library.SectionL3 title="...buttonProps">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>OptionButton</code> accepts and forwards all{' '}
@@ -124,8 +124,8 @@ export default function OptionButtonPage() {
                 <code>{`Omit<ButtonProps, 'size' | 'unstyled' | 'classes' | 'variant'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

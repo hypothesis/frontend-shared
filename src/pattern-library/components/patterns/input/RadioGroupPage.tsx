@@ -18,18 +18,18 @@ export default function RadioGroupPage() {
         </p>
       }
     >
-      <Library.Pattern>
+      <Library.SectionL2>
         <Library.Usage componentName="RadioGroup" />
-        <Library.Example>
+        <Library.SectionL3>
           <Library.Demo
             title="Basic RadioGroup"
             withSource
             exampleFile="radio-group-horizontal"
           />
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Working with RadioGroups">
+      <Library.SectionL2 title="Working with RadioGroups">
         <p>
           <code>RadioGroup</code> can render a list of radios arranged
           horizontally or vertically. Each radio can optionally render a
@@ -40,15 +40,15 @@ export default function RadioGroupPage() {
           next radio, and Up/Left for the previous one.
         </p>
 
-        <Library.Example title="RadioGroup direction">
+        <Library.SectionL3 title="RadioGroup direction">
           <Library.Demo
             title="Vertical RadioGroup"
             withSource
             exampleFile="radio-group-vertical"
           />
-        </Library.Example>
+        </Library.SectionL3>
 
-        <Library.Example title="RadioGroup with complex layout">
+        <Library.SectionL3 title="RadioGroup with complex layout">
           <p>
             If the <code>RadioGroup</code> <code>direction</code> does not fit
             your needs, you can provide a more complex container around radios,
@@ -60,9 +60,9 @@ export default function RadioGroupPage() {
             withSource
             exampleFile="radio-group-grid-layout"
           />
-        </Library.Example>
+        </Library.SectionL3>
 
-        <Library.Example title="Labelling RadioGroups">
+        <Library.SectionL3 title="Labelling RadioGroups">
           <p>
             There are two ways to label a <code>RadioGroup</code>. Make sure to
             use at least one of them.
@@ -78,11 +78,11 @@ export default function RadioGroupPage() {
             withSource
             exampleFile="radio-group-aria-labelledby"
           />
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Component API">
-        <Library.Example title="aria-label">
+      <Library.SectionL2 title="Component API">
+        <Library.SectionL3 title="aria-label">
           <Library.Info>
             <Library.InfoItem label="description">
               Sets the <code>aria-label</code> attribute in the{' '}
@@ -96,8 +96,8 @@ export default function RadioGroupPage() {
               <code>undefined</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="aria-labelledby">
+        </Library.SectionL3>
+        <Library.SectionL3 title="aria-labelledby">
           <Library.Info>
             <Library.InfoItem label="description">
               Sets the <code>aria-labelledby</code> attribute in the{' '}
@@ -111,8 +111,8 @@ export default function RadioGroupPage() {
               <code>undefined</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="children">
+        </Library.SectionL3>
+        <Library.SectionL3 title="children">
           <Library.Info>
             <Library.InfoItem label="description">
               The content to render inside the <code>RadioGroup</code>,
@@ -125,8 +125,8 @@ export default function RadioGroupPage() {
               <code>undefined</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="direction">
+        </Library.SectionL3>
+        <Library.SectionL3 title="direction">
           <Library.Info>
             <Library.InfoItem label="description">
               Whether the radios should be stacked horizontally or vertically.
@@ -142,8 +142,8 @@ export default function RadioGroupPage() {
               </code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="disabled">
+        </Library.SectionL3>
+        <Library.SectionL3 title="disabled">
           <Library.Info>
             <Library.InfoItem label="description">
               If true, it will disable all radios, regardless of the value of
@@ -163,8 +163,8 @@ export default function RadioGroupPage() {
             withSource
             exampleFile="radio-group-disabled"
           />
-        </Library.Example>
-        <Library.Example title="name">
+        </Library.SectionL3>
+        <Library.SectionL3 title="name">
           <Library.Info>
             <Library.InfoItem label="description">
               When provided, a hidden <code>input</code> will be included, with
@@ -183,8 +183,8 @@ export default function RadioGroupPage() {
             withSource
             exampleFile="radio-group-in-form"
           />
-        </Library.Example>
-        <Library.Example title="onChange">
+        </Library.SectionL3>
+        <Library.SectionL3 title="onChange">
           <Library.Info>
             <Library.InfoItem label="description">
               A callback invoked when selected radio changes.
@@ -193,8 +193,8 @@ export default function RadioGroupPage() {
               <code>(newValue: T) {'=>'} void</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="selected">
+        </Library.SectionL3>
+        <Library.SectionL3 title="selected">
           <Library.Info>
             <Library.InfoItem label="description">
               The value for currently selected radio.
@@ -206,8 +206,8 @@ export default function RadioGroupPage() {
               <code>undefined</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
     </Library.Page>
   );
 }

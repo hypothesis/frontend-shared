@@ -28,7 +28,7 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="ScrollBox" />
           <Library.Demo title="Basic Scrollbox" withSource>
             <div className="w-[280px] h-[200px]">
@@ -39,9 +39,9 @@ export default function ScrollBoxPage() {
               </ScrollBox>
             </div>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>ScrollBox</code> accepts all standard{' '}
             <Library.Link href="/using-components#composite-components-api">
@@ -49,7 +49,7 @@ export default function ScrollBoxPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="borderless">
+          <Library.SectionL3 title="borderless">
             <Library.Info>
               <Library.InfoItem label="description">
                 Disable the border on the <code>ScrollBox</code>
@@ -70,8 +70,8 @@ export default function ScrollBoxPage() {
                 </ScrollBox>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -84,8 +84,8 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern title="Composing Scroll components">
-          <Library.Example>
+        <Library.SectionL2 title="Composing Scroll components">
+          <Library.SectionL3>
             <p>
               Sizing constraints are dictated by the immediate parent container
               of the outermost <code>Scroll*</code> component. Here and in
@@ -108,8 +108,8 @@ export default function ScrollBoxPage() {
                 </ScrollContainer>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -121,9 +121,9 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Scroll" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Scroll" withSource>
               <div className="w-[320px] h-[200px]">
                 <Scroll>
@@ -133,10 +133,10 @@ export default function ScrollBoxPage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>Scroll</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -144,7 +144,7 @@ export default function ScrollBoxPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Scroll</code>
@@ -169,9 +169,9 @@ export default function ScrollBoxPage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Scroll</code> accepts HTML element attributes
@@ -180,8 +180,8 @@ export default function ScrollBoxPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -194,9 +194,9 @@ export default function ScrollBoxPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="ScrollContent" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Scroll with ScrollContent" withSource>
               <div className="w-[320px] h-[200px]">
                 <Scroll>
@@ -208,10 +208,10 @@ export default function ScrollBoxPage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>ScrollContent</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -219,7 +219,7 @@ export default function ScrollBoxPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Scroll</code> accepts HTML element attributes
@@ -228,8 +228,8 @@ export default function ScrollBoxPage() {
                 <code>{`JSX.HTMLAttributes<HTMLDivElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -249,7 +249,7 @@ export default function ScrollBoxPage() {
           </>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="ScrollContainer" />
 
           <Library.Demo title="Basic ScrollContainer" withSource>
@@ -267,9 +267,9 @@ export default function ScrollBoxPage() {
               </ScrollContainer>
             </div>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>ScrollContainer</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -277,7 +277,7 @@ export default function ScrollBoxPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="borderless">
+          <Library.SectionL3 title="borderless">
             <Library.Info>
               <Library.InfoItem label="description">
                 Disable the border on the <code>ScrollContainer</code>
@@ -304,9 +304,9 @@ export default function ScrollBoxPage() {
                 </ScrollContainer>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>ScrollContainer</code> accepts HTML element attributes
@@ -315,8 +315,8 @@ export default function ScrollBoxPage() {
                 <code>{`JSX.HTMLAttributes<HTMLDivElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

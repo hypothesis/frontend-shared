@@ -49,19 +49,19 @@ export default function PopoverPage() {
           </>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage symbolName="Popover" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               title="Basic Popover"
               exampleFile="popover-basic"
               withSource
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Popover component API">
-          <Library.Example title="align">
+        <Library.SectionL2 title="Popover component API">
+          <Library.SectionL3 title="align">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determines to which side of the anchor element the popover
@@ -79,8 +79,8 @@ export default function PopoverPage() {
               exampleFile="popover-right"
               withSource
             />
-          </Library.Example>
-          <Library.Example title="anchorElementRef">
+          </Library.SectionL3>
+          <Library.SectionL3 title="anchorElementRef">
             <Library.Info>
               <Library.InfoItem label="description">
                 A reference to the element to which the popover should anchor,
@@ -91,8 +91,8 @@ export default function PopoverPage() {
                 <code>{'RefObject<HTMLElement | undefined>'}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="asNativePopover">
+          </Library.SectionL3>
+          <Library.SectionL3 title="asNativePopover">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determines if the{' '}
@@ -113,8 +113,8 @@ export default function PopoverPage() {
                 . Otherwise it is <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="classes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
                 Additional CSS classes to pass to the popover.
@@ -126,8 +126,8 @@ export default function PopoverPage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="onClose">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onClose">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked when the popover is automatically closed by
@@ -142,8 +142,8 @@ export default function PopoverPage() {
                 <code>{'() => void'}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="open">
+          </Library.SectionL3>
+          <Library.SectionL3 title="open">
             <Library.Info>
               <Library.InfoItem label="description">
                 Whether the <code>Popover</code> is currently open or not.
@@ -152,8 +152,8 @@ export default function PopoverPage() {
                 <code>boolean</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="restoreFocusOnClose">
+          </Library.SectionL3>
+          <Library.SectionL3 title="restoreFocusOnClose">
             <Library.Info>
               <Library.InfoItem label="description">
                 Determines if focus should be restored when the{' '}
@@ -166,8 +166,8 @@ export default function PopoverPage() {
                 <code>true</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="variant">
+          </Library.SectionL3>
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the <code>Popover</code> style variant.
@@ -184,8 +184,8 @@ export default function PopoverPage() {
               exampleFile="popover-custom"
               withSource
             />
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

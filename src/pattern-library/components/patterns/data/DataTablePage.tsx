@@ -118,7 +118,7 @@ export default function DataTablePage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="DataTable" />
 
           <Library.Demo title="Basic DataTable" withSource>
@@ -132,10 +132,10 @@ export default function DataTablePage() {
               </Scroll>
             </div>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with tables">
-          <Library.Example title="Rows, columns and items">
+        <Library.SectionL2 title="Working with tables">
+          <Library.SectionL3 title="Rows, columns and items">
             <p>
               <code>DataTable</code> operates on <code>rows</code> and
               <code>columns</code>. Rows are generic key-value objects and
@@ -210,8 +210,8 @@ export default function DataTablePage() {
   { field: 'year', label: 'Year' },
 ];`}
             />
-          </Library.Example>
-          <Library.Example title="Grid DataTables with scroll">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Grid DataTables with scroll">
             <Library.Demo title="Grid DataTables with scroll" withSource>
               <div className="w-full h-[250px]">
                 <Scroll>
@@ -224,8 +224,8 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Interactive DataTables">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Interactive DataTables">
             <p>
               The presence of a <code>onSelectRow</code>,{' '}
               <code>onSelectRows</code> or <code>onConfirmRow</code> callback
@@ -274,8 +274,8 @@ export default function DataTablePage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Tables in constrained spaces">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Tables in constrained spaces">
             <p>
               <code>DataTable</code> and <code>Table</code> are designed to be
               compatible with scrolling contexts. The examples on this page are
@@ -302,10 +302,10 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>DataTable</code> accepts all standard{' '}
             <Library.Link href="/using-components#composite-components-api">
@@ -317,7 +317,7 @@ export default function DataTablePage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="columns">
+          <Library.SectionL3 title="columns">
             <Library.Info>
               <Library.InfoItem label="description">
                 An array of objects defining headers to render, as well as which
@@ -361,9 +361,9 @@ export default function DataTablePage() {
   { field: 'year', label: 'Year' },
 ];`}
             />
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="rows">
+          <Library.SectionL3 title="rows">
             <Library.Info>
               <Library.InfoItem label="description">
                 Array of objects mapping field names to values. Only fields that
@@ -404,9 +404,9 @@ export default function DataTablePage() {
   { field: 'language', label: 'Language' },
 ];`}
             />
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="emptyMessage">
+          <Library.SectionL3 title="emptyMessage">
             <Library.Info>
               <Library.InfoItem label="description">
                 Message to show if there are no <code>rows</code>. Superseded by{' '}
@@ -428,9 +428,9 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="loading">
+          <Library.SectionL3 title="loading">
             <Library.Info>
               <Library.InfoItem label="description">
                 Show a loading spinner. Column headings are still displayed.
@@ -454,9 +454,9 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="renderItem">
+          <Library.SectionL3 title="renderItem">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback for formatting the contents of an individual table
@@ -520,9 +520,9 @@ export default function DataTablePage() {
   }
 }`}
             />
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onSelectRow">
+          <Library.SectionL3 title="onSelectRow">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked when a row is selected (focused or
@@ -554,9 +554,9 @@ export default function DataTablePage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onSelectRows">
+          <Library.SectionL3 title="onSelectRows">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked when the selected rows are changed if multi-row
@@ -592,9 +592,9 @@ export default function DataTablePage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onConfirmRow">
+          <Library.SectionL3 title="onConfirmRow">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback invoked when a row is confirmed (double-clicked, or{' '}
@@ -604,9 +604,9 @@ export default function DataTablePage() {
                 <code>{`(r: Row) => void`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="selectedRow">
+          <Library.SectionL3 title="selectedRow">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set which Row in <code>rows</code> is currently selected.
@@ -628,9 +628,9 @@ export default function DataTablePage() {
                 </Scroll>
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="selectedRows">
+          <Library.SectionL3 title="selectedRows">
             <Library.Info>
               <Library.InfoItem label="description">
                 This is like <code>selectedRow</code> except that it specifies
@@ -640,9 +640,9 @@ export default function DataTablePage() {
                 <code>{`Row[]`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="order">
+          <Library.SectionL3 title="order">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the column from which <code>rows</code> are currently
@@ -658,9 +658,9 @@ export default function DataTablePage() {
                 <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="onOrderChange">
+          <Library.SectionL3 title="onOrderChange">
             <Library.Info>
               <Library.InfoItem label="description">
                 Used together with <code>order</code>, can be used to know what
@@ -696,9 +696,9 @@ export default function DataTablePage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="orderableColumns">
+          <Library.SectionL3 title="orderableColumns">
             <Library.Info>
               <Library.InfoItem label="description">
                 If provided together with <code>onOrderChange</code>, it allows
@@ -738,9 +738,9 @@ export default function DataTablePage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>DataTable</code> accepts HTML element attributes except
@@ -750,8 +750,8 @@ export default function DataTablePage() {
                 <code>{`Omit<JSX.HTMLAttributes<HTMLElement>, 'size' | 'rows' | 'role' | 'loading'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

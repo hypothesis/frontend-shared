@@ -21,9 +21,9 @@ export default function ButtonPage() {
       }
     >
       <Library.Section title="Button">
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Button" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Button" withSource>
               <Button
                 icon={CheckIcon}
@@ -32,16 +32,16 @@ export default function ButtonPage() {
                 Click me
               </Button>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Button</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="expanded">
+          <Library.SectionL3 title="expanded">
             <Library.Info>
               <Library.InfoItem label="description">
                 This {"button's"} associated content is expanded.
@@ -53,8 +53,8 @@ export default function ButtonPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="icon">
+          </Library.SectionL3>
+          <Library.SectionL3 title="icon">
             <Library.Info>
               <Library.InfoItem label="description">
                 An SVG icon to display to the left of the {"button's"} content.
@@ -63,8 +63,8 @@ export default function ButtonPage() {
                 <code>IconComponent</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="pressed">
+          </Library.SectionL3>
+          <Library.SectionL3 title="pressed">
             <Library.Info>
               <Library.InfoItem label="description">
                 This button is active
@@ -76,8 +76,8 @@ export default function ButtonPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="title">
+          </Library.SectionL3>
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 Used to set an <code>aria-label</code> attribute
@@ -86,8 +86,8 @@ export default function ButtonPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Button</code> accepts HTML attribute props applicable to{' '}
@@ -97,10 +97,10 @@ export default function ButtonPage() {
                 <code>{`Omit<preact.JSX.ButtonHTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>Button</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -108,7 +108,7 @@ export default function ButtonPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set a defined theme on the button. Set to {`'custom'`} to
@@ -174,9 +174,9 @@ export default function ButtonPage() {
                 Disabled
               </Button>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the relative internal sizing of the button. Set to{' '}
@@ -207,9 +207,9 @@ export default function ButtonPage() {
                 (custom)
               </Button>
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="unstyled">
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this to disable all styling and provide your own styling
@@ -234,8 +234,8 @@ export default function ButtonPage() {
                 Custom button
               </Button>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -246,9 +246,9 @@ export default function ButtonPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="IconButton" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic IconButton" withSource>
               <IconButton
                 onClick={() => alert('You clicked the button')}
@@ -256,11 +256,11 @@ export default function ButtonPage() {
                 title="Reply"
               />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with IconButtons">
-          <Library.Example title="Styling the icon">
+        <Library.SectionL2 title="Working with IconButtons">
+          <Library.SectionL3 title="Styling the icon">
             <p>
               If you need more control over icon styles, use an icon component
               directly in the content instead of passing an <code>icon</code>{' '}
@@ -274,11 +274,11 @@ export default function ButtonPage() {
                 <ShareIcon className="w-3 h-3" />
               </IconButton>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="title">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 A <code>title</code> is required for <code>IconButton</code>s.
@@ -290,14 +290,14 @@ export default function ButtonPage() {
                 <code>true</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...buttonProps">
+          <Library.SectionL3 title="...buttonProps">
             <code>IconButton</code> accepts and forwards all props from the{' '}
             <code>Button</code> component API.
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>IconButton</code> accepts HTML attribute props applicable
@@ -307,10 +307,10 @@ export default function ButtonPage() {
                 <code>{`Omit<preact.JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Styling API">
+        <Library.SectionL2 title="Styling API">
           <p>
             <code>IconButton</code> accepts the following props from the{' '}
             <Library.Link href="/using-components#presentational-components-styling-api">
@@ -318,7 +318,7 @@ export default function ButtonPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set a defined theme on the button. Set to {`'custom'`} to
@@ -452,9 +452,9 @@ export default function ButtonPage() {
                 disabled
               />
             </Library.Demo>
-          </Library.Example>
+          </Library.SectionL3>
 
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set relative internal sizing. Set to {`'custom'`} to disable
@@ -482,8 +482,8 @@ export default function ButtonPage() {
                 classes="p-3"
               />
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="unstyled">
+          </Library.SectionL3>
+          <Library.SectionL3 title="unstyled">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set this to disable all styling and provide your own styling
@@ -496,8 +496,8 @@ export default function ButtonPage() {
                 <code>false</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

@@ -24,9 +24,9 @@ export default function OverlayPage() {
       }
     >
       <Library.Section title="Overlay">
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Overlay" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Overlay" withSource>
               <Button onClick={toggleDefaultOverlay}>Show Overlay</Button>
               <Overlay open={defaultOpen} onClick={toggleDefaultOverlay}>
@@ -35,16 +35,16 @@ export default function OverlayPage() {
                 </Card>
               </Overlay>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Overlay</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="variant">
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Define which theme to use for the <code>Overlay</code>.
@@ -73,8 +73,8 @@ export default function OverlayPage() {
                 <Spinner size="lg" />
               </Overlay>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="open">
+          </Library.SectionL3>
+          <Library.SectionL3 title="open">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set whether the overlay is open (visible) or not.
@@ -86,8 +86,8 @@ export default function OverlayPage() {
                 <code>{`'true'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Overlay</code> accepts HTML attributes.
@@ -96,8 +96,8 @@ export default function OverlayPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

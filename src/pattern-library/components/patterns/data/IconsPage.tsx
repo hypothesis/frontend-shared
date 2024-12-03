@@ -17,19 +17,19 @@ export default function IconsPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="CancelIcon" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               title="Basic Icon component usage: CancelIcon"
               withSource
             >
               <Icons.CancelIcon />
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Icon components">
+        <Library.SectionL2 title="Icon components">
           <Library.Callout>Deprecated icons are greyed-out.</Library.Callout>
           <div className="my-4 grid grid-cols-4 gap-6">
             {(Object.keys(Icons) as Array<keyof typeof Icons>).map(iconName => {
@@ -49,10 +49,10 @@ export default function IconsPage() {
               );
             })}
           </div>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
-          <Library.Example title="...htmlProps">
+        <Library.SectionL2 title="Component API">
+          <Library.SectionL3 title="...htmlProps">
             <Library.Callout>
               Unlike other components in this package, Icon components take{' '}
               <code>className</code>, not <code>classes</code>.
@@ -71,12 +71,12 @@ export default function IconsPage() {
                 {'>'}
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
+          </Library.SectionL3>
 
           <Library.Demo title="Styled icon component" withSource>
             <Icons.CautionIcon className="text-yellow-notice w-16 h-16" />
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

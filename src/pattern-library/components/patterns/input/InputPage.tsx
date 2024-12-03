@@ -13,10 +13,10 @@ export default function InputPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Input" />
 
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Input" withSource>
               <div className="w-[350px]">
                 <Input
@@ -25,11 +25,11 @@ export default function InputPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Inputs">
-          <Library.Example title="Labels">
+        <Library.SectionL2 title="Working with Inputs">
+          <Library.SectionL3 title="Labels">
             <p>
               Hypothesis does not currently have a design pattern for labeling
               text inputs. However, for accessibility, it is critical that an{' '}
@@ -45,8 +45,8 @@ export default function InputPage() {
                 <Input id="input-with-label" placeholder="Placeholder..." />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Disabled inputs">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Disabled inputs">
             <p>
               <code>Input</code>s can be disabled by applying the HTML{' '}
               <code>disabled</code> attribute.
@@ -60,8 +60,8 @@ export default function InputPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Validation errors">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Validation errors">
             <p>
               Validation errors can be triggered as a result of standard HTML
               attributes such as <code>required</code> or a custom error set
@@ -80,16 +80,16 @@ export default function InputPage() {
               inputs must link to the element displaying their validation error
               using <code>aria-describedby</code>.
             </p>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Input</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="error">
+          <Library.SectionL3 title="error">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set <code>error</code> to indicate a validation error. This
@@ -105,8 +105,8 @@ export default function InputPage() {
                 <code>string</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="feedback">
+          </Library.SectionL3>
+          <Library.SectionL3 title="feedback">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set <code>feedback</code> to indicate that there is an
@@ -148,8 +148,8 @@ export default function InputPage() {
                 />
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="type">
+          </Library.SectionL3>
+          <Library.SectionL3 title="type">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Input</code> supports several input types
@@ -161,8 +161,8 @@ export default function InputPage() {
                 <code>{`'text'`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Input</code> accepts HTML attributes for input elements.
@@ -171,8 +171,8 @@ export default function InputPage() {
                 <code>{`JSX.InputHTMLAttributes<HTMLInputElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

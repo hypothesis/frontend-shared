@@ -29,9 +29,9 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Card, CardContent" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Basic Card" withSource>
               <Card>
                 <CardContent>
@@ -39,11 +39,11 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with Cards">
-          <Library.Example title="Full-width content">
+        <Library.SectionL2 title="Working with Cards">
+          <Library.SectionL3 title="Full-width content">
             <p>
               You can add full-bleed content by placing it outside of the{' '}
               <code>CardContent</code> component.
@@ -60,16 +60,16 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>Card</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="active">
+          <Library.SectionL3 title="active">
             <Library.Info>
               <Library.InfoItem label="description">
                 Style the card as if it is hovered or otherwise active.
@@ -89,8 +89,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="variant">
+          </Library.SectionL3>
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set the <code>Card</code> theming.
@@ -122,8 +122,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="width">
+          </Library.SectionL3>
+          <Library.SectionL3 title="width">
             <Library.Info>
               <Library.InfoItem label="description">
                 Define how the {`card's`} width is set. Provide width{' '}
@@ -160,8 +160,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>Card</code> accepts HTML attributes.
@@ -170,8 +170,8 @@ export default function CardPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -183,17 +183,17 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="Card, CardContent" />
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>CardContent</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="size">
+          <Library.SectionL3 title="size">
             <Library.Info>
               <Library.InfoItem label="description">
                 Set relative spacing and padding.
@@ -248,8 +248,8 @@ export default function CardPage() {
                 </Card>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>CardContent</code> accepts HTML attributes.
@@ -258,8 +258,8 @@ export default function CardPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -271,13 +271,13 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage
             componentName="Card, CardContent, CardHeader"
             size="sm"
           />
 
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo withSource title="Basic CardHeader">
               <Card>
                 <CardHeader title="Card title" />
@@ -288,16 +288,16 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>CardHeader</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="title">
+          <Library.SectionL3 title="title">
             <Library.Info>
               <Library.InfoItem label="description">
                 Render a <code>CardTitle</code> with this title string in the{' '}
@@ -331,8 +331,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="onClose">
+          </Library.SectionL3>
+          <Library.SectionL3 title="onClose">
             <Library.Info>
               <Library.InfoItem label="description">
                 Callback to request that the card close. When provided, a close
@@ -377,8 +377,8 @@ export default function CardPage() {
                 </Card>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="fullWidth">
+          </Library.SectionL3>
+          <Library.SectionL3 title="fullWidth">
             <Library.Info>
               <Library.InfoItem label="description">
                 Ensure that the header divider (border) spans the full width of
@@ -409,8 +409,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="variant">
+          </Library.SectionL3>
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Define which theme to use for <code>CardHeader</code>.
@@ -452,8 +452,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>CardHeader</code> accepts HTML attributes.
@@ -462,8 +462,8 @@ export default function CardPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -475,7 +475,7 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage
             componentName="Card, CardContent, CardHeader, CardTitle"
             size="sm"
@@ -495,15 +495,15 @@ export default function CardPage() {
               </CardContent>
             </Card>
           </Library.Demo>
-        </Library.Pattern>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>CardTitle</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="tagName">
+          <Library.SectionL3 title="tagName">
             <Library.Info>
               <Library.InfoItem label="description">
                 Which heading element to use for the title
@@ -530,8 +530,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="variant">
+          </Library.SectionL3>
+          <Library.SectionL3 title="variant">
             <Library.Info>
               <Library.InfoItem label="description">
                 Define which theme to use for <code>CardTitle</code>.
@@ -571,8 +571,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="...htmlAttributes">
+          </Library.SectionL3>
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>CardTitle</code> accepts HTML attributes.
@@ -581,8 +581,8 @@ export default function CardPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
 
       <Library.Section
@@ -594,12 +594,12 @@ export default function CardPage() {
           </p>
         }
       >
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage
             componentName="Card, CardContent, CardHeader, CardActions"
             size="sm"
           />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo title="Card with actions" withSource>
               <Card>
                 <CardHeader title="This card has some actions" />
@@ -612,16 +612,16 @@ export default function CardPage() {
                 </CardContent>
               </Card>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <code>CardActions</code> accepts all standard{' '}
           <Library.Link href="/using-components#presentational-components-api">
             presentational component props
           </Library.Link>
           .
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>CardActions</code> accepts HTML attributes.
@@ -630,8 +630,8 @@ export default function CardPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

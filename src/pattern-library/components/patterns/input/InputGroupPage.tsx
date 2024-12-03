@@ -21,9 +21,9 @@ export default function InputGroupPage() {
       }
     >
       <Library.Section>
-        <Library.Pattern>
+        <Library.SectionL2>
           <Library.Usage componentName="InputGroup" />
-          <Library.Example>
+          <Library.SectionL3>
             <Library.Demo
               title="Basic InputGroup containing an Input and an IconButton"
               withSource
@@ -35,11 +35,11 @@ export default function InputGroupPage() {
                 </InputGroup>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Working with InputGroups">
-          <Library.Example title="Composing InputGroups">
+        <Library.SectionL2 title="Working with InputGroups">
+          <Library.SectionL3 title="Composing InputGroups">
             <p>
               The following input components can be used in an{' '}
               <code>InputGroup</code>:
@@ -82,8 +82,8 @@ export default function InputGroupPage() {
                 </InputGroup>
               </div>
             </Library.Demo>
-          </Library.Example>
-          <Library.Example title="Sizing InputGroups">
+          </Library.SectionL3>
+          <Library.SectionL3 title="Sizing InputGroups">
             <Library.Demo title="Scaling to local font size" withSource>
               <div className="w-[350px]">
                 <div className="text-xs">
@@ -99,10 +99,10 @@ export default function InputGroupPage() {
                 </div>
               </div>
             </Library.Demo>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
 
-        <Library.Pattern title="Component API">
+        <Library.SectionL2 title="Component API">
           <p>
             <code>InputGroup</code> accepts all standard{' '}
             <Library.Link href="/using-components#presentational-components-api">
@@ -110,7 +110,7 @@ export default function InputGroupPage() {
             </Library.Link>
             .
           </p>
-          <Library.Example title="...htmlAttributes">
+          <Library.SectionL3 title="...htmlAttributes">
             <Library.Info>
               <Library.InfoItem label="description">
                 <code>InputGroup</code> accepts HTML attributes.
@@ -119,8 +119,8 @@ export default function InputGroupPage() {
                 <code>{`JSX.HTMLAttributes<HTMLElement>`}</code>
               </Library.InfoItem>
             </Library.Info>
-          </Library.Example>
-        </Library.Pattern>
+          </Library.SectionL3>
+        </Library.SectionL2>
       </Library.Section>
     </Library.Page>
   );

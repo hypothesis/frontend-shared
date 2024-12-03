@@ -31,7 +31,7 @@ export type LibraryPageProps = {
  */
 function Page({ children, intro, title }: LibraryPageProps) {
   return (
-    <section className="styled-text text-stone-600">
+    <main className="styled-text text-stone-600">
       <div className="px-8 py-4">
         <h1 className="text-3xl text-slate-600 font-bold" id="page-header">
           {title}
@@ -43,7 +43,7 @@ function Page({ children, intro, title }: LibraryPageProps) {
         )}
         {children}
       </div>
-    </section>
+    </main>
   );
 }
 
@@ -95,7 +95,7 @@ export type LibrarySectionProps = LibraryElementAttributes & {
 };
 
 // Keep track of <Section> nested depth
-const SectionDepthContext = createContext<number>(1);
+const SectionDepthContext = createContext<number>(0);
 
 /**
  * Render a primary section of a page. Each component documented on a pattern-
@@ -116,13 +116,17 @@ function Section({
       <section
         data-depth={depth}
         className={classnames('leading-relaxed', {
-          'mt-8 mb-16': depth <= 2,
-          'mt-8 mb-8': depth === 3,
-          'mt-6 mb-8': depth >= 4,
+          'mt-8 mb-16': depth <= 1,
+          'mt-8 mb-8': depth === 2,
+          'mt-6 mb-8': depth >= 3,
         })}
         {...htmlAttributes}
       >
-        {title && <Heading level={depth}>{title}</Heading>}
+        {title && (
+          // Heading level is one larger than section level because heading
+          // level 1 is reserved for the main heading of the page.
+          <Heading level={depth + 1}>{title}</Heading>
+        )}
         {intro && (
           <div className="text-base space-y-3 leading-relaxed">{intro}</div>
         )}
@@ -132,7 +136,7 @@ function Section({
   );
 }
 
-export type LibraryPatternProps = LibraryElementAttributes & {
+export type LibrarySectionL2Props = LibraryElementAttributes & {
   children?: ComponentChildren;
   title?: string;
 };
@@ -140,15 +144,19 @@ export type LibraryPatternProps = LibraryElementAttributes & {
 /**
  * Render a second-level section. e.g. Usage, Props, Status
  */
-function Pattern({ children, title, ...htmlAttributes }: LibraryPatternProps) {
+function SectionL2({
+  children,
+  title,
+  ...htmlAttributes
+}: LibrarySectionL2Props) {
   return (
-    <Section level={3} title={title} {...htmlAttributes}>
+    <Section level={2} title={title} {...htmlAttributes}>
       {children}
     </Section>
   );
 }
 
-export type LibraryExampleProps = LibraryElementAttributes & {
+export type LibrarySectionL3Props = LibraryElementAttributes & {
   children?: ComponentChildren;
   title?: string;
 };
@@ -157,9 +165,13 @@ export type LibraryExampleProps = LibraryElementAttributes & {
  * Render content in a third-level section, e.g. documentation
  * about a specific prop or examples of usage.
  */
-function Example({ children, title, ...htmlAttributes }: LibraryExampleProps) {
+function SectionL3({
+  children,
+  title,
+  ...htmlAttributes
+}: LibrarySectionL3Props) {
   return (
-    <Section level={4} title={title} {...htmlAttributes}>
+    <Section level={3} title={title} {...htmlAttributes}>
       {children}
     </Section>
   );
@@ -633,13 +645,13 @@ export default {
   ChangelogItem,
   Code,
   Demo,
-  Example,
   Info,
   InfoItem,
   Link,
   Page,
-  Pattern,
   Section,
+  SectionL2,
+  SectionL3,
   StatusChip,
   Usage,
 };

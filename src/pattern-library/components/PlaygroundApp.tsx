@@ -155,7 +155,7 @@ export default function PlaygroundApp({
   return (
     <Router base={baseURL}>
       <div className="w-full bg-stone-200">
-        <main className="max-w-[1300px] mx-auto">
+        <div className="max-w-[1300px] mx-auto">
           <div className="md:grid md:grid-cols-[2fr_5fr]">
             <div className="md:h-screen md:sticky md:top-0 border-l border-stone-400 bg-stone-100">
               <ScrollContainer borderless>
@@ -241,7 +241,7 @@ export default function PlaygroundApp({
               </Switch>
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </Router>
   );

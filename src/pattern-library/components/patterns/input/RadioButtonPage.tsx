@@ -11,19 +11,19 @@ export default function RadioButtonPage() {
         </p>
       }
     >
-      <Library.Pattern>
+      <Library.SectionL2>
         <Library.Usage componentName="RadioButton" />
-        <Library.Example>
+        <Library.SectionL3>
           <Library.Demo
             title="Basic RadioButton"
             withSource
             exampleFile="radio-button-basic"
           />
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Working with RadioButtons">
-        <Library.Example title="Controlled RadioButton">
+      <Library.SectionL2 title="Working with RadioButtons">
+        <Library.SectionL3 title="Controlled RadioButton">
           <p>
             <code>RadioButton</code>s are always expected to be controlled,
             because only one in a group should be checked at once.
@@ -33,9 +33,9 @@ export default function RadioButtonPage() {
             state for all of them, as <code>RadioButton</code>s do not know
             about each other.
           </p>
-        </Library.Example>
+        </Library.SectionL3>
 
-        <Library.Example title="Customizing RadioButton icons">
+        <Library.SectionL3 title="Customizing RadioButton icons">
           <p>
             <code>RadioButton</code> uses icons to style the radio, in unchecked
             and checked states. Custom icons may be provided if desired.
@@ -45,16 +45,16 @@ export default function RadioButtonPage() {
             title="RadioButton with custom icon and checkedIcon"
             exampleFile="radio-button-custom-icons"
           />
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
 
-      <Library.Pattern title="Component API">
+      <Library.SectionL2 title="Component API">
         <code>RadioButton</code> accepts all standard{' '}
         <Library.Link href="/using-components#presentational-components-api">
           presentational component props
         </Library.Link>
         .
-        <Library.Example title="checked">
+        <Library.SectionL3 title="checked">
           <Library.Info>
             <Library.InfoItem label="description">
               Set whether the <code>RadioButton</code> is checked. The presence
@@ -68,8 +68,8 @@ export default function RadioButtonPage() {
               <code>{`undefined`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="icon">
+        </Library.SectionL3>
+        <Library.SectionL3 title="icon">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>IconComponent</code> to use as the (unchecked) radio icon
@@ -78,8 +78,8 @@ export default function RadioButtonPage() {
               <code>{`IconComponent`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="checkedIcon">
+        </Library.SectionL3>
+        <Library.SectionL3 title="checkedIcon">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>IconComponent</code> to use as the (checked) radio icon
@@ -88,8 +88,8 @@ export default function RadioButtonPage() {
               <code>{`IconComponent`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-        <Library.Example title="...htmlAttributes">
+        </Library.SectionL3>
+        <Library.SectionL3 title="...htmlAttributes">
           <Library.Info>
             <Library.InfoItem label="description">
               <code>RadioButton</code> accepts HTML attributes for input
@@ -99,8 +99,8 @@ export default function RadioButtonPage() {
               <code>{`JSX.InputHTMLAttributes<HTMLInputElement>`}</code>
             </Library.InfoItem>
           </Library.Info>
-        </Library.Example>
-      </Library.Pattern>
+        </Library.SectionL3>
+      </Library.SectionL2>
     </Library.Page>
   );
 }
