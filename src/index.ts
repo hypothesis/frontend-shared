@@ -73,6 +73,7 @@ export {
   Panel,
 } from './components/layout';
 export {
+  Pagination,
   PointerButton,
   Link,
   LinkButton,
@@ -145,6 +146,7 @@ export type {
 } from './components/layout';
 
 export type {
+  PaginationProps,
   PointerButtonProps,
   LinkProps,
   LinkButtonProps,
