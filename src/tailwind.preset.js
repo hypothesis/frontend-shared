@@ -70,6 +70,13 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
           inverted: '#f2f2f2',
         },
       },
+      fontSize: {
+        // Set font size to the maximum of 16px and the inherited size.
+        //
+        // On iOS, the input font size must be at least 16px to prevent the
+        // browser from zooming into it on touch.
+        'at-least-16px': 'max(16px, 100%)',
+      },
       keyframes: {
         'fade-in': {
           '0%': {
