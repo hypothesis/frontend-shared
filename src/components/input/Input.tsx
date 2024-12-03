@@ -17,6 +17,11 @@ export function inputStyles({ classes, feedback }: InputStylesOptions) {
     'focus-visible-ring ring-inset border rounded w-full p-2',
     'bg-grey-0 focus:bg-white disabled:bg-grey-1',
     'placeholder:text-color-grey-5 disabled:placeholder:color-grey-6',
+
+    // On iOS, the input font size must be at least 16px to prevent the browser
+    // from zooming into it on touch.
+    'touch:text-at-least-16px',
+
     {
       'ring-2': !!feedback,
       'ring-red-error': feedback === 'error',
