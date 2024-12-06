@@ -4,7 +4,7 @@ import Pagination, { $imports } from '../Pagination';
 
 describe('Pagination', () => {
   let fakeOnChangePage;
-  let fakePageNumberOptions;
+  let fakePaginationItems;
 
   const findButton = (wrapper, title) =>
     wrapper.find('button').filterWhere(n => n.props().title === title);
@@ -22,10 +22,10 @@ describe('Pagination', () => {
 
   beforeEach(() => {
     fakeOnChangePage = sinon.stub();
-    fakePageNumberOptions = sinon.stub().returns([1, 2, 3, 4, null, 10]);
+    fakePaginationItems = sinon.stub().returns([1, 2, 3, 4, null, 10]);
 
     $imports.$mock({
-      '../../util/pagination': { pageNumberOptions: fakePageNumberOptions },
+      '../../util/pagination': { paginationItems: fakePaginationItems },
     });
   });
 
@@ -103,7 +103,7 @@ describe('Pagination', () => {
 
   describe('page number buttons', () => {
     it('should render buttons for each page number available', () => {
-      fakePageNumberOptions.returns([1, 2, 3, 4, null, 10]);
+      fakePaginationItems.returns([1, 2, 3, 4, null, 10]);
       const wrapper = createComponent();
 
       [1, 2, 3, 4, 10].forEach(pageNumber => {
@@ -116,7 +116,7 @@ describe('Pagination', () => {
     });
 
     it('should invoke the onChangePage callback when page number button clicked', () => {
-      fakePageNumberOptions.returns([1, 2, 3, 4, null, 10]);
+      fakePaginationItems.returns([1, 2, 3, 4, null, 10]);
       const wrapper = createComponent();
 
       [1, 2, 3, 4, 10].forEach(pageNumber => {

@@ -4,70 +4,162 @@
  */
 type PageNumber = number | null;
 
+type ElidedRange = {
+  /** Position of elided range item. */
+  index: number;
+  /** Number of items in this elided range. */
+  count: number;
+  /** Next value to consume from this elided range. */
+  value: number;
+};
+
+export type Options = {
+  /**
+   * Number of pages to display at the start and end, including the start/end
+   * page.
+   *
+   * This must be >= 1.
+   */
+  boundaryCount?: number;
+
+  /**
+   * Number of pages to display before and after the current page.
+   */
+  siblingCount?: number;
+};
+
 /**
  * Determine the set of (pagination) page numbers that should be provided to
- * a user, given the current page the user is on, the total number of pages
- * available, and the number of individual page options desired.
+ * a user.
  *
- * The first, last and current pages will always be included in the returned
- * results. Additional pages adjacent to the current page will be added until
- * `maxPages` is reached. Gaps in the sequence of pages are represented by
- * `null` values.
+ * The result includes a mixture of page numbers that should be shown, plus
+ * `null` values indicating elided page numbers. The goals of the selection
+ * are:
  *
- * @example
- *   pageNumberOptions(1, 10, 5) => [1, 2, 3, 4, null, 10]
- *   pageNumberOptions(3, 10, 5) => [1, 2, 3, 4, null, 10]
- *   pageNumberOptions(6, 10, 5) => [1, null, 5, 6, 7, null, 10]
- *   pageNumberOptions(9, 10, 5) => [1, null, 7, 8, 9, 10]
- *   pageNumberOptions(2, 3, 5) => [1, 2, 3]
+ * - To always provide page numbers for the first, last and current pages.
+ *   Additional adjacent pages are provided according to the `boundaryCount`
+ *   and `siblingCount` options.
+ * - To try and keep the number of pagination items consistent as the current
+ *   page changes. If each item is rendered with approximately the same width,
+ *   this keeps the overall width of the pagination component and the location
+ *   of child controls consistent as the user navigates. This helps to avoid
+ *   mis-clicks due to controls moving around under the cursor.
  *
- * @param currentPage - The currently-visible/-active page of results.
- *   Note that pages are 1-indexed
- * @param maxPages - The maximum number of numbered pages to make available
- * @return Set of navigation page options to show. `null` values represent gaps
- *   in the sequence of pages, to be represented later as ellipses (...)
+ * @param currentPage - The 1-based currently-visible/-active page number.
+ * @param totalPages - The total number of pages
+ * @param options - Options for the number of pages to show at the boundary and
+ *   around the current page.
  */
-export function pageNumberOptions(
+export function paginationItems(
   currentPage: number,
   totalPages: number,
   /* istanbul ignore next */
-  maxPages = 5,
+  { boundaryCount = 1, siblingCount = 1 }: Options = {},
 ): PageNumber[] {
   if (totalPages <= 1) {
     return [];
   }
 
-  // Start with first, last and current page. Use a set to avoid dupes.
-  const pageNumbers = new Set([1, currentPage, totalPages]);
+  currentPage = Math.max(1, Math.min(currentPage, totalPages));
+  boundaryCount = Math.max(boundaryCount, 1);
+  siblingCount = Math.max(siblingCount, 0);
 
-  // Fill out the `pageNumbers` with additional pages near the currentPage,
-  // if available
-  let increment = 1;
-  while (pageNumbers.size < Math.min(totalPages, maxPages)) {
-    // Build the set "outward" from the currently-active page
-    if (currentPage + increment <= totalPages) {
-      pageNumbers.add(currentPage + increment);
+  const pageNumbers: PageNumber[] = [];
+  const beforeCurrent = currentPage - 1;
+  const afterCurrent = totalPages - currentPage;
+
+  const elideBeforeCurrent = boundaryCount + siblingCount < beforeCurrent;
+  let elideBefore: ElidedRange | null = null;
+
+  if (elideBeforeCurrent) {
+    for (let page = 1; page <= boundaryCount; page++) {
+      pageNumbers.push(page);
     }
-    if (currentPage - increment >= 1) {
-      pageNumbers.add(currentPage - increment);
+
+    elideBefore = {
+      index: pageNumbers.length,
+      count: currentPage - siblingCount - boundaryCount,
+      // Last value in elided range, as we expand backwards
+      value: currentPage - siblingCount - 1,
+    };
+    pageNumbers.push(null);
+
+    for (let page = currentPage - siblingCount; page < currentPage; page++) {
+      pageNumbers.push(page);
     }
-    ++increment;
+  } else {
+    for (let page = 1; page < currentPage; page++) {
+      pageNumbers.push(page);
+    }
   }
 
-  const pageOptions: PageNumber[] = [];
+  pageNumbers.push(currentPage);
 
-  // Construct a numerically-sorted array with `null` entries inserted
-  // between non-sequential entries
-  [...pageNumbers]
-    .sort((a, b) => a - b)
-    .forEach((page, idx, arr) => {
-      if (idx > 0 && page - arr[idx - 1] > 1) {
-        // Two page entries are non-sequential. Push a `null` value between
-        // them to indicate the gap, which will later be represented as an
-        // ellipsis
-        pageOptions.push(null);
-      }
-      pageOptions.push(page);
-    });
-  return pageOptions;
+  const elideAfterCurrent = boundaryCount + siblingCount < afterCurrent;
+  let elideAfter: ElidedRange | null = null;
+
+  if (elideAfterCurrent) {
+    for (
+      let page = currentPage + 1;
+      page <= currentPage + siblingCount;
+      page++
+    ) {
+      pageNumbers.push(page);
+    }
+
+    elideAfter = {
+      index: pageNumbers.length,
+      count: totalPages - boundaryCount + 1 - (currentPage + siblingCount),
+      // First value in elided range, as we expand forwards
+      value: currentPage + siblingCount + 1,
+    };
+    pageNumbers.push(null);
+
+    for (
+      let page = totalPages - boundaryCount + 1;
+      page <= totalPages;
+      page++
+    ) {
+      pageNumbers.push(page);
+    }
+  } else {
+    for (let page = currentPage + 1; page <= totalPages; page++) {
+      pageNumbers.push(page);
+    }
+  }
+
+  // Calculate the maximum number of items we will show for the total number
+  // of pages and options.
+  const maxItems = Math.min(
+    // First and last pages
+    2 * boundaryCount +
+      // Pages adjacent to current page
+      2 * siblingCount +
+      // Current page, indicators for elided pages before and after current.
+      3,
+    totalPages,
+  );
+
+  // To keep the number of items consistent as the current page changes,
+  // expand the elided ranges until we reach the maximum.
+  while (
+    pageNumbers.length < maxItems &&
+    (elideAfter?.count || elideBefore?.count)
+  ) {
+    if (elideAfter && elideAfter.count > 0) {
+      // Expand ahead of current page if possible, starting with numbers closest
+      // to current page.
+      pageNumbers.splice(elideAfter.index, 0, elideAfter.value);
+      ++elideAfter.index;
+      ++elideAfter.value;
+      --elideAfter.count;
+    } else if (elideBefore) {
+      // Otherwise expand behind, starting with numbers closest to current page.
+      pageNumbers.splice(elideBefore.index + 1, 0, elideBefore.value);
+      --elideBefore.value;
+      --elideBefore.count;
+    }
+  }
+
+  return pageNumbers;
 }
