@@ -4,70 +4,155 @@
  */
 type PageNumber = number | null;
 
+// Max items: 7 - start, elide, middle 3, elide, end
+//
+// 1:
+// 2: 1 2
+// 3: 1 2 3
+// 4: 1 2 3 4
+// 5: 1 2 3 4 5
+// 6: 1 2 3 4 5 6
+//
+// With 8 total items.
+//
+// 1: 1 2 3 .. 6 7 8
+// 2: 1 2 3 .. 6 7 8
+// 3: 1 2 3 4 .. 7 8
+// 4: 1 2 3 4 5 .. 8
+// 5: 1 .. 4 5 6 .. 8
+// 8: 1 .. 7 8
+//
+
+export type Options = {
+  /**
+   * Number of pages to display at the start and end, including the start/end
+   * page.
+   *
+   * This must be >= 1.
+   */
+  boundaryCount?: number;
+
+  /**
+   * Number of pages to display before and after the current page.
+   */
+  siblingCount?: number;
+};
+
 /**
  * Determine the set of (pagination) page numbers that should be provided to
- * a user, given the current page the user is on, the total number of pages
- * available, and the number of individual page options desired.
+ * a user.
  *
- * The first, last and current pages will always be included in the returned
- * results. Additional pages adjacent to the current page will be added until
- * `maxPages` is reached. Gaps in the sequence of pages are represented by
- * `null` values.
+ * The result includes a mixture of page numbers that should be shown, plus
+ * `null` values indicating elided page numbers. The returned set of pagination
+ * items will always include the current page, the first and last
+ * `boundaryCount` pages and `siblingCount` pages before and after the current
+ * page. Additional page numbers may also be added to keep the number of
+ * pagination items consistent regardless of the current page.
  *
- * @example
- *   pageNumberOptions(1, 10, 5) => [1, 2, 3, 4, null, 10]
- *   pageNumberOptions(3, 10, 5) => [1, 2, 3, 4, null, 10]
- *   pageNumberOptions(6, 10, 5) => [1, null, 5, 6, 7, null, 10]
- *   pageNumberOptions(9, 10, 5) => [1, null, 7, 8, 9, 10]
- *   pageNumberOptions(2, 3, 5) => [1, 2, 3]
- *
- * @param currentPage - The currently-visible/-active page of results.
- *   Note that pages are 1-indexed
- * @param maxPages - The maximum number of numbered pages to make available
- * @return Set of navigation page options to show. `null` values represent gaps
- *   in the sequence of pages, to be represented later as ellipses (...)
+ * @param currentPage - The 1-based currently-visible/-active page number.
+ * @param totalPages - The total number of pages
+ * @param options - Options for the number of pages to show at the boundary and
+ *   around the current page.
  */
-export function pageNumberOptions(
+export function paginationItems(
   currentPage: number,
   totalPages: number,
   /* istanbul ignore next */
-  maxPages = 5,
+  { boundaryCount = 1, siblingCount = 1 }: Options = {},
 ): PageNumber[] {
   if (totalPages <= 1) {
     return [];
   }
 
-  // Start with first, last and current page. Use a set to avoid dupes.
-  const pageNumbers = new Set([1, currentPage, totalPages]);
+  currentPage = Math.max(1, Math.min(currentPage, totalPages));
+  boundaryCount = Math.max(boundaryCount, 1);
+  siblingCount = Math.max(siblingCount, 0);
 
-  // Fill out the `pageNumbers` with additional pages near the currentPage,
-  // if available
-  let increment = 1;
-  while (pageNumbers.size < Math.min(totalPages, maxPages)) {
-    // Build the set "outward" from the currently-active page
-    if (currentPage + increment <= totalPages) {
-      pageNumbers.add(currentPage + increment);
+  const pageNumbers: PageNumber[] = [];
+  const beforeCurrent = currentPage - 1;
+  const afterCurrent = totalPages - currentPage;
+
+  // Index of indicator for pages elided before current.
+  let elideBeforeIndex = null;
+  // Number of last page elided before current.
+  let elideBeforeValue = 1;
+
+  // Add pages before current.
+  const elideBeforeCurrent = boundaryCount + siblingCount < beforeCurrent;
+  if (elideBeforeCurrent) {
+    for (let page = 1; page <= boundaryCount; page++) {
+      pageNumbers.push(page);
     }
-    if (currentPage - increment >= 1) {
-      pageNumbers.add(currentPage - increment);
+    elideBeforeIndex = pageNumbers.length;
+    elideBeforeValue = currentPage - siblingCount - 1;
+    pageNumbers.push(null);
+    for (let page = currentPage - siblingCount; page < currentPage; page++) {
+      pageNumbers.push(page);
     }
-    ++increment;
+  } else {
+    for (let page = 1; page < currentPage; page++) {
+      pageNumbers.push(page);
+    }
   }
 
-  const pageOptions: PageNumber[] = [];
+  pageNumbers.push(currentPage);
 
-  // Construct a numerically-sorted array with `null` entries inserted
-  // between non-sequential entries
-  [...pageNumbers]
-    .sort((a, b) => a - b)
-    .forEach((page, idx, arr) => {
-      if (idx > 0 && page - arr[idx - 1] > 1) {
-        // Two page entries are non-sequential. Push a `null` value between
-        // them to indicate the gap, which will later be represented as an
-        // ellipsis
-        pageOptions.push(null);
-      }
-      pageOptions.push(page);
-    });
-  return pageOptions;
+  // Index of indicator for pages elided after current.
+  let elideAfterIndex = null;
+  // Number of first page elided after current.
+  let elideAfterValue = currentPage;
+
+  const elideAfterCurrent = boundaryCount + siblingCount < afterCurrent;
+  if (elideAfterCurrent) {
+    for (
+      let page = currentPage + 1;
+      page <= currentPage + siblingCount;
+      page++
+    ) {
+      pageNumbers.push(page);
+      elideAfterValue = page + 1;
+    }
+    elideAfterIndex = pageNumbers.length;
+    pageNumbers.push(null);
+    for (
+      let page = totalPages - boundaryCount + 1;
+      page <= totalPages;
+      page++
+    ) {
+      pageNumbers.push(page);
+    }
+  } else {
+    for (let page = currentPage + 1; page <= totalPages; page++) {
+      pageNumbers.push(page);
+    }
+  }
+
+  // Calculate the maximum number of items we will show for the total number
+  // of pages and options.
+  const maxItems = Math.min(
+    2 * boundaryCount +
+      2 * siblingCount +
+      3 /* current page + 2 elide markers */,
+    totalPages,
+  );
+
+  // To keep the number of items consistent as the current page changes,
+  // expand the elided ranges until we reach the maximum.
+  while (pageNumbers.length < maxItems) {
+    if (elideAfterIndex !== null) {
+      // Expand ahead of current page if possible, starting with numbers closest
+      // to current page.
+      pageNumbers.splice(elideAfterIndex, 0, elideAfterValue);
+      ++elideAfterIndex;
+      ++elideAfterValue;
+    } else if (elideBeforeIndex !== null) {
+      // Otherwise expand behind, starting with numbers closest to current page.
+      pageNumbers.splice(elideBeforeIndex + 1, 0, elideBeforeValue);
+      --elideBeforeValue;
+    } else {
+      break;
+    }
+  }
+
+  return pageNumbers;
 }
