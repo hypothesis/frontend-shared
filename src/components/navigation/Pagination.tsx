@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import type { ComponentChildren } from 'preact';
 
-import { pageNumberOptions } from '../../util/pagination';
+import { paginationItems } from '../../util/pagination';
 import { ArrowLeftIcon, ArrowRightIcon } from '../icons';
 import Button from '../input/Button';
 
@@ -75,7 +75,7 @@ export default function Pagination({
   // Pages are 1-indexed
   const hasNextPage = currentPage < totalPages;
   const hasPreviousPage = currentPage > 1;
-  const pageNumbers = pageNumberOptions(currentPage, totalPages);
+  const pageNumbers = paginationItems(currentPage, totalPages);
 
   const changePageTo = (pageNumber: number, element: HTMLElement) => {
     onChangePage(pageNumber);
