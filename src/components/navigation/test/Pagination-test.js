@@ -34,16 +34,18 @@ describe('Pagination', () => {
   });
 
   describe('prev button', () => {
-    it('should render a prev button when there are previous pages to show', () => {
+    it('should render enabled prev button when there are previous pages to show', () => {
       const wrapper = createComponent({ currentPage: 2 });
       const button = findButton(wrapper, 'Go to previous page');
-      assert.isTrue(button.exists());
+      assert.isFalse(button.find('button').hasClass('invisible'));
+      assert.isFalse(button.prop('disabled'));
     });
 
-    it('should not render a prev button if there are no previous pages to show', () => {
+    it('should render disabled prev button if there are no previous pages to show', () => {
       const wrapper = createComponent({ currentPage: 1 });
       const button = findButton(wrapper, 'Go to previous page');
-      assert.isFalse(button.exists());
+      assert.isTrue(button.find('button').hasClass('invisible'));
+      assert.isTrue(button.prop('disabled'));
     });
 
     it('should invoke the onChangePage callback when clicked', () => {
@@ -66,16 +68,18 @@ describe('Pagination', () => {
   });
 
   describe('next button', () => {
-    it('should render a next button when there are further pages to show', () => {
+    it('should render enabled button when there are further pages to show', () => {
       const wrapper = createComponent({ currentPage: 1 });
       const button = findButton(wrapper, 'Go to next page');
-      assert.isTrue(button.exists());
+      assert.isFalse(button.find('button').hasClass('invisible'));
+      assert.isFalse(button.prop('disabled'));
     });
 
-    it('should not render a next button if there are no further pages to show', () => {
+    it('should render disabled next button if there are no further pages to show', () => {
       const wrapper = createComponent({ currentPage: 10 });
       const button = findButton(wrapper, 'Go to next page');
-      assert.isFalse(button.exists());
+      assert.isTrue(button.find('button').hasClass('invisible'));
+      assert.isTrue(button.prop('disabled'));
     });
 
     it('should invoke the `onChangePage` callback when clicked', () => {

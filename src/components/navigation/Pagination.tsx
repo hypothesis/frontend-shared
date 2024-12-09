@@ -1,17 +1,25 @@
 import classnames from 'classnames';
-import type { JSX } from 'preact';
+import type { ComponentChildren } from 'preact';
 
-import type { PresentationalProps } from '../../types';
 import { pageNumberOptions } from '../../util/pagination';
 import { ArrowLeftIcon, ArrowRightIcon } from '../icons';
 import Button from '../input/Button';
-import type { ButtonProps } from '../input/Button';
 
-type NavigationButtonProps = PresentationalProps &
-  ButtonProps &
-  Omit<JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>;
+type NavigationButtonProps = {
+  children: ComponentChildren;
+  invisible?: boolean;
+  onClick: (e: MouseEvent) => void;
+  pressed?: boolean;
+  title?: string;
+};
 
-function NavigationButton({ ...buttonProps }: NavigationButtonProps) {
+function NavigationButton({
+  children,
+  invisible = false,
+  pressed = false,
+  onClick,
+  title,
+}: NavigationButtonProps) {
   return (
     <Button
       classes={classnames(
@@ -20,11 +28,22 @@ function NavigationButton({ ...buttonProps }: NavigationButtonProps) {
         // These colors are the same as the "dark" variant of IconButton
         'text-grey-7 enabled:hover:text-grey-9 enabled:hover:bg-grey-3',
         'disabled:text-grey-5 aria-pressed:bg-grey-3 aria-expanded:bg-grey-3',
+
+        // Disabled navigation buttons are rendered as invisible and disabled
+        // rather than removed so that the overall width of the component and
+        // positions of child controls doesn't change too much when navigating
+        // between pages.
+        invisible && 'invisible',
       )}
-      {...buttonProps}
+      disabled={invisible}
+      onClick={onClick}
+      pressed={pressed}
       size="custom"
+      title={title}
       variant="custom"
-    />
+    >
+      {children}
+    </Button>
   );
 }
 
@@ -76,18 +95,15 @@ export default function Pagination({
       className="flex items-center text-md select-none"
       data-testid="pagination-navigation"
     >
-      <div className="w-28">
-        {hasPreviousPage && (
-          <NavigationButton
-            title="Go to previous page"
-            onClick={e =>
-              changePageTo(currentPage - 1, e.target as HTMLElement)
-            }
-          >
-            <ArrowLeftIcon />
-            prev
-          </NavigationButton>
-        )}
+      <div className="mr-2">
+        <NavigationButton
+          invisible={!hasPreviousPage}
+          title="Go to previous page"
+          onClick={e => changePageTo(currentPage - 1, e.target as HTMLElement)}
+        >
+          <ArrowLeftIcon />
+          prev
+        </NavigationButton>
       </div>
       <ul
         className={classnames(
@@ -133,23 +149,20 @@ export default function Pagination({
       </ul>
       <div
         className={classnames(
-          'w-28 flex justify-end',
+          'ml-2 flex justify-end',
           // When page buttons are not shown, this element should grow to fill
           // available space. But when page buttons are shown, it should not.
           'grow md:grow-0',
         )}
       >
-        {hasNextPage && (
-          <NavigationButton
-            title="Go to next page"
-            onClick={e =>
-              changePageTo(currentPage + 1, e.target as HTMLElement)
-            }
-          >
-            next
-            <ArrowRightIcon />
-          </NavigationButton>
-        )}
+        <NavigationButton
+          invisible={!hasNextPage}
+          title="Go to next page"
+          onClick={e => changePageTo(currentPage + 1, e.target as HTMLElement)}
+        >
+          next
+          <ArrowRightIcon />
+        </NavigationButton>
       </div>
     </div>
   );
