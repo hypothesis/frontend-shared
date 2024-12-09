@@ -77,10 +77,6 @@ export default function Pagination({
   const hasPreviousPage = currentPage > 1;
   const pageNumbers = pageNumberOptions(currentPage, totalPages);
 
-  /**
-   * @param {number} pageNumber
-   * @param {HTMLElement} element
-   */
   const changePageTo = (pageNumber: number, element: HTMLElement) => {
     onChangePage(pageNumber);
     // Because changing pagination page doesn't reload the page (as it would
