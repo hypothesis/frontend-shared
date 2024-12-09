@@ -73,7 +73,7 @@ export default function Pagination({
 
   return (
     <div
-      className="flex items-center text-md"
+      className="flex items-center text-md select-none"
       data-testid="pagination-navigation"
     >
       <div className="w-28 h-10">
