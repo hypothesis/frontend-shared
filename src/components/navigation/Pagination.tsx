@@ -76,7 +76,7 @@ export default function Pagination({
       className="flex items-center text-md select-none"
       data-testid="pagination-navigation"
     >
-      <div className="w-28 h-10">
+      <div className="w-28">
         {hasPreviousPage && (
           <NavigationButton
             title="Go to previous page"
@@ -133,7 +133,7 @@ export default function Pagination({
       </ul>
       <div
         className={classnames(
-          'w-28 h-10 flex justify-end',
+          'w-28 flex justify-end',
           // When page buttons are not shown, this element should grow to fill
           // available space. But when page buttons are shown, it should not.
           'grow md:grow-0',
