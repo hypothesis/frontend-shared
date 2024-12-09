@@ -109,7 +109,12 @@ export default function Pagination({
         {pageNumbers.map((page, idx) => (
           <li key={idx}>
             {page === null ? (
-              <div data-testid="pagination-gap">...</div>
+              // Indicator for elided pages. Should be approximately the same
+              // width as a small page number. This reduces the variation of
+              // the component's width as the current page is advanced.
+              <div className="w-9 text-center" data-testid="pagination-gap">
+                …
+              </div>
             ) : (
               <NavigationButton
                 key={`page-${idx}`}
