@@ -1,30 +1,49 @@
 import classnames from 'classnames';
-import type { JSX } from 'preact';
+import type { ComponentChildren } from 'preact';
 
-import type { PresentationalProps } from '../../types';
 import { pageNumberOptions } from '../../util/pagination';
 import { ArrowLeftIcon, ArrowRightIcon } from '../icons';
 import Button from '../input/Button';
-import type { ButtonProps } from '../input/Button';
 
-type NavigationButtonProps = PresentationalProps &
-  ButtonProps &
-  Omit<JSX.HTMLAttributes<HTMLButtonElement>, 'icon' | 'size'>;
+type NavigationButtonProps = {
+  children: ComponentChildren;
+  invisible?: boolean;
+  onClick: (e: MouseEvent) => void;
+  pressed?: boolean;
+  title?: string;
+};
 
-function NavigationButton({ ...buttonProps }: NavigationButtonProps) {
+function NavigationButton({
+  children,
+  invisible = false,
+  pressed = false,
+  onClick,
+  title,
+}: NavigationButtonProps) {
   return (
     <Button
       classes={classnames(
         'px-3.5 py-2.5 gap-x-1',
         'font-semibold rounded',
         // These colors are the same as the "dark" variant of IconButton
-        'text-grey-7 bg-grey-2 enabled:hover:text-grey-9 enabled:hover:bg-grey-3',
+        'text-grey-7 enabled:hover:text-grey-9 enabled:hover:bg-grey-3',
         'disabled:text-grey-5 aria-pressed:bg-grey-3 aria-expanded:bg-grey-3',
+
+        // Disabled navigation buttons are rendered as invisible and disabled
+        // rather than removed so that the overall width of the component and
+        // positions of child controls doesn't change too much when navigating
+        // between pages.
+        invisible && 'invisible',
       )}
-      {...buttonProps}
+      disabled={invisible}
+      onClick={onClick}
+      pressed={pressed}
       size="custom"
+      title={title}
       variant="custom"
-    />
+    >
+      {children}
+    </Button>
   );
 }
 
@@ -58,10 +77,6 @@ export default function Pagination({
   const hasPreviousPage = currentPage > 1;
   const pageNumbers = pageNumberOptions(currentPage, totalPages);
 
-  /**
-   * @param {number} pageNumber
-   * @param {HTMLElement} element
-   */
   const changePageTo = (pageNumber: number, element: HTMLElement) => {
     onChangePage(pageNumber);
     // Because changing pagination page doesn't reload the page (as it would
@@ -73,21 +88,18 @@ export default function Pagination({
 
   return (
     <div
-      className="flex items-center text-md"
+      className="flex items-center text-md select-none"
       data-testid="pagination-navigation"
     >
-      <div className="w-28 h-10">
-        {hasPreviousPage && (
-          <NavigationButton
-            title="Go to previous page"
-            onClick={e =>
-              changePageTo(currentPage - 1, e.target as HTMLElement)
-            }
-          >
-            <ArrowLeftIcon />
-            prev
-          </NavigationButton>
-        )}
+      <div className="mr-2">
+        <NavigationButton
+          invisible={!hasPreviousPage}
+          title="Go to previous page"
+          onClick={e => changePageTo(currentPage - 1, e.target as HTMLElement)}
+        >
+          <ArrowLeftIcon />
+          prev
+        </NavigationButton>
       </div>
       <ul
         className={classnames(
@@ -109,7 +121,15 @@ export default function Pagination({
         {pageNumbers.map((page, idx) => (
           <li key={idx}>
             {page === null ? (
-              <div data-testid="pagination-gap">...</div>
+              // Indicator for elided pages. Should be approximately the same
+              // width as a small page number. This reduces the variation of
+              // the component's width as the current page is advanced.
+              //
+              // Navigation buttons have `px-3.5`. This uses `px-3` since
+              // an ellipsis is slightly wider than a digit.
+              <div className="px-3 text-center" data-testid="pagination-gap">
+                …
+              </div>
             ) : (
               <NavigationButton
                 key={`page-${idx}`}
@@ -125,23 +145,20 @@ export default function Pagination({
       </ul>
       <div
         className={classnames(
-          'w-28 h-10 flex justify-end',
+          'ml-2 flex justify-end',
           // When page buttons are not shown, this element should grow to fill
           // available space. But when page buttons are shown, it should not.
           'grow md:grow-0',
         )}
       >
-        {hasNextPage && (
-          <NavigationButton
-            title="Go to next page"
-            onClick={e =>
-              changePageTo(currentPage + 1, e.target as HTMLElement)
-            }
-          >
-            next
-            <ArrowRightIcon />
-          </NavigationButton>
-        )}
+        <NavigationButton
+          invisible={!hasNextPage}
+          title="Go to next page"
+          onClick={e => changePageTo(currentPage + 1, e.target as HTMLElement)}
+        >
+          next
+          <ArrowRightIcon />
+        </NavigationButton>
       </div>
     </div>
   );
