@@ -1,5 +1,4 @@
 /* eslint-env node */
-
 /* eslint-disable no-console */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as path from 'node:path';
