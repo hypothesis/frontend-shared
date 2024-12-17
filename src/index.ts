@@ -21,6 +21,7 @@ export {
   formatRelativeDate,
   formatDateTime,
 } from './util/date-and-time';
+export { ListenerCollection } from './util/listener-collection';
 export { confirm } from './util/prompts';
 
 // Components
@@ -159,4 +160,5 @@ export type {
   DateFormatter,
   FormatDateTimeOptions,
 } from './util/date-and-time';
+export type { EventType } from './util/listener-collection';
 export type { ConfirmModalProps } from './util/prompts';

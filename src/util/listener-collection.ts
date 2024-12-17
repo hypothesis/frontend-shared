@@ -14,7 +14,7 @@ export type Listener = {
  * `HTMLElement.onkeydown` here) If there is no such property, the type defaults
  * to `Event`.
  */
-type EventType<
+export type EventType<
   Target extends EventTarget,
   TypeName extends string,
 > = `on${TypeName}` extends keyof Target
