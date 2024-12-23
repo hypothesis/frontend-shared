@@ -8600,9 +8600,9 @@ __metadata:
   linkType: hard
 
 "preact@npm:^10.18.1, preact@npm:^10.25.1":
-  version: 10.25.2
-  resolution: "preact@npm:10.25.2"
-  checksum: f0927e3938a5a62df4a9fd639eecb01d184fb0526953ed03d75de4552ab511f507843bf050d6e1cea5b83f6592f1dc1641fea591061dc0e1838c2f3236684c6c
+  version: 10.25.3
+  resolution: "preact@npm:10.25.3"
+  checksum: e8cf7c554affe0e94aa329f04059b6d239701de7dc37d2bae8c11120d5eab2c3a1d4a081968003ce2142d3f528798838ce52013ec96a2368682047c63efe6538
   languageName: node
   linkType: hard
 
