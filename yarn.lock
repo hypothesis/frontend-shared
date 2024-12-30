@@ -6082,9 +6082,9 @@ __metadata:
   linkType: hard
 
 "highlight.js@npm:^11.6.0":
-  version: 11.11.0
-  resolution: "highlight.js@npm:11.11.0"
-  checksum: 49d172570f66220783b61ba44cf2389b8c43f1d3df42161e88629b9d00310dc35f2950f594f6717958b7291c494f4ac3c910c54202603f7c05f9f55ca78ebe64
+  version: 11.11.1
+  resolution: "highlight.js@npm:11.11.1"
+  checksum: 841ddd329a92be123a61ef4051698f824c3575deef588fbb810bd638f1575ddc96b7bdd925b97c05a29276bb119dfcb8e5bcb0acb31c86249371bf046e131d72
   languageName: node
   linkType: hard
 
