@@ -17,14 +17,11 @@ export default function CaretRightIcon(props: CaretRightIconProps) {
       data-component="CaretRightIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m6 4 4 4-4 4"
+          fill="currentColor"
+          d="M5.293 3.293a1 1 0 0 1 1.32-.083l.094.083 4 4a1 1 0 0 1 .083 1.32l-.083.094-4 4a1 1 0 0 1-1.497-1.32l.083-.094L8.585 8 5.293 4.707a1 1 0 0 1-.083-1.32z"
         />
       </g>
     </svg>

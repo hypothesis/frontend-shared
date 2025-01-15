@@ -1,0 +1,12 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M4.5 2C3.67157 2 3 2.50368 3 3.125V12.875C3 13.4963 3.67157 14 4.5 14C5.32843 14 6 13.4963 6 12.875V3.125C6 2.50368 5.32843 2 4.5 2Z"
+      fill="currentColor" />
+    <path
+      d="M11.5 2C10.6716 2 10 2.50368 10 3.125V12.875C10 13.4963 10.6716 14 11.5 14C12.3284 14 13 13.4963 13 12.875V3.125C13 2.50368 12.3284 2 11.5 2Z"
+      fill="currentColor" />
+  </g>
+</svg>

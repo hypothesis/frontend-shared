@@ -1,5 +1,9 @@
-<svg width="16" height="9" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <g>
-  <path d="m0.5,9l7,-8l8,8" stroke="currentColor"/>
- </g>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M7.42869 4.21498C7.74421 3.92834 8.25579 3.92834 8.57131 4.21498L15.7617 10.747C16.2707 11.2094 15.9102 12 15.1904 12H0.809577C0.0897627 12 -0.27072 11.2094 0.238266 10.747L7.42869 4.21498Z"
+      fill="currentColor" />
+  </g>
 </svg>

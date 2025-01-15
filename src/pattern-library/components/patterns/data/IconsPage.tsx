@@ -4,8 +4,6 @@ import { Link } from '../../../../';
 import * as Icons from '../../../../components/icons';
 import Library from '../../Library';
 
-const deprecatedIcons = [Icons.LockAltIcon, Icons.LockAltFilledIcon];
-
 export default function IconsPage() {
   return (
     <Library.Page
@@ -30,16 +28,13 @@ export default function IconsPage() {
         </Library.SectionL2>
 
         <Library.SectionL2 title="Icon components">
-          <Library.Callout>Deprecated icons are greyed-out.</Library.Callout>
           <div className="my-4 grid grid-cols-4 gap-6">
             {(Object.keys(Icons) as Array<keyof typeof Icons>).map(iconName => {
               const IconComponent = Icons[iconName];
-              const isDeprecated = deprecatedIcons.includes(IconComponent);
               return (
                 <div
                   className={classnames(
                     'flex flex-col gap-y-4 border rounded p-4 items-center justify-center',
-                    { 'opacity-40': isDeprecated },
                   )}
                   key={iconName}
                 >

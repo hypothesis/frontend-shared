@@ -17,14 +17,11 @@ export default function ImageIcon(props: ImageIconProps) {
       data-component="ImageIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 1v14H1V1zM1 15l3-8 4 6 3-4 4 6m-4-9a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+          fill="currentColor"
+          d="M15.995 1.85A2 2 0 0 0 14 0H2l-.15.005A2 2 0 0 0 0 2v12l.005.15A2 2 0 0 0 2 16h12l.15-.005A2 2 0 0 0 16 14V2zM2 2h12v12H2zm7.541 3.122.055.069 3.333 5.143a.432.432 0 0 1-.266.658l-.08.008H9.23a.93.93 0 0 0-.076-.98l-1.79-2.456 1.54-2.373a.41.41 0 0 1 .637-.069m-3.29 1.764-.062-.068a.41.41 0 0 0-.605.068l-2.5 3.428-.04.067c-.135.275.056.619.373.619h5l.076-.007a.432.432 0 0 0 .257-.679z"
         />
       </g>
     </svg>

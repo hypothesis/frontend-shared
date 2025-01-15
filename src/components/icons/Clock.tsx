@@ -12,23 +12,22 @@ export default function ClockIcon(props: ClockIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      fill="none"
-      viewBox="0 0 12 12"
+      aria-hidden="true"
+      viewBox="0 0 16 16"
       data-component="ClockIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        fill-rule="evenodd"
-        d="M6 0c3.04 0 6 2.96 6 6s-2.96 6-6 6-6-2.96-6-6 2.96-6 6-6m0 1.5C3.79 1.5 1.5 3.79 1.5 6s2.29 4.5 4.5 4.5 4.5-2.29 4.5-4.5S8.21 1.5 6 1.5"
-        clip-rule="evenodd"
-      />
-      <path
-        fill="currentColor"
-        fill-rule="evenodd"
-        d="M6 2.25a.75.75 0 0 1 .75.75v2.599l1.916 1.277a.75.75 0 0 1-.832 1.248l-2.25-1.5A.75.75 0 0 1 5.25 6V3A.75.75 0 0 1 6 2.25"
-        clip-rule="evenodd"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M8 0c4.052 0 8 3.948 8 8s-3.948 8-8 8-8-3.948-8-8 3.948-8 8-8m0 2C5.052 2 2 5.052 2 8s3.052 6 6 6 6-3.052 6-6-3.052-6-6-6"
+        />
+        <path
+          fill="currentColor"
+          d="M8 3a1 1 0 0 1 1 1v3.465l2.555 1.703a1 1 0 0 1-1.11 1.664l-3-2A1 1 0 0 1 7 8V4a1 1 0 0 1 1-1"
+        />
+      </g>
     </svg>
   );
 }

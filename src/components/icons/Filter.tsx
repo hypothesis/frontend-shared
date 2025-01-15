@@ -17,14 +17,11 @@ export default function FilterIcon(props: FilterIconProps) {
       data-component="FilterIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 3h14zm4 10h6zM3 8h10z"
+          fill="currentColor"
+          d="M16 3a1 1 0 0 0-1-1H1l-.117.007A1 1 0 0 0 1 4h14l.117-.007A1 1 0 0 0 16 3m-3 4a1 1 0 0 1 .117 1.993L13 9H3a1 1 0 0 1-.117-1.993L3 7zm-2 5a1 1 0 0 1 .117 1.993L11 14H5a1 1 0 0 1-.117-1.993L5 12z"
         />
       </g>
     </svg>

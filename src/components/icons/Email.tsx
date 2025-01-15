@@ -17,14 +17,11 @@ export default function EmailIcon(props: EmailIconProps) {
       data-component="EmailIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 3v10h14V3zm0 0 7 6 7-6z"
+          fill="currentColor"
+          d="M16 12a2 2 0 0 1-1.85 1.995L14 14H2a2 2 0 0 1-1.995-1.85L0 12V4a2 2 0 0 1 1.85-1.995L2 2h12a2 2 0 0 1 1.995 1.85l.005.138zm-2-6.058L8.581 9.814a1 1 0 0 1-1.055.067l-.107-.067L2 5.943V12h12zM2.721 4h10.558L8 7.771z"
         />
       </g>
     </svg>

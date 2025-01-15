@@ -17,10 +17,13 @@ export default function PreviewFilledIcon(props: PreviewFilledIconProps) {
       data-component="PreviewFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0m-.4 4.2a1 1 0 0 0-1.594.69L6 5v6a1 1 0 0 0 1.508.861L7.6 11.8l4-3a1 1 0 0 0 .1-1.515l-.1-.085z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0M6.006 4.89A1 1 0 0 1 7.6 4.2l4 3 .1.085a1 1 0 0 1-.1 1.515l-4 3-.092.061A1 1 0 0 1 6 11V5z"
+        />
+      </g>
     </svg>
   );
 }

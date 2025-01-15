@@ -17,14 +17,11 @@ export default function EllipsisIcon(props: EllipsisIconProps) {
       data-component="EllipsisIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M2 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2m6 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2m6 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+          fill="currentColor"
+          d="M2 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m6 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m8 2a2 2 0 1 0-4 0 2 2 0 0 0 4 0"
         />
       </g>
     </svg>

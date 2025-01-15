@@ -17,10 +17,13 @@ export default function SearchIcon(props: SearchIconProps) {
       data-component="SearchIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M6 0a6 6 0 0 1 4.825 9.564l.065-.09 4.817 4.819a1 1 0 0 1-1.32 1.497l-.094-.083-4.818-4.815.058-.042A6 6 0 1 1 6 0m0 2a4 4 0 1 0 0 8c1 0 1.938-.367 2.651-1.003l.16-.152.15-.156A4 4 0 0 0 6 2"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M12 6a6 6 0 1 0-2.525 4.892l4.818 4.815.094.083a1 1 0 0 0 1.32-1.497L10.89 9.474A5.97 5.97 0 0 0 12 6M2 6a4 4 0 1 1 6.961 2.69l-.15.155-.16.152A3.98 3.98 0 0 1 6 10a4 4 0 0 1-4-4"
+        />
+      </g>
     </svg>
   );
 }

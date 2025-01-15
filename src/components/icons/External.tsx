@@ -17,14 +17,11 @@ export default function ExternalIcon(props: ExternalIconProps) {
       data-component="ExternalIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M7 3h6v6m-1-5-9 9z"
+          fill="currentColor"
+          d="M13 2a1 1 0 0 1 .993.883L14 3v6a1 1 0 0 1-1.993.117L12 9V5.414l-8.293 8.293a1 1 0 0 1-1.497-1.32l.083-.094L10.584 4H7a1 1 0 0 1-.993-.883L6 3a1 1 0 0 1 .883-.993L7 2z"
         />
       </g>
     </svg>

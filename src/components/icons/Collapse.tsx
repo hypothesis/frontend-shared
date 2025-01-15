@@ -17,14 +17,11 @@ export default function CollapseIcon(props: CollapseIconProps) {
       data-component="CollapseIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m5 11-4 4zm-3-1h4v4m9-13-4 4zm-1 5h-4V2"
+          fill="currentColor"
+          d="M15.79 1.613a1 1 0 0 0-1.497-1.32L11 3.584V2l-.007-.117A1 1 0 0 0 9 2v4l.007.117A1 1 0 0 0 10 7h4l.117-.007A1 1 0 0 0 15 6l-.007-.117A1 1 0 0 0 14 5h-1.586l3.293-3.293zm-8.797 8.27A1 1 0 0 0 6 9H2l-.117.007A1 1 0 0 0 1 10l.007.117A1 1 0 0 0 2 11h1.584L.293 14.293l-.083.094a1 1 0 0 0 1.497 1.32L5 12.414V14l.007.117A1 1 0 0 0 7 14v-4z"
         />
       </g>
     </svg>

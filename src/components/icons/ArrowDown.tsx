@@ -17,14 +17,11 @@ export default function ArrowDownIcon(props: ArrowDownIconProps) {
       data-component="ArrowDownIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m12 9-4 4-4-4m4 3V3z"
+          fill="currentColor"
+          d="M8 2a1 1 0 0 1 .993.883L9 3v7.585l2.293-2.292a1 1 0 0 1 1.32-.083l.094.083a1 1 0 0 1 .083 1.32l-.083.094-4 4a1 1 0 0 1-1.32.083l-.094-.083-4-4a1 1 0 0 1 1.32-1.497l.094.083L7 10.585V3a1 1 0 0 1 1-1"
         />
       </g>
     </svg>

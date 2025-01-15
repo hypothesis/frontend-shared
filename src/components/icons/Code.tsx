@@ -13,11 +13,18 @@ export default function CodeIcon(props: CodeIconProps) {
       width="16"
       height="16"
       aria-hidden="true"
-      viewBox="0 0 24 24"
+      viewBox="0 0 16 16"
       data-component="CodeIcon"
       {...props}
     >
-      <path d="M8.7 15.9 4.8 12l3.9-3.9a.984.984 0 0 0 0-1.4.984.984 0 0 0-1.4 0l-4.59 4.59a.996.996 0 0 0 0 1.41l4.59 4.6c.39.39 1.01.39 1.4 0a.984.984 0 0 0 0-1.4m6.6 0 3.9-3.9-3.9-3.9a.984.984 0 0 1 0-1.4.984.984 0 0 1 1.4 0l4.59 4.59c.39.39.39 1.02 0 1.41l-4.59 4.6a.984.984 0 0 1-1.4 0 .984.984 0 0 1 0-1.4" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M12.707 4.293a1 1 0 1 0-1.414 1.414L13.586 8l-2.293 2.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414zm-9.414 0a1 1 0 0 1 1.414 1.414L2.414 8l2.293 2.293a1 1 0 1 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414z"
+          clip-rule="evenodd"
+        />
+      </g>
     </svg>
   );
 }

@@ -17,14 +17,11 @@ export default function BookmarkIcon(props: BookmarkIconProps) {
       data-component="BookmarkIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 1v14l-5-4-5 4V1z"
+          fill="currentColor"
+          d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1.625.78L8 12.28l-4.375 3.5a1 1 0 0 1-1.62-.668L2 15V1a1 1 0 0 1 1-1m9 12.92V2H4v10.919l3.375-2.7a1 1 0 0 1 1.147-.072l.103.072z"
         />
       </g>
     </svg>

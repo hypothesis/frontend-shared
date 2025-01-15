@@ -11,13 +11,19 @@ export default function GoogleDriveIcon(props: GoogleDriveIconProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
-      fill="currentColor"
-      data-name="Layer 1"
-      viewBox="0 0 24 24"
+      height="16"
+      aria-hidden="true"
+      viewBox="0 0 16 16"
       data-component="GoogleDriveIcon"
       {...props}
     >
-      <path d="m21.423 13.888-6.09-10.55H8.668l6.09 10.55ZM8.09 4.338 2 14.888l3.334 5.774 6.089-10.55Zm1.733 10.55-3.333 5.774h12.178L22 14.887Z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="m15.539 9.51-4.872-8.44H5.333l4.872 8.44zM4.87 1.87 0 10.31l2.667 4.62 4.871-8.44zm1.387 8.44L3.59 14.93h9.742L16 10.31z"
+        />
+      </g>
     </svg>
   );
 }

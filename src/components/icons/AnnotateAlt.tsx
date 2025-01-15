@@ -5,6 +5,7 @@ export type AnnotateAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
  * Icon generated from annotate-alt.svg
+ * @deprecated - Use `Annotate` instead
  */
 export default function AnnotateAltIcon(props: AnnotateAltIconProps) {
   return (

@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill-rule="evenodd"><rect fill="none" stroke="none" x="0" y="0" width="16" height="16"></rect><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 15H1V5h3m11-4v10H7V1h8z"></path></g></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M15 0C15.5128 0 15.9355 0.38604 15.9933 0.883379L16 1V11C16 11.5128 15.614 11.9355 15.1166 11.9933L15 12H7C6.48716 12 6.06449 11.614 6.00673 11.1166L6 11V1C6 0.487164 6.38604 0.0644928 6.88338 0.00672773L7 0H15ZM4 4C4.55228 4 5 4.44772 5 5C5 5.51284 4.61396 5.93551 4.11662 5.99327L4 6H2V14H9C9.51284 14 9.93551 14.386 9.99327 14.8834L10 15C10 15.5128 9.61396 15.9355 9.11662 15.9933L9 16H1C0.487164 16 0.0644928 15.614 0.00672773 15.1166L0 15V5C0 4.48716 0.38604 4.06449 0.883379 4.00673L1 4H4ZM8 2H14V10H8V2Z"
+      fill="currentColor" />
+  </g>
+</svg>

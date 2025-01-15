@@ -1,25 +1,12 @@
-  <svg
-    width="16"
-    height="16"
-    viewBox="-4 -4 39 39"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <rect
-      width="35"
-      height="35"
-      x="-2"
-      y="-2"
-      stroke="currentColor"
-      fill="none"
-      stroke-width="3"
-      rx="5"
-      ry="5"
-    />
-    <polyline
-      points="4,14 12,23 28,5"
-      stroke="currentColor"
-      stroke-width="5"
-      fill="none"
-    />
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M0 2.5C0 1.11929 1.11929 0 2.5 0H13.5C14.8807 0 16 1.11929 16 2.5V13.5C16 14.8807 14.8807 16 13.5 16H2.5C1.11929 16 0 14.8807 0 13.5V2.5ZM2.5 1C1.67157 1 1 1.67157 1 2.5V13.5C1 14.3284 1.67157 15 2.5 15H13.5C14.3284 15 15 14.3284 15 13.5V2.5C15 1.67157 14.3284 1 13.5 1H2.5Z"
+      fill="currentColor" />
+    <path
+      d="M11.1356 3.8199C11.3731 3.48057 11.8408 3.39804 12.1801 3.63558C12.4933 3.85484 12.5877 4.27018 12.4136 4.59967L12.3644 4.6801L7.11442 12.1801C6.82124 12.5989 6.21355 12.6028 5.91007 12.2135L5.85688 12.1359L3.60688 8.38587C3.39377 8.03069 3.50894 7.56999 3.86413 7.35688C4.19394 7.15899 4.61473 7.24416 4.84379 7.54172L4.89312 7.61413L6.548 10.3722L11.1356 3.8199Z"
+      fill="currentColor" />
+  </g>
 </svg>

@@ -1,0 +1,15 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M14 0C12.8954 0 12 0.895431 12 2V14C12 15.1046 12.8954 16 14 16C15.1046 16 16 15.1046 16 14V2C16 0.895431 15.1046 0 14 0Z"
+      fill="currentColor" />
+    <path
+      d="M6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6V14C10 15.1046 9.10457 16 8 16C6.89543 16 6 15.1046 6 14V6Z"
+      fill="currentColor" />
+    <path
+      d="M0 10C0 8.89543 0.895431 8 2 8C3.10457 8 4 8.89543 4 10V14C4 15.1046 3.10457 16 2 16C0.895431 16 0 15.1046 0 14V10Z"
+      fill="currentColor" />
+  </g>
+</svg>

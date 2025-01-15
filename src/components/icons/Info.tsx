@@ -12,15 +12,18 @@ export default function InfoIcon(props: InfoIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      viewBox="0 0 24 24"
+      aria-hidden="true"
+      viewBox="0 0 16 16"
       data-component="InfoIcon"
       {...props}
     >
-      <path fill="currentColor" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20" />
-      <path
-        fill="#fff"
-        d="M11 12a1 1 0 0 1 0-2h2a1 1 0 0 1 .96 1.27L12.33 17H13a1 1 0 0 1 0 2h-2a1 1 0 0 1-.96-1.27L11.67 12zm2-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M8 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M8 7a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1"
+        />
+      </g>
     </svg>
   );
 }

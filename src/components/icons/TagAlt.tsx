@@ -5,6 +5,7 @@ export type TagAltIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
  * Icon generated from tag-alt.svg
+ * @deprecated - Use `Tag` instead
  */
 export default function TagAltIcon(props: TagAltIconProps) {
   return (
@@ -17,10 +18,13 @@ export default function TagAltIcon(props: TagAltIconProps) {
       data-component="TagAltIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M5 3a5 5 0 1 1 0 10A5 5 0 0 1 5 3m6 0a5 5 0 0 1 0 10 1 1 0 0 1-.117-1.993L11 11a3 3 0 0 0 0-6 1 1 0 0 1 0-2M5 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M5 3a5 5 0 1 1 0 10A5 5 0 0 1 5 3m6 0a5 5 0 0 1 0 10 1 1 0 0 1-.117-1.993L11 11a3 3 0 0 0 0-6 1 1 0 0 1 0-2M5 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6"
+        />
+      </g>
     </svg>
   );
 }
