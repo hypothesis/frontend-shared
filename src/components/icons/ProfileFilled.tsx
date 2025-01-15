@@ -17,10 +17,13 @@ export default function ProfileFilledIcon(props: ProfileFilledIconProps) {
       data-component="ProfileFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M8 9c4.36 0 8 2.6 8 6a1 1 0 0 1-.883.993L15 16H1a1 1 0 0 1-1-1c0-3.4 3.64-6 8-6m0-9a4 4 0 1 1 0 8 4 4 0 0 1 0-8"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M12 4a4 4 0 1 0-8 0 4 4 0 0 0 8 0m4 11c0-3.4-3.64-6-8-6s-8 2.6-8 6a1 1 0 0 0 1 1h14l.117-.007A1 1 0 0 0 16 15"
+        />
+      </g>
     </svg>
   );
 }

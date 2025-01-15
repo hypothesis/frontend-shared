@@ -17,14 +17,11 @@ export default function ContrastIcon(props: ContrastIconProps) {
       data-component="ContrastIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M8 1C4.5 1 1 4.5 1 8s3.5 7 7 7 7-3.5 7-7-3.5-7-7-7M7 2v12M6 2v12M4 3v10M2 5v6"
+          fill="currentColor"
+          d="M16 8c0-4.052-3.948-8-8-8S0 3.948 0 8s3.948 8 8 8 8-3.948 8-8m-2 0c0 2.948-3.052 6-6 6V2l.201.005C11.085 2.139 14 5.119 14 8"
         />
       </g>
     </svg>

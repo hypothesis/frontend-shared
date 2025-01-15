@@ -12,18 +12,16 @@ export default function CheckIcon(props: CheckIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
+      aria-hidden="true"
       viewBox="0 0 16 16"
       data-component="CheckIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 3 6 13 3 8"
+          fill="currentColor"
+          d="M12.18 2.427a1 1 0 0 1 1.705 1.04l-.066.106-7 10a1 1 0 0 1-1.606.045l-.07-.104-3-5A1 1 0 0 1 3.792 7.39l.065.097 2.207 3.677z"
         />
       </g>
     </svg>

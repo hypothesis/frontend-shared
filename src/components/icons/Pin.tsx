@@ -12,21 +12,19 @@ export default function PinIcon(props: PinIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      class="icon-pin"
-      viewBox="0 0 24 24"
+      aria-hidden="true"
+      viewBox="0 0 16 16"
       data-component="PinIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="m2.24 20.35 6.5-7.5a1 1 0 0 1 1.47-.06l1 1a1 1 0 0 1-.06 1.47l-7.5 6.5c-.93.8-2.22-.48-1.4-1.41z"
-        class="secondary"
-      />
-      <path
-        fill="currentColor"
-        d="M15 15.41V18a1 1 0 0 1-.3.7l-1 1a1 1 0 0 1-1.4 0l-8-8a1 1 0 0 1 0-1.4l1-1A1 1 0 0 1 6 9h2.59L13 4.59V3a1 1 0 0 1 1.7-.7l7 7A1 1 0 0 1 21 11h-1.59z"
-        class="primary"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M9.293.293a1 1 0 0 1 1.414 0l5 5a1 1 0 0 1-1.414 1.414l-.043-.043-2.86 2.86-.929 3.25a1 1 0 0 1-.254.433l-1.5 1.5a1 1 0 0 1-1.414 0L5 12.414l-3.293 3.293a1 1 0 0 1-1.414-1.414L3.586 11 1.293 8.707a1 1 0 0 1 0-1.414l1.5-1.5a1 1 0 0 1 .432-.255l3.251-.928 2.86-2.86-.043-.043a1 1 0 0 1 0-1.414m1.457 2.871L7.707 6.207a1 1 0 0 1-.432.255l-3.251.928-.61.61L8 12.586l.61-.61.928-3.25a1 1 0 0 1 .255-.433l3.043-3.043z"
+          clip-rule="evenodd"
+        />
+      </g>
     </svg>
   );
 }

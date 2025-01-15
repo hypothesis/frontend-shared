@@ -17,10 +17,13 @@ export default function NoteIcon(props: NoteIconProps) {
       data-component="NoteIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M14 0a2 2 0 0 1 1.995 1.85L16 2v7a1 1 0 0 1-.31.724l-.09.076-8 6a1 1 0 0 1-.471.192L7 16H2a2 2 0 0 1-1.995-1.85L0 14V2A2 2 0 0 1 1.85.005L2 0zm0 2H2v12h4V9a1 1 0 0 1 .883-.993L7 8h7zm-2 8H8v3z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M14 0a2 2 0 0 1 1.995 1.85L16 2v7a1 1 0 0 1-.31.724l-.09.076-8 6a1 1 0 0 1-.471.192L7 16H2a2 2 0 0 1-1.995-1.85L0 14V2A2 2 0 0 1 1.85.005L2 0zm0 2H2v12h4V9a1 1 0 0 1 .883-.993L7 8h7zm-6 8h4l-4 3z"
+        />
+      </g>
     </svg>
   );
 }

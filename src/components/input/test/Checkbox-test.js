@@ -14,12 +14,12 @@ describe('Checkbox', () => {
   it('shows an icon representing checkbox state', () => {
     const wrapper = createComponent(Checkbox);
 
-    assert.isTrue(wrapper.exists('CheckboxOutlineIcon'));
+    assert.isTrue(wrapper.exists('CheckboxIcon'));
     assert.isFalse(wrapper.exists('CheckboxCheckedIcon'));
 
     wrapper.setProps({ checked: true });
 
-    assert.isFalse(wrapper.exists('CheckboxOutlineIcon'));
+    assert.isFalse(wrapper.exists('CheckboxIcon'));
     assert.isTrue(wrapper.exists('CheckboxCheckedIcon'));
   });
 

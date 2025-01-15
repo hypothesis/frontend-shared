@@ -1,3 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M2,8 C2,7.44771525 2.44771525,7 3,7 L13,7 C13.5522847,7 14,7.44771525 14,8 C14,8.55228475 13.5522847,9 13,9 L3,9 C2.44771525,9 2,8.55228475 2,8 Z"></path>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M14 8C14 7.44772 13.5523 7 13 7H3L2.88338 7.00673C2.38604 7.06449 2 7.48716 2 8C2 8.55228 2.44772 9 3 9H13L13.1166 8.99327C13.614 8.93551 14 8.51284 14 8Z"
+      fill="currentColor" />
+  </g>
 </svg>

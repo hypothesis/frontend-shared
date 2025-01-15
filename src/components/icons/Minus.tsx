@@ -17,10 +17,13 @@ export default function MinusIcon(props: MinusIconProps) {
       data-component="MinusIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M2 8a1 1 0 0 1 1-1h10a1 1 0 0 1 0 2H3a1 1 0 0 1-1-1"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M14 8a1 1 0 0 0-1-1H3l-.117.007A1 1 0 0 0 3 9h10l.117-.007A1 1 0 0 0 14 8"
+        />
+      </g>
     </svg>
   );
 }

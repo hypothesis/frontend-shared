@@ -1,5 +1,9 @@
-<svg width="16" height="9" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <g>
-  <path d="m0.5,8l7,-8l8,8" stroke="currentColor" transform="rotate(180 8 4)"/>
- </g>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M7.42869 11.785C7.74421 12.0717 8.25579 12.0717 8.57131 11.785L15.7617 5.25298C16.2707 4.7906 15.9102 4 15.1904 4H0.809577C0.0897627 4 -0.27072 4.7906 0.238266 5.25298L7.42869 11.785Z"
+      fill="currentColor" />
+  </g>
 </svg>

@@ -17,10 +17,13 @@ export default function EmailFilledIcon(props: EmailFilledIconProps) {
       data-component="EmailFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M.031 3.647 7.7 9.4l.08.049a.5.5 0 0 0 .44 0L8.3 9.4l7.67-5.752.022.174L16 4v8a2 2 0 0 1-1.85 1.995L14 14H2a2 2 0 0 1-1.995-1.85L0 12V4q0-.18.031-.353M14 2c.618 0 1.17.28 1.538.721L8 8.375.462 2.721c.33-.397.811-.663 1.355-.713L2 2z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M15.538 2.721A2 2 0 0 0 14 2H2l-.183.008a2 2 0 0 0-1.355.713L8 8.375zM7.7 9.4.031 3.647Q.001 3.82 0 4v8l.005.15A2 2 0 0 0 2 14h12l.15-.005A2 2 0 0 0 16 12V4l-.008-.178-.023-.174L8.3 9.4l-.08.049a.5.5 0 0 1-.44 0z"
+        />
+      </g>
     </svg>
   );
 }

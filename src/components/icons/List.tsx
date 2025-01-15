@@ -17,10 +17,13 @@ export default function ListIcon(props: ListIconProps) {
       data-component="ListIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M15 12a1 1 0 0 1 .117 1.993L15 14H1a1 1 0 0 1-.117-1.993L1 12zm0-5a1 1 0 0 1 .117 1.993L15 9H1a1 1 0 0 1-.117-1.993L1 7zm0-5a1 1 0 0 1 .117 1.993L15 4H1a1 1 0 0 1-.117-1.993L1 2z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M16 3a1 1 0 0 0-1-1H1l-.117.007A1 1 0 0 0 1 4h14l.117-.007A1 1 0 0 0 16 3m-1 4a1 1 0 0 1 .117 1.993L15 9H1a1 1 0 0 1-.117-1.993L1 7zm0 5a1 1 0 0 1 .117 1.993L15 14H1a1 1 0 0 1-.117-1.993L1 12z"
+        />
+      </g>
     </svg>
   );
 }

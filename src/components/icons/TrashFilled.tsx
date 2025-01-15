@@ -17,10 +17,13 @@ export default function TrashFilledIcon(props: TrashFilledIconProps) {
       data-component="TrashFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M14 4a1 1 0 0 1 .997 1.08l-.016.116-2 10a1 1 0 0 1-.863.797L12 16H4a1 1 0 0 1-.95-.69l-.03-.114-2-10a1 1 0 0 1 .864-1.19L2 4zm1-4a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M16 1a1 1 0 0 0-1-1H1a1 1 0 1 0 0 2h14a1 1 0 0 0 1-1m-1.003 4.08A1 1 0 0 0 14 4H2l-.116.007a1 1 0 0 0-.865 1.19l2 10 .03.113A1 1 0 0 0 4 16h8l.118-.007a1 1 0 0 0 .863-.797l2-10z"
+        />
+      </g>
     </svg>
   );
 }

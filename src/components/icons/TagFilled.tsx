@@ -17,10 +17,13 @@ export default function TagFilledIcon(props: TagFilledIconProps) {
       data-component="TagFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M7 0a1 1 0 0 1 .563.174l.096.073 8 7a1 1 0 0 1 .222 1.227l-.067.107-5 7a1 1 0 0 1-1.38.244l-.098-.078-9-8a1 1 0 0 1-.329-.626L0 7V1A1 1 0 0 1 .883.007L1 0zM5 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M7.563.174A1 1 0 0 0 7 0H1L.883.007A1 1 0 0 0 0 1v6l.007.121a1 1 0 0 0 .329.626l9 8 .098.078a1 1 0 0 0 1.38-.244l5-7 .067-.107a1 1 0 0 0-.223-1.227l-8-7zM3 5a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
+        />
+      </g>
     </svg>
   );
 }

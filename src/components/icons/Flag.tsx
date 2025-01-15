@@ -17,14 +17,11 @@ export default function FlagIcon(props: FlagIconProps) {
       data-component="FlagIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 9v6V1h12l-4 4 4 4z"
+          fill="currentColor"
+          d="M2.883.007A1 1 0 0 0 2 1v14l.007.117A1 1 0 0 0 4 15v-5h11l.114-.006.108-.017c.738-.16 1.06-1.109.485-1.684L12.415 5l3.292-3.293.076-.084C16.297.986 15.853 0 15 0H3zM4 2h8.584l-2.291 2.293-.083.094-.07.102a1 1 0 0 0 .153 1.218L12.585 8H4z"
         />
       </g>
     </svg>

@@ -17,14 +17,11 @@ export default function HelpIcon(props: HelpIconProps) {
       data-component="HelpIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M8 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2M4 4.5C4 2.567 5.79 1 8 1s4 1.567 4 3.5S10.21 8 8 8m0 0v1.5z"
+          fill="currentColor"
+          d="M13 4.5C13 1.983 10.734 0 8 0S3 1.983 3 4.5a1 1 0 0 0 2 0C5 3.151 6.316 2 8 2s3 1.151 3 2.5S9.684 7 8 7a1 1 0 0 0-1 1v1.5l.007.117A1 1 0 0 0 9 9.5v-.59c2.265-.415 4-2.208 4-4.41M10 14a2 2 0 1 0-4 0 2 2 0 0 0 4 0"
         />
       </g>
     </svg>

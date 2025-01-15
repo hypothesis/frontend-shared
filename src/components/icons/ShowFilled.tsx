@@ -17,10 +17,13 @@ export default function ShowFilledIcon(props: ShowFilledIconProps) {
       data-component="ShowFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M8 2c4.36 0 8 2.6 8 6s-3.64 6-8 6-8-2.6-8-6 3.64-6 8-6m0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M16 8c0-3.4-3.64-6-8-6S0 4.6 0 8s3.64 6 8 6 8-2.6 8-6M5 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0"
+        />
+      </g>
     </svg>
   );
 }

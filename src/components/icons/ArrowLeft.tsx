@@ -17,14 +17,11 @@ export default function ArrowLeftIcon(props: ArrowLeftIconProps) {
       data-component="ArrowLeftIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M7 12 3 8l4-4M4 8h9z"
+          fill="currentColor"
+          d="M7.707 3.293a1 1 0 0 1 .083 1.32l-.083.094L5.415 7H13a1 1 0 0 1 .117 1.993L13 9H5.415l2.292 2.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083-4-4a1 1 0 0 1-.083-1.32l.083-.094 4-4a1 1 0 0 1 1.414 0"
         />
       </g>
     </svg>

@@ -17,14 +17,11 @@ export default function CancelIcon(props: CancelIconProps) {
       data-component="CancelIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m8 8 3.536-3.536zL4.464 4.464zm0 0-3.536 3.536zl3.536 3.536z"
+          fill="currentColor"
+          d="m12.322 5.085-.08.087-2.828 2.827 2.829 2.83a1 1 0 0 1-1.32 1.497l-.095-.083L8 9.414l-2.828 2.829c-.915.914-2.272-.388-1.494-1.328l.08-.087L6.584 8 3.757 5.172a1 1 0 0 1 1.32-1.498l.095.083L8 6.585l2.828-2.828c.886-.885 2.188.309 1.56 1.239z"
         />
       </g>
     </svg>

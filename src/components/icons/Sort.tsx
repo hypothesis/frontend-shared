@@ -17,14 +17,11 @@ export default function SortIcon(props: SortIconProps) {
       data-component="SortIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 9V2zM1 5l4-4 4 4m2 2v7zm-4 4 4 4 4-4"
+          fill="currentColor"
+          d="M4.707.293 4.613.21a1 1 0 0 0-1.32.083l-3 3-.083.094a1 1 0 0 0 .083 1.32l.094.083a1 1 0 0 0 1.32-.083L3 3.415V8a1 1 0 1 0 2 0V3.415l1.293 1.292.094.083a1 1 0 0 0 1.32-1.497zM13 8a1 1 0 1 0-2 0v4.585l-1.293-1.292-.094-.083a1 1 0 0 0-1.32 1.497l3 3 .094.083a1 1 0 0 0 1.32-.083l3-3 .083-.094a1 1 0 0 0-.083-1.32l-.094-.083a1 1 0 0 0-1.32.083L13 12.585z"
         />
       </g>
     </svg>

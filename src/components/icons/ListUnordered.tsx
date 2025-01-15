@@ -17,10 +17,13 @@ export default function ListUnorderedIcon(props: ListUnorderedIconProps) {
       data-component="ListUnorderedIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M2 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4m13 1a1 1 0 0 1 .117 1.993L15 15H7a1 1 0 0 1-.117-1.993L7 13zM2 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m13 1a1 1 0 0 1 .117 1.993L15 9H7a1 1 0 0 1-.117-1.993L7 7zM2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m13 1a1 1 0 0 1 .117 1.993L15 3H7a1 1 0 0 1-.117-1.993L7 1z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m0 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m2 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0m12 0a1 1 0 0 0-1-1H7l-.117.007A1 1 0 0 0 7 15h8l.117-.007A1 1 0 0 0 16 14m0-6a1 1 0 0 0-1-1H7l-.117.007A1 1 0 0 0 7 9h8l.117-.007A1 1 0 0 0 16 8m0-6a1 1 0 0 0-1-1H7l-.117.007A1 1 0 0 0 7 3h8l.117-.007A1 1 0 0 0 16 2"
+        />
+      </g>
     </svg>
   );
 }

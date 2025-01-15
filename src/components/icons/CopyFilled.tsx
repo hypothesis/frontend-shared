@@ -17,10 +17,13 @@ export default function CopyFilledIcon(props: CopyFilledIconProps) {
       data-component="CopyFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M1 16a1 1 0 0 1-.993-.883L0 15V5a1 1 0 0 1 .883-.993L1 4h3a1 1 0 0 1 1 1v8h4a1 1 0 0 1 1 1v1a1 1 0 0 1-.883.993L9 16zM15 0a1 1 0 0 1 .993.883L16 1v10a1 1 0 0 1-.883.993L15 12H7a1 1 0 0 1-.993-.883L6 11V1a1 1 0 0 1 .883-.993L7 0z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M15.993.883A1 1 0 0 0 15 0H7l-.117.007A1 1 0 0 0 6 1v10l.007.117A1 1 0 0 0 7 12h8l.117-.007A1 1 0 0 0 16 11V1zM.007 15.117A1 1 0 0 0 1 16h8l.117-.007A1 1 0 0 0 10 15v-1a1 1 0 0 0-1-1H5V5a1 1 0 0 0-1-1H1l-.117.007A1 1 0 0 0 0 5v10z"
+        />
+      </g>
     </svg>
   );
 }

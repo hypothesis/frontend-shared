@@ -17,14 +17,11 @@ export default function CopyIcon(props: CopyIconProps) {
       data-component="CopyIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 15H1V5h3m11-4v10H7V1z"
+          fill="currentColor"
+          d="M15 0a1 1 0 0 1 .993.883L16 1v10a1 1 0 0 1-.883.993L15 12H7a1 1 0 0 1-.993-.883L6 11V1a1 1 0 0 1 .883-.993L7 0zM4 4a1 1 0 0 1 .117 1.993L4 6H2v8h7a1 1 0 0 1 .993.883L10 15a1 1 0 0 1-.883.993L9 16H1a1 1 0 0 1-.993-.883L0 15V5a1 1 0 0 1 .883-.993L1 4zm4-2h6v8H8z"
         />
       </g>
     </svg>

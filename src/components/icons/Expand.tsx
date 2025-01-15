@@ -17,14 +17,11 @@ export default function ExpandIcon(props: ExpandIconProps) {
       data-component="ExpandIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="m2 14 4-4zm3 1H1v-4m13-9-4 4zm-3-1h4v4"
+          fill="currentColor"
+          d="M15.993.883A1 1 0 0 0 15 0h-4l-.117.007A1 1 0 0 0 10 1l.007.117A1 1 0 0 0 11 2h1.584L9.293 5.293l-.083.094a1 1 0 0 0 1.497 1.32L14 3.414V5l.007.117A1 1 0 0 0 16 5V1zm-9.203 9.73a1 1 0 0 0-1.497-1.32L2 12.584V11l-.007-.117A1 1 0 0 0 0 11v4l.007.117A1 1 0 0 0 1 16h4l.117-.007A1 1 0 0 0 6 15l-.007-.117A1 1 0 0 0 5 14H3.414l3.293-3.293z"
         />
       </g>
     </svg>

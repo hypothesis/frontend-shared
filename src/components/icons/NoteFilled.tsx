@@ -17,10 +17,13 @@ export default function NoteFilledIcon(props: NoteFilledIconProps) {
       data-component="NoteFilledIcon"
       {...props}
     >
-      <path
-        fill="currentColor"
-        d="M14 0a2 2 0 0 1 1.995 1.85L16 2v5a1 1 0 0 1-1 1H7a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H2a2 2 0 0 1-1.995-1.85L0 14V2A2 2 0 0 1 1.85.005L2 0zm1.75 9a.25.25 0 0 1 .25.25L7.25 16a.25.25 0 0 1-.25-.25V10a1 1 0 0 1 1-1z"
-      />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
+        <path
+          fill="currentColor"
+          d="M15.995 1.85A2 2 0 0 0 14 0H2l-.15.005A2 2 0 0 0 0 2v12l.005.15A2 2 0 0 0 2 16h3a1 1 0 0 0 1-1V9a1 1 0 0 1 1-1h8a1 1 0 0 0 1-1V2zM16 9.25a.25.25 0 0 0-.25-.25H8a1 1 0 0 0-1 1v5.75c0 .138.112.25.25.25z"
+        />
+      </g>
     </svg>
   );
 }

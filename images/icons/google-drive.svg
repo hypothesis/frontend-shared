@@ -1,2 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="currentColor" width="16" heigh="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="M21.4231,13.88785,15.33356,3.33792H8.66663l6.09,10.54993ZM8.08917,4.33835,2,14.88736l3.33356,5.77472,6.08911-10.54926Zm1.73273,10.549L6.48877,20.66208H18.66663L22,14.88736Z"/></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true" focusable="false">
+  <g fill-rule="evenodd">
+    <rect fill="none" x="0" y="0" width="16" height="16"></rect>
+    <path
+      d="M15.5385 9.51029L10.6668 1.07034H5.3333L10.2053 9.51029H15.5385ZM4.87134 1.87069L0 10.3099L2.66685 14.9297L7.53814 6.49026L4.87134 1.87069ZM6.25752 10.3099L3.59102 14.9297H13.3333L16 10.3099L6.25752 10.3099Z"
+      fill="currentColor" />
+  </g>
+</svg>

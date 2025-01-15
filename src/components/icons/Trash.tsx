@@ -17,14 +17,11 @@ export default function TrashIcon(props: TrashIconProps) {
       data-component="TrashIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M2 4h12l-2 11H4zM1 1h14z"
+          fill="currentColor"
+          d="M16 1a1 1 0 0 0-1-1H1a1 1 0 1 0 0 2h14a1 1 0 0 0 1-1M14 4H2a1 1 0 0 0-.98 1.196l2 10A1 1 0 0 0 4 16h8a1 1 0 0 0 .98-.804l2-10A1 1 0 0 0 14 4m-1.22 2-1.6 8H4.819l-1.6-8z"
         />
       </g>
     </svg>

@@ -17,14 +17,11 @@ export default function ProfileIcon(props: ProfileIconProps) {
       data-component="ProfileIcon"
       {...props}
     >
-      <g fill="none" fill-rule="evenodd">
-        <path d="M0 0h16v16H0z" />
+      <g fill-rule="evenodd">
+        <path fill="none" d="M0 0h16v16H0z" />
         <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 15c0-2.761 3.134-5 7-5s7 2.239 7 5M8 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+          fill="currentColor"
+          d="M8 0a4 4 0 1 1 0 8 4 4 0 0 1 0-8m0 9c4.36 0 8 2.6 8 6a1 1 0 0 1-1.993.117L14 15c0-2.123-2.628-4-6-4s-6 1.877-6 4a1 1 0 1 1-2 0c0-3.4 3.64-6 8-6M6 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
         />
       </g>
     </svg>
