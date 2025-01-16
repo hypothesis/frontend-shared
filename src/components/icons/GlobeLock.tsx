@@ -1,12 +1,12 @@
 // This file was auto-generated using scripts/generate-icons.js
 import type { JSX } from 'preact';
 
-export type GroupRestrictedIconProps = JSX.SVGAttributes<SVGSVGElement>;
+export type GlobeLockIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
- * Icon generated from group-restricted.svg
+ * Icon generated from globe-lock.svg
  */
-export default function GroupRestrictedIcon(props: GroupRestrictedIconProps) {
+export default function GlobeLockIcon(props: GlobeLockIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ export default function GroupRestrictedIcon(props: GroupRestrictedIconProps) {
       height="16"
       aria-hidden="true"
       viewBox="0 0 16 16"
-      data-component="GroupRestrictedIcon"
+      data-component="GlobeLockIcon"
       {...props}
     >
       <g fill-rule="evenodd">

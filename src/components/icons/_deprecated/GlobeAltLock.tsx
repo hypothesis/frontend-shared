@@ -5,7 +5,7 @@ export type GlobeAltLockIconProps = JSX.SVGAttributes<SVGSVGElement>;
 
 /**
  * Icon generated from globe-alt-lock.svg
- * @deprecated - Use `GroupRestricted` instead
+ * @deprecated - Use `GlobeLock` instead
  */
 export default function GlobeAltLockIcon(props: GlobeAltLockIconProps) {
   return (
