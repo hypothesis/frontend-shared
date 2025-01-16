@@ -14,7 +14,7 @@ export default [
 
   // Icons
   {
-    files: ['src/components/icons/*.tsx'],
+    files: ['src/components/icons/**/*.tsx'],
     rules: {
       // preact uses kebab-cased SVG element attributes, which look like
       // unknown properties to `eslint-plugin-react` (React uses camelCase
