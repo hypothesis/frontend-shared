@@ -133,9 +133,9 @@ function usePopoverPositioning(
 
     // First of all, open popover if it's using the native API, otherwise its
     // size is 0x0 and positioning calculations won't work.
-    const popover = popoverRef.current;
+    const popover = popoverRef.current!;
     if (asNativePopover) {
-      popover?.togglePopover(true);
+      popover.togglePopover(true);
     }
 
     const cleanup = adjustPopoverPositioning();
@@ -151,12 +151,18 @@ function usePopoverPositioning(
       capture: true,
     });
 
+    // Readjust popover positioning if its resized, in case it dropped-up, and
+    // it needs to be moved down
+    const observer = new ResizeObserver(adjustPopoverPositioning);
+    observer.observe(popover);
+
     return () => {
       if (asNativePopover) {
         popover?.togglePopover(false);
       }
       cleanup();
       listeners.removeAll();
+      observer.disconnect();
     };
   }, [adjustPopoverPositioning, asNativePopover, popoverOpen, popoverRef]);
 }

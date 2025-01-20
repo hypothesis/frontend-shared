@@ -1,4 +1,4 @@
-import { mount } from '@hypothesis/frontend-testing';
+import { mount, waitFor } from '@hypothesis/frontend-testing';
 import { useRef, useState } from 'preact/hooks';
 
 import Popover, { POPOVER_VIEWPORT_HORIZONTAL_GAP } from '../Popover';
@@ -71,6 +71,20 @@ describe('Popover', () => {
       .getBoundingClientRect();
 
     return popoverTop < buttonTop;
+  };
+
+  const getDistanceBetweenButtonAndPopover = wrapper => {
+    const appearedAbove = popoverAppearedAbove(wrapper);
+    const { top: popoverTop, bottom: popoverBottom } = getPopover(wrapper)
+      .getDOMNode()
+      .getBoundingClientRect();
+    const { top: buttonTop, bottom: buttonBottom } = getToggleButton(wrapper)
+      .getDOMNode()
+      .getBoundingClientRect();
+
+    return Math.abs(
+      appearedAbove ? popoverBottom - buttonTop : buttonBottom - popoverTop,
+    );
   };
 
   [
@@ -148,6 +162,42 @@ describe('Popover', () => {
       togglePopover(wrapper);
 
       assert.equal(popoverAppearedAbove(wrapper), shouldBeAbove);
+    });
+  });
+
+  [true, false].forEach(asNativePopover => {
+    it('repositions popover if it is resized after being open', async () => {
+      const wrapper = createComponent(
+        {
+          asNativePopover,
+          children: (
+            <>
+              <p>one</p>
+              <p>two</p>
+              <p>three</p>
+            </>
+          ),
+        },
+        { paddingTop: 1000 }, // Ensure popover appears above
+      );
+      togglePopover(wrapper);
+
+      // This applies only when the popover appears above, so let's verify it
+      assert.isTrue(popoverAppearedAbove(wrapper));
+
+      // After opening the popover, its distance to the button should be the
+      // same, even if it's resized
+      const distanceBeforeResizing =
+        getDistanceBetweenButtonAndPopover(wrapper);
+      wrapper.setProps({ children: 'Just one line' });
+
+      // Repositioning happens asynchronously via ResizeObserver, so we need to
+      // wait for it to eventually happen.
+      await waitFor(
+        () =>
+          distanceBeforeResizing ===
+          getDistanceBetweenButtonAndPopover(wrapper),
+      );
     });
   });
 
