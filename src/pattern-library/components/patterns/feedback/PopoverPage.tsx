@@ -8,8 +8,9 @@ export default function PopoverPage() {
       intro={
         <>
           <p>
-            <code>Popover</code> is a floating element rendered above other
-            content and positioned next to an anchor element.
+            <code>Popover</code> is a presentational component providing a
+            floating element rendered above other content and positioned next to
+            an anchor element.
           </p>
         </>
       }
@@ -61,6 +62,13 @@ export default function PopoverPage() {
         </Library.SectionL2>
 
         <Library.SectionL2 title="Popover component API">
+          <p>
+            <code>Popover</code> accepts all standard{' '}
+            <Library.Link href="/using-components#presentational-components-api">
+              presentational component props
+            </Library.Link>
+            .
+          </p>
           <Library.SectionL3 title="align">
             <Library.Info>
               <Library.InfoItem label="description">
@@ -111,19 +119,6 @@ export default function PopoverPage() {
               <Library.InfoItem label="default">
                 <code>true</code> if the browser supports <code>[popover]</code>
                 . Otherwise it is <code>false</code>
-              </Library.InfoItem>
-            </Library.Info>
-          </Library.SectionL3>
-          <Library.SectionL3 title="classes">
-            <Library.Info>
-              <Library.InfoItem label="description">
-                Additional CSS classes to pass to the popover.
-              </Library.InfoItem>
-              <Library.InfoItem label="type">
-                <code>string | string[]</code>
-              </Library.InfoItem>
-              <Library.InfoItem label="default">
-                <code>undefined</code>
               </Library.InfoItem>
             </Library.Info>
           </Library.SectionL3>

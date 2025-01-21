@@ -1,10 +1,13 @@
 import classnames from 'classnames';
-import type { ComponentChildren, RefObject } from 'preact';
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'preact/hooks';
+import type { JSX, RefObject } from 'preact';
+import { useCallback, useEffect, useLayoutEffect } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
+import { useSyncedRef } from '../../hooks/use-synced-ref';
+import type { PresentationalProps } from '../../types';
 import { ListenerCollection } from '../../util/listener-collection';
+import { downcastRef } from '../../util/typing';
 
 /** Small space to apply between the anchor element and the popover */
 const POPOVER_ANCHOR_EL_GAP = '.15rem';
@@ -221,8 +224,6 @@ function useOnClose(
 }
 
 export type PopoverProps = {
-  children?: ComponentChildren;
-  classes?: string | string[];
   variant?: 'panel' | 'custom';
 
   /** Whether the popover is currently open or not */
@@ -256,7 +257,8 @@ export type PopoverProps = {
    * Defaults to true, as long as the browser supports it.
    */
   asNativePopover?: boolean;
-};
+} & PresentationalProps &
+  Omit<JSX.HTMLAttributes<HTMLDivElement>, 'popover'>;
 
 export default function Popover({
   anchorElementRef,
@@ -269,8 +271,10 @@ export default function Popover({
   restoreFocusOnClose = true,
   /* eslint-disable-next-line no-prototype-builtins */
   asNativePopover = HTMLElement.prototype.hasOwnProperty('popover'),
+  elementRef,
+  ...htmlAttributes
 }: PopoverProps) {
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const popoverRef = useSyncedRef(elementRef);
 
   usePopoverPositioning(
     anchorElementRef,
@@ -318,10 +322,11 @@ export default function Popover({
         },
         classes,
       )}
-      ref={popoverRef}
+      ref={downcastRef(popoverRef)}
       popover={asNativePopover && 'auto'}
       data-testid="popover"
       data-component="Popover"
+      {...htmlAttributes}
     >
       {open && children}
     </div>
