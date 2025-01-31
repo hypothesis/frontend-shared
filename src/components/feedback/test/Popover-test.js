@@ -87,6 +87,15 @@ describe('Popover', () => {
     );
   };
 
+  it('invokes onScroll when scrolling inside the popover', () => {
+    const onScroll = sinon.stub();
+    const wrapper = createComponent({ onScroll });
+
+    getPopover(wrapper).find('[data-testid="popover"]').simulate('scroll');
+
+    assert.called(onScroll);
+  });
+
   [
     {
       restoreFocusOnClose: undefined, // Defaults to true

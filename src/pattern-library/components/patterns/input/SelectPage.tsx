@@ -454,10 +454,11 @@ export default function SelectPage() {
               withSource
             />
           </Library.SectionL3>
-          <Library.SectionL3 title="onListboxScroll">
+          <Library.SectionL3 title="onPopoverScroll">
             <Library.Info>
               <Library.InfoItem label="description">
-                A callback passed to the listbox <code>onScroll</code>.
+                A callback passed to the <code>Popover</code>
+                {"'"}s <code>onScroll</code>.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>
