@@ -305,8 +305,11 @@ type BaseSelectProps = CompositeProps & {
    */
   listboxAsPopover?: boolean;
 
-  /** A callback passed to the listbox onScroll */
+  /** @deprecated. Use onPopoverScroll instead */
   onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
+
+  /** A callback passed to the popover onScroll */
+  onPopoverScroll?: JSX.HTMLAttributes<HTMLElement>['onScroll'];
 
   /**
    * Indicates how overflowing content should be handled in the listbox.
@@ -349,6 +352,7 @@ function SelectMain<T>({
   popoverClasses = listboxClasses,
   containerClasses,
   onListboxScroll,
+  onPopoverScroll = onListboxScroll,
   right = false,
   alignListbox = right ? 'right' : 'left',
   multiple,
@@ -455,6 +459,7 @@ function SelectMain<T>({
           asNativePopover={listboxAsPopover}
           align={alignListbox}
           classes={popoverClasses}
+          onScroll={onPopoverScroll}
         >
           <ul
             role="listbox"
@@ -463,7 +468,6 @@ function SelectMain<T>({
             aria-multiselectable={multiple}
             aria-labelledby={buttonId ?? defaultButtonId}
             aria-orientation="vertical"
-            onScroll={onListboxScroll}
           >
             {children}
           </ul>

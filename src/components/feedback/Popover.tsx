@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import type { ComponentChildren, RefObject } from 'preact';
+import type { ComponentChildren, JSX, RefObject } from 'preact';
 import { useCallback, useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
@@ -256,6 +256,9 @@ export type PopoverProps = {
    * Defaults to true, as long as the browser supports it.
    */
   asNativePopover?: boolean;
+
+  /** A callback passed to the outermost element onScroll */
+  onScroll?: JSX.HTMLAttributes<HTMLElement>['onScroll'];
 };
 
 export default function Popover({
@@ -267,6 +270,7 @@ export default function Popover({
   classes,
   variant = 'panel',
   restoreFocusOnClose = true,
+  onScroll,
   /* eslint-disable-next-line no-prototype-builtins */
   asNativePopover = HTMLElement.prototype.hasOwnProperty('popover'),
 }: PopoverProps) {
@@ -320,6 +324,7 @@ export default function Popover({
       )}
       ref={popoverRef}
       popover={asNativePopover && 'auto'}
+      onScroll={onScroll}
       data-testid="popover"
       data-component="Popover"
     >

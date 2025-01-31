@@ -142,6 +142,16 @@ export default function PopoverPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.SectionL3>
+          <Library.SectionL3 title="onScroll">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Handler for {'"'}scroll{'"'} events on the outermost element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'() => void | undefined'}</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.SectionL3>
           <Library.SectionL3 title="open">
             <Library.Info>
               <Library.InfoItem label="description">
