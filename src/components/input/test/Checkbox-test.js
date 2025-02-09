@@ -15,12 +15,12 @@ describe('Checkbox', () => {
     const wrapper = createComponent(Checkbox);
 
     assert.isTrue(wrapper.exists('CheckboxIcon'));
-    assert.isFalse(wrapper.exists('CheckboxCheckedIcon'));
+    assert.isFalse(wrapper.exists('CheckboxCheckedFilledIcon'));
 
     wrapper.setProps({ checked: true });
 
     assert.isFalse(wrapper.exists('CheckboxIcon'));
-    assert.isTrue(wrapper.exists('CheckboxCheckedIcon'));
+    assert.isTrue(wrapper.exists('CheckboxCheckedFilledIcon'));
   });
 
   it('calls provided `onChange` callback when input changes', () => {
