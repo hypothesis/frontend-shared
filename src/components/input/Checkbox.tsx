@@ -2,7 +2,7 @@ import type { JSX, Ref } from 'preact';
 import { useState } from 'preact/hooks';
 
 import type { CompositeProps, IconComponent } from '../../types';
-import { CheckboxCheckedIcon, CheckboxIcon } from '../icons';
+import { CheckboxCheckedFilledIcon, CheckboxIcon } from '../icons';
 import ToggleInput from './ToggleInput';
 
 type ComponentProps = {
@@ -40,7 +40,7 @@ export default function Checkbox({
   checked,
   defaultChecked = false,
   icon = CheckboxIcon,
-  checkedIcon = CheckboxCheckedIcon,
+  checkedIcon = CheckboxCheckedFilledIcon,
   onChange,
   ...rest
 }: CheckboxProps) {
