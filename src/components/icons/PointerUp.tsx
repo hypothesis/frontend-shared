@@ -13,7 +13,7 @@ export default function PointerUpIcon(props: PointerUpIconProps) {
       width="16"
       height="9"
       aria-hidden="true"
-      viewBox="0 0 16 16"
+      viewBox="0 0 16 9"
       data-component="PointerUpIcon"
       {...props}
     >
