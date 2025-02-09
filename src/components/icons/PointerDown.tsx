@@ -13,7 +13,7 @@ export default function PointerDownIcon(props: PointerDownIconProps) {
       width="16"
       height="9"
       aria-hidden="true"
-      viewBox="0 0 16 16"
+      viewBox="0 0 16 9"
       data-component="PointerDownIcon"
       {...props}
     >
