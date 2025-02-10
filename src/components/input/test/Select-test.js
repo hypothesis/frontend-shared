@@ -270,18 +270,14 @@ describe('Select', () => {
     assert.equal(getTabIndex(5), -1);
   });
 
-  [{ propName: 'onPopoverScroll' }, { propName: 'onListboxScroll' }].forEach(
-    ({ propName }) => {
-      it(`invokes ${propName} when scrolling inside the Popover`, () => {
-        const onScroll = sinon.stub();
-        const wrapper = createComponent({ [propName]: onScroll });
+  it('invokes onPopoverScroll when scrolling inside the Popover', () => {
+    const onScroll = sinon.stub();
+    const wrapper = createComponent({ onPopoverScroll: onScroll });
 
-        wrapper.find('[data-testid="popover"]').simulate('scroll');
+    wrapper.find('[data-testid="popover"]').simulate('scroll');
 
-        assert.called(onScroll);
-      });
-    },
-  );
+    assert.called(onScroll);
+  });
 
   context('when Option is rendered outside of Select', () => {
     it('throws an error', () => {

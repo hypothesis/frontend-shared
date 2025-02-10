@@ -278,13 +278,8 @@ type BaseSelectProps = CompositeProps & {
   containerClasses?: string | string[];
   /** Additional classes to pass to toggle button */
   buttonClasses?: string | string[];
-  /** @deprecated. Use popoverClasses instead */
-  listboxClasses?: string | string[];
   /** Additional classes to pass to the popover */
   popoverClasses?: string | string[];
-
-  /** @deprecated Use `alignListbox="right"` instead */
-  right?: boolean;
 
   /**
    * How to align the listbox relative to the toggle button.
@@ -304,9 +299,6 @@ type BaseSelectProps = CompositeProps & {
    * Defaults to true, as long as the browser supports it.
    */
   listboxAsPopover?: boolean;
-
-  /** @deprecated. Use onPopoverScroll instead */
-  onListboxScroll?: JSX.HTMLAttributes<HTMLUListElement>['onScroll'];
 
   /** A callback passed to the popover onScroll */
   onPopoverScroll?: JSX.HTMLAttributes<HTMLElement>['onScroll'];
@@ -348,13 +340,10 @@ function SelectMain<T>({
   elementRef,
   buttonId,
   buttonClasses,
-  listboxClasses,
-  popoverClasses = listboxClasses,
+  popoverClasses,
   containerClasses,
-  onListboxScroll,
-  onPopoverScroll = onListboxScroll,
-  right = false,
-  alignListbox = right ? 'right' : 'left',
+  onPopoverScroll,
+  alignListbox = 'left',
   multiple,
   listboxOverflow = 'truncate',
   'aria-label': ariaLabel,
