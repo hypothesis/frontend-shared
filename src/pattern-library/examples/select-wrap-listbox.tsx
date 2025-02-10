@@ -37,7 +37,7 @@ export default function App() {
         onChange={newValue => setSelected(newValue)}
         buttonId={selectId}
         buttonContent={value ? value.name : <>Select one…</>}
-        listboxClasses="w-36"
+        popoverClasses="w-36"
         listboxOverflow="wrap"
       >
         {items.map(item => (
