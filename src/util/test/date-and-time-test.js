@@ -238,28 +238,63 @@ describe('date-and-time', () => {
       {
         locale: 'en-US',
         date: new Date('2020-05-04T23:02:01'),
-        includeWeekday: true,
+        expectedResult: 'May 04, 2020, 11:02 PM',
+      },
+      {
+        locale: 'en-US',
+        date: new Date('2020-05-04T23:02:01'),
+        options: { includeWeekday: true },
         expectedResult: 'Monday, May 04, 2020, 11:02 PM',
       },
       {
         locale: 'de-DE',
         date: new Date('2020-05-04T23:02:01'),
-        includeWeekday: true,
+        options: { includeWeekday: true },
         expectedResult: 'Montag, 04. Mai 2020, 23:02',
       },
       {
         locale: 'en-US',
         date: '2020-05-04T23:02:01',
-        includeWeekday: false,
+        options: { includeWeekday: false },
         expectedResult: 'May 04, 2020, 11:02 PM',
       },
       {
         locale: 'de-DE',
         date: '2020-05-04T23:02:01',
-        includeWeekday: false,
+        options: { includeWeekday: false },
         expectedResult: '04. Mai 2020, 23:02',
       },
-    ].forEach(({ locale, includeWeekday, expectedResult, date }) => {
+      {
+        locale: 'de-DE',
+        date: '2020-05-04T23:02:01',
+        options: { includeTime: false },
+        expectedResult: '04. Mai 2020',
+      },
+      {
+        locale: 'en-US',
+        date: '2020-05-04T23:02:01',
+        options: { includeTime: false },
+        expectedResult: 'May 04, 2020',
+      },
+      {
+        locale: 'de-DE',
+        date: '2020-05-04T23:02:01',
+        options: {
+          includeTime: false,
+          includeWeekday: true,
+        },
+        expectedResult: 'Montag, 04. Mai 2020',
+      },
+      {
+        locale: 'en-US',
+        date: '2020-05-04T23:02:01',
+        options: {
+          includeTime: false,
+          includeWeekday: true,
+        },
+        expectedResult: 'Monday, May 04, 2020',
+      },
+    ].forEach(({ locale, options, expectedResult, date }) => {
       it('returns absolute formatted date', () => {
         const fakeIntl = locale => ({
           DateTimeFormat: function (_, options) {
@@ -268,9 +303,7 @@ describe('date-and-time', () => {
         });
 
         assert.equal(
-          normalizeSpaces(
-            formatDateTime(date, { Intl: fakeIntl(locale), includeWeekday }),
-          ),
+          normalizeSpaces(formatDateTime(date, options, fakeIntl(locale))),
           expectedResult,
         );
       });

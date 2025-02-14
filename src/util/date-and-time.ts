@@ -247,8 +247,11 @@ export type FormatDateTimeOptions = {
    */
   includeWeekday?: boolean;
 
-  /** Test seam. JS `Intl` API implementation. */
-  Intl?: IntlType;
+  /**
+   * Whether the formatted date should include the time (hours and minutes) or not.
+   * Defaults to `true`.
+   */
+  includeTime?: boolean;
 };
 
 /**
@@ -261,7 +264,9 @@ export type FormatDateTimeOptions = {
  */
 export function formatDateTime(
   date: Date | string,
-  options?: FormatDateTimeOptions,
+  { includeWeekday = false, includeTime = true }: FormatDateTimeOptions = {},
+  /* istanbul ignore next - Test seam. JS `Intl` API implementation. */
+  Intl?: IntlType,
 ): string {
   return format(
     typeof date === 'string' ? new Date(date) : date,
@@ -269,10 +274,10 @@ export function formatDateTime(
       year: 'numeric',
       month: 'short',
       day: '2-digit',
-      weekday: options?.includeWeekday ? 'long' : undefined,
-      hour: '2-digit',
-      minute: '2-digit',
+      weekday: includeWeekday ? 'long' : undefined,
+      hour: includeTime ? '2-digit' : undefined,
+      minute: includeTime ? '2-digit' : undefined,
     },
-    options?.Intl,
+    Intl,
   );
 }
