@@ -36,7 +36,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "express": "^4.17.1",
     "fancy-log": "^2.0.0",
-    "globals": "^15.11.0",
+    "globals": "^16.0.0",
     "gulp": "^5.0.0",
     "karma": "^6.3.4",
     "karma-chrome-launcher": "^3.1.0",
