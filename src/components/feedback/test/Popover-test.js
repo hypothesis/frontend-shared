@@ -9,6 +9,8 @@ function TestComponent({ children, ...rest }) {
 
   return (
     <div className="relative">
+      {/* Focusable element that is not the popover trigger. */}
+      <input data-testid="test-input" />
       <button
         data-testid="toggle-button"
         className="p-2"
@@ -98,20 +100,14 @@ describe('Popover', () => {
 
   [
     {
-      restoreFocusOnClose: undefined, // Defaults to true
-      expectedFocusAfterClose: wrapper => getToggleButton(wrapper).getDOMNode(),
+      asNativePopover: true,
     },
     {
-      restoreFocusOnClose: true,
-      expectedFocusAfterClose: wrapper => getToggleButton(wrapper).getDOMNode(),
+      asNativePopover: false,
     },
-    {
-      restoreFocusOnClose: false,
-      expectedFocusAfterClose: () => document.body,
-    },
-  ].forEach(({ restoreFocusOnClose, expectedFocusAfterClose }) => {
-    it('restores focus to toggle button after closing popover', () => {
-      const wrapper = createComponent({ restoreFocusOnClose });
+  ].forEach(({ asNativePopover }) => {
+    it('restores focus to previously focused element when popover is closed', () => {
+      const wrapper = createComponent({ asNativePopover });
 
       // Focus toggle button before opening popover
       getToggleButton(wrapper).getDOMNode().focus();
@@ -121,13 +117,43 @@ describe('Popover', () => {
       // Focus something else before closing the popover
       const innerButton = wrapper.find('[data-testid="inner-button"]');
       innerButton.getDOMNode().focus();
+      assert.notEqual(
+        document.activeElement,
+        getToggleButton(wrapper).getDOMNode(),
+      );
+
       // Close the popover with a different button inside the popover itself
       innerButton.simulate('click');
       assert.isFalse(getPopover(wrapper).prop('open'));
 
       // After closing popover, the focus should have returned to the toggle
       // button, which was the last focused element
-      assert.equal(document.activeElement, expectedFocusAfterClose(wrapper));
+      assert.equal(
+        document.activeElement,
+        getToggleButton(wrapper).getDOMNode(),
+      );
+    });
+
+    it("doesn't restore focus if user clicked on focusable element outside popover", () => {
+      const wrapper = createComponent({ asNativePopover });
+
+      // Focus toggle button before opening popover
+      getToggleButton(wrapper).getDOMNode().focus();
+      togglePopover(wrapper);
+      assert.isTrue(getPopover(wrapper).prop('open'));
+
+      // Focus a control outside the popover
+      const input = wrapper.find('[data-testid="test-input"]').getDOMNode();
+      input.focus();
+      assert.equal(document.activeElement, input);
+
+      // Close popover
+      const innerButton = wrapper.find('[data-testid="inner-button"]');
+      innerButton.simulate('click');
+      assert.isFalse(getPopover(wrapper).prop('open'));
+
+      // Check that input remains focused
+      assert.equal(document.activeElement, input);
     });
   });
 
