@@ -248,6 +248,9 @@ export type PopoverProps = {
   /**
    * Determines if focus should be restored when the popover is closed.
    * Defaults to true.
+   *
+   * @deprecated - Setting this prop to `false` does not work if native popovers
+   * are used. This prop will be removed entirely in future.
    */
   restoreFocusOnClose?: boolean;
 
@@ -261,6 +264,61 @@ export type PopoverProps = {
   onScroll?: JSX.HTMLAttributes<HTMLElement>['onScroll'];
 };
 
+type RestoreFocusOptions = {
+  /** True if the popover is open. */
+  open: boolean;
+
+  /** Ref for the popover element. */
+  popoverRef: { current: HTMLElement | null };
+};
+
+/**
+ * Restore focus to the previously active element when a popover is closed.
+ */
+function useRestoreFocusOnClose({ popoverRef, open }: RestoreFocusOptions) {
+  useLayoutEffect(() => {
+    const container = popoverRef.current;
+    const restoreFocusTo = open
+      ? (document.activeElement as HTMLElement)
+      : null;
+
+    if (!container || !restoreFocusTo) {
+      return () => {};
+    }
+
+    return () => {
+      // When a popover is opened and then closed, there are several
+      // possibilities for what happens to the focus:
+      //
+      // 1. The focus may be unchanged from before the popover was opened.
+      //
+      // 2. The focus may have moved into the popover when it was opened, and
+      //    then back to either the previously focused element or the body when
+      //    it was closed.
+      //
+      //    When a native popover is closed via `togglePopover` or `hidePopover`,
+      //    focus will revert to the element that was focused at the time the
+      //    popover was shown. See https://html.spec.whatwg.org/multipage/popover.html#dom-hidepopover.
+      //
+      // 3. The user may have clicked an element outside the popover, focusing
+      //    that element and causing the popover to close.
+      //
+      // From the above cases, we only need to restore focus if it is still
+      // inside the popover, or focus reverted to the document body.
+      const currentFocus = document.activeElement;
+      if (
+        currentFocus &&
+        !container.contains(currentFocus) &&
+        currentFocus !== document.body
+      ) {
+        return;
+      }
+
+      restoreFocusTo.focus();
+    };
+  }, [popoverRef, open]);
+}
+
 export default function Popover({
   anchorElementRef,
   children,
@@ -269,7 +327,6 @@ export default function Popover({
   align = 'left',
   classes,
   variant = 'panel',
-  restoreFocusOnClose = true,
   onScroll,
   /* eslint-disable-next-line no-prototype-builtins */
   asNativePopover = HTMLElement.prototype.hasOwnProperty('popover'),
@@ -283,20 +340,11 @@ export default function Popover({
     asNativePopover,
     align === 'right',
   );
-
   useOnClose(popoverRef, anchorElementRef, onClose, open, asNativePopover);
-
-  useLayoutEffect(() => {
-    const restoreFocusTo = open
-      ? (document.activeElement as HTMLElement)
-      : null;
-
-    return () => {
-      if (restoreFocusOnClose && restoreFocusTo) {
-        restoreFocusTo.focus();
-      }
-    };
-  }, [open, restoreFocusOnClose]);
+  useRestoreFocusOnClose({
+    open,
+    popoverRef: popoverRef,
+  });
 
   return (
     <div
