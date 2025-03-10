@@ -54,7 +54,7 @@
     "sass": "^1.43.2",
     "sinon": "^19.0.2",
     "svgo": "^3.0.0",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.0.12",
     "typescript": "^5.0.2",
     "typescript-eslint": "^8.10.0",
     "yalc": "^1.0.0-pre.50"
