@@ -440,4 +440,15 @@ describe('Popover', () => {
       });
     });
   });
+
+  it('sets `elementRef`', () => {
+    const elementRef = { current: null };
+    const wrapper = createComponent({ elementRef });
+
+    assert.instanceOf(elementRef.current, HTMLDivElement);
+
+    wrapper.unmount();
+
+    assert.isNull(elementRef.current);
+  });
 });

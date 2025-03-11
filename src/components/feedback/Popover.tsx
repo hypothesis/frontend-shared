@@ -1,10 +1,12 @@
 import classnames from 'classnames';
 import type { ComponentChildren, JSX, RefObject } from 'preact';
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'preact/hooks';
+import { useCallback, useEffect, useLayoutEffect } from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
+import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { ListenerCollection } from '../../util/listener-collection';
+import { downcastRef } from '../../util/typing';
 
 /** Small space to apply between the anchor element and the popover */
 const POPOVER_ANCHOR_EL_GAP = '.15rem';
@@ -225,6 +227,9 @@ export type PopoverProps = {
   classes?: string | string[];
   variant?: 'panel' | 'custom';
 
+  /** Ref for the popover element. */
+  elementRef?: RefObject<HTMLElement>;
+
   /** Whether the popover is currently open or not */
   open: boolean;
 
@@ -328,10 +333,11 @@ export default function Popover({
   classes,
   variant = 'panel',
   onScroll,
+  elementRef,
   /* eslint-disable-next-line no-prototype-builtins */
   asNativePopover = HTMLElement.prototype.hasOwnProperty('popover'),
 }: PopoverProps) {
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const popoverRef = useSyncedRef<HTMLElement>(elementRef);
 
   usePopoverPositioning(
     anchorElementRef,
@@ -370,7 +376,7 @@ export default function Popover({
         },
         classes,
       )}
-      ref={popoverRef}
+      ref={downcastRef(popoverRef)}
       popover={asNativePopover && 'auto'}
       onScroll={onScroll}
       data-testid="popover"
