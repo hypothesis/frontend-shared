@@ -127,6 +127,18 @@ export default function PopoverPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.SectionL3>
+          <Library.SectionL3 title="elementRef">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Ref for the popover{"'"}s outermost element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>
+                  RefObject{'<'}HTMLElement{'>'}
+                </code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.SectionL3>
           <Library.SectionL3 title="onClose">
             <Library.Info>
               <Library.InfoItem label="description">
