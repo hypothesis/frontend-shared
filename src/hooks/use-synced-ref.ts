@@ -23,7 +23,7 @@ class SyncedRef<T> implements RefObject<T> {
     return this._value;
   }
 
-  set current(value: null) {
+  set current(value: T | null) {
     this._value = value;
     this._updateTarget();
   }
