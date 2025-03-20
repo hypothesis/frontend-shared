@@ -114,6 +114,7 @@ export type {
   CalloutProps,
   DialogProps,
   ModalDialogProps,
+  PopoverProps,
   SpinnerProps,
   SpinnerOverlayProps,
   ToastMessage,
