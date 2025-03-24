@@ -163,9 +163,9 @@ export default function PlaygroundApp({
                   <h1 className="font-medium text-lg pl-6">
                     <Link
                       href={baseURL + '/'}
-                      classes="flex gap-x-3 text-stone-700"
+                      classes="flex gap-x-3 text-stone-700 items-center"
                     >
-                      <LogoIcon className="text-brand" />
+                      <LogoIcon className="text-brand w-6 h-6" />
                       Component Library
                     </Link>
                   </h1>
