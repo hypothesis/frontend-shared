@@ -10,7 +10,7 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.18.6",
-    "@hypothesis/frontend-build": "^3.0.0",
+    "@hypothesis/frontend-build": "^3.2.1",
     "@hypothesis/frontend-testing": "^1.4.0",
     "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-commonjs": "^28.0.0",
@@ -19,6 +19,8 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-virtual": "^3.0.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@vitest/browser": "^3.1.1",
+    "@vitest/coverage-istanbul": "^3.1.1",
     "autoprefixer": "^10.3.7",
     "axe-core": "^4.0.0",
     "babel-plugin-istanbul": "^7.0.0",
@@ -46,6 +48,7 @@
     "karma-source-map-support": "^1.4.0",
     "mocha": "11.1.0",
     "mustache": "^4.2.0",
+    "playwright": "^1.51.1",
     "postcss": "^8.3.9",
     "preact": "^10.25.1",
     "prettier": "^3.0.0",
@@ -57,6 +60,7 @@
     "tailwindcss": "3.4.17",
     "typescript": "^5.0.2",
     "typescript-eslint": "^8.10.0",
+    "vitest": "^3.1.1",
     "yalc": "^1.0.0-pre.50"
   },
   "peerDependencies": {
@@ -71,6 +75,7 @@
     "checkformatting": "prettier --cache --check '**/*.{js,scss,ts,tsx,md}'",
     "format": "prettier --cache --list-different --write '**/*.{js,scss,ts,tsx,md}'",
     "test": "gulp test",
+    "test:vitest": "gulp test:vitest",
     "push": "yarn build && yalc push"
   },
   "prettier": {
