@@ -60,3 +60,17 @@ gulp.task(
     }),
   ),
 );
+
+// Some (eg. a11y) tests rely on CSS bundles. We assume that JS will always take
+// longer to build than CSS, so build in parallel.
+gulp.task(
+  'test:vitest',
+  gulp.parallel('build-test-css', () =>
+    runTests({
+      bootstrapFile: 'test/bootstrap.js',
+      rollupConfig: 'rollup-tests.config.js',
+      testsPattern: 'src/**/*-test.js',
+      vitestConfig: './vitest.config.js',
+    }),
+  ),
+);
