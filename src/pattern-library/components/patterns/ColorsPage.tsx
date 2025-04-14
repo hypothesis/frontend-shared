@@ -55,9 +55,29 @@ const slateExamples = (
 
 const stateExamples = (
   <>
-    <ColorSwatch colorClass="bg-green-success" colorName="green-success" />
-    <ColorSwatch colorClass="bg-yellow-notice" colorName="yellow-notice" />
-    <ColorSwatch colorClass="bg-red-error" colorName="red-error" />
+    <ColorSwatch
+      colorClass="bg-green-success"
+      colorName="green-success (green alias)"
+    />
+    <ColorSwatch
+      colorClass="bg-yellow-notice"
+      colorName="yellow-notice (yellow alias)"
+    />
+    <ColorSwatch colorClass="bg-red-error" colorName="red-error (red alias)" />
+  </>
+);
+
+const highlightingExamples = (
+  <>
+    <ColorSwatch colorClass="bg-green-light" colorName="green-light" />
+    <ColorSwatch colorClass="bg-green" colorName="green" />
+    <ColorSwatch colorClass="bg-green-dark" colorName="green-dark" />
+    <ColorSwatch colorClass="bg-yellow-light" colorName="yellow-light" />
+    <ColorSwatch colorClass="bg-yellow" colorName="yellow" />
+    <ColorSwatch colorClass="bg-yellow-dark" colorName="yellow-dark" />
+    <ColorSwatch colorClass="bg-red-light" colorName="red-light" />
+    <ColorSwatch colorClass="bg-red" colorName="red" />
+    <ColorSwatch colorClass="bg-red-dark" colorName="red-dark" />
   </>
 );
 
@@ -87,6 +107,12 @@ export default function ColorsPage() {
         </p>
         <div className="my-4 flex flex-row flex-wrap gap-4">
           {slateExamples}
+        </div>
+      </Library.SectionL2>
+
+      <Library.SectionL2 title="Highlighting">
+        <div className="my-4 flex flex-row flex-wrap gap-4">
+          {highlightingExamples}
         </div>
       </Library.SectionL2>
 

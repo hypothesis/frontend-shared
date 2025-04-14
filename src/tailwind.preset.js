@@ -7,6 +7,11 @@ import { scrollShadows } from './tailwind.scroll-shadows.js';
 // Equivalent to spacing value 11; minimum touch-target size
 const minimumTouchDimension = '44px';
 
+// Default colors
+const green = '#00a36d';
+const yellow = '#fbc168';
+const red = '#d93c3f';
+
 export default /** @type {Partial<import('tailwindcss').Config>} */ ({
   theme: {
     extend: {
@@ -50,13 +55,22 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
           focus: '#59a7e8',
         },
         green: {
-          success: '#00a36d',
+          light: '#dfebe7',
+          DEFAULT: green,
+          dark: '#005c3d',
+          success: green,
         },
         yellow: {
-          notice: '#fbc168',
+          light: '#fef7ec',
+          DEFAULT: yellow,
+          dark: '#774903',
+          notice: yellow,
         },
         red: {
-          error: '#d93c3f',
+          light: '#f0e2e3',
+          DEFAULT: red,
+          dark: '#891b1d',
+          error: red,
         },
         brand: {
           dark: '#84141e',
