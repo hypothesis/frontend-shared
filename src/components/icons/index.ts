@@ -31,6 +31,7 @@ export { default as CollapseIcon } from './Collapse';
 export { default as ContrastIcon } from './Contrast';
 export { default as CopyIcon } from './Copy';
 export { default as CopyFilledIcon } from './CopyFilled';
+export { default as DottedCircleIcon } from './DottedCircle';
 export { default as DownloadIcon } from './Download';
 export { default as EditIcon } from './Edit';
 export { default as EditorLatexIcon } from './EditorLatex';
