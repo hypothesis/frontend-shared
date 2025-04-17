@@ -1,4 +1,4 @@
-import { mount } from '@hypothesis/frontend-testing';
+import { mount, waitFor } from '@hypothesis/frontend-testing';
 
 import { testTransitionComponent } from '../../test/common-tests';
 import Slider from '../Slider';
@@ -57,16 +57,11 @@ describe('Slider', () => {
     assert.equal(containerStyle.height, '200px');
   });
 
-  it('should transition to collapsed if `direction` changes to `out`', done => {
+  it('should transition to collapsed if `direction` changes to `out`', async () => {
     const wrapper = createSlider({ direction: 'in' });
 
     wrapper.setProps({ direction: 'out' });
-
-    setTimeout(() => {
-      const containerStyle = wrapper.getDOMNode().style;
-      assert.equal(containerStyle.height, '0px');
-      done();
-    }, 1);
+    await waitFor(() => wrapper.getDOMNode().style.height === '0px');
   });
 
   it('should set the container height to "auto" when an expand transition finishes', () => {
