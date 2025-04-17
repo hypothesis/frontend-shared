@@ -355,7 +355,7 @@ describe('Popover', () => {
       // Content is slightly longer than the anchor element. The popover matches
       // one of its sides but spans further to the opposite one
       {
-        children: 'slightly longer text'.repeat(2),
+        children: 'slightly longer text',
         align: 'left',
         getExpectedCoordinates: (popoverDOMNode, wrapper) => {
           const buttonDOMNode = getToggleButton(wrapper).getDOMNode();
@@ -388,7 +388,7 @@ describe('Popover', () => {
       // Content is very big, so popover spans to the edge of the viewport and
       // grows further than the opposite side of the anchor element
       {
-        children: 'very long text'.repeat(6),
+        children: 'very long text'.repeat(4),
         align: 'left',
         getExpectedCoordinates: popoverDOMNode => {
           const popoverRect = popoverDOMNode.getBoundingClientRect();
