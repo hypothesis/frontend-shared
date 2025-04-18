@@ -40,13 +40,6 @@
     "fancy-log": "^2.0.0",
     "globals": "^16.0.0",
     "gulp": "^5.0.0",
-    "karma": "^6.3.4",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-mocha": "^2.0.0",
-    "karma-mocha-reporter": "^2.0.4",
-    "karma-source-map-support": "^1.4.0",
-    "mocha": "11.1.0",
     "mustache": "^4.2.0",
     "playwright": "^1.51.1",
     "postcss": "^8.3.9",
@@ -67,7 +60,7 @@
     "preact": "^10.25.1"
   },
   "scripts": {
-    "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test' --ignore '**/karma.config.js'",
+    "build-lib": "babel src/ --out-dir lib/ --extensions '.js,.ts,.tsx' --source-maps --ignore '**/test'",
     "build": "yarn build-lib && tsc --build src/tsconfig.json",
     "build-pattern-lib": "yarn gulp bundle-css && yarn rollup -c rollup.config.js",
     "typecheck": "tsc --build src/tsconfig.json",
@@ -75,7 +68,6 @@
     "checkformatting": "prettier --cache --check '**/*.{js,scss,ts,tsx,md}'",
     "format": "prettier --cache --list-different --write '**/*.{js,scss,ts,tsx,md}'",
     "test": "gulp test",
-    "test:vitest": "gulp test:vitest",
     "push": "yarn build && yalc push"
   },
   "prettier": {

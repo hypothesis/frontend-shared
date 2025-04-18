@@ -21,7 +21,6 @@
   "include": ["**/*.ts", "**/*.js", "**/*.tsx", "types/*.d.ts"],
   "exclude": [
     // Tests are not checked.
-    "**/test/**/*.js",
-    "karma.config.js"
+    "**/test/**/*.js"
   ]
 }
