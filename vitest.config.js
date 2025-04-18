@@ -23,7 +23,7 @@ export default defineConfig({
       enabled: true,
       provider: 'istanbul',
       reportsDirectory: './coverage',
-      reporter: ['json', 'clover', 'html'],
+      reporter: ['json', 'html'],
       include: ['src/**/*.{ts,tsx}'],
       exclude: [
         '**/node_modules/**',
