@@ -82,7 +82,6 @@ const Slider: TransitionComponent = ({
       // See https://bugs.chromium.org/p/chromium/issues/detail?id=961193
       //
       // @ts-ignore
-      // eslint-disable-next-line react/no-unknown-property
       ontransitionend={handleTransitionEnd}
       ref={containerRef}
       style={{
