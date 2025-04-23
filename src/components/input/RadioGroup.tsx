@@ -44,10 +44,9 @@ function Radio<T extends RadioValue>({
       className={classnames(
         'focus-visible-ring rounded-lg px-3 py-2 flex-1 group',
         {
-          'bg-grey-3/50': isSelected,
-          'hover:bg-grey-3/25': !isSelected && !disabled,
+          'hover:bg-grey-3/25 aria-checked:bg-grey-3/50 cursor-pointer':
+            !disabled,
           'opacity-70': disabled,
-          'cursor-pointer': !disabled,
         },
       )}
       data-value={value}
@@ -66,13 +65,20 @@ function Radio<T extends RadioValue>({
     >
       <div className="flex items-center gap-x-1.5">
         {isSelected ? <RadioCheckedIcon /> : <RadioIcon />}
-        {children}
+        <span
+          className={classnames('flex items-center gap-x-1.5', {
+            'text-grey-7 group-hover:text-grey-8 group-aria-checked:text-grey-8':
+              !disabled,
+          })}
+        >
+          {children}
+        </span>
       </div>
       {subtitle && (
         <div
           className={classnames('pl-4 ml-1.5 mt-1 text-sm', {
-            'text-grey-7': isSelected,
-            'text-grey-6 group-hover:text-grey-7': !isSelected && !disabled,
+            'text-grey-6 group-hover:text-grey-7 group-aria-checked:text-grey-7':
+              !disabled,
           })}
         >
           {subtitle}
