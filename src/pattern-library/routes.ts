@@ -24,6 +24,7 @@ import InputGroupPage from './components/patterns/input/InputGroupPage';
 import InputPage from './components/patterns/input/InputPage';
 import OptionButtonPage from './components/patterns/input/OptionButtonPage';
 import RadioGroupPage from './components/patterns/input/RadioGroupPage';
+import RichCheckboxPage from './components/patterns/input/RichCheckboxPage';
 import SelectPage from './components/patterns/input/SelectPage';
 import TextareaPage from './components/patterns/input/TextareaPage';
 import CardPage from './components/patterns/layout/CardPage';
@@ -207,6 +208,12 @@ const routes: PlaygroundRoute[] = [
     group: 'input',
     component: RadioGroupPage,
     route: '/input-radio-group',
+  },
+  {
+    title: 'RichCheckbox',
+    group: 'input',
+    component: RichCheckboxPage,
+    route: '/input-rich-checkbox',
   },
   {
     title: 'Selects',

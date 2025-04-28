@@ -61,6 +61,7 @@ export {
   OptionButton,
   RadioButton,
   RadioGroup,
+  RichCheckbox,
   Select,
   Textarea,
 } from './components/input';
@@ -133,6 +134,7 @@ export type {
   OptionButtonProps,
   RadioButtonProps,
   RadioGroupProps,
+  RichCheckboxProps,
   SelectProps,
   TextareaProps,
 } from './components/input';
