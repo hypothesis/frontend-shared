@@ -174,6 +174,25 @@ export default function PopoverPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.SectionL3>
+          <Library.SectionL3 title="placement">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Whether the <code>Popover</code> should show above or below the
+                anchor element.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{"'above' | 'below'"}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{"'below'"}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Popover placement"
+              exampleFile="popover-placement"
+              withSource
+            />
+          </Library.SectionL3>
           <Library.SectionL3 title="restoreFocusOnClose">
             <Library.Info>
               <Library.InfoItem label="description">
