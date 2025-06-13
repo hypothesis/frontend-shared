@@ -41,6 +41,7 @@ function usePopoverPositioning(
   popoverOpen: boolean,
   asNativePopover: boolean,
   alignToRight: boolean,
+  placement: 'above' | 'below',
 ) {
   const adjustPopoverPositioning = useCallback(() => {
     const popoverEl = popoverRef.current!;
@@ -71,11 +72,15 @@ function usePopoverPositioning(
     const { height: popoverHeight, width: popoverWidth } =
       popoverEl.getBoundingClientRect();
 
-    // The popover should render above only if there's not enough space below to
-    // fit it and there's more absolute space above than below
+    // The popover should render in indicated placement if there's enough space
+    // to fit it, and the opposite one otherwise
     const shouldBeAbove =
-      anchorElDistanceToBottom < popoverHeight &&
-      anchorElDistanceToTop > anchorElDistanceToBottom;
+      (placement === 'above' &&
+        anchorElDistanceToTop > popoverHeight &&
+        anchorElDistanceToBottom < anchorElDistanceToTop) ||
+      (placement === 'below' &&
+        anchorElDistanceToBottom < popoverHeight &&
+        anchorElDistanceToTop > anchorElDistanceToBottom);
 
     if (!asNativePopover) {
       // Set styles for non-popover mode
@@ -126,7 +131,7 @@ function usePopoverPositioning(
         : `calc(${absBodyTop + anchorElDistanceToTop + anchorElHeight}px + ${POPOVER_ANCHOR_EL_GAP})`,
       left: `${Math.max(POPOVER_VIEWPORT_HORIZONTAL_GAP, left)}px`,
     });
-  }, [asNativePopover, anchorElementRef, popoverRef, alignToRight]);
+  }, [popoverRef, anchorElementRef, placement, asNativePopover, alignToRight]);
 
   useLayoutEffect(() => {
     if (!popoverOpen) {
@@ -251,6 +256,17 @@ export type PopoverProps = {
   align?: 'right' | 'left';
 
   /**
+   * Where to position the popover if there's available space: above the anchor
+   * or below it.
+   * Defaults to 'below'.
+   *
+   * Notice that if there's no space to display the popover in selected
+   * placement, it will be displayed in the other one in an attempt to keep it
+   * inside the viewport.
+   */
+  placement?: 'above' | 'below';
+
+  /**
    * Determines if focus should be restored when the popover is closed.
    * Defaults to true.
    *
@@ -330,6 +346,7 @@ export default function Popover({
   open,
   onClose,
   align = 'left',
+  placement = 'below',
   classes,
   variant = 'panel',
   onScroll,
@@ -345,6 +362,7 @@ export default function Popover({
     open,
     asNativePopover,
     align === 'right',
+    placement,
   );
   useOnClose(popoverRef, anchorElementRef, onClose, open, asNativePopover);
   useRestoreFocusOnClose({
