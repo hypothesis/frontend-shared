@@ -188,17 +188,33 @@ describe('Popover', () => {
       asNativePopover: false,
       shouldBeAbove: true,
     },
-  ].forEach(({ containerPaddingTop, asNativePopover, shouldBeAbove }) => {
-    it('positions popover above or below based on available space', () => {
-      const wrapper = createComponent(
-        { asNativePopover },
-        { paddingTop: containerPaddingTop },
-      );
-      togglePopover(wrapper);
 
-      assert.equal(popoverAppearedAbove(wrapper), shouldBeAbove);
-    });
-  });
+    // placement: 'above'
+    {
+      containerPaddingTop: 1000,
+      asNativePopover: true,
+      shouldBeAbove: true,
+      placement: 'above',
+    },
+    {
+      containerPaddingTop: 0,
+      asNativePopover: true,
+      shouldBeAbove: false,
+      placement: 'above',
+    },
+  ].forEach(
+    ({ containerPaddingTop, asNativePopover, shouldBeAbove, placement }) => {
+      it('positions popover above or below based on available space and placement', () => {
+        const wrapper = createComponent(
+          { asNativePopover, placement },
+          { paddingTop: containerPaddingTop },
+        );
+        togglePopover(wrapper);
+
+        assert.equal(popoverAppearedAbove(wrapper), shouldBeAbove);
+      });
+    },
+  );
 
   [true, false].forEach(asNativePopover => {
     it('repositions popover if it is resized after being open', async () => {
