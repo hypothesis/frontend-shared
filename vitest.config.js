@@ -14,6 +14,7 @@ export default defineConfig({
       headless: true,
       screenshotFailures: false,
       instances: [{ browser: 'chromium' }],
+      viewport: { width: 1024, height: 768 },
     },
 
     // CSS bundle relied upon by accessibility tests (eg. for color-contrast
