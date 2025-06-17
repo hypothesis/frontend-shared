@@ -75,17 +75,23 @@ describe('Popover', () => {
     return popoverTop < buttonTop;
   };
 
-  const getDistanceBetweenButtonAndPopover = wrapper => {
+  const getDistanceBetweenButtonAndElement = (wrapper, element) => {
     const appearedAbove = popoverAppearedAbove(wrapper);
-    const { top: popoverTop, bottom: popoverBottom } = getPopover(wrapper)
-      .getDOMNode()
-      .getBoundingClientRect();
+    const { top: elementTop, bottom: elementBottom } =
+      element.getBoundingClientRect();
     const { top: buttonTop, bottom: buttonBottom } = getToggleButton(wrapper)
       .getDOMNode()
       .getBoundingClientRect();
 
     return Math.abs(
-      appearedAbove ? popoverBottom - buttonTop : buttonBottom - popoverTop,
+      appearedAbove ? elementBottom - buttonTop : buttonBottom - elementTop,
+    );
+  };
+
+  const getDistanceBetweenButtonAndPopover = wrapper => {
+    return getDistanceBetweenButtonAndElement(
+      wrapper,
+      getPopover(wrapper).getDOMNode(),
     );
   };
 
@@ -453,6 +459,46 @@ describe('Popover', () => {
           popoverRight.toFixed(0),
           expectedCoordinates.right.toFixed(0),
         );
+      });
+    });
+  });
+
+  describe('popover with arrow', () => {
+    [
+      {
+        arrow: true,
+        placement: 'above',
+        expectedPointer: 'PointerDownIcon',
+        expectedOffset: 14,
+      },
+      {
+        arrow: true,
+        placement: 'below',
+        expectedPointer: 'PointerUpIcon',
+        expectedOffset: 14,
+      },
+      { arrow: false, placement: 'above', expectedOffset: 6 },
+      { arrow: false, placement: 'below', expectedOffset: 6 },
+    ].forEach(({ arrow, placement, expectedPointer, expectedOffset }) => {
+      it('increases the offset between the anchor and the popover when arrow is true', () => {
+        const wrapper = createComponent(
+          { placement, arrow },
+          // Add some space so that the popover can render above
+          { paddingTop: 100 },
+        );
+        togglePopover(wrapper);
+
+        const offset = getDistanceBetweenButtonAndElement(
+          wrapper,
+          wrapper.find('[data-testid="popover-content"]').getDOMNode(),
+        );
+        assert.equal(offset, expectedOffset);
+
+        if (arrow) {
+          assert.isTrue(wrapper.exists(expectedPointer));
+        } else {
+          assert.isFalse(wrapper.exists('[data-testid="arrow"]'));
+        }
       });
     });
   });

@@ -92,6 +92,25 @@ export default function PopoverPage() {
               </Library.InfoItem>
             </Library.Info>
           </Library.SectionL3>
+          <Library.SectionL3 title="arrow">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Determines if a small arrow pointing to the anchor element
+                should be displayed.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>{'true | false'}</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>{'false'}</code>
+              </Library.InfoItem>
+            </Library.Info>
+            <Library.Demo
+              title="Popover with arrow"
+              exampleFile="popover-with-arrow"
+              withSource
+            />
+          </Library.SectionL3>
           <Library.SectionL3 title="asNativePopover">
             <Library.Info>
               <Library.InfoItem label="description">
