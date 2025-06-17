@@ -404,7 +404,7 @@ describe('Popover', () => {
       // Content is very big, so popover spans to the edge of the viewport and
       // grows further than the opposite side of the anchor element
       {
-        children: 'very long text'.repeat(4),
+        children: 'very long text'.repeat(8),
         align: 'left',
         getExpectedCoordinates: popoverDOMNode => {
           const popoverRect = popoverDOMNode.getBoundingClientRect();
