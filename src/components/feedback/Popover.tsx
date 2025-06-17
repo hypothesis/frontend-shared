@@ -1,15 +1,21 @@
 import classnames from 'classnames';
 import type { ComponentChildren, JSX, RefObject } from 'preact';
-import { useCallback, useEffect, useLayoutEffect } from 'preact/hooks';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'preact/hooks';
 
 import { useClickAway } from '../../hooks/use-click-away';
 import { useKeyPress } from '../../hooks/use-key-press';
 import { useSyncedRef } from '../../hooks/use-synced-ref';
 import { ListenerCollection } from '../../util/listener-collection';
 import { downcastRef } from '../../util/typing';
+import { PointerDownIcon, PointerUpIcon } from '../icons';
 
-/** Small space to apply between the anchor element and the popover */
-const POPOVER_ANCHOR_EL_GAP = '.15rem';
+/** Small space in px, to apply between the anchor element and the popover */
+const POPOVER_ANCHOR_EL_GAP = 3;
 
 /**
  * Space in pixels to apply between the popover and the viewport sides to
@@ -35,6 +41,9 @@ type PopoverPositioningOptions = {
    */
   alignToRight: boolean;
 
+  /** Whether an arrow pointing to the anchor should be added. */
+  arrow: boolean;
+
   /** Native popover API is used to toggle the popover */
   asNativePopover: boolean;
 };
@@ -48,8 +57,16 @@ type PopoverPositioningOptions = {
 function usePopoverPositioning(
   popoverRef: RefObject<HTMLElement | undefined>,
   anchorRef: RefObject<HTMLElement | undefined>,
-  { open, asNativePopover, alignToRight, placement }: PopoverPositioningOptions,
+  {
+    open,
+    asNativePopover,
+    alignToRight,
+    placement,
+    arrow,
+  }: PopoverPositioningOptions,
 ) {
+  const [resolvedPlacement, setResolvedPlacement] = useState(placement);
+
   const adjustPopoverPositioning = useCallback(() => {
     const popoverEl = popoverRef.current!;
     const anchorEl = anchorRef.current!;
@@ -89,18 +106,23 @@ function usePopoverPositioning(
         anchorElDistanceToBottom < popoverHeight &&
         anchorElDistanceToTop > anchorElDistanceToBottom);
 
+    // Update the actual placement, which may not match provided one
+    setResolvedPlacement(shouldBeAbove ? 'above' : 'below');
+
+    const anchorGap = arrow ? POPOVER_ANCHOR_EL_GAP + 8 : POPOVER_ANCHOR_EL_GAP;
+
     if (!asNativePopover) {
       // Set styles for non-popover mode
       if (shouldBeAbove) {
         return setPopoverCSSProps({
           bottom: '100%',
-          marginBottom: POPOVER_ANCHOR_EL_GAP,
+          marginBottom: `${anchorGap}px`,
         });
       }
 
       return setPopoverCSSProps({
         top: '100%',
-        marginTop: POPOVER_ANCHOR_EL_GAP,
+        marginTop: `${anchorGap}px`,
       });
     }
 
@@ -134,11 +156,11 @@ function usePopoverPositioning(
     return setPopoverCSSProps({
       minWidth: `${anchorElWidth}px`,
       top: shouldBeAbove
-        ? `calc(${absBodyTop + anchorElDistanceToTop - popoverHeight}px - ${POPOVER_ANCHOR_EL_GAP})`
-        : `calc(${absBodyTop + anchorElDistanceToTop + anchorElHeight}px + ${POPOVER_ANCHOR_EL_GAP})`,
+        ? `${absBodyTop + anchorElDistanceToTop - popoverHeight - anchorGap}px`
+        : `${absBodyTop + anchorElDistanceToTop + anchorElHeight + anchorGap}px`,
       left: `${Math.max(POPOVER_VIEWPORT_HORIZONTAL_GAP, left)}px`,
     });
-  }, [asNativePopover, anchorRef, popoverRef, alignToRight, placement]);
+  }, [popoverRef, anchorRef, placement, arrow, asNativePopover, alignToRight]);
 
   useLayoutEffect(() => {
     if (!open) {
@@ -179,6 +201,8 @@ function usePopoverPositioning(
       observer.disconnect();
     };
   }, [adjustPopoverPositioning, asNativePopover, open, popoverRef]);
+
+  return resolvedPlacement;
 }
 
 /**
@@ -273,6 +297,13 @@ export type PopoverProps = {
   placement?: 'above' | 'below';
 
   /**
+   * Determines if a small arrow pointing to the anchor element should be
+   * displayed.
+   * Defaults to false.
+   */
+  arrow?: boolean;
+
+  /**
    * Determines if focus should be restored when the popover is closed.
    * Defaults to true.
    *
@@ -353,6 +384,7 @@ export default function Popover({
   onClose,
   align = 'left',
   placement = 'below',
+  arrow = false,
   classes,
   variant = 'panel',
   onScroll,
@@ -362,12 +394,17 @@ export default function Popover({
 }: PopoverProps) {
   const popoverRef = useSyncedRef<HTMLElement>(elementRef);
 
-  usePopoverPositioning(popoverRef, anchorElementRef, {
-    open,
-    placement,
-    alignToRight: align === 'right',
-    asNativePopover,
-  });
+  const resolvedPlacement = usePopoverPositioning(
+    popoverRef,
+    anchorElementRef,
+    {
+      open,
+      placement,
+      arrow,
+      alignToRight: align === 'right',
+      asNativePopover,
+    },
+  );
   useOnClose(popoverRef, anchorElementRef, onClose, open, asNativePopover);
   useRestoreFocusOnClose({
     open,
@@ -378,16 +415,12 @@ export default function Popover({
     <div
       className={classnames(
         'absolute z-5',
-        variant === 'panel' && [
-          'max-h-80 overflow-y-auto overflow-x-hidden',
-          'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
-        ],
         asNativePopover && [
           // We don't want the popover to ever render outside the viewport,
           // and we give it a 16px gap
           'max-w-[calc(100%-16px)]',
           // Overwrite [popover] default styles
-          'p-0 m-0',
+          'p-0 m-0 overflow-visible',
         ],
         !asNativePopover && {
           // Hiding instead of unmounting so that popover size can be computed
@@ -396,7 +429,6 @@ export default function Popover({
           'right-0': align === 'right',
           'min-w-full': true,
         },
-        classes,
       )}
       ref={downcastRef(popoverRef)}
       popover={asNativePopover && 'auto'}
@@ -404,7 +436,37 @@ export default function Popover({
       data-testid="popover"
       data-component="Popover"
     >
-      {open && children}
+      {open && arrow && (
+        <div
+          className={classnames('absolute z-10', 'fill-white text-grey-3', {
+            'top-[calc(100%-1px)]': resolvedPlacement === 'above',
+            'bottom-[calc(100%-1px)]': resolvedPlacement === 'below',
+            'left-2': align === 'left',
+            'right-2': align === 'right',
+          })}
+          data-testid="arrow"
+        >
+          {resolvedPlacement === 'below' ? (
+            <PointerUpIcon />
+          ) : (
+            <PointerDownIcon />
+          )}
+        </div>
+      )}
+      {open && (
+        <div
+          className={classnames(
+            variant === 'panel' && [
+              'max-h-80 overflow-y-auto overflow-x-hidden',
+              'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
+            ],
+            classes,
+          )}
+          data-testid="popover-content"
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }
