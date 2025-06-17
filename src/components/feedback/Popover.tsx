@@ -25,27 +25,34 @@ type PopoverCSSProps =
   | 'bottom'
   | 'marginTop';
 
+type PopoverPositioningOptions = {
+  open: boolean;
+  placement: 'above' | 'below';
+
+  /**
+   * Whether the popover should be aligned to the right side of the anchor
+   * element or not
+   */
+  alignToRight: boolean;
+
+  /** Native popover API is used to toggle the popover */
+  asNativePopover: boolean;
+};
+
 /**
  * Manages the popover position manually to make sure it renders "next" to the
  * anchor element (above or below). This is mainly needed when using the
  * popover API, as that makes it render in the top layer, making it impossible
  * to position it relative to the anchor element via regular CSS.
- *
- * @param asNativePopover - Native popover API is used to toggle the popover
- * @param alignToRight - Whether the popover should be aligned to the right side
- *                       of the anchor element or not
  */
 function usePopoverPositioning(
-  anchorElementRef: RefObject<HTMLElement | undefined>,
   popoverRef: RefObject<HTMLElement | undefined>,
-  popoverOpen: boolean,
-  asNativePopover: boolean,
-  alignToRight: boolean,
-  placement: 'above' | 'below',
+  anchorRef: RefObject<HTMLElement | undefined>,
+  { open, asNativePopover, alignToRight, placement }: PopoverPositioningOptions,
 ) {
   const adjustPopoverPositioning = useCallback(() => {
     const popoverEl = popoverRef.current!;
-    const anchorEl = anchorElementRef.current!;
+    const anchorEl = anchorRef.current!;
 
     /**
      * Set the positioning styles synchronously (not via <div style={computedStyles} />),
@@ -131,10 +138,10 @@ function usePopoverPositioning(
         : `calc(${absBodyTop + anchorElDistanceToTop + anchorElHeight}px + ${POPOVER_ANCHOR_EL_GAP})`,
       left: `${Math.max(POPOVER_VIEWPORT_HORIZONTAL_GAP, left)}px`,
     });
-  }, [asNativePopover, anchorElementRef, popoverRef, alignToRight, placement]);
+  }, [asNativePopover, anchorRef, popoverRef, alignToRight, placement]);
 
   useLayoutEffect(() => {
-    if (!popoverOpen) {
+    if (!open) {
       return () => {};
     }
 
@@ -171,7 +178,7 @@ function usePopoverPositioning(
       listeners.removeAll();
       observer.disconnect();
     };
-  }, [adjustPopoverPositioning, asNativePopover, popoverOpen, popoverRef]);
+  }, [adjustPopoverPositioning, asNativePopover, open, popoverRef]);
 }
 
 /**
@@ -355,14 +362,12 @@ export default function Popover({
 }: PopoverProps) {
   const popoverRef = useSyncedRef<HTMLElement>(elementRef);
 
-  usePopoverPositioning(
-    anchorElementRef,
-    popoverRef,
+  usePopoverPositioning(popoverRef, anchorElementRef, {
     open,
-    asNativePopover,
-    align === 'right',
     placement,
-  );
+    alignToRight: align === 'right',
+    asNativePopover,
+  });
   useOnClose(popoverRef, anchorElementRef, onClose, open, asNativePopover);
   useRestoreFocusOnClose({
     open,
