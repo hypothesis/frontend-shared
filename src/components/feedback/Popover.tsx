@@ -260,8 +260,16 @@ function useOnClose(
 
 export type PopoverProps = {
   children?: ComponentChildren;
-  classes?: string | string[];
   variant?: 'panel' | 'custom';
+
+  /**
+   * Additional classes to be passed to the first child element of the popover,
+   * the one directly wrapping `children`.
+   */
+  classes?: string | string[];
+
+  /** Additional classes to be passed to the outermost element */
+  containerClasses?: string | string[];
 
   /** Ref for the popover element. */
   elementRef?: RefObject<HTMLElement>;
@@ -386,6 +394,7 @@ export default function Popover({
   placement = 'below',
   arrow = false,
   classes,
+  containerClasses,
   variant = 'panel',
   onScroll,
   elementRef,
@@ -429,6 +438,7 @@ export default function Popover({
           'right-0': align === 'right',
           'min-w-full': true,
         },
+        containerClasses,
       )}
       ref={downcastRef(popoverRef)}
       popover={asNativePopover && 'auto'}

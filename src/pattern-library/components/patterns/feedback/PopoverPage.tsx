@@ -136,7 +136,22 @@ export default function PopoverPage() {
           <Library.SectionL3 title="classes">
             <Library.Info>
               <Library.InfoItem label="description">
-                Additional CSS classes to pass to the popover.
+                Additional CSS classes to pass to the popover{"'"}s first child,
+                the one directly wrapping `children`.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | string[]</code>
+              </Library.InfoItem>
+              <Library.InfoItem label="default">
+                <code>undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.SectionL3>
+          <Library.SectionL3 title="containerClasses">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Additional CSS classes to pass to the popover{"'"}s outermost
+                element.
               </Library.InfoItem>
               <Library.InfoItem label="type">
                 <code>string | string[]</code>
