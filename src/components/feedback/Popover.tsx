@@ -415,12 +415,18 @@ export default function Popover({
     <div
       className={classnames(
         'absolute z-5',
+        variant === 'panel' && [
+          'max-h-80 ',
+          'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
+          !arrow && 'overflow-y-auto overflow-x-hidden',
+        ],
+        arrow && 'overflow-visible',
         asNativePopover && [
           // We don't want the popover to ever render outside the viewport,
           // and we give it a 16px gap
           'max-w-[calc(100%-16px)]',
           // Overwrite [popover] default styles
-          'p-0 m-0 overflow-visible',
+          'p-0 m-0',
         ],
         !asNativePopover && {
           // Hiding instead of unmounting so that popover size can be computed
@@ -429,6 +435,7 @@ export default function Popover({
           'right-0': align === 'right',
           'min-w-full': true,
         },
+        classes,
       )}
       ref={downcastRef(popoverRef)}
       popover={asNativePopover && 'auto'}
@@ -439,8 +446,8 @@ export default function Popover({
       {open && arrow && (
         <div
           className={classnames('absolute z-10', 'fill-white text-grey-3', {
-            'top-[calc(100%-1px)]': resolvedPlacement === 'above',
-            'bottom-[calc(100%-1px)]': resolvedPlacement === 'below',
+            'top-full': resolvedPlacement === 'above',
+            'bottom-full': resolvedPlacement === 'below',
             'left-2': align === 'left',
             'right-2': align === 'right',
           })}
@@ -453,20 +460,7 @@ export default function Popover({
           )}
         </div>
       )}
-      {open && (
-        <div
-          className={classnames(
-            variant === 'panel' && [
-              'max-h-80 overflow-y-auto overflow-x-hidden',
-              'rounded border bg-white shadow hover:shadow-md focus-within:shadow-md',
-            ],
-            classes,
-          )}
-          data-testid="popover-content"
-        >
-          {children}
-        </div>
-      )}
+      {open && children}
     </div>
   );
 }

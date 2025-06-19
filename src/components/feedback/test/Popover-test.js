@@ -26,7 +26,7 @@ function TestComponent({ children, ...rest }) {
         {...rest}
       >
         {children ?? (
-          <>
+          <div data-testid="popover-content">
             Content of popover
             <button
               data-testid="inner-button"
@@ -34,7 +34,7 @@ function TestComponent({ children, ...rest }) {
             >
               Focusable element inside popover
             </button>
-          </>
+          </div>
         )}
       </Popover>
     </div>
@@ -469,16 +469,16 @@ describe('Popover', () => {
         arrow: true,
         placement: 'above',
         expectedPointer: 'PointerDownIcon',
-        expectedOffset: 14,
+        expectedOffset: 12,
       },
       {
         arrow: true,
         placement: 'below',
         expectedPointer: 'PointerUpIcon',
-        expectedOffset: 14,
+        expectedOffset: 12,
       },
-      { arrow: false, placement: 'above', expectedOffset: 6 },
-      { arrow: false, placement: 'below', expectedOffset: 6 },
+      { arrow: false, placement: 'above', expectedOffset: 4 },
+      { arrow: false, placement: 'below', expectedOffset: 4 },
     ].forEach(({ arrow, placement, expectedPointer, expectedOffset }) => {
       it('increases the offset between the anchor and the popover when arrow is true', () => {
         const wrapper = createComponent(
