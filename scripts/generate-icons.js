@@ -34,13 +34,6 @@ function generateIcon(name, src, inputFileName) {
     plugins: [
       {
         name: 'preset-default',
-        params: {
-          overrides: {
-            // View boxes are needed for some icons to be able to render
-            // them at different sizes
-            removeViewBox: false,
-          },
-        },
       },
     ],
   });
