@@ -6,6 +6,7 @@ const Slider: TransitionComponent = ({
   children,
   direction = 'in',
   onTransitionEnd,
+  delay,
 }) => {
   const visible = direction === 'in';
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -93,6 +94,8 @@ const Slider: TransitionComponent = ({
         // are visible.
         overflow: isFullyVisible ? 'visible' : 'hidden',
         transition: `height 0.15s ease-in`,
+
+        transitionDelay: delay,
       }}
     >
       {children}

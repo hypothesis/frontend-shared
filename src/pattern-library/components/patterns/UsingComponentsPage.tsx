@@ -268,6 +268,21 @@ export default function UsingComponentsPage() {
           </Library.Link>
         </p>
         <Library.Section title="API" id="transition-components-api">
+          <Library.SectionL3 title="delay">
+            <Library.Info>
+              <Library.InfoItem label="description">
+                Sets delay before transitions begin. See the{' '}
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay">
+                  transition-delay
+                </a>{' '}
+                CSS property.
+              </Library.InfoItem>
+              <Library.InfoItem label="type">
+                <code>string | undefined</code>
+              </Library.InfoItem>
+            </Library.Info>
+          </Library.SectionL3>
+
           <Library.SectionL3 title="direction">
             <Library.Info>
               <Library.InfoItem label="description">

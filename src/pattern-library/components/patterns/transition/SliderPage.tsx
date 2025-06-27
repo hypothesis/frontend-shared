@@ -72,7 +72,7 @@ export default function SliderPage() {
 
         <Library.SectionL2 title="Component API">
           <p>
-            <code>Button</code> accepts{' '}
+            <code>Slider</code> accepts{' '}
             <Library.Link href="/using-components#transition-components-api">
               transition component props
             </Library.Link>
