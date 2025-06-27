@@ -55,8 +55,17 @@ export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
  * animate the mounting and unmounting of a child component.
  */
 export type TransitionComponent = FunctionComponent<{
+  /** Whether the children should be revealed ("in") or hidden ("out"). */
   direction?: 'in' | 'out';
+
+  /** Callback invoked when transition ends. */
   onTransitionEnd?: (direction: 'in' | 'out') => void;
+
+  /**
+   * Delay before transitions begin. This corresponds to the `transition-delay`
+   * CSS property.
+   */
+  delay?: string;
 }>;
 
 export type OrderDirection = 'ascending' | 'descending';
