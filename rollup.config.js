@@ -26,6 +26,10 @@ if (isProd) {
         // See https://github.com/hypothesis/client/issues/4045.
         max_line_len: 1024,
       },
+
+      // Disable name mangling because it affects the readability of examples.
+      // See https://github.com/hypothesis/frontend-shared/issues/1949.
+      mangle: false,
     }),
   );
 
