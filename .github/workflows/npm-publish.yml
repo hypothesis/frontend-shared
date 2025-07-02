@@ -18,6 +18,8 @@ jobs:
       run: yarn install --immutable
     - name: Build lib files
       run: yarn build
+      env:
+        NODE_ENV: production
     - name: Publish package
       run: npm publish --access public
       env:
