@@ -21,6 +21,7 @@ export {
   formatRelativeDate,
   formatDateTime,
 } from './util/date-and-time';
+export { lazy } from './util/lazy';
 export { ListenerCollection } from './util/listener-collection';
 export { confirm } from './util/prompts';
 
