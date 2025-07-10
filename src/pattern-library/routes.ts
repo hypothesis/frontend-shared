@@ -35,6 +35,7 @@ import PaginationPage from './components/patterns/navigation/PaginationPage';
 import PointerButtonPage from './components/patterns/navigation/PointerButtonPage';
 import TabPage from './components/patterns/navigation/TabPage';
 import SliderPage from './components/patterns/transition/SliderPage';
+import LazyPage from './components/patterns/utilities/LazyPage';
 
 export const componentGroups = {
   data: 'Data Display',
@@ -53,6 +54,7 @@ export type PlaygroundRouteGroup =
   | 'foundations'
   | 'components'
   | 'hooks'
+  | 'utilities'
   | 'prototype'
   | 'custom';
 
@@ -279,6 +281,12 @@ const routes: PlaygroundRoute[] = [
     group: 'hooks',
     component: UseClickAwayPage,
     route: '/hooks-use-click-away',
+  },
+  {
+    title: 'lazy',
+    group: 'utilities',
+    component: LazyPage,
+    route: '/utilities-lazy',
   },
 ];
 
