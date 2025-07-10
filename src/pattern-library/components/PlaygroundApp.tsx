@@ -147,6 +147,7 @@ export default function PlaygroundApp({
   const prototypeRoutes = getRoutes('prototype');
 
   const hookRoutes = getRoutes('hooks');
+  const utilityRoutes = getRoutes('utilities');
 
   const groupKeys = Object.keys(componentGroups) as Array<
     keyof typeof componentGroups
@@ -200,6 +201,13 @@ export default function PlaygroundApp({
                       <NavHeader>Hooks</NavHeader>
                       <NavList>
                         {hookRoutes.map(route => (
+                          <NavLink key={route.title} route={route} />
+                        ))}
+                      </NavList>
+
+                      <NavHeader>Utilities</NavHeader>
+                      <NavList>
+                        {utilityRoutes.map(route => (
                           <NavLink key={route.title} route={route} />
                         ))}
                       </NavList>
