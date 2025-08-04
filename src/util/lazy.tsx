@@ -8,6 +8,20 @@ export type LazyOptions<P> = {
   errorFallback?: (props: P, err: Error) => ComponentChildren;
 };
 
+/** An ES module with a default export that is a Preact component. */
+export type ComponentModule<P> = {
+  default: FunctionalComponent<P>;
+};
+
+function isComponentModule<P>(mod: unknown): mod is ComponentModule<P> {
+  return (
+    typeof mod === 'object' &&
+    mod !== null &&
+    'default' in mod &&
+    typeof mod.default === 'function'
+  );
+}
+
 /**
  * Create a lazy-loading version of a component.
  *
@@ -26,7 +40,7 @@ export type LazyOptions<P> = {
  */
 export function lazy<P>(
   displayName: string,
-  load: () => Promise<FunctionalComponent<P>>,
+  load: () => Promise<ComponentModule<P> | FunctionalComponent<P>>,
   { errorFallback, fallback }: LazyOptions<P>,
 ) {
   function Lazy(props: P & JSX.IntrinsicAttributes) {
@@ -50,7 +64,11 @@ export function lazy<P>(
       setLoading(true);
       load()
         .then(component => {
-          setComponent(() => component);
+          if (isComponentModule(component)) {
+            setComponent(() => component.default);
+          } else {
+            setComponent(() => component);
+          }
         })
         .catch(setError)
         .finally(() => {

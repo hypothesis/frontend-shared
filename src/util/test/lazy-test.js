@@ -55,6 +55,17 @@ describe('lazy', () => {
     );
   });
 
+  it('supports load callback returning a module', async () => {
+    fakeLoader.returns(Promise.resolve({ default: fakeComponent }));
+    const wrapper = mount(<LazyComponent text="test" />);
+
+    // Wait for component to load
+    await delay(0);
+    wrapper.update();
+
+    assert.isTrue(wrapper.exists('[data-testid="loaded-component"]'));
+  });
+
   it('passes props to loaded component', async () => {
     fakeLoader.returns(Promise.resolve(fakeComponent));
     const wrapper = mount(<LazyComponent text="test" customProp="value" />);
