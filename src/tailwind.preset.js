@@ -159,5 +159,14 @@ export default /** @type {Partial<import('tailwindcss').Config>} */ ({
       // See https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
       addVariant('input-group', '.input-group &');
     }),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        // Tailwind v3 does not provide this specific break utility: https://v3.tailwindcss.com/docs/word-break
+        // Tailwind v4 does have an equivalent utility that we can eventually adopt https://tailwindcss.com/docs/overflow-wrap#wrapping-anywhere
+        '.hyp-wrap-anywhere': {
+          'overflow-wrap': 'anywhere',
+        },
+      });
+    }),
   ],
 });
