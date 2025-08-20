@@ -91,7 +91,10 @@ export default function ToggleInput({
           // The ring needs to be applied here because the `input` has an
           // effectively-0 opacity.
           'peer-focus-visible:ring',
+          // Set preferred size of icon to match text.
           'w-em h-em',
+          // Set minimum size of icon to minimum size of SVG.
+          'min-w-min min-h-min',
         )}
       />
       {children}
