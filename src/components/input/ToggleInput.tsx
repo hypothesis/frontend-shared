@@ -97,7 +97,7 @@ export default function ToggleInput({
           'min-w-min min-h-min',
         )}
       />
-      {children}
+      <span>{children}</span>
     </label>
   );
 }
