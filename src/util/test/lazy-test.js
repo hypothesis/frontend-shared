@@ -55,6 +55,21 @@ describe('lazy', () => {
     );
   });
 
+  it('renders component on initial render if already loaded', async () => {
+    // First render, which triggers lazy loading.
+    fakeLoader.returns(Promise.resolve(fakeComponent));
+    const wrapper = mount(<LazyComponent text="test" />);
+    await delay(0);
+    wrapper.update();
+    assert.isTrue(wrapper.exists('[data-testid="loaded-component"]'));
+    wrapper.unmount();
+
+    // Second render, which should synchronously render the already-loaded
+    // component.
+    const wrapper2 = mount(<LazyComponent text="test" />);
+    assert.isTrue(wrapper2.exists('[data-testid="loaded-component"]'));
+  });
+
   it('supports load callback returning a module', async () => {
     fakeLoader.returns(Promise.resolve({ default: fakeComponent }));
     const wrapper = mount(<LazyComponent text="test" />);
