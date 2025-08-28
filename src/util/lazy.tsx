@@ -43,8 +43,14 @@ export function lazy<P>(
   load: () => Promise<ComponentModule<P> | FunctionalComponent<P>>,
   { errorFallback, fallback }: LazyOptions<P>,
 ) {
+  // Cache resolved component so that instances created after it has loaded
+  // will render synchronously.
+  let resolved: FunctionalComponent<P> | undefined;
+
   function Lazy(props: P & JSX.IntrinsicAttributes) {
-    const [component, setComponent] = useState<FunctionalComponent<P>>();
+    const [component, setComponent] = useState<
+      FunctionalComponent<P> | undefined
+    >(() => resolved);
     const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -63,12 +69,18 @@ export function lazy<P>(
     if (!component && !loading) {
       setLoading(true);
       load()
-        .then(component => {
-          if (isComponentModule(component)) {
-            setComponent(() => component.default);
+        .then(componentOrModule => {
+          let component;
+          if (isComponentModule(componentOrModule)) {
+            component = componentOrModule.default;
           } else {
-            setComponent(() => component);
+            component = componentOrModule as FunctionalComponent<P>;
           }
+
+          // Cache so we can render synchronously in future.
+          resolved = component;
+
+          setComponent(() => component);
         })
         .catch(setError)
         .finally(() => {
