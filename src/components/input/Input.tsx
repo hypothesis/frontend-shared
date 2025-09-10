@@ -14,7 +14,7 @@ export type InputStylesOptions = {
 
 export function inputStyles({ classes, feedback }: InputStylesOptions) {
   return classnames(
-    'focus-visible-ring ring-inset border rounded w-full p-2',
+    'focus-visible:ring focus-visible:outline-none ring-inset border rounded w-full p-2',
     'bg-grey-0 focus:bg-white disabled:bg-grey-1',
     'placeholder:text-grey-6 disabled:placeholder:text-grey-7',
 

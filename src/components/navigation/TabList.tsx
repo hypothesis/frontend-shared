@@ -47,7 +47,7 @@ export default function TabList({
       {...htmlAttributes}
       ref={downcastRef(tabListRef)}
       className={classnames(
-        'flex focus-visible-ring',
+        'flex focus-visible:ring focus-visible:outline-none',
         { 'flex-col': vertical },
         classes,
       )}

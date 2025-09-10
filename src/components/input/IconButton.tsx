@@ -51,7 +51,7 @@ export default function IconButton({
       {...htmlAttributes}
       classes={classnames(
         {
-          'focus-visible-ring transition-colors rounded whitespace-nowrap':
+          'focus-visible:ring focus-visible:outline-none transition-colors rounded whitespace-nowrap':
             styled,
           'flex items-center justify-center': styled,
         },

@@ -396,7 +396,7 @@ function SelectMain<T>({
       <button
         id={buttonId ?? defaultButtonId}
         className={classnames(
-          'focus-visible-ring transition-colors whitespace-nowrap',
+          'focus-visible:ring focus-visible:outline-none transition-colors whitespace-nowrap',
           'w-full flex items-center justify-between gap-x-2',
           'bg-grey-0 disabled:bg-grey-1 disabled:text-grey-6',
           // Buttons are center-aligned by default. Overwrite it.

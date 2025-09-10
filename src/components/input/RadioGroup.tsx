@@ -42,7 +42,7 @@ function Radio<T extends RadioValue>({
       aria-checked={isSelected}
       aria-disabled={disabled}
       className={classnames(
-        'focus-visible-ring rounded-lg px-3 py-2 flex-1 group',
+        'focus-visible:ring focus-visible:outline-none rounded-lg px-3 py-2 flex-1 group',
         {
           'hover:bg-grey-3/25 aria-checked:bg-grey-3/50 cursor-pointer':
             !disabled,
