@@ -62,7 +62,7 @@ export default function Table({
         aria-label={title}
         className={classnames(
           'w-full h-full',
-          'focus-visible-ring ring-inset',
+          'focus-visible:ring focus-visible:outline-none ring-inset',
           // Set the width of columns based on the width of the columns in the
           // first table row (typically headers)
           'table-fixed',

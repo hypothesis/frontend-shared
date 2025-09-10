@@ -404,7 +404,7 @@ export default function TabPage() {
                 <Card
                   classes={classnames(
                     { hidden: prefPanel !== 'profile' },
-                    'p-2 focus-visible-ring',
+                    'p-2 focus-visible:ring focus-visible:outline-none',
                   )}
                   id="profile-panel"
                   role="tabpanel"
@@ -416,7 +416,7 @@ export default function TabPage() {
                 <Card
                   classes={classnames(
                     { hidden: prefPanel !== 'notifications' },
-                    'p-2 focus-visible-ring',
+                    'p-2 focus-visible:ring focus-visible:outline-none',
                   )}
                   id="notifications-panel"
                   role="tabpanel"
@@ -428,7 +428,7 @@ export default function TabPage() {
                 <Card
                   classes={classnames(
                     { hidden: prefPanel !== 'account' },
-                    'p-2 focus-visible-ring',
+                    'p-2 focus-visible:ring focus-visible:outline-none',
                   )}
                   id="account-panel"
                   role="tabpanel"

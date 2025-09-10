@@ -96,7 +96,7 @@ export default function Button({
       {...htmlAttributes}
       className={classnames(
         {
-          'focus-visible-ring transition-colors whitespace-nowrap flex items-center':
+          'focus-visible:ring focus-visible:outline-none transition-colors whitespace-nowrap flex items-center':
             styled,
         },
         themed && {

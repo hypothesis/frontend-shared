@@ -43,7 +43,7 @@ export default function TableRow({
       ref={downcastRef(rowRef)}
       className={classnames(
         'group',
-        'focus-visible-ring ring-inset',
+        'focus-visible:ring focus-visible:outline-none ring-inset',
         {
           // Low-opacity backgrounds allow any scroll shadows to be visible
           'odd:bg-slate-9/[.03]': striped && !isHeadRow && !selected,

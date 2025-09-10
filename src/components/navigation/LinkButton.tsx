@@ -43,7 +43,7 @@ export default function LinkButton({
       elementRef={downcastRef(elementRef)}
       classes={classnames(
         styled && {
-          'focus-visible-ring transition-colors whitespace-nowrap rounded': true,
+          'focus-visible:ring focus-visible:outline-none transition-colors whitespace-nowrap rounded': true,
           inline: inline,
           'flex items-center': !inline,
         },

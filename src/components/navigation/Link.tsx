@@ -40,7 +40,7 @@ export default function Link({
       {...htmlAttributes}
       className={classnames(
         styled && {
-          'focus-visible-ring rounded': true,
+          'focus-visible:ring focus-visible:outline-none rounded': true,
           // underline
           // TODO: Underline should be controlled by `variant` and should default
           // to `always`
