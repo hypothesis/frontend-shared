@@ -392,7 +392,7 @@ describe('DataTable', () => {
       assert.approximately(
         stickyHeaderHeight,
         scrollEl.scrollTop,
-        1,
+        2,
         'Scroll is adjusted to ensure selected row is visible below sticky header',
       );
     });

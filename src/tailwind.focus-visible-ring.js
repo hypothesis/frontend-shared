@@ -30,6 +30,8 @@ import plugin from 'tailwindcss/plugin.js';
  *
  * Ring width is this theme's `ringWidth.DEFAULT`
  */
+
+/** @type {any} */
 export const focusVisibleRing = plugin(({ addUtilities, theme }) => {
   const ringWidth = theme('ringWidth.DEFAULT');
   // Based on TW ring/shadow rules https://tailwindcss.com/docs/ring-width
