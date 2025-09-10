@@ -3,7 +3,7 @@
  */
 
 @layer components {
-  // Support some basic text styling in Library components
+  /* Support some basic text styling in Library components. */
   .styled-text {
     :where(a):not(:where([class~='unstyled-text'] *)) {
       @apply text-brand underline hover:text-brand-dark transition-colors;

@@ -1,0 +1,25 @@
+/**
+ * This stylesheet provides all of the styles needed to run a standalone
+ * pattern library application, including resets, component styles, util
+ * styles and component styles.
+ */
+@import 'tailwindcss';
+
+/* Syntax highlighting style for Highlight.js. */
+@import 'highlight.js/styles/github-dark.css';
+
+@config '../tailwind.config.js';
+@import './library.css';
+
+@layer base {
+  /* For consistency with Tailwind v3. See https://tailwindcss.com/docs/upgrade-guide#default-border-color. */
+  * {
+    border-color: #dbdbdb;
+  }
+}
+
+/* For consistency with Tailwind v3. See https://tailwindcss.com/docs/upgrade-guide#default-ring-width-and-color. */
+@theme {
+  --default-ring-width: 2px;
+  --default-ring-color: #59a7e8;
+}

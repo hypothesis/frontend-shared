@@ -2,7 +2,6 @@ import { buildCSS, runTests, watchJS } from '@hypothesis/frontend-build';
 import gulp from 'gulp';
 
 import { servePatternLibrary } from './scripts/serve-pattern-library.js';
-import tailwindConfig from './tailwind.config.js';
 
 gulp.task('serve-pattern-library', () => {
   servePatternLibrary();
@@ -12,7 +11,10 @@ gulp.task('serve-pattern-library', () => {
 // during development. Bundled JS and CSS are not published with the package.
 
 gulp.task('bundle-css', () =>
-  buildCSS(['./styles/pattern-library.scss'], { tailwindConfig }),
+  buildCSS(['./styles/pattern-library.css'], {
+    autoprefixer: false,
+    tailwind: true,
+  }),
 );
 
 gulp.task(
@@ -44,7 +46,7 @@ gulp.task(
  * nb. This is only used for unit tests that need CSS to verify accessibility requirements.
  */
 gulp.task('build-test-css', () =>
-  buildCSS(['styles/test.scss'], { tailwindConfig }),
+  buildCSS(['styles/test.css'], { autoprefixer: false, tailwind: true }),
 );
 
 // Some (eg. a11y) tests rely on CSS bundles. We assume that JS will always take

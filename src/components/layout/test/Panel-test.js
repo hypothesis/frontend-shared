@@ -71,7 +71,7 @@ describe('Panel', () => {
       assert.isTrue(loremWrapper.find('p').getDOMNode().clientHeight > 200);
       // But when in a Panel, and the Panel is within a height-constrained
       // element, the total Panel height will not exceed parent height (200px)
-      assert.equal(
+      assert.isBelow(
         wrapper.find('div[data-composite-component="Panel"]').getDOMNode()
           .clientHeight,
         200,
