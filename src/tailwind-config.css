@@ -1,0 +1,228 @@
+/* Standard theme and additional utilities for Hypothesis projects. */
+
+@theme {
+  /* Border colors */
+  --color-border: #dbdbdb;
+
+  /* Custom color palette */
+  --color-grey-0: #fafafa;
+  --color-grey-1: #f2f2f2;
+  --color-grey-2: #ececec;
+  --color-grey-3: #dbdbdb;
+  --color-grey-4: #a6a6a6;
+  --color-grey-5: #9c9c9c;
+  --color-grey-6: #737373;
+  --color-grey-7: #595959;
+  --color-grey-8: #3f3f3f;
+  --color-grey-9: #202020;
+
+  --color-slate-0: #f4f4f6;
+  --color-slate-1: #e3e3e5;
+  --color-slate-3: #babac4;
+  --color-slate-5: #9c9cab;
+  --color-slate-7: #575768;
+  --color-slate-9: #131316;
+
+  --color-blue-focus: #59a7e8;
+
+  /* Default colors */
+  --color-green-light: #dfebe7;
+  --color-green: #00a36d;
+  --color-green-dark: #005c3d;
+  --color-green-success: #00a36d;
+
+  --color-yellow-light: #fef7ec;
+  --color-yellow: #fbc168;
+  --color-yellow-dark: #774903;
+  --color-yellow-notice: #fbc168;
+
+  --color-red-light: #f0e2e3;
+  --color-red: #d93c3f;
+  --color-red-dark: #891b1d;
+  --color-red-error: #d93c3f;
+
+  --color-brand-dark: #84141e;
+  --color-brand: #bd1c2b;
+
+  /* This naming makes color-related classnames generated from this
+     token less ambiguous. e.g. `bg-color-text` instead of `bg-text` */
+  --color-color-text: #202020;
+  --color-color-text-light: #737373;
+  --color-color-text-inverted: #f2f2f2;
+
+  /* Box shadows */
+  --shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0px 2px 3px 0px rgba(0, 0, 0, 0.15);
+
+  /* Set font size to the maximum of 16px and the inherited size.
+     On iOS, the input font size must be at least 16px to prevent the
+     browser from zooming into it on touch. */
+  --font-size-at-least-16px: max(16px, 100%);
+
+  /* Ring styles */
+  --color-ring: #59a7e8;
+
+  /* Tailwind's default ring opacity is `0.5` */
+  --ring-opacity: 1;
+  --ring-width: 2px;
+
+  /* Custom spacing */
+  --spacing-em: 1em;
+  --spacing-2em: 2em;
+  --spacing-4em: 4em;
+  --spacing-touch-minimum: 44px;
+
+  /* Minimum touch target size, based on Apple HIG recommendations. */
+  --min-height-touch-minimum: 44px;
+  --min-width-touch-minimum: 44px;
+
+  /* Z-index values */
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 3;
+  --z-index-4: 4;
+  --z-index-5: 5;
+  --z-index-10: 10;
+  --z-index-max: 2147483647;
+
+  /* Custom breakpoints */
+  --breakpoint-tall: (min-height: 32rem);
+  --breakpoint-touch: (pointer: coarse);
+}
+
+/* Custom keyframes and animations */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-right {
+  0% {
+    opacity: 0;
+    left: 100%;
+  }
+  80% {
+    left: -10px;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-to-right {
+  0% {
+    left: 0;
+    opacity: 1;
+  }
+  20% {
+    left: -10px;
+  }
+  100% {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+/* Custom animations */
+@utility animate-fade-in {
+  animation: fade-in 0.3s forwards;
+}
+
+@utility animate-fade-out {
+  animation: fade-out 0.3s forwards;
+}
+
+@utility animate-slide-in-from-right {
+  animation: slide-in-from-right 0.3s forwards ease-in-out;
+}
+
+@utility animate-slide-out-to-right {
+  animation: slide-out-to-right 0.3s forwards ease-in-out;
+}
+
+/* Deprecated alias for `wrap-anywhere`. This was needed in Tailwind v3 as it
+   it did not have a built-in utility for this. */
+@utility hyp-wrap-anywhere {
+  overflow-wrap: anywhere;
+}
+
+/* Add a custom variant to mark an element to serve as a container for
+   a set of grouped input components. This is the same functionality
+   as Tailwind's built-in "group" variant, but with a different name for
+   clarity of purpose.
+   See https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state */
+@variant input-group (.input-group &);
+
+/* Standard focus ring for input controls. */
+@utility focus-visible-ring {
+  @apply focus-visible:ring focus-visible:outline-none;
+}
+
+/* Utility class to show scroll-hint shadows at the top and bottom of a
+   scrollable frame element if:
+    - The content height exceeds the frame height: i.e. can be scrolled, and
+    - The content is scrollable in the shadow's direction (up or down)
+
+   Shadows are not visible once the frame has been scrolled all the way in the
+   shadow's direction. Shadows are not visible if the height of the content
+   does not overflow the frame (is not scrollable).
+
+   The shadow hinting is handled by four positioned background gradients:
+     - One gradient each at top and bottom of frame that obscure the shadow hints
+       (shadow covers). These use `background-attachment: local`, which makes
+       their position fixed to the _content_ within the scrollbox.
+     - One gradient each at the top and the bottom of the frame that are the
+       shadow hints (shadows). These use `background-attachment: scroll` such
+       that they are always positioned at the top and the bottom of the
+       _scrollbox_ frame. When these positions align with the positions of the
+       shadow covers--at the top and the bottom of the overflowing content--
+       they will be obscured by those shadow covers.
+
+   See https://lea.verou.me/2012/04/background-attachment-local/ */
+@utility scroll-shadows {
+  background:
+   /* These "shadow covers" scroll with the content. They align with and
+      obscure the shadows when an element is scrolled all the way in one
+      direction. If there is no overflow (nothing to scroll), these covers keep
+      any shadows from showing. */
+    linear-gradient(white 30%, rgba(255, 255, 255, 0)) 0 0,
+    linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+    /* The shadows are in a fixed position (`background-attachment: scroll`)
+       relative to the scrolling container. */
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.05) 5px,
+        rgba(255, 255, 255, 0) 70%
+      )
+      0 0,
+    linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.05) 5px,
+        rgba(255, 255, 255, 0) 70%
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size:
+    100% 40px,
+    100% 40px,
+    100% 14px,
+    100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}

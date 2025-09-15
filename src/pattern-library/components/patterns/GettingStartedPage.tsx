@@ -18,40 +18,58 @@ export default function GettingStartedPage() {
       <Library.Section>
         <Library.SectionL2 title="Installation">
           <p>
-            Your application needs to install{' '}
+            Add{' '}
             <Link href="https://tailwindcss.com/" underline="always">
               tailwindcss
             </Link>{' '}
-            to use this {"package's"} updated components.
+            to your application&apos;s dependencies.
           </p>
           <Library.Code
-            content={`$ yarn add tailwindcss @hypothesis/frontend-shared`}
+            content={`$ yarn add tailwindcss @tailwindcss/postcss @hypothesis/frontend-shared`}
+          />
+          <p>
+            Then, in your project&apos;s gulp configuration, pass{' '}
+            <code>
+              {'{'} tailwind: true {'}'}
+            </code>{' '}
+            to the <code>buildCSS</code> function:
+          </p>
+          <Library.Code
+            content={`import { buildCSS } from '@hypothesis/frontend-build';
+
+gulp.task('build-tailwind-css', () =>
+  buildCSS(['app.css'], {
+    tailwind: true,
+  }),
+);`}
           />
         </Library.SectionL2>
         <Library.SectionL2 title="Configuration">
-          <Library.SectionL3 title="Configure tailwindcss">
-            <p>Configure your {"project's"} tailwind configuration object:</p>
-            <ul>
-              <li>Use this {"package's"} tailwind preset</li>
-              <li>
-                Add this {"package's"} source to the {"configuration's"}{' '}
-                <code>content</code> globs
-              </li>
-            </ul>
-            <Library.Code
-              size="sm"
-              title="Your project's tailwind config"
-              content={`import tailwindConfig from '@hypothesis/frontend-shared/lib/tailwind.preset.js';
+          <p>
+            In your project&apos;s CSS entry point, import the Tailwind theme
+            from this package:
+          </p>
+          <Library.Code
+            size="sm"
+            title="Your project's tailwind config"
+            lang="css"
+            content={`@import 'tailwindcss' @source(none);
 
-export default {
-  presets: [tailwindConfig],
-  content: [
-    './node_modules/@hypothesis/frontend-shared/lib/**/*.{js,ts,tsx}',
-    // ...
-  ],
-  // ...`}
-            />
-          </Library.SectionL3>
+/* Scan the frontend-shared package for used classes. The path is relative to
+   the location of the CSS file. */
+@source 'node_modules/@hypothesis/frontend-shared/lib/**/*.js';
+
+/* Enable the Tailwind theme and additional utilities. */
+@import '@hypothesis/frontend-shared/tailwind-config.css';
+  `}
+          />
+          <p>
+            See the{' '}
+            <a href="https://tailwindcss.com/docs/functions-and-directives">
+              Tailwind documentation
+            </a>{' '}
+            for more details on configuration at-rules.
+          </p>
         </Library.SectionL2>
         <Library.SectionL2 title="Usage">
           <Library.Usage componentName="Card, Link" />

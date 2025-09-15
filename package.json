@@ -83,10 +83,15 @@
   "files": [
     "lib",
     "styles",
-    "images"
+    "images",
+    "src/tailwind-config.css"
   ],
   "type": "module",
   "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./tailwind-config.css": "./src/tailwind-config.css"
+  },
   "browserslist": "chrome 70, firefox 70, safari 11.1",
   "dependencies": {
     "highlight.js": "^11.6.0",
