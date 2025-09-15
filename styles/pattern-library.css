@@ -8,7 +8,7 @@
 /* Syntax highlighting style for Highlight.js. */
 @import 'highlight.js/styles/github-dark.css';
 
-@config '../tailwind.config.js';
+@import '../src/tailwind-config.css';
 @import './library.css';
 
 @layer base {

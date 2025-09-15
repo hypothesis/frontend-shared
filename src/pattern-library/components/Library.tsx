@@ -11,6 +11,7 @@ import {
   Scroll,
   ScrollContainer,
 } from '../../';
+import type { CodeLanguage } from '../util/jsx-to-string';
 import { highlightCode, jsxToHTML } from '../util/jsx-to-string';
 
 /**
@@ -464,13 +465,18 @@ type CodeContentProps =
   | {
       /** Code content (to be rendered with syntax highlighting) */
       content: ComponentChildren;
+
+      /** Programming language. */
+      lang?: CodeLanguage;
     }
   | {
       /**
        * Example file to read and use as content (to be rendered with syntax
-       * highlighting)
+       * highlighting).
        */
       exampleFile: string;
+
+      // Example files are currently assumed to always be TypeScript.
     };
 
 export type LibraryCodeProps = {
@@ -495,7 +501,7 @@ function useCodeContent(
 ): [string | undefined, Error | undefined] {
   const hasStaticContent = isCodeWithContent(props);
   const [codeMarkup, setCodeMarkup] = useState<string | undefined>(
-    hasStaticContent ? jsxToHTML(props.content) : undefined,
+    hasStaticContent ? jsxToHTML(props.content, props.lang) : undefined,
   );
   const [error, setError] = useState<Error>();
 
@@ -506,7 +512,7 @@ function useCodeContent(
 
     const controller = new AbortController();
     fetchCodeExample(`/examples/${props.exampleFile}.tsx`, controller.signal)
-      .then(code => setCodeMarkup(highlightCode(code)))
+      .then(code => setCodeMarkup(highlightCode(code, 'typescript')))
       .catch(setError);
 
     return () => controller.abort();
