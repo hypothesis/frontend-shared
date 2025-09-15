@@ -12,7 +12,6 @@ gulp.task('serve-pattern-library', () => {
 
 gulp.task('bundle-css', () =>
   buildCSS(['./styles/pattern-library.css'], {
-    autoprefixer: false,
     tailwind: true,
   }),
 );
