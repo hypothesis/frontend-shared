@@ -7,26 +7,21 @@ UI components for Hypothesis front-end applications.
 Your project must have `preact` and `tailwindcss` as dependencies.
 
 ```sh
-$ yarn add preact tailwindcss
+$ yarn add preact tailwindcss @tailwindcss/postcss
 $ yarn add @hypothesis/frontend-shared
 ```
 
-### tailwindcss configuration
+In your project's CSS entry point, add a `@source` for the frontend-shared
+package and import the Tailwind theme:
 
-Update your project's tailwind configuration:
+```css
+@import 'tailwindcss' source(none);
 
-```js
-import tailwindConfig from '@hypothesis/frontend-shared/lib/tailwind.preset.js';
+/* Configure source files to scan for Tailwind classes. */
+@source './node_modules/@hypothesis/frontend-shared/lib/**/*.js';
 
-export default {
-  // Use this package's preset
-  presets: [tailwindConfig],
-  content: [
-    // Be sure to add this project's component source to your
-    // tailwind content globs
-    './node_modules/@hypothesis/frontend-shared/lib/**/*.{js,ts,tsx}',
-  ],
-  // ...
+/* Import theme and utilities from shared package. */
+@import '@hypothesis/frontend-shared/tailwind-config.css';
 ```
 
 ## Documentation

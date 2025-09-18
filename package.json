@@ -91,7 +91,6 @@
   "exports": {
     ".": "./lib/index.js",
     "./pattern-library": "./lib/pattern-library/index.js",
-    "./tailwind.preset.js": "./lib/tailwind.preset.js",
     "./tailwind-config.css": "./src/tailwind-config.css"
   },
   "browserslist": "chrome 70, firefox 70, safari 11.1",
