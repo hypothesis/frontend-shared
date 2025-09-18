@@ -1,6 +1,4 @@
-/**
- * Stylesheet for tests
- */
+/* Stylesheet for tests. */
 @import 'tailwindcss';
 
-@config '../tailwind.config.js';
+@import '../src/tailwind-config.css';
