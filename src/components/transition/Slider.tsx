@@ -1,15 +1,18 @@
-import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
+import { useCallback, useEffect, useState } from 'preact/hooks';
 
+import { useSyncedRef } from '../../hooks/use-synced-ref';
 import type { TransitionComponent } from '../../types';
+import { downcastRef } from '../../util/typing';
 
 const Slider: TransitionComponent = ({
   children,
   direction = 'in',
   onTransitionEnd,
   delay,
+  elementRef,
 }) => {
   const visible = direction === 'in';
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useSyncedRef(elementRef);
   const [containerHeight, setContainerHeight] = useState(visible ? 'auto' : 0);
 
   // Whether the content is currently partially or wholly visible. This is
@@ -52,7 +55,7 @@ const Slider: TransitionComponent = ({
 
       setContainerHeight(0);
     }
-  }, [containerHeight, visible]);
+  }, [containerHeight, containerRef, visible]);
 
   const handleTransitionEnd = useCallback(
     (e: TransitionEvent) => {
@@ -72,7 +75,7 @@ const Slider: TransitionComponent = ({
       }
       onTransitionEnd?.(direction);
     },
-    [setContainerHeight, visible, onTransitionEnd, direction],
+    [containerRef, visible, onTransitionEnd, direction],
   );
 
   const isFullyVisible = containerHeight === 'auto';
@@ -84,7 +87,7 @@ const Slider: TransitionComponent = ({
       //
       // @ts-ignore
       ontransitionend={handleTransitionEnd}
-      ref={containerRef}
+      ref={downcastRef(containerRef)}
       style={{
         display: contentVisible ? '' : 'none',
         height: containerHeight,
