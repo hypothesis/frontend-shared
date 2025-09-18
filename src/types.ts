@@ -57,9 +57,10 @@ export type IconComponent = FunctionComponent<JSX.SVGAttributes<SVGSVGElement>>;
 export type TransitionComponent = FunctionComponent<{
   /** Whether the children should be revealed ("in") or hidden ("out"). */
   direction?: 'in' | 'out';
-
   /** Callback invoked when transition ends. */
   onTransitionEnd?: (direction: 'in' | 'out') => void;
+  /** Ref associated with component's outermost or primary element */
+  elementRef?: Ref<HTMLElement | undefined>;
 
   /**
    * Delay before transitions begin. This corresponds to the `transition-delay`
