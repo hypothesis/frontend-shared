@@ -27,6 +27,7 @@ export { confirm } from './util/prompts';
 
 // Components
 export * from './components/icons';
+export { default as CloseableContext } from './components/CloseableContext';
 export {
   AspectRatio,
   DataTable,
