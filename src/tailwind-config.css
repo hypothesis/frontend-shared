@@ -84,11 +84,13 @@
   --z-index-5: 5;
   --z-index-10: 10;
   --z-index-max: 2147483647;
-
-  /* Custom breakpoints */
-  --breakpoint-tall: (min-height: 32rem);
-  --breakpoint-touch: (pointer: coarse);
 }
+
+/* Tailwind has a built-in pointer-coarse variant. This alias exists for
+   compatibility. */
+@custom-variant touch (@media (pointer: coarse));
+
+@custom-variant tall (@media (min-height: 32rem));
 
 /* Custom keyframes and animations */
 @keyframes fade-in {
