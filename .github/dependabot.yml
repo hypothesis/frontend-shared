@@ -18,6 +18,10 @@ updates:
       patterns:
         - 'rollup'
         - '@rollup/*'
+    tailwind:
+      patterns:
+        - 'tailwindcss'
+        - '@tailwindcss/*'
     typescript-types:
       patterns:
         - '@types/*'
