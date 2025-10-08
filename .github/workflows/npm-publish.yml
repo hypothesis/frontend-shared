@@ -3,6 +3,12 @@ on:
   release:
     types:
       - published
+
+# Trusted publishing configuration. See https://docs.npmjs.com/trusted-publishers
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-publish-package:
     runs-on: ubuntu-latest
@@ -12,7 +18,7 @@ jobs:
     - name: Setup Nodejs
       uses: actions/setup-node@v4
       with:
-        node-version: '16'
+        node-version: '24'
         registry-url: 'https://registry.npmjs.org'
     - name: Install
       run: yarn install --immutable
@@ -22,8 +28,6 @@ jobs:
         NODE_ENV: production
     - name: Publish package
       run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   deploy-website:
     name: Deploy website
     uses: ./.github/workflows/deploy.yml
