@@ -3,7 +3,10 @@
   "version": "10.3.2",
   "description": "Shared components, styles and utilities for Hypothesis projects",
   "license": "BSD-2-Clause",
-  "repository": "hypothesis/frontend-shared",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypothesis/frontend-shared.git"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.6",
     "@babel/core": "^7.1.6",
