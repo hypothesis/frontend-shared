@@ -24,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.13",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@vitest/browser": "^4.0.8",
+    "@vitest/browser-playwright": "^4.0.8",
     "@vitest/coverage-istanbul": "^4.0.8",
     "@vitest/eslint-plugin": "^1.1.44",
     "axe-core": "^4.0.0",
