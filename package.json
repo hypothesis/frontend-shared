@@ -51,7 +51,7 @@
     "prettier": "^3.0.0",
     "rollup": "^4.0.2",
     "rollup-plugin-string": "^3.0.0",
-    "sinon": "^21.0.0",
+    "sinon": "^22.0.0",
     "svgo": "^4.0.0",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.0.2",
