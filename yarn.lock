@@ -2883,8 +2883,8 @@ __metadata:
   linkType: hard
 
 "@trivago/prettier-plugin-sort-imports@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@trivago/prettier-plugin-sort-imports@npm:6.0.0"
+  version: 6.0.2
+  resolution: "@trivago/prettier-plugin-sort-imports@npm:6.0.2"
   dependencies:
     "@babel/generator": ^7.28.0
     "@babel/parser": ^7.28.0
@@ -2909,7 +2909,7 @@ __metadata:
       optional: true
     svelte:
       optional: true
-  checksum: 10126897d99d1027e215e964a648beae784bd3653c8b749cf20d13ea3c09c5af34339b7a633e66490379befb32c509804873a11be3d8bf0bd0460a67d588ee5f
+  checksum: 568a5fed9671e68daa0a1298455a75f82ea6c9702b9139ba831206b22b0b4fc7b43c359b8720695624daa537ceb307c635bac346d64b214024cabe44c7f62560
   languageName: node
   linkType: hard
 
